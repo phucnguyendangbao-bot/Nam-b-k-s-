@@ -50,8 +50,9 @@ thao tác POST /api/editorial-release cho phép áp dụng đúng gói đã duy�
 service access của Sites, bổ sung khóa runtime ngắn hạn và checksum gói.
 Thao tác kiểm tra dữ liệu khớp bản chuẩn bị, nguồn, ảnh, từ điển và chốt công bố;
 không ghi đè bài đã sửa, không giả danh người dùng. Nhật ký ghi actor dịch vụ
-đã được chủ sở hữu phê duyệt. GET không công bố. Khóa được gỡ sau thực thi;
-biên nhận trong app_settings ngăn chạy lại. CMS duyệt từng mục vẫn hoạt động.
+đã được chủ sở hữu phê duyệt. GET không công bố. Khóa cấu hình được gỡ sau thực
+thi; endpoint POST và công cụ ghi một lần cũng được xóa khỏi bản chạy cuối.
+Biên nhận trong app_settings được giữ làm nhật ký. CMS duyệt từng mục vẫn hoạt động.
 
 ## Kiểm tra
 
@@ -76,3 +77,7 @@ Hosted hoàn tất công bố lúc 22:46 ngày 27/10/2026 (Asia/Saigon): 11 bài
 Biên nhận lưu tại app_settings với khóa reviewed_release:collections-2026-10-27-v1.
 Khóa runtime cho thao tác công bố được gỡ sau khi hoàn tất. Báo cáo kiểm tra
 HTTP hosted nằm trong outputs/collections-qa/hosted-results.json sau triển khai.
+
+Số liệu hosted sau công bố: 42 hồ sơ, 11 đủ điều kiện và đã công bố, 31 còn nháp,
+33 nguồn, 3 hành trình đọc. Bản cuối chỉ giữ scripts/check-hosted-release.mjs
+để kiểm tra đọc trang. Không còn API ghi hàng loạt trong bản chạy cuối.
