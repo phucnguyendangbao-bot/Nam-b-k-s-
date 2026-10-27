@@ -1,0 +1,769 @@
+{
+  "sha256": "75341b8dd6f053778d9b3c246bf62cd7b303914c2a2c5075eb071316105386ae",
+  "sources": [
+    {
+      "id": "S01",
+      "name": "Cổng dữ liệu Du lịch Cần Thơ 2026",
+      "source_type": "official_dataset",
+      "url": "https://data.cantho.gov.vn/dataset/du-lieu-ve-du-lich-2026",
+      "topics": "diem_du_lich,di_tich",
+      "format": "XLSX",
+      "license_reported": "unknown",
+      "next_action": "download_review",
+      "notes": "Dữ liệu nguồn có nhãn chưa cấp giấy phép; tránh phát hành lại nguyên bảng trước khi xác minh.",
+      "input_locator": "Sources!A2:I2"
+    },
+    {
+      "id": "S02",
+      "name": "Cổng dữ liệu Văn hóa Cần Thơ 2026",
+      "source_type": "official_dataset",
+      "url": "https://data.cantho.gov.vn/dataset/?organization=so-van-hoa-the-thao-va-du-lich&res_format=XLSX&tags=D%E1%BB%AF+li%E1%BB%87u+v%E1%BB%81+V%C4%83n+h%C3%B3a+2026",
+      "topics": "di_san,di_tich",
+      "format": "XLSX/DOCX",
+      "license_reported": "unknown",
+      "next_action": "download_review",
+      "notes": "Duyệt giấy phép từng tài nguyên.",
+      "input_locator": "Sources!A3:I3"
+    },
+    {
+      "id": "S03",
+      "name": "Di tích lịch sử văn hóa Cần Thơ",
+      "source_type": "official_dataset",
+      "url": "https://data.cantho.gov.vn/dataset/du-lieu-cac-di-tich-lich-su-van-hoa/resource/e6ddcfdf-7886-40d3-ad3a-3ce21648c952?inner_span=True",
+      "topics": "di_tich",
+      "format": "unknown",
+      "license_reported": "noncommercial",
+      "next_action": "permission_check",
+      "notes": "Resource ghi Other (Non-Commercial), paid data true.",
+      "input_locator": "Sources!A4:I4"
+    },
+    {
+      "id": "S04",
+      "name": "Danh mục di sản phi vật thể quốc gia",
+      "source_type": "official_register",
+      "url": "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789",
+      "topics": "le_hoi,nghe_thuat,di_san",
+      "format": "HTML",
+      "license_reported": "unknown",
+      "next_action": "facts_only",
+      "notes": "Đối chiếu tên, quyết định và địa phương theo thời kỳ cũ.",
+      "input_locator": "Sources!A5:I5"
+    },
+    {
+      "id": "S05",
+      "name": "Đua ghe Ngo người Khmer",
+      "source_type": "official_article",
+      "url": "https://dsvh.gov.vn/le-hoi-dua-ghe-ngo-cua-nguoi-khmer-3441",
+      "topics": "le_hoi,truyen_thuyet",
+      "format": "HTML",
+      "license_reported": "copyright_unspecified",
+      "next_action": "summarize_cite",
+      "notes": "Nội dung xác nhận nhiều truyền thuyết, chưa xác định chính xác nguồn gốc.",
+      "input_locator": "Sources!A6:I6"
+    },
+    {
+      "id": "S06",
+      "name": "Ý kiến lập hồ sơ di sản Sóc Trăng 2017",
+      "source_type": "official_article",
+      "url": "https://dsvh.gov.vn/bo-van-hoa%2C-the-thao-va-du-lich-co-y-kien-ve-viec-lap-ho-so-khoa-hoc-di-san-van-hoa-phi-vat-the-o-tinh-soc-trang-1401",
+      "topics": "khmer,hoa,nghe_thuat,nghe",
+      "format": "HTML",
+      "license_reported": "copyright_unspecified",
+      "next_action": "summarize_cite",
+      "notes": "Ghi nhận đề xuất khảo cứu lễ cưới Hoa Triều Châu, bánh pía, Rô Băm.",
+      "input_locator": "Sources!A7:I7"
+    },
+    {
+      "id": "S07",
+      "name": "Phong tục hôn nhân người Nam Bộ",
+      "source_type": "journalism",
+      "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html",
+      "topics": "cuoi_hoi",
+      "format": "HTML",
+      "license_reported": "copyright_unspecified",
+      "next_action": "summarize_cite",
+      "notes": "Có lời phỏng vấn về nghi thức xưa và nay.",
+      "input_locator": "Sources!A8:I8"
+    },
+    {
+      "id": "S08",
+      "name": "Thư viện Cần Thơ: phong tục Khmer Nam Bộ (Sang Sết)",
+      "source_type": "library_catalog",
+      "url": "https://thuviencantho.vn/chinh-tri-xa-hoi/phong-tuc-le-nghi-va-tranh-ky-tu-dan-toc-khmer-nam-bo-2331.html",
+      "topics": "phong_tuc,le_hoi,khmer",
+      "format": "book_listing",
+      "license_reported": "book_copyright",
+      "next_action": "bibliographic_only",
+      "notes": "Sách năm 2019, 239 trang, cần đọc bản sách hợp pháp.",
+      "input_locator": "Sources!A9:I9"
+    },
+    {
+      "id": "S09",
+      "name": "Thư viện Cần Thơ: Tiếng Việt và phong tục Việt Nam",
+      "source_type": "library_catalog",
+      "url": "https://thuviencantho.vn/gioi-thieu-sach-moi/tieng-viet-va-phong-tuc-viet-nam-nguyen-thi-phuong-thuy-pham-thi-thuy-hong-dong-chu-bien-h-dai-hoc-quoc-gia-ha-noi-2023-298tr-21cm-2060.html",
+      "topics": "phong_tuc,ngon_ngu",
+      "format": "book_listing",
+      "license_reported": "book_copyright",
+      "next_action": "bibliographic_only",
+      "notes": "Sách 2023, tư liệu thứ cấp, không tự sao chép.",
+      "input_locator": "Sources!A10:I10"
+    },
+    {
+      "id": "S10",
+      "name": "Từ điển từ ngữ Nam Bộ - Huỳnh Công Tín",
+      "source_type": "library_catalog",
+      "url": "https://thuviennguyenanninh.vn/sach/tu-dien-tu-ngu-nam-bo.html",
+      "topics": "phuong_ngu",
+      "format": "book_listing",
+      "license_reported": "book_copyright",
+      "next_action": "bibliographic_only",
+      "notes": "Cần xin phép nếu xây dựng bộ dữ liệu quy mô lớn từ từ điển.",
+      "input_locator": "Sources!A11:I11"
+    },
+    {
+      "id": "S11",
+      "name": "Thư mục địa chí Cần Thơ",
+      "source_type": "library_catalog",
+      "url": "https://thuviencantho.vn/thu-muc-tai-lieu-moi/thu-muc-tai-lieu-dia-chi/",
+      "topics": "dia_danh,lich_su",
+      "format": "catalog",
+      "license_reported": "mixed",
+      "next_action": "manual_research",
+      "notes": "Nguồn để truy ra tài liệu gốc, không phải API toàn văn.",
+      "input_locator": "Sources!A12:I12"
+    },
+    {
+      "id": "S12",
+      "name": "Sách số hóa địa chí Cần Thơ",
+      "source_type": "library_catalog",
+      "url": "https://thuviencantho.vn/about/SACH-SO-HOA-DIA-CHI-CAN-THO.html",
+      "topics": "dia_danh,lich_su",
+      "format": "reader",
+      "license_reported": "restricted",
+      "next_action": "manual_research",
+      "notes": "Phần mềm đọc riêng, chưa xác minh quyền trích xuất.",
+      "input_locator": "Sources!A13:I13"
+    },
+    {
+      "id": "S13",
+      "name": "Địa danh Đầu Sấu",
+      "source_type": "journalism",
+      "url": "https://baocantho.com.vn/mot-vai-suy-nghi-ve-dia-danh-dau-sau-a20565.html",
+      "topics": "dia_danh,truyen_thuyet",
+      "format": "HTML",
+      "license_reported": "copyright_unspecified",
+      "next_action": "summarize_cite",
+      "notes": "Nhiều cách lý giải, không khẳng định giả thuyết duy nhất.",
+      "input_locator": "Sources!A14:I14"
+    },
+    {
+      "id": "S14",
+      "name": "UNESCO đờn ca tài tử",
+      "source_type": "unesco_profile",
+      "url": "https://ich.unesco.org/en/RL/art-of-n-ca-tai-t-music-and-song-in-southern-viet-nam-00733",
+      "topics": "nghe_thuat,di_san",
+      "format": "HTML",
+      "license_reported": "copyright_check",
+      "next_action": "facts_only",
+      "notes": "Trích dẫn thông tin hồ sơ UNESCO, quyền media riêng.",
+      "input_locator": "Sources!A15:I15"
+    },
+    {
+      "id": "S15",
+      "name": "Nghiên cứu KHCN Sóc Trăng về văn hóa",
+      "source_type": "official_pdf",
+      "url": "https://sokhcn.soctrang.gov.vn/SiteFolders/sokhcn/HoiThao/Bai-8.pdf",
+      "topics": "khmer,hoa,phong_tuc",
+      "format": "PDF",
+      "license_reported": "copyright_unspecified",
+      "next_action": "manual_research",
+      "notes": "Bài tổng kết nêu nghiên cứu phục dựng 30 phong tục 6 lễ hội; chưa có toàn bộ phụ lục.",
+      "input_locator": "Sources!A16:I16"
+    },
+    {
+      "id": "S16",
+      "name": "OpenStreetMap bản quyền",
+      "source_type": "geo_license",
+      "url": "https://www.openstreetmap.org/copyright",
+      "topics": "gis",
+      "format": "HTML",
+      "license_reported": "ODbL",
+      "next_action": "reuse_with_conditions",
+      "notes": "Cần attribution và tuân thủ nghĩa vụ share-alike khi phát sinh.",
+      "input_locator": "Sources!A17:I17"
+    },
+    {
+      "id": "S17",
+      "name": "Geofabrik trích xuất dữ liệu Việt Nam",
+      "source_type": "geo_download",
+      "url": "https://download.geofabrik.de/asia/vietnam.html",
+      "topics": "gis",
+      "format": "PBF/GPKG/SHP",
+      "license_reported": "ODbL",
+      "next_action": "download_reuse_with_conditions",
+      "notes": "Trích lọc theo ranh giới, không cần tải tất cả vào cơ sở dữ liệu.",
+      "input_locator": "Sources!A18:I18"
+    },
+    {
+      "id": "S18",
+      "name": "Overpass API",
+      "source_type": "geo_api",
+      "url": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+      "topics": "gis,poi",
+      "format": "API",
+      "license_reported": "ODbL",
+      "next_action": "query_limits",
+      "notes": "Giới hạn truy vấn máy chủ công cộng.",
+      "input_locator": "Sources!A19:I19"
+    },
+    {
+      "id": "S19",
+      "name": "Tổng tập Văn học Dân gian Nam Bộ",
+      "source_type": "book_notice",
+      "url": "https://baocantho.com.vn/tong-tap-van-hoc-dan-gian-nam-bo-sach-quy-ve-di-san-vung-dat-phuong-nam-a199530.html",
+      "topics": "ca_dao,tuc_ngu,truyen_dan_gian",
+      "format": "book_notice",
+      "license_reported": "book_copyright",
+      "next_action": "bibliographic_only",
+      "notes": "Chỉ nguồn giới thiệu sách, chưa có full text được cấp quyền.",
+      "input_locator": "Sources!A20:I20"
+    },
+    {
+      "id": "S20",
+      "name": "Văn hóa dân gian Nam Bộ - Những phác thảo",
+      "source_type": "library_catalog",
+      "url": "https://thuvien.stellamaris.edu.vn/index.php/thuvien/catalog_product/view/id/6880/",
+      "topics": "phong_tuc,ca_dao,lich_su",
+      "format": "book_listing",
+      "license_reported": "book_copyright",
+      "next_action": "bibliographic_only",
+      "notes": "Sách 1997; nguồn để nghiên cứu sâu, không phải tập dữ liệu tự do.",
+      "input_locator": "Sources!A21:I21"
+    }
+  ],
+  "contents": [
+    {
+      "id": "E001",
+      "title": "Lễ dạm ngõ / coi mắt",
+      "category": "cuoi_hoi",
+      "historical_area": "Nam Bộ",
+      "community": "Kinh",
+      "classification": "research_lead",
+      "imported_verification": "editorial_lead"
+    },
+    {
+      "id": "E002",
+      "title": "Lễ hỏi và mâm trầu cau",
+      "category": "cuoi_hoi",
+      "historical_area": "Nam Bộ",
+      "community": "Kinh",
+      "classification": "research_lead",
+      "imported_verification": "editorial_lead"
+    },
+    {
+      "id": "E003",
+      "title": "Lễ rước dâu",
+      "category": "cuoi_hoi",
+      "historical_area": "Nam Bộ",
+      "community": "Kinh",
+      "classification": "research_lead",
+      "imported_verification": "editorial_lead"
+    },
+    {
+      "id": "E004",
+      "title": "Phong tục mời cưới xưa",
+      "category": "cuoi_hoi",
+      "historical_area": "Nam Bộ",
+      "community": "Kinh",
+      "classification": "research_lead",
+      "imported_verification": "editorial_lead"
+    },
+    {
+      "id": "E005",
+      "title": "Phong tục cưới Hoa Triều Châu",
+      "category": "cuoi_hoi",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Hoa",
+      "classification": "research_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E006",
+      "title": "Nghi lễ phát tang",
+      "category": "tang_le",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E007",
+      "title": "Lễ cúng thất",
+      "category": "tang_le",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E008",
+      "title": "Giỗ tiên thường và giỗ chính",
+      "category": "dam_gio",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E009",
+      "title": "Mâm cơm cúng tổ tiên",
+      "category": "dam_gio",
+      "historical_area": "Nam Bộ",
+      "community": "Kinh",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E010",
+      "title": "Sen Đôn Ta",
+      "category": "khmer",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "bibliographic_lead",
+      "imported_verification": "bibliographic_lead"
+    },
+    {
+      "id": "E011",
+      "title": "Chôl Chnăm Thmây",
+      "category": "khmer",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "bibliographic_lead",
+      "imported_verification": "bibliographic_lead"
+    },
+    {
+      "id": "E012",
+      "title": "Oóc Om Bóc",
+      "category": "khmer",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "source_supported",
+      "imported_verification": "source_supported"
+    },
+    {
+      "id": "E013",
+      "title": "Đua ghe Ngo",
+      "category": "khmer",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "source_supported",
+      "imported_verification": "source_supported"
+    },
+    {
+      "id": "E014",
+      "title": "Nghệ thuật Rô Băm",
+      "category": "nghe_thuat",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "official_register",
+      "imported_verification": "official_register"
+    },
+    {
+      "id": "E015",
+      "title": "Nghệ thuật Dù Kê",
+      "category": "nghe_thuat",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "official_register",
+      "imported_verification": "official_register"
+    },
+    {
+      "id": "E016",
+      "title": "Múa Rom Vong",
+      "category": "nghe_thuat",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "official_register",
+      "imported_verification": "official_register"
+    },
+    {
+      "id": "E017",
+      "title": "Nhạc Ngũ âm Khmer",
+      "category": "nghe_thuat",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "official_register",
+      "imported_verification": "official_register"
+    },
+    {
+      "id": "E018",
+      "title": "Đờn ca tài tử Nam Bộ",
+      "category": "nghe_thuat",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "source_supported",
+      "imported_verification": "unesco_profile"
+    },
+    {
+      "id": "E019",
+      "title": "Lễ hội Nghinh Ông Sóc Trăng",
+      "category": "le_hoi",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "various",
+      "classification": "official_register",
+      "imported_verification": "official_register"
+    },
+    {
+      "id": "E020",
+      "title": "Đầu Sấu",
+      "category": "dia_danh",
+      "historical_area": "Cần Thơ cũ",
+      "community": "various",
+      "classification": "research_lead",
+      "imported_verification": "competing_hypotheses"
+    },
+    {
+      "id": "E021",
+      "title": "Cái Răng",
+      "category": "dia_danh",
+      "historical_area": "Cần Thơ cũ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E022",
+      "title": "Ba Láng",
+      "category": "dia_danh",
+      "historical_area": "Cần Thơ cũ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E023",
+      "title": "Ngã Bảy",
+      "category": "dia_danh",
+      "historical_area": "Hậu Giang cũ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E024",
+      "title": "Phong Điền",
+      "category": "dia_danh",
+      "historical_area": "Cần Thơ cũ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E025",
+      "title": "Di tích lịch sử - văn hóa Cần Thơ (danh mục)",
+      "category": "di_san",
+      "historical_area": "Cần Thơ mới",
+      "community": "various",
+      "classification": "research_lead",
+      "imported_verification": "dataset_pending"
+    },
+    {
+      "id": "E026",
+      "title": "Điểm du lịch văn hóa-lịch sử (danh mục)",
+      "category": "du_lich",
+      "historical_area": "Cần Thơ mới",
+      "community": "various",
+      "classification": "research_lead",
+      "imported_verification": "dataset_pending"
+    },
+    {
+      "id": "E027",
+      "title": "Nghề bánh pía",
+      "category": "nghe",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Hoa/various",
+      "classification": "research_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E028",
+      "title": "Nghề lạp xưởng",
+      "category": "nghe",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Hoa/various",
+      "classification": "research_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E029",
+      "title": "Bậu",
+      "category": "ngon_ngu",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "dictionary_check"
+    },
+    {
+      "id": "E030",
+      "title": "Qua",
+      "category": "ngon_ngu",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "dictionary_check"
+    },
+    {
+      "id": "E031",
+      "title": "Mần",
+      "category": "ngon_ngu",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "dictionary_check"
+    },
+    {
+      "id": "E032",
+      "title": "Bển",
+      "category": "ngon_ngu",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "dictionary_check"
+    },
+    {
+      "id": "E033",
+      "title": "Hổng",
+      "category": "ngon_ngu",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "dictionary_check"
+    },
+    {
+      "id": "E034",
+      "title": "Ca dao nhắc địa danh Nhơn Ái",
+      "category": "ca_dao",
+      "historical_area": "Cần Thơ cũ",
+      "community": "Kinh",
+      "classification": "research_lead",
+      "imported_verification": "quote_source_check"
+    },
+    {
+      "id": "E035",
+      "title": "Kho ca dao tục ngữ Nam Bộ",
+      "category": "ca_dao",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "bibliographic_lead",
+      "imported_verification": "bibliographic_lead"
+    },
+    {
+      "id": "E036",
+      "title": "Chùa Khmer và vai trò cộng đồng",
+      "category": "tin_nguong",
+      "historical_area": "Sóc Trăng cũ",
+      "community": "Khmer",
+      "classification": "bibliographic_lead",
+      "imported_verification": "research_lead"
+    },
+    {
+      "id": "E037",
+      "title": "Đường, thủy hệ, cầu, POI",
+      "category": "gis",
+      "historical_area": "Cần Thơ mới",
+      "community": "various",
+      "classification": "research_lead",
+      "imported_verification": "geospatial_download"
+    },
+    {
+      "id": "E038",
+      "title": "Theo dấu thương hồ",
+      "category": "tour",
+      "historical_area": "Cần Thơ cũ",
+      "community": "various",
+      "classification": "proposed_not_verified",
+      "imported_verification": "proposed_not_verified"
+    },
+    {
+      "id": "E039",
+      "title": "Những tên đất kể chuyện",
+      "category": "tour",
+      "historical_area": "Cần Thơ mới",
+      "community": "various",
+      "classification": "proposed_not_verified",
+      "imported_verification": "proposed_not_verified"
+    },
+    {
+      "id": "E040",
+      "title": "Một đời người Nam Bộ",
+      "category": "tour",
+      "historical_area": "Nam Bộ",
+      "community": "various",
+      "classification": "proposed_not_verified",
+      "imported_verification": "proposed_digital_only"
+    }
+  ],
+  "links": [
+    {
+      "content_id": "E001",
+      "source_id": "S07"
+    },
+    {
+      "content_id": "E002",
+      "source_id": "S07"
+    },
+    {
+      "content_id": "E003",
+      "source_id": "S07"
+    },
+    {
+      "content_id": "E004",
+      "source_id": "S07"
+    },
+    {
+      "content_id": "E005",
+      "source_id": "S06"
+    },
+    {
+      "content_id": "E006",
+      "source_id": "S09"
+    },
+    {
+      "content_id": "E007",
+      "source_id": "S09"
+    },
+    {
+      "content_id": "E008",
+      "source_id": "S09"
+    },
+    {
+      "content_id": "E009",
+      "source_id": "S09"
+    },
+    {
+      "content_id": "E010",
+      "source_id": "S08"
+    },
+    {
+      "content_id": "E011",
+      "source_id": "S08"
+    },
+    {
+      "content_id": "E012",
+      "source_id": "S05"
+    },
+    {
+      "content_id": "E013",
+      "source_id": "S05"
+    },
+    {
+      "content_id": "E014",
+      "source_id": "S04"
+    },
+    {
+      "content_id": "E015",
+      "source_id": "S04"
+    },
+    {
+      "content_id": "E016",
+      "source_id": "S04"
+    },
+    {
+      "content_id": "E017",
+      "source_id": "S04"
+    },
+    {
+      "content_id": "E018",
+      "source_id": "S14"
+    },
+    {
+      "content_id": "E019",
+      "source_id": "S04"
+    },
+    {
+      "content_id": "E020",
+      "source_id": "S13"
+    },
+    {
+      "content_id": "E021",
+      "source_id": "S11"
+    },
+    {
+      "content_id": "E022",
+      "source_id": "S11"
+    },
+    {
+      "content_id": "E023",
+      "source_id": "S11"
+    },
+    {
+      "content_id": "E024",
+      "source_id": "S11"
+    },
+    {
+      "content_id": "E025",
+      "source_id": "S03"
+    },
+    {
+      "content_id": "E026",
+      "source_id": "S01"
+    },
+    {
+      "content_id": "E027",
+      "source_id": "S06"
+    },
+    {
+      "content_id": "E028",
+      "source_id": "S06"
+    },
+    {
+      "content_id": "E029",
+      "source_id": "S10"
+    },
+    {
+      "content_id": "E030",
+      "source_id": "S10"
+    },
+    {
+      "content_id": "E031",
+      "source_id": "S10"
+    },
+    {
+      "content_id": "E032",
+      "source_id": "S10"
+    },
+    {
+      "content_id": "E033",
+      "source_id": "S10"
+    },
+    {
+      "content_id": "E034",
+      "source_id": "S07"
+    },
+    {
+      "content_id": "E035",
+      "source_id": "S19"
+    },
+    {
+      "content_id": "E036",
+      "source_id": "S08"
+    },
+    {
+      "content_id": "E037",
+      "source_id": "S17"
+    },
+    {
+      "content_id": "E038",
+      "source_id": "S01"
+    },
+    {
+      "content_id": "E039",
+      "source_id": "S13"
+    },
+    {
+      "content_id": "E040",
+      "source_id": "S07"
+    }
+  ]
+}

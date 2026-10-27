@@ -1,0 +1,5 @@
+import type { MetadataRoute } from 'next';
+import { categories } from '@/lib/catalog';
+import { ensureSeed,publicContents,publicTours } from '@/lib/data';
+export const dynamic='force-dynamic';
+export default async function sitemap():Promise<MetadataRoute.Sitemap>{await ensureSeed();const paths=['','/kham-pha','/ban-do','/hanh-trinh','/nguon-tu-lieu','/ve-du-an',...categories.map(c=>'/chuyen-muc/'+c.slug),...(await publicContents()).map(c=>'/ho-so/'+c.slug),...(await publicTours()).map(t=>'/hanh-trinh/'+t.slug)];return paths.map(p=>({url:'https://nam-bo-ky-su.gladmouse16.chatgpt.site'+p,changeFrequency:'weekly'}));}

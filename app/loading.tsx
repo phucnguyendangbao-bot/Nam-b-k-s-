@@ -1,0 +1,1 @@
+export default function Loading(){return <main id="main" className="wrap page" aria-busy="true"><p className="eyebrow">ĐANG MỞ TRANG KÝ SỰ</p><div className="loading-line"/><div className="loading-line short"/><p role="status">Đang đọc dữ liệu…</p></main>;}

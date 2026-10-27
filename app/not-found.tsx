@@ -1,0 +1,1 @@
+export default function NotFound(){return <main id="main" className="wrap page"><p className="eyebrow">404 · CHƯA CÓ TRANG NÀY</p><h1>Trang ký sự chưa mở.</h1><p>Hồ sơ có thể chưa được công bố hoặc đường dẫn đã thay đổi.</p><a className="button" href="/kham-pha">Về thư viện</a></main>;}
