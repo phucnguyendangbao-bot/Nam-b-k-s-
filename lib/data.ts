@@ -85,3 +85,8 @@ export async function publicTours(){
 }
 export async function tourStops(id:string){return all(`SELECT ts.id stop_id,ts.position,c.* FROM tour_stops ts
   JOIN cultural_contents c ON c.id=ts.content_id WHERE ts.tour_id=? AND ${publicWhere} ORDER BY ts.position`,id);}
+/** Mục từ đã công bố, dùng cho thẻ lật và trắc nghiệm. */
+export async function publicWords(){
+  const rows=await all(`SELECT c.id,c.slug,d.headword,d.meaning,d.usage_context,d.example,d.part_of_speech FROM cultural_contents c JOIN dialect_entries d ON d.content_id=c.id WHERE ${publicWhere} ORDER BY d.headword`);
+  return rows.map(r=>({id:r.id as string,headword:r.headword as string,meaning:r.meaning as string,usage:r.usage_context as string,example:r.example as string,pos:r.part_of_speech as string,href:`/ho-so/${r.slug}`}));
+}

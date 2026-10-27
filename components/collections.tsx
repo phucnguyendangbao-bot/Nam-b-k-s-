@@ -1,54 +1,355 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ActionForm,Arrow,Breadcrumb,Classification,Flash,Motif,PageTitle,Status } from './site';
-import { all,contentCitations,one,publicContents,publicTours,type Row } from '@/lib/data';
+import { ActionForm, Arrow, Breadcrumb, Classification, Flash, Motif, Status, categoryTone } from './site';
+import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/data';
 import { categories } from '@/lib/catalog';
-import { nfc,parseSections,sectionLabels,topics } from '@/lib/editorial-model';
+import { nfc, parseSections, sectionLabels, topics } from '@/lib/editorial-model';
+import { LexiconPlay } from './interactive/lexicon-play';
 
-export const collectionDescriptions:Record<string,{intro:string,note:string}>={
- 'dat-nam-bo':{intro:'Lần theo tên đất, kiến trúc và không gian sông nước qua những hồ sơ có nguồn. Mỗi cách giải thích được đặt đúng trong phạm vi tư liệu.',note:'Giả thuyết về tên đất được ghi riêng với sự kiện lịch sử. Địa chỉ theo tư liệu không tự xác nhận ranh giới hành chính hoặc tuyến tham quan hiện tại.'},
- 'nep-xua':{intro:'Đọc phong tục qua tư liệu và những gia đình được ghi nhận: nghi thức ấy mang ý nghĩa gì, được thực hành ở đâu, và điều nào còn là quan niệm dân gian?',note:'Không có một trình tự nghi lễ áp dụng cho mọi gia đình và cộng đồng. Hồ sơ thiếu tư liệu về địa bàn, thời kỳ hoặc quyền sử dụng tiếp tục được giữ ở trạng thái nháp.'},
- 'tieng-que-minh':{intro:'Một từ, nhiều ngữ cảnh. Tra nghĩa, cách xưng hô và ví dụ sử dụng, đồng thời lần về nguồn ghi chép của từng mục từ.',note:'Các từ được giới thiệu để đọc tiếng nói địa phương; không mặc định chỉ có ở Nam Bộ. Ví dụ tự biên soạn được ghi rõ, không trình bày như ca dao hay lời kể sưu tầm.'},
+export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
+  'dat-nam-bo': {
+    intro: 'Tên đất, nhà cổ, chợ trên sông. Mỗi cách giải thích được đặt đúng chỗ của nó: tư liệu là tư liệu, giai thoại là giai thoại.',
+    note: 'Giả thuyết về tên đất được ghi riêng với sự kiện lịch sử. Địa chỉ theo tư liệu không xác nhận ranh giới hành chính hay tuyến tham quan hiện tại.',
+  },
+  'nep-xua': {
+    intro: 'Cưới hỏi, đám giỗ và nếp nhà, kể qua những gia đình và người nghiên cứu đã được ghi lại. Ý nghĩa là gì, ở đâu làm vậy, điều nào chỉ là quan niệm dân gian?',
+    note: 'Không có một trình tự nghi lễ đúng cho mọi gia đình. Hồ sơ còn thiếu tư liệu về địa bàn, thời kỳ hoặc quyền sử dụng tiếp tục được giữ ở bản nháp.',
+  },
+  'tieng-que-minh': {
+    intro: 'Bậu, qua, mần, bển, hổng. Tra nghĩa, xem ngữ cảnh, lật thẻ và thử trắc nghiệm. Mỗi mục từ đều dẫn về nguồn ghi chép.',
+    note: 'Các từ không mặc định chỉ có ở Nam Bộ. Câu ví dụ do ban biên soạn đặt và được ghi rõ như vậy, không phải ca dao hay lời kể sưu tầm.',
+  },
+  'loi-nguoi-xua': {
+    intro: 'Ca dao, tục ngữ và chuyện kể của miền sông nước. Mỗi câu sẽ chỉ lên trang khi tìm được bản sưu tầm có nguồn.',
+    note: 'Chuyên mục đang biên soạn. Không đăng ca dao tự đặt hay chép lại từ nguồn chưa rõ quyền.',
+  },
+  'le-hoi': {
+    intro: 'Lễ hội và tín ngưỡng của người Kinh, Khmer, Hoa ở Nam Bộ: Oóc Om Bóc, đua ghe Ngo, Nghinh Ông và nhiều dịp khác.',
+    note: 'Chuyên mục đang biên soạn từ danh mục di sản chính thức và các hồ sơ có nguồn.',
+  },
+  'dau-xua': {
+    intro: 'Di sản, nghệ thuật và nghề thủ công: đờn ca tài tử, Rô Băm, Dù Kê, nhạc Ngũ âm, bánh pía.',
+    note: 'Chuyên mục đang biên soạn từ danh mục di sản chính thức và các hồ sơ có nguồn.',
+  },
 };
 
-export function DossierCards({items,preview=false}:{items:Row[],preview?:boolean}){return <div className={`dossier-grid ${items.every(c=>c.content_kind==='dialect')&&items.length?'dictionary-cards':''}`}>{items.map(c=>{
- const href=preview?`/quan-tri/ban-thao/${c.id}`:`/ho-so/${c.slug}`;
- return <article className="dossier-card" key={c.id}><a className="dossier-card-media" href={href} tabIndex={-1} aria-hidden="true">{c.image_url?<Image src={c.image_url} alt="" width={1600} height={1067} unoptimized loading="lazy"/>:c.content_kind==='dialect'?<span className="word-letter">{nfc(c.title)}</span>:<Motif kind={c.topic==='architecture'?'house':c.content_kind==='custom'?'book':'river'}/>}<span className="media-placeholder-label">{!c.image_url&&(c.content_kind==='dialect'?'Minh họa chữ · Không phải ảnh tư liệu':'Minh họa chuyên mục · Chưa có ảnh tư liệu phù hợp')}</span></a><div className="dossier-card-content"><p className="eyebrow">{topics[c.topic]??c.historical_area}</p><h2><a href={href}>{nfc(c.title)}</a></h2>{c.part_of_speech&&<p className="word-meta">{c.part_of_speech}</p>}<p className={c.content_kind==='dialect'?'definition-short':''}>{c.meaning??c.summary}</p><a className="text-link" href={href}>{preview?'Xem bản chuẩn bị':'Đọc hồ sơ và nguồn'} <Arrow/></a>{preview&&<Status status={c.cms_status??"draft"}/>}</div>{c.image_url&&<p className="card-license">Ảnh: {c.image_author} · <a href={c.image_source_url} target="_blank" rel="noreferrer">Commons · {c.image_license}</a></p>}</article>;
- })}</div>;}
-
-export async function CollectionPage({slug,params,user}:{slug:string,params:Record<string,string|undefined>,user:Row|null}){
- const collection=categories.find(c=>c.slug===slug),copy=collectionDescriptions[slug];if(!collection||!copy)notFound();
- const allItems=await publicContents('',collection.types.join(','));
- let filtered=params.q?await publicContents(params.q,collection.types.join(',')):allItems;
- if(params.topic)filtered=filtered.filter(c=>c.topic===params.topic);
- if(params.area)filtered=filtered.filter(c=>c.historical_area===params.area);
- if(params.word_type)filtered=filtered.filter(c=>c.part_of_speech===params.word_type);
- const priority=['E020','E021','NBS-BINH-THUY','NBS-CHO-NOI','E001','E008','E029','E030','E031','E032','E033'];
- if(params.sort==='az')filtered.sort((a,b)=>a.title.localeCompare(b.title,'vi'));
- else filtered.sort((a,b)=>(priority.indexOf(a.id)<0?999:priority.indexOf(a.id))-(priority.indexOf(b.id)<0?999:priority.indexOf(b.id)));
- const availableTopics=[...new Set(allItems.map(c=>c.topic).filter(Boolean))],areas=[...new Set(allItems.map(c=>c.historical_area))],wordTypes=[...new Set(allItems.map(c=>c.part_of_speech).filter(Boolean))];
- return <main id="main" className="wrap page"><Breadcrumb items={[{label:'Khám phá',href:'/kham-pha'},{label:collection.name}]}/><div className="collection-intro"><PageTitle eyebrow={collection.subtitle} title={collection.name} description={copy.intro}/><Motif kind={collection.motif}/></div><nav className="collection-switcher" aria-label="Ba chuyên mục văn hóa">{categories.slice(0,3).map(c=><a key={c.slug} className={slug===c.slug?'active':''} href={`/chuyen-muc/${c.slug}`} aria-current={slug===c.slug?'page':undefined}>{nfc(c.name)}</a>)}</nav><form className="collection-filters" action={`/chuyen-muc/${slug}`} method="get" role="search"><div className="collection-search"><label htmlFor="collection-q">{slug==='tieng-que-minh'?'Tìm từ, nghĩa hoặc ngữ cảnh':'Tìm bài, địa danh hoặc chủ đề'}<input id="collection-q" name="q" defaultValue={params.q} maxLength={160} placeholder={slug==='tieng-que-minh'?'Ví dụ: bậu, làm, xưng hô…':'Nhập từ khóa có dấu hoặc không dấu…'}/></label><button className="button" type="submit">Tìm kiếm <Arrow/></button></div><div className="collection-facets"><label>Chủ đề<select name="topic" defaultValue={params.topic??''}><option value="">Tất cả chủ đề</option>{availableTopics.map(t=><option value={t} key={t}>{topics[t]??t}</option>)}</select></label>{slug==='tieng-que-minh'?<label>Loại từ<select name="word_type" defaultValue={params.word_type??''}><option value="">Tất cả loại từ</option>{wordTypes.map(t=><option key={t}>{t}</option>)}</select></label>:<label>Phạm vi tư liệu<select name="area" defaultValue={params.area??''}><option value="">Tất cả phạm vi</option>{areas.map(a=><option key={a}>{a}</option>)}</select></label>}<label>Sắp xếp<select name="sort" defaultValue={params.sort??'priority'}><option value="priority">Bài ưu tiên</option><option value="az">Tên A–Z</option></select></label></div><a className="text-link" href={`/chuyen-muc/${slug}`}>Xóa bộ lọc</a></form><div className="collection-count" role="status"><strong>{filtered.length} {slug==='tieng-que-minh'?'mục từ':'hồ sơ'} đã công bố</strong><span>{params.q?`Kết quả cho “${nfc(params.q)}”`:'Chỉ dữ liệu đạt kiểm chứng và quyền sử dụng'}</span></div>{filtered.length?<DossierCards items={filtered}/>:<div className="empty-state"><Motif kind={collection.motif}/><h2>{allItems.length?'Chưa có kết quả phù hợp':'Những hồ sơ đầu tiên đang chờ duyệt'}</h2><p>{allItems.length?'Thử một từ khóa hoặc bộ lọc khác.':'Bản chuẩn bị đã có nguồn đối chiếu và trang xem trước tại bàn biên tập. Nội dung chưa được duyệt sẽ không xuất hiện như bài đã công bố.'}</p>{user&&['admin','editor','researcher'].includes(user.role)&&<a className="text-link" href="/quan-tri/ban-thao">Xem bản chuẩn bị và nguồn chứng minh <Arrow/></a>}</div>}<div className="collection-note">{copy.note}</div></main>;
+export function DossierCards({ items, preview = false }: { items: Row[]; preview?: boolean }) {
+  return (
+    <div className="nb-card-grid">
+      {items.map(c => {
+        const href = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
+        const isWord = c.content_kind === 'dialect';
+        const tone = isWord ? 'lily' : c.content_kind === 'custom' ? 'dusk' : 'river';
+        return (
+          <article className={`nb-story-card tone-${tone}`} key={c.id}>
+            <a className="nb-story-media" href={href} tabIndex={-1} aria-hidden="true">
+              {c.image_url
+                ? <Image src={c.image_url} alt="" width={1600} height={1067} unoptimized loading="lazy" />
+                : isWord ? <span className="nb-story-word">{nfc(c.title)}</span> : <Motif kind={c.topic === 'architecture' ? 'house' : c.content_kind === 'custom' ? 'book' : 'river'} />}
+              <span className="nb-sticker">{topics[c.topic] ?? c.historical_area}</span>
+            </a>
+            <div className="nb-story-body">
+              <h3 className={isWord ? 'sr-only-title' : undefined}><a href={href}>{nfc(c.title)}</a></h3>
+              {c.part_of_speech && <p className="nb-word-pos">{c.part_of_speech}</p>}
+              <p>{c.meaning ?? c.summary}</p>
+              <a className="nb-link" href={href}>{preview ? 'Xem bản chuẩn bị' : isWord ? 'Xem nghĩa và nguồn' : 'Đọc hồ sơ'} <Arrow /></a>
+              {preview && <Status status={c.cms_status ?? 'draft'} />}
+            </div>
+            {c.image_url && <small className="nb-story-credit">Ảnh: {c.image_author}, <a href={c.image_source_url} target="_blank" rel="noreferrer">{c.image_license}</a></small>}
+          </article>
+        );
+      })}
+    </div>
+  );
 }
 
-export function DocumentaryImage({media:m}:{media:Row}){return <figure className="documentary-photo"><Image src={m.url} alt={m.caption} width={m.width??1600} height={m.height??1067} unoptimized loading="lazy"/><figcaption><strong>{m.caption}</strong><span>{m.author} · <a href={m.source_url} target="_blank" rel="noreferrer">Wikimedia Commons</a> · <a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></span><details><summary>Nguồn, giấy phép và thay đổi ảnh</summary><dl><dt>Tác giả</dt><dd>{m.author}</dd><dt>Nguồn gốc</dt><dd><a href={m.source_url} target="_blank" rel="noreferrer">Trang hồ sơ ảnh trên Commons</a></dd><dt>Giấy phép</dt><dd><a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></dd><dt>Thay đổi ảnh</dt><dd>{m.modifications}</dd><dt>Ghi công</dt><dd>{m.attribution}</dd></dl></details></figcaption></figure>;}
-
-export async function PublicDossier({article:c,user,params}:{article:Row,user:Row|null,params:Record<string,string|undefined>}){
- const [citations,media,dialect,allRelated,tours]=await Promise.all([contentCitations(c.id),all("SELECT * FROM media_assets WHERE content_id=? AND review_status='accepted'",c.id),one('SELECT * FROM dialect_entries WHERE content_id=?',c.id),publicContents('',c.category),publicTours()]);
- const related=allRelated.filter(x=>x.id!==c.id).slice(0,3),relatedTours=[];
- for(const t of tours){if(await one('SELECT id FROM tour_stops WHERE tour_id=? AND content_id=?',t.id,c.id))relatedTours.push(t);}
- return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params}/>;
+function Chip({ href, on, children }: { href: string; on: boolean; children: React.ReactNode }) {
+  return <a className={`nb-chip ${on ? 'is-on' : ''}`} href={href} aria-current={on ? 'true' : undefined}>{children}</a>;
 }
 
-export function DossierView({article:c,citations,media,dialect,related,tours,user,params={},preview=false}:{article:Row,citations:Row[],media:Row[],dialect:Row|null,related:Row[],tours:Row[],user:Row|null,params?:Record<string,string|undefined>,preview?:boolean}){
- const sections=parseSections(c.sections_json??'[]'),images=media.filter(m=>m.kind==='image'),audio=dialect?.audio_asset_id?media.find(m=>m.id===dialect.audio_asset_id&&m.kind==='audio'):null;
- const collection=c.content_kind==='dialect'?categories[2]:c.content_kind==='custom'?categories[1]:categories[0];
- const back=preview?`/quan-tri/ban-thao/${c.id}`:`/ho-so/${c.slug}`;
- return <main id="main" className="wrap page"><Breadcrumb items={[{label:collection.name,href:`/chuyen-muc/${collection.slug}`},{label:c.title}]}/><Flash params={params}/>{preview&&<div className="notice" role="status"><strong>Xem trước bản chuẩn bị nguồn.</strong> {c.live_slug?<a className="text-link" href={`/ho-so/${c.live_slug}`}>Bài này đã được duyệt và công bố →</a>:<>Trạng thái CMS: {c.cms_status??"chưa nhập"}. Bản chuẩn bị không tự công bố.</>}<p><a className="text-link" href="/quan-tri/ban-thao">← Về bàn bản thảo</a></p></div>}<div className="dossier-layout"><article className="dossier-main"><p className="eyebrow">{topics[c.topic]??collection.subtitle}</p><h1 className={`dossier-title ${c.content_kind==='dialect'?'is-word':''}`}>{nfc(c.title)}</h1><div className="badge-row"><Classification value={c.classification}/>{preview?<Status status={c.cms_status??"draft"}/>:<span>Đã duyệt phiên bản {c.revision}</span>}<span>{c.historical_area}</span></div><p className="dossier-intro">{c.introduction||c.summary}</p>{c.scope_note&&<p className="dossier-scope">{c.scope_note}</p>}
- {dialect&&<section className="lexicon-panel" id="nghia-tu"><p className="eyebrow">{dialect.part_of_speech}</p><h2>Nghĩa và ngữ cảnh</h2><p>{dialect.meaning}</p><p>{dialect.usage_context}</p><h2 style={{marginTop:24}}>Ví dụ sử dụng</h2><p className="usage-example">{dialect.example}</p><p className="help-text">{dialect.example_note}</p><p className="help-text">{dialect.regional_scope}</p><div className="audio-field"><h3>Âm thanh phát âm</h3>{audio?<><audio controls preload="none" src={audio.url} aria-label={`Bản ghi phát âm từ ${dialect.headword}`}/><p className="help-text">Giọng đọc: {audio.author} · <a href={audio.source_url}>Nguồn</a> · <a href={audio.license_url}>{audio.license_name}</a></p></>:<p className="sound-unavailable">Chưa có bản ghi phát âm được cấp quyền và đối chiếu giọng đọc. Không dùng giọng tổng hợp làm bản ghi tư liệu.</p>}</div></section>}
- {sections.length?sections.map((s,i)=><section className="dossier-section" id={`muc-${i+1}`} key={i}><p className={`epistemic-label kind-${s.kind}`}>{sectionLabels[s.kind]}</p><h2>{s.heading}</h2><p className="preserve">{s.text}</p><div className="section-sources">{s.sourceIds.map(sid=>{const e=citations.find(x=>x.source_id===sid);return e?<a key={sid} href={`#nguon-${e.id}`}>Nguồn {sid} ↘</a>:null;})}</div></section>):<div className="article-body">{String(c.body??'').split(/\n\s*\n/).map((s,i)=>s.startsWith('## ')?<h2 key={i}>{s.slice(3)}</h2>:<p className="preserve" key={i}>{s}</p>)}</div>}
- <section className="dossier-section" id="hinh-anh"><p className="epistemic-label">ẢNH VÀ QUYỀN SỬ DỤNG</p><h2>Hình ảnh và tư liệu thị giác</h2>{images.length?images.map(m=><DocumentaryImage key={m.id} media={m}/>):<figure className="missing-documentary-image">{dialect?<span className="word-letter">{dialect.headword}</span>:<Motif kind={c.content_kind==='custom'?'book':'river'}/>}<figcaption><p>Minh họa {dialect?'chữ':'chuyên mục'} do dự án thiết kế, không phải ảnh tư liệu. Chưa có ảnh đúng nội dung được đối chiếu và cấp quyền để giới thiệu tại đây.</p></figcaption></figure>}</section>
- <section className="article-references" id="nguon-tham-khao"><h2>Nguồn tham khảo</h2><ol>{citations.map(e=><li key={e.id} id={`nguon-${e.id}`}><a href={e.source_url} target="_blank" rel="noreferrer">{e.source_name} ↗</a><p><strong>Vị trí đối chiếu:</strong> {e.locator}</p><p><strong>Phiên bản:</strong> {e.source_version}</p><p><strong>Phạm vi chứng minh:</strong> {e.statement}</p>{e.review_note&&<p>{e.review_note}</p>}</li>)}</ol></section>
- {c.text_license&&<div className="text-license"><strong>Giấy phép phần biên soạn mục từ: </strong><a href={c.text_license_url} target="_blank" rel="noreferrer">{c.text_license}</a><p>{c.rights_basis}</p></div>}
- <section className="related-section" id="bai-lien-quan"><h2>Đọc tiếp cùng chủ đề</h2>{related.length?<DossierCards items={related} preview={preview}/>:<p>Chưa có hồ sơ liên quan được công bố.</p>}</section><section className="related-section" id="tour-lien-quan"><h2>Hành trình liên quan</h2>{tours.length?tours.map(t=>preview&&!t.live_slug?<details className="related-tour" key={t.id}><summary>{t.title} · Đề xuất đọc, chưa công bố</summary><p>{t.description}</p><ol>{(t.content_ids as string[]).map(id=><li key={id}><a href={`/quan-tri/ban-thao/${id}`}>Xem chặng {id}</a></li>)}</ol></details>:<a className="related-tour" href={`/hanh-trinh/${t.live_slug??t.slug}`} key={t.id}><p className="eyebrow">HÀNH TRÌNH TRI THỨC · ĐỌC TỪ XA</p><h3>{t.title}</h3><p>{t.description}</p><span className="text-link">Mở hành trình <Arrow/></span></a>):<p>Chưa có hành trình được duyệt cho hồ sơ này. Không dựng tuyến hoặc thời lượng chưa xác minh.</p>}</section></article>
- <aside className="dossier-rail"><h2>Trong trang ký sự</h2><nav>{dialect&&<a href="#nghia-tu">Nghĩa, ngữ cảnh và phát âm</a>}{sections.map((s,i)=><a key={i} href={`#muc-${i+1}`}>{s.heading}</a>)}<a href="#hinh-anh">Hình ảnh và giấy phép</a><a href="#nguon-tham-khao">Nguồn tham khảo</a><a href="#bai-lien-quan">Nội dung liên quan</a><a href="#tour-lien-quan">Hành trình liên quan</a></nav>{!preview&&user&&<ActionForm action="bookmark" id={c.id} back={back} className="inline-form"><input type="hidden" name="kind" value="content"/><button className="button outline">Lưu / bỏ lưu vào sổ tay</button></ActionForm>}{preview&&user&&c.can_stage&&['admin','editor'].includes(user.role)&&<ActionForm action="stage_prepared" id={c.id} back={back}><label className="check"><input name="review_before_import" type="checkbox" required/>Đã xem bản chuẩn bị; nhập vào CMS dưới dạng nháp.</label><button className="button">Đưa vào bản nháp</button></ActionForm>}<p>{preview&&c.cms_status&&<a className="text-link" href={`/quan-tri/noi-dung/${c.id}`}>Mở phiên bản hiện tại trong CMS →</a>}</p><p>Cộng đồng/phạm vi: {c.community}</p><small>Ảnh và bản ghi có giấy phép riêng. Dẫn nguồn không tự cấp quyền sao chép toàn văn.</small></aside></div></main>;
+export async function CollectionPage({ slug, params, user }: { slug: string; params: Record<string, string | undefined>; user: Row | null }) {
+  const collection = categories.find(c => c.slug === slug);
+  const copy = collectionDescriptions[slug];
+  if (!collection || !copy) notFound();
+  const tone = categoryTone[slug];
+  const types = collection.types.join(',');
+  const allItems = await publicContents('', types);
+  let filtered = params.q ? await publicContents(params.q, types) : [...allItems];
+  if (params.topic) filtered = filtered.filter(c => c.topic === params.topic);
+  if (params.area) filtered = filtered.filter(c => c.historical_area === params.area);
+  if (params.word_type) filtered = filtered.filter(c => c.part_of_speech === params.word_type);
+  const priority = ['E020', 'E021', 'NBS-BINH-THUY', 'NBS-CHO-NOI', 'E001', 'E008', 'E029', 'E030', 'E031', 'E032', 'E033'];
+  const rank = (id: string) => (priority.indexOf(id) < 0 ? 999 : priority.indexOf(id));
+  if (params.sort === 'az') filtered.sort((a, b) => a.title.localeCompare(b.title, 'vi'));
+  else if (!params.q) filtered.sort((a, b) => rank(a.id) - rank(b.id));
+  const availableTopics = [...new Set(allItems.map(c => c.topic).filter(Boolean))] as string[];
+  const wordTypes = [...new Set(allItems.map(c => c.part_of_speech).filter(Boolean))] as string[];
+  const words = slug === 'tieng-que-minh' ? await publicWords() : [];
+  const base = `/chuyen-muc/${slug}`;
+  const link = (patch: Record<string, string | undefined>) => {
+    const next = new URLSearchParams();
+    for (const [k, v] of Object.entries({ ...params, ...patch })) if (v && ['q', 'topic', 'word_type', 'sort', 'area'].includes(k)) next.set(k, v);
+    const qs = next.toString();
+    return qs ? `${base}?${qs}` : base;
+  };
+  const isWords = slug === 'tieng-que-minh';
+  const unit = isWords ? 'mục từ' : 'hồ sơ';
+
+  return (
+    <main id="main" className="wrap page">
+      <Breadcrumb items={[{ label: 'Khám phá', href: '/kham-pha' }, { label: collection.name }]} />
+      <header className={`nb-collection-hero tone-${tone}`} style={allItems.find(i => i.image_url) ? { backgroundImage: `url(${allItems.find(i => i.image_url)!.image_url})` } : undefined}>
+        <h1>{nfc(collection.name)}</h1>
+        <p>{copy.intro}</p>
+        <Motif kind={collection.motif} />
+      </header>
+      <nav className="nb-collection-tabs" aria-label="Các chuyên mục">
+        {categories.map(c => <a key={c.slug} href={`/chuyen-muc/${c.slug}`} aria-current={slug === c.slug ? 'page' : undefined}>{nfc(c.name)}</a>)}
+      </nav>
+
+      {isWords && words.length > 0 && <LexiconPlay words={words} />}
+
+      {allItems.length > 0 && (
+        <div className="nb-filter" style={{ marginTop: isWords ? 44 : 0 }}>
+          <form className="search-form" action={base} method="get" role="search">
+            <label className="sr-only" htmlFor="collection-q">{isWords ? 'Tìm từ, nghĩa hoặc ngữ cảnh' : 'Tìm bài, địa danh hoặc chủ đề'}</label>
+            <svg className="nb-search-glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2.4" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
+            <input id="collection-q" name="q" defaultValue={params.q} maxLength={160} placeholder={isWords ? 'Ví dụ: bậu, làm, xưng hô' : 'Gõ có dấu hay không dấu đều được'} />
+            {params.topic && <input type="hidden" name="topic" value={params.topic} />}
+            {params.word_type && <input type="hidden" name="word_type" value={params.word_type} />}
+            <button type="submit" aria-label="Tìm"><Arrow /></button>
+          </form>
+          {availableTopics.length > 1 && (
+            <div className="nb-filter-row">
+              <span>Chủ đề</span>
+              <Chip href={link({ topic: undefined })} on={!params.topic}>Tất cả</Chip>
+              {availableTopics.map(t => <Chip key={t} href={link({ topic: t })} on={params.topic === t}>{topics[t] ?? t}</Chip>)}
+            </div>
+          )}
+          {isWords && wordTypes.length > 1 && (
+            <div className="nb-filter-row">
+              <span>Loại từ</span>
+              <Chip href={link({ word_type: undefined })} on={!params.word_type}>Tất cả</Chip>
+              {wordTypes.map(t => <Chip key={t} href={link({ word_type: t })} on={params.word_type === t}>{t}</Chip>)}
+            </div>
+          )}
+          <div className="nb-filter-row">
+            <span>Sắp xếp</span>
+            <Chip href={link({ sort: undefined })} on={params.sort !== 'az'}>Nên đọc trước</Chip>
+            <Chip href={link({ sort: 'az' })} on={params.sort === 'az'}>Tên A–Z</Chip>
+          </div>
+          <p className="collection-count" role="status">
+            {filtered.length} {unit}{params.q ? ` cho “${nfc(params.q)}”` : ''}
+            {(params.q || params.topic || params.word_type) && <> · <a className="nb-text-button" href={base}>Xóa bộ lọc</a></>}
+          </p>
+        </div>
+      )}
+
+      {filtered.length ? <DossierCards items={filtered} /> : (
+        <div className="empty-state">
+          <Motif kind={collection.motif} />
+          <h2>{allItems.length ? 'Không có kết quả phù hợp' : 'Chuyên mục đang biên soạn'}</h2>
+          <p>{allItems.length ? 'Thử một từ khóa hoặc bộ lọc khác.' : 'Những hồ sơ đầu tiên đang được đối chiếu nguồn và quyền sử dụng. Trong lúc chờ, ghé các chuyên mục đã mở nhé.'}</p>
+          {allItems.length ? <a className="button outline" href={base}>Xóa bộ lọc</a> : <a className="button" href="/kham-pha">Xem các hồ sơ đã có <Arrow /></a>}
+          {!allItems.length && user && ['admin', 'editor', 'researcher'].includes(user.role) && <a className="nb-text-button" href="/quan-tri/ban-thao">Mở bàn bản thảo</a>}
+        </div>
+      )}
+      <p className="nb-note">{copy.note}</p>
+    </main>
+  );
+}
+
+export function DocumentaryImage({ media: m, eager = false }: { media: Row; eager?: boolean }) {
+  return (
+    <figure className="documentary-photo">
+      <Image src={m.url} alt={m.caption} width={m.width ?? 1600} height={m.height ?? 1067} unoptimized loading={eager ? 'eager' : 'lazy'} />
+      <figcaption>
+        <strong>{m.caption}</strong>
+        <span>{m.author}, <a href={m.source_url} target="_blank" rel="noreferrer">Wikimedia Commons</a>, <a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></span>
+        <details>
+          <summary>Nguồn, giấy phép và thay đổi ảnh</summary>
+          <dl>
+            <dt>Tác giả</dt><dd>{m.author}</dd>
+            <dt>Nguồn gốc</dt><dd><a href={m.source_url} target="_blank" rel="noreferrer">Trang hồ sơ ảnh trên Commons</a></dd>
+            <dt>Giấy phép</dt><dd><a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></dd>
+            <dt>Thay đổi ảnh</dt><dd>{m.modifications}</dd>
+            <dt>Ghi công</dt><dd>{m.attribution}</dd>
+          </dl>
+        </details>
+      </figcaption>
+    </figure>
+  );
+}
+
+export async function PublicDossier({ article: c, user, params }: { article: Row; user: Row | null; params: Record<string, string | undefined> }) {
+  const [citations, media, dialect, allRelated, tours] = await Promise.all([
+    contentCitations(c.id),
+    all("SELECT * FROM media_assets WHERE content_id=? AND review_status='accepted'", c.id),
+    one('SELECT * FROM dialect_entries WHERE content_id=?', c.id),
+    publicContents('', c.category),
+    publicTours(),
+  ]);
+  const related = allRelated.filter(x => x.id !== c.id).slice(0, 3);
+  const relatedTours = [];
+  for (const t of tours) { if (await one('SELECT id FROM tour_stops WHERE tour_id=? AND content_id=?', t.id, c.id)) relatedTours.push(t); }
+  return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params} />;
+}
+
+export function DossierView({ article: c, citations, media, dialect, related, tours, user, params = {}, preview = false }: { article: Row; citations: Row[]; media: Row[]; dialect: Row | null; related: Row[]; tours: Row[]; user: Row | null; params?: Record<string, string | undefined>; preview?: boolean }) {
+  const sections = parseSections(c.sections_json ?? '[]');
+  const images = media.filter(m => m.kind === 'image');
+  const cover = !dialect ? images[0] : undefined;
+  const gallery = cover ? images.slice(1) : images;
+  const showGallery = gallery.length > 0 || images.length === 0;
+  const audio = dialect?.audio_asset_id ? media.find(m => m.id === dialect.audio_asset_id && m.kind === 'audio') : null;
+  const collection = c.content_kind === 'dialect' ? categories[2] : c.content_kind === 'custom' ? categories[1] : categories[0];
+  const back = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
+  return (
+    <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
+      <div className="nb-progress" aria-hidden="true" />
+      <Breadcrumb items={[{ label: collection.name, href: `/chuyen-muc/${collection.slug}` }, { label: c.title }]} />
+      <Flash params={params} />
+      {preview && (
+        <div className="notice" role="status">
+          <strong>Xem trước bản chuẩn bị nguồn.</strong>{' '}
+          {c.live_slug ? <a className="text-link" href={`/ho-so/${c.live_slug}`}>Bài này đã được duyệt và công bố</a> : <>Trạng thái CMS: {c.cms_status ?? 'chưa nhập'}. Bản chuẩn bị không tự công bố.</>}
+          <p><a className="text-link" href="/quan-tri/ban-thao">Về bàn bản thảo</a></p>
+        </div>
+      )}
+      <div className="dossier-layout">
+        <article className="dossier-main">
+          <header className="nb-dossier-hero">
+            <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
+            <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
+            <div className="badge-row">
+              <Classification value={c.classification} />
+              {preview ? <Status status={c.cms_status ?? 'draft'} /> : <span>Bản duyệt số {c.revision}</span>}
+              <span>{c.historical_area}</span>
+            </div>
+            <p className="dossier-intro">{c.introduction || c.summary}</p>
+            {cover && <div className="nb-dossier-cover"><DocumentaryImage media={cover} eager /></div>}
+            {c.scope_note && <p className="dossier-scope"><strong>Phạm vi bài viết: </strong>{c.scope_note}</p>}
+          </header>
+
+          {dialect && (
+            <section className="lexicon-panel" id="nghia-tu">
+              <p className="eyebrow">{dialect.part_of_speech}</p>
+              <h2>Nghĩa và ngữ cảnh</h2>
+              <p style={{ fontSize: 20, color: 'var(--ink)', fontWeight: 600 }}>{dialect.meaning}</p>
+              <p>{dialect.usage_context}</p>
+              <h2 style={{ marginTop: 24 }}>Ví dụ</h2>
+              <p className="usage-example">{dialect.example}</p>
+              <p className="help-text">{dialect.example_note}</p>
+              <p className="help-text">{dialect.regional_scope}</p>
+              <div className="audio-field">
+                <h3>Phát âm</h3>
+                {audio ? (
+                  <>
+                    <audio controls preload="none" src={audio.url} aria-label={`Bản ghi phát âm từ ${dialect.headword}`} />
+                    <p className="help-text">Giọng đọc: {audio.author}, <a href={audio.source_url}>nguồn</a>, <a href={audio.license_url}>{audio.license_name}</a></p>
+                  </>
+                ) : <p className="sound-unavailable">Chưa có bản ghi phát âm được cấp quyền. Dự án không dùng giọng máy đọc thay cho bản ghi thật.</p>}
+              </div>
+              {!preview && <p style={{ marginTop: 18 }}><a className="button" href="/chuyen-muc/tieng-que-minh#choi">Ôn từ này bằng thẻ lật <Arrow /></a></p>}
+            </section>
+          )}
+
+          {sections.length ? sections.map((s, i) => (
+            <section className="dossier-section" id={`muc-${i + 1}`} key={i}>
+              <p className={`epistemic-label kind-${s.kind}`}>{sectionLabels[s.kind]}</p>
+              <h2>{s.heading}</h2>
+              <p className="preserve">{s.text}</p>
+              <div className="section-sources">
+                {s.sourceIds.map(sid => { const e = citations.find(x => x.source_id === sid); return e ? <a key={sid} href={`#nguon-${e.id}`}>Nguồn {sid}</a> : null; })}
+              </div>
+            </section>
+          )) : (
+            <div className="article-body">
+              {String(c.body ?? '').split(/\n\s*\n/).map((s, i) => s.startsWith('## ') ? <h2 key={i}>{s.slice(3)}</h2> : <p className="preserve" key={i}>{s}</p>)}
+            </div>
+          )}
+
+          {showGallery && <section className="dossier-section" id="hinh-anh">
+            <p className="epistemic-label">Ảnh và quyền sử dụng</p>
+            <h2>Hình ảnh</h2>
+            {gallery.length ? gallery.map(m => <DocumentaryImage key={m.id} media={m} />) : (
+              <figure className="missing-documentary-image">
+                {dialect ? <span className="word-letter">{dialect.headword}</span> : <Motif kind={c.content_kind === 'custom' ? 'book' : 'river'} />}
+                <figcaption><p>Chưa có ảnh đúng nội dung được cấp quyền. Hình trên là minh họa của dự án, không phải ảnh tư liệu.</p></figcaption>
+              </figure>
+            )}
+          </section>}
+
+          <section className="article-references" id="nguon-tham-khao">
+            <h2>Nguồn tham khảo</h2>
+            <ol>
+              {citations.map(e => (
+                <li key={e.id} id={`nguon-${e.id}`}>
+                  <a href={e.source_url} target="_blank" rel="noreferrer">{e.source_name}</a>
+                  <p><strong>Vị trí đối chiếu:</strong> {e.locator}</p>
+                  <p><strong>Phiên bản:</strong> {e.source_version}</p>
+                  <p><strong>Nguồn xác nhận điều gì:</strong> {e.statement}</p>
+                  {e.review_note && <p>{e.review_note}</p>}
+                </li>
+              ))}
+            </ol>
+          </section>
+          {c.text_license && (
+            <div className="text-license">
+              <strong>Giấy phép phần biên soạn mục từ: </strong><a href={c.text_license_url} target="_blank" rel="noreferrer">{c.text_license}</a>
+              <p>{c.rights_basis}</p>
+            </div>
+          )}
+
+          <section className="related-section" id="bai-lien-quan">
+            <h2>Đọc tiếp</h2>
+            {related.length ? <DossierCards items={related} preview={preview} /> : <p>Chưa có hồ sơ cùng chủ đề.</p>}
+          </section>
+          <section className="related-section" id="tour-lien-quan">
+            <h2>Có trong hành trình</h2>
+            {tours.length ? tours.map(t => preview && !t.live_slug ? (
+              <details className="related-tour" key={t.id}>
+                <summary>{t.title} (đề xuất, chưa công bố)</summary>
+                <p>{t.description}</p>
+                <ol>{(t.content_ids as string[]).map(id => <li key={id}><a href={`/quan-tri/ban-thao/${id}`}>Xem chặng {id}</a></li>)}</ol>
+              </details>
+            ) : (
+              <a className="related-tour" href={`/hanh-trinh/${t.live_slug ?? t.slug}`} key={t.id}>
+                <h3>{t.title}</h3>
+                <p>{t.description}</p>
+                <span className="nb-link">Mở hành trình <Arrow /></span>
+              </a>
+            )) : <p>Hồ sơ này chưa nằm trong hành trình nào.</p>}
+          </section>
+        </article>
+
+        <aside className="dossier-rail">
+          <h2>Trong bài này</h2>
+          <nav>
+            {dialect && <a href="#nghia-tu">Nghĩa, ngữ cảnh, phát âm</a>}
+            {sections.map((s, i) => <a key={i} href={`#muc-${i + 1}`}>{s.heading}</a>)}
+            {showGallery && <a href="#hinh-anh">Hình ảnh</a>}
+            <a href="#nguon-tham-khao">Nguồn tham khảo</a>
+            <a href="#bai-lien-quan">Đọc tiếp</a>
+          </nav>
+          {!preview && user && (
+            <ActionForm action="bookmark" id={c.id} back={back} className="inline-form">
+              <input type="hidden" name="kind" value="content" />
+              <button className="button outline" style={{ width: '100%' }}>Lưu vào sổ tay</button>
+            </ActionForm>
+          )}
+          {!preview && !user && <a className="button outline" href="/so-tay" style={{ width: '100%' }}>Đăng nhập để lưu</a>}
+          {preview && user && c.can_stage && ['admin', 'editor'].includes(user.role) && (
+            <ActionForm action="stage_prepared" id={c.id} back={back}>
+              <label className="check"><input name="review_before_import" type="checkbox" required />Đã xem bản chuẩn bị; nhập vào CMS dưới dạng nháp.</label>
+              <button className="button">Đưa vào bản nháp</button>
+            </ActionForm>
+          )}
+          {preview && c.cms_status && <p><a className="text-link" href={`/quan-tri/noi-dung/${c.id}`}>Mở phiên bản hiện tại trong CMS</a></p>}
+          <p>Cộng đồng, phạm vi: {c.community}</p>
+          <small>Ảnh và bản ghi có giấy phép riêng. Dẫn nguồn không có nghĩa là được chép toàn văn.</small>
+        </aside>
+      </div>
+    </main>
+  );
 }

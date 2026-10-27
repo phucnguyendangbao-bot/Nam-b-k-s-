@@ -16,6 +16,8 @@ npm run db:generate
 npm run build
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_wise_peter_quill.sql
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_publication_guards.sql
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0002_wooden_surge.sql
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0003_media_and_dictionary_guards.sql
 npm run dev
 ```
 
@@ -23,6 +25,28 @@ Chỉ áp dụng migration chưa chạy; không replay SQL đã áp dụng. Buil
 đã được chạy trong workspace bàn giao. Máy chủ portable thường in URL
 http://127.0.0.1:5173/. `dist/server/wrangler.json` do build sinh, không sửa tay.
 Thay đổi schema bằng Drizzle và thêm migration, không sửa lịch sử migration.
+
+## Giao diện
+
+Phong cách cổng di sản (tham khảo bố cục các trang di sản văn hóa Việt Nam): thanh
+trên nâu phù sa, menu chữ in hoa chia hai bên biểu tượng ở giữa, ảnh trình chiếu
+tràn màn hình, tiêu đề khối chữ Philosopher in hoa, nội dung chữ Roboto Condensed
+(cả hai SIL OFL, tự lưu trữ trong public/fonts). Màu chính: nâu #1E140F, đồng thau
+#8A6420, vàng lúa #E9B92F. Token và kiểu nằm ở app/theme.css; font ở
+app/fonts-heritage.css. Ảnh dùng trên trang chủ lấy từ media đã duyệt quyền.
+
+- Trang chủ: ảnh trình chiếu (kèm ghi công), khối giới thiệu có hình vẽ nét nhà cổ,
+  dải hồ sơ đóng khung trên nền ảnh tối, khối "Mới cập nhật" có ô lịch, Tiếng quê,
+  Hành trình và hộp Bản đồ trên ảnh nền.
+- Tìm nhanh: Ctrl/⌘ + K hoặc phím / mở bảng tìm kiếm ở mọi trang; /kham-pha,
+  /tim-kiem và /hoi-dap hiện kết quả ngay khi gõ, không cần dấu. Dữ liệu lấy từ
+  GET /api/search, chỉ gồm hồ sơ và hành trình đã công bố.
+- Tiếng quê mình: thẻ lật và trắc nghiệm từ các mục từ đã công bố (từ đang hỏi được
+  che trong đáp án để không tự lộ).
+- Bản đồ: Leaflet + ô bản đồ OpenStreetMap, ghim chỉ cho hồ sơ đã công bố có tọa độ
+  được duyệt; bấm ghim hoặc danh sách để mở thẻ hồ sơ.
+- Chuyển trang mượt bằng View Transitions, thanh tiến độ đọc bằng scroll-driven
+  animation (trình duyệt không hỗ trợ thì bỏ qua). Tôn trọng prefers-reduced-motion.
 
 ## Đăng nhập và phân quyền
 
