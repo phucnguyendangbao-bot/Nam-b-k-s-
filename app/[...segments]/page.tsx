@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Admin } from '@/components/admin';
-import { ActionForm,Arrow,Breadcrumb,CategoryCards,Classification,ContentCards,Empty,Flash,PageTitle,SearchForm,SignIn,Status } from '@/components/site';
-import { all,content,contentCitations,ensureSeed,one,publicContents,publicTours,publicWhere,stats,tourStops,viewer,type Row } from '@/lib/data';
+import { ActionForm,Arrow,Breadcrumb,CategoryCards,ContentCards,Empty,Flash,PageTitle,SearchForm,SignIn,Status } from '@/components/site';
+import { all,content,ensureSeed,one,publicContents,publicTours,stats,tourStops,viewer,type Row } from '@/lib/data';
 import { categories,fold,mapEmbed } from '@/lib/catalog';
+import { CollectionPage,PublicDossier } from '@/components/collections';
 
 export const dynamic='force-dynamic';
 type Props={params:Promise<{segments:string[]}>,searchParams:Promise<Record<string,string|string[]|undefined>>};
@@ -16,19 +17,14 @@ export default async function Page({params,searchParams}:Props){
   await ensureSeed();const {segments:s}=await params;const raw=await searchParams;const q:Record<string,string|undefined>={};for(const [k,v]of Object.entries(raw))q[k]=Array.isArray(v)?v[0]:v;
   const user=await viewer();const route=s[0];
   if(route==='quan-tri')return user?<Admin path={s.slice(1)} user={user} params={q}/>:<main id="main" className="wrap page"><SignIn returnTo="/quan-tri"/></main>;
+  if(route==='chuyen-muc'&&['dat-nam-bo','nep-xua','tieng-que-minh'].includes(s[1]))return <CollectionPage slug={s[1]} params={q} user={user}/>;
   if(route==='kham-pha'||route==='chuyen-muc'||route==='tim-kiem'){
     const category=route==='chuyen-muc'?categories.find(c=>c.slug===s[1]):null;if(route==='chuyen-muc'&&!category)notFound();
     const selected=category?.types.join(',')??q.category??'',items=await publicContents(q.q??'',selected,q.area??'');
     const title=category?.name??(route==='tim-kiem'?'Bạn đang muốn tìm điều gì?':'Từng trang, từng miền văn hóa');
     return <main id="main" className="wrap page"><Breadcrumb items={[{label:category?.name??'Khám phá'}]}/><PageTitle eyebrow={category?.subtitle??'THƯ VIỆN VĂN HÓA NAM BỘ'} title={title} description="Khám phá những hồ sơ đã được kiểm chứng và công bố. Các đầu mối nghiên cứu được giữ riêng tại bàn biên tập."/><SearchForm q={q.q} action={category?`/chuyen-muc/${category.slug}`:'/tim-kiem'}/>{!category&&route==='kham-pha'&&<CategoryCards/>}<form className="filter-bar" method="get"><input type="hidden" name="q" value={q.q??''}/><label>Chuyên mục<select name="category" defaultValue={selected}><option value="">Tất cả chuyên mục</option>{categories.map(c=><option value={c.types.join(',')} key={c.slug}>{c.name}</option>)}</select></label><label>Khu vực theo tư liệu<select name="area" defaultValue={q.area??''}><option value="">Tất cả khu vực</option>{['Nam Bộ','Cần Thơ cũ','Hậu Giang cũ','Sóc Trăng cũ','Cần Thơ mới'].map(x=><option key={x}>{x}</option>)}</select></label><button className="button" type="submit">Lọc hồ sơ</button></form><div className="result-count">{items.length} hồ sơ đã công bố{q.q&&<> cho “{q.q}”</>}</div>{items.length?<ContentCards items={items}/>:<Empty/>}</main>;
   }
-  if(route==='ho-so'){
-    const c=await content(s[1]);if(!c)notFound();const citations=await contentCitations(c.id);
-    const related=await all(`SELECT b.* FROM entity_relationships r JOIN cultural_contents b ON b.id=r.to_id
-      WHERE r.from_id=? AND r.status='accepted' AND b.id IN (SELECT c.id FROM cultural_contents c WHERE ${publicWhere})`,c.id);
-    const back=`/ho-so/${c.slug}`;
-    return <main id="main" className="wrap page"><Breadcrumb items={[{label:'Khám phá',href:'/kham-pha'},{label:c.title}]}/><Flash params={q}/><div className="article-layout"><article><p className="eyebrow">{c.historical_area} · {c.community}</p><h1 className="article-title">{c.title}</h1><p className="article-intro">{c.summary}</p><div className="badge-row"><Classification value={c.classification}/><span>Đã duyệt phiên bản {c.revision}</span></div><Body text={c.body}/><section className="citations-section"><h2>Nguồn để lần theo</h2><ol>{citations.map(e=><li key={e.id}><a href={e.source_url} target="_blank" rel="noreferrer">{e.source_name} ↗</a><p>{e.locator} · {e.source_version}</p><small>Chứng minh: {e.statement}</small><p>{e.review_note}</p></li>)}</ol></section>{related.length>0&&<section><h2>Những trang liên quan</h2><ContentCards items={related}/></section>}</article><aside className="article-aside"><h2>Giữ một trang ký sự</h2><Save id={c.id} kind="content" back={back} user={user}/><p>Phạm vi: {c.historical_area}<br/>Cộng đồng: {c.community}</p>{c.latitude!==null&&c.geo_reviewed===1&&<><iframe title={`Vị trí đã đối chiếu của ${c.title}`} src={mapEmbed(c.latitude,c.longitude)} loading="lazy" referrerPolicy="strict-origin-when-cross-origin"/><a href={`/ban-do?diem=${c.id}`}>Mở trên bản đồ ↗</a></>}<small>Quyền sử dụng: {c.rights_basis}</small></aside></div></main>;
-  }
+  if(route==='ho-so'){const c=await content(s[1]);if(!c)notFound();return <PublicDossier article={c} user={user} params={q}/>;}
   if(route==='nguon-tu-lieu'){
     let sources=await all('SELECT * FROM source_registry ORDER BY id');if(q.q)sources=sources.filter(x=>fold(x.name+' '+x.topics).includes(fold(q.q!)));
     return <main id="main" className="wrap page"><Breadcrumb items={[{label:'Nguồn tư liệu'}]}/><PageTitle eyebrow="TỪ MỘT DÒNG DẪN, TÌM VỀ TÀI LIỆU GỐC" title="Nguồn để lần theo" description="Cơ quan chuyên môn, thư viện, công trình nghiên cứu và dữ liệu bản đồ. Đăng ký một nguồn chưa đồng nghĩa xác minh toàn bộ nội dung của nguồn đó."/><SearchForm action="/nguon-tu-lieu" q={q.q} placeholder="Tìm tên tài liệu, chủ đề…"/><p className="result-count">{sources.length} nguồn đăng ký</p><div className="source-list">{sources.map(x=><article className="source-card" key={x.id}><div className="source-id">{x.id}</div><div><p className="eyebrow">{x.source_type.replace(/_/g,' ')} · {x.format}</p><h2><a href={x.url} target="_blank" rel="noreferrer">{x.name} <Arrow diagonal/></a></h2><p>{x.notes}</p><div className="badge-row"><span className="classification">Quyền được ghi nhận: {x.license_reported}</span><small>{x.topics.replace(/,/g,' · ')}</small></div></div></article>)}</div>{!sources.length&&<Empty title="Chưa tìm thấy nguồn phù hợp" description="Thử tên tài liệu hoặc chủ đề khác."/>}</main>;

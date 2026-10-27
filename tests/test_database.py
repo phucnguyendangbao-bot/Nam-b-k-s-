@@ -46,5 +46,23 @@ class DatabasePolicyTests(unittest.TestCase):
         policy=re.search(r'export const eligibilitySQL=`(.*?)`;',(ROOT/'lib/policy.ts').read_text(encoding='utf-8'),re.S).group(1)
         view=self.db.execute("SELECT sql FROM sqlite_master WHERE name='publication_eligibility'").fetchone()[0]
         self.assertIn(policy,view)
+    def test_pending_media_blocks_publication_even_when_body_is_reviewed(self):
+        self.ready()
+        self.db.execute("INSERT INTO media_assets (id,content_id,kind,url,caption,author,source_url,license_name,license_url,modifications,attribution) VALUES ('m','c','image','/media/test.webp','test','Synthetic author','https://commons.wikimedia.org/wiki/File:Test','CC BY 4.0','https://creativecommons.org/licenses/by/4.0/','test resize','test')")
+        self.db.execute("UPDATE cultural_contents SET approved_revision=revision,reviewed_by='reviewer' WHERE id='c'")
+        self.assertEqual(self.db.execute('SELECT eligible FROM publication_eligibility').fetchone()[0],0)
+        with self.assertRaises(sqlite3.IntegrityError):self.db.execute("UPDATE cultural_contents SET status='published' WHERE id='c'")
+    def test_dictionary_requires_its_own_review(self):
+        self.ready();self.db.execute("UPDATE cultural_contents SET content_kind='dialect' WHERE id='c'")
+        self.db.execute("INSERT INTO dialect_entries (content_id,headword,meaning,usage_context,example,example_note,regional_scope,part_of_speech) VALUES ('c','test','test meaning','test context','authored example','test note','test scope','test type')")
+        self.db.execute("UPDATE cultural_contents SET approved_revision=revision,reviewed_by='reviewer' WHERE id='c'")
+        self.assertEqual(self.db.execute('SELECT eligible FROM publication_eligibility').fetchone()[0],0)
+        self.db.execute("UPDATE dialect_entries SET review_status='accepted',reviewer='reviewer' WHERE content_id='c'")
+        self.db.execute("UPDATE cultural_contents SET approved_revision=revision,reviewed_by='reviewer' WHERE id='c'")
+        self.assertEqual(self.db.execute('SELECT eligible FROM publication_eligibility').fetchone()[0],1)
+    def test_structured_text_edits_invalidate_approval(self):
+        self.ready();self.db.execute("UPDATE cultural_contents SET status='published' WHERE id='c'")
+        self.db.execute("UPDATE cultural_contents SET scope_note='Changed scope' WHERE id='c'")
+        self.assertEqual(self.db.execute('SELECT status,eligible FROM publication_eligibility').fetchone(),('draft',0))
 
 if __name__=='__main__':unittest.main()

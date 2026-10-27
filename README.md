@@ -79,14 +79,20 @@ kiểm tra HTTP/API đạt. Test HTTP đã dùng fixture gắn nhãn Dữ liệu
 D1 local rồi dọn trước khi áp dụng migration log append-only. Không chạy lại
 integration.py vào kho đang có dữ liệu cần giữ hoặc hosted Site; dùng một bản
 local disposable mới, trước migration append-only như mô tả trong file test.
-Công cụ trình duyệt lỗi khởi tạo nên chưa có QA bằng ảnh chụp/viewport thực tế.
+Đợt nâng cấp ba chuyên mục có kiểm tra bằng Edge headless tại local, gồm ảnh chụp
+desktop/mobile, tìm kiếm, bộ lọc, trang chi tiết, giấy phép và luồng duyệt thủ công.
+Xem báo cáo [nâng cấp chuyên mục](docs/collections-release.md).
 
 ## Tính năng còn thiếu hoặc chờ dữ liệu
 
-- Chưa có hồ sơ thật đủ điều kiện công bố, nên thư viện và tour public hiện trống.
+- Đã chuẩn bị 11 hồ sơ có nguồn tại /quan-tri/ban-thao (4 địa danh/không gian,
+  2 phong tục, 5 mục từ). Chúng chưa được nhập hay công bố tự động trên hosted.
+  Biên tập viên xem trước, nhập nháp, duyệt chứng minh/ảnh/mục từ rồi duyệt bài.
 - Chưa có tour thực địa/tri thức thật để trải nghiệm; cơ chế chặng, lưu và tiến độ
   đã được kiểm tra bằng fixture local.
-- Chưa nhận upload ảnh/audio/video; chưa mở R2 vì chưa có tư liệu được cấp quyền.
+- Đã tích hợp 4 ảnh Wikimedia Commons có hồ sơ tác giả, giấy phép và thay đổi,
+  cùng font Noto tự lưu trữ với giấy phép OFL. Chưa nhận upload ảnh/audio/video;
+  chưa có bản ghi phát âm được cấp quyền. Không tạo âm thanh giả làm tư liệu.
 - AI chưa cấu hình; trang hỏi đáp dùng tìm kiếm truyền thống, không trả câu trả lời giả.
 - Chưa có xử lý dị bản chuyên biệt, timeline địa giới, vector search hoặc đồng bộ
   ETL tự động. Mô hình nguồn, quan hệ và cổng quyền đã có để mở rộng.

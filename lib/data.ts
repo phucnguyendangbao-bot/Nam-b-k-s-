@@ -3,13 +3,15 @@ import { getChatGPTUser } from '@/app/chatgpt-auth';
 import seed from './research-seed.json';
 import { eligibilitySQL, type Role } from './policy';
 import { fold, similarity, slugify } from './catalog';
+import { nfc } from './editorial-model';
 
 // Prepared SQL returns heterogeneous projections. Validate writes at the action boundary.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Row=Record<string,any>;
 export function database(){if(!env.DB)throw new Error('Cơ sở dữ liệu chưa được kết nối.');return env.DB;}
-export async function all(sql:string,...params:unknown[]):Promise<Row[]>{const r=await database().prepare(sql).bind(...params).all();return r.results as Row[];}
-export async function one(sql:string,...params:unknown[]):Promise<Row|null>{return await database().prepare(sql).bind(...params).first<Row>();}
+export function displayRow(row:Row):Row{return Object.fromEntries(Object.entries(row).map(([k,v])=>[k,typeof v==='string'?nfc(v):v]));}
+export async function all(sql:string,...params:unknown[]):Promise<Row[]>{const r=await database().prepare(sql).bind(...params).all();return (r.results as Row[]).map(displayRow);}
+export async function one(sql:string,...params:unknown[]):Promise<Row|null>{const row=await database().prepare(sql).bind(...params).first<Row>();return row?displayRow(row):null;}
 export async function run(sql:string,...params:unknown[]){return database().prepare(sql).bind(...params).run();}
 export async function batch(statements:{sql:string,params:unknown[]}[]){return database().batch(statements.map(s=>database().prepare(s.sql).bind(...s.params)));}
 export const timestamp=()=>new Date().toISOString();
@@ -52,11 +54,16 @@ export async function log(userId:string,action:string,targetId:string,details:un
 }
 export const publicWhere=`c.status='published' AND (${eligibilitySQL})`;
 export async function publicContents(query='',category='',area=''){
-  let rows=await all(`SELECT c.* FROM cultural_contents c WHERE ${publicWhere} ORDER BY c.updated_at DESC`);
+  let rows=await all(`SELECT c.*,
+    (SELECT m.url FROM media_assets m WHERE m.content_id=c.id AND m.kind='image' AND m.review_status='accepted' ORDER BY m.id LIMIT 1) image_url,
+    (SELECT m.author FROM media_assets m WHERE m.content_id=c.id AND m.kind='image' AND m.review_status='accepted' ORDER BY m.id LIMIT 1) image_author,
+    (SELECT m.license_name FROM media_assets m WHERE m.content_id=c.id AND m.kind='image' AND m.review_status='accepted' ORDER BY m.id LIMIT 1) image_license,
+    (SELECT m.source_url FROM media_assets m WHERE m.content_id=c.id AND m.kind='image' AND m.review_status='accepted' ORDER BY m.id LIMIT 1) image_source_url,
+    d.meaning,d.usage_context,d.part_of_speech FROM cultural_contents c LEFT JOIN dialect_entries d ON d.content_id=c.id WHERE ${publicWhere} ORDER BY c.updated_at DESC`);
   if(category)rows=rows.filter(r=>category.split(',').includes(r.category));
   if(area)rows=rows.filter(r=>r.historical_area===area);
   if(query.trim()){
-    const q=fold(query);rows=rows.map(r=>({...r,_score:fold(r.title+' '+r.summary+' '+r.body).includes(q)?2:similarity(r.title,q)})).filter(r=>r._score>.52).sort((a,b)=>b._score-a._score);
+    const q=fold(query);rows=rows.map(r=>({...r,_score:fold(r.title+' '+r.summary+' '+r.body+' '+(r.meaning??'')+' '+(r.usage_context??'')).includes(q)?2:similarity(r.title,q)})).filter(r=>r._score>.52).sort((a,b)=>b._score-a._score);
   }return rows;
 }
 export async function stats(){

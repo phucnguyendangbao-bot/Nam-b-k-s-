@@ -11,6 +11,10 @@ export const contents = sqliteTable('cultural_contents', {
   category: text('category').notNull(), historicalArea: text('historical_area').notNull(), community: text('community').notNull(),
   classification: text('classification').notNull(), importedVerification: text('imported_verification').notNull().default(''),
   summary: text('summary').notNull().default(''), body: text('body').notNull().default(''),
+  contentKind: text('content_kind').notNull().default('general'),
+  introduction: text('introduction').notNull().default(''), topic: text('topic').notNull().default(''),
+  scopeNote: text('scope_note').notNull().default(''), sectionsJson: text('sections_json').notNull().default('[]'),
+  textLicense: text('text_license').notNull().default(''), textLicenseUrl: text('text_license_url').notNull().default(''),
   status: text('status').notNull().default('draft'), revision: integer('revision').notNull().default(1),
   approvedRevision: integer('approved_revision').notNull().default(0), reviewedBy: text('reviewed_by'), reviewedAt: text('reviewed_at'),
   storageConsent: integer('storage_consent').notNull().default(0), publishRights: integer('publish_rights').notNull().default(0),
@@ -68,4 +72,20 @@ export const submissions = sqliteTable('community_submissions', {
 });
 export const rateLimits = sqliteTable('rate_limits', {
   key: text('key').primaryKey(), count: integer('count').notNull(), expiresAt: integer('expires_at').notNull(),
+});
+export const mediaAssets = sqliteTable('media_assets', {
+  id:text('id').primaryKey(),contentId:text('content_id').notNull().references(()=>contents.id),
+  kind:text('kind').notNull(),url:text('url').notNull(),caption:text('caption').notNull(),
+  author:text('author').notNull(),sourceUrl:text('source_url').notNull(),licenseName:text('license_name').notNull(),
+  licenseUrl:text('license_url').notNull(),modifications:text('modifications').notNull(),
+  attribution:text('attribution').notNull(),commercialAllowed:integer('commercial_allowed').notNull().default(0),
+  reviewStatus:text('review_status').notNull().default('pending'),reviewer:text('reviewer'),reviewedAt:text('reviewed_at'),
+  fileSha256:text('file_sha256').notNull().default(''),width:integer('width'),height:integer('height'),
+},table=>[index('media_content').on(table.contentId)]);
+export const dialectEntries = sqliteTable('dialect_entries', {
+  contentId:text('content_id').primaryKey().references(()=>contents.id),headword:text('headword').notNull(),
+  meaning:text('meaning').notNull(),usageContext:text('usage_context').notNull(),example:text('example').notNull(),
+  exampleNote:text('example_note').notNull(),regionalScope:text('regional_scope').notNull(),
+  partOfSpeech:text('part_of_speech').notNull(),audioAssetId:text('audio_asset_id').references(()=>mediaAssets.id),
+  reviewStatus:text('review_status').notNull().default('pending'),reviewer:text('reviewer'),reviewedAt:text('reviewed_at'),
 });

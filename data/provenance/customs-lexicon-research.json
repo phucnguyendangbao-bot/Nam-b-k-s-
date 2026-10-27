@@ -1,0 +1,409 @@
+{
+  "checked_on": "2026-10-27",
+  "purpose": "Bản nghiên cứu để biên tập, không tự ghi hoặc công bố vào database",
+  "sources": [
+    {
+      "id": "S07",
+      "name": "Phong tục hôn nhân thể hiện nét văn hóa của người Nam bộ",
+      "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html",
+      "source_type": "journalism_interview",
+      "publisher": "Báo Cần Thơ",
+      "author": "Đăng Huỳnh (thực hiện), phỏng vấn Nguyễn Hữu Hiệp",
+      "published_at": null,
+      "source_version": "Bản web đối chiếu 2026-10-27; ngày xuất bản không hiện trong dữ liệu đọc",
+      "rights": "Chỉ sử dụng bản diễn giải ngắn tự viết của thông tin/nhận định có dẫn nguồn; không sao chép ảnh hoặc toàn văn. Chưa cấp giấy phép ảnh báo chí."
+    },
+    {
+      "id": "R-GIO-TT",
+      "name": "Vì sao đám giỗ ở miền Tây nhà nhà gói bánh tét?",
+      "url": "https://tuoitre.vn/vi-sao-dam-gio-o-mien-tay-nha-nha-goi-banh-tet-20241201111210343.htm",
+      "source_type": "journalism_report",
+      "publisher": "Tuổi Trẻ Online",
+      "author": null,
+      "published_at": "2024-12-01",
+      "source_version": "2024-12-01 12:17 GMT+7; đọc 2026-10-27",
+      "rights": "Chỉ diễn giải ngắn dữ kiện có dẫn nguồn; không dùng ảnh của bài."
+    },
+    {
+      "id": "R-GIO-TN",
+      "name": "Đi ăn đám giỗ miền Tây, vì sao khách còn có phần mang về?",
+      "url": "https://thanhnien.vn/di-an-dam-gio-mien-tay-vi-sao-khach-con-co-phan-mang-ve-185260731114441254.htm",
+      "source_type": "journalism_report_interview",
+      "publisher": "Thanh Niên",
+      "author": "Cao An Biên",
+      "published_at": "2026-08-03",
+      "source_version": "2026-08-03 06:00 GMT+7; đọc 2026-10-27",
+      "rights": "Chỉ diễn giải ngắn ghi nhận và lời kể có quy thuộc; không dùng ảnh của bài."
+    },
+    {
+      "id": "R-GIO-CT",
+      "name": "Nếp nhà",
+      "url": "https://baocantho.com.vn/nep-nha-a75633.html",
+      "source_type": "journalism_report",
+      "publisher": "Báo Cần Thơ",
+      "author": null,
+      "published_at": null,
+      "source_version": "Bản web đọc 2026-10-27; bài có ảnh Tết Ất Mùi 2015, không suy ra ngày xuất bản từ ảnh",
+      "rights": "Chỉ diễn giải ngắn dữ kiện của trường hợp họ tộc được ghi nhận; không sử dụng ảnh báo chí."
+    },
+    {
+      "id": "R-TANG-HISTORY",
+      "name": "Việt Nam phong tục — Thiên I, IX. Tang ma",
+      "url": "https://vi.wikisource.org/wiki/Việt_Nam_phong_tục/I.9",
+      "source_type": "historical_book_transcription",
+      "publisher": "Wikisource tiếng Việt",
+      "author": "Phan Kế Bính; cộng tác viên Wikisource chuyển chép",
+      "published_at": null,
+      "source_version": "Chương IX. Tang ma; trang đọc 2026-10-27; chưa xác định ấn bản trong trích xuất",
+      "license": "CC BY-SA, theo footer trang chuyển chép; không suy ra phạm vi mọi lớp nội dung",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Chưa nhập toàn văn; chỉ giữ đầu mối để đối chiếu lịch sử. Không dùng làm chứng minh thực hành Nam Bộ hiện tại."
+    },
+    {
+      "id": "WT-E029",
+      "name": "Wiktionary tiếng Việt — bậu",
+      "url": "https://vi.wiktionary.org/wiki/bậu",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=bậu&oldid=2415347",
+      "history_url": "https://vi.wiktionary.org/wiki/bậu?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E030",
+      "name": "Wiktionary tiếng Việt — qua",
+      "url": "https://vi.wiktionary.org/wiki/qua",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=qua&oldid=2417836",
+      "history_url": "https://vi.wiktionary.org/wiki/qua?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E031",
+      "name": "Wiktionary tiếng Việt — mần",
+      "url": "https://vi.wiktionary.org/wiki/mần",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=mần&oldid=2417050",
+      "history_url": "https://vi.wiktionary.org/wiki/mần?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E032",
+      "name": "Wiktionary tiếng Việt — bển",
+      "url": "https://vi.wiktionary.org/wiki/bển",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=bển&oldid=2008373",
+      "history_url": "https://vi.wiktionary.org/wiki/bển?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E033",
+      "name": "Wiktionary tiếng Việt — hổng",
+      "url": "https://vi.wiktionary.org/wiki/hổng",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=hổng&oldid=2416355",
+      "history_url": "https://vi.wiktionary.org/wiki/hổng?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    }
+  ],
+  "custom_articles": [
+    {
+      "id": "E001",
+      "title": "Cưới hỏi: từ coi mắt đến đám nói",
+      "category": "cuoi_hoi",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "historical_area": "Nam Bộ (phạm vi lời kể của nhà nghiên cứu)",
+      "community": "Người Việt ở Nam Bộ theo nguồn phỏng vấn",
+      "intro": "Một cách đọc nghi thức cưới hỏi qua lời nhà nghiên cứu Nguyễn Hữu Hiệp, không xem đó là khuôn mẫu của mọi gia đình.",
+      "sections": [
+        {
+          "kind": "practiced_custom",
+          "heading": "Hai gia đình tìm hiểu và kết thông gia",
+          "text": "Trong bài phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp mô tả coi mắt là dịp cha mẹ đưa người con trai đến gặp phía nhà gái; đám nói đánh dấu sự gắn kết đôi trẻ và hai gia đình. Mâm trầu, khay rượu và quả phẩm được ông nhắc như những lễ vật còn được giữ.",
+          "source_ids": [
+            "S07"
+          ],
+          "locator": "Phần trả lời câu hỏi về nghi lễ xưa và nay, các đoạn bắt đầu “Hiện tại...” và “Ở đây, tôi xin trình bày...” (web lines 184–198)"
+        },
+        {
+          "kind": "folk_belief",
+          "heading": "Phân biệt nghi thức với quan niệm dân gian",
+          "text": "Ông không tán thành việc coi đèn cưới tắt, ngọn cao thấp hay tranh lấy trầu trước là dấu hiệu quyết định hạnh phúc hoặc quyền làm chủ gia đình. Đây là ý kiến của người được phỏng vấn về những kiêng kỵ, không phải bằng chứng cho hiệu lực của chúng.",
+          "source_ids": [
+            "S07"
+          ],
+          "locator": "Câu trả lời về tập tục cần tinh giản, đoạn “Các nghi thức vái lạy...” và đoạn tiếp theo (web lines 201–206)"
+        }
+      ],
+      "scope_note": "Phỏng vấn nói về người Việt Nam Bộ và thừa nhận khác biệt theo hoàn cảnh. Không áp chung cho Khmer/Hoa hoặc mọi gia đình; không suy ra năm 2026 vẫn thực hành y hệt. Chưa đọc trực tiếp Gia Định thành thông chí. Không tự thêm nguồn gốc biểu tượng trầu cau hay trình tự rước dâu.",
+      "claims": [
+        {
+          "source_id": "S07",
+          "claim": "Coi mắt, đám nói và lễ vật trầu/rượu được mô tả trong lời nhà nghiên cứu.",
+          "locator": "Phần nghi lễ xưa và nay, đoạn 187–198",
+          "kind": "attributed_description",
+          "verified": true
+        },
+        {
+          "source_id": "S07",
+          "claim": "Nhà nghiên cứu phản đối kiêng kỵ đèn cưới và giành trầu.",
+          "locator": "Phần tinh giản, đoạn 203–206",
+          "kind": "folk_belief_commentary",
+          "verified": true
+        }
+      ],
+      "rights_basis": "Bản diễn giải mới, ngắn và có quy thuộc nguồn phỏng vấn; không tái bản lời văn/ảnh. Cần gắn ảnh Commons có phép riêng nếu bổ sung ảnh."
+    },
+    {
+      "id": "E008",
+      "title": "Đám giỗ: ngày tưởng nhớ và sum họp",
+      "category": "dam_gio",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "historical_area": "Miền Tây; ví dụ ở An Giang và Cần Thơ theo nguồn",
+      "community": "Các gia đình được ghi nhận, không đại diện mọi cộng đồng",
+      "intro": "Nhìn ngày giỗ qua một số ghi nhận gia đình, để hiểu vai trò tưởng nhớ và giữ liên hệ họ hàng.",
+      "sections": [
+        {
+          "kind": "practiced_custom",
+          "heading": "Một dịp quây quần",
+          "text": "Phóng sự Thanh Niên năm 2026 theo chân khách dự giỗ tại nhà bà Thu ở An Giang. Người được phỏng vấn xem ngày giỗ vừa để nhớ người đã khuất, vừa để họ hàng gần xa gặp nhau, hỏi thăm và giữ tình thân. Đây là trải nghiệm của một gia đình cụ thể.",
+          "source_ids": [
+            "R-GIO-TN"
+          ],
+          "locator": "Mục “Đẹp làm sao đám giỗ miền Tây!”, đoạn nhà bà Thu và lời anh Nạc (web lines 59–78)"
+        },
+        {
+          "kind": "practiced_custom",
+          "heading": "Chuẩn bị từ hôm trước",
+          "text": "Bài Tuổi Trẻ năm 2024 ghi nhận việc con cháu về trước để cùng gói bánh, có mâm tiên chiều hôm trước và mâm chánh sáng hôm sau. Bánh còn được chia làm quà sau bữa giỗ. Ghi nhận này không biến bánh tét hay một thực đơn thành lễ vật bắt buộc cho mọi nhà.",
+          "source_ids": [
+            "R-GIO-TT"
+          ],
+          "locator": "Đoạn đầu 225–235; mục “Trước cúng ông bà, sau cho hàng xóm”, đoạn 267–275"
+        },
+        {
+          "kind": "practiced_custom",
+          "heading": "Một ví dụ ở Cần Thơ",
+          "text": "Báo Cần Thơ cũng ghi việc họ tộc Nguyễn Hữu ở An Hòa sum họp trong ngày giỗ ông bà, tổ tiên. Câu chuyện nhấn mạnh sự trở về với nếp nhà và tình thân, không quy định một trình tự cúng chung.",
+          "source_ids": [
+            "R-GIO-CT"
+          ],
+          "locator": "Đoạn sau ảnh các thành viên họ Nguyễn Hữu dịp Tết Ất Mùi 2015; web line 280"
+        }
+      ],
+      "scope_note": "Các nhà báo và nhân chứng mô tả những trường hợp cụ thể. Không coi lời mời ông bà về hưởng giỗ là sự kiện lịch sử hay sự thật siêu nhiên; nếu giải thích phải gắn nhãn quan niệm dân gian. Không đặt giờ, ngày âm/dương hoặc lễ vật bắt buộc khi nguồn chưa chứng minh.",
+      "claims": [
+        {
+          "source_id": "R-GIO-TN",
+          "claim": "Nhân chứng nói ngày giỗ giữ liên hệ gia đình, ở một nhà tại An Giang.",
+          "locator": "Mục Đẹp làm sao..., các đoạn 61–64",
+          "kind": "witness_report",
+          "verified": true
+        },
+        {
+          "source_id": "R-GIO-TT",
+          "claim": "Phóng sự ghi mâm tiên, mâm chánh và gói bánh, chia quà.",
+          "locator": "Đoạn 225–235, 267–275",
+          "kind": "documented_practice",
+          "verified": true
+        },
+        {
+          "source_id": "R-GIO-CT",
+          "claim": "Họ Nguyễn Hữu ở An Hòa sum họp dịp giỗ theo ghi nhận bài.",
+          "locator": "Đoạn 280",
+          "kind": "documented_case",
+          "verified": true
+        }
+      ],
+      "rights_basis": "Tóm lược mới các ghi nhận, không sao chép lời văn dài và không lấy ảnh báo chí; ảnh phải có clearance riêng."
+    },
+    {
+      "id": "E006",
+      "title": "Nghi lễ phát tang",
+      "category": "tang_le",
+      "classification": "research_lead",
+      "recommended_status": "draft",
+      "intro": "Đầu mối nghiên cứu nghi thức tang lễ; chưa đủ tư liệu xác nhận thực hành theo từng cộng đồng ở Nam Bộ.",
+      "sections": [],
+      "research_note": "Đã kiểm tra Việt Nam phong tục của Phan Kế Bính, Thiên I, IX. Tang ma, đoạn Thành phục và Tang phục. Đây là văn bản mô tả tập tục lịch sử của người Việt, không tự chứng minh nghi thức Nam Bộ hiện nay. Cần tài liệu khảo sát có địa bàn, thời kỳ, cộng đồng, người thực hành; phân biệt tôn giáo và lời giải thích dân gian.",
+      "research_sources": [
+        "R-TANG-HISTORY"
+      ],
+      "not_publishable_claims": [
+        "Không khẳng định mọi gia đình Nam Bộ dùng cùng tang phục, số ngày tang hay nghi thức phát tang.",
+        "Không khẳng định tác dụng xua tà, giờ xấu hoặc linh hồn như dữ kiện đã chứng minh."
+      ],
+      "bibliographic_leads": [
+        {
+          "title": "Nghi thức và văn cúng đám tang ở Nam Bộ",
+          "author": "Lý Việt Dũng",
+          "journal": "Tạp chí Nghiên cứu và Phát triển, số 2 (73), 2009",
+          "status": "Đã xác định metadata bài trong mục lục tạp chí chính (search index); truy cập trang timeout, chưa đối chiếu toàn văn hoặc giấy phép. Chỉ là bibliographic_lead.",
+          "url": "https://vjol.info.vn/ncpt-hue/vi/issue/view/546/",
+          "pages": "9–25"
+        }
+      ]
+    }
+  ],
+  "dictionary_entries": [
+    {
+      "id": "E029",
+      "term": "bậu",
+      "category": "ngon_ngu",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "part_of_speech": "Đại từ xưng hô",
+      "meaning": "Cách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.",
+      "context": "Cần dựa quan hệ giữa hai người để hiểu cách xưng gọi. Không gộp với nghĩa danh từ trong “bậu cửa”.",
+      "example": "Bậu có muốn cùng nghe câu chuyện này không?",
+      "example_kind": "authored_usage_illustration",
+      "example_label": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+      "source_id": "WT-E029",
+      "source_locator": "Định nghĩa 1, 3 và 4 (web lines 149–164)",
+      "scope_note": "Không có căn cứ để khẳng định chỉ người Cần Thơ dùng từ này.",
+      "etymology": null,
+      "audio_url": null,
+      "audio_author": null,
+      "audio_source_url": null,
+      "audio_license_url": null,
+      "audio_status": "Chưa có bản ghi được cấp quyền và đối chiếu giọng đọc.",
+      "attribution": "Biên soạn lại ngắn từ mục từ bậu của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio."
+    },
+    {
+      "id": "E030",
+      "term": "qua",
+      "category": "ngon_ngu",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "part_of_speech": "Đại từ xưng hô",
+      "meaning": "Một cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.",
+      "context": "Mục từ nêu cách dùng khi nói thân mật với người nhỏ tuổi hơn, hoặc người chồng tự xưng với vợ. Phân biệt với động từ chỉ di chuyển “qua”.",
+      "example": "Qua muốn nghe bậu kể tiếp.",
+      "example_kind": "authored_usage_illustration",
+      "example_label": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+      "source_id": "WT-E030",
+      "source_locator": "Tiếng Việt → Đại từ, định nghĩa 1 (web lines 247–253)",
+      "scope_note": "Nguồn đánh dấu cổ hoặc địa phương, không giới hạn độc quyền ở Nam Bộ.",
+      "etymology": null,
+      "audio_url": null,
+      "audio_author": null,
+      "audio_source_url": null,
+      "audio_license_url": null,
+      "audio_status": "Chưa có bản ghi được cấp quyền và đối chiếu giọng đọc.",
+      "attribution": "Biên soạn lại ngắn từ mục từ qua của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio."
+    },
+    {
+      "id": "E031",
+      "term": "mần",
+      "category": "ngon_ngu",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "part_of_speech": "Động từ",
+      "meaning": "Trong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.",
+      "context": "Dùng để đọc nghĩa một cách nói địa phương; mục từ còn có nghĩa tính từ khác, không nhập chung.",
+      "example": "Hôm nay mình mần việc gì trước?",
+      "example_kind": "authored_usage_illustration",
+      "example_label": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+      "source_id": "WT-E031",
+      "source_locator": "Tiếng Việt → Động từ, định nghĩa làm (web lines 160–167)",
+      "scope_note": "Nguồn ghi phương ngữ, không chứng minh chỉ xuất hiện ở Cần Thơ/Nam Bộ.",
+      "etymology": null,
+      "audio_url": null,
+      "audio_author": null,
+      "audio_source_url": null,
+      "audio_license_url": null,
+      "audio_status": "Chưa có bản ghi được cấp quyền và đối chiếu giọng đọc.",
+      "attribution": "Biên soạn lại ngắn từ mục từ mần của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio."
+    },
+    {
+      "id": "E032",
+      "term": "bển",
+      "category": "ngon_ngu",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "part_of_speech": "Đại từ chỉ nơi",
+      "meaning": "Cách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.",
+      "context": "Dùng khi nơi được nói đến đã rõ trong cuộc trò chuyện.",
+      "example": "Chiều nay mình ghé bển.",
+      "example_kind": "authored_usage_illustration",
+      "example_label": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+      "source_id": "WT-E032",
+      "source_locator": "Tiếng Việt → Đại từ, định nghĩa 1 (web lines 113–120)",
+      "scope_note": "Có nhãn miền Nam; chưa xác minh nguồn gốc lịch sử của cách rút gọn.",
+      "etymology": null,
+      "audio_url": null,
+      "audio_author": null,
+      "audio_source_url": null,
+      "audio_license_url": null,
+      "audio_status": "Chưa có bản ghi được cấp quyền và đối chiếu giọng đọc.",
+      "attribution": "Biên soạn lại ngắn từ mục từ bển của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio."
+    },
+    {
+      "id": "E033",
+      "term": "hổng",
+      "category": "ngon_ngu",
+      "classification": "source_supported",
+      "recommended_status": "ready_for_editorial_review",
+      "part_of_speech": "Từ phủ định (nghĩa phương ngữ)",
+      "meaning": "Ở nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.",
+      "context": "Phân biệt nghĩa phủ định với “hổng” chỉ trạng thái trống, hở trong mục từ.",
+      "example": "Tôi hổng biết đường này.",
+      "example_kind": "authored_usage_illustration",
+      "example_label": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+      "source_id": "WT-E033",
+      "source_locator": "Tiếng Việt → Tính từ, định nghĩa 2 được gắn nhãn Phương ngữ (web lines 147–158)",
+      "scope_note": "Nguồn không chứng minh đây là từ chỉ có ở Nam Bộ.",
+      "etymology": null,
+      "audio_url": null,
+      "audio_author": null,
+      "audio_source_url": null,
+      "audio_license_url": null,
+      "audio_status": "Chưa có bản ghi được cấp quyền và đối chiếu giọng đọc.",
+      "attribution": "Biên soạn lại ngắn từ mục từ hổng của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio."
+    }
+  ],
+  "copyright_note": "Không tải toàn văn báo, không sao chép ảnh báo; chỉ lưu bản diễn giải ngắn và metadata. Mỗi nguồn phỏng vấn/bài báo có nội dung dẫn xuất ngắn, tránh vượt 200 từ tương đương. Nội dung Wiktionary cần ghi công và cùng giấy phép.",
+  "warnings": [
+    "S09 và S10 ban đầu là catalog: không dùng chúng làm chứng minh toàn văn.",
+    "Không tự tạo audio hoặc nguồn gốc từ nguyên.",
+    "Rước dâu và nguồn gốc biểu tượng trầu cau chưa đủ chứng minh chi tiết từ S07.",
+    "Các nguồn báo chưa cấp quyền ảnh. Chỉ thêm ảnh Commons có clearance riêng.",
+    "Hồ sơ tang lễ hiện tại giữ draft."
+  ]
+}

@@ -15,6 +15,20 @@
       "when": 1793090039397,
       "tag": "0001_publication_guards",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793092087392,
+      "tag": "0002_wooden_surge",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1793092856122,
+      "tag": "0003_media_and_dictionary_guards",
+      "breakpoints": true
     }
   ]
 }

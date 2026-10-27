@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./styles.css";
+import "./collections.css";
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer } from '@/lib/data';
 

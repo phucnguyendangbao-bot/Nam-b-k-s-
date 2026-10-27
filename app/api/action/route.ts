@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import { batch,content,contentCitations,database,ensureSeed,log,one,publicContents,publicTours,run,timestamp,uid,viewer } from '@/lib/data';
 import { assertAllowed,canAdmin,canEdit,canReview,eligibilitySQL,rightsCanStore,validCoordinates } from '@/lib/policy';
 import { classes,safeUrl,slugify } from '@/lib/catalog';
+import { stagePreparedArticle } from '@/lib/editorial-drafts';
+import { imagePathAllowed,audioPathAllowed,nfc,parseSections,permitsCommercialMedia,sectionBody,sectionLabels,type ArticleSection,type SectionKind } from '@/lib/editorial-model';
 
 export const dynamic='force-dynamic';
-function field(f:FormData,key:string,max=2000){const v=String(f.get(key)??'').trim();assertAllowed(v.length<=max,`Trường ${key} quá dài.`);return v;}
+function field(f:FormData,key:string,max=2000){const v=nfc(String(f.get(key)??'')).trim();assertAllowed(!v.includes('\uFFFD'),'Văn bản có ký tự Unicode lỗi.');assertAllowed(v.length<=max,`Trường ${key} quá dài.`);return v;}
 function checked(f:FormData,key:string){return f.get(key)==='on'||f.get(key)==='true';}
 function required(value:string,message='Vui lòng nhập đủ thông tin.'){assertAllowed(value,message);return value;}
 function result(request:Request,path:string,message:string,error=false){const url=new URL(path,request.url);url.searchParams.set(error?'error':'done',message);return NextResponse.redirect(url,303);}
@@ -54,10 +56,44 @@ export async function POST(request:Request){
       return result(request,back,'Đã nhận đóng góp. Tư liệu đang chờ biên tập và chưa được công bố.');
     }
     assertAllowed(canEdit(user.role),'Bạn không có quyền thao tác trong khu nghiên cứu.');
+    if(action==='stage_prepared'){
+      assertAllowed(canReview(user.role),'Cần biên tập viên đưa bản chuẩn bị vào hàng đợi.');
+      assertAllowed(checked(f,'review_before_import'),'Cần xem bản chuẩn bị trước khi nhập nháp.');
+      await stagePreparedArticle(database(),required(id),user.userId);
+      return result(request,`/quan-tri/noi-dung/${id}`,'Đã nhập bản nháp, nguồn và metadata ảnh. Chưa chấp nhận bằng chứng hoặc công bố.');
+    }
+    if(action==='review_materials'){
+      assertAllowed(canReview(user.role),'Chỉ biên tập viên được duyệt tư liệu.');
+      assertAllowed(checked(f,'materials_checked'),'Cần xác nhận đã mở nguồn và kiểm tra tư liệu.');
+      const c=await content(id,true);assertAllowed(c,'Không có hồ sơ.');
+      const evidence=await contentCitations(id);assertAllowed(evidence.length&&evidence.every(e=>e.statement&&e.locator&&e.source_version&&!['library_catalog','book_notice'].includes(e.source_type)),'Còn nguồn đầu mối chưa đủ chứng minh.');
+      const assets=await database().prepare('SELECT * FROM media_assets WHERE content_id=?').bind(id).all();
+      for(const m of assets.results){
+        assertAllowed(m.commercial_allowed===1&&typeof m.license_name==='string'&&typeof m.license_url==='string'&&permitsCommercialMedia(m.license_name,m.license_url),'Ảnh/âm thanh chưa có giấy phép phù hợp.');
+        assertAllowed(m.author&&m.source_url&&m.modifications,'Thiếu tác giả, nguồn hoặc thay đổi tư liệu.');
+        assertAllowed(typeof m.url==='string'&&(m.kind==='image'?imagePathAllowed(m.url):audioPathAllowed(m.url)),'Chỉ duyệt tài sản local đã được chuẩn bị và cấp quyền.');
+      }
+      const dialect=await one('SELECT * FROM dialect_entries WHERE content_id=?',id);
+      assertAllowed(c.content_kind!=='dialect'||(dialect?.meaning&&dialect?.usage_context&&dialect?.example_note),'Mục từ còn thiếu nghĩa, ngữ cảnh hoặc xuất xứ ví dụ.');
+      await batch([
+        {sql:"UPDATE source_citations SET status='accepted',reviewer=?,reviewed_at=? WHERE content_id=?",params:[user.userId,timestamp(),id]},
+        {sql:"UPDATE dialect_entries SET review_status='accepted',reviewer=?,reviewed_at=? WHERE content_id=?",params:[user.userId,timestamp(),id]},
+        {sql:"UPDATE media_assets SET review_status='accepted',reviewer=?,reviewed_at=? WHERE content_id=?",params:[user.userId,timestamp(),id]},
+      ]);await log(user.userId,'materials.accept',id,{evidence:evidence.length,media:assets.results.length});
+      return result(request,back,'Đã chấp nhận phần tư liệu. Bài vẫn cần duyệt quyền và chủ động công bố.');
+    }
     if(action==='save_content'){
       const old=id?await content(id,true):null;assertAllowed(!id||old,'Không tìm thấy hồ sơ.');
-      const title=required(field(f,'title',160)),body=field(f,'body',20000),summary=field(f,'summary',500);
-      const consent=checked(f,'storage_consent');assertAllowed(rightsCanStore(body+'\n'+summary,consent),'Xác nhận quyền lưu trước khi nhập nội dung văn bản.');
+      const title=required(field(f,'title',160)),summary=field(f,'summary',500);
+      const kind=field(f,'content_kind',30)||'general';assertAllowed(['general','place','custom','dialect'].includes(kind),'Loại hồ sơ không hợp lệ.');
+      const previous=parseSections(old?.sections_json??'[]');const sections:ArticleSection[]=[];
+      for(const [key,label] of Object.entries(sectionLabels)){const text=field(f,`section_${key}`,4000);if(text)sections.push({heading:label,kind:key as SectionKind,text,sourceIds:[...new Set(previous.filter(s=>s.kind===key).flatMap(s=>s.sourceIds))]});}
+      let body=kind==='general'?field(f,'body',20000):sectionBody(sections);
+      const intro=field(f,'introduction',1600),topic=field(f,'topic',80),scope=field(f,'scope_note',2500),textLicense=field(f,'text_license',150),textLicenseUrl=field(f,'text_license_url',1000);
+      assertAllowed(!textLicenseUrl||safeUrl(textLicenseUrl),'URL giấy phép văn bản không hợp lệ.');
+      const dialect=kind==='dialect'?{headword:required(field(f,'headword',100)),meaning:required(field(f,'meaning',1500)),context:required(field(f,'usage_context',1500)),example:required(field(f,'example',1000)),exampleNote:required(field(f,'example_note',1000)),region:required(field(f,'regional_scope',1000)),part:required(field(f,'part_of_speech',150)),audio:field(f,'audio_asset_id',150)||null}:null;
+      if(dialect){body+='\n\n## Nghĩa\n\n'+dialect.meaning+'\n\n## Ví dụ\n\n'+dialect.example;if(dialect.audio)assertAllowed(await one("SELECT id FROM media_assets WHERE id=? AND content_id=? AND kind='audio' AND review_status='accepted'",dialect.audio,id),'Bản ghi chưa được duyệt cho mục từ này.');}
+      const consent=checked(f,'storage_consent');assertAllowed(rightsCanStore(body+'\n'+summary+'\n'+intro,consent),'Xác nhận quyền lưu trước khi nhập nội dung văn bản.');
       const classification=field(f,'classification',60);assertAllowed(classes[classification],'Phân loại không hợp lệ.');
       const category=required(field(f,'category',60)),area=required(field(f,'historical_area',160)),community=required(field(f,'community',120));
       const time=timestamp(),newId=id||uid(),slug=old?.slug||`${slugify(title)}-${newId.slice(0,8)}`;
@@ -69,6 +105,10 @@ export async function POST(request:Request){
           revision=revision+1,approved_revision=0,status='draft',publish_rights=0,rights_reviewer=NULL,reviewed_by=NULL,updated_at=? WHERE id=? AND revision=?`,
           params:[title,category,area,community,classification,summary,body,consent?1:0,time,id,old.revision]});
       }else jobs.push({sql:`INSERT INTO cultural_contents (id,slug,title,category,historical_area,community,classification,summary,body,storage_consent,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,params:[newId,slug,title,category,area,community,classification,summary,body,consent?1:0,time,time]});
+      jobs.push({sql:'UPDATE cultural_contents SET content_kind=?,introduction=?,topic=?,scope_note=?,sections_json=?,text_license=?,text_license_url=? WHERE id=?',params:[kind,intro,topic,scope,JSON.stringify(sections),textLicense,textLicenseUrl,newId]});
+      if(dialect)jobs.push({sql:`INSERT INTO dialect_entries (content_id,headword,meaning,usage_context,example,example_note,regional_scope,part_of_speech,audio_asset_id,review_status)
+        VALUES (?,?,?,?,?,?,?,?,?,'pending') ON CONFLICT(content_id) DO UPDATE SET headword=excluded.headword,meaning=excluded.meaning,usage_context=excluded.usage_context,example=excluded.example,example_note=excluded.example_note,regional_scope=excluded.regional_scope,part_of_speech=excluded.part_of_speech,audio_asset_id=excluded.audio_asset_id,review_status='pending',reviewer=NULL,reviewed_at=NULL`,
+        params:[newId,dialect.headword,dialect.meaning,dialect.context,dialect.example,dialect.exampleNote,dialect.region,dialect.part,dialect.audio]});
       await batch(jobs);await log(user.userId,'content.save',newId,{revision:(old?.revision??0)+1});
       return result(request,`/quan-tri/noi-dung/${newId}`,'Đã lưu bản nháp. Bản sửa cần được duyệt lại.');
     }

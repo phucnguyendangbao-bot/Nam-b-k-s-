@@ -1,0 +1,862 @@
+{
+  "version": "collections-2026-10-27-v1",
+  "reviewed_at": "2026-10-27",
+  "reviewer": "source-review:2026-10-27",
+  "sources": [
+    {
+      "id": "S07",
+      "name": "Phong tục hôn nhân thể hiện nét văn hóa của người Nam bộ",
+      "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html",
+      "source_type": "journalism_interview",
+      "publisher": "Báo Cần Thơ",
+      "author": "Đăng Huỳnh (thực hiện), phỏng vấn Nguyễn Hữu Hiệp",
+      "published_at": null,
+      "source_version": "Bản web đối chiếu 2026-10-27; ngày xuất bản không hiện trong dữ liệu đọc",
+      "rights": "Chỉ sử dụng bản diễn giải ngắn tự viết của thông tin/nhận định có dẫn nguồn; không sao chép ảnh hoặc toàn văn. Chưa cấp giấy phép ảnh báo chí."
+    },
+    {
+      "id": "R-GIO-TT",
+      "name": "Vì sao đám giỗ ở miền Tây nhà nhà gói bánh tét?",
+      "url": "https://tuoitre.vn/vi-sao-dam-gio-o-mien-tay-nha-nha-goi-banh-tet-20241201111210343.htm",
+      "source_type": "journalism_report",
+      "publisher": "Tuổi Trẻ Online",
+      "author": null,
+      "published_at": "2024-12-01",
+      "source_version": "2024-12-01 12:17 GMT+7; đọc 2026-10-27",
+      "rights": "Chỉ diễn giải ngắn dữ kiện có dẫn nguồn; không dùng ảnh của bài."
+    },
+    {
+      "id": "R-GIO-TN",
+      "name": "Đi ăn đám giỗ miền Tây, vì sao khách còn có phần mang về?",
+      "url": "https://thanhnien.vn/di-an-dam-gio-mien-tay-vi-sao-khach-con-co-phan-mang-ve-185260731114441254.htm",
+      "source_type": "journalism_report_interview",
+      "publisher": "Thanh Niên",
+      "author": "Cao An Biên",
+      "published_at": "2026-08-03",
+      "source_version": "2026-08-03 06:00 GMT+7; đọc 2026-10-27",
+      "rights": "Chỉ diễn giải ngắn ghi nhận và lời kể có quy thuộc; không dùng ảnh của bài."
+    },
+    {
+      "id": "R-GIO-CT",
+      "name": "Nếp nhà",
+      "url": "https://baocantho.com.vn/nep-nha-a75633.html",
+      "source_type": "journalism_report",
+      "publisher": "Báo Cần Thơ",
+      "author": null,
+      "published_at": null,
+      "source_version": "Bản web đọc 2026-10-27; bài có ảnh Tết Ất Mùi 2015, không suy ra ngày xuất bản từ ảnh",
+      "rights": "Chỉ diễn giải ngắn dữ kiện của trường hợp họ tộc được ghi nhận; không sử dụng ảnh báo chí."
+    },
+    {
+      "id": "WT-E029",
+      "name": "Wiktionary tiếng Việt — bậu",
+      "url": "https://vi.wiktionary.org/wiki/bậu",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=bậu&oldid=2415347",
+      "history_url": "https://vi.wiktionary.org/wiki/bậu?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E030",
+      "name": "Wiktionary tiếng Việt — qua",
+      "url": "https://vi.wiktionary.org/wiki/qua",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=qua&oldid=2417836",
+      "history_url": "https://vi.wiktionary.org/wiki/qua?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E031",
+      "name": "Wiktionary tiếng Việt — mần",
+      "url": "https://vi.wiktionary.org/wiki/mần",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=mần&oldid=2417050",
+      "history_url": "https://vi.wiktionary.org/wiki/mần?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E032",
+      "name": "Wiktionary tiếng Việt — bển",
+      "url": "https://vi.wiktionary.org/wiki/bển",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=bển&oldid=2008373",
+      "history_url": "https://vi.wiktionary.org/wiki/bển?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "WT-E033",
+      "name": "Wiktionary tiếng Việt — hổng",
+      "url": "https://vi.wiktionary.org/wiki/hổng",
+      "source_type": "open_dictionary",
+      "publisher": "Wiktionary tiếng Việt",
+      "author": "Các cộng tác viên Wiktionary tiếng Việt",
+      "source_version": "https://vi.wiktionary.org/w/index.php?title=hổng&oldid=2416355",
+      "history_url": "https://vi.wiktionary.org/wiki/hổng?action=history",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights": "Ghi công tác giả cộng tác viên + liên kết mục từ/lịch sử, ghi sửa đổi và chia sẻ bản biên soạn mục từ theo CC BY-SA 4.0. Không giả lập audio."
+    },
+    {
+      "id": "R-CAIRANG-ND",
+      "name": "Bâng khuâng Cái Răng — Nhân Dân",
+      "url": "https://nhandan.vn/bang-khuang-cai-rang-post186885.html",
+      "source_type": "journalism_article",
+      "source_version": "2013-10-23; đọc 2026-10-27",
+      "author": "Báo Nhân Dân",
+      "rights": "Chỉ tóm lược ngắn có quy thuộc; không sao chép ảnh hoặc toàn văn."
+    },
+    {
+      "id": "R-BINHTHUY-VNAT",
+      "name": "Nhà cổ Bình Thủy — Cơ sở dữ liệu ngành Du lịch",
+      "url": "https://csdl.vietnamtourism.gov.vn/dest/?item=145",
+      "source_type": "official_dataset",
+      "source_version": "Trang điểm đến item=145, đọc 2026-10-27",
+      "author": "Cơ sở dữ liệu ngành Du lịch Việt Nam",
+      "rights": "Chỉ diễn giải ngắn dữ kiện; ảnh Commons có giấy phép riêng."
+    },
+    {
+      "id": "R-BINHTHUY-CT",
+      "name": "Nhà cổ Bình Thủy — Cổng du lịch Cần Thơ",
+      "url": "https://canthotourism.vn/vi/nhacobinhthuy",
+      "source_type": "official_article",
+      "source_version": "Trang điểm đến, đọc 2026-10-27",
+      "author": "Cổng du lịch Cần Thơ / Sở Văn hóa, Thể thao và Du lịch",
+      "rights": "Chỉ metadata và diễn giải mới; không lấy ảnh của trang."
+    },
+    {
+      "id": "R-MARKET-BVHTTDL",
+      "name": "Bàn giải pháp bảo tồn và phát triển Chợ nổi Cái Răng — Bộ VHTTDL",
+      "url": "https://bvhttdl.gov.vn/ban-giai-phap-bao-ton-va-phat-trien-cho-noi-cai-rang-tp-can-tho-20190709110942916.htm",
+      "source_type": "official_article",
+      "source_version": "2019-07-09; đọc 2026-10-27",
+      "author": "Như Thanh (tổng hợp), Cổng thông tin Bộ VHTTDL",
+      "rights": "Diễn giải ngắn về nội dung đề án; không lấy ảnh."
+    },
+    {
+      "id": "R-MARKET-CONGBAO",
+      "name": "Quyết định 1189/QĐ-UBND, Công báo Cần Thơ 45+46 (2024), trang 27",
+      "url": "https://congbao.cantho.gov.vn/tmp/docga_18843922_page27.pdf",
+      "source_type": "official_register",
+      "source_version": "Quyết định 29-05-2024; Công báo 21-06-2024, trang 27",
+      "author": "UBND thành phố Cần Thơ",
+      "rights": "Dẫn dữ kiện văn bản; không sao chép toàn văn PDF."
+    }
+  ],
+  "articles": [
+    {
+      "id": "E001",
+      "title": "Cưới hỏi: từ coi mắt đến đám nói",
+      "category": "cuoi_hoi",
+      "kind": "custom",
+      "topic": "wedding",
+      "historical_area": "Nam Bộ",
+      "community": "Người Việt ở Nam Bộ theo nguồn phỏng vấn",
+      "summary": "Một cách đọc nghi thức cưới hỏi qua lời nhà nghiên cứu Nguyễn Hữu Hiệp, không xem đó là khuôn mẫu của mọi gia đình.",
+      "introduction": "Một cách đọc nghi thức cưới hỏi qua lời nhà nghiên cứu Nguyễn Hữu Hiệp, không xem đó là khuôn mẫu của mọi gia đình.",
+      "scope_note": "Phỏng vấn nói về người Việt Nam Bộ và thừa nhận khác biệt theo hoàn cảnh. Không áp chung cho Khmer/Hoa hoặc mọi gia đình; không suy ra năm 2026 vẫn thực hành y hệt. Chưa đọc trực tiếp Gia Định thành thông chí. Không tự thêm nguồn gốc biểu tượng trầu cau hay trình tự rước dâu.",
+      "sections": [
+        {
+          "heading": "Hai gia đình tìm hiểu và kết thông gia",
+          "kind": "observed_practice",
+          "text": "Trong bài phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp mô tả coi mắt là dịp cha mẹ đưa người con trai đến gặp phía nhà gái; đám nói đánh dấu sự gắn kết đôi trẻ và hai gia đình. Mâm trầu, khay rượu và quả phẩm được ông nhắc như những lễ vật còn được giữ.",
+          "sourceIds": [
+            "S07"
+          ]
+        },
+        {
+          "heading": "Phân biệt nghi thức với quan niệm dân gian",
+          "kind": "folk_belief",
+          "text": "Ông không tán thành việc coi đèn cưới tắt, ngọn cao thấp hay tranh lấy trầu trước là dấu hiệu quyết định hạnh phúc hoặc quyền làm chủ gia đình. Đây là ý kiến của người được phỏng vấn về những kiêng kỵ, không phải bằng chứng cho hiệu lực của chúng.",
+          "sourceIds": [
+            "S07"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "S07",
+          "statement": "Coi mắt, đám nói và lễ vật trầu/rượu được mô tả trong lời nhà nghiên cứu.",
+          "locator": "Phần nghi lễ xưa và nay, đoạn 187–198",
+          "kind": "fact",
+          "id": "verified-E001-1"
+        },
+        {
+          "source_id": "S07",
+          "statement": "Nhà nghiên cứu phản đối kiêng kỵ đèn cưới và giành trầu.",
+          "locator": "Phần tinh giản, đoạn 203–206",
+          "kind": "variant",
+          "id": "verified-E001-2"
+        }
+      ],
+      "rights_basis": "Bản diễn giải mới, ngắn và có quy thuộc nguồn phỏng vấn; không tái bản lời văn/ảnh. Cần gắn ảnh Commons có phép riêng nếu bổ sung ảnh.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Hai gia đình tìm hiểu và kết thông gia\n\nTrong bài phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp mô tả coi mắt là dịp cha mẹ đưa người con trai đến gặp phía nhà gái; đám nói đánh dấu sự gắn kết đôi trẻ và hai gia đình. Mâm trầu, khay rượu và quả phẩm được ông nhắc như những lễ vật còn được giữ.\n\n## Phân biệt nghi thức với quan niệm dân gian\n\nÔng không tán thành việc coi đèn cưới tắt, ngọn cao thấp hay tranh lấy trầu trước là dấu hiệu quyết định hạnh phúc hoặc quyền làm chủ gia đình. Đây là ý kiến của người được phỏng vấn về những kiêng kỵ, không phải bằng chứng cho hiệu lực của chúng.",
+      "media": [
+        {
+          "id": "E001-trau-cau-khuong-viet-ha",
+          "kind": "image",
+          "url": "/media/trau-cau-khuong-viet-ha.webp",
+          "caption": "Mâm trầu cau trong lễ vật ăn hỏi ở Việt Nam. Chưa xác định địa phương chụp; không xem là khuôn mẫu nghi lễ Nam Bộ.",
+          "author": "Khương Việt Hà",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Trau_cau_(Vietnam).JPG",
+          "license_name": "Public domain",
+          "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Commons current original was rotated by Rotatebot in 2011. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Trau cau (Vietnam).JPG — Khương Việt Hà, Wikimedia Commons, Public domain (PD-self).",
+          "commercial_allowed": 1,
+          "file_sha256": "fdb697fdd5b1bd87149d4af6c95799206d5691a786a4c9286d37196af33e9444",
+          "width": 1067,
+          "height": 1600
+        }
+      ]
+    },
+    {
+      "id": "E008",
+      "title": "Đám giỗ: ngày tưởng nhớ và sum họp",
+      "category": "dam_gio",
+      "kind": "custom",
+      "topic": "anniversary",
+      "historical_area": "Miền Tây theo tư liệu",
+      "community": "Các gia đình được ghi nhận, không đại diện mọi cộng đồng",
+      "summary": "Nhìn ngày giỗ qua một số ghi nhận gia đình, để hiểu vai trò tưởng nhớ và giữ liên hệ họ hàng.",
+      "introduction": "Nhìn ngày giỗ qua một số ghi nhận gia đình, để hiểu vai trò tưởng nhớ và giữ liên hệ họ hàng.",
+      "scope_note": "Các nhà báo và nhân chứng mô tả những trường hợp cụ thể. Không coi lời mời ông bà về hưởng giỗ là sự kiện lịch sử hay sự thật siêu nhiên; nếu giải thích phải gắn nhãn quan niệm dân gian. Không đặt giờ, ngày âm/dương hoặc lễ vật bắt buộc khi nguồn chưa chứng minh.",
+      "sections": [
+        {
+          "heading": "Một dịp quây quần",
+          "kind": "observed_practice",
+          "text": "Phóng sự Thanh Niên năm 2026 theo chân khách dự giỗ tại nhà bà Thu ở An Giang. Người được phỏng vấn xem ngày giỗ vừa để nhớ người đã khuất, vừa để họ hàng gần xa gặp nhau, hỏi thăm và giữ tình thân. Đây là trải nghiệm của một gia đình cụ thể.",
+          "sourceIds": [
+            "R-GIO-TN"
+          ]
+        },
+        {
+          "heading": "Chuẩn bị từ hôm trước",
+          "kind": "observed_practice",
+          "text": "Bài Tuổi Trẻ năm 2024 ghi nhận việc con cháu về trước để cùng gói bánh, có mâm tiên chiều hôm trước và mâm chánh sáng hôm sau. Bánh còn được chia làm quà sau bữa giỗ. Ghi nhận này không biến bánh tét hay một thực đơn thành lễ vật bắt buộc cho mọi nhà.",
+          "sourceIds": [
+            "R-GIO-TT"
+          ]
+        },
+        {
+          "heading": "Một ví dụ ở Cần Thơ",
+          "kind": "observed_practice",
+          "text": "Báo Cần Thơ cũng ghi việc họ tộc Nguyễn Hữu ở An Hòa sum họp trong ngày giỗ ông bà, tổ tiên. Câu chuyện nhấn mạnh sự trở về với nếp nhà và tình thân, không quy định một trình tự cúng chung.",
+          "sourceIds": [
+            "R-GIO-CT"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "R-GIO-TN",
+          "statement": "Nhân chứng nói ngày giỗ giữ liên hệ gia đình, ở một nhà tại An Giang.",
+          "locator": "Mục Đẹp làm sao..., các đoạn 61–64",
+          "kind": "fact",
+          "id": "verified-E008-1"
+        },
+        {
+          "source_id": "R-GIO-TT",
+          "statement": "Phóng sự ghi mâm tiên, mâm chánh và gói bánh, chia quà.",
+          "locator": "Đoạn 225–235, 267–275",
+          "kind": "fact",
+          "id": "verified-E008-2"
+        },
+        {
+          "source_id": "R-GIO-CT",
+          "statement": "Họ Nguyễn Hữu ở An Hòa sum họp dịp giỗ theo ghi nhận bài.",
+          "locator": "Đoạn 280",
+          "kind": "fact",
+          "id": "verified-E008-3"
+        }
+      ],
+      "rights_basis": "Tóm lược mới các ghi nhận, không sao chép lời văn dài và không lấy ảnh báo chí; ảnh phải có clearance riêng.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Một dịp quây quần\n\nPhóng sự Thanh Niên năm 2026 theo chân khách dự giỗ tại nhà bà Thu ở An Giang. Người được phỏng vấn xem ngày giỗ vừa để nhớ người đã khuất, vừa để họ hàng gần xa gặp nhau, hỏi thăm và giữ tình thân. Đây là trải nghiệm của một gia đình cụ thể.\n\n## Chuẩn bị từ hôm trước\n\nBài Tuổi Trẻ năm 2024 ghi nhận việc con cháu về trước để cùng gói bánh, có mâm tiên chiều hôm trước và mâm chánh sáng hôm sau. Bánh còn được chia làm quà sau bữa giỗ. Ghi nhận này không biến bánh tét hay một thực đơn thành lễ vật bắt buộc cho mọi nhà.\n\n## Một ví dụ ở Cần Thơ\n\nBáo Cần Thơ cũng ghi việc họ tộc Nguyễn Hữu ở An Hòa sum họp trong ngày giỗ ông bà, tổ tiên. Câu chuyện nhấn mạnh sự trở về với nếp nhà và tình thân, không quy định một trình tự cúng chung.",
+      "media": []
+    },
+    {
+      "id": "E029",
+      "title": "bậu",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "pronoun",
+      "historical_area": "Nam Bộ",
+      "community": "Nhiều cộng đồng sử dụng tiếng Việt",
+      "summary": "Cách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.",
+      "introduction": "Cách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.",
+      "scope_note": "Không có căn cứ để khẳng định chỉ người Cần Thơ dùng từ này.",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn và ngữ cảnh",
+          "kind": "explanation",
+          "text": "Cần dựa quan hệ giữa hai người để hiểu cách xưng gọi. Không gộp với nghĩa danh từ trong “bậu cửa”.",
+          "sourceIds": [
+            "WT-E029"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "WT-E029",
+          "statement": "Cách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.",
+          "locator": "Định nghĩa 1, 3 và 4 (web lines 149–164)",
+          "kind": "fact",
+          "id": "verified-E029-1"
+        }
+      ],
+      "dialect": {
+        "headword": "bậu",
+        "meaning": "Cách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.",
+        "usage_context": "Cần dựa quan hệ giữa hai người để hiểu cách xưng gọi. Không gộp với nghĩa danh từ trong “bậu cửa”.",
+        "example": "Bậu có muốn cùng nghe câu chuyện này không?",
+        "example_note": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+        "regional_scope": "Không có căn cứ để khẳng định chỉ người Cần Thơ dùng từ này.",
+        "part_of_speech": "Đại từ xưng hô",
+        "audio_asset_id": null
+      },
+      "rights_basis": "Biên soạn lại ngắn từ mục từ bậu của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo. Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "publish": false,
+      "body": "## Nghĩa được chọn và ngữ cảnh\n\nCần dựa quan hệ giữa hai người để hiểu cách xưng gọi. Không gộp với nghĩa danh từ trong “bậu cửa”.\n\n## Nghĩa\n\nCách gọi người đối thoại một cách thân mật; có thể dùng với người mình thương.\n\n## Ví dụ do ban biên soạn tạo\n\nBậu có muốn cùng nghe câu chuyện này không?",
+      "media": []
+    },
+    {
+      "id": "E030",
+      "title": "qua",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "pronoun",
+      "historical_area": "Nam Bộ",
+      "community": "Nhiều cộng đồng sử dụng tiếng Việt",
+      "summary": "Một cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.",
+      "introduction": "Một cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.",
+      "scope_note": "Nguồn đánh dấu cổ hoặc địa phương, không giới hạn độc quyền ở Nam Bộ.",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn và ngữ cảnh",
+          "kind": "explanation",
+          "text": "Mục từ nêu cách dùng khi nói thân mật với người nhỏ tuổi hơn, hoặc người chồng tự xưng với vợ. Phân biệt với động từ chỉ di chuyển “qua”.",
+          "sourceIds": [
+            "WT-E030"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "WT-E030",
+          "statement": "Một cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.",
+          "locator": "Tiếng Việt → Đại từ, định nghĩa 1 (web lines 247–253)",
+          "kind": "fact",
+          "id": "verified-E030-1"
+        }
+      ],
+      "dialect": {
+        "headword": "qua",
+        "meaning": "Một cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.",
+        "usage_context": "Mục từ nêu cách dùng khi nói thân mật với người nhỏ tuổi hơn, hoặc người chồng tự xưng với vợ. Phân biệt với động từ chỉ di chuyển “qua”.",
+        "example": "Qua muốn nghe bậu kể tiếp.",
+        "example_note": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+        "regional_scope": "Nguồn đánh dấu cổ hoặc địa phương, không giới hạn độc quyền ở Nam Bộ.",
+        "part_of_speech": "Đại từ xưng hô",
+        "audio_asset_id": null
+      },
+      "rights_basis": "Biên soạn lại ngắn từ mục từ qua của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo. Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "publish": false,
+      "body": "## Nghĩa được chọn và ngữ cảnh\n\nMục từ nêu cách dùng khi nói thân mật với người nhỏ tuổi hơn, hoặc người chồng tự xưng với vợ. Phân biệt với động từ chỉ di chuyển “qua”.\n\n## Nghĩa\n\nMột cách tự xưng ngôi thứ nhất, được mục từ đánh dấu cổ hoặc địa phương.\n\n## Ví dụ do ban biên soạn tạo\n\nQua muốn nghe bậu kể tiếp.",
+      "media": []
+    },
+    {
+      "id": "E031",
+      "title": "mần",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "verb",
+      "historical_area": "Nam Bộ",
+      "community": "Nhiều cộng đồng sử dụng tiếng Việt",
+      "summary": "Trong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.",
+      "introduction": "Trong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.",
+      "scope_note": "Nguồn ghi phương ngữ, không chứng minh chỉ xuất hiện ở Cần Thơ/Nam Bộ.",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn và ngữ cảnh",
+          "kind": "explanation",
+          "text": "Dùng để đọc nghĩa một cách nói địa phương; mục từ còn có nghĩa tính từ khác, không nhập chung.",
+          "sourceIds": [
+            "WT-E031"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "WT-E031",
+          "statement": "Trong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.",
+          "locator": "Tiếng Việt → Động từ, định nghĩa làm (web lines 160–167)",
+          "kind": "fact",
+          "id": "verified-E031-1"
+        }
+      ],
+      "dialect": {
+        "headword": "mần",
+        "meaning": "Trong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.",
+        "usage_context": "Dùng để đọc nghĩa một cách nói địa phương; mục từ còn có nghĩa tính từ khác, không nhập chung.",
+        "example": "Hôm nay mình mần việc gì trước?",
+        "example_note": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+        "regional_scope": "Nguồn ghi phương ngữ, không chứng minh chỉ xuất hiện ở Cần Thơ/Nam Bộ.",
+        "part_of_speech": "Động từ",
+        "audio_asset_id": null
+      },
+      "rights_basis": "Biên soạn lại ngắn từ mục từ mần của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo. Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "publish": false,
+      "body": "## Nghĩa được chọn và ngữ cảnh\n\nDùng để đọc nghĩa một cách nói địa phương; mục từ còn có nghĩa tính từ khác, không nhập chung.\n\n## Nghĩa\n\nTrong nghĩa phương ngữ được chọn ở đây, “mần” tương ứng với “làm”.\n\n## Ví dụ do ban biên soạn tạo\n\nHôm nay mình mần việc gì trước?",
+      "media": []
+    },
+    {
+      "id": "E032",
+      "title": "bển",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "pronoun",
+      "historical_area": "Nam Bộ",
+      "community": "Nhiều cộng đồng sử dụng tiếng Việt",
+      "summary": "Cách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.",
+      "introduction": "Cách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.",
+      "scope_note": "Có nhãn miền Nam; chưa xác minh nguồn gốc lịch sử của cách rút gọn.",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn và ngữ cảnh",
+          "kind": "explanation",
+          "text": "Dùng khi nơi được nói đến đã rõ trong cuộc trò chuyện.",
+          "sourceIds": [
+            "WT-E032"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "WT-E032",
+          "statement": "Cách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.",
+          "locator": "Tiếng Việt → Đại từ, định nghĩa 1 (web lines 113–120)",
+          "kind": "fact",
+          "id": "verified-E032-1"
+        }
+      ],
+      "dialect": {
+        "headword": "bển",
+        "meaning": "Cách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.",
+        "usage_context": "Dùng khi nơi được nói đến đã rõ trong cuộc trò chuyện.",
+        "example": "Chiều nay mình ghé bển.",
+        "example_note": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+        "regional_scope": "Có nhãn miền Nam; chưa xác minh nguồn gốc lịch sử của cách rút gọn.",
+        "part_of_speech": "Đại từ chỉ nơi",
+        "audio_asset_id": null
+      },
+      "rights_basis": "Biên soạn lại ngắn từ mục từ bển của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo. Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "publish": false,
+      "body": "## Nghĩa được chọn và ngữ cảnh\n\nDùng khi nơi được nói đến đã rõ trong cuộc trò chuyện.\n\n## Nghĩa\n\nCách nói chỉ “bên ấy”, được mục từ đánh dấu miền Nam Việt Nam.\n\n## Ví dụ do ban biên soạn tạo\n\nChiều nay mình ghé bển.",
+      "media": []
+    },
+    {
+      "id": "E033",
+      "title": "hổng",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "particle",
+      "historical_area": "Nam Bộ",
+      "community": "Nhiều cộng đồng sử dụng tiếng Việt",
+      "summary": "Ở nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.",
+      "introduction": "Ở nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.",
+      "scope_note": "Nguồn không chứng minh đây là từ chỉ có ở Nam Bộ.",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn và ngữ cảnh",
+          "kind": "explanation",
+          "text": "Phân biệt nghĩa phủ định với “hổng” chỉ trạng thái trống, hở trong mục từ.",
+          "sourceIds": [
+            "WT-E033"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "WT-E033",
+          "statement": "Ở nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.",
+          "locator": "Tiếng Việt → Tính từ, định nghĩa 2 được gắn nhãn Phương ngữ (web lines 147–158)",
+          "kind": "fact",
+          "id": "verified-E033-1"
+        }
+      ],
+      "dialect": {
+        "headword": "hổng",
+        "meaning": "Ở nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.",
+        "usage_context": "Phân biệt nghĩa phủ định với “hổng” chỉ trạng thái trống, hở trong mục từ.",
+        "example": "Tôi hổng biết đường này.",
+        "example_note": "Ví dụ do ban biên soạn tạo để minh họa cách dùng; không phải ca dao, trích dẫn tư liệu hay lời kể đã sưu tầm.",
+        "regional_scope": "Nguồn không chứng minh đây là từ chỉ có ở Nam Bộ.",
+        "part_of_speech": "Từ phủ định (nghĩa phương ngữ)",
+        "audio_asset_id": null
+      },
+      "rights_basis": "Biên soạn lại ngắn từ mục từ hổng của các cộng tác viên Wiktionary tiếng Việt; CC BY-SA 4.0. Đã chọn nghĩa và diễn giải ngữ cảnh; ví dụ do ban biên soạn tạo. Chọn một nghĩa để giới thiệu; diễn giải ngắn bằng lời mới; bổ sung cảnh báo phạm vi và ví dụ tự soạn; không sao chép ca dao/IPA/audio.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "publish": false,
+      "body": "## Nghĩa được chọn và ngữ cảnh\n\nPhân biệt nghĩa phủ định với “hổng” chỉ trạng thái trống, hở trong mục từ.\n\n## Nghĩa\n\nỞ nghĩa phương ngữ, từ này có thể dùng với nghĩa “không”.\n\n## Ví dụ do ban biên soạn tạo\n\nTôi hổng biết đường này.",
+      "media": []
+    },
+    {
+      "id": "E020",
+      "title": "Đầu Sấu: những giả thuyết về một tên đất",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "toponym",
+      "historical_area": "Cần Thơ cũ",
+      "community": "Cộng đồng địa phương theo tư liệu",
+      "summary": "Một tên đất được đọc qua nhiều cách giải thích, thay vì chọn một truyền thuyết làm đáp án duy nhất.",
+      "introduction": "Bài khảo cứu của Hoài Phương trên Báo Cần Thơ nêu nhiều giả thuyết về Đầu Sấu và chưa xác định được thời điểm tên gọi ra đời.",
+      "scope_note": "Hồ sơ xác nhận các cách giải thích đã được tác giả ghi nhận; không xác nhận giả thuyết nào là nguồn gốc cuối cùng.",
+      "sections": [
+        {
+          "heading": "Ba hướng lý giải",
+          "kind": "hypothesis",
+          "text": "Tác giả đặt ra ba khả năng: ký ức về việc diệt sấu dữ; nơi mổ và bán thịt sấu ở vàm; hoặc sự kết hợp giữa nhiều sấu và hoạt động mua bán. Đây là các giả thuyết trong bài, chưa phải kết luận lịch sử.",
+          "sourceIds": [
+            "S13"
+          ]
+        },
+        {
+          "heading": "Truyện kể và giới hạn chứng minh",
+          "kind": "folk_belief",
+          "text": "Bài báo còn ghi một truyện dân gian nối Đầu Sấu, Cái Răng và Cái Da với các phần thân cá sấu. Lời kể này không chứng minh niên đại hay nguồn gốc tên đất.",
+          "sourceIds": [
+            "S13"
+          ]
+        },
+        {
+          "heading": "Điều còn để ngỏ",
+          "kind": "editorial_note",
+          "text": "Cần tiếp tục đối chiếu địa bạ và văn bản hành chính cũ. Không suy ra nguồn gốc địa danh chỉ từ việc tìm thấy xương cá sấu.",
+          "sourceIds": [
+            "S13"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "S13",
+          "statement": "Hoài Phương nêu ba giả thuyết và phân biệt truyện kể với căn cứ xác định tên đất.",
+          "locator": "Mục Địa danh Đầu Sấu ra đời khi nào?; ba giả thuyết và hai đoạn kết; tác giả Hoài Phương.",
+          "kind": "hypothesis",
+          "id": "verified-E020-1"
+        }
+      ],
+      "rights_basis": "Bản tóm lược mới và ngắn, dẫn đúng quan điểm tác giả; không tái bản lời văn hoặc ảnh báo.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Ba hướng lý giải\n\nTác giả đặt ra ba khả năng: ký ức về việc diệt sấu dữ; nơi mổ và bán thịt sấu ở vàm; hoặc sự kết hợp giữa nhiều sấu và hoạt động mua bán. Đây là các giả thuyết trong bài, chưa phải kết luận lịch sử.\n\n## Truyện kể và giới hạn chứng minh\n\nBài báo còn ghi một truyện dân gian nối Đầu Sấu, Cái Răng và Cái Da với các phần thân cá sấu. Lời kể này không chứng minh niên đại hay nguồn gốc tên đất.\n\n## Điều còn để ngỏ\n\nCần tiếp tục đối chiếu địa bạ và văn bản hành chính cũ. Không suy ra nguồn gốc địa danh chỉ từ việc tìm thấy xương cá sấu.",
+      "media": []
+    },
+    {
+      "id": "E021",
+      "title": "Cái Răng: tên gọi, cà ràng và chuyện kể",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "toponym",
+      "historical_area": "Cần Thơ cũ",
+      "community": "Các cách giải thích được báo chí ghi lại",
+      "summary": "Phân biệt cách giải thích gắn với tiếng Khmer và giai thoại cá sấu khi đọc tên Cái Răng.",
+      "introduction": "Bài Bâng khuâng Cái Răng của Nhân Dân năm 2013 ghi lại cả một cách giải thích ngôn ngữ và giai thoại dân gian.",
+      "scope_note": "Chưa đối chiếu trực tiếp ấn bản Tự vị tiếng nói miền Nam được dẫn. Không xem thuật lại của báo là chứng minh từ nguyên duy nhất.",
+      "sections": [
+        {
+          "heading": "Cách giải thích gắn với cà ràng",
+          "kind": "hypothesis",
+          "text": "Bài báo thuật lại quan điểm của Vương Hồng Sển: Cái Răng có liên hệ với tiếng Khmer karan, chỉ cà ràng, một loại bếp đất. Câu chuyện buôn bán vật dụng này được dùng để giải thích sự biến đổi tên gọi.",
+          "sourceIds": [
+            "R-CAIRANG-ND"
+          ]
+        },
+        {
+          "heading": "Một giai thoại khác",
+          "kind": "folk_belief",
+          "text": "Nguồn cũng ghi lời kể gắn tên đất với răng của một con cá sấu lớn. Đó là giai thoại được truyền tụng, không phải dữ kiện xác lập nguyên nhân đặt tên.",
+          "sourceIds": [
+            "R-CAIRANG-ND"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "R-CAIRANG-ND",
+          "statement": "Bài báo thuật lại cách giải thích cà ràng và giai thoại cá sấu, không cung cấp kết luận độc lập về từ nguyên.",
+          "locator": "Mục 1, ba đoạn đầu sau ảnh Chợ nổi Cái Răng; bài ngày 23-10-2013.",
+          "kind": "hypothesis",
+          "id": "verified-E021-1"
+        }
+      ],
+      "rights_basis": "Diễn giải mới ngắn có quy thuộc; không dùng lời văn dài hay ảnh của Nhân Dân.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Cách giải thích gắn với cà ràng\n\nBài báo thuật lại quan điểm của Vương Hồng Sển: Cái Răng có liên hệ với tiếng Khmer karan, chỉ cà ràng, một loại bếp đất. Câu chuyện buôn bán vật dụng này được dùng để giải thích sự biến đổi tên gọi.\n\n## Một giai thoại khác\n\nNguồn cũng ghi lời kể gắn tên đất với răng của một con cá sấu lớn. Đó là giai thoại được truyền tụng, không phải dữ kiện xác lập nguyên nhân đặt tên.",
+      "media": [
+        {
+          "id": "E021-cai-rang-market-dalbera",
+          "kind": "image",
+          "url": "/media/cai-rang-market-dalbera.webp",
+          "caption": "Chợ nổi Cái Răng — ảnh bối cảnh năm 2011, không chứng minh nguồn gốc tên địa danh.",
+          "author": "Jean-Pierre Dalbéra from Paris, France",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Le_march%C3%A9_flottant_(Cai_Rang,_Vietnam)_(6642690827).jpg",
+          "license_name": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Le marché flottant (Cai Rang, Vietnam) (6642690827) — Jean-Pierre Dalbéra from Paris, France, Wikimedia Commons, CC BY 2.0.",
+          "commercial_allowed": 1,
+          "file_sha256": "5218c42e7514fdb4f2f804d7bdf13acd6215764b97d9d02174766b41664061a3",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "NBS-BINH-THUY",
+      "title": "Nhà cổ Bình Thủy: đọc kiến trúc và nếp nhà",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "architecture",
+      "historical_area": "Cần Thơ cũ",
+      "community": "Gia tộc họ Dương theo tư liệu",
+      "summary": "Tìm hiểu nhà cổ của gia đình họ Dương qua hồ sơ du lịch và các chi tiết không gian được ghi nhận.",
+      "introduction": "Nhà cổ Bình Thủy được cơ sở dữ liệu du lịch giới thiệu trên đường Bùi Hữu Nghĩa, gắn với gia đình họ Dương.",
+      "scope_note": "Tên đơn vị hành chính được giữ theo từng nguồn. Chưa cung cấp giờ mở cửa, vé, tuyến đi hoặc tọa độ được đối chiếu.",
+      "sections": [
+        {
+          "heading": "Mốc tư liệu và hình thức ngôi nhà",
+          "kind": "documented_history",
+          "text": "Cơ sở dữ liệu ngành Du lịch ghi mốc xây dựng 1870 và mô tả ngôi nhà năm gian, hai mái, có ảnh hưởng kiến trúc Pháp. Mốc này không tự cho biết mọi lần mở rộng hay sửa chữa đã kết thúc khi nào.",
+          "sourceIds": [
+            "R-BINHTHUY-VNAT"
+          ]
+        },
+        {
+          "heading": "Không gian sống và thờ tự",
+          "kind": "explanation",
+          "text": "Hồ sơ mô tả sân vườn, tiền sảnh và khu vực đặt bàn thờ tổ tiên. Có thể đọc ngôi nhà qua cả không gian tiếp khách lẫn nếp thờ tự, thay vì chỉ nhìn mặt tiền.",
+          "sourceIds": [
+            "R-BINHTHUY-VNAT"
+          ]
+        },
+        {
+          "heading": "Một lớp ký ức điện ảnh",
+          "kind": "documented_history",
+          "text": "Cổng du lịch Cần Thơ ghi ngôi nhà từng xuất hiện trong các phim Người đẹp Tây Đô, Những nẻo đường phù sa và Người tình.",
+          "sourceIds": [
+            "R-BINHTHUY-CT"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "R-BINHTHUY-VNAT",
+          "statement": "Hồ sơ điểm đến ghi gia đình họ Dương, mốc 1870, nhà năm gian và không gian thờ tổ tiên.",
+          "locator": "Nhà cổ Bình Thủy: đoạn Đặc điểm, kiến trúc và đoạn Giữa tiền sảnh.",
+          "kind": "fact",
+          "id": "verified-NBS-BINH-THUY-1"
+        },
+        {
+          "source_id": "R-BINHTHUY-CT",
+          "statement": "Trang giới thiệu nêu các phim đã dùng ngôi nhà làm bối cảnh.",
+          "locator": "Giới thiệu, đoạn Nơi đây được chọn làm bối cảnh.",
+          "kind": "fact",
+          "id": "verified-NBS-BINH-THUY-2"
+        }
+      ],
+      "rights_basis": "Tóm lược mới các dữ kiện có dẫn nguồn; ảnh Daaé thuộc public domain, ảnh Thuydaonguyen theo CC BY 3.0, ghi riêng tác giả và thay đổi.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Mốc tư liệu và hình thức ngôi nhà\n\nCơ sở dữ liệu ngành Du lịch ghi mốc xây dựng 1870 và mô tả ngôi nhà năm gian, hai mái, có ảnh hưởng kiến trúc Pháp. Mốc này không tự cho biết mọi lần mở rộng hay sửa chữa đã kết thúc khi nào.\n\n## Không gian sống và thờ tự\n\nHồ sơ mô tả sân vườn, tiền sảnh và khu vực đặt bàn thờ tổ tiên. Có thể đọc ngôi nhà qua cả không gian tiếp khách lẫn nếp thờ tự, thay vì chỉ nhìn mặt tiền.\n\n## Một lớp ký ức điện ảnh\n\nCổng du lịch Cần Thơ ghi ngôi nhà từng xuất hiện trong các phim Người đẹp Tây Đô, Những nẻo đường phù sa và Người tình.",
+      "media": [
+        {
+          "id": "NBS-BINH-THUY-binh-thuy-house-daae",
+          "kind": "image",
+          "url": "/media/binh-thuy-house-daae.webp",
+          "caption": "La maison ancienne Binh Thuy, Can Tho",
+          "author": "Daaé",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Nha_co_Binh_Thuy_1.jpg",
+          "license_name": "Public domain",
+          "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Nha co Binh Thuy 1 — Daaé, Wikimedia Commons, Public domain.",
+          "commercial_allowed": 1,
+          "file_sha256": "7a92bc681b19b163c37153b48d7556e66183c06a473d530497def5d67bd0be9f",
+          "width": 1600,
+          "height": 1200
+        },
+        {
+          "id": "NBS-BINH-THUY-binh-thuy-house-thuydaonguyen",
+          "kind": "image",
+          "url": "/media/binh-thuy-house-thuydaonguyen.webp",
+          "caption": "Nhà cổ Bình Thủy",
+          "author": "Thuydaonguyen",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Nh%C3%A0_c%E1%BB%95_B%C3%ACnh_Th%E1%BB%A7y.jpg",
+          "license_name": "CC BY 3.0",
+          "license_url": "https://creativecommons.org/licenses/by/3.0",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Nhà cổ Bình Thủy — Thuydaonguyen, Wikimedia Commons, CC BY 3.0.",
+          "commercial_allowed": 1,
+          "file_sha256": "c81f503129313ae4c68cf597d02b4bb907c365fe49689bbd612cee30db1eff7a",
+          "width": 1600,
+          "height": 1200
+        }
+      ]
+    },
+    {
+      "id": "NBS-CHO-NOI",
+      "title": "Chợ nổi Cái Răng: một không gian văn hóa sông nước",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "floating_market",
+      "historical_area": "Cần Thơ cũ",
+      "community": "Cộng đồng giao thương trên sông theo nguồn",
+      "summary": "Đọc chợ nổi qua tư liệu về bảo tồn văn hóa, thay vì xem đây chỉ là một điểm chụp ảnh.",
+      "introduction": "Công báo Cần Thơ năm 2024 gọi Văn hóa Chợ nổi Cái Răng là di sản văn hóa phi vật thể quốc gia và dẫn Quyết định 829/QĐ-BVHTTDL ngày 10-3-2016.",
+      "scope_note": "Tư liệu 2019 và 2024 không xác nhận quy mô buôn bán hoặc dịch vụ tại thời điểm bạn đến. Ảnh Commons chụp năm 2011 là ảnh tư liệu, không phải ảnh hiện trạng 2026.",
+      "sections": [
+        {
+          "heading": "Dấu mốc trong văn bản",
+          "kind": "documented_history",
+          "text": "Quyết định 1189/QĐ-UBND ngày 29-5-2024 kiện toàn Ban Quản lý công tác bảo tồn và phát huy giá trị di sản này. Đây là căn cứ văn bản cho tình trạng được ghi nhận, không phải chứng minh một niên đại hình thành chợ.",
+          "sourceIds": [
+            "R-MARKET-CONGBAO"
+          ]
+        },
+        {
+          "heading": "Giao thương và bảo tồn",
+          "kind": "observed_practice",
+          "text": "Bài đăng của Bộ Văn hóa, Thể thao và Du lịch năm 2019 mô tả đề án hướng đến gìn giữ vai trò đầu mối, trung chuyển nông sản, đồng thời gắn du lịch với vệ sinh môi trường và an sinh. Những mục tiêu ấy cho thấy bảo tồn cần quan tâm cả đời sống giao thương.",
+          "sourceIds": [
+            "R-MARKET-BVHTTDL"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "R-MARKET-CONGBAO",
+          "statement": "Quyết định 1189 năm 2024 ghi nhận di sản Văn hóa Chợ nổi Cái Răng và dẫn Quyết định 829 ngày 10-3-2016.",
+          "locator": "Công báo 45+46 ngày 21-6-2024, trang 27, phần căn cứ và Điều 1.",
+          "kind": "register_entry",
+          "id": "verified-NBS-CHO-NOI-1"
+        },
+        {
+          "source_id": "R-MARKET-BVHTTDL",
+          "statement": "Bài năm 2019 nêu mục tiêu đề án bảo tồn, giao thương nông sản, du lịch và môi trường.",
+          "locator": "Bài ngày 9-7-2019, đoạn Được biết, Đề án này phê duyệt năm 2016.",
+          "kind": "fact",
+          "id": "verified-NBS-CHO-NOI-2"
+        }
+      ],
+      "rights_basis": "Bản diễn giải mới từ thông tin văn bản và bài giới thiệu; ảnh Jean-Pierre Dalbéra theo CC BY 2.0, giữ ghi công và thông tin chuyển WebP.",
+      "publish": false,
+      "text_license": "",
+      "text_license_url": "",
+      "body": "## Dấu mốc trong văn bản\n\nQuyết định 1189/QĐ-UBND ngày 29-5-2024 kiện toàn Ban Quản lý công tác bảo tồn và phát huy giá trị di sản này. Đây là căn cứ văn bản cho tình trạng được ghi nhận, không phải chứng minh một niên đại hình thành chợ.\n\n## Giao thương và bảo tồn\n\nBài đăng của Bộ Văn hóa, Thể thao và Du lịch năm 2019 mô tả đề án hướng đến gìn giữ vai trò đầu mối, trung chuyển nông sản, đồng thời gắn du lịch với vệ sinh môi trường và an sinh. Những mục tiêu ấy cho thấy bảo tồn cần quan tâm cả đời sống giao thương.",
+      "media": [
+        {
+          "id": "NBS-CHO-NOI-cai-rang-market-dalbera",
+          "kind": "image",
+          "url": "/media/cai-rang-market-dalbera.webp",
+          "caption": "Le marché flottant (Cai Rang, Vietnam)",
+          "author": "Jean-Pierre Dalbéra from Paris, France",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Le_march%C3%A9_flottant_(Cai_Rang,_Vietnam)_(6642690827).jpg",
+          "license_name": "CC BY 2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Le marché flottant (Cai Rang, Vietnam) (6642690827) — Jean-Pierre Dalbéra from Paris, France, Wikimedia Commons, CC BY 2.0.",
+          "commercial_allowed": 1,
+          "file_sha256": "5218c42e7514fdb4f2f804d7bdf13acd6215764b97d9d02174766b41664061a3",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    }
+  ],
+  "keep_draft_ids": [
+    "E002",
+    "E003",
+    "E004",
+    "E006",
+    "E007",
+    "E009"
+  ],
+  "draft_notes": {
+    "E002": "Chưa đủ nguồn giải thích riêng biểu tượng hoặc nguồn gốc trầu cau.",
+    "E003": "Nguồn phỏng vấn chưa mô tả đầy đủ trình tự rước dâu.",
+    "E006": "Thiếu khảo sát có địa bàn/cộng đồng/thời kỳ để đối chiếu thực hành phát tang Nam Bộ.",
+    "E007": "Nguồn thư mục chưa đủ chứng minh nghi thức cúng thất."
+  },
+  "tours": [
+    {
+      "id": "NBS-DOC-TEN-DAT",
+      "title": "Đọc tên đất qua những giả thuyết",
+      "kind": "digital",
+      "description": "Hành trình đọc từ xa: phân biệt giả thuyết, giai thoại và tư liệu về không gian Cái Răng. Không phải tuyến di chuyển.",
+      "content_ids": [
+        "E020",
+        "E021",
+        "NBS-CHO-NOI"
+      ]
+    },
+    {
+      "id": "NBS-DOC-NEP-NHA",
+      "title": "Nếp nhà qua tư liệu và lời kể",
+      "kind": "digital",
+      "description": "Đọc cùng các hồ sơ về cưới hỏi, ngày giỗ và nhà cổ; không phải hướng dẫn nghi lễ chung.",
+      "content_ids": [
+        "E001",
+        "E008",
+        "NBS-BINH-THUY"
+      ]
+    },
+    {
+      "id": "NBS-DOC-TIENG-QUE",
+      "title": "Những cách xưng hô và lời nói phương ngữ",
+      "kind": "digital",
+      "description": "Chọn nghĩa, đọc ngữ cảnh và phân biệt ví dụ biên soạn với tư liệu đã sưu tầm. Không khẳng định mọi từ chỉ thuộc Nam Bộ.",
+      "content_ids": [
+        "E029",
+        "E030",
+        "E031",
+        "E032",
+        "E033"
+      ]
+    }
+  ]
+}
