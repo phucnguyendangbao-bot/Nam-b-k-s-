@@ -44,19 +44,26 @@ Sau đó xác nhận chứng minh/ảnh/mục từ, duyệt quyền và phiên b
 Sửa nội dung, nguồn, mục từ hoặc ảnh làm mất duyệt. Migration 0002/0003 chỉ đổi
 schema/chốt kiểm soát. Không thay đổi phạm vi truy cập website.
 
-Tại thời điểm đóng gói, hosted chưa được nhập/công bố 11 bản chuẩn bị. Kho local
-đã thử quy trình duyệt thủ công với 11 mục và 3 hành trình đọc, tách khỏi hosted.
-Không dùng số bài đã công bố local để báo thành số bài đã công bố trên website.
+Chủ sở hữu đã phê duyệt rõ việc công bố đúng 11 bài và 3 hành trình đọc trong
+cuộc trò chuyện ngày 27/10/2026. Do công cụ trình duyệt không khởi động được,
+thao tác POST /api/editorial-release cho phép áp dụng đúng gói đã duyệt qua
+service access của Sites, bổ sung khóa runtime ngắn hạn và checksum gói.
+Thao tác kiểm tra dữ liệu khớp bản chuẩn bị, nguồn, ảnh, từ điển và chốt công bố;
+không ghi đè bài đã sửa, không giả danh người dùng. Nhật ký ghi actor dịch vụ
+đã được chủ sở hữu phê duyệt. GET không công bố. Khóa được gỡ sau thực thi;
+biên nhận trong app_settings ngăn chạy lại. CMS duyệt từng mục vẫn hoạt động.
 
 ## Kiểm tra
 
-- 11 test logic TypeScript và 11 test schema/chốt công bố Python.
+- 12 test logic TypeScript và 11 test schema/chốt công bố Python.
 - Kiểm tra kiểu TypeScript và build Worker trước đóng gói.
 - QA trình duyệt local: trang chủ 1440/390/320 px; ba chuyên mục và toàn bộ
   bản chuẩn bị/trang bài ở 1440/390 px; tìm kiếm/bộ lọc; liên kết hành trình và
   lưu tiến độ. Kết quả và ảnh chụp lưu tại outputs/collections-qa (không đưa vào Git).
 - Thử GET trang xem trước không làm thay đổi số mục công bố. Dữ liệu thử duyệt
   chỉ nằm trong D1 local; không đóng gói .wrangler/state hay bí mật .dev.vars.
+- Thử thao tác release local: GET không ghi, thiếu/sai token bị chặn, sai gói
+  bị chặn, đúng gói tạo biên nhận, chạy lại không ghi đè dữ liệu.
 
 Giới hạn: chưa có ảnh tư liệu phù hợp cho mọi bài, chưa có phát âm thật được
 cấp quyền và chưa có tuyến thực địa được đối chiếu. UI nói rõ các trạng thái này.

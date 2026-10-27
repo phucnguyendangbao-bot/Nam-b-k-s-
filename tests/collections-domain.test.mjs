@@ -10,6 +10,14 @@ test('prepared content never carries publication permission',()=>{
  assert.equal(bundle.articles.length,11);assert.ok(bundle.articles.every(a=>a.publish===false));
  for(const id of ['E006','E007'])assert.ok(!bundle.articles.some(a=>a.id===id));
 });
+
+test('release bundle includes every cited source and reviewed locator',()=>{
+ for(const a of bundle.articles)for(const c of a.claims){
+  const source=bundle.sources.find(s=>s.id===c.source_id);
+  assert.ok(source,`Missing ${c.source_id} in ${a.id}`);assert.match(source.url,/^https:\/\//);
+  assert.ok(c.locator&&c.statement&&source.source_version);
+ }
+});
 test('licensed media has authorship, source, license and modification history',()=>{
  for(const a of bundle.articles)for(const m of a.media){assert.ok(m.author);assert.match(m.source_url,/^https:\/\/commons.wikimedia.org\/wiki\/File:/);assert.ok(m.modifications);assert.equal(m.commercial_allowed,1);assert.ok(permitsCommercialMedia(m.license_name,m.license_url));assert.ok(imagePathAllowed(m.url));}
  for(const url of ['https://creativecommons.org/licenses/by-nc/4.0/','https://creativecommons.org/licenses/by-nd/4.0/','https://example.com'])assert.equal(permitsCommercialMedia('CC',url),false);
