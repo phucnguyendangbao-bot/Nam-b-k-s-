@@ -81,3 +81,5 @@ HTTP hosted nằm trong outputs/collections-qa/hosted-results.json sau triển k
 Số liệu hosted sau công bố: 42 hồ sơ, 11 đủ điều kiện và đã công bố, 31 còn nháp,
 33 nguồn, 3 hành trình đọc. Bản cuối chỉ giữ scripts/check-hosted-release.mjs
 để kiểm tra đọc trang. Không còn API ghi hàng loạt trong bản chạy cuối.
+Trang không tìm thấy được SSR stream có thể giữ HTTP 200; phép kiểm tra đường
+dẫn đã gỡ đối chiếu cả loại phản hồi HTML và thông báo 404 của ứng dụng.

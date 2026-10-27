@@ -17,5 +17,7 @@ const tours=[...new Set([...html.matchAll(/href="(\/hanh-trinh\/[^"?#]+)"/g)].ma
 const bundle=JSON.parse(await readFile('lib/editorial-bundle.json','utf8'));
 const paths=['/','/chuyen-muc/dat-nam-bo','/chuyen-muc/nep-xua','/chuyen-muc/tieng-que-minh',...catalog.items.map(c=>'/ho-so/'+c.slug),...tours,...new Set(bundle.articles.flatMap(a=>a.media.map(m=>m.url)))];
 for(const path of paths){const r=await fetch(origin+path,{headers,redirect:'error',signal:AbortSignal.timeout(60000)});check('GET '+path,r.ok);await r.arrayBuffer();}
-const removed=await fetch(origin+'/api/editorial-release',{headers,signal:AbortSignal.timeout(60000)});check('Temporary publication route removed',removed.status===404);
+const removed=await fetch(origin+'/api/editorial-release',{headers,signal:AbortSignal.timeout(60000)}),removedText=await removed.text();
+// A streamed not-found page can retain HTTP 200 after headers have been sent.
+check('Temporary publication route removed',removed.status===404||(removed.headers.get('content-type')?.includes('text/html')&&removedText.includes('404 · CHƯA CÓ TRANG NÀY')&&removedText.includes('Trang ký sự chưa mở.')));
 const report={checkedAt:new Date().toISOString(),origin,stats:catalog.stats,publishedJourneys:tours.length,checks};await mkdir('outputs/collections-qa',{recursive:true});await writeFile('outputs/collections-qa/hosted-results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
