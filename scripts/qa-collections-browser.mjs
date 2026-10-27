@@ -35,7 +35,7 @@ try{
  await open(page,'/signin-with-chatgpt?return_to=/quan-tri/ban-thao');
  check('Prepared desk requires signed-in role',await page.getByRole('heading',{name:'Đọc nguồn, rồi mở từng trang'}).count()===1);
  for(const a of bundle.articles){
-  await open(page,'/quan-tri/ban-thao/'+a.id);check('Draft preview badge '+a.id,await page.getByText('Xem trước bản chuẩn bị — chưa công bố.',{exact:true}).count()===1);
+  await open(page,'/quan-tri/ban-thao/'+a.id);check('Draft preview badge '+a.id,await page.getByText('Xem trước bản chuẩn bị nguồn.',{exact:true}).count()===1);
   if(a.kind==='dialect')check('No invented pronunciation '+a.id,await page.locator('audio').count()===0&&await page.getByText('Chưa có bản ghi phát âm được cấp quyền và đối chiếu giọng đọc.',{exact:false}).count()>0);
   for(const [w,h] of [[1440,1000],[390,844]])await visual(page,'draft-'+a.id,w,h);
  }

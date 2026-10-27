@@ -86,10 +86,10 @@ Xem báo cáo [nâng cấp chuyên mục](docs/collections-release.md).
 ## Tính năng còn thiếu hoặc chờ dữ liệu
 
 - Đã chuẩn bị 11 hồ sơ có nguồn tại /quan-tri/ban-thao (4 địa danh/không gian,
-  2 phong tục, 5 mục từ). Chúng chưa được nhập hay công bố tự động trên hosted.
-  Biên tập viên xem trước, nhập nháp, duyệt chứng minh/ảnh/mục từ rồi duyệt bài.
-- Chưa có tour thực địa/tri thức thật để trải nghiệm; cơ chế chặng, lưu và tiến độ
-  đã được kiểm tra bằng fixture local.
+  2 phong tục, 5 mục từ). Chủ sở hữu đã phê duyệt và công bố đúng 11 bài cùng
+  3 hành trình đọc vào ngày 27/10/2026. Biên tập tiếp tục qua CMS; mỗi thay đổi
+  làm mất duyệt. Không có cơ chế tự công bố khi mở trang.
+- Đã có 3 hành trình đọc từ xa. Chưa có tuyến thực địa được đối chiếu tọa độ.
 - Đã tích hợp 4 ảnh Wikimedia Commons có hồ sơ tác giả, giấy phép và thay đổi,
   cùng font Noto tự lưu trữ với giấy phép OFL. Chưa nhận upload ảnh/audio/video;
   chưa có bản ghi phát âm được cấp quyền. Không tạo âm thanh giả làm tư liệu.

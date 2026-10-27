@@ -67,3 +67,12 @@ biên nhận trong app_settings ngăn chạy lại. CMS duyệt từng mục v�
 
 Giới hạn: chưa có ảnh tư liệu phù hợp cho mọi bài, chưa có phát âm thật được
 cấp quyền và chưa có tuyến thực địa được đối chiếu. UI nói rõ các trạng thái này.
+
+## Biên nhận công bố thực tế
+
+Hosted hoàn tất công bố lúc 22:46 ngày 27/10/2026 (Asia/Saigon): 11 bài và
+3 hành trình đọc. Checksum gói đã áp dụng:
+`b2b73d38068bb7d2367ee2299acccdfab55e4ec6a55797d24f86263363ab9578`.
+Biên nhận lưu tại app_settings với khóa reviewed_release:collections-2026-10-27-v1.
+Khóa runtime cho thao tác công bố được gỡ sau khi hoàn tất. Báo cáo kiểm tra
+HTTP hosted nằm trong outputs/collections-qa/hosted-results.json sau triển khai.
