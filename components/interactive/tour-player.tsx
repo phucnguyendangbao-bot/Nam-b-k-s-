@@ -2,10 +2,10 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { Map as MLMap, Marker as MLMarker, GeoJSONSource } from 'maplibre-gl';
-import { GLOBE_VIEW, MAP_LOCALE, heritageStyle } from '@/lib/map-style';
+import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures, smoothLine } from '@/lib/map-style';
 import type { LegMode, MapSource, MapTour } from '@/lib/map-tours';
 
-export type Leg = { mode: LegMode; label: string; note: string; distance: string };
+export type Leg = { mode: LegMode; label: string; note: string; distance: string; coords: [number, number][]; traced: boolean };
 /** File thuyết minh thu sẵn của một chặng; cues là giây bắt đầu từng câu (câu 0 là tên chặng). */
 export type StopAudio = { src: string; cues: number[]; duration: number };
 type Props = { tour: MapTour; sources: Record<string, MapSource>; audio: Record<string, StopAudio>; legs: Leg[]; length: string; others: { slug: string; title: string }[]; reading: { slug: string; title: string }[] };
@@ -194,6 +194,47 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     }
   }, [stops, speak, advance, padding]);
 
+  /** Camera đi theo đường ghe: nhìn chếch về phía trước, men theo dòng sông như ngồi trên ghe. */
+  const followLeg = useCallback((map: MLMap, path: [number, number][], token: number, done: () => void) => {
+    const lat0 = path[0][1] * Math.PI / 180;
+    const seg: number[] = [0];
+    for (let k = 1; k < path.length; k++) seg.push(seg[k - 1] + Math.hypot((path[k][0] - path[k - 1][0]) * Math.cos(lat0), path[k][1] - path[k - 1][1]));
+    const total = seg[seg.length - 1];
+    const at = (d: number): [number, number] => {
+      let k = 1;
+      while (k < seg.length - 1 && seg[k] < d) k++;
+      const t = Math.min(1, Math.max(0, (d - seg[k - 1]) / (seg[k] - seg[k - 1] || 1)));
+      return [path[k - 1][0] + (path[k][0] - path[k - 1][0]) * t, path[k - 1][1] + (path[k][1] - path[k - 1][1]) * t];
+    };
+    const heading = (d: number) => {
+      const [a, b] = [at(d), at(Math.min(total, d + total * 0.06))];
+      return (Math.atan2((b[0] - a[0]) * Math.cos(lat0), b[1] - a[1]) * 180) / Math.PI;
+    };
+    const pitch = flatRef.current ? 0 : 62;
+    const view = { zoom: 15.4, pitch, padding: padding() };
+    map.easeTo({ center: path[0], bearing: heading(0), ...view, duration: 1800, essential: true });
+    map.once('moveend', () => {
+      if (flight.current !== token) return;
+      const ms = Math.min(14000, Math.max(7000, total * 1.6e6));
+      let bearing = map.getBearing();
+      let t0 = 0;
+      const frame = (now: number) => {
+        if (flight.current !== token) return;
+        if (!t0) t0 = now;
+        const p = Math.min(1, (now - t0) / ms);
+        const e = p < 0.5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2;
+        const d = e * total;
+        if (d < total * 0.94) {
+          const diff = ((heading(d) - bearing + 540) % 360) - 180;
+          bearing += diff * 0.06;
+        }
+        map.jumpTo({ center: at(d), bearing, ...view });
+        if (p < 1) requestAnimationFrame(frame); else done();
+      };
+      requestAnimationFrame(frame);
+    });
+  }, [padding]);
+
   const go = useCallback((i: number) => {
     window.clearTimeout(timer.current);
     stopSpeech();
@@ -208,6 +249,14 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     const s = stops[i];
     const token = ++flight.current;
     map.stop();
+    const prev = activeIndex.current;
+    if (i === prev + 1 && prev >= 0 && legs[prev]?.traced && !reduceMotion()) {
+      followLeg(map, smoothLine(legs[prev].coords, 3), token, () => {
+        map.easeTo({ center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: flatRef.current ? 0 : s.camera.pitch, bearing: s.camera.bearing, padding: padding(), duration: 2600, essential: true });
+        map.once('moveend', () => { if (flight.current === token) arrive(i); });
+      });
+      return;
+    }
     const from = map.getCenter();
     const far = Math.abs(from.lng - s.lng) + Math.abs(from.lat - s.lat) > 0.02;
     map.flyTo({
@@ -215,7 +264,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
       duration: reduceMotion() ? 0 : far ? 6200 : 3400, curve: far ? 1.6 : 1.2, essential: true,
     });
     map.once('moveend', () => { if (flight.current === token) arrive(i); });
-  }, [stopSpeech, overview, arrive, stops, padding]);
+  }, [stopSpeech, overview, arrive, stops, padding, legs, followLeg]);
 
   useEffect(() => { goRef.current = go; }, [go]);
 
@@ -281,7 +330,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
         // Lỗi tải ô ảnh (mất mạng, nguồn khối nhà chậm) không làm hỏng tour.
         map.on('error', () => {});
         // Người dùng tự kéo, xoay: dừng vòng xoay chậm của camera.
-        map.on('dragstart', () => map?.stop());
+        map.on('dragstart', () => { flight.current++; map?.stop(); });
 
         stops.forEach((s, i) => {
           const el = document.createElement('button');
@@ -295,13 +344,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
 
         map.on('load', () => {
           if (cancelled || !map) return;
-          (map.getSource('route') as GeoJSONSource).setData({
-            type: 'FeatureCollection',
-            features: stops.slice(1).map((s, k) => ({
-              type: 'Feature', properties: { i: k },
-              geometry: { type: 'LineString', coordinates: [[stops[k].lng, stops[k].lat], [s.lng, s.lat]] },
-            })),
-          });
+          (map.getSource('route') as GeoJSONSource).setData({ type: 'FeatureCollection', features: legFeatures(legs) });
           setMapState('ready');
           // Trên màn hình hẹp, thu gọn dòng ghi công thành nút (i) để không che dải chặng.
           if (!wide()) map.getContainer().querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
@@ -322,7 +365,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
       map?.remove();
       mapRef.current = null;
     };
-  }, [stops, last, overview]);
+  }, [stops, last, overview, legs]);
 
   /* ---------- Đồng bộ trạng thái chặng lên bản đồ ---------- */
   useEffect(() => {
@@ -393,7 +436,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
             </li>
           ))}
         </ol>
-        <p className="tp-legend">Nét đứt chỉ để định hướng giữa các chặng, không phải đường đi thực tế.</p>
+        <p className="tp-legend">{legs.some(l => l.traced) ? 'Nét liền: đường ghe theo dòng sông. Nét đứt: chỉ để định hướng.' : 'Nét đứt chỉ để định hướng giữa các chặng, không phải đường đi thực tế.'}</p>
       </div>
 
       <section className="tp-panel" ref={panelRef} aria-live="polite" aria-label="Thuyết minh">
@@ -408,7 +451,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
             <p className="tp-lede">{tour.summary}</p>
             <ul className="tp-meta">
               <li><span>Khu vực</span>{tour.area}</li>
-              <li><span>Chiều dài</span>{length} đường chim bay</li>
+              <li><span>Chiều dài</span>khoảng {length}</li>
               <li><span>Thời lượng</span>{tour.duration}</li>
             </ul>
             <ol className="tp-stoplist">
@@ -434,7 +477,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
               <figure className="tp-photo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={stop.image.src} alt={`Ảnh tư liệu: ${stop.name}`} loading="lazy" />
-                <figcaption>{stop.image.credit}</figcaption>
+                <figcaption>{stop.image.href ? <a href={stop.image.href} target="_blank" rel="noreferrer">{stop.image.credit}</a> : stop.image.credit}</figcaption>
               </figure>
             )}
             <p className="tp-narration">
@@ -479,7 +522,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           <button type="button" className="tp-icon" onClick={() => go(Math.max(active - 1, -1))} disabled={active < 0} aria-label="Chặng trước"><Icon name="prev" /></button>
           {playing
             ? <button type="button" className="tp-main" onClick={pauseTour}><Icon name="pause" /> Tạm dừng</button>
-            : <button type="button" className="tp-main" onClick={startTour}><Icon name="play" /> {active < 0 || done ? 'Bắt đầu tour' : 'Tự chạy tiếp'}</button>}
+            : <button type="button" className="tp-main" onClick={startTour}><Icon name="play" /> {active < 0 || done ? 'Bắt đầu tour' : 'Tự chạy'}</button>}
           {active >= 0 && canListen && (
             <button type="button" className="tp-ghost" onClick={toggleListen} aria-pressed={speaking} aria-label={speaking ? 'Dừng đọc thuyết minh' : 'Nghe thuyết minh chặng này'}>
               <Icon name={speaking ? 'stop' : 'sound'} /> <span className="tp-label">{speaking ? 'Dừng' : 'Nghe'}</span>

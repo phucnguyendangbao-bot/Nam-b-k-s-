@@ -37,8 +37,34 @@ export function heritageStyle(): StyleSpecification {
       { id: 'satellite', type: 'raster', source: 'satellite', paint: { 'raster-saturation': -0.18, 'raster-contrast': 0.06, 'raster-brightness-max': 0.92, 'raster-fade-duration': 240 } },
       { id: 'focus-ring', type: 'circle', source: 'focus', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, 10, 18, 70], 'circle-color': '#c8a465', 'circle-opacity': 0.14, 'circle-stroke-color': '#e9d3a2', 'circle-stroke-width': 1.5, 'circle-stroke-opacity': 0.8, 'circle-pitch-alignment': 'map' } },
       { id: 'route-glow', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#c8a465', 'line-width': 9, 'line-opacity': 0.18, 'line-blur': 4 } },
-      { id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round' }, paint: { 'line-color': '#f3e7cd', 'line-width': 2, 'line-opacity': 0.85, 'line-dasharray': [1.5, 2] } },
+      { id: 'route-line', type: 'line', source: 'route', filter: ['!', ['get', 'traced']], layout: { 'line-cap': 'round' }, paint: { 'line-color': '#f3e7cd', 'line-width': 2, 'line-opacity': 0.85, 'line-dasharray': [1.5, 2] } },
+      { id: 'route-river', type: 'line', source: 'route', filter: ['get', 'traced'], layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#f3e7cd', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1.6, 16, 3], 'line-opacity': 0.9 } },
       { id: 'route-done', type: 'line', source: 'route', filter: ['<', ['get', 'i'], 0], layout: { 'line-cap': 'round' }, paint: { 'line-color': '#d8b46a', 'line-width': 3.2 } },
     ],
   };
+}
+
+/** Làm mềm đường gấp khúc (thuật toán Chaikin), giữ nguyên hai đầu. */
+export function smoothLine(points: [number, number][], rounds = 2): [number, number][] {
+  let pts = points;
+  for (let r = 0; r < rounds; r++) {
+    if (pts.length < 3) return pts;
+    const out: [number, number][] = [pts[0]];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [a, b] = [pts[i], pts[i + 1]];
+      out.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+    }
+    out.push(pts[pts.length - 1]);
+    pts = out;
+  }
+  return pts;
+}
+
+/** Đặc trưng GeoJSON cho các chặng của một tour; chặng có đường dò thật được làm mềm và đánh dấu `traced`. */
+export function legFeatures(legs: { coords: [number, number][]; traced: boolean }[], offset = 0) {
+  return legs.map((l, k) => ({
+    type: 'Feature' as const,
+    properties: { i: k + offset, traced: l.traced },
+    geometry: { type: 'LineString' as const, coordinates: l.traced ? smoothLine(l.coords) : l.coords },
+  }));
 }

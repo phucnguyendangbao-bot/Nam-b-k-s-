@@ -1,6 +1,6 @@
 import { Breadcrumb } from '@/components/site';
 import { TourPlayer, type Leg, type StopAudio } from '@/components/interactive/tour-player';
-import { distance, formatDistance, legLabel, mapSources, mapTours, tourLength, type MapSource, type MapTour } from '@/lib/map-tours';
+import { formatDistance, legLabel, legLength, legCoords, mapSources, mapTours, tourLength, type MapSource, type MapTour } from '@/lib/map-tours';
 import type { Row } from '@/lib/static-data';
 import tourAudio from '@/lib/tour-audio.json';
 
@@ -46,7 +46,9 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
     mode: s.next?.mode ?? 'walk',
     label: legLabel[s.next?.mode ?? 'walk'],
     note: s.next?.note ?? '',
-    distance: formatDistance(distance(s, tour.stops[i + 1])),
+    distance: formatDistance(legLength(tour, i)),
+    coords: legCoords(tour, i),
+    traced: Boolean(s.next?.path),
   }));
   const reading = (tour.readingTours ?? [])
     .map(slug => readingTours.find(r => r.slug === slug))
@@ -64,7 +66,7 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
             <p className="tp-about-kicker">Cách đọc tour này</p>
             <h2>Thuyết minh có nguồn, bản đồ để định hướng</h2>
             <p>Mỗi câu thuyết minh gắn với số nguồn ở cuối câu. Tuyến đang ở dạng bản nháp: dữ kiện đã được dẫn nguồn nhưng chưa qua bước duyệt cuối của ban biên tập, nên có thể còn thay đổi.</p>
-            <p>Tọa độ điểm dừng lấy từ OpenStreetMap và chưa được đối chiếu tại chỗ. Nét nối giữa các chặng chỉ để định hướng, không phải lộ trình. Tour không cung cấp giờ mở cửa, giá vé hay quy định tham quan; hãy kiểm tra với nơi bạn đến trước khi đi.</p>
+            <p>Tọa độ điểm dừng lấy từ OpenStreetMap và chưa được đối chiếu tại chỗ. Chặng đi ghe được vẽ theo dòng sông, dò từ ảnh vệ tinh; các nét đứt còn lại chỉ để định hướng, không phải lộ trình. Tour không cung cấp giờ mở cửa, giá vé hay quy định tham quan; hãy kiểm tra với nơi bạn đến trước khi đi.</p>
             <p>Thuyết minh được đọc bằng giọng tổng hợp tiếng Việt (mô hình Piper, giọng VAIS-1000, giấy phép CC BY 4.0), không phải giọng người thật, nên có thể đọc chưa chuẩn một vài tên riêng. Ảnh vệ tinh có thể đã cũ hơn hiện trạng.</p>
           </div>
           <div>

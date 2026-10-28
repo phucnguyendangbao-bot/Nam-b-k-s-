@@ -23,11 +23,14 @@ export type MapStop = {
   facts: { label: string; value: string }[];
   /** Hồ sơ đầy đủ trên trang, nếu có. */
   dossier?: { id: string; slug: string };
-  image?: { src: string; credit: string };
+  /** Ảnh tư liệu; `href` là trang mô tả tệp (Wikimedia Commons) để xem tác giả, giấy phép. */
+  image?: { src: string; credit: string; href?: string };
   /** Hồ sơ liên quan để đọc thêm (lễ hội, phong tục gắn với điểm dừng). */
   related?: { slug: string; title: string }[];
   /** Cách đi từ điểm này sang điểm kế tiếp. */
-  next?: { mode: LegMode; note: string };
+  /** Cách đi từ điểm này sang điểm kế tiếp. `path` là các điểm trung gian [kinh độ, vĩ độ]
+   *  khi đường đi được vẽ theo thực địa (ví dụ dòng sông dò từ ảnh vệ tinh). */
+  next?: { mode: LegMode; note: string; path?: [number, number][] };
 };
 export type MapTour = {
   id: string;
@@ -88,6 +91,7 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Giống nhiều chùa Khmer khác, chính điện quay về hướng đông.', src: ['S-MUNIR-CT'] },
           { text: 'Đây cũng là nơi tổ chức các lễ lớn trong năm của đồng bào Khmer như Chôl Chnăm Thmây, Ok Om Bok, Sene Đôlta và lễ dâng y Kathina.', src: ['S-MUNIR-CT'] },
         ],
+        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Munirensay_Temple_Gate_Can_Tho.JPG/960px-Munirensay_Temple_Gate_Can_Tho.JPG', credit: 'Cổng chùa, ảnh Dragfyre năm 2011, CC BY-SA 3.0, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:Munirensay_Temple_Gate_Can_Tho.JPG' },
         facts: [
           { label: 'Dựng lần đầu', value: '1948, theo nguồn du lịch' },
           { label: 'Cộng đồng', value: 'Khmer' },
@@ -112,6 +116,7 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Mặt bằng bố cục theo hình chữ Quốc: các dãy nhà khép kín, vuông góc với nhau, ở giữa là sân thiên tỉnh.', src: ['S-CHUAONG-CT'] },
           { text: 'Ngày 21 tháng 6 năm 1993, Bộ Văn hóa Thông tin xếp hạng Chùa Ông là di tích kiến trúc nghệ thuật.', src: ['S-CHUAONG-CT'] },
         ],
+        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Ch%C3%B9a_%C3%94ng_C%E1%BA%A7n_Th%C6%A1.jpg/960px-Ch%C3%B9a_%C3%94ng_C%E1%BA%A7n_Th%C6%A1.jpg', credit: 'Bùi Thụy Đào Nguyên, ảnh năm 2013, CC BY-SA 3.0, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:Ch%C3%B9a_%C3%94ng_C%E1%BA%A7n_Th%C6%A1.jpg' },
         facts: [
           { label: 'Xây dựng', value: '1894 đến 1896' },
           { label: 'Xếp hạng', value: '21-6-1993' },
@@ -153,12 +158,17 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Năm 2012, Ủy ban nhân dân thành phố xếp hạng nơi đây là di tích lịch sử văn hóa cấp thành phố.', src: ['S-CHOCO-BCT'] },
           { text: 'Hình nhà lồng chợ cách điệu bên dòng sông uốn lượn đã trở thành biểu trưng của thành phố.', src: ['S-CHOCO-BCT'] },
         ],
+        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg/960px-Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg', credit: 'Bùi Thụy Đào Nguyên, CC BY-SA 3.0, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg' },
         facts: [
           { label: 'Diện tích', value: 'Khoảng 1.700 m²' },
           { label: 'Trùng tu', value: 'Hoàn thành năm 2005' },
           { label: 'Xếp hạng', value: 'Di tích cấp thành phố, 2012' },
         ],
-        next: { mode: 'boat', note: 'Theo sông Cần Thơ ngược về phía Cái Răng' },
+        next: {
+          mode: 'boat', note: 'Theo sông Cần Thơ ngược về phía Cái Răng',
+          // Dòng sông dò từ ảnh vệ tinh Esri (mức 15) ngày 28-10-2026: phân loại điểm ảnh mặt nước rồi tìm đường giữa lòng sông.
+          path: [[105.78847, 10.02844], [105.78641, 10.02574], [105.78435, 10.02472], [105.78195, 10.02439], [105.78109, 10.02354], [105.77645, 10.02405], [105.77456, 10.02219], [105.77388, 10.0156], [105.77268, 10.01407], [105.77216, 10.01205], [105.76873, 10.00883], [105.7677, 10.00883], [105.76564, 10.0063], [105.76152, 10.00664], [105.75654, 10.0085], [105.75397, 10.0085], [105.74607, 10.00545], [105.7447, 10.00376]],
+        },
       },
       {
         id: 'cho-noi-cai-rang',
@@ -208,6 +218,7 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Năm 1989, đình được công nhận là di tích kiến trúc nghệ thuật cấp quốc gia.', src: ['S-DINHBT-BVH'] },
           { text: 'Lễ hội Kỳ yên Thượng điền diễn ra vào dịp rằm tháng tư âm lịch, Hạ điền vào dịp rằm tháng chạp. Năm 2018, lễ hội được đưa vào danh mục di sản văn hóa phi vật thể quốc gia.', src: ['S-DINHBT-BVH'] },
         ],
+        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y%2C_C%E1%BA%A7n_Th%C6%A1.jpg/960px-%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y%2C_C%E1%BA%A7n_Th%C6%A1.jpg', credit: 'Bùi Thụy Đào Nguyên, Public domain, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y,_C%E1%BA%A7n_Th%C6%A1.jpg' },
         facts: [
           { label: 'Xây dựng', value: '1844; xây lại xong 1910' },
           { label: 'Xếp hạng', value: 'Di tích quốc gia, 1989' },
@@ -228,6 +239,7 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Chánh điện được thiết kế theo kiểu nhà năm gian hai chái.', src: ['S-NAMNHA-TP'] },
           { text: 'Ngày 25 tháng 1 năm 1991, Bộ Văn hóa Thông tin công nhận chùa là di tích lịch sử cách mạng cấp quốc gia.', src: ['S-NAMNHA-TP'] },
         ],
+        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Ch%C3%B9a_Nam_Nh%C3%A3_1.jpg/960px-Ch%C3%B9a_Nam_Nh%C3%A3_1.jpg', credit: 'Bùi Thụy Đào Nguyên, ảnh năm 2013, CC BY-SA 3.0, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:Ch%C3%B9a_Nam_Nh%C3%A3_1.jpg' },
         facts: [
           { label: 'Xây dựng', value: '1895, theo báo chí' },
           { label: 'Xếp hạng', value: 'Di tích quốc gia, 25-1-1991' },
@@ -272,9 +284,22 @@ export function formatDistance(m: number) {
   return m < 1000 ? `${Math.round(m / 10) * 10} m` : `${(m / 1000).toFixed(1).replace('.', ',')} km`;
 }
 
+/** Toàn bộ tọa độ của chặng i → i+1, gồm cả đường trung gian nếu có. */
+export function legCoords(t: MapTour, i: number): [number, number][] {
+  const a = t.stops[i], b = t.stops[i + 1];
+  return [[a.lng, a.lat], ...(a.next?.path ?? []), [b.lng, b.lat]];
+}
+
+export function legLength(t: MapTour, i: number) {
+  const c = legCoords(t, i);
+  let total = 0;
+  for (let k = 1; k < c.length; k++) total += distance({ lng: c[k - 1][0], lat: c[k - 1][1] }, { lng: c[k][0], lat: c[k][1] });
+  return total;
+}
+
 export function tourLength(t: MapTour) {
   let total = 0;
-  for (let i = 1; i < t.stops.length; i++) total += distance(t.stops[i - 1], t.stops[i]);
+  for (let i = 0; i < t.stops.length - 1; i++) total += legLength(t, i);
   return total;
 }
 

@@ -8,7 +8,7 @@ import { CollectionPage, PublicDossier } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
 import { MapView, type MapPoint } from '@/components/interactive/map-view';
 import { MapTourCards, MapTourPage } from '@/components/map-tour-page';
-import { mapTourBySlug, mapTours } from '@/lib/map-tours';
+import { mapTourBySlug, mapTours, legCoords } from '@/lib/map-tours';
 import { HeritageAtlas, type AtlasTour } from '@/components/interactive/heritage-atlas';
 import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/content-guides';
 import { guidePages } from '@/lib/reading-guides';
@@ -128,6 +128,7 @@ export default async function Page({ params, searchParams }: Props) {
     const atlasTours: AtlasTour[] = mapTours.map(t => ({
       slug: t.slug, title: t.title, kicker: t.kicker, draft: t.review === 'draft',
       stops: t.stops.map(s => ({ id: s.id, name: s.name, kicker: s.kicker, lat: s.lat, lng: s.lng, dossier: s.dossier?.slug })),
+      legs: t.stops.slice(0, -1).map((s, k) => ({ coords: legCoords(t, k), traced: Boolean(s.next?.path) })),
     }));
     return (
       <main id="main" className="wrap page">

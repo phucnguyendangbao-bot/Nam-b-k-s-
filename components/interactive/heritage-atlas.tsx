@@ -2,10 +2,10 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Map as MLMap, Marker as MLMarker, GeoJSONSource } from 'maplibre-gl';
-import { GLOBE_VIEW, MAP_LOCALE, heritageStyle } from '@/lib/map-style';
+import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures } from '@/lib/map-style';
 
 export type AtlasStop = { id: string; name: string; kicker: string; lat: number; lng: number; dossier?: string };
-export type AtlasTour = { slug: string; title: string; kicker: string; draft: boolean; stops: AtlasStop[] };
+export type AtlasTour = { slug: string; title: string; kicker: string; draft: boolean; stops: AtlasStop[]; legs: { coords: [number, number][]; traced: boolean }[] };
 
 const reduceMotion = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const wide = () => typeof window !== 'undefined' && window.matchMedia('(min-width: 960px)').matches;
@@ -81,10 +81,7 @@ export function HeritageAtlas({ tours }: { tours: AtlasTour[] }) {
           if (cancelled || !map) return;
           (map.getSource('route') as GeoJSONSource).setData({
             type: 'FeatureCollection',
-            features: tours.flatMap(t => t.stops.slice(1).map((s, k) => ({
-              type: 'Feature' as const, properties: { i: k },
-              geometry: { type: 'LineString' as const, coordinates: [[t.stops[k].lng, t.stops[k].lat], [s.lng, s.lat]] },
-            }))),
+            features: tours.flatMap(t => legFeatures(t.legs)),
           });
           setMapState('ready');
           if (!wide()) map.getContainer().querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
