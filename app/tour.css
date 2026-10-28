@@ -194,3 +194,25 @@
   .tp-intro, .tp-stop { animation: none; }
   .tp-card img, .tp-pin b, .tp-pin span { transition: none; }
 }
+
+/* Bản đồ 3D toàn bộ điểm tour (/ban-do) */
+.tp-atlas { height: clamp(560px, 78svh, 840px); margin: 8px 0 48px; }
+.tp-atlas-h { font-family: var(--display); font-weight: 300; font-size: clamp(28px, 2.4vw, 36px); line-height: 1.1; color: var(--ink); margin-top: 8px; }
+.tp-atlas-group { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
+.tp-atlas-tour { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.tp-atlas-tour::before { content: ''; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+.tp-atlas-tour a { flex: 1 1 0; min-width: 0; }
+.tp-atlas-tour.tone-1::before { background: #7fb3a8; }
+.tp-atlas-tour.tone-2::before { background: #c98d6b; }
+.tp-atlas-tour a { color: var(--ink); }
+.tp-atlas-tour a:hover { color: var(--brass); }
+.tp-atlas .tp-stoplist { margin-top: 8px; }
+.tp-atlas .tp-stoplist button strong { font-size: 19px; }
+.tp-pin.tone-1 b { background: #d9ece7; }
+.tp-pin.tone-1.is-active b { background: #7fb3a8; box-shadow: 0 0 0 6px rgba(127, 179, 168, .3); }
+.tp-pin.tone-2 b { background: #f1dccd; }
+.tp-pin.tone-2.is-active b { background: #c98d6b; }
+.tp-back { margin-top: 18px; padding: 0; border: 0; background: none; font-family: var(--sans); font-size: 13px; color: var(--muted); cursor: pointer; }
+.tp-back:hover { color: var(--brass); }
+.tp-card-draft { justify-self: start; font-family: var(--sans); font-size: 10.5px; font-weight: 600; letter-spacing: .06em; color: #f3dfb2; border: 1px solid rgba(200, 164, 101, .55); padding: 2px 7px; }
+@media (max-width: 959.98px) { .tp-atlas { height: auto; margin-left: calc(-1 * var(--gutter, 16px)); margin-right: calc(-1 * var(--gutter, 16px)); } }

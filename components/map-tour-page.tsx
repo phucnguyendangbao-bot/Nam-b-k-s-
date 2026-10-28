@@ -12,7 +12,7 @@ export function tourSources(tour: MapTour) {
 }
 
 export function MapTourCards({ tours = mapTours }: { tours?: MapTour[] }) {
-  const published = tours.filter(tour => tour.review === 'reviewed');
+  const published = tours.filter(tour => tour.review === 'reviewed' || tour.publicDraft);
   if (!published.length) return <div className="notice"><p>Tour bản đồ đang được đối chiếu nguồn và tọa độ. Trong lúc chờ, bạn có thể đọc các hồ sơ đã kiểm chứng theo từng chủ đề.</p><a className="text-link" href="/hanh-trinh?loai=digital">Khám phá các hành trình đọc</a></div>;
   return (
     <div className="tp-cards">
@@ -24,6 +24,7 @@ export function MapTourCards({ tours = mapTours }: { tours?: MapTour[] }) {
           )}
           <span className="tp-card-body">
             <span className="tp-card-kicker">{t.kicker}</span>
+            {t.review === 'draft' && <span className="tp-card-draft">Bản nháp · chờ duyệt nguồn</span>}
             <strong>{t.title}</strong>
             <span className="tp-card-sum">{t.summary}</span>
             <span className="tp-card-meta">

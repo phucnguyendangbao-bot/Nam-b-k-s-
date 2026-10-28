@@ -5,6 +5,7 @@
  * - Mỗi câu thuyết minh gắn với ít nhất một nguồn trong `mapSources`; câu dẫn đường không mang dữ kiện thì để `src: []`.
  * - Tọa độ lấy từ OpenStreetMap (Nominatim, truy vấn ngày 28-10-2026) và cần biên tập viên đối chiếu tại chỗ.
  * - `review: 'draft'` nghĩa là tuyến đang chờ duyệt nguồn; giao diện luôn hiện nhãn này.
+ * - `publicDraft: true` cho phép công bố tuyến nháp kèm nhãn (chủ dự án quyết định ngày 28-10-2026).
  * - Viết số và ngày theo cách đọc được thành tiếng, vì câu được đưa thẳng vào giọng đọc máy.
  */
 
@@ -35,6 +36,8 @@ export type MapTour = {
   area: string;
   duration: string;
   review: 'draft' | 'reviewed';
+  /** Mở công khai dù chưa duyệt xong; trang luôn hiện nhãn bản nháp. */
+  publicDraft?: boolean;
   cover?: { src: string; credit: string };
   /** Hành trình đọc liên quan (slug trong /hanh-trinh). */
   readingTours?: string[];
@@ -66,6 +69,7 @@ export const mapTourDrafts: MapTour[] = [
     area: 'Ninh Kiều và Cái Răng, TP Cần Thơ',
     duration: 'Khoảng 15 phút xem, 5 chặng',
     review: 'draft',
+    publicDraft: true,
     cover: { src: '/media/cai-rang-market-dalbera.webp', credit: 'Ảnh: Jean-Pierre Dalbéra, CC BY 2.0' },
     readingTours: ['doc-ten-dat-qua-nhung-gia-thuyet-nbs-doc-ten-dat'],
     stops: [
@@ -179,6 +183,7 @@ export const mapTourDrafts: MapTour[] = [
     area: 'Bình Thủy, TP Cần Thơ',
     duration: 'Khoảng 10 phút xem, 3 chặng',
     review: 'draft',
+    publicDraft: true,
     cover: { src: '/media/binh-thuy-house-daae.webp', credit: 'Ảnh: Daaé, Public domain' },
     readingTours: ['nep-nha-qua-tu-lieu-va-loi-ke-nbs-doc-nep-nha'],
     stops: [
@@ -244,8 +249,8 @@ export const mapTourDrafts: MapTour[] = [
   },
 ];
 
-/** Chỉ tuyến đã duyệt mới được dùng trong trang, sitemap và liên kết hồ sơ công khai. */
-export const mapTours: MapTour[] = mapTourDrafts.filter(tour => tour.review === 'reviewed');
+/** Tuyến được dùng trong trang, sitemap và liên kết hồ sơ: đã duyệt, hoặc nháp được phép công bố kèm nhãn. */
+export const mapTours: MapTour[] = mapTourDrafts.filter(tour => tour.review === 'reviewed' || tour.publicDraft);
 
 /** Khoảng cách theo đường chim bay, mét. */
 export function distance(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {

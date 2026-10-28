@@ -8,7 +8,8 @@ import { CollectionPage, PublicDossier } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
 import { MapView, type MapPoint } from '@/components/interactive/map-view';
 import { MapTourCards, MapTourPage } from '@/components/map-tour-page';
-import { mapTourBySlug } from '@/lib/map-tours';
+import { mapTourBySlug, mapTours } from '@/lib/map-tours';
+import { HeritageAtlas, type AtlasTour } from '@/components/interactive/heritage-atlas';
 import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/content-guides';
 import { guidePages } from '@/lib/reading-guides';
 
@@ -124,15 +125,25 @@ export default async function Page({ params, searchParams }: Props) {
     const points: MapPoint[] = (await publicContents())
       .filter(c => c.latitude !== null && c.longitude !== null && c.geo_reviewed === 1)
       .map(c => ({ id: c.id, slug: c.slug, title: c.title, summary: c.summary ?? '', area: c.historical_area, lat: Number(c.latitude), lng: Number(c.longitude), tone: toneFor(c.category) }));
+    const atlasTours: AtlasTour[] = mapTours.map(t => ({
+      slug: t.slug, title: t.title, kicker: t.kicker, draft: t.review === 'draft',
+      stops: t.stops.map(s => ({ id: s.id, name: s.name, kicker: s.kicker, lat: s.lat, lng: s.lng, dossier: s.dossier?.slug })),
+    }));
     return (
       <main id="main" className="wrap page">
         <Breadcrumb items={[{ label: 'Bản đồ' }]} />
-        <PageTitle title="Bản đồ ký sự" description="Chỉ những địa điểm đã được đối chiếu tọa độ mới được ghim. Khung bản đồ không thể hiện ranh giới hành chính." />
+        <PageTitle title="Bản đồ ký sự" description="Bay qua các điểm di sản đã có trong tour trên bản đồ 3D. Tọa độ lấy từ OpenStreetMap và đang chờ đối chiếu tại chỗ; khung bản đồ không thể hiện ranh giới hành chính." />
+        {atlasTours.length > 0 && <HeritageAtlas tours={atlasTours} />}
         <section className="tp-index-block" aria-labelledby="tour-3d" style={{ marginBottom: 40 }}>
           <div className="nb-section-head"><h2 id="tour-3d">Đi theo tour bản đồ 3D</h2></div>
           <MapTourCards />
         </section>
-        <MapView points={points} initialId={q.diem} />
+        {points.length > 0 && (
+          <section aria-labelledby="ho-so-ghim">
+            <div className="nb-section-head"><h2 id="ho-so-ghim">Hồ sơ đã đối chiếu tọa độ</h2></div>
+            <MapView points={points} initialId={q.diem} />
+          </section>
+        )}
       </main>
     );
   }
@@ -144,7 +155,7 @@ export default async function Page({ params, searchParams }: Props) {
     return (
       <main id="main" className="wrap page">
         <Breadcrumb items={[{ label: 'Hành trình' }]} />
-        <PageTitle title="Hành trình" description="Nối vài hồ sơ có nguồn thành một mạch để hiểu một chủ đề từ nhiều phía. Tour bản đồ chỉ mở khi nội dung và tọa độ đã được đối chiếu, duyệt." />
+        <PageTitle title="Hành trình" description="Tour bản đồ 3D đưa bạn bay qua từng điểm di sản, có chú thích và thuyết minh dẫn nguồn. Hành trình đọc nối vài hồ sơ thành một mạch để hiểu một chủ đề từ nhiều phía." />
         <div className="filter-tabs">
           {[['', 'Tất cả'], ['physical', 'Tour bản đồ 3D'], ['digital', 'Đọc từ xa'], ['memory', 'Ký ức']].map(([v, l]) => (
             <a className={(q.loai ?? '') === v ? 'active' : ''} href={`/hanh-trinh${v ? '?loai=' + v : ''}`} key={v}>{l}</a>

@@ -140,7 +140,7 @@ export default async function Home() {
 
       <section className="hs-tours">
         <div className="hs-wrap">
-          <SectionTitle kicker="Đi theo" title="Hành trình" sub="Nối những hồ sơ có nguồn thành một mạch đọc" />
+          <SectionTitle kicker="Đi theo" title="Hành trình" sub="Bay qua di sản trên bản đồ 3D, có chú thích và thuyết minh" />
           <MapTourCards />
           {tours.length > 0 && (
             <>
