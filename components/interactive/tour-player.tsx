@@ -250,20 +250,30 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     const token = ++flight.current;
     map.stop();
     const prev = activeIndex.current;
+    // Thẻ bị ẩn (chuyển tab, khung xem bị thu) làm hoạt ảnh dừng: quá hạn thì đặt camera tới nơi và đọc tiếp.
+    const safety = (ms: number) => window.setTimeout(() => {
+      if (flight.current !== token) return;
+      flight.current++;
+      map.jumpTo({ center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: flatRef.current ? 0 : s.camera.pitch, bearing: s.camera.bearing, padding: padding() });
+      arrive(i);
+    }, ms);
     if (i === prev + 1 && prev >= 0 && legs[prev]?.traced && !reduceMotion()) {
+      safety(22000);
       followLeg(map, smoothLine(legs[prev].coords, 3), token, () => {
         map.easeTo({ center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: flatRef.current ? 0 : s.camera.pitch, bearing: s.camera.bearing, padding: padding(), duration: 2600, essential: true });
-        map.once('moveend', () => { if (flight.current === token) arrive(i); });
+        map.once('moveend', () => { if (flight.current === token) { flight.current++; arrive(i); } });
       });
       return;
     }
     const from = map.getCenter();
     const far = Math.abs(from.lng - s.lng) + Math.abs(from.lat - s.lat) > 0.02;
+    const duration = reduceMotion() ? 0 : far ? 6200 : 3400;
     map.flyTo({
       center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: flatRef.current ? 0 : s.camera.pitch, bearing: s.camera.bearing, padding: padding(),
-      duration: reduceMotion() ? 0 : far ? 6200 : 3400, curve: far ? 1.6 : 1.2, essential: true,
+      duration, curve: far ? 1.6 : 1.2, essential: true,
     });
-    map.once('moveend', () => { if (flight.current === token) arrive(i); });
+    map.once('moveend', () => { if (flight.current === token) { flight.current++; arrive(i); } });
+    safety(duration + 2500);
   }, [stopSpeech, overview, arrive, stops, padding, legs, followLeg]);
 
   useEffect(() => { goRef.current = go; }, [go]);
