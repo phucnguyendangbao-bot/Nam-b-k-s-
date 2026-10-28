@@ -116,6 +116,60 @@ class ResearchReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'outside this import'):
             self.run_import(True)
 
+    def use_source_pack(self):
+        self.review = json.loads((ROOT / 'data/research/source-review-2026-10-28.json').read_text(encoding='utf-8'))
+        self.save_review()
+
+    def test_new_sources_and_additional_claims_import_without_publication(self):
+        self.run_import(True)
+        self.use_source_pack()
+        result = self.run_import(True)
+        self.assertEqual(result['new_sources'], 7)
+        self.assertEqual(result['source_supported_claims'], 8)
+        self.assertEqual(result['checked_register_claims'], 0)
+        self.assertEqual(result['counts'], {'editorial_items': 40, 'verified_claim_sets': 15,
+            'pending_verification': 25, 'publication_eligible': 0, 'published': 0})
+        self.assertEqual(self.query('SELECT count(*) FROM source_registry'), [(27,)])
+        self.assertEqual(self.query('SELECT count(*) FROM content_claim'), [(16,)])
+        self.assertEqual(self.query("SELECT count(*) FROM content_claim WHERE content_id='E002'"), [(2,)])
+        self.assertEqual(self.query('SELECT count(*) FROM content_asset'), [(0,)])
+        self.assertEqual(self.query('SELECT count(*) FROM rights_clearance'), [(0,)])
+        self.assertTrue(self.run_import(True)['already_imported'])
+
+    def test_new_source_registration_rolls_back_after_late_failure(self):
+        self.use_source_pack()
+        self.review['leads'][-1]['content_id'] = 'MISSING'
+        self.save_review()
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.run_import(True)
+        self.assertEqual(self.query('SELECT count(*) FROM source_registry'), [(20,)])
+        self.assertEqual(self.query('SELECT count(*) FROM content_claim'), [(0,)])
+        self.assertEqual(self.query('SELECT count(*) FROM import_batch'), [(1,)])
+
+    def test_abstract_and_index_do_not_prove_full_text(self):
+        self.use_source_pack()
+        row = next(row for row in self.review['records'] if row['content_id'] == 'E036')
+        old_locator = row['locator']
+        row['locator'] = 'Full text, page 46'
+        self.save_review()
+        with self.assertRaisesRegex(ValueError, 'Abstract cannot'):
+            self.run_import(True)
+        row['locator'] = old_locator
+        row['source_id'] = 'R-TANG-LVD-2009-INDEX'
+        self.save_review()
+        with self.assertRaisesRegex(ValueError, 'not content evidence'):
+            self.run_import(True)
+
+    def test_content_claim_cannot_silently_downgrade_a_register_review(self):
+        self.run_import(True)
+        self.use_source_pack()
+        self.review['records'][0]['content_id'] = 'E013'
+        self.save_review()
+        with self.assertRaisesRegex(ValueError, 'Mixed register/content'):
+            self.run_import(True)
+        self.assertEqual(self.query('SELECT count(*) FROM content_claim'), [(8,)])
+        self.assertEqual(self.query('SELECT count(*) FROM source_registry'), [(20,)])
+
 
 if __name__ == '__main__':
     unittest.main()

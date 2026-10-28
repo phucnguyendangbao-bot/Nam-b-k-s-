@@ -1,4 +1,4 @@
-"""Import checked register metadata into the existing research v1 SQLite store.
+"""Import checked claim metadata into the existing research v1 SQLite store.
 
 No schema migration, publication, media download or network access. Default: rollback.
 """
@@ -20,6 +20,10 @@ def required_text(value):
     return isinstance(value, str) and bool(value.strip())
 
 
+def claims_for_record(record):
+    return [record, *[{**record, **claim} for claim in record.get('additional_claims', [])]]
+
+
 def validate(pack):
     if pack.get('publication_action') != 'none':
         raise ValueError('Research imports cannot publish')
@@ -30,26 +34,63 @@ def validate(pack):
     sources = {source['id']: source for source in pack['sources']}
     if len(sources) != len(pack['sources']):
         raise ValueError('Duplicate sources')
+    for source in sources.values():
+        parts = urlsplit(source['url'])
+        if parts.scheme != 'https' or not parts.hostname or parts.username or parts.password:
+            raise ValueError('Unsafe source URL')
+        if not all(required_text(source.get(key)) for key in ('source_version', 'rights_basis', 'source_type')):
+            raise ValueError('Incomplete source review')
+        if source.get('new_source') and not all(required_text(source.get(key)) for key in ('name', 'publisher', 'consulted_extent', 'license_reported')):
+            raise ValueError('New source requires complete registration metadata')
     content_ids, claim_ids = set(), set()
     if not pack['records']:
         raise ValueError('No register records')
     for row in pack['records']:
-        if row['content_id'] in content_ids or row['claim_id'] in claim_ids:
-            raise ValueError('Duplicate content or claim')
+        if row['content_id'] in content_ids:
+            raise ValueError('Duplicate content')
         content_ids.add(row['content_id'])
-        claim_ids.add(row['claim_id'])
-        if (row['classification'], row['claim_kind'], row['review_status']) != (
-                'official_register', 'register_entry', 'accepted'):
-            raise ValueError('Only checked register entries are accepted by this importer')
-        if sources[row['source_id']]['source_type'] != 'official_register':
-            raise ValueError('A catalog or article is not register evidence')
-        for key in ('claim_id', 'statement', 'locator', 'scope', 'historical_area', 'register_number', 'decision_number'):
-            if not required_text(row.get(key)):
-                raise ValueError(f'Missing {key}')
-        if date.fromisoformat(row['decision_date']) > date.fromisoformat(pack['reviewed_at']):
-            raise ValueError('Future decision')
+        if row['classification'] not in ('official_register', 'source_supported'):
+            raise ValueError('Only source-checked classifications are accepted')
+        for extra in row.get('additional_claims', []):
+            if any(key in extra for key in ('content_id', 'classification', 'additional_claims')):
+                raise ValueError('Additional claim cannot change content/classification or nest claims')
+        for claim in claims_for_record(row):
+            if claim['claim_id'] in claim_ids:
+                raise ValueError('Duplicate claim')
+            claim_ids.add(claim['claim_id'])
+            source = sources[claim['source_id']]
+            if claim['review_status'] != 'accepted':
+                raise ValueError('Expected checked evidence')
+            for key in ('claim_id', 'statement', 'locator', 'scope', 'historical_area'):
+                if not required_text(claim.get(key)):
+                    raise ValueError(f'Missing {key}')
+            if row['classification'] == 'official_register':
+                if claim['claim_kind'] != 'register_entry' or source['source_type'] != 'official_register':
+                    raise ValueError('A catalog or article is not register evidence')
+                for key in ('register_number', 'decision_number'):
+                    if not required_text(claim.get(key)):
+                        raise ValueError(f'Missing {key}')
+                if date.fromisoformat(claim['decision_date']) > date.fromisoformat(pack['reviewed_at']):
+                    raise ValueError('Future decision')
+            else:
+                if source['source_type'] in ('library_catalog', 'book_notice', 'bibliographic_index') or source.get('consulted_extent') not in ('full_article', 'transcription', 'abstract'):
+                    raise ValueError('Bibliographic/index metadata are not content evidence')
+                if claim['claim_kind'] not in ('fact', 'hypothesis', 'variant', 'historical_interpretation'):
+                    raise ValueError('Unsupported source claim kind')
+                if source.get('consulted_extent') == 'abstract' and not any(word in claim['locator'].lower() for word in ('tóm tắt', 'abstract')):
+                    raise ValueError('Abstract cannot support a full-text page locator')
         if any(key in row for key in ('status', 'media', 'latitude', 'longitude')):
             raise ValueError('Publication, media and coordinates are outside this import')
+        if row.get('dossier'):
+            dossier = row['dossier']
+            if dossier.get('publication_status') != 'draft' or dossier.get('media_status') != 'not_cleared' or dossier.get('audio_asset_id') is not None:
+                raise ValueError('Draft dossiers cannot approve publication or media')
+            if not required_text(dossier.get('introduction')) or not required_text(dossier.get('next_action')) or not dossier.get('sections'):
+                raise ValueError('Incomplete draft dossier')
+            ids = {claim['claim_id'] for claim in claims_for_record(row)}
+            for section in dossier['sections']:
+                if not all(required_text(section.get(key)) for key in ('heading', 'text', 'kind')) or not section.get('claim_ids') or not set(section['claim_ids']).issubset(ids):
+                    raise ValueError('Draft section has no reviewed claim')
     observation_ids = [row['id'] for row in pack['observations']]
     if len(set(observation_ids)) != len(observation_ids):
         raise ValueError('Duplicate observations')
@@ -107,20 +148,37 @@ def import_review(db_path, review_path=DEFAULT_REVIEW, apply=False, backup_dir=N
             db.rollback()
             return {'already_imported': True, 'applied': False, 'counts': counts(db)}
         before = {row['id']: row['status'] for row in db.execute('SELECT id,status FROM editorial_queue')}
+        new_sources = []
         for source in pack['sources']:
             registered = db.execute('SELECT url,source_type FROM source_registry WHERE id=?', (source['id'],)).fetchone()
-            if not registered or unquote(registered['url']) != unquote(source['url']) or registered['source_type'] != source['source_type']:
+            if registered and (unquote(registered['url']) != unquote(source['url']) or registered['source_type'] != source['source_type']):
                 raise ValueError(f"Source identity mismatch: {source['id']}")
+            if not registered:
+                if source.get('new_source') is not True:
+                    raise ValueError(f"Unregistered source: {source['id']}")
+                new_sources.append(source)
         for row in pack['records']:
             if before.get(row['content_id']) != 'draft':
                 raise ValueError(f"Refusing to alter non-draft/missing content: {row['content_id']}")
-            if db.execute('SELECT 1 FROM content_claim WHERE id=?', (row['claim_id'],)).fetchone():
-                raise ValueError(f"Claim exists outside this batch: {row['claim_id']}")
+            for claim in claims_for_record(row):
+                if db.execute('SELECT 1 FROM content_claim WHERE id=?', (claim['claim_id'],)).fetchone():
+                    raise ValueError(f"Claim exists outside this batch: {claim['claim_id']}")
+            current = db.execute('SELECT classification FROM editorial_queue WHERE id=?', (row['content_id'],)).fetchone()
+            if current['classification'] == 'official_register' and row['classification'] != 'official_register' and db.execute('SELECT 1 FROM content_claim WHERE content_id=?', (row['content_id'],)).fetchone():
+                raise ValueError('Mixed register/content reviews require explicit editorial reconciliation')
         stamp = datetime.now(timezone.utc).isoformat(timespec='seconds')
         db.execute('INSERT INTO import_batch VALUES (?,?,?,?,?,?)',
                    (batch_id, str(review_path), sha, stamp, 'review_metadata',
                     json.dumps({'version': pack['version'], 'scope': pack['scope'], 'publication_action': 'none'}, ensure_ascii=False)))
-        for row in pack['records']:
+        for source in new_sources:
+            db.execute('''INSERT INTO source_registry
+                (id,name,source_type,url,topics,format,license_reported,next_action,notes,batch_id,input_locator,raw_json)
+                VALUES (?,?,?,?,?,'HTML',?,?,?,?,?,?)''',
+                (source['id'], source['name'], source['source_type'], source['url'], 'research_review',
+                 source['license_reported'], 'manual_editorial_and_rights_review',
+                 f"{source['source_version']} | {source['rights_basis']}", batch_id,
+                 f"{pack['version']}: sources[{source['id']}]", json.dumps(source, ensure_ascii=False)))
+        for row in [claim for record in pack['records'] for claim in claims_for_record(record)]:
             content_id, source_id = row['content_id'], row['source_id']
             old_link = db.execute('SELECT relation FROM content_source WHERE content_id=? AND source_id=?', (content_id, source_id)).fetchone()
             if old_link and old_link['relation'] == 'contradicts':
@@ -156,7 +214,11 @@ def import_review(db_path, review_path=DEFAULT_REVIEW, apply=False, backup_dir=N
         after = {row['id']: row['status'] for row in db.execute('SELECT id,status FROM editorial_queue')}
         if before != after or db.execute('PRAGMA foreign_key_check').fetchall():
             raise ValueError('Status or foreign-key integrity changed')
-        result = {'already_imported': False, 'applied': apply, 'checked_register_claims': len(pack['records']),
+        all_claims = [claim for record in pack['records'] for claim in claims_for_record(record)]
+        result = {'already_imported': False, 'applied': apply, 'checked_claims': len(all_claims),
+                  'checked_register_claims': sum(claim['claim_kind'] == 'register_entry' for claim in all_claims),
+                  'source_supported_claims': sum(claim['classification'] == 'source_supported' for claim in all_claims),
+                  'new_sources': len(new_sources),
                   'backup': str(backup_path) if backup_path else None, 'counts': counts(db)}
         db.commit() if apply else db.rollback()
         if not apply:

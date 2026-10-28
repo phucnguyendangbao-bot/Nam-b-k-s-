@@ -11,6 +11,17 @@ Gói chuẩn ở `data/research/register-review-2026-10-28.json`; script Python 
 vào SQLite local có sao lưu, mặc định rollback và không thay trạng thái công bố.
 Xem báo cáo để biết điều kiện quyền còn thiếu của ETL Cần Thơ.
 
+Gói `data/research/source-review-2026-10-28.json` bổ sung 7 hồ sơ nháp về lễ hỏi,
+cúng tổ tiên, Ba Láng, Ngã Bảy, Phong Điền, ca dao Nhơn Ái và vai trò chùa Khmer.
+Có 8 nhận định, 7 nguồn mới cho SQLite; tổng nguồn nghiên cứu và snapshot là 51
+(bản công khai vẫn có 45). Tên xuất hiện trong tư liệu, ghi nhận phỏng vấn, văn bản
+lịch sử và tóm tắt nghiên cứu được giữ đúng phạm vi. Tang lễ E006/E007 còn là đầu
+mối thư mục. Gói không nhập ảnh, âm thanh, ca từ hoặc quyền công bố.
+
+Để nhập gói bổ sung vào SQLite đã có, dùng script Python với `--review
+data/research/source-review-2026-10-28.json`; mặc định chỉ thử/rollback, `--apply`
+mới ghi sau sao lưu. Không nhập lại workbook để ghi đè các kết quả nghiên cứu.
+
 Đợt bổ sung nội dung ngày 28/10/2026 nằm ở `lib/content-expansion.ts`: 14 hồ sơ
 mới có chứng minh, 4 hành trình đọc, 4 tệp ảnh đã kiểm tra quyền và 4 trang hướng
 dẫn. `lib/static-data.ts` hợp nhất gói này với 11 hồ sơ đã được chủ sở hữu duyệt.

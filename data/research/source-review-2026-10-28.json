@@ -1,0 +1,288 @@
+{
+  "version": "source-review-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "reviewer": "Codex — đối chiếu tài liệu công khai; chờ biên tập viên duyệt bài và quyền công bố",
+  "input_workbook_sha256": "75341b8dd6f053778d9b3c246bf62cd7b303914c2a2c5075eb071316105386ae",
+  "scope": "Bảy hồ sơ nghiên cứu với tám nhận định có giới hạn. Chỉ lưu diễn giải mới, metadata và bản nháp; không công bố bài, không nhập ảnh hoặc toàn văn nguồn.",
+  "publication_action": "none",
+  "sources": [
+    {
+      "id": "S07",
+      "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html",
+      "source_type": "journalism",
+      "source_version": "Bản web đối chiếu 2026-10-28; không thấy ngày xuất bản trong nội dung đọc",
+      "consulted_extent": "full_article",
+      "rights_basis": "Tóm lược mới một cuộc phỏng vấn, có quy thuộc cho Nguyễn Hữu Hiệp và Đăng Huỳnh. Không chép ảnh, ca dao hoặc toàn văn. Chưa cấp quyền tái sử dụng tài sản báo chí."
+    },
+    {
+      "id": "R-TRAU-NM-2012",
+      "new_source": true,
+      "name": "Bảo tàng Lịch sử Quốc gia trưng bày chuyên đề Văn hóa Trầu cau Việt Nam",
+      "url": "https://baotanglichsu.vn/vi/Articles/4002/12790/bao-tang-lich-su-quoc-gia-trung-bay-chuyen-dje-van-hoa-trau-cau-viet-nam.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia",
+      "author": "Lê Khiêm",
+      "published_at": "2012-10-22",
+      "source_version": "Bài 22/10/2012 16:44; đối chiếu 2026-10-28",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Chỉ diễn giải ngắn thông tin trưng bày và cách giải thích của bảo tàng. Không sao chép ảnh, thơ, truyền thuyết hoặc lời văn dài. Chưa cấp quyền cho ảnh hiện vật."
+    },
+    {
+      "id": "R-ANCESTOR-PKB-I4",
+      "new_source": true,
+      "name": "Việt Nam phong tục — Thiên I, IV. Phụng sự tổ tôn",
+      "url": "https://vi.wikisource.org/wiki/Việt_Nam_phong_tục/I.4",
+      "source_type": "historical_book_transcription",
+      "publisher": "Wikisource tiếng Việt",
+      "author": "Phan Kế Bính; cộng tác viên Wikisource chuyển chép",
+      "published_at": null,
+      "source_version": "Trang hiển thị oldid=68243; bản chuyển chép đọc trực tiếp ngày 2026-10-28; chưa đối chiếu trang quét",
+      "consulted_extent": "transcription",
+      "license_reported": "CC BY-SA 4.0 for Wikisource transcription; source edition not separately cleared",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights_basis": "Đọc bản chuyển chép, chỉ viết nhận xét ngắn mới và ghi công. Không tải bản quét hoặc chép đoạn dài. Chưa xác minh riêng quyền của ấn bản Khai Trí; không coi nhãn tác phẩm cũ là clearance cho mọi ấn bản."
+    },
+    {
+      "id": "R-GIO-CT",
+      "new_source": true,
+      "name": "Nếp nhà",
+      "url": "https://baocantho.com.vn/nep-nha-a75633.html",
+      "source_type": "journalism_report",
+      "publisher": "Báo Cần Thơ",
+      "author": "Đăng Huỳnh",
+      "published_at": "2016-02-05",
+      "source_version": "Trang hiện ngày 05/02/2016 15:23; đối chiếu 2026-10-28",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Lưu metadata và tóm lược mới về trường hợp họ tộc được phóng viên ghi nhận. Không lấy ảnh họ tộc, trích dẫn sách Sơn Nam hoặc toàn văn."
+    },
+    {
+      "id": "R-CA-DAO-DIADANH-CT",
+      "new_source": true,
+      "name": "Hiểu thêm về một câu ca dao",
+      "url": "https://baocantho.com.vn/hieu-them-ve-mot-cau-ca-dao-a132147.html",
+      "source_type": "journalism_article",
+      "publisher": "Báo Cần Thơ",
+      "author": "Trần Phỏng Diều",
+      "published_at": null,
+      "source_version": "Bản web đối chiếu 2026-10-28; không thấy ngày xuất bản trong nội dung đọc",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Chỉ ghi nhận tên địa danh xuất hiện và việc có dị bản. Không chép ca dao, ảnh hoặc lập luận dài; sách được bài dẫn chỉ là đầu mối chưa đọc."
+    },
+    {
+      "id": "R-NGABAY-CT",
+      "new_source": true,
+      "name": "Chuyện bên bảy dòng kinh",
+      "url": "https://baocantho.com.vn/chuyen-ben-bay-dong-kinh-a212705.html",
+      "source_type": "journalism_article",
+      "publisher": "Báo Cần Thơ",
+      "author": "Thanh Nhã",
+      "published_at": null,
+      "source_version": "Bút ký trên web đọc 2026-10-28; không suy ra ngày đăng từ mốc sự kiện trong bài",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Tóm lược mới mô tả địa thế, có quy thuộc cho bút ký. Không chép lời vọng cổ, ảnh hoặc toàn văn; chưa đọc trực tiếp sách Sơn Nam được bài dẫn."
+    },
+    {
+      "id": "R-KHMER-HIU-2023",
+      "new_source": true,
+      "name": "Vai trò giáo dục văn hóa dân tộc của nhà chùa Khmer Nam Bộ",
+      "url": "https://tapchikhoahochongbang.vn/js/article/view/337",
+      "source_type": "research_article",
+      "publisher": "Tạp chí Khoa học Trường Đại học Quốc tế Hồng Bàng",
+      "author": "Nguyễn Thị Thu Hằng",
+      "published_at": "2023-05-24",
+      "source_version": "Số 23 (2023), tr.43–50; DOI 10.59294/HIUJS.23.2023.337; đọc trang bài và tóm tắt ngày 2026-10-28",
+      "consulted_extent": "abstract",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Diễn giải ngắn mục tiêu và kết quả nêu ở tóm tắt, không giả đã đọc toàn văn. Không tải PDF hoặc ảnh. Chưa xác minh giấy phép tái bản bài nghiên cứu."
+    },
+    {
+      "id": "R-TANG-LVD-2009-INDEX",
+      "new_source": true,
+      "name": "Mục lục số 2(73), 2009 — Nghi thức và văn cúng đám tang ở Nam Bộ",
+      "url": "https://vjol.info.vn/ncpt-hue/vi/issue/view/546/",
+      "source_type": "bibliographic_index",
+      "publisher": "Tạp chí Nghiên cứu và Phát triển, qua VJOL",
+      "author": "Lý Việt Dũng (tác giả bài được mục lục liệt kê)",
+      "published_at": null,
+      "source_version": "Metadata mục lục từ chỉ mục tìm kiếm: số 2(73), 2009, tr.9–25; trang mục lục và toàn văn không truy cập thành công ngày 2026-10-28",
+      "consulted_extent": "catalog_only",
+      "license_reported": "copyright_unspecified",
+      "rights_basis": "Chỉ lưu metadata thư mục và trạng thái truy cập. Không dùng bản sao ở trang chia sẻ tài liệu làm chứng minh; không tải hay tái bản toàn văn hoặc văn cúng."
+    }
+  ],
+  "records": [
+    {
+      "content_id": "E002",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E002-1",
+      "statement": "Nguyễn Hữu Hiệp mô tả đám nói gắn với việc hai bên kết thông gia và có trầu cau trong lễ phẩm.",
+      "claim_kind": "fact",
+      "source_id": "S07",
+      "locator": "Câu trả lời về ba lễ chính; đoạn Đám nói và chú thích ảnh mâm trầu cau ngay sau đó.",
+      "historical_area": "Nam Bộ theo phạm vi cuộc phỏng vấn",
+      "scope": "Đối chiếu lời nhà nghiên cứu; không coi là khảo sát mọi gia đình hoặc quy định số mâm, số quả hiện hành.",
+      "review_status": "accepted",
+      "additional_claims": [
+        {
+          "claim_id": "SRC-20261028-E002-2",
+          "statement": "Bảo tàng giải thích trầu cau qua biểu tượng tình nghĩa; nguồn xếp chuyện nguồn gốc vào truyền thuyết.",
+          "claim_kind": "fact",
+          "source_id": "R-TRAU-NM-2012",
+          "locator": "Đoạn trước Chủ đề 1 và hai đoạn đầu của Chủ đề 1 trong giới thiệu trưng bày.",
+          "scope": "Đây là diễn giải biểu tượng của bảo tàng, không phải bằng chứng lịch sử về thời điểm tục lệ ra đời.",
+          "review_status": "accepted"
+        }
+      ],
+      "dossier": {
+        "introduction": "Đọc lễ hỏi qua lời kể về quan hệ hai họ và cách bảo tàng giải thích lễ vật.",
+        "sections": [
+          { "heading": "Lời kể về đám nói", "kind": "observed_practice", "text": "Cuộc phỏng vấn đặt nghi lễ trong việc kết nối hai gia đình. Phần này chỉ tóm lược lời Nguyễn Hữu Hiệp.", "claim_ids": ["SRC-20261028-E002-1"] },
+          { "heading": "Biểu tượng và truyền thuyết", "kind": "folk_belief", "text": "Ý nghĩa tình nghĩa của trầu cau được ghi theo bảo tàng. Phần truyện nguồn gốc được đọc như truyền thuyết, chưa dùng làm niên đại lịch sử.", "claim_ids": ["SRC-20261028-E002-2"] }
+        ],
+        "next_action": "Bổ sung khảo sát có địa bàn, niên đại và quyền ảnh; không áp một số lượng lễ vật cho mọi đám hỏi.",
+        "media_status": "not_cleared",
+        "audio_asset_id": null,
+        "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E009",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E009",
+      "statement": "Ở mục Cúng vái Gia-Tiên, Phan Kế Bính mô tả lễ vật thay đổi theo hoàn cảnh và nhấn mạnh lòng thành kính.",
+      "claim_kind": "fact",
+      "source_id": "R-ANCESTOR-PKB-I4",
+      "locator": "Thiên I, IV. Phụng sự tổ tôn: mục Cúng vái Gia-Tiên và đoạn bình luận kết chương; bản chuyển chép hiển thị oldid=68243.",
+      "historical_area": "Phạm vi văn bản Việt Nam phong tục; chưa xác nhận đại diện Nam Bộ",
+      "scope": "Chỉ là đối chiếu một tư liệu lịch sử. Chưa xác minh thực đơn hoặc thực hành ở gia đình Nam Bộ hiện nay.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Một văn bản cũ giúp đặt câu hỏi về lễ vật và ý nghĩa thờ tổ tiên; không đưa ra mâm cúng chuẩn.",
+        "sections": [
+          { "heading": "Tư liệu lịch sử để so sánh", "kind": "documented_history", "text": "Bản chuyển chép cho thấy tác giả xét điều kiện gia đình khi nói về lễ vật, rồi bình luận việc cúng như cách bày tỏ lòng kính nhớ.", "claim_ids": ["SRC-20261028-E009"] }
+        ],
+        "next_action": "Đối chiếu bản quét và nghiên cứu tại Nam Bộ; ghi riêng thời gian, cộng đồng, người thực hành, quyền ảnh và dị bản mâm cơm.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E022",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E022",
+      "statement": "Bài của Trần Phỏng Diều ghi địa danh Ba Láng trong các dị bản một câu ca dao về vùng Cần Thơ.",
+      "claim_kind": "fact",
+      "source_id": "R-CA-DAO-DIADANH-CT",
+      "locator": "Đầu bài và đoạn giới thiệu bản thứ hai; không dùng các sách trong chú thích như tài liệu đã đọc trực tiếp.",
+      "historical_area": "Vùng Cần Thơ được bài báo đề cập",
+      "scope": "Chỉ chứng minh dạng tên Ba Láng có trong tư liệu được dẫn. Chưa xác định từ nguyên, tuổi địa danh hoặc ranh giới hiện nay.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Tên Ba Láng được xác định ở một tư liệu cụ thể; nguồn gốc tên vẫn là câu hỏi mở.",
+        "sections": [
+          { "heading": "Dấu vết tên trong tư liệu", "kind": "explanation", "text": "Bài báo giúp tra đúng dạng tên và bối cảnh văn học dân gian. Đây là chứng cứ về sự xuất hiện của tên, chưa phải lời giải nghĩa tên đất.", "claim_ids": ["SRC-20261028-E022"] }
+        ],
+        "next_action": "Tra địa bạ, bản đồ và địa chí có trang đối chiếu; phân biệt Ba Láng ở Cần Thơ với các tên gần giống nơi khác.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E023",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E023",
+      "statement": "Bút ký Thanh Nhã mô tả Ngã Bảy qua bảy kinh: Xẻo Môn, Xẻo Vông, Búng Tàu, Lái Hiếu, Cái Côn, Mang Cá, Mương Lộ.",
+      "claim_kind": "fact",
+      "source_id": "R-NGABAY-CT",
+      "locator": "Mục Đến nơi bảy dòng gặp gỡ, đoạn liệt kê bảy con kinh trước lời kể của ông Huỳnh Văn Trung.",
+      "historical_area": "Không gian Ngã Bảy trong bút ký; không dùng làm ranh giới hành chính",
+      "scope": "Đối chiếu cách mô tả và cách viết tên kinh của bài. Chưa xác minh thủy hệ trên OSM; giai thoại voi mở đường nước không được coi là sự kiện đã chứng minh.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Đọc Ngã Bảy từ mô tả nơi gặp gỡ các dòng kinh, có giới hạn rõ giữa bút ký và khảo sát địa lý.",
+        "sections": [
+          { "heading": "Địa thế theo nguồn đang đọc", "kind": "explanation", "text": "Bài báo nối cách gọi Ngã Bảy với nhiều tuyến kinh tụ về. Danh sách tên trong bài được giữ để đối chiếu tiếp, chưa dùng để dựng đường ghe hoặc tọa độ.", "claim_ids": ["SRC-20261028-E023"] }
+        ],
+        "next_action": "So sánh cách gọi Mương Lộ/Sóc Trăng, Xẻo Vông/Xẻo Vong ở nguồn khác; kiểm tra bản đồ có niên đại và tọa độ từng đối tượng trước khi dựng tuyến.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E024",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E024",
+      "statement": "Phong Điền xuất hiện trong các bản ca dao được bài Hiểu thêm về một câu ca dao dẫn và bàn luận.",
+      "claim_kind": "fact",
+      "source_id": "R-CA-DAO-DIADANH-CT",
+      "locator": "Đầu bài và đoạn đối chiếu các bản; bài viết dùng cả dạng chữ Phong Ðiền.",
+      "historical_area": "Vùng Cần Thơ theo bài biên khảo báo chí",
+      "scope": "Xác nhận tên trong văn bản; không chọn giả thuyết tên đất trù phú hoặc di dân từ miền Trung khi chưa đối chiếu nguồn gốc.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Hồ sơ bước đầu ghi nhận tên Phong Điền trong tư liệu, đồng thời giữ trống phần từ nguyên.",
+        "sections": [
+          { "heading": "Tên gọi và phạm vi chứng minh", "kind": "explanation", "text": "Tư liệu văn học được dẫn có thể giúp lần theo dạng tên, nhưng không đủ để xác định ai đặt tên hay địa danh xuất hiện từ năm nào.", "claim_ids": ["SRC-20261028-E024"] }
+        ],
+        "next_action": "Đọc hợp pháp địa chí và nghiên cứu nguồn gốc có trang dẫn; đối chiếu từng giả thuyết, không biến tên huyện cũ thành địa chỉ hiện hành.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E034",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E034",
+      "statement": "Cuộc phỏng vấn Nguyễn Hữu Hiệp dẫn một đoạn được gọi là ca dao có địa danh Nhơn Ái khi nói về cách ăn mặc nam giới.",
+      "claim_kind": "fact",
+      "source_id": "S07",
+      "locator": "Đoạn cuối câu trả lời về cách tỏ tình, ngay sau mô tả tóc chải bảy-ba và trước câu hỏi về nghi lễ hôn nhân.",
+      "historical_area": "Nhơn Ái được nhắc trong đoạn ca dao của cuộc phỏng vấn",
+      "scope": "Chỉ xác nhận bản dẫn của bài báo, chưa có hồ sơ sưu tầm, người hát, niên đại hoặc quyền bản ghi. Không tự đặt thêm câu, không suy ra bản gốc duy nhất.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Một đầu mối có vị trí đối chiếu để lần theo lời dân gian nhắc Nhơn Ái; chưa tái bản lời ca.",
+        "sections": [
+          { "heading": "Phân biệt bản dẫn với bản sưu tầm", "kind": "explanation", "text": "Kho ghi nơi tìm thấy đoạn dẫn và bối cảnh cuộc phỏng vấn. Việc này chưa thay thế khảo sát dị bản hoặc xác minh xuất xứ lời hát.", "claim_ids": ["SRC-20261028-E034"] }
+        ],
+        "next_action": "Tìm bản in hoặc hồ sơ điền dã hợp pháp, dẫn trang và dị bản; xác minh quyền trước khi chép lời hoặc lưu âm thanh.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    },
+    {
+      "content_id": "E036",
+      "classification": "source_supported",
+      "claim_id": "SRC-20261028-E036",
+      "statement": "Tóm tắt nghiên cứu của Nguyễn Thị Thu Hằng xem chùa Khmer qua các chức năng giáo dục văn hóa, đạo đức và cố kết cộng đồng.",
+      "claim_kind": "fact",
+      "source_id": "R-KHMER-HIU-2023",
+      "locator": "Trang bài, mục Tóm tắt: phần phương pháp và mục tiêu, câu kết quả; metadata DOI và ngày xuất bản.",
+      "historical_area": "Khmer Nam Bộ trong phạm vi bài nghiên cứu 2023",
+      "scope": "Chỉ đối chiếu tóm tắt của tác giả. Không tuyên bố đã đọc toàn văn, không dùng các số dân/chùa như thống kê hiện hành hoặc suy ra mọi chùa có cùng hoạt động.",
+      "review_status": "accepted",
+      "dossier": {
+        "introduction": "Một hướng đọc vai trò nhà chùa từ nghiên cứu có tác giả, DOI và phạm vi được ghi rõ.",
+        "sections": [
+          { "heading": "Cách nhìn của nghiên cứu", "kind": "explanation", "text": "Tác giả dùng tiếp cận chức năng để bàn vai trò nhà chùa trong đời sống văn hóa. Ghi nhận này giúp đặt câu hỏi cho khảo sát tại từng cộng đồng, chưa thay thế khảo sát ấy.", "claim_ids": ["SRC-20261028-E036"] }
+        ],
+        "next_action": "Đọc toàn văn có quyền, kiểm tra phương pháp và mẫu khảo sát; bổ sung trường hợp chùa, thời gian, người thực hành và quyền hình ảnh.",
+        "media_status": "not_cleared", "audio_asset_id": null, "publication_status": "draft"
+      }
+    }
+  ],
+  "leads": [
+    { "content_id": "E003", "source_id": "S07", "relation": "context", "classification": "research_lead", "note": "Cuộc phỏng vấn nhắc người rước dâu nhưng không trình bày các bước nghi lễ. Không dùng một câu nhắc tên để viết cả quy trình.", "next_action": "Tìm khảo sát hoặc tư liệu gốc mô tả rước dâu ở địa bàn, thời kỳ cụ thể; phân biệt nghi thức và niềm tin dân gian." },
+    { "content_id": "E006", "source_id": "R-TANG-LVD-2009-INDEX", "relation": "lead", "classification": "bibliographic_lead", "note": "Xác định được metadata bài Lý Việt Dũng, số 2(73), 2009, tr.9–25 từ chỉ mục mục lục; trang gốc timeout. Bản sao bên ngoài chưa có căn cứ quyền và chưa đối chiếu.", "next_action": "Đọc hợp pháp toàn văn gốc và trang mô tả phát tang/thành phục; ghi phạm vi thời kỳ, cộng đồng, dị bản và quyền trích dẫn trước khi nâng mức kiểm chứng." },
+    { "content_id": "E007", "source_id": "R-TANG-LVD-2009-INDEX", "relation": "lead", "classification": "bibliographic_lead", "note": "Mục lục không chứng minh nội dung cúng thất. Chưa dùng bài có cùng tiêu đề hoặc chỉ dẫn nghi lễ trên website khác để thay nguồn gốc.", "next_action": "Đối chiếu toàn văn và trang nói về các tuần thất; phân biệt giáo lý của từng hệ phái, thực hành gia đình và diễn giải dân gian." },
+    { "content_id": "E009", "source_id": "R-GIO-CT", "relation": "context", "classification": "source_supported", "note": "Phóng sự ghi các họ tộc tại Cần Thơ sum họp dịp giỗ; không mô tả một mâm cơm chuẩn. Ngày bài hiển thị 05/02/2016, không phải suy từ ảnh Tết 2015.", "next_action": "Dùng như trường hợp tham khảo về quan hệ gia đình; cần nguồn riêng cho thành phần mâm cơm và ý nghĩa từng lễ vật." }
+  ],
+  "observations": [
+    { "id": "20261028-S07-bounded-claims", "source_id": "S07", "observed_at": "2026-10-28", "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html", "locator": "Phần ba lễ chính; đoạn trang phục và Nhơn Ái", "finding": "Có căn cứ cho lời kể về đám nói và bản dẫn Nhơn Ái; thiếu mô tả các bước rước dâu. Không chép lời ca hoặc ảnh.", "method": "Đọc trực tiếp bài phỏng vấn; chỉ chấp nhận điều văn bản thực sự nêu." },
+    { "id": "20261028-PKB-I4-scope", "source_id": "R-ANCESTOR-PKB-I4", "observed_at": "2026-10-28", "url": "https://vi.wikisource.org/wiki/Việt_Nam_phong_tục/I.4", "locator": "Cúng vái Gia-Tiên; bình luận cuối chương; chân trang giấy phép", "finding": "Đã đọc bản chuyển chép, chưa đối chiếu trang quét. Giới hạn ở cách tác giả văn bản lịch sử mô tả lễ vật, không khái quát Nam Bộ ngày nay.", "method": "Đối chiếu mục và phiên bản hiển thị; không nhập bản quét hoặc đoạn văn dài." },
+    { "id": "20261028-CA-DAO-place-attestation", "source_id": "R-CA-DAO-DIADANH-CT", "observed_at": "2026-10-28", "url": "https://baocantho.com.vn/hieu-them-ve-mot-cau-ca-dao-a132147.html", "locator": "Các bản ca dao đầu bài; danh sách chú thích cuối bài", "finding": "Ba Láng và Phong Điền có trong văn bản. Chú thích dẫn sách chưa đọc trực tiếp; không dùng chúng làm bằng chứng từ nguyên hoặc niên đại.", "method": "Đọc bài biên khảo, tách chứng cứ tên xuất hiện khỏi giả thuyết nguồn gốc." },
+    { "id": "20261028-NGABAY-name-variants", "source_id": "R-NGABAY-CT", "observed_at": "2026-10-28", "url": "https://baocantho.com.vn/chuyen-ben-bay-dong-kinh-a212705.html", "locator": "Đến nơi bảy dòng gặp gỡ", "finding": "Ghi cách viết Xẻo Vông và Mương Lộ của bút ký; chưa hợp nhất với Xẻo Vong/Sóc Trăng ở cổng du lịch Hậu Giang chưa truy cập được. Không chép ca từ hoặc lấy ảnh.", "method": "Đọc trực tiếp bút ký; giữ dị danh cần đối chiếu và không xuất tọa độ." },
+    { "id": "20261028-KHMER-abstract-only", "source_id": "R-KHMER-HIU-2023", "observed_at": "2026-10-28", "url": "https://tapchikhoahochongbang.vn/js/article/view/337", "locator": "Tóm tắt; metadata ngày đăng và DOI", "finding": "Chỉ đối chiếu tóm tắt, không gán locator trang toàn văn. Chưa dùng các số dân trong tóm tắt làm dữ liệu hiện hành; cần kiểm tra nguồn thống kê độc lập.", "method": "Đọc trang của tạp chí; phân biệt abstract với full text và giới hạn nhận định ở nội dung abstract." },
+    { "id": "20261028-TANG-access-pending", "source_id": "R-TANG-LVD-2009-INDEX", "observed_at": "2026-10-28", "url": "https://vjol.info.vn/ncpt-hue/vi/issue/view/546/", "locator": "Metadata chỉ mục số 2(73), tác giả và trang 9–25", "finding": "Trang gốc timeout qua công cụ web và HTTP trực tiếp. Có bản chép thứ cấp nhưng chưa dùng để chấp nhận phát biểu. E006 và E007 giữ bibliographic_lead.", "method": "Tra metadata qua chỉ mục; ghi thất bại truy cập, không tuyên bố đã đọc toàn văn." },
+    { "id": "20261028-GIO-CT-published-date", "source_id": "R-GIO-CT", "observed_at": "2026-10-28", "url": "https://baocantho.com.vn/nep-nha-a75633.html", "locator": "Ngày hiển thị dưới chuyên mục; đoạn về các họ tộc", "finding": "Ngày bài hiển thị 05/02/2016 15:23. Ghi nhận ngày từ trang bài; ảnh Tết Ất Mùi 2015 không được dùng làm ngày xuất bản.", "method": "Đọc metadata và trường hợp được ghi nhận; chưa sửa snapshot bài công bố." }
+  ]
+}
