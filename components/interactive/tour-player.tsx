@@ -6,7 +6,10 @@ import { GLOBE_VIEW, MAP_LOCALE, heritageStyle } from '@/lib/map-style';
 import type { LegMode, MapSource, MapTour } from '@/lib/map-tours';
 
 export type Leg = { mode: LegMode; label: string; note: string; distance: string };
-type Props = { tour: MapTour; sources: Record<string, MapSource>; legs: Leg[]; length: string; others: { slug: string; title: string }[]; reading: { slug: string; title: string }[] };
+/** File thuyết minh thu sẵn của một chặng; cues là giây bắt đầu từng câu (câu 0 là tên chặng). */
+export type StopAudio = { src: string; cues: number[]; duration: number };
+type Props = { tour: MapTour; sources: Record<string, MapSource>; audio: Record<string, StopAudio>; legs: Leg[]; length: string; others: { slug: string; title: string }[]; reading: { slug: string; title: string }[] };
+const RATES = [1, 1.2, 0.85];
 
 
 /* ---------- Giọng đọc: lấy giọng tiếng Việt có sẵn trong trình duyệt ---------- */
@@ -44,7 +47,7 @@ function Icon({ name }: { name: 'play' | 'pause' | 'prev' | 'next' | 'sound' | '
   );
 }
 
-export function TourPlayer({ tour, sources, legs, length, others, reading }: Props) {
+export function TourPlayer({ tour, sources, audio, legs, length, others, reading }: Props) {
   const stops = tour.stops;
   const last = stops.length - 1;
   const mapEl = useRef<HTMLDivElement>(null);
@@ -67,6 +70,16 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
   const flatRef = useRef(false);
   const voice = useSyncExternalStore(subscribeVoices, voiceSnapshot, voiceServer);
   const canSpeak = !voice.startsWith('#');
+  const hasAudio = stops.every(s => audio[s.id]);
+  const canListen = hasAudio || canSpeak;
+  const audioEl = useRef<HTMLAudioElement | null>(null);
+  const [rate, setRate] = useState(1);
+  const rateRef = useRef(1);
+  /** Một thẻ audio dùng lại cho mọi chặng, để trình duyệt điện thoại cho phát tiếp sau lần bấm đầu. */
+  const player = () => {
+    if (!audioEl.current) { audioEl.current = new Audio(); audioEl.current.preload = 'auto'; }
+    return audioEl.current;
+  };
 
   const activeIndex = useRef(-1);
   useEffect(() => { playingRef.current = playing; }, [playing]);
@@ -75,6 +88,8 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
   const stopSpeech = useCallback(() => {
     speech.current++;
     if (hasSpeech()) window.speechSynthesis.cancel();
+    const a = audioEl.current;
+    if (a) { a.onended = null; a.ontimeupdate = null; a.onerror = null; a.pause(); }
     setSpeaking(false);
     setSentence(-2);
   }, []);
@@ -105,6 +120,38 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
   }, [last, overview]);
 
   const speak = useCallback((i: number) => {
+    const rec = audio[stops[i].id];
+    if (rec) {
+      const a = player();
+      const token = ++speech.current;
+      if (hasSpeech()) window.speechSynthesis.cancel();
+      const finish = () => {
+        if (speech.current !== token) return;
+        setSpeaking(false);
+        setSentence(-2);
+        advance(i);
+      };
+      a.onended = finish;
+      a.onerror = finish;
+      a.ontimeupdate = () => {
+        if (speech.current !== token) return;
+        let k = 0;
+        while (k + 1 < rec.cues.length && a.currentTime >= rec.cues[k + 1]) k++;
+        setSentence(k - 1);
+      };
+      if (!a.src.endsWith(rec.src)) a.src = rec.src;
+      a.currentTime = 0;
+      a.playbackRate = rateRef.current;
+      setSpeaking(true);
+      a.play().catch(() => {
+        // Trình duyệt chặn tự phát: giữ chữ, chờ đủ thời gian rồi sang chặng.
+        if (speech.current !== token) return;
+        setSpeaking(false);
+        window.clearTimeout(timer.current);
+        timer.current = window.setTimeout(() => advance(i), rec.duration * 1000);
+      });
+      return true;
+    }
     if (!hasSpeech() || !canSpeak) return false;
     const synth = window.speechSynthesis;
     synth.cancel();
@@ -132,7 +179,7 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
       synth.speak(u);
     });
     return true;
-  }, [stops, canSpeak, voice, advance]);
+  }, [stops, canSpeak, voice, advance, audio]);
 
   /** Camera tới nơi: xoay chậm quanh điểm, đọc thuyết minh hoặc chờ đủ thời gian đọc rồi sang chặng. */
   const arrive = useCallback((i: number) => {
@@ -172,7 +219,26 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
 
   useEffect(() => { goRef.current = go; }, [go]);
 
-  const startTour = () => { setPlaying(true); playingRef.current = true; go(active < 0 || done ? 0 : active); };
+  const startTour = () => {
+    setPlaying(true);
+    playingRef.current = true;
+    const first = active < 0 || done ? 0 : active;
+    const rec = audio[stops[first].id];
+    if (rec) {
+      // Mở khóa phát âm thanh ngay trong lần bấm (Safari, Chrome trên điện thoại).
+      const a = player();
+      a.src = rec.src;
+      a.muted = true;
+      a.play().then(() => { a.pause(); a.muted = false; a.currentTime = 0; }).catch(() => { a.muted = false; });
+    }
+    go(first);
+  };
+  const cycleRate = () => {
+    const next = RATES[(RATES.indexOf(rateRef.current) + 1) % RATES.length];
+    rateRef.current = next;
+    setRate(next);
+    if (audioEl.current) audioEl.current.playbackRate = next;
+  };
   const pauseTour = () => { setPlaying(false); playingRef.current = false; window.clearTimeout(timer.current); stopSpeech(); };
   const toggleFlat = () => {
     const next = !flatRef.current;
@@ -251,6 +317,7 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
       cancelled = true;
       window.clearTimeout(timer.current);
       if (hasSpeech()) window.speechSynthesis.cancel();
+      audioEl.current?.pause();
       markers.current = [];
       map?.remove();
       mapRef.current = null;
@@ -297,7 +364,8 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
   const stop = active >= 0 ? stops[active] : null;
   const leg = active >= 0 && active < last ? legs[active] : null;
   const usedSources = stop ? [...new Set(stop.lines.flatMap(l => l.src))].map(id => sources[id]).filter(Boolean) : [];
-  const voiceNote = voice === '#ssr' ? null
+  const voiceNote = hasAudio ? 'Bấm Bắt đầu tour để nghe thuyết minh. Giọng đọc là giọng tổng hợp tiếng Việt, không phải giọng người thật.'
+    : voice === '#ssr' ? null
     : voice === '#none' ? 'Trình duyệt này không có chức năng đọc thành tiếng; tour vẫn chạy với chú thích chữ.'
     : voice === '#novi' ? 'Máy này chưa cài giọng đọc tiếng Việt, nên tour chạy với chú thích chữ. Trên Windows, có thể thêm giọng tiếng Việt trong Cài đặt, mục Ngôn ngữ.'
     : 'Thuyết minh dùng giọng đọc máy có sẵn trong trình duyệt của bạn, không phải giọng người thật.';
@@ -381,6 +449,12 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
               {stop.facts.map(f => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
             </dl>
             {stop.dossier && <p><a className="tp-link" href={`/ho-so/${stop.dossier.slug}`}>Đọc hồ sơ đầy đủ về {stop.name} »</a></p>}
+            {stop.related && stop.related.length > 0 && (
+              <div className="tp-related">
+                <span>Đọc thêm</span>
+                {stop.related.map(r => <a key={r.slug} href={`/ho-so/${r.slug}`}>{r.title}</a>)}
+              </div>
+            )}
             {leg && (
               <p className="tp-next">
                 <span>Tiếp theo</span>
@@ -406,9 +480,14 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
           {playing
             ? <button type="button" className="tp-main" onClick={pauseTour}><Icon name="pause" /> Tạm dừng</button>
             : <button type="button" className="tp-main" onClick={startTour}><Icon name="play" /> {active < 0 || done ? 'Bắt đầu tour' : 'Tự chạy tiếp'}</button>}
-          {active >= 0 && canSpeak && (
-            <button type="button" className="tp-ghost" onClick={toggleListen} aria-pressed={speaking}>
-              <Icon name={speaking ? 'stop' : 'sound'} /> {speaking ? 'Dừng đọc' : 'Nghe'}
+          {active >= 0 && canListen && (
+            <button type="button" className="tp-ghost" onClick={toggleListen} aria-pressed={speaking} aria-label={speaking ? 'Dừng đọc thuyết minh' : 'Nghe thuyết minh chặng này'}>
+              <Icon name={speaking ? 'stop' : 'sound'} /> <span className="tp-label">{speaking ? 'Dừng' : 'Nghe'}</span>
+            </button>
+          )}
+          {hasAudio && (
+            <button type="button" className="tp-rate" onClick={cycleRate} aria-label={`Tốc độ đọc ${String(rate).replace('.', ',')} lần, bấm để đổi`}>
+              {String(rate).replace('.', ',')}×
             </button>
           )}
           <button type="button" className="tp-icon" onClick={() => go(Math.min(active + 1, last))} disabled={active >= last} aria-label="Chặng tiếp"><Icon name="next" /></button>

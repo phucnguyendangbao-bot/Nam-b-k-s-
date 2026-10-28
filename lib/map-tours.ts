@@ -24,6 +24,8 @@ export type MapStop = {
   /** Hồ sơ đầy đủ trên trang, nếu có. */
   dossier?: { id: string; slug: string };
   image?: { src: string; credit: string };
+  /** Hồ sơ liên quan để đọc thêm (lễ hội, phong tục gắn với điểm dừng). */
+  related?: { slug: string; title: string }[];
   /** Cách đi từ điểm này sang điểm kế tiếp. */
   next?: { mode: LegMode; note: string };
 };
@@ -91,6 +93,10 @@ export const mapTourDrafts: MapTour[] = [
           { label: 'Cộng đồng', value: 'Khmer' },
           { label: 'Địa chỉ', value: '36 đại lộ Hòa Bình' },
         ],
+        related: [
+          { slug: 'sene-dolta-nho-ong-ba-noi-tinh-than-e010', title: 'Sene Dolta: nhớ ông bà, nối tình thân' },
+          { slug: 'ooc-om-boc-mua-trang-trong-doi-song-khmer-e012', title: 'Oóc Om Bóc: mùa trăng trong đời sống Khmer' },
+        ],
         next: { mode: 'walk', note: 'Đi bộ ra phía sông, về đường Hai Bà Trưng' },
       },
       {
@@ -130,6 +136,8 @@ export const mapTourDrafts: MapTour[] = [
           { label: 'Hình thành', value: 'Thế kỷ 19, theo nguồn du lịch' },
           { label: 'Vị trí', value: 'Hợp lưu sông Cần Thơ và sông Hậu' },
         ],
+        dossier: { id: 'NBS-NINH-KIEU', slug: 'ben-ninh-kieu-doc-mot-khong-gian-ben-song-nbs-ninh-kieu' },
+        image: { src: '/media/ninh-kieu-huynhloc.webp', credit: 'huynhloc, Public domain, ảnh chụp năm 2017' },
         next: { mode: 'walk', note: 'Men theo bờ sông về phía nhà lồng chợ' },
       },
       {

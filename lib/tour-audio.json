@@ -1,0 +1,101 @@
+{
+ "NBS-MAP-VEN-SONG": {
+  "munir-ansay": {
+   "src": "/audio/tours/nbs-map-ven-song/munir-ansay.mp3",
+   "cues": [
+    0.0,
+    1.83,
+    6.38,
+    14.36,
+    21.43,
+    25.1
+   ],
+   "duration": 32.2
+  },
+  "chua-ong": {
+   "src": "/audio/tours/nbs-map-ven-song/chua-ong.mp3",
+   "cues": [
+    0.0,
+    1.34,
+    5.49,
+    10.81,
+    17.38,
+    23.1
+   ],
+   "duration": 29.8
+  },
+  "ben-ninh-kieu": {
+   "src": "/audio/tours/nbs-map-ven-song/ben-ninh-kieu.mp3",
+   "cues": [
+    0.0,
+    1.47,
+    7.97,
+    11.69,
+    17.3,
+    22.39
+   ],
+   "duration": 26.4
+  },
+  "cho-co": {
+   "src": "/audio/tours/nbs-map-ven-song/cho-co.mp3",
+   "cues": [
+    0.0,
+    1.76,
+    4.13,
+    11.95,
+    19.05,
+    25.55
+   ],
+   "duration": 30.2
+  },
+  "cho-noi-cai-rang": {
+   "src": "/audio/tours/nbs-map-ven-song/cho-noi-cai-rang.mp3",
+   "cues": [
+    0.0,
+    1.79,
+    4.68,
+    15.13,
+    20.32,
+    27.2
+   ],
+   "duration": 34.3
+  }
+ },
+ "NBS-MAP-LONG-TUYEN": {
+  "dinh-binh-thuy": {
+   "src": "/audio/tours/nbs-map-long-tuyen/dinh-binh-thuy.mp3",
+   "cues": [
+    0.0,
+    1.34,
+    4.13,
+    12.45,
+    19.25,
+    24.37
+   ],
+   "duration": 34.7
+  },
+  "chua-nam-nha": {
+   "src": "/audio/tours/nbs-map-long-tuyen/chua-nam-nha.mp3",
+   "cues": [
+    0.0,
+    1.58,
+    6.38,
+    10.13,
+    16.58,
+    19.83
+   ],
+   "duration": 27.1
+  },
+  "nha-co-binh-thuy": {
+   "src": "/audio/tours/nbs-map-long-tuyen/nha-co-binh-thuy.mp3",
+   "cues": [
+    0.0,
+    1.68,
+    5.45,
+    12.97,
+    18.03
+   ],
+   "duration": 22.8
+  }
+ }
+}

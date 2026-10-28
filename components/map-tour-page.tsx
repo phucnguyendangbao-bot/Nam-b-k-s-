@@ -1,7 +1,8 @@
 import { Breadcrumb } from '@/components/site';
-import { TourPlayer, type Leg } from '@/components/interactive/tour-player';
+import { TourPlayer, type Leg, type StopAudio } from '@/components/interactive/tour-player';
 import { distance, formatDistance, legLabel, mapSources, mapTours, tourLength, type MapSource, type MapTour } from '@/lib/map-tours';
 import type { Row } from '@/lib/static-data';
+import tourAudio from '@/lib/tour-audio.json';
 
 /** Nguồn theo thứ tự xuất hiện đầu tiên trong tour, để số chú thích liền mạch 1, 2, 3… */
 export function tourSources(tour: MapTour) {
@@ -55,7 +56,7 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
   return (
     <main id="main" className="tp-page">
       <div className="tp-crumb"><Breadcrumb items={[{ label: 'Hành trình', href: '/hanh-trinh' }, { label: tour.title }]} /></div>
-      <TourPlayer tour={tour} sources={sources} legs={legs} length={formatDistance(tourLength(tour))} others={others} reading={reading} />
+      <TourPlayer tour={tour} sources={sources} audio={(tourAudio as Record<string, Record<string, StopAudio>>)[tour.id] ?? {}} legs={legs} length={formatDistance(tourLength(tour))} others={others} reading={reading} />
 
       <section className="tp-about">
         <div className="tp-about-grid">
@@ -64,7 +65,7 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
             <h2>Thuyết minh có nguồn, bản đồ để định hướng</h2>
             <p>Mỗi câu thuyết minh gắn với số nguồn ở cuối câu. Tuyến đang ở dạng bản nháp: dữ kiện đã được dẫn nguồn nhưng chưa qua bước duyệt cuối của ban biên tập, nên có thể còn thay đổi.</p>
             <p>Tọa độ điểm dừng lấy từ OpenStreetMap và chưa được đối chiếu tại chỗ. Nét nối giữa các chặng chỉ để định hướng, không phải lộ trình. Tour không cung cấp giờ mở cửa, giá vé hay quy định tham quan; hãy kiểm tra với nơi bạn đến trước khi đi.</p>
-            <p>Giọng đọc là giọng máy có sẵn trong trình duyệt của bạn, chất lượng tùy thiết bị. Ảnh vệ tinh có thể đã cũ hơn hiện trạng.</p>
+            <p>Thuyết minh được đọc bằng giọng tổng hợp tiếng Việt (mô hình Piper, giọng VAIS-1000, giấy phép CC BY 4.0), không phải giọng người thật, nên có thể đọc chưa chuẩn một vài tên riêng. Ảnh vệ tinh có thể đã cũ hơn hiện trạng.</p>
           </div>
           <div>
             <p className="tp-about-kicker">Các chặng</p>
