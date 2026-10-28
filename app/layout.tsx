@@ -5,6 +5,7 @@ import "./fonts-bvp.css";
 import "./fonts-display.css";
 import "./theme.css";
 import "./tour.css";
+import "./knowledge.css";
 import 'leaflet/dist/leaflet.css';
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer } from '@/lib/static-data';

@@ -60,7 +60,7 @@ const navRight = [
   { href: '/hanh-trinh', label: 'Hành trình' },
   { href: '/ban-do', label: 'Bản đồ' },
   { href: '/ky-uc-cong-dong', label: 'Gửi ký ức' },
-  { href: '/so-tay', label: 'Sổ tay' },
+  { href: '/tri-thuc', label: 'Kho tri thức' },
 ];
 
 export function Header({ user }: { user: Row | null }) {
@@ -116,7 +116,7 @@ export function Footer({ user }: { user: Row | null }) {
       <div className="hs-footer-inner">
         <div className="hs-footer-about">
           <h2>Nam Bộ Ký Sự</h2>
-          <p>Kho hồ sơ văn hóa về đất, nếp sống và tiếng nói miền Tây sông nước, khởi đầu từ Cần Thơ, Hậu Giang và Sóc Trăng.</p>
+          <p>Kho hồ sơ văn hóa Nam Bộ, khởi đầu với tư liệu về Cần Thơ, Hậu Giang và Sóc Trăng.</p>
           <ul>
             <li>Mỗi hồ sơ ghi rõ nguồn và vị trí đối chiếu trong tài liệu.</li>
             <li>Giả thuyết, lời kể và dữ kiện được gắn nhãn riêng.</li>
@@ -125,6 +125,11 @@ export function Footer({ user }: { user: Row | null }) {
         </div>
         <nav className="hs-footer-links" aria-label="Liên kết chân trang">
           <a href="/kham-pha">Khám phá</a>
+          <a href="/tri-thuc">Kho tri thức</a>
+          <a href="/tu-dien">Từ điển phương ngữ</a>
+          <a href="/dong-thoi-gian">Dòng thời gian</a>
+          <a href="/ong-ba-ke-chuyen">Ông bà kể chuyện</a>
+          <a href="/so-tay">Sổ tay</a>
           <a href="/hanh-trinh">Hành trình</a>
           <a href="/ban-do">Bản đồ</a>
           <a href="/nguon-tu-lieu">Nguồn tư liệu</a>

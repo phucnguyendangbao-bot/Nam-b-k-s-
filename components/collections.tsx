@@ -6,6 +6,8 @@ import { all, contentCitations, one, publicContents, publicTours, publicWords, t
 import { categories } from '@/lib/catalog';
 import { nfc, parseSections, sectionLabels, topics } from '@/lib/editorial-model';
 import { LexiconPlay } from './interactive/lexicon-play';
+import { KnowledgeContext } from './knowledge-context';
+import { knowledgeRelated } from '@/lib/knowledge';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -187,7 +189,7 @@ export async function PublicDossier({ article: c, user, params }: { article: Row
     contentCitations(c.id),
     all("SELECT * FROM media_assets WHERE content_id=? AND review_status='accepted'", c.id),
     one('SELECT * FROM dialect_entries WHERE content_id=?', c.id),
-    publicContents('', c.category),
+    knowledgeRelated(c.id, 3).then(links => links.map(link => link.item)),
     publicTours(),
   ]);
   const related = allRelated.filter(x => x.id !== c.id).slice(0, 3);
@@ -255,6 +257,8 @@ export function DossierView({ article: c, citations, media, dialect, related, to
               {!preview && <p style={{ marginTop: 18 }}><a className="button" href="/chuyen-muc/tieng-que-minh#choi">Ôn từ này bằng thẻ lật <Arrow /></a></p>}
             </section>
           )}
+
+          {!preview && <KnowledgeContext article={c} />}
 
           {sections.length ? sections.map((s, i) => (
             <section className="dossier-section" id={`muc-${i + 1}`} key={i}>

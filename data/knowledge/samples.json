@@ -1,0 +1,89 @@
+{
+  "version": "knowledge-samples-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "sources": [
+    { "id": "KN-DOC-CHUA", "name": "Tượng động vật Dốc Chùa", "url": "https://dsvh.gov.vn/tuong-dong-vat-doc-chua-3062", "publisher": "Cục Di sản văn hóa", "source_version": "Hồ sơ di sản trên website, đọc 2026-10-28; không suy ra ngày xuất bản từ ngày trên thanh điều hướng", "checked_at": "2026-10-28", "license_reported": "copyright_unspecified", "rights_basis": "Chỉ lưu metadata và diễn giải ngắn mới, có dẫn nguồn. Không lấy ảnh hiện vật, toàn văn hoặc bản quét; chưa cấp quyền cho tài sản nguồn." },
+    { "id": "KN-NGUYEN-TIEU-2024", "name": "Chương trình Đêm hội Nguyên Tiêu Giáp Thìn 2024", "url": "https://svhtt.hochiminhcity.gov.vn/web/guest/tin-chi-tiet/-/chi-tiet/chuong-trinh-%C4%91em-hoi-nguyen-tieu-giap-thin-2024-24548-1.html", "publisher": "Sở Văn hóa và Thể thao TP.HCM; Đỗ Thị Vân", "source_version": "Bài 26/02/2024 03:26; sự kiện 24/02/2024; đọc 2026-10-28", "checked_at": "2026-10-28", "license_reported": "copyright_unspecified", "rights_basis": "Diễn giải mới một sự kiện do đơn vị tổ chức ghi nhận. Không chép ảnh, lời văn dài hoặc suy ra lịch lễ hội hiện tại." },
+    { "id": "KN-CHAU-PHONG-2025", "name": "Viện Khoa học Xã hội vùng Nam Bộ đến khảo sát tại xã Châu Phong", "url": "https://chauphong.angiang.gov.vn/vien-khoa-hoc-xa-hoi-vung-nam-bo-den-khao-sat-thu-thap-thong-tin-dong-bao-dan-toc-thieu-so-tai-xa", "publisher": "UBND xã Châu Phong, tỉnh An Giang; Ro Phy Á", "source_version": "Bài ngày 18/12/2025, đọc 2026-10-28; chỉ dùng địa bàn và hoạt động được nêu, không cập nhật số dân thành thống kê hiện hành", "checked_at": "2026-10-28", "license_reported": "copyright_unspecified", "rights_basis": "Chỉ ghi metadata và bản tóm lược mới. Không tải ảnh, phiếu khảo sát hoặc nội dung cá nhân; chưa có quyền tái sử dụng tài sản nguồn." }
+  ],
+  "samples": [
+    {
+      "id": "KN-SAMPLE-DOC-CHUA",
+      "title": "Tượng động vật Dốc Chùa: đọc một hiện vật khảo cổ",
+      "entity_type": "artifact",
+      "publication_status": "draft", "review_status": "source_checked", "publish_approval": false,
+      "primary_domain": "lich-su-khao-co", "secondary_domains": ["van-hoc-nghe-thuat"],
+      "regions": ["dong-nam-bo"], "communities": [], "aliases": [],
+      "historical_places": [{ "name": "Tân Mỹ, Tân Uyên, Bình Dương", "role": "area_as_recorded", "source_id": "KN-DOC-CHUA", "locator": "Nguồn gốc, xuất xứ trong hồ sơ", "as_of": "địa danh theo hồ sơ; không xác nhận địa giới hiện tại", "valid_from": null, "valid_to": null }],
+      "current_admin": null,
+      "claims": [
+        { "id": "KN-C-DOC-1", "source_id": "KN-DOC-CHUA", "statement": "Hồ sơ Cục Di sản văn hóa giới thiệu một tượng động vật bằng đồng, ghi đơn vị lưu giữ là Bảo tàng Bình Dương.", "locator": "Đơn vị lưu giữ hiện vật; Chất liệu", "kind": "documented_history" },
+        { "id": "KN-C-DOC-2", "source_id": "KN-DOC-CHUA", "statement": "Nguồn ghi hiện vật được khai quật ở Dốc Chùa năm 1977.", "locator": "Nguồn gốc, xuất xứ", "kind": "documented_history" }
+      ],
+      "answers": {
+        "what": { "state": "supported", "text": "Một hiện vật đồng được giới thiệu trong hồ sơ của Cục Di sản văn hóa; tên con vật được giữ ở mức khái quát theo tên hồ sơ.", "claim_ids": ["KN-C-DOC-1"] },
+        "when_where": { "state": "partial", "text": "Năm 1977 là mốc khai quật được nguồn nêu, không phải năm chế tác. Địa danh Tân Mỹ, Tân Uyên, Bình Dương được giữ theo hồ sơ.", "claim_ids": ["KN-C-DOC-2"] },
+        "community": { "state": "unknown", "text": "Chưa đủ chứng minh để gán hiện vật cho một cộng đồng dân tộc hiện đại.", "claim_ids": [] },
+        "origins": { "state": "partial", "text": "Đã có thông tin nơi khai quật; chưa đối chiếu đầy đủ báo cáo khai quật để giải thích công năng hoặc biểu tượng.", "claim_ids": ["KN-C-DOC-2"] },
+        "changes": { "state": "unknown", "text": "Chưa có chuỗi hồ sơ bảo quản để đối chiếu biến đổi theo thời gian.", "claim_ids": [] },
+        "unknowns": { "state": "unknown", "text": "Cần kiểm tra niên đại, cách xác định loài vật, bối cảnh khảo cổ, đơn vị lưu giữ hiện hành và quyền ảnh.", "claim_ids": [] },
+        "related": { "state": "unknown", "text": "Đề xuất tra thêm khảo cổ Đông Nam Bộ và kỹ thuật đúc đồng; chưa tạo quan hệ nguồn gốc với hồ sơ khác.", "claim_ids": [] }
+      },
+      "media": [], "audio_url": null,
+      "rights_basis": "Bản biên soạn ngắn mới phục vụ nghiên cứu; không sao chép ảnh hoặc toàn văn. Chưa duyệt công bố.",
+      "research_gaps": ["Đối chiếu báo cáo khai quật gốc", "Không quy đổi niên đại cách ngày nay khi chưa rõ mốc quy chiếu", "Duyệt địa giới và quyền ảnh riêng"]
+    },
+    {
+      "id": "KN-SAMPLE-NGUYEN-TIEU",
+      "title": "Nguyên Tiêu 2024 tại Quận 5: một kỳ tổ chức được ghi nhận",
+      "entity_type": "festival_event",
+      "publication_status": "draft", "review_status": "source_checked", "publish_approval": false,
+      "primary_domain": "le-hoi", "secondary_domains": ["tin-nguong-ton-giao", "phong-tuc-doi-song"],
+      "regions": ["dong-nam-bo"], "communities": ["hoa"], "aliases": [],
+      "historical_places": [{ "name": "Quận 5, TP.HCM", "role": "area_as_recorded", "source_id": "KN-NGUYEN-TIEU-2024", "locator": "Đoạn mở đầu bài về chương trình", "as_of": "2024-02-24", "valid_from": null, "valid_to": null }],
+      "current_admin": null,
+      "claims": [
+        { "id": "KN-C-NT-1", "source_id": "KN-NGUYEN-TIEU-2024", "statement": "Sở Văn hóa và Thể thao ghi chương trình Nguyên Tiêu diễn ra ngày 24/02/2024 tại Trung tâm Văn hóa Quận 5 và Hội quán Nghĩa An.", "locator": "Đoạn mở đầu; phân biệt ngày sự kiện với ngày bài đăng 26/02/2024", "kind": "observed_practice" },
+        { "id": "KN-C-NT-2", "source_id": "KN-NGUYEN-TIEU-2024", "statement": "Nguồn giải thích lễ hội trong quan hệ giao lưu văn hóa Việt–Hoa và gắn kết cộng đồng.", "locator": "Đoạn về giá trị cố kết cộng đồng, giao lưu văn hóa", "kind": "explanation" }
+      ],
+      "answers": {
+        "what": { "state": "supported", "text": "Một kỳ chương trình Nguyên Tiêu được cơ quan tổ chức ghi nhận, chưa phải lịch sử đầy đủ của lễ hội.", "claim_ids": ["KN-C-NT-1"] },
+        "when_where": { "state": "supported", "text": "Sự kiện ngày 24/02/2024, tại hai địa điểm được bài nêu ở Quận 5. Tên quận được lưu theo thời kỳ nguồn.", "claim_ids": ["KN-C-NT-1"] },
+        "community": { "state": "partial", "text": "Bài đặt sự kiện trong giao lưu văn hóa Việt–Hoa; không dùng một kỳ lễ để khái quát mọi cộng đồng Hoa.", "claim_ids": ["KN-C-NT-2"] },
+        "origins": { "state": "partial", "text": "Đã có cách lý giải về gắn kết cộng đồng của cơ quan tổ chức; chưa xác minh lịch sử phát sinh từng nghi thức.", "claim_ids": ["KN-C-NT-2"] },
+        "changes": { "state": "unknown", "text": "Chưa đối chiếu nhiều kỳ lễ hoặc nghiên cứu lịch sử để mô tả biến đổi.", "claim_ids": [] },
+        "unknowns": { "state": "unknown", "text": "Chưa xác nhận địa chỉ hành chính hiện tại, lịch tổ chức mới hoặc quyền ảnh của chương trình.", "claim_ids": [] },
+        "related": { "state": "unknown", "text": "Đề xuất nghiên cứu hội quán và các kỳ Nguyên Tiêu khác; chưa đồng nhất mọi sinh hoạt hội quán với kỳ lễ này.", "claim_ids": [] }
+      },
+      "media": [], "audio_url": null,
+      "rights_basis": "Diễn giải mới ngắn về sự kiện có nguồn. Chưa cấp quyền cho ảnh, biểu diễn hoặc công bố bài.",
+      "research_gaps": ["Đối chiếu nhiều kỳ lễ", "Xác minh địa chỉ theo thời kỳ; không tự thay Quận 5 bằng đơn vị mới", "Duyệt quyền ảnh và bản diễn riêng"]
+    },
+    {
+      "id": "KN-SAMPLE-CHAU-GIANG",
+      "title": "Châu Giang và Phũm Soài: đầu mối về cộng đồng Chăm",
+      "entity_type": "community_place",
+      "publication_status": "draft", "review_status": "source_checked", "publish_approval": false,
+      "primary_domain": "phong-tuc-doi-song", "secondary_domains": ["lang-nghe-sinh-ke", "tin-nguong-ton-giao"],
+      "regions": ["tay-nam-bo"], "communities": ["cham"], "aliases": [],
+      "historical_places": [{ "name": "Châu Giang, Phũm Soài, xã Châu Phong, An Giang", "role": "area_as_recorded", "source_id": "KN-CHAU-PHONG-2025", "locator": "Đoạn báo cáo tại buổi làm việc và đoạn khảo sát thực tế", "as_of": "2025-12-18 theo ngày bài", "valid_from": null, "valid_to": null }],
+      "current_admin": null,
+      "claims": [
+        { "id": "KN-C-CP-1", "source_id": "KN-CHAU-PHONG-2025", "statement": "Tin của UBND xã Châu Phong nêu Châu Giang và Phũm Soài là các ấp có cộng đồng Chăm sinh sống trong phạm vi báo cáo.", "locator": "Đoạn Theo báo cáo tại buổi làm việc", "kind": "observed_practice" },
+        { "id": "KN-C-CP-2", "source_id": "KN-CHAU-PHONG-2025", "statement": "Nguồn ghi đoàn khảo sát tới cơ sở dệt thổ cẩm Mohamach và Thánh đường Nia Mah tại Phũm Soài.", "locator": "Đoạn cuối nội dung, trước tên tác giả", "kind": "observed_practice" }
+      ],
+      "answers": {
+        "what": { "state": "partial", "text": "Một đầu mối địa bàn để nghiên cứu đời sống Chăm, dựa trên tin về hoạt động khảo sát tại địa phương.", "claim_ids": ["KN-C-CP-1"] },
+        "when_where": { "state": "partial", "text": "Thông tin nằm trong bài ngày 18/12/2025. Ngày đăng chưa được coi là ngày cư dân đến lập làng hoặc ngày khảo sát chính xác.", "claim_ids": ["KN-C-CP-1"] },
+        "community": { "state": "supported", "text": "Nguồn xác định cộng đồng Chăm trong phạm vi báo cáo tại hai ấp; không suy rộng cho mọi cộng đồng Chăm Nam Bộ.", "claim_ids": ["KN-C-CP-1"] },
+        "origins": { "state": "unknown", "text": "Chưa xác minh nguồn gốc tên địa danh, lịch sử cư trú hoặc lịch sử từng cơ sở.", "claim_ids": [] },
+        "changes": { "state": "unknown", "text": "Chưa có dữ liệu so sánh theo thời gian về đời sống, nghề dệt hoặc sinh hoạt tôn giáo.", "claim_ids": [] },
+        "unknowns": { "state": "unknown", "text": "Cần nghiên cứu gốc, lời kể có đồng ý, dữ liệu hiện hành và quyền hình ảnh. Không lấy số dân trong bản tin làm thống kê hiện tại.", "claim_ids": [] },
+        "related": { "state": "partial", "text": "Cơ sở dệt và thánh đường được nêu như hai đầu mối điền dã; chưa tạo tuyến tham quan hoặc khẳng định ảnh hưởng giữa chúng.", "claim_ids": ["KN-C-CP-2"] }
+      },
+      "media": [], "audio_url": null,
+      "rights_basis": "Chỉ lưu tóm lược mới và metadata. Chưa lưu ảnh, âm thanh, phiếu khảo sát hoặc công bố lời kể cá nhân.",
+      "research_gaps": ["Đọc công trình nghiên cứu từ đợt khảo sát nếu được công bố hợp pháp", "Ghi xuất xứ và sự đồng ý của từng người kể", "Đối chiếu đơn vị hành chính hiện hành riêng"]
+    }
+  ]
+}

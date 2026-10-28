@@ -1,2 +1,3 @@
 # Review import batches identify the exact JSON bytes by SHA-256.
 /data/research/*.json text eol=lf
+/data/knowledge/*.json text eol=lf

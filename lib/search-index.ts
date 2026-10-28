@@ -2,6 +2,8 @@ import { categories, fold } from './catalog';
 import { publicContents, publicTours } from './static-data';
 import { categoryTone, collectionFor } from '@/components/cards';
 import { guidePages } from './reading-guides';
+import { knowledgeSearchTerms } from './knowledge';
+import { knowledgePages, knowledgeDomains } from './knowledge-taxonomy';
 
 export type SearchEntry = {
   type: 'article' | 'word' | 'tour' | 'page';
@@ -14,6 +16,8 @@ export type SearchEntry = {
 };
 
 const pages: Omit<SearchEntry, 'hay'>[] = [
+  ...knowledgePages.map(page => ({ type: 'page' as const, title: page.title, subtitle: page.description, href: `/${page.slug}`, tone: 'ink' as const })),
+  ...knowledgeDomains.map(domain => ({ type: 'page' as const, title: domain.name, subtitle: domain.description, href: `/chuyen-de/${domain.id}`, tone: 'ink' as const })),
   ...guidePages.map(page => ({ type: 'page' as const, title: page.title, subtitle: page.description, href: `/${page.slug}`, tone: 'ink' as const })),
   { type: 'page', title: 'Bản đồ', subtitle: 'Địa điểm đã đối chiếu tọa độ', href: '/ban-do', tone: 'ink' },
   { type: 'page', title: 'Hành trình', subtitle: 'Những chuỗi bài đọc nối với nhau', href: '/hanh-trinh', tone: 'ink' },
@@ -35,7 +39,7 @@ export async function buildSearchIndex(): Promise<SearchEntry[]> {
       subtitle: isWord ? (c.meaning ?? c.summary ?? '') : `${collection.name} · ${c.summary ?? ''}`,
       href: `/ho-so/${c.slug}`,
       tone: categoryTone[collection.slug],
-      hay: fold([c.title, c.summary, c.meaning, c.usage_context, c.body, collection.name].filter(Boolean).join(' ')),
+      hay: fold([c.title, c.summary, c.meaning, c.usage_context, c.body, collection.name, knowledgeSearchTerms(c.id)].filter(Boolean).join(' ')),
     });
   }
   for (const t of tours) {

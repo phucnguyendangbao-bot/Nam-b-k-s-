@@ -12,6 +12,8 @@ import { mapTourBySlug, mapTours, legCoords } from '@/lib/map-tours';
 import { HeritageAtlas, type AtlasTour } from '@/components/interactive/heritage-atlas';
 import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/content-guides';
 import { guidePages } from '@/lib/reading-guides';
+import { KnowledgePage, DictionaryPage, TimelinePage, KnowledgeLinksPage, WhyPage, MemoriesPage } from '@/components/knowledge-pages';
+import { knowledgePages, domainById } from '@/lib/knowledge-taxonomy';
 
 export const dynamic = 'force-dynamic';
 type Props = { params: Promise<{ segments: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -26,6 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params;
   let title = titles[segments[0]] ?? 'Thư viện văn hóa';
   title = guidePages.find(page => page.slug === segments[0])?.title ?? title;
+  title = knowledgePages.find(page => page.slug === segments[0])?.title ?? title;
+  if (segments[0] === 'chuyen-de') title = domainById(segments[1])?.name ?? title;
   if (segments[0] === 'chuyen-muc') title = categories.find(c => c.slug === segments[1])?.name ?? title;
   if (segments[0] === 'hanh-trinh' && segments[1]) title = mapTourBySlug(segments[1])?.title ?? title;
   if (segments[0] === 'ho-so') { try { title = (await content(segments[1]))?.title ?? 'Hồ sơ chưa công bố'; } catch { /* dùng tiêu đề mặc định */ } }
@@ -56,6 +60,16 @@ export default async function Page({ params, searchParams }: Props) {
   for (const [k, v] of Object.entries(raw)) q[k] = Array.isArray(v) ? v[0] : v;
   const user = await viewer();
   const route = s[0];
+  if (route === 'chuyen-de') { if (s.length !== 2 || !domainById(s[1])) notFound(); return <KnowledgePage params={q} domainId={s[1]} />; }
+  if (knowledgePages.some(page => page.slug === route)) {
+    if (s.length !== 1) notFound();
+    if (route === 'tri-thuc') return <KnowledgePage params={q} />;
+    if (route === 'tu-dien') return <DictionaryPage params={q} />;
+    if (route === 'dong-thoi-gian') return <TimelinePage params={q} />;
+    if (route === 'lien-ket-tri-thuc') return <KnowledgeLinksPage params={q} />;
+    if (route === 'vi-sao-lai-the') return <WhyPage />;
+    return <MemoriesPage />;
+  }
   if (s.length === 1 && guidePages.some(page => page.slug === route)) return <ContentGuidePage slug={route} />;
 
   if (route === 'quan-tri') return user ? <Admin path={s.slice(1)} user={user} params={q} /> : <main id="main" className="wrap page"><SignIn returnTo="/quan-tri" /></main>;

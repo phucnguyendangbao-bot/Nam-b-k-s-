@@ -1,4 +1,4 @@
-import { Ornament, collectionFor } from '@/components/site';
+import { Arrow, Ornament, collectionFor } from '@/components/site';
 import { TeaserCard } from '@/components/interactive/lexicon-play';
 import { Gallery, HeroSlider, UpdatesPanel, type Slide, type UpdateItem } from '@/components/interactive/heritage';
 import { categories } from '@/lib/catalog';
@@ -60,7 +60,7 @@ export default async function Home() {
       <section className="hs-hero">
         <HeroSlider slides={slides} />
         <div className="hs-hero-copy">
-          <p className="hs-hero-kicker">Ký sự văn hóa miền Tây</p>
+          <p className="hs-hero-kicker">Ký sự văn hóa Nam Bộ</p>
           <h1>Đất, người và tiếng nói Nam Bộ</h1>
           <p className="hs-hero-lede">Những hồ sơ ngắn về tên đất, nếp nhà và lời ăn tiếng nói, viết từ nguồn có thật và chỉ rõ chỗ để bạn tự kiểm tra.</p>
           <div className="hs-hero-actions">
@@ -69,6 +69,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <section className="kn-home"><div className="hs-wrap"><p className="eyebrow">Bảo tàng số · Từ điển văn hóa · Bản đồ tri thức</p><h2>Mười hai lối vào Nam Bộ</h2><p>Tra cứu theo lĩnh vực, lần theo tên đất cũ, đọc các mốc có nguồn và nối những hồ sơ liên quan. Kho hiện có tập trung ở Tây Nam Bộ, đang mở rộng tư liệu về Đông Nam Bộ và các cộng đồng.</p><a className="button" href="/tri-thuc">Mở kho tri thức <Arrow /></a></div></section>
 
       <section className="hs-intro">
         <div className="hs-wrap hs-intro-grid">

@@ -1,0 +1,4 @@
+export function createMemoryDraft(input: { title: string; narrator: string; date: string; place: string; text: string; provenance: string; storageConsent: boolean; publicationConsent: boolean }) {
+  if (!input.storageConsent || !input.title.trim() || !input.text.trim() || !input.provenance.trim()) throw new Error('Cần tên, lời kể, xuất xứ và đồng ý lưu bản nháp.');
+  return { format: 'nam-bo-ky-su-memory-v1', status: 'draft', verification: 'unverified', kind: 'community_memory', title: input.title.trim().normalize('NFC'), narrator_as_recorded: input.narrator.trim().normalize('NFC') || null, recorded_date: input.date || null, place_as_told: input.place.trim().normalize('NFC') || null, text: input.text.trim().normalize('NFC'), provenance: input.provenance.trim().normalize('NFC'), storage_consent: true, publication_consent: input.publicationConsent, publish_approval: false, media: [], audio: [] };
+}
