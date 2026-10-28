@@ -63,7 +63,8 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
   const [sentence, setSentence] = useState(-2);
   const [done, setDone] = useState(false);
   const [mapState, setMapState] = useState<'loading' | 'ready' | 'failed'>('loading');
-  const [buildings, setBuildings] = useState(true);
+  const [flat, setFlat] = useState(false);
+  const flatRef = useRef(false);
   const voice = useSyncExternalStore(subscribeVoices, voiceSnapshot, voiceServer);
   const canSpeak = !voice.startsWith('#');
 
@@ -86,7 +87,7 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
     const lngs = stops.map(s => s.lng), lats = stops.map(s => s.lat);
     map.stop();
     map.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], {
-      padding: padding(), pitch: 48, bearing: -12, maxZoom: 16.5, duration: reduceMotion() ? 0 : duration, essential: true,
+      padding: padding(), pitch: flatRef.current ? 0 : 48, bearing: -12, maxZoom: 16.5, duration: reduceMotion() ? 0 : duration, essential: true,
     });
   }, [stops, padding]);
 
@@ -163,7 +164,7 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
     const from = map.getCenter();
     const far = Math.abs(from.lng - s.lng) + Math.abs(from.lat - s.lat) > 0.02;
     map.flyTo({
-      center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: s.camera.pitch, bearing: s.camera.bearing, padding: padding(),
+      center: [s.lng, s.lat], zoom: s.camera.zoom, pitch: flatRef.current ? 0 : s.camera.pitch, bearing: s.camera.bearing, padding: padding(),
       duration: reduceMotion() ? 0 : far ? 6200 : 3400, curve: far ? 1.6 : 1.2, essential: true,
     });
     map.once('moveend', () => { if (flight.current === token) arrive(i); });
@@ -173,6 +174,16 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
 
   const startTour = () => { setPlaying(true); playingRef.current = true; go(active < 0 || done ? 0 : active); };
   const pauseTour = () => { setPlaying(false); playingRef.current = false; window.clearTimeout(timer.current); stopSpeech(); };
+  const toggleFlat = () => {
+    const next = !flatRef.current;
+    flatRef.current = next;
+    setFlat(next);
+    const map = mapRef.current;
+    if (!map) return;
+    map.stop();
+    const i = activeIndex.current;
+    map.easeTo({ pitch: next ? 0 : i >= 0 ? stops[i].camera.pitch : 48, duration: reduceMotion() ? 0 : 900, padding: padding() });
+  };
   const toggleListen = () => {
     if (speaking) { stopSpeech(); return; }
     if (active >= 0) speak(active);
@@ -264,10 +275,6 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
     });
   }, [active, mapState, stops]);
 
-  useEffect(() => {
-    const map = mapRef.current;
-    if (map && mapState === 'ready') map.setLayoutProperty('buildings', 'visibility', buildings ? 'visible' : 'none');
-  }, [buildings, mapState]);
 
   /* ---------- Phím tắt ---------- */
   useEffect(() => {
@@ -307,7 +314,7 @@ export function TourPlayer({ tour, sources, legs, length, others, reading }: Pro
         )}
         <div className="tp-tools" role="group" aria-label="Chế độ xem">
           <button type="button" onClick={() => go(-1)} aria-pressed={active < 0}><Icon name="globe" /> Toàn tuyến</button>
-          <button type="button" onClick={() => setBuildings(b => !b)} aria-pressed={buildings}><Icon name="cube" /> Khối nhà 3D</button>
+          <button type="button" onClick={toggleFlat} aria-pressed={flat}><Icon name="cube" /> {flat ? 'Nhìn nghiêng 3D' : 'Nhìn từ trên'}</button>
         </div>
         <ol className="tp-rail" aria-label="Các chặng của tour">
           {stops.map((s, i) => (

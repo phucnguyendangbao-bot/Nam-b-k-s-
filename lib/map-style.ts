@@ -13,7 +13,8 @@ export const MAP_LOCALE = {
   'CooperativeGesturesHandler.MobileHelpText': 'Dùng hai ngón tay để di chuyển bản đồ',
 };
 
-/** Kiểu bản đồ dùng chung: địa cầu, bầu trời, ảnh vệ tinh, khối nhà 3D, lớp tuyến và vòng tiêu điểm. */
+/** Không dùng khối nhà OpenStreetMap: dữ liệu nhà ở Cần Thơ còn quá thưa (vài khối mỗi ô), dễ gây hiểu lầm.
+ *  Kiểu bản đồ dùng chung: địa cầu, bầu trời, ảnh vệ tinh, lớp tuyến và vòng tiêu điểm. */
 export function heritageStyle(): StyleSpecification {
   return {
     version: 8,
@@ -28,25 +29,12 @@ export function heritageStyle(): StyleSpecification {
         type: 'raster', tiles: [SATELLITE], tileSize: 256, maxzoom: 18,
         attribution: 'Powered by <a href="https://www.esri.com/" target="_blank" rel="noreferrer">Esri</a> · Ảnh vệ tinh: Esri, Maxar, Earthstar Geographics và cộng đồng GIS',
       },
-      openfreemap: {
-        type: 'vector', url: 'https://tiles.openfreemap.org/planet',
-        attribution: 'Khối nhà: <a href="https://openfreemap.org" target="_blank" rel="noreferrer">OpenFreeMap</a>, © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
-      },
       route: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
       focus: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': '#13100d' } },
       { id: 'satellite', type: 'raster', source: 'satellite', paint: { 'raster-saturation': -0.18, 'raster-contrast': 0.06, 'raster-brightness-max': 0.92, 'raster-fade-duration': 240 } },
-      {
-        id: 'buildings', type: 'fill-extrusion', source: 'openfreemap', 'source-layer': 'building', minzoom: 15,
-        paint: {
-          'fill-extrusion-color': '#efe4cc',
-          'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6],
-          'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
-          'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 15, 0, 16, 0.5],
-        },
-      },
       { id: 'focus-ring', type: 'circle', source: 'focus', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, 10, 18, 70], 'circle-color': '#c8a465', 'circle-opacity': 0.14, 'circle-stroke-color': '#e9d3a2', 'circle-stroke-width': 1.5, 'circle-stroke-opacity': 0.8, 'circle-pitch-alignment': 'map' } },
       { id: 'route-glow', type: 'line', source: 'route', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#c8a465', 'line-width': 9, 'line-opacity': 0.18, 'line-blur': 4 } },
       { id: 'route-line', type: 'line', source: 'route', layout: { 'line-cap': 'round' }, paint: { 'line-color': '#f3e7cd', 'line-width': 2, 'line-opacity': 0.85, 'line-dasharray': [1.5, 2] } },
