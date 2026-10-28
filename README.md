@@ -1,5 +1,29 @@
 # Nam Bộ Ký Sự — Website
 
+## GitHub + Vercel
+
+Nhánh `migration/github-vercel` là bản đọc công khai độc lập với Cloudflare D1.
+Nó đóng gói đúng 11 hồ sơ và 3 hành trình đã duyệt từ
+`lib/editorial-bundle.json`, cùng sổ nguồn trong `lib/research-seed.json`.
+Website Sites hiện tại chưa bị xóa và vẫn là bản sao lưu CMS trong giai đoạn
+chuyển đổi.
+
+Chỉnh nội dung đã duyệt trong `lib/editorial-bundle.json`, mở pull request và chờ
+GitHub Actions chạy `typecheck` + build Next.js. Khi repository được kết nối với
+Vercel, mỗi pull request có một Preview Deployment; nhánh production được triển
+khai tự động. Đặt `NEXT_PUBLIC_SITE_URL` trong Vercel theo `.env.example`.
+
+```powershell
+npm ci
+npm run typecheck
+npm run build:vercel
+npm run dev:vercel
+```
+
+Bản Vercel không nhận thao tác ghi, đăng nhập, sổ tay hoặc đóng góp cộng đồng.
+Muốn khôi phục CMS đầy đủ cần chuyển D1 và xác thực sang dịch vụ tương thích
+Vercel trong một bước riêng; không đưa khóa, token hoặc `.env` vào Git.
+
 Website văn hóa với thư viện, nguồn tư liệu, CMS và kiểm soát công bố theo phiên bản.
 Dùng TypeScript, React, Vinext (App Router tương thích Next.js), Tailwind CSS và
 Cloudflare D1/Drizzle theo môi trường Sites. Kho Python/SQLite/ETL ở thư mục cha

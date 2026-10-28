@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { batch,content,contentCitations,database,ensureSeed,log,one,publicContents,publicTours,run,timestamp,uid,viewer } from '@/lib/data';
+import { READ_ONLY_DEPLOYMENT,batch,content,contentCitations,database,ensureSeed,log,one,publicContents,publicTours,run,timestamp,uid,viewer } from '@/lib/static-data';
 import { assertAllowed,canAdmin,canEdit,canReview,eligibilitySQL,rightsCanStore,validCoordinates } from '@/lib/policy';
 import { classes,safeUrl,slugify } from '@/lib/catalog';
 import { stagePreparedArticle } from '@/lib/editorial-drafts';
@@ -20,6 +20,7 @@ async function readForm(request:Request){
 }
 
 export async function POST(request:Request){
+  if(READ_ONLY_DEPLOYMENT)return NextResponse.json({error:'Bản Vercel chỉ cho phép đọc. Hãy biên tập nội dung trong kho GitHub.'},{status:405,headers:{Allow:'GET'}});
   let back='/quan-tri';
   try{
     assertAllowed(request.headers.get('origin')===new URL(request.url).origin,'Yêu cầu không cùng nguồn.');

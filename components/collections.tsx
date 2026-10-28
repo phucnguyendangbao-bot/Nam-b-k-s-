@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ActionForm, Arrow, Breadcrumb, Classification, Flash, Motif, Status, categoryTone } from './site';
-import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/data';
+import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/static-data';
 import { categories } from '@/lib/catalog';
 import { nfc, parseSections, sectionLabels, topics } from '@/lib/editorial-model';
 import { LexiconPlay } from './interactive/lexicon-play';

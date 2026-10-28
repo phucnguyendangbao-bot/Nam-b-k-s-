@@ -2,7 +2,7 @@ import { LineArt, collectionFor } from '@/components/site';
 import { TeaserCard } from '@/components/interactive/lexicon-play';
 import { Gallery, HeroSlider, UpdatesPanel, type Slide, type UpdateItem } from '@/components/interactive/heritage';
 import { categories } from '@/lib/catalog';
-import { all, ensureSeed, publicContents, publicTours, publicWords, stats, type Row } from '@/lib/data';
+import { all, ensureSeed, publicContents, publicTours, publicWords, stats, type Row } from '@/lib/static-data';
 
 export const dynamic = 'force-dynamic';
 

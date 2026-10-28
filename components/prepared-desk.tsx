@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { ActionForm,Flash,PageTitle } from './site';
 import { DossierCards,DossierView } from './collections';
 import { editorialDrafts,type PreparedArticle } from '@/lib/editorial-drafts';
-import {all,publicContents,publicTours,type Row} from '@/lib/data';
+import {all,publicContents,publicTours,type Row} from '@/lib/static-data';
 
 export function preparedCard(a:PreparedArticle):Row{const m=a.media[0];return {...a,content_kind:a.kind,sections_json:JSON.stringify(a.sections),classification:'source_supported',status:'draft',revision:1,
  image_url:m?.url,image_author:m?.author,image_license:m?.license_name,image_source_url:m?.source_url,part_of_speech:a.dialect?.part_of_speech,meaning:a.dialect?.meaning};}

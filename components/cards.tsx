@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { categories } from '@/lib/catalog';
-import type { Row } from '@/lib/data';
+import type { Row } from '@/lib/static-data';
 
 /** Màu nhận diện cho từng chuyên mục: sông, hoàng hôn, bông súng. */
 export const categoryTone: Record<string, 'river' | 'dusk' | 'lily'> = {

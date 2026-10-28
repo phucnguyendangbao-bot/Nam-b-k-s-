@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { ensureSeed } from '@/lib/data';
+import { ensureSeed } from '@/lib/static-data';
 import { buildSearchIndex } from '@/lib/search-index';
 
 export const dynamic = 'force-dynamic';

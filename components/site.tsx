@@ -1,6 +1,5 @@
 import { categories, classes, statusLabels } from '@/lib/catalog';
-import { chatGPTSignInPath, chatGPTSignOutPath } from '@/app/chatgpt-auth';
-import type { Row } from '@/lib/data';
+import type { Row } from '@/lib/static-data';
 import { SearchTrigger } from '@/components/interactive/command-palette';
 import { Arrow, Motif, StoryCard, categoryTone } from './cards';
 export { Arrow, Motif, StoryCard, categoryTone, toneFor, collectionFor } from './cards';
@@ -68,9 +67,7 @@ export function Header({ user }: { user: Row | null }) {
           <div className="hs-topbar-right">
             <a href="/ve-du-an">Về dự án</a>
             {staff && <a href="/quan-tri">Bàn biên tập</a>}
-            {user
-              ? <a href={chatGPTSignOutPath('/')} target="_top">Đăng xuất</a>
-              : <a href={chatGPTSignInPath('/so-tay')} target="_top">Đăng nhập</a>}
+            {user ? <span>Đang xem: {user.displayName}</span> : <span>Bản đọc công khai</span>}
           </div>
         </div>
       </div>
@@ -132,7 +129,7 @@ export function Footer({ user }: { user: Row | null }) {
       </div>
       <div className="hs-footer-bottom">
         <span>© 2026 Nam Bộ Ký Sự. Ảnh từ Wikimedia Commons theo giấy phép ghi tại từng ảnh. Bản đồ © OpenStreetMap contributors.</span>
-        {user ? <span>Đang đăng nhập: {user.displayName}</span> : <a href={chatGPTSignInPath('/so-tay')} target="_top">Đăng nhập bằng ChatGPT</a>}
+        {user ? <span>Đang xem: {user.displayName}</span> : <span>Bản Vercel chỉ đọc · Nội dung được quản lý qua GitHub</span>}
       </div>
     </footer>
   );
@@ -229,11 +226,12 @@ export function ActionForm({ action, id, back, children, className }: { action: 
   );
 }
 export function SignIn({ returnTo = '/so-tay' }: { returnTo?: string }) {
+  void returnTo;
   return (
     <div className="signin-panel">
-      <h2>Lưu lại những gì bạn muốn đọc tiếp.</h2>
-      <p>Đăng nhập để lưu hồ sơ vào sổ tay, nhớ chặng hành trình đang đọc và gửi ký ức tới ban biên tập.</p>
-      <a className="button" href={chatGPTSignInPath(returnTo)} target="_top">Đăng nhập bằng ChatGPT <Arrow /></a>
+      <h2>Đây là bản đọc công khai.</h2>
+      <p>Tính năng tài khoản, sổ tay và gửi tư liệu đang tạm đóng trong giai đoạn chuyển từ Sites sang GitHub/Vercel.</p>
+      <a className="button" href="/kham-pha">Xem các hồ sơ đã kiểm chứng <Arrow /></a>
     </div>
   );
 }

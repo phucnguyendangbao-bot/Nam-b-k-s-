@@ -1,5 +1,5 @@
 import { ActionForm,Arrow,Classification,Flash,PageTitle,Status } from './site';
-import { all,content,contentCitations,stats,type Row } from '@/lib/data';
+import { all,content,contentCitations,stats,type Row } from '@/lib/static-data';
 import { canAdmin,canResearch,canReview } from '@/lib/policy';
 import { classes,fold,roleLabels } from '@/lib/catalog';
 import { notFound } from 'next/navigation';

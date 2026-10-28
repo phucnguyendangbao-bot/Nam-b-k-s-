@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { parseSections,sectionLabels,topics,type SectionKind } from '@/lib/editorial-model';
-import type { Row } from '@/lib/data';
+import type { Row } from '@/lib/static-data';
 
 export function StructuredEditor({item,dialect,audios=[]}:{item?:Row,dialect?:Row|null,audios?:Row[]}){
  const [kind,setKind]=useState<string>(item?.content_kind??'general');const sections=parseSections(item?.sections_json??'[]');

@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import 'leaflet/dist/leaflet.css';
 
 export type MapPoint = { id: string; slug: string; title: string; summary: string; area: string; lat: number; lng: number; tone: 'river' | 'dusk' | 'lily' };
 

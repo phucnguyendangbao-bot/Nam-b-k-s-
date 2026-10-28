@@ -1,5 +1,5 @@
 import { categories, fold } from './catalog';
-import { publicContents, publicTours } from './data';
+import { publicContents, publicTours } from './static-data';
 import { categoryTone, collectionFor } from '@/components/cards';
 
 export type SearchEntry = {

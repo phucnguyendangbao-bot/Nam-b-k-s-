@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Admin } from '@/components/admin';
 import { ActionForm, Arrow, Breadcrumb, CategoryCards, ContentCards, Empty, Flash, PageTitle, SearchForm, SignIn, Status, toneFor } from '@/components/site';
-import { all, content, ensureSeed, one, publicContents, publicTours, stats, tourStops, viewer, type Row } from '@/lib/data';
+import { all, content, ensureSeed, one, publicContents, publicTours, stats, tourStops, viewer, type Row } from '@/lib/static-data';
 import { categories, fold } from '@/lib/catalog';
 import { CollectionPage, PublicDossier } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
