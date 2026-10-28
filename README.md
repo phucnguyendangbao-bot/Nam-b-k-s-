@@ -2,6 +2,15 @@
 
 ## GitHub + Vercel
 
+Đợt nghiên cứu 28/10/2026 bổ sung 8 chứng minh ghi danh, 7 ghi nhận rà soát nguồn
+và ledger cho toàn bộ 48 hồ sơ/ý tưởng. Có 4 nháp thêm căn cứ ghi danh, nhưng không
+có bài mới được công bố. `npm run data:validate` kiểm tra provenance, locator,
+Unicode và phân biệt bài hoàn chỉnh với metadata; `npm run data:report` tạo
+`docs/research-progress.md` và ledger JSON/CSV trong `outputs/research-review/`.
+Gói chuẩn ở `data/research/register-review-2026-10-28.json`; script Python nhập
+vào SQLite local có sao lưu, mặc định rollback và không thay trạng thái công bố.
+Xem báo cáo để biết điều kiện quyền còn thiếu của ETL Cần Thơ.
+
 Đợt bổ sung nội dung ngày 28/10/2026 nằm ở `lib/content-expansion.ts`: 14 hồ sơ
 mới có chứng minh, 4 hành trình đọc, 4 tệp ảnh đã kiểm tra quyền và 4 trang hướng
 dẫn. `lib/static-data.ts` hợp nhất gói này với 11 hồ sơ đã được chủ sở hữu duyệt.

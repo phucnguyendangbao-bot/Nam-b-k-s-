@@ -1,0 +1,253 @@
+{
+  "version": "register-review-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "reviewer": "Codex — đối chiếu nguồn công khai; không thay thế duyệt công bố của chủ dự án",
+  "input_workbook_sha256": "75341b8dd6f053778d9b3c246bf62cd7b303914c2a2c5075eb071316105386ae",
+  "scope": "Đối chiếu metadata ghi danh và đầu mối nghiên cứu. Không nhập toàn văn, ảnh, âm thanh, tọa độ hay nội dung XLSX; không đổi trạng thái công bố.",
+  "publication_action": "none",
+  "sources": [
+    {
+      "id": "S04",
+      "url": "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789",
+      "source_type": "official_register",
+      "source_version": "Bảng HTML của Cục Di sản văn hóa, đối chiếu ngày 2026-10-28; không phải bản quét quyết định gốc",
+      "rights_basis": "Chỉ lưu metadata sự kiện ghi danh và nhận xét do dự án viết. Không tải lại toàn bộ danh mục, ảnh hoặc tài liệu đính kèm. Ghi nguồn Cục Di sản văn hóa."
+    },
+    {
+      "id": "S06",
+      "url": "https://dsvh.gov.vn/bo-van-hoa%2C-the-thao-va-du-lich-co-y-kien-ve-viec-lap-ho-so-khoa-hoc-di-san-van-hoa-phi-vat-the-o-tinh-soc-trang-1401",
+      "source_type": "official_article",
+      "source_version": "Thông tin về Công văn 3189/BVHTTDL-DSVH ngày 27/07/2017, đối chiếu ngày 2026-10-28",
+      "rights_basis": "Chỉ lưu dẫn chiếu và nhận xét mới; không chép toàn văn hoặc lấy ảnh. Công văn góp ý hồ sơ không phải quyết định ghi danh."
+    }
+  ],
+  "records": [
+    {
+      "content_id": "E013",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E013",
+      "statement": "Mục 414 ghi danh đua ghe Ngo ở Sóc Trăng: 74/QĐ-BVHTTDL, ngày 12/01/2022.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 414; đối chiếu đồng thời tên di sản, Sóc Trăng và quyết định 74/QĐ-BVHTTDL.",
+      "register_number": "414",
+      "decision_number": "74/QĐ-BVHTTDL",
+      "decision_date": "2022-01-12",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận mục ghi danh. Không xác nhận cự ly, số tay chèo hoặc lịch đua hiện tại.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E014",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E014",
+      "statement": "Rô-băm tại Sóc Trăng có ở mục 284: 446/QĐ-BVHTTDL, ngày 29/01/2019.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 284; phân biệt mục 285 Nghinh Ông cùng quyết định.",
+      "register_number": "284",
+      "decision_number": "446/QĐ-BVHTTDL",
+      "decision_date": "2019-01-29",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận việc ghi danh Rô-băm; không xác định tuổi đời, người sáng lập hoặc quyền dùng bản diễn.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E015",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E015",
+      "statement": "Dù Kê tại Sóc Trăng: mục 66, 2684/QĐ-BVHTTDL, ngày 25/08/2014.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 66; không nhập nhầm mục 445 Dì Kê tại An Giang (2023).",
+      "register_number": "66",
+      "decision_number": "2684/QĐ-BVHTTDL",
+      "decision_date": "2014-08-25",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận mục ghi danh. Nguồn gốc sân khấu, nghi thức và dị bản cần chứng minh riêng.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E016",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E016",
+      "statement": "Rom Vong tại Sóc Trăng: mục 319, 4601/QĐ-BVHTTDL, ngày 20/12/2019.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 319; phân biệt mục 320 Ngũ âm cùng ngày.",
+      "register_number": "319",
+      "decision_number": "4601/QĐ-BVHTTDL",
+      "decision_date": "2019-12-20",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận mục ghi danh, không biến một kiểu bước múa thành quy tắc chung cho mọi cộng đồng Khmer.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E017",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E017",
+      "statement": "Ngũ âm Khmer tại Sóc Trăng: mục 320, 4602/QĐ-BVHTTDL, ngày 20/12/2019.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 320; số quyết định 4602, không phải 4601 của Rom Vong.",
+      "register_number": "320",
+      "decision_number": "4602/QĐ-BVHTTDL",
+      "decision_date": "2019-12-20",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận việc ghi danh. Không suy ra quyền lưu nhạc, bản thu, số nhạc cụ hoặc bản nhạc cụ thể.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E018",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E018",
+      "statement": "Tài tử Nam Bộ: mục 6, 5079/QĐ-BVHTTDL, ngày 27/12/2012; ghi danh quốc gia.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 6; danh sách địa phương bao gồm Cần Thơ và Sóc Trăng.",
+      "register_number": "6",
+      "decision_number": "5079/QĐ-BVHTTDL",
+      "decision_date": "2012-12-27",
+      "historical_area": "Nhiều tỉnh, thành theo danh mục thời kỳ ghi danh",
+      "scope": "Đây là ghi danh cấp quốc gia năm 2012; không đồng nhất với hồ sơ UNESCO và năm ghi danh quốc tế.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E019",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E019",
+      "statement": "Nghinh Ông ở Sóc Trăng: mục 285, 446/QĐ-BVHTTDL, ngày 29/01/2019.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 285, địa bàn Sóc Trăng; không dùng mục 38 tại Cần Giờ hoặc mục 366 Sông Đốc.",
+      "register_number": "285",
+      "decision_number": "446/QĐ-BVHTTDL",
+      "decision_date": "2019-01-29",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Chỉ xác nhận đúng mục Sóc Trăng. Chưa xác minh lịch tổ chức hiện tại, tích truyện và trình tự nghi lễ.",
+      "review_status": "accepted"
+    },
+    {
+      "content_id": "E027",
+      "classification": "official_register",
+      "claim_id": "REG-20261028-E027",
+      "statement": "Bánh pía tại Sóc Trăng: mục 360, 2728/QĐ-BVHTTDL, ngày 30/09/2020.",
+      "claim_kind": "register_entry",
+      "source_id": "S04",
+      "locator": "Bảng danh mục, STT 360; xác nhận tên, số quyết định, ngày và địa bàn; không dùng cột Loại hình để phân loại nghề.",
+      "register_number": "360",
+      "decision_number": "2728/QĐ-BVHTTDL",
+      "decision_date": "2020-09-30",
+      "historical_area": "Tỉnh Sóc Trăng theo danh mục tại thời điểm ghi danh",
+      "scope": "Cột Loại hình ở dòng này ghi Lễ hội truyền thống, chưa thống nhất với tên nghề. Giữ ghi chú sai khác, chưa chuẩn hóa cột đó; không suy rộng ghi danh sang lạp xưởng.",
+      "review_status": "accepted"
+    }
+  ],
+  "leads": [
+    {
+      "content_id": "E005",
+      "source_id": "S06",
+      "relation": "context",
+      "classification": "research_lead",
+      "note": "Công văn góp ý năm 2017 nhận xét về hồ sơ lễ cưới Hoa Triều Châu; không phải quyết định ghi danh và không chứng minh trình tự cưới hiện đang thực hành.",
+      "next_action": "Tìm nghiên cứu có địa bàn, thời kỳ, người cung cấp thông tin và quyền trích dẫn; đối chiếu từng nghi thức."
+    },
+    {
+      "content_id": "E028",
+      "source_id": "S06",
+      "relation": "context",
+      "classification": "research_lead",
+      "note": "Nguồn năm 2017 yêu cầu làm rõ hồ sơ nghề bánh pía và lạp xưởng. Mục ghi danh bánh pía năm 2020 không tự chứng minh nghề lạp xưởng cũng được ghi danh.",
+      "next_action": "Tìm quyết định hoặc khảo sát nghề lạp xưởng riêng; chưa dùng số quyết định 2728 của bánh pía."
+    },
+    {
+      "content_id": "E025",
+      "source_id": "S03",
+      "relation": "lead",
+      "classification": "research_lead",
+      "note": "Tài nguyên ghi Other (Non-Commercial), Paid data True và định dạng chưa xác định; chưa có quyền tải hoặc phát hành lại.",
+      "next_action": "Làm rõ quyền với đơn vị cung cấp; xác nhận tài nguyên, schema và điều kiện lưu trước khi chạy ETL."
+    },
+    {
+      "content_id": "E026",
+      "source_id": "S01",
+      "relation": "lead",
+      "classification": "research_lead",
+      "note": "Trang liệt kê 39. dl lich su.xlsx nhưng chưa cấp giấy phép; điều khoản cổng yêu cầu chấp thuận bằng văn bản. Resource page chưa đọc được, chỉ xác định được ID từ liên kết.",
+      "next_action": "Xác minh quyền tải/lưu/công bố và metadata resource 6dbd782b-9db8-4605-aa1c-21d1d4309a3a; không suy ra schema từ tên tệp."
+    },
+    {
+      "content_id": "E037",
+      "source_id": "S16",
+      "relation": "context",
+      "classification": "research_lead",
+      "note": "OSM có giấy phép dữ liệu ODbL và yêu cầu ghi công. Nhãn ODbL không xác minh tọa độ hay cấp quyền đối với dữ liệu từ các nguồn khác.",
+      "next_action": "Dùng trích xuất có phiên bản; lưu osm_type/id/version/timestamp, tên và phương pháp chọn điểm; duyệt từng ứng viên trước khi thêm ghim."
+    }
+  ],
+  "observations": [
+    {
+      "id": "20261028-S04-register",
+      "source_id": "S04",
+      "observed_at": "2026-10-28",
+      "url": "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789",
+      "locator": "Bảng danh mục, STT 6, 66, 284, 285, 319, 320, 360, 414",
+      "finding": "Đối chiếu tám mục ghi danh theo số quyết định, ngày và địa phương. Giữ địa giới theo thời kỳ nguồn; không coi danh mục HTML là bản quyết định gốc.",
+      "method": "Đọc trực tiếp bảng trên website của Cục Di sản văn hóa; chỉ lưu metadata và diễn giải mới."
+    },
+    {
+      "id": "20261028-S04-type-discrepancy",
+      "source_id": "S04",
+      "observed_at": "2026-10-28",
+      "url": "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789",
+      "locator": "STT 360, cột Loại hình",
+      "finding": "Dòng nghề bánh pía có nhãn loại hình chưa phù hợp với tên nghề; chưa dùng trường đó làm dữ liệu chuẩn. Cần đối chiếu quyết định gốc trước khi sửa.",
+      "method": "Ghi sai khác ở cấp trường; không loại bỏ những trường đã đối chiếu độc lập."
+    },
+    {
+      "id": "20261028-S06-not-a-register",
+      "source_id": "S06",
+      "observed_at": "2026-10-28",
+      "url": "https://dsvh.gov.vn/bo-van-hoa%2C-the-thao-va-du-lich-co-y-kien-ve-viec-lap-ho-so-khoa-hoc-di-san-van-hoa-phi-vat-the-o-tinh-soc-trang-1401",
+      "locator": "Đoạn mở đầu và hai gạch đầu dòng về hồ sơ nghề, lễ cưới",
+      "finding": "Công văn năm 2017 là ý kiến về chuẩn bị hồ sơ, không thay thế quyết định ghi danh hoặc khảo sát nghi lễ. Không suy rộng ghi danh bánh pía sang lạp xưởng.",
+      "method": "Đọc trực tiếp thông tin do Cục Di sản văn hóa công bố; chỉ tóm lược nhận xét cần cho nghiên cứu."
+    },
+    {
+      "id": "20261028-S01-rights",
+      "source_id": "S01",
+      "observed_at": "2026-10-28",
+      "url": "https://data.cantho.gov.vn/dataset/du-lieu-ve-du-lich-2026",
+      "locator": "Giấy phép; tài nguyên 39. dl lich su.xlsx",
+      "finding": "Vẫn chưa có giấy phép. Liên kết resource có ID 6dbd782b-9db8-4605-aa1c-21d1d4309a3a; trang resource truy cập không thành công. Không tải XLSX.",
+      "method": "Đọc metadata trang dataset; không tải tệp và không suy đoán URL tải."
+    },
+    {
+      "id": "20261028-S01-portal-terms",
+      "source_id": "S01",
+      "observed_at": "2026-10-28",
+      "url": "https://data.cantho.gov.vn/pages/dieu_khoan_su_dung",
+      "locator": "Điều 1 và Điều 2",
+      "finding": "Cổng nêu yêu cầu chấp thuận bằng văn bản cho sử dụng dữ liệu và hạn chế khai thác hàng loạt. Chưa có văn bản chấp thuận cho dự án; giữ cổng tải/lưu đóng.",
+      "method": "Đọc điều khoản của bên cung cấp; ghi nhận điều kiện truy cập, không coi là giấy phép mở."
+    },
+    {
+      "id": "20261028-S03-rights",
+      "source_id": "S03",
+      "observed_at": "2026-10-28",
+      "url": "https://data.cantho.gov.vn/dataset/du-lieu-cac-di-tich-lich-su-van-hoa/resource/e6ddcfdf-7886-40d3-ad3a-3ce21648c952?inner_span=True",
+      "locator": "Thông tin khác: định dạng, giấy phép và Paid data",
+      "finding": "Vẫn ghi Other (Non-Commercial), Paid data True, định dạng chưa xác định. Chưa đủ cơ sở tải/lưu/phát hành tài nguyên.",
+      "method": "Đọc metadata resource; không tải tệp hoặc cấp clearance."
+    },
+    {
+      "id": "20261028-S16-license",
+      "source_id": "S16",
+      "observed_at": "2026-10-28",
+      "url": "https://www.openstreetmap.org/copyright",
+      "locator": "OpenStreetMap licensing; How to credit OpenStreetMap; Additional services",
+      "finding": "Dữ liệu ODbL cần ghi công và thông báo giấy phép. Điều kiện dùng API, tile và Nominatim là các chính sách riêng. Chưa chạy geocoding hoặc duyệt tọa độ.",
+      "method": "Đối chiếu trang giấy phép OSM; không nhập dữ liệu địa lý."
+    }
+  ]
+}
