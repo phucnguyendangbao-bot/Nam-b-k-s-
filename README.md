@@ -2,6 +2,13 @@
 
 ## GitHub + Vercel
 
+Đợt bổ sung nội dung ngày 28/10/2026 nằm ở `lib/content-expansion.ts`: 14 hồ sơ
+mới có chứng minh, 4 hành trình đọc, 4 tệp ảnh đã kiểm tra quyền và 4 trang hướng
+dẫn. `lib/static-data.ts` hợp nhất gói này với 11 hồ sơ đã được chủ sở hữu duyệt.
+Gói mới đi qua cổng kiểm tra trạng thái duyệt, nguồn của từng nhận định và quyền
+ảnh trước khi vào danh sách công khai; metadata bản nháp của workbook vẫn riêng.
+Xem `docs/content-expansion.md` để biết phạm vi và cách kiểm thử.
+
 Nhánh `migration/github-vercel` là bản đọc công khai độc lập với Cloudflare D1.
 Nó đóng gói đúng 11 hồ sơ và 3 hành trình đã duyệt từ
 `lib/editorial-bundle.json`, cùng sổ nguồn trong `lib/research-seed.json`.

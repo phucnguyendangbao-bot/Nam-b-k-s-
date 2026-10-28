@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { mapToursFor } from '@/lib/map-tours';
 import { notFound } from 'next/navigation';
 import { ActionForm, Arrow, Breadcrumb, Classification, Flash, Motif, Status, categoryTone } from './site';
 import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/static-data';
@@ -20,16 +21,16 @@ export const collectionDescriptions: Record<string, { intro: string; note: strin
     note: 'Các từ không mặc định chỉ có ở Nam Bộ. Câu ví dụ do ban biên soạn đặt và được ghi rõ như vậy, không phải ca dao hay lời kể sưu tầm.',
   },
   'loi-nguoi-xua': {
-    intro: 'Ca dao, tục ngữ và chuyện kể của miền sông nước. Mỗi câu sẽ chỉ lên trang khi tìm được bản sưu tầm có nguồn.',
-    note: 'Chuyên mục đang biên soạn. Không đăng ca dao tự đặt hay chép lại từ nguồn chưa rõ quyền.',
+    intro: 'Đọc tục ngữ từ một bản in cũ, đối chiếu nguyên văn và lời giải của người sưu tập. Bắt đầu với hai câu trong sách Huỳnh Tịnh Của năm 1897.',
+    note: 'Mỗi câu ghi rõ loại hình và trang sách. Có mặt trong sách in ở Sài Gòn không chứng minh câu chỉ thuộc Nam Bộ; phần ca dao và chuyện kể chưa đủ chứng cứ vẫn ở bản nháp.',
   },
   'le-hoi': {
-    intro: 'Lễ hội và tín ngưỡng của người Kinh, Khmer, Hoa ở Nam Bộ: Oóc Om Bóc, đua ghe Ngo, Nghinh Ông và nhiều dịp khác.',
-    note: 'Chuyên mục đang biên soạn từ danh mục di sản chính thức và các hồ sơ có nguồn.',
+    intro: 'Đón năm mới, gặp nhau bên bờ sông, ngước nhìn mùa trăng. Đọc Chôl Chnăm Thmây, Oóc Om Bóc và đua ghe Ngo qua những tư liệu có thể lần theo.',
+    note: 'Lịch truyền thống và một mùa lễ được ghi nhận không thay cho thông báo tổ chức năm nay. Niềm tin tâm linh được trình bày là niềm tin của cộng đồng, không phải kết luận khoa học.',
   },
   'dau-xua': {
-    intro: 'Di sản, nghệ thuật và nghề thủ công: đờn ca tài tử, Rô Băm, Dù Kê, nhạc Ngũ âm, bánh pía.',
-    note: 'Chuyên mục đang biên soạn từ danh mục di sản chính thức và các hồ sơ có nguồn.',
+    intro: 'Di sản sống qua tiếng đờn, người diễn và bàn tay làm nghề: đờn ca tài tử, sân khấu Rô Băm và nghề bánh pía.',
+    note: 'Hồ sơ ghi danh và câu chuyện người thực hành có phạm vi chứng minh khác nhau. Danh hiệu di sản không tự cấp quyền sử dụng bản nhạc, ảnh biểu diễn hoặc sản phẩm của nghệ nhân.',
   },
 };
 
@@ -202,8 +203,9 @@ export function DossierView({ article: c, citations, media, dialect, related, to
   const gallery = cover ? images.slice(1) : images;
   const showGallery = gallery.length > 0 || images.length === 0;
   const audio = dialect?.audio_asset_id ? media.find(m => m.id === dialect.audio_asset_id && m.kind === 'audio') : null;
-  const collection = c.content_kind === 'dialect' ? categories[2] : c.content_kind === 'custom' ? categories[1] : categories[0];
+  const collection = categories.find(item => (item.types as readonly string[]).includes(c.category)) ?? categories[0];
   const back = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
+  const mapStops = preview ? [] : mapToursFor(c.id);
   return (
     <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
       <div className="nb-progress" aria-hidden="true" />
@@ -319,7 +321,15 @@ export function DossierView({ article: c, citations, media, dialect, related, to
                 <p>{t.description}</p>
                 <span className="nb-link">Mở hành trình <Arrow /></span>
               </a>
-            )) : <p>Hồ sơ này chưa nằm trong hành trình nào.</p>}
+            )) : !mapStops.length && <p>Hồ sơ này chưa nằm trong hành trình nào.</p>}
+            {mapStops.map(({ tour: t, stop, index }) => (
+              <a className="related-tour is-map" href={`/hanh-trinh/${t.slug}#chang-${index + 1}`} key={t.id}>
+                <span className="eyebrow">Tour bản đồ 3D, chặng {index + 1} trên {t.stops.length}</span>
+                <h3>{t.title}</h3>
+                <p>{t.summary}</p>
+                <span className="nb-link">Bay tới {stop.name} trên bản đồ <Arrow /></span>
+              </a>
+            ))}
           </section>
         </article>
 
@@ -338,7 +348,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
               <button className="button outline" style={{ width: '100%' }}>Lưu vào sổ tay</button>
             </ActionForm>
           )}
-          {!preview && !user && <a className="button outline" href="/so-tay" style={{ width: '100%' }}>Đăng nhập để lưu</a>}
+          {!preview && !user && <a className="button outline" href="/huong-dan-doc" style={{ width: '100%' }}>Gợi ý đọc và đối chiếu</a>}
           {preview && user && c.can_stage && ['admin', 'editor'].includes(user.role) && (
             <ActionForm action="stage_prepared" id={c.id} back={back}>
               <label className="check"><input name="review_before_import" type="checkbox" required />Đã xem bản chuẩn bị; nhập vào CMS dưới dạng nháp.</label>

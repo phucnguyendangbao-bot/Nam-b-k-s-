@@ -3,6 +3,8 @@ import { TeaserCard } from '@/components/interactive/lexicon-play';
 import { Gallery, HeroSlider, UpdatesPanel, type Slide, type UpdateItem } from '@/components/interactive/heritage';
 import { categories } from '@/lib/catalog';
 import { all, ensureSeed, publicContents, publicTours, publicWords, stats, type Row } from '@/lib/static-data';
+import { MapTourCards } from '@/components/map-tour-page';
+import { mapTours } from '@/lib/map-tours';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,13 +38,14 @@ export default async function Home() {
   const photos = media.filter(m => published.has(m.slug));
   const seen = new Set<string>();
   const order = (u: string) => (u.includes('cai-rang') ? 0 : u.includes('binh-thuy') ? 1 : 2);
-  const slides: Slide[] = [...photos].filter(p => !p.url.includes('trau-cau')).sort((a, b) => order(a.url) - order(b.url)).filter(m => (seen.has(m.url) ? false : (seen.add(m.url), true))).map(m => ({
+  const placeSlugs = new Set(items.filter(item => item.content_kind === 'place').map(item => item.slug));
+  const slides: Slide[] = [...photos].filter(p => placeSlugs.has(p.slug)).sort((a, b) => order(a.url) - order(b.url)).filter(m => (seen.has(m.url) ? false : (seen.add(m.url), true))).map(m => ({
     src: m.url, title: m.title, href: `/ho-so/${m.slug}`, credit: `Ảnh: ${m.author}, ${m.license_name}`,
   }));
   const articles = items.filter(i => i.content_kind !== 'dialect');
   const rankFeatured = (c: Row) => (c.image_url ? (String(c.image_url).includes('trau-cau') ? 1 : 0) : 2);
   const featured = [...articles].sort((a, b) => rankFeatured(a) - rankFeatured(b));
-  const tabs = categories.slice(0, 3).map(c => ({ id: c.slug, label: c.name }));
+  const tabs = categories.map(c => ({ id: c.slug, label: c.name }));
   const updates: UpdateItem[] = [...items]
     .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)))
     .map(i => ({ href: `/ho-so/${i.slug}`, title: i.title, image: i.image_url ?? undefined, tab: collectionFor(i.category).slug, ...calendar(i.updated_at) }));
@@ -75,7 +78,7 @@ export default async function Home() {
             <p className="hs-body">Dữ kiện có tư liệu được tách khỏi giả thuyết, lời kể và quan niệm dân gian. Điều chưa rõ được ghi là chưa rõ; cách làm của một gia đình không được trình bày như khuôn mẫu cho cả vùng.</p>
             <dl className="hs-facts">
               <div><dt>Hồ sơ đã kiểm chứng</dt><dd>{numbers.published}</dd></div>
-              <div><dt>Đang nghiên cứu</dt><dd>{numbers.total}</dd></div>
+              <div><dt>Chờ kiểm chứng</dt><dd>{numbers.pending}</dd></div>
               <div><dt>Nguồn tư liệu</dt><dd>{numbers.sources}</dd></div>
             </dl>
             <a className="hs-more" href="/ve-du-an">Về dự án</a>
@@ -135,23 +138,27 @@ export default async function Home() {
         </section>
       )}
 
-      {tours.length > 0 && (
-        <section className="hs-tours">
-          <div className="hs-wrap">
-            <SectionTitle kicker="Đọc theo" title="Hành trình" sub="Nối các hồ sơ thành một mạch đọc" />
-            <div className="hs-tour-grid">
-              {tours.map((t: Row) => (
-                <a key={t.id} href={`/hanh-trinh/${t.slug}`} className="hs-tour">
-                  <span className="hs-tour-count">{t.stop_count} chặng</span>
-                  <h3>{t.title}</h3>
-                  <p>{t.description}</p>
-                  <span className="hs-more">Bắt đầu đọc <span aria-hidden="true">»</span></span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <section className="hs-tours">
+        <div className="hs-wrap">
+          <SectionTitle kicker="Đi theo" title="Hành trình" sub="Nối những hồ sơ có nguồn thành một mạch đọc" />
+          <MapTourCards />
+          {tours.length > 0 && (
+            <>
+              <h3 className="hs-tours-sub">Hành trình đọc</h3>
+              <div className="hs-tour-grid">
+                {tours.map((t: Row) => (
+                  <a key={t.id} href={`/hanh-trinh/${t.slug}`} className="hs-tour">
+                    <span className="hs-tour-count">{t.stop_count} chặng</span>
+                    <h3>{t.title}</h3>
+                    <p>{t.description}</p>
+                    <span className="hs-more">Bắt đầu đọc <span aria-hidden="true">»</span></span>
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
 
       <section className="hs-mapband" style={mapPhoto ? { backgroundImage: `url(${mapPhoto.url})` } : undefined}>
         <div className="hs-mapbox">
@@ -160,11 +167,11 @@ export default async function Home() {
           <ul>
             <li>Khởi đầu: <b>Cần Thơ, Hậu Giang, Sóc Trăng</b> (theo địa giới trước sáp nhập)</li>
             <li>Địa điểm đã đối chiếu tọa độ: <b>{pinned}</b></li>
-            <li>Hành trình đọc: <b>{tours.length}</b>, nguồn tư liệu: <b>{numbers.sources}</b></li>
+            <li>Tour bản đồ 3D: <b>{mapTours.length}</b>, hành trình đọc: <b>{tours.length}</b>, nguồn tư liệu: <b>{numbers.sources}</b></li>
           </ul>
           <div className="hs-mapbox-actions">
             <a className="button dark" href="/ban-do">Xem bản đồ</a>
-            <a className="button dark" href="/hanh-trinh">Xem hành trình</a>
+            {mapTours[0] ? <a className="button dark" href={`/hanh-trinh/${mapTours[0].slug}`}>Mở tour 3D</a> : <a className="button dark" href="/hanh-trinh?loai=digital">Chọn hành trình đọc</a>}
           </div>
           <a className="button gold" href="/ky-uc-cong-dong">Gửi một ký ức</a>
           {mapPhoto && <small className="hs-mapband-credit">Ảnh nền: {mapPhoto.author}, {mapPhoto.license_name}</small>}

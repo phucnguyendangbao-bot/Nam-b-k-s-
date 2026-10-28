@@ -7,6 +7,10 @@ import { categories, fold } from '@/lib/catalog';
 import { CollectionPage, PublicDossier } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
 import { MapView, type MapPoint } from '@/components/interactive/map-view';
+import { MapTourCards, MapTourPage } from '@/components/map-tour-page';
+import { mapTourBySlug } from '@/lib/map-tours';
+import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/content-guides';
+import { guidePages } from '@/lib/reading-guides';
 
 export const dynamic = 'force-dynamic';
 type Props = { params: Promise<{ segments: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -20,7 +24,9 @@ const titles: Record<string, string> = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params;
   let title = titles[segments[0]] ?? 'Thư viện văn hóa';
+  title = guidePages.find(page => page.slug === segments[0])?.title ?? title;
   if (segments[0] === 'chuyen-muc') title = categories.find(c => c.slug === segments[1])?.name ?? title;
+  if (segments[0] === 'hanh-trinh' && segments[1]) title = mapTourBySlug(segments[1])?.title ?? title;
   if (segments[0] === 'ho-so') { try { title = (await content(segments[1]))?.title ?? 'Hồ sơ chưa công bố'; } catch { /* dùng tiêu đề mặc định */ } }
   return { title, robots: segments[0] === 'quan-tri' || segments[0] === 'so-tay' ? { index: false, follow: false } : undefined };
 }
@@ -36,7 +42,7 @@ function Body({ text }: { text: string }) {
 function Save({ id, kind, back, user }: { id: string; kind: string; back: string; user: Row | null }) {
   return user
     ? <ActionForm action="bookmark" id={id} back={back} className="inline-form"><input type="hidden" name="kind" value={kind} /><button className="button outline">Lưu vào sổ tay</button></ActionForm>
-    : <a className="button outline" href="/so-tay">Đăng nhập để lưu</a>;
+    : <a className="button outline" href="/huong-dan-doc">Gợi ý đọc và đối chiếu</a>;
 }
 
 const tourKind: Record<string, string> = { physical: 'Đi thực địa', digital: 'Đọc từ xa', memory: 'Ký ức' };
@@ -49,6 +55,7 @@ export default async function Page({ params, searchParams }: Props) {
   for (const [k, v] of Object.entries(raw)) q[k] = Array.isArray(v) ? v[0] : v;
   const user = await viewer();
   const route = s[0];
+  if (s.length === 1 && guidePages.some(page => page.slug === route)) return <ContentGuidePage slug={route} />;
 
   if (route === 'quan-tri') return user ? <Admin path={s.slice(1)} user={user} params={q} /> : <main id="main" className="wrap page"><SignIn returnTo="/quan-tri" /></main>;
 
@@ -86,6 +93,7 @@ export default async function Page({ params, searchParams }: Props) {
       <main id="main" className="wrap page">
         <Breadcrumb items={[{ label: 'Nguồn tư liệu' }]} />
         <PageTitle title="Nguồn để lần theo" description="Cơ quan chuyên môn, thư viện, báo chí, từ điển mở và dữ liệu bản đồ mà các hồ sơ dẫn tới. Có tên trong danh sách chưa có nghĩa là toàn bộ nội dung của nguồn đã được kiểm chứng." />
+        <details className="admin-box"><summary>Cách đọc danh sách nguồn và nhãn kiểm chứng</summary><EvidenceGuide /><p>Một bản ghi thư mục chỉ dẫn đến tài liệu cần tìm. Với bài đã công bố, xem mục Nguồn tham khảo trong từng hồ sơ để biết nhận định nào đã được đối chiếu, ở trang hoặc đoạn nào.</p></details>
         <SearchForm action="/nguon-tu-lieu" q={q.q} placeholder="Tìm tên tài liệu hoặc chủ đề" />
         <p className="result-count" style={{ margin: '22px 0 14px' }}>{sources.length} nguồn</p>
         <div className="source-list">
@@ -96,6 +104,9 @@ export default async function Page({ params, searchParams }: Props) {
                 <p className="eyebrow">{String(x.source_type).replace(/_/g, ' ')}{x.format ? `, ${x.format}` : ''}</p>
                 <h2><a href={x.url} target="_blank" rel="noreferrer">{x.name} <Arrow diagonal /></a></h2>
                 {x.notes && <p>{x.notes}</p>}
+                {x.publisher && <p><strong>Đơn vị xuất bản:</strong> {x.publisher}</p>}
+                {x.source_version && <p><strong>Phiên bản đối chiếu:</strong> {x.source_version}</p>}
+                {x.rights && <p><strong>Phạm vi sử dụng:</strong> {x.rights}</p>}
                 <div className="badge-row" style={{ marginTop: 10, marginBottom: 0 }}>
                   {x.license_reported && <span className="classification">Giấy phép ghi nhận: {x.license_reported}</span>}
                   {x.topics && <span>{String(x.topics).replace(/,/g, ', ')}</span>}
@@ -117,6 +128,10 @@ export default async function Page({ params, searchParams }: Props) {
       <main id="main" className="wrap page">
         <Breadcrumb items={[{ label: 'Bản đồ' }]} />
         <PageTitle title="Bản đồ ký sự" description="Chỉ những địa điểm đã được đối chiếu tọa độ mới được ghim. Khung bản đồ không thể hiện ranh giới hành chính." />
+        <section className="tp-index-block" aria-labelledby="tour-3d" style={{ marginBottom: 40 }}>
+          <div className="nb-section-head"><h2 id="tour-3d">Đi theo tour bản đồ 3D</h2></div>
+          <MapTourCards />
+        </section>
         <MapView points={points} initialId={q.diem} />
       </main>
     );
@@ -125,39 +140,46 @@ export default async function Page({ params, searchParams }: Props) {
   if (route === 'hanh-trinh' && !s[1]) {
     let tours = await publicTours();
     if (q.loai) tours = tours.filter(t => t.kind === q.loai);
+    const showMap = !q.loai || q.loai === 'physical';
     return (
       <main id="main" className="wrap page">
         <Breadcrumb items={[{ label: 'Hành trình' }]} />
-        <PageTitle title="Hành trình" description="Mỗi hành trình nối vài hồ sơ thành một mạch đọc. Đi hết các chặng để hiểu một chủ đề từ nhiều phía." />
+        <PageTitle title="Hành trình" description="Nối vài hồ sơ có nguồn thành một mạch để hiểu một chủ đề từ nhiều phía. Tour bản đồ chỉ mở khi nội dung và tọa độ đã được đối chiếu, duyệt." />
         <div className="filter-tabs">
-          {[['', 'Tất cả'], ['digital', 'Đọc từ xa'], ['physical', 'Đi thực địa'], ['memory', 'Ký ức']].map(([v, l]) => (
+          {[['', 'Tất cả'], ['physical', 'Tour bản đồ 3D'], ['digital', 'Đọc từ xa'], ['memory', 'Ký ức']].map(([v, l]) => (
             <a className={(q.loai ?? '') === v ? 'active' : ''} href={`/hanh-trinh${v ? '?loai=' + v : ''}`} key={v}>{l}</a>
           ))}
         </div>
+        {showMap && (
+          <section className="tp-index-block" aria-labelledby="tour-3d">
+            <div className="nb-section-head"><h2 id="tour-3d">Tour bản đồ 3D</h2></div>
+            <MapTourCards />
+          </section>
+        )}
         {tours.length ? (
-          <div className="content-grid">
-            {tours.map(t => (
-              <a className="tour-card" href={`/hanh-trinh/${t.slug}`} key={t.id}>
-                <span className="eyebrow">{tourKind[t.kind] ?? t.kind}, {t.stop_count} chặng</span>
-                <h2>{t.title}</h2>
-                <p>{t.description}</p>
-                <span className="text-link">Bắt đầu <Arrow /></span>
-              </a>
-            ))}
-          </div>
-        ) : (
-          <Empty
-            title={q.loai === 'physical' ? 'Chưa có tuyến đi thực địa' : 'Chưa có hành trình ở mục này'}
-            description={q.loai === 'physical' ? 'Tuyến thực địa chỉ mở khi mọi điểm dừng đã được đối chiếu tọa độ. Trong lúc chờ, bạn có thể đọc các hành trình từ xa.' : 'Hành trình mới sẽ mở khi đủ hồ sơ đã kiểm chứng.'}
-            action="/hanh-trinh"
-            label="Xem tất cả hành trình"
-          />
+          <section aria-labelledby="tour-doc">
+            {showMap && <div className="nb-section-head" style={{ marginTop: 48 }}><h2 id="tour-doc">Hành trình đọc</h2></div>}
+            <div className="content-grid">
+              {tours.map(t => (
+                <a className="tour-card" href={`/hanh-trinh/${t.slug}`} key={t.id}>
+                  <span className="eyebrow">{tourKind[t.kind] ?? t.kind}, {t.stop_count} chặng</span>
+                  <h2>{t.title}</h2>
+                  <p>{t.description}</p>
+                  <span className="text-link">Bắt đầu <Arrow /></span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : !showMap && (
+          <Empty title="Chưa có hành trình ở mục này" description="Hành trình mới sẽ mở khi đủ hồ sơ đã kiểm chứng." action="/hanh-trinh" label="Xem tất cả hành trình" />
         )}
       </main>
     );
   }
 
   if (route === 'hanh-trinh' && s[1]) {
+    const mapTour = mapTourBySlug(s[1]);
+    if (mapTour) return <MapTourPage tour={mapTour} readingTours={await publicTours()} />;
     const tour = (await publicTours()).find(t => t.slug === s[1]);
     if (!tour) notFound();
     const stops = await tourStops(tour.id);
@@ -271,6 +293,7 @@ export default async function Page({ params, searchParams }: Props) {
         <InstantSearch initial={q.q ?? ''}>
           <div className="notice" style={{ maxWidth: 760 }}>Hỏi đáp bằng AI chưa được bật. Trang này chỉ tìm trong các hồ sơ đã kiểm chứng, không tự tạo câu trả lời.</div>
         </InstantSearch>
+        <ContentFAQ />
       </main>
     );
   }
@@ -281,10 +304,11 @@ export default async function Page({ params, searchParams }: Props) {
       <main id="main" className="wrap page narrow">
         <PageTitle title="Kể chuyện để hiểu, hiểu để gìn giữ." description="Nam Bộ Ký Sự gom những câu chuyện về đất, nếp sống và tiếng nói miền Tây, bắt đầu từ Cần Thơ, Hậu Giang và Sóc Trăng." />
         <div className="metric-grid">
-          {([[n.published, 'hồ sơ đã đăng'], [n.total, 'hồ sơ đang nghiên cứu'], [n.sources, 'nguồn đã đăng ký']] as const).map(([v, l]) => <div key={l}><strong>{v}</strong><span>{l}</span></div>)}
+          {([[n.verified, 'đã kiểm chứng nguồn'], [n.pending, 'chờ kiểm chứng'], [n.eligible, 'đủ điều kiện hiển thị']] as const).map(([v, l]) => <div key={l}><strong>{v}</strong><span>{l}</span></div>)}
         </div>
         <Body text={'## Mỗi hồ sơ có đường về nguồn\n\nDự án tách riêng dữ kiện có tư liệu, giả thuyết, truyền thuyết, dị bản và lời kể. Điều chưa rõ được ghi là chưa rõ.\n\n## Giữ sự khác biệt\n\nMột cách làm không đại diện cho mọi gia đình hay cộng đồng. Hồ sơ ghi rõ phạm vi, thời điểm và các cách nhìn có nguồn.\n\n## Có quyền mới chia sẻ\n\nĐọc được một trang web không có nghĩa là được dùng lại ảnh, âm thanh hay toàn văn sách. Từng tư liệu được xét quyền riêng trước khi đăng.'} />
         <p style={{ marginTop: 28 }}><a className="button" href="/nguon-tu-lieu">Xem các nguồn tư liệu <Arrow /></a></p>
+        <section className="article-body"><h2>Đi sâu hơn vào cách đọc và cách làm</h2><ul>{guidePages.map(page => <li key={page.slug}><a href={`/${page.slug}`}>{page.title}</a> — {page.description}</li>)}</ul><p>Thư viện có {n.published} hồ sơ hiển thị và {n.sources} nguồn đăng ký. Số liệu theo dõi tự cập nhật từ kho; đầu mối chưa kiểm chứng vẫn được giữ để nghiên cứu tiếp.</p></section>
       </main>
     );
   }

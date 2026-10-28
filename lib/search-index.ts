@@ -1,6 +1,7 @@
 import { categories, fold } from './catalog';
 import { publicContents, publicTours } from './static-data';
 import { categoryTone, collectionFor } from '@/components/cards';
+import { guidePages } from './reading-guides';
 
 export type SearchEntry = {
   type: 'article' | 'word' | 'tour' | 'page';
@@ -13,6 +14,7 @@ export type SearchEntry = {
 };
 
 const pages: Omit<SearchEntry, 'hay'>[] = [
+  ...guidePages.map(page => ({ type: 'page' as const, title: page.title, subtitle: page.description, href: `/${page.slug}`, tone: 'ink' as const })),
   { type: 'page', title: 'Bản đồ', subtitle: 'Địa điểm đã đối chiếu tọa độ', href: '/ban-do', tone: 'ink' },
   { type: 'page', title: 'Hành trình', subtitle: 'Những chuỗi bài đọc nối với nhau', href: '/hanh-trinh', tone: 'ink' },
   { type: 'page', title: 'Nguồn tư liệu', subtitle: 'Danh sách nguồn đã đăng ký', href: '/nguon-tu-lieu', tone: 'ink' },

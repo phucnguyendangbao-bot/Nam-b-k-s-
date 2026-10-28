@@ -1,13 +1,19 @@
 import bundleJson from './editorial-bundle.json';
 import seedJson from './research-seed.json';
 import { fold, similarity, slugify } from './catalog';
-import { nfc } from './editorial-model';
+import { imagePathAllowed, nfc, permitsCommercialMedia } from './editorial-model';
+import { contentExpansion } from './content-expansion';
 
 export const READ_ONLY_DEPLOYMENT = true;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Row = Record<string, any>;
 
-const bundle = bundleJson as unknown as { reviewed_at: string; sources: Row[]; articles: Row[]; tours: Row[] };
+const originalBundle = bundleJson as unknown as { reviewed_at: string; sources: Row[]; articles: Row[]; tours: Row[] };
+const bundle = { reviewed_at: contentExpansion.reviewed_at,
+  sources: [...originalBundle.sources, ...contentExpansion.sources],
+  articles: [...originalBundle.articles, ...contentExpansion.articles] as Row[],
+  tours: [...originalBundle.tours, ...contentExpansion.tours] as Row[],
+};
 const seed = seedJson as unknown as { sources: Row[]; contents: Row[]; links: Row[] };
 
 const articleSlugs: Record<string, string> = {
@@ -23,16 +29,32 @@ const tourSlugs: Record<string, string> = {
 };
 
 const displayRow = (row: Row): Row => Object.fromEntries(Object.entries(row).map(([key, value]) => [key, typeof value === 'string' ? nfc(value) : value]));
-const articles: Row[] = bundle.articles.map((article, index) => {
+const registeredSourceIds = new Set([...seed.sources, ...bundle.sources].map(source => source.id));
+// The original eleven records were explicitly approved by the owner on 27 October.
+// New records must pass the snapshot review gate; draft metadata never becomes public.
+const ownerApprovedIds = new Set(Object.keys(articleSlugs));
+function canPublish(article: Row): boolean {
+  const approved = ownerApprovedIds.has(article.id) || (article.publication_status === 'published'
+    && article.review_status === 'verified' && article.rights_review_status === 'cleared');
+  const claims = (article.claims ?? []) as Row[];
+  const sections = (article.sections ?? []) as Row[];
+  const assets = (article.media ?? []) as Row[];
+  return approved && claims.length > 0 && claims.every(claim => registeredSourceIds.has(claim.source_id) && claim.statement && claim.locator)
+    && sections.every(section => section.sourceIds?.length > 0 && section.sourceIds.every((id: string) => registeredSourceIds.has(id)))
+    && assets.every(asset => imagePathAllowed(asset.url) && asset.commercial_allowed === 1
+      && asset.author && asset.source_url && asset.modifications && permitsCommercialMedia(asset.license_name, asset.license_url));
+}
+const approvedArticles = bundle.articles.filter(canPublish);
+const articles: Row[] = approvedArticles.map(article => {
   const dialect = article.dialect as Row | undefined;
   const cover = ((article.media ?? []) as Row[]).find(item => item.kind === 'image');
   return displayRow({
     ...article,
     slug: articleSlugs[article.id] ?? `${slugify(article.title)}-${String(article.id).toLowerCase()}`,
     content_kind: article.kind === 'dialect' ? 'dialect' : article.kind,
-    classification: 'source_supported', status: 'published', cms_status: 'published', revision: 1,
+    classification: article.classification ?? 'source_supported', status: 'published', cms_status: 'published', revision: 1,
     sections_json: JSON.stringify(article.sections ?? []),
-    updated_at: `${bundle.reviewed_at}T${String(index).padStart(2, '0')}:00:00+07:00`, created_at: `${bundle.reviewed_at}T00:00:00+07:00`,
+    updated_at: `${article.reviewed_at ?? originalBundle.reviewed_at}T00:00:00+07:00`, created_at: `${article.reviewed_at ?? originalBundle.reviewed_at}T00:00:00+07:00`,
     geo_reviewed: 0, latitude: null, longitude: null, eligible: 1,
     image_url: cover?.url ?? null, image_author: cover?.author ?? null,
     image_license: cover?.license_name ?? null, image_source_url: cover?.source_url ?? null,
@@ -40,22 +62,25 @@ const articles: Row[] = bundle.articles.map((article, index) => {
   });
 });
 const articleById = new Map(articles.map(article => [article.id, article]));
-const media: Row[] = bundle.articles.flatMap(article => ((article.media ?? []) as Row[]).map(item => displayRow({ ...item, content_id: article.id, review_status: 'accepted' })));
-const dialects: Row[] = bundle.articles.filter(article => article.dialect).map(article => displayRow({ id: `dialect-${article.id}`, content_id: article.id, ...article.dialect }));
+const media: Row[] = approvedArticles.flatMap(article => ((article.media ?? []) as Row[]).map(item => displayRow({ ...item, id: `${article.id}-${item.id}`, content_id: article.id, review_status: 'accepted' })));
+const dialects: Row[] = approvedArticles.filter(article => article.dialect).map(article => displayRow({ id: `dialect-${article.id}`, content_id: article.id, ...article.dialect }));
 
 const sourceMap = new Map<string, Row>();
 for (const source of [...seed.sources, ...bundle.sources]) sourceMap.set(source.id, displayRow({ ...(sourceMap.get(source.id) ?? {}), ...source }));
 const sources = [...sourceMap.values()].sort((a, b) => String(a.id).localeCompare(String(b.id)));
-const citations: Row[] = bundle.articles.flatMap(article => ((article.claims ?? []) as Row[]).map((claim, index) => {
+const citations: Row[] = approvedArticles.flatMap(article => ((article.claims ?? []) as Row[]).map((claim, index) => {
   const source = sourceMap.get(claim.source_id) ?? {};
   return displayRow({ id: claim.id ?? `${article.id}-${index + 1}`, content_id: article.id, source_id: claim.source_id,
     statement: claim.statement, locator: claim.locator, claim_kind: claim.kind, source_name: source.name, source_url: source.url,
+    source_version: claim.source_version ?? source.source_version ?? `Bản đối chiếu ${article.reviewed_at ?? originalBundle.reviewed_at}`,
+    review_note: claim.review_note ?? source.rights,
     license_reported: source.license_reported ?? source.license ?? 'unknown', source_type: source.source_type });
 }));
-const tours: Row[] = bundle.tours.map(tour => displayRow({ ...tour,
+const approvedTours = bundle.tours.filter(tour => tour.kind === 'digital' && tour.content_ids.length > 0 && tour.content_ids.every((id: string) => articleById.has(id)));
+const tours: Row[] = approvedTours.map(tour => displayRow({ ...tour,
   slug: tourSlugs[tour.id] ?? `${slugify(tour.title)}-${String(tour.id).toLowerCase()}`,
   status: 'published', stop_count: (tour.content_ids ?? []).length, created_at: `${bundle.reviewed_at}T00:00:00+07:00` }));
-const tourStopRows: Row[] = bundle.tours.flatMap(tour => ((tour.content_ids ?? []) as string[]).map((contentId, index) => ({
+const tourStopRows: Row[] = approvedTours.flatMap(tour => ((tour.content_ids ?? []) as string[]).map((contentId, index) => ({
   id: `${tour.id}-${index + 1}`, stop_id: `${tour.id}-${index + 1}`, tour_id: tour.id, content_id: contentId, position: index + 1,
 })));
 
@@ -84,7 +109,11 @@ export async function publicContents(query = '', category = '', area = ''): Prom
   if (query.trim()) rows = rows.map(row => ({ ...row, _score: matchesText(row, query) })).filter(row => row._score > 0.52).sort((a, b) => b._score - a._score);
   return rows;
 }
-export async function stats() { return { total: seed.contents.length + 2, eligible: articles.length, published: articles.length, sources: sources.length }; }
+export async function stats() {
+  const ids = new Set([...seed.contents, ...bundle.articles].map(row => row.id));
+  return { total: ids.size, eligible: articles.length, verified: articles.length, published: articles.length,
+    pending: ids.size - articles.length, sources: sources.length };
+}
 export async function content(slug: string, privateAccess = false) {
   const published = articles.find(row => row.slug === slug || row.id === slug);
   if (published) return { ...published };

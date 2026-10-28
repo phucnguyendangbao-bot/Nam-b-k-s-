@@ -131,6 +131,10 @@ export function Footer({ user }: { user: Row | null }) {
           <a href="/hoi-dap">Tra cứu</a>
           <a href="/ky-uc-cong-dong">Gửi ký ức</a>
           <a href="/ve-du-an">Về dự án</a>
+          <a href="/huong-dan-doc">Hướng dẫn đọc</a>
+          <a href="/nguyen-tac-bien-tap">Nguyên tắc biên tập</a>
+          <a href="/quyen-su-dung">Sử dụng &amp; ghi công</a>
+          <a href="/tinh-trang-tu-lieu">Tình trạng tư liệu</a>
           <a href="/quan-tri">Nghiên cứu &amp; biên tập</a>
         </nav>
         <div className="hs-footer-mark">
@@ -140,7 +144,7 @@ export function Footer({ user }: { user: Row | null }) {
       </div>
       <div className="hs-footer-bottom">
         <span>© 2026 Nam Bộ Ký Sự. Ảnh từ Wikimedia Commons theo giấy phép ghi tại từng ảnh. Bản đồ © OpenStreetMap contributors.</span>
-        {user ? <span>Đang xem: {user.displayName}</span> : <span>Bản Vercel chỉ đọc · Nội dung được quản lý qua GitHub</span>}
+        {user ? <span>Đang xem: {user.displayName}</span> : <span>Mỗi hồ sơ có nguồn để bạn tự đối chiếu</span>}
       </div>
     </footer>
   );
@@ -237,11 +241,11 @@ export function ActionForm({ action, id, back, children, className }: { action: 
   );
 }
 export function SignIn({ returnTo = '/so-tay' }: { returnTo?: string }) {
-  void returnTo;
+  const editorial = returnTo.startsWith('/quan-tri');
   return (
     <div className="signin-panel">
-      <h2>Đây là bản đọc công khai.</h2>
-      <p>Tính năng tài khoản, sổ tay và gửi tư liệu đang tạm đóng trong giai đoạn chuyển từ Sites sang GitHub/Vercel.</p>
+      <h2>{editorial ? 'Không gian biên tập chưa mở công khai.' : 'Giữ lại mạch đọc của bạn.'}</h2>
+      <p>{editorial ? 'Bạn có thể đọc các hồ sơ đã được đối chiếu và xem nguồn dẫn. Khu vực sửa bài dành riêng cho quá trình biên tập.' : 'Sổ tay tài khoản và gửi tư liệu hiện chưa mở. Bạn có thể đánh dấu trang bằng tính năng của trình duyệt, sao chép liên kết hồ sơ hoặc đọc tiếp theo các hành trình.'}</p>
       <a className="button" href="/kham-pha">Xem các hồ sơ đã kiểm chứng <Arrow /></a>
     </div>
   );
