@@ -73,11 +73,11 @@ export type UpdateItem = { href: string; title: string; image?: string; month: s
 /** Khối "Mới cập nhật": thẻ lọc theo chuyên mục và danh sách bài kèm ô lịch. */
 export function UpdatesPanel({ tabs, items }: { tabs: { id: string; label: string }[]; items: UpdateItem[] }) {
   const [tab, setTab] = useState('all');
-  const list = items.filter(i => tab === 'all' || i.tab === tab).slice(0, 4);
+  const list = items.filter(i => tab === 'all' || i.tab === tab).slice(0, 6);
   return (
     <div className="hs-updates">
       <div className="hs-tabs" role="tablist" aria-label="Lọc theo chuyên mục">
-        {[{ id: 'all', label: 'Mới cập nhật' }, ...tabs].map(t => (
+        {[{ id: 'all', label: 'Tất cả' }, ...tabs].map(t => (
           <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} onClick={() => setTab(t.id)}>{t.label}</button>
         ))}
       </div>
@@ -86,7 +86,7 @@ export function UpdatesPanel({ tabs, items }: { tabs: { id: string; label: strin
           <li key={i.href}>
             <a href={i.href}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              {i.image ? <img src={i.image} alt="" loading="lazy" /> : <span className="hs-update-blank" aria-hidden="true">{i.title.slice(0, 1)}</span>}
+              {i.image ? <img src={i.image} alt="" loading="lazy" /> : <span className="hs-update-blank" aria-hidden="true">{i.title.length <= 8 ? i.title : i.title.slice(0, 1)}</span>}
               <span className="hs-update-text">
                 <strong>{i.title}</strong>
                 <span className="hs-calendar" aria-label={`Cập nhật ngày ${i.day} ${i.month}`}>

@@ -1,4 +1,4 @@
-import { LineArt, collectionFor } from '@/components/site';
+import { Ornament, collectionFor } from '@/components/site';
 import { TeaserCard } from '@/components/interactive/lexicon-play';
 import { Gallery, HeroSlider, UpdatesPanel, type Slide, type UpdateItem } from '@/components/interactive/heritage';
 import { categories } from '@/lib/catalog';
@@ -18,6 +18,7 @@ function SectionTitle({ kicker, title, sub, light = false }: { kicker: string; t
       <span className="hs-title-kicker">{kicker}</span>
       <h2>{title}</h2>
       {sub && <span className="hs-title-sub">{sub}</span>}
+      <Ornament />
     </div>
   );
 }
@@ -35,44 +36,57 @@ export default async function Home() {
   const photos = media.filter(m => published.has(m.slug));
   const seen = new Set<string>();
   const order = (u: string) => (u.includes('cai-rang') ? 0 : u.includes('binh-thuy') ? 1 : 2);
-  const slides: Slide[] = [...photos].sort((a, b) => order(a.url) - order(b.url)).filter(m => (seen.has(m.url) ? false : (seen.add(m.url), true))).map(m => ({
+  const slides: Slide[] = [...photos].filter(p => !p.url.includes('trau-cau')).sort((a, b) => order(a.url) - order(b.url)).filter(m => (seen.has(m.url) ? false : (seen.add(m.url), true))).map(m => ({
     src: m.url, title: m.title, href: `/ho-so/${m.slug}`, credit: `Ảnh: ${m.author}, ${m.license_name}`,
   }));
   const articles = items.filter(i => i.content_kind !== 'dialect');
-  const featured = [...articles].sort((a, b) => (b.image_url ? 1 : 0) - (a.image_url ? 1 : 0));
+  const rankFeatured = (c: Row) => (c.image_url ? (String(c.image_url).includes('trau-cau') ? 1 : 0) : 2);
+  const featured = [...articles].sort((a, b) => rankFeatured(a) - rankFeatured(b));
   const tabs = categories.slice(0, 3).map(c => ({ id: c.slug, label: c.name }));
   const updates: UpdateItem[] = [...items]
     .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)))
     .map(i => ({ href: `/ho-so/${i.slug}`, title: i.title, image: i.image_url ?? undefined, tab: collectionFor(i.category).slug, ...calendar(i.updated_at) }));
-  const sidePhoto = photos.find(p => p.url.includes('trau-cau')) ?? photos[photos.length - 1];
-  const bandPhoto = photos.find(p => p.url.includes('binh-thuy')) ?? photos[0];
-  const mapPhoto = photos.find(p => p.url.includes('cai-rang')) ?? photos[0];
+    const bandPhoto = photos.find(p => p.url.includes('thuydaonguyen')) ?? photos[0];
+  const mapPhoto = photos.find(p => p.url.includes('thuydaonguyen')) ?? photos[0];
+  const introPhoto = photos.find(p => p.url.includes('daae')) ?? photos[0];
   const teaser = words.find(w => w.headword === 'mần') ?? words[0];
   const pinned = items.filter(i => i.geo_reviewed === 1 && i.latitude !== null).length;
 
   return (
     <main id="main" className="hs-home">
-      <HeroSlider slides={slides} />
+      <section className="hs-hero">
+        <HeroSlider slides={slides} />
+        <div className="hs-hero-copy">
+          <p className="hs-hero-kicker">Ký sự văn hóa miền Tây</p>
+          <h1>Đất, người và tiếng nói Nam Bộ</h1>
+          <p className="hs-hero-lede">Những hồ sơ ngắn về tên đất, nếp nhà và lời ăn tiếng nói, viết từ nguồn có thật và chỉ rõ chỗ để bạn tự kiểm tra.</p>
+          <div className="hs-hero-actions">
+            <a className="button light" href="/kham-pha">Khám phá hồ sơ</a>
+            <a className="hs-hero-link" href="/hanh-trinh">Đọc theo hành trình</a>
+          </div>
+        </div>
+      </section>
 
       <section className="hs-intro">
         <div className="hs-wrap hs-intro-grid">
-          <div className="hs-intro-art"><LineArt /></div>
           <div className="hs-intro-body">
-            <div className="hs-intro-head">
-              <SectionTitle kicker="Ký sự văn hóa" title="Nam Bộ" sub="Đất, người và tiếng nói miền Tây" />
-              <dl className="hs-facts">
-                <div><dt>Hồ sơ đã kiểm chứng</dt><dd>{numbers.published}</dd></div>
-                <div><dt>Hồ sơ đang nghiên cứu</dt><dd>{numbers.total}</dd></div>
-                <div><dt>Nguồn tư liệu</dt><dd>{numbers.sources}</dd></div>
-                <div><dt>Phạm vi khởi đầu</dt><dd>Cần Thơ, Hậu Giang, Sóc Trăng</dd></div>
-              </dl>
-            </div>
-            <blockquote className="hs-quote">
-              <p>Nam Bộ Ký Sự là kho hồ sơ ngắn về những tên đất, nếp nhà và lời ăn tiếng nói của miền sông nước. Mỗi hồ sơ được viết từ nguồn có thật: văn bản hành chính, bài nghiên cứu, báo chí và từ điển mở, kèm vị trí đối chiếu để người đọc tự kiểm tra.</p>
-              <p>Dự án tách bạch dữ kiện có tư liệu với giả thuyết, lời kể và quan niệm dân gian. Điều chưa rõ được ghi là chưa rõ; một cách làm của một gia đình không được trình bày như khuôn mẫu cho cả vùng.</p>
-            </blockquote>
-            <a className="hs-more" href="/ve-du-an">Xem chi tiết <span aria-hidden="true">»</span></a>
+            <SectionTitle kicker="Về kho hồ sơ" title="Nam Bộ Ký Sự" />
+            <p className="hs-lead">Một kho hồ sơ về những tên đất, nếp nhà và lời ăn tiếng nói của miền sông nước, viết từ văn bản hành chính, bài nghiên cứu, báo chí và từ điển mở.</p>
+            <p className="hs-body">Dữ kiện có tư liệu được tách khỏi giả thuyết, lời kể và quan niệm dân gian. Điều chưa rõ được ghi là chưa rõ; cách làm của một gia đình không được trình bày như khuôn mẫu cho cả vùng.</p>
+            <dl className="hs-facts">
+              <div><dt>Hồ sơ đã kiểm chứng</dt><dd>{numbers.published}</dd></div>
+              <div><dt>Đang nghiên cứu</dt><dd>{numbers.total}</dd></div>
+              <div><dt>Nguồn tư liệu</dt><dd>{numbers.sources}</dd></div>
+            </dl>
+            <a className="hs-more" href="/ve-du-an">Về dự án</a>
           </div>
+          {introPhoto && (
+            <figure className="hs-intro-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={introPhoto.url} alt={introPhoto.caption ?? introPhoto.title} loading="lazy" />
+              <figcaption><a href={`/ho-so/${introPhoto.slug}`}>{introPhoto.title}</a><small>Ảnh: {introPhoto.author}, {introPhoto.license_name}</small></figcaption>
+            </figure>
+          )}
         </div>
       </section>
 
@@ -101,12 +115,10 @@ export default async function Home() {
       )}
 
       <section className="hs-news">
-        <div className="hs-news-panel">
+        <div className="hs-wrap">
+          <SectionTitle kicker="Sổ ghi" title="Mới cập nhật" sub="Các hồ sơ vừa được duyệt và đăng" />
           <UpdatesPanel tabs={tabs} items={updates} />
-          <a className="hs-more is-light" href="/kham-pha">Xem tất cả hồ sơ <span aria-hidden="true">»</span></a>
-        </div>
-        <div className="hs-news-photo" style={sidePhoto ? { backgroundImage: `url(${sidePhoto.url})` } : undefined}>
-          {sidePhoto && <p><a href={`/ho-so/${sidePhoto.slug}`}>{sidePhoto.title}</a><small>Ảnh: {sidePhoto.author}, {sidePhoto.license_name}</small></p>}
+          <p className="hs-news-more"><a className="hs-more" href="/kham-pha">Xem tất cả hồ sơ <span aria-hidden="true">»</span></a></p>
         </div>
       </section>
 
@@ -114,7 +126,7 @@ export default async function Home() {
         <section className="hs-lexicon">
           <div className="hs-wrap hs-lexicon-grid">
             <div>
-              <SectionTitle kicker="Lời ăn tiếng nói" title="Tiếng quê" sub="Từ địa phương có nguồn ghi chép" />
+              <SectionTitle kicker="Lời ăn tiếng nói" title="Tiếng quê" sub="Từ địa phương có nguồn ghi chép" light />
               <p className="hs-lexicon-text">Lật thẻ để xem nghĩa, rồi thử sức với {words.length} câu trắc nghiệm. Nghĩa của mỗi từ dẫn về mục từ gốc, câu ví dụ được ghi rõ là do ban biên soạn đặt.</p>
               <a className="button" href="/chuyen-muc/tieng-que-minh#choi">Mở bộ thẻ và trắc nghiệm</a>
             </div>

@@ -16,11 +16,22 @@ export function Mark({ size = 44 }: { size?: number }) {
 }
 
 /** Hình vẽ nét nhà cổ Nam Bộ bên bến sông, dùng làm minh họa trang trí (không phải tư liệu). */
+/** Hoa văn ngăn cách: hai nét mảnh và một con sóng nhỏ ở giữa. */
+export function Ornament() {
+  return (
+    <svg className="hs-ornament" viewBox="0 0 160 16" aria-hidden="true">
+      <path d="M0 8h58M102 8h58" stroke="currentColor" strokeWidth="1" />
+      <path d="M62 8c3-4 6-4 9 0s6 4 9 0 6-4 9 0 6 4 9 0" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <circle cx="58" cy="8" r="1.6" fill="currentColor" /><circle cx="102" cy="8" r="1.6" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function LineArt() {
   const bays = [40, 88, 136, 184, 232];
   return (
     <svg className="hs-lineart" viewBox="0 0 320 420" role="img" aria-label="Hình vẽ minh họa nhà cổ bên sông, không phải ảnh tư liệu">
-      <g fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="252" cy="68" r="22" />
         <circle cx="252" cy="68" r="32" strokeDasharray="2 7" />
         <path d="M22 330C34 260 26 210 46 124" />

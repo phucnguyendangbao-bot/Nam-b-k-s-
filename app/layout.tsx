@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./styles.css";
 import "./collections.css";
-import "./fonts-heritage.css";
+import "./fonts-bvp.css";
+import "./fonts-display.css";
 import "./theme.css";
 import 'leaflet/dist/leaflet.css';
 import { Header,Footer } from '@/components/site';
