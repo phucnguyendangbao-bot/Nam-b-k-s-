@@ -2,7 +2,9 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { Map as MLMap, Marker as MLMarker, GeoJSONSource } from 'maplibre-gl';
-import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures, smoothLine } from '@/lib/map-style';
+import { googleLinks, hasGoogleMaps } from '@/lib/google-maps';
+import { StreetViewPanel } from './street-view';
+import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures, markHeritageBuildings, smoothLine, type MapLook } from '@/lib/map-style';
 import type { LegMode, MapSource, MapTour } from '@/lib/map-tours';
 
 export type Leg = { mode: LegMode; label: string; note: string; distance: string; coords: [number, number][]; traced: boolean };
@@ -32,12 +34,13 @@ const reduceMotion = () => typeof window !== 'undefined' && window.matchMedia('(
 const wide = () => typeof window !== 'undefined' && window.matchMedia('(min-width: 960px)').matches;
 const escapeHtml = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
-function Icon({ name }: { name: 'play' | 'pause' | 'prev' | 'next' | 'sound' | 'stop' | 'globe' | 'cube' }) {
+function Icon({ name }: { name: 'play' | 'pause' | 'prev' | 'next' | 'sound' | 'stop' | 'globe' | 'cube' | 'street' }) {
   const d: Record<string, string> = {
     play: 'M8 5v14l11-7z', pause: 'M7 5h4v14H7zM13 5h4v14h-4z', prev: 'M15 5 8 12l7 7', next: 'm9 5 7 7-7 7',
     sound: 'M4 9v6h4l5 4V5L8 9zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z', stop: 'M7 7h10v10H7z',
     globe: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.5 2.4 3.8 5.4 3.8 9s-1.3 6.6-3.8 9m0-18C9.5 5.4 8.2 8.4 8.2 12s1.3 6.6 3.8 9M3.5 9h17M3.5 15h17',
     cube: 'm12 3 8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12 4 7.5M12 12v9',
+    street: 'M4 21V9l5-3v15M9 21V4l6 3v14M15 21V11l5 2v8M3 21h18',
   };
   const filled = name === 'play' || name === 'pause' || name === 'stop' || name === 'sound';
   return (
@@ -68,6 +71,12 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
   const [mapState, setMapState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [flat, setFlat] = useState(false);
   const flatRef = useRef(false);
+  /** Nền bản đồ: phố (đường, tên đường, khối nhà 3D) hoặc ảnh vệ tinh có nhãn. */
+  const [look, setLook] = useState<MapLook>('street');
+  const lookRef = useRef<MapLook>('street');
+  const [styleRev, setStyleRev] = useState(0);
+  const [view360, setView360] = useState(false);
+  const close360 = useCallback(() => setView360(false), [setView360]);
   const voice = useSyncExternalStore(subscribeVoices, voiceSnapshot, voiceServer);
   const canSpeak = !voice.startsWith('#');
   const hasAudio = stops.every(s => audio[s.id]);
@@ -309,6 +318,14 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     const i = activeIndex.current;
     map.easeTo({ pitch: next ? 0 : i >= 0 ? stops[i].camera.pitch : 48, duration: reduceMotion() ? 0 : 900, padding: padding() });
   };
+  const switchLook = (next: MapLook) => {
+    if (next === lookRef.current) return;
+    lookRef.current = next;
+    setLook(next);
+    const map = mapRef.current;
+    if (!map) return;
+    map.setStyle(heritageStyle(next), { diff: false });
+  };
   const toggleListen = () => {
     if (speaking) { stopSpeech(); return; }
     if (active >= 0) speak(active);
@@ -322,7 +339,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
       try {
         const ml = await import('maplibre-gl');
         if (cancelled || !mapEl.current) return;
-        const style = heritageStyle();
+        const style = heritageStyle(lookRef.current);
         map = new ml.Map({
           container: mapEl.current,
           style,
@@ -352,9 +369,16 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           markers.current.push(new ml.Marker({ element: el, anchor: 'bottom' }).setLngLat([s.lng, s.lat]).addTo(map!));
         });
 
+        // Mỗi lần nạp kiểu bản đồ (lần đầu và khi đổi phố / vệ tinh): vẽ lại tuyến và báo cho phần đồng bộ chặng.
+        map.on('style.load', () => {
+          if (cancelled || !map) return;
+          (map.getSource('route') as GeoJSONSource | undefined)?.setData({ type: 'FeatureCollection', features: legFeatures(legs) });
+          setStyleRev(r => r + 1);
+        });
+        // Tô vàng khối nhà ngay dưới các điểm dừng khi bản đồ đứng yên.
+        map.on('idle', () => { if (map) markHeritageBuildings(map, stops); });
         map.on('load', () => {
           if (cancelled || !map) return;
-          (map.getSource('route') as GeoJSONSource).setData({ type: 'FeatureCollection', features: legFeatures(legs) });
           setMapState('ready');
           // Trên màn hình hẹp, thu gọn dòng ghi công thành nút (i) để không che dải chặng.
           if (!wide()) map.getContainer().querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
@@ -393,7 +417,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
       type: 'FeatureCollection',
       features: s ? [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [s.lng, s.lat] } }] : [],
     });
-  }, [active, mapState, stops]);
+  }, [active, mapState, stops, styleRev]);
 
 
   /* ---------- Phím tắt ---------- */
@@ -424,7 +448,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     : 'Thuyết minh dùng giọng đọc máy có sẵn trong trình duyệt của bạn, không phải giọng người thật.';
 
   return (
-    <div className={`tp ${active >= 0 ? 'is-stop' : 'is-intro'}`}>
+    <div className={`tp ${active >= 0 ? 'is-stop' : 'is-intro'}`} data-look={look}>
       <div className="tp-stage">
         <div className="tp-map" ref={mapEl} role="application" aria-label={`Bản đồ 3D của tour ${tour.title}. Dùng phím mũi tên trái, phải để chuyển chặng.`} />
         {mapState === 'loading' && <div className="tp-map-note" aria-hidden="true">Đang mở địa cầu…</div>}
@@ -434,9 +458,13 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           </div>
         )}
         <div className="tp-tools" role="group" aria-label="Chế độ xem">
-          <button type="button" onClick={() => go(-1)} aria-pressed={active < 0}><Icon name="globe" /> Toàn tuyến</button>
-          <button type="button" onClick={toggleFlat} aria-pressed={flat}><Icon name="cube" /> {flat ? 'Nhìn nghiêng 3D' : 'Nhìn từ trên'}</button>
+          <button type="button" onClick={() => go(-1)} aria-pressed={active < 0}><Icon name="globe" /><span className="tp-tool-label">Toàn tuyến</span></button>
+          <button type="button" onClick={toggleFlat} aria-pressed={flat}><Icon name="cube" /><span className="tp-tool-label">{flat ? 'Nhìn nghiêng 3D' : 'Nhìn từ trên'}</span></button>
+          <span className="tp-tools-sep" aria-hidden="true" />
+          <button type="button" onClick={() => switchLook('street')} aria-pressed={look === 'street'} title="Đường, tên đường, khối nhà 3D từ OpenStreetMap"><Icon name="street" /><span className="tp-tool-label">Phố</span></button>
+          <button type="button" onClick={() => switchLook('satellite')} aria-pressed={look === 'satellite'} title="Ảnh vệ tinh Esri kèm tên đường"><Icon name="globe" /><span className="tp-tool-label">Vệ tinh</span></button>
         </div>
+        {view360 && stop && <StreetViewPanel key={stop.id} lat={stop.lat} lng={stop.lng} name={stop.name} onClose={close360} />}
         <ol className="tp-rail" aria-label="Các chặng của tour">
           {stops.map((s, i) => (
             <li key={s.id} className={i === active ? 'is-active' : i < active ? 'is-past' : ''}>
@@ -502,6 +530,8 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
               {stop.facts.map(f => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
             </dl>
             {stop.dossier && <p><a className="tp-link" href={`/ho-so/${stop.dossier.slug}`}>Đọc hồ sơ đầy đủ về {stop.name} »</a></p>}
+            {hasGoogleMaps && <p><button type="button" className="tp-link tp-360" onClick={() => setView360(true)}>Xem ảnh 360° quanh {stop.name} (Google) »</button></p>}
+            <p className="tp-google">Xem trên Google: <a href={googleLinks(stop).streetView} target="_blank" rel="noreferrer">Chế độ xem phố ↗</a> · <a href={googleLinks(stop).earth} target="_blank" rel="noreferrer">Google Earth 3D ↗</a></p>
             {stop.related && stop.related.length > 0 && (
               <div className="tp-related">
                 <span>Đọc thêm</span>

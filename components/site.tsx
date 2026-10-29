@@ -112,7 +112,7 @@ export async function Footer({ user }: { user: Row | null }) {
         <ul>
           <li><a href="/nguon-tu-lieu">{n ? `${n.sources} nguồn đăng ký` : 'Danh mục nguồn'}</a>: cơ quan chuyên môn, thư viện, báo chí, từ điển mở.</li>
           <li>Ảnh từ Wikimedia Commons, ghi tác giả và giấy phép tại từng ảnh.</li>
-          <li>Bản đồ: dữ liệu © OpenStreetMap contributors; ảnh vệ tinh Esri World Imagery.</li>
+          <li>Bản đồ: dữ liệu © OpenStreetMap contributors; bản đồ phố 3D OpenFreeMap, OpenMapTiles; ảnh vệ tinh Esri World Imagery{process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? '; chế độ 3D Google và ảnh 360°: dữ liệu và hình ảnh © Google' : process.env.NEXT_PUBLIC_CESIUM_ION_TOKEN ? '; chế độ 3D Google: Google Photorealistic 3D Tiles © Google, phát qua Cesium ion' : ''}.</li>
           <li>Thuyết minh tour: giọng tổng hợp Piper VAIS-1000, CC BY 4.0. Phông Be Vietnam Pro và Noto Serif, giấy phép OFL.</li>
         </ul>
       </div>

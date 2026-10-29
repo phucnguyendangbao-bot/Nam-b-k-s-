@@ -213,3 +213,24 @@
   .tp-rail li.is-active button { padding-right: 13px; }
 }
 .tp-controls .tp-main { white-space: nowrap; }
+
+/* Chế độ phố: nền sáng nên chú thích dùng chữ tối; nhóm công cụ bo tròn */
+.tp-tools { border-radius: 999px; overflow: hidden; }
+.tp-tools-sep { width: 1px; background: rgba(200, 164, 101, .45); }
+.tp[data-look='street'] { background: #F3F1EC; }
+.tp[data-look='street'] .tp-legend { color: #3d3d42; text-shadow: 0 0 3px #fff, 0 0 8px #fff; }
+.tp[data-look='street'] .tp-rail li + li::before { background: rgba(29, 29, 31, .35); }
+.tp[data-look='street'] .tp-pin::after { background: linear-gradient(var(--c-deep-2), rgba(18, 38, 31, 0)); }
+.tp[data-look='street'] .tp-map .maplibregl-ctrl-attrib { background: rgba(255, 255, 255, .85); }
+@media (max-width: 640px) {
+  .tp-tools { left: 10px; translate: none; }
+  .tp-tools button { width: 44px; height: 44px; padding: 0; justify-content: center; }
+  .tp-tool-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+.tp-crumb .breadcrumb span:last-child { color: var(--on-dark); }
+.tp-tools button[aria-pressed='true'] { background: rgba(60, 48, 30, .94); box-shadow: inset 0 -2px 0 var(--gold); }
+.tp-360 { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; text-align: left; }
+.tp-stage .sv-panel { z-index: 5; }
+@media (min-width: 960px) { .tp-stage .sv-panel { left: calc(430px + 36px); } }
+.tp-google { font-family: var(--sans); font-size: 13.5px; color: var(--ink-soft); }
+.tp-google a { color: var(--brass); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }

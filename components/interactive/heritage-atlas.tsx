@@ -5,9 +5,13 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import type { HeritagePlace, PlaceTheme, PlaceTour } from '@/lib/heritage-places';
 import { placeThemes } from '@/lib/heritage-places';
 import { fold } from '@/lib/catalog';
-import { MAP_LOCALE, heritageStyle, legFeatures, smoothLine } from '@/lib/map-style';
+import { MAP_LOCALE, heritageStyle, legFeatures, markHeritageBuildings, smoothLine, type MapLook } from '@/lib/map-style';
+import { googleLinks, hasGoogleMaps, loadGoogleMaps, onGoogleAuthFailure, type Map3D } from '@/lib/google-maps';
+import { StreetViewPanel } from './street-view';
+import { hasCesium, loadCesium } from '@/lib/cesium';
 
-type Mode = '2d' | '3d';
+type Mode = '2d' | MapLook | 'google';
+const modeLabel: Record<Mode, string> = { '2d': '2D', street: '3D phố', satellite: '3D vệ tinh', google: '3D Google' };
 type Engine = {
   show: (ids: Set<string>, routes: boolean, tourSlug: string | null) => void;
   focus: (p: HeritagePlace | null, fit: HeritagePlace[]) => void;
@@ -68,10 +72,12 @@ async function mount2D(el: HTMLDivElement, places: HeritagePlace[], tours: Place
   };
 }
 
-/** Bản đồ 3D bằng MapLibre: địa cầu, ảnh vệ tinh, góc nghiêng. Cần WebGL. */
-async function mount3D(el: HTMLDivElement, places: HeritagePlace[], tours: PlaceTour[], onPick: (id: string) => void): Promise<Engine> {
+/** Bản đồ 3D bằng MapLibre, cần WebGL. `street`: đường, tên đường, khối nhà 3D; `satellite`: ảnh vệ tinh kèm nhãn. */
+async function mount3D(el: HTMLDivElement, places: HeritagePlace[], tours: PlaceTour[], onPick: (id: string) => void, look: MapLook = 'street'): Promise<Engine> {
   const ml = await import('maplibre-gl');
-  const map = new ml.Map({ container: el, style: heritageStyle(), center: [105.77, 10.04], zoom: 11, pitch: 50, bearing: -18, maxPitch: 75, attributionControl: false, cooperativeGestures: true, locale: MAP_LOCALE });
+  const map = new ml.Map({ container: el, style: heritageStyle(look), center: [105.77, 10.04], zoom: 11, pitch: 55, bearing: -18, maxPitch: 78, attributionControl: false, cooperativeGestures: true, locale: MAP_LOCALE });
+  // Khối nhà nằm ngay dưới điểm di sản được tô vàng khi bản đồ đứng yên.
+  map.on('idle', () => markHeritageBuildings(map, places));
   map.addControl(new ml.NavigationControl({ visualizePitch: true }), 'top-right');
   map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Tọa độ: © OpenStreetMap' }), 'bottom-right');
   map.on('error', () => {});
@@ -93,7 +99,7 @@ async function mount3D(el: HTMLDivElement, places: HeritagePlace[], tours: Place
   const fit = (pts: HeritagePlace[]) => {
     if (!pts.length) return;
     map.fitBounds([[Math.min(...pts.map(p => p.lng)), Math.min(...pts.map(p => p.lat))], [Math.max(...pts.map(p => p.lng)), Math.max(...pts.map(p => p.lat))]],
-      { padding: 70, pitch: 50, bearing: -18, maxZoom: 16, duration: reduceMotion() ? 0 : 2200 });
+      { padding: 70, pitch: 55, bearing: -18, maxZoom: 16.4, duration: reduceMotion() ? 0 : 2200 });
   };
   fit(places);
   return {
@@ -101,11 +107,120 @@ async function mount3D(el: HTMLDivElement, places: HeritagePlace[], tours: Place
     focus(p, pts) {
       const focus = map.getSource('focus') as import('maplibre-gl').GeoJSONSource | undefined;
       focus?.setData({ type: 'FeatureCollection', features: p ? [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [p.lng, p.lat] } }] : [] });
-      if (p) map.flyTo({ center: [p.lng, p.lat], zoom: 17.2, pitch: 62, bearing: -20, duration: reduceMotion() ? 0 : 2600, essential: true });
+      if (p) map.flyTo({ center: [p.lng, p.lat], zoom: look === 'street' ? 17.6 : 17.2, pitch: look === 'street' ? 64 : 62, bearing: -20, duration: reduceMotion() ? 0 : 2600, essential: true });
       else fit(pts);
     },
     mark(id) { markers.forEach((m, k) => m.getElement().querySelector('.ap-pin')?.classList.toggle('is-active', k === id)); },
     destroy() { map.remove(); },
+  };
+}
+
+/**
+ * Bản đồ 3D chân thực của Google (Maps JavaScript API, Map3DElement): nhà cửa dựng từ ảnh chụp ở nơi Google có dữ liệu,
+ * nơi khác là ảnh vệ tinh phủ lên địa hình. Ghim là marker 3D có cột, tuyến là đường 3D bám mặt đất.
+ */
+async function mountGoogle3D(el: HTMLDivElement, places: HeritagePlace[], tours: PlaceTour[], onPick: (id: string) => void): Promise<Engine> {
+  const g = await loadGoogleMaps();
+  const lib = await g.maps.importLibrary('maps3d');
+  const center = (pts: HeritagePlace[]) => {
+    const lats = pts.map(p => p.lat), lngs = pts.map(p => p.lng);
+    const c = { lat: (Math.min(...lats) + Math.max(...lats)) / 2, lng: (Math.min(...lngs) + Math.max(...lngs)) / 2 };
+    const span = Math.max(...pts.map(p => Math.hypot((p.lat - c.lat) * 111000, (p.lng - c.lng) * 109000)));
+    return { c, range: Math.max(900, span * 3.2) };
+  };
+  const start = center(places);
+  const map = new lib.Map3DElement({
+    center: { ...start.c, altitude: 0 }, range: start.range, tilt: 58, heading: -20,
+    mode: lib.MapMode.HYBRID, ...(lib.GestureHandling ? { gestureHandling: lib.GestureHandling.COOPERATIVE } : {}),
+  });
+  map.className = 'gm3d';
+  el.appendChild(map);
+  const markers = new Map<string, HTMLElement>();
+  places.forEach((p, i) => {
+    const m = new lib.Marker3DInteractiveElement({
+      position: { lat: p.lat, lng: p.lng, altitude: 40 }, altitudeMode: lib.AltitudeMode.RELATIVE_TO_GROUND, extruded: true,
+      label: `${i + 1}. ${p.name}`, title: p.name,
+    });
+    m.addEventListener('gmp-click', () => onPick(p.id));
+    markers.set(p.id, m);
+  });
+  const lines = tours.map(t => ({
+    slug: t.slug,
+    els: t.legs.map(l => new lib.Polyline3DElement({
+      path: (l.traced ? smoothLine(l.coords) : l.coords).map(([lng, lat]) => ({ lat, lng })),
+      strokeColor: l.traced ? '#F3E7CD' : '#D9BC86', strokeWidth: l.traced ? 6 : 4, outerColor: '#244B43', outerWidth: 0.35,
+      altitudeMode: lib.AltitudeMode.CLAMP_TO_GROUND, drawsOccludedSegments: true,
+    })),
+  }));
+  const fly = (endCamera: Parameters<Map3D['flyCameraTo']>[0]['endCamera']) => map.flyCameraTo({ endCamera, durationMillis: reduceMotion() ? 0 : 2600 });
+  const fit = (pts: HeritagePlace[]) => { if (pts.length) { const v = center(pts); fly({ center: { ...v.c, altitude: 0 }, range: v.range, tilt: 58, heading: -20 }); } };
+  return {
+    show(ids, routes, tourSlug) {
+      markers.forEach((m, id) => { if (ids.has(id)) { if (!m.isConnected) map.appendChild(m); } else m.remove(); });
+      lines.forEach(t => t.els.forEach(l => { if (routes && (!tourSlug || tourSlug === t.slug)) { if (!l.isConnected) map.appendChild(l); } else l.remove(); }));
+    },
+    focus(p, pts) { if (p) fly({ center: { lat: p.lat, lng: p.lng, altitude: 0 }, range: 380, tilt: 67, heading: -25 }); else fit(pts); },
+    mark() { /* marker 3D của Google không đổi kiểu được bằng CSS; vị trí camera đã cho biết điểm đang chọn */ },
+    destroy() { map.stopCameraAnimation?.(); map.remove(); },
+  };
+}
+
+/**
+ * Thành phố 3D chân thực của Google phát qua Cesium ion (không cần tài khoản thanh toán Google).
+ * Ghim là điểm có nhãn nổi trên mái nhà; tuyến tour vẽ bám lên bề mặt 3D.
+ */
+async function mountCesium3D(el: HTMLDivElement, places: HeritagePlace[], tours: PlaceTour[], onPick: (id: string) => void): Promise<Engine> {
+  const C = await loadCesium();
+  const host = document.createElement('div');
+  host.className = 'cesium-host';
+  el.appendChild(host);
+  const viewer = new C.Viewer(host, {
+    timeline: false, animation: false, baseLayerPicker: false, geocoder: false, homeButton: false, sceneModePicker: false,
+    navigationHelpButton: false, fullscreenButton: false, infoBox: false, selectionIndicator: false, globe: false, requestRenderMode: true,
+  });
+  viewer.scene.skyAtmosphere.show = true;
+  // Không dùng dịch vụ tìm địa chỉ nào khác ngoài Google, đúng điều khoản dùng 3D Tiles của Google.
+  const tileset = await C.createGooglePhotorealistic3DTileset({ onlyUsingWithGoogleGeocoder: true });
+  viewer.scene.primitives.add(tileset);
+  const gold = C.Color.fromCssColorString('#D9BC86'), green = C.Color.fromCssColorString('#244B43');
+  const entities = new Map<string, { show: boolean }>();
+  places.forEach((p, i) => {
+    entities.set(p.id, viewer.entities.add({
+      id: p.id, name: p.name, position: C.Cartesian3.fromDegrees(p.lng, p.lat, 28),
+      point: { pixelSize: 14, color: gold, outlineColor: green, outlineWidth: 3, heightReference: C.HeightReference.RELATIVE_TO_3D_TILE, disableDepthTestDistance: Number.POSITIVE_INFINITY },
+      label: {
+        text: `${i + 1}. ${p.name}`, font: '600 14px "Be Vietnam Pro", sans-serif', fillColor: C.Color.WHITE, outlineColor: C.Color.fromCssColorString('#12261F'), outlineWidth: 4,
+        style: C.LabelStyle.FILL_AND_OUTLINE, pixelOffset: new C.Cartesian2(0, -22), heightReference: C.HeightReference.RELATIVE_TO_3D_TILE,
+        disableDepthTestDistance: Number.POSITIVE_INFINITY, distanceDisplayCondition: new C.DistanceDisplayCondition(0, 6000),
+      },
+    }));
+  });
+  const lines = tours.map(t => ({
+    slug: t.slug,
+    els: t.legs.map(l => viewer.entities.add({
+      polyline: {
+        positions: C.Cartesian3.fromDegreesArray((l.traced ? smoothLine(l.coords) : l.coords).flat()), width: l.traced ? 6 : 4, clampToGround: true,
+        material: l.traced ? C.Color.fromCssColorString('#F3E7CD').withAlpha(0.95) : new C.PolylineDashMaterialProperty({ color: gold, dashLength: 14 }),
+      },
+    }) as { show: boolean }),
+  }));
+  viewer.selectedEntityChanged.addEventListener((e: { id?: string } | undefined) => { if (e?.id && entities.has(e.id)) onPick(e.id); });
+  const sphere = (pts: { lat: number; lng: number }[], r: number) => C.BoundingSphere.fromPoints(pts.map(p => C.Cartesian3.fromDegrees(p.lng, p.lat, 0)), new C.BoundingSphere(C.Cartesian3.ZERO, r));
+  const fly = (pts: { lat: number; lng: number }[], range?: number, pitch = -32) => {
+    const bs = sphere(pts, 60);
+    if (bs.radius < 60) bs.radius = 60;
+    viewer.camera.flyToBoundingSphere(bs, { offset: new C.HeadingPitchRange(C.Math.toRadians(-25), C.Math.toRadians(pitch), range ?? Math.max(700, bs.radius * 3.2)), duration: reduceMotion() ? 0 : 2.6 });
+  };
+  fly(places);
+  return {
+    show(ids, routes, tourSlug) {
+      entities.forEach((e, id) => { e.show = ids.has(id); });
+      lines.forEach(t => t.els.forEach(l => { l.show = routes && (!tourSlug || tourSlug === t.slug); }));
+      viewer.scene.requestRender();
+    },
+    focus(p, pts) { if (p) fly([p], 360, -30); else if (pts.length) fly(pts); },
+    mark() { viewer.scene.requestRender(); },
+    destroy() { if (!viewer.isDestroyed()) viewer.destroy(); },
   };
 }
 
@@ -148,14 +263,17 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
     if (!el) return;
     (async () => {
       try {
-        const mounted = await (mode === '3d' ? mount3D : mount2D)(el, places, tours, id => pick(id));
+        const mounted = mode === '2d' ? await mount2D(el, places, tours, id => pick(id))
+          : mode === 'google' ? await (hasGoogleMaps ? mountGoogle3D : mountCesium3D)(el, places, tours, id => pick(id))
+          : await mount3D(el, places, tours, id => pick(id), mode);
         if (cancelled) { mounted.destroy(); return; }
         engine.current = mounted;
         setState('ready');
       } catch {
         if (cancelled) return;
         el.innerHTML = '';
-        if (mode === '3d') { setNotice('Chưa mở được bản đồ 3D trên thiết bị này, đã chuyển về bản đồ 2D.'); setState('loading'); setMode('2d'); }
+        if (mode === 'google') { setNotice('Chưa mở được bản đồ 3D của Google (kiểm tra kết nối, mã Cesium ion hoặc khóa Google), đã chuyển sang 3D phố.'); setState('loading'); setMode('street'); }
+        else if (mode !== '2d') { setNotice('Chưa mở được bản đồ 3D trên thiết bị này, đã chuyển về bản đồ 2D.'); setState('loading'); setMode('2d'); }
         else setState('failed');
       }
     })();
@@ -181,6 +299,16 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
   }, [theme, tour]);
 
   const switchMode = (next: Mode) => { if (next === mode) return; setNotice(''); setState('loading'); setMode(next); };
+  const [street360, setStreet360] = useState(false);
+  const close360 = useCallback(() => setStreet360(false), [setStreet360]);
+  // Khóa Google sai hoặc chưa cho phép tên miền: đóng ảnh 360°, rời chế độ 3D Google về 3D phố miễn phí.
+  useEffect(() => onGoogleAuthFailure(() => {
+    setStreet360(false);
+    if (mode !== 'google') return;
+    setNotice('Khóa Google Maps chưa hợp lệ hoặc chưa cho phép tên miền này, đã chuyển sang 3D phố.');
+    setState('loading');
+    setMode('street');
+  }), [mode]);
   const count = (t: PlaceTheme | 'all') => places.filter(p => (t === 'all' || p.theme === t) && (!tour || p.tours.some(x => x.slug === tour))).length;
 
   return (
@@ -202,7 +330,9 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
           )}
           <div className="nb-segment" role="group" aria-label="Kiểu bản đồ">
             <button type="button" aria-pressed={mode === '2d'} onClick={() => switchMode('2d')}>2D</button>
-            <button type="button" aria-pressed={mode === '3d'} disabled={webgl === false} title={webgl === false ? 'Thiết bị chưa hỗ trợ WebGL nên chưa xem được 3D' : 'Ảnh vệ tinh, góc nhìn nghiêng'} onClick={() => switchMode('3d')}>3D vệ tinh</button>
+            <button type="button" aria-pressed={mode === 'street'} disabled={webgl === false} title={webgl === false ? 'Thiết bị chưa hỗ trợ WebGL nên chưa xem được 3D' : 'Đường phố, tên đường và khối nhà 3D'} onClick={() => switchMode('street')}>3D phố</button>
+            {(hasGoogleMaps || hasCesium) && <button type="button" aria-pressed={mode === 'google'} disabled={webgl === false} title="Thành phố 3D chân thực từ ảnh chụp của Google" onClick={() => switchMode('google')}>3D Google</button>}
+            <button type="button" aria-pressed={mode === 'satellite'} disabled={webgl === false} title={webgl === false ? 'Thiết bị chưa hỗ trợ WebGL nên chưa xem được 3D' : 'Ảnh vệ tinh nhìn nghiêng, kèm tên đường'} onClick={() => switchMode('satellite')}>3D vệ tinh</button>
           </div>
         </div>
       </div>
@@ -210,13 +340,15 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
 
       <div className="atlas-body">
         <div className="atlas-stage">
-          <div className="atlas-map" ref={mapEl} role="region" aria-label={`Bản đồ ${mode === '3d' ? '3D vệ tinh' : '2D'} các điểm di sản. Dùng danh sách bên cạnh để chọn bằng bàn phím.`} />
+          <div className="atlas-map" ref={mapEl} role="region" aria-label={`Bản đồ ${modeLabel[mode]} các điểm di sản. Dùng danh sách bên cạnh để chọn bằng bàn phím.`} />
           {state === 'loading' && <div className="atlas-note" aria-hidden="true"><span className="nb-loading"><span /><span /><span /><b>Đang tải bản đồ…</b></span></div>}
+          {street360 && current && <StreetViewPanel key={current.id} lat={current.lat} lng={current.lng} name={current.name} onClose={close360} />}
           {state === 'failed' && <div className="atlas-note is-failed" role="status"><p>Chưa tải được bản đồ. Kiểm tra kết nối mạng rồi tải lại trang. Danh sách địa điểm bên cạnh vẫn dùng được.</p></div>}
           <div className="atlas-legend">
             <span><i className="ap-key coord-osm" />Tọa độ OSM, chờ đối chiếu</span>
             <span><i className="ap-key coord-reviewed" />Đã đối chiếu{reviewedCount ? ` (${reviewedCount})` : ' (chưa có)'}</span>
             <label className="atlas-routes"><input type="checkbox" checked={routes} onChange={e => setRoutes(e.target.checked)} />Thứ tự chặng</label>
+            {mode === 'street' && <span className="atlas-legend-note"><i className="ap-key is-heritage" />Khối nhà tại điểm di sản · chiều cao nhà là ước lượng từ OpenStreetMap</span>}
           </div>
         </div>
 
@@ -267,7 +399,13 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
                 {current.tours.map(t => (
                   <a key={t.slug} className="button outline" href={`/hanh-trinh/${t.slug}#chang-${t.index + 1}`}>Chặng {t.index + 1}/{t.total} trong tour</a>
                 ))}
+                {hasGoogleMaps && <button type="button" className="button outline" onClick={() => setStreet360(true)}>Ảnh 360° quanh đây</button>}
               </div>
+              <p className="atlas-google">
+                <span>Xem trên Google:</span>
+                <a href={googleLinks(current).streetView} target="_blank" rel="noreferrer">Chế độ xem phố<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
+                <a href={googleLinks(current).earth} target="_blank" rel="noreferrer">Google Earth 3D<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
+              </p>
               {current.tours.map(t => <p key={t.slug} className="atlas-tour">{t.title}{t.draft && <span className="badge-draft">Bản nháp, chờ duyệt nguồn</span>}</p>)}
             </article>
           )}

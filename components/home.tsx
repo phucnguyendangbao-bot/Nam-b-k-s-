@@ -173,7 +173,7 @@ export default async function Home() {
               <li><strong>Tìm và lọc</strong><span>Tìm theo tên, lọc đình chùa, bến chợ, nhà cổ hoặc theo tuyến.</span></li>
               <li><strong>Xem từng điểm</strong><span>Ảnh có ghi công, trạng thái tọa độ, chặng trong tour.</span></li>
               <li><strong>Đọc tiếp</strong><span>Mỗi điểm dẫn về hồ sơ và nguồn tư liệu của nó.</span></li>
-              <li><strong>Nhẹ trên điện thoại</strong><span>Bản đồ 2D mặc định; 3D vệ tinh chỉ tải khi bạn chọn.</span></li>
+              <li><strong>Nhẹ trên điện thoại</strong><span>Bản đồ 2D mặc định; 3D phố và 3D vệ tinh chỉ tải khi bạn chọn.</span></li>
             </ul>
           </div>
         </div>

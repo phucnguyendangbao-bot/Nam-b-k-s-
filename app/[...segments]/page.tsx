@@ -26,7 +26,7 @@ const titles: Record<string, string> = {
 
 const descriptions: Record<string, string> = {
   'kham-pha': 'Tìm và lọc hồ sơ văn hóa Nam Bộ theo chuyên mục: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói, mỗi hồ sơ có nguồn để đối chiếu.',
-  'ban-do': 'Bản đồ di sản Cần Thơ: các điểm trong tour bản đồ và hồ sơ, xem 2D hoặc 3D vệ tinh, kèm trạng thái đối chiếu tọa độ.',
+  'ban-do': 'Bản đồ di sản Cần Thơ: các điểm trong tour bản đồ và hồ sơ, xem 2D, 3D phố có khối nhà và tên đường, hoặc 3D vệ tinh, kèm trạng thái đối chiếu tọa độ.',
   'hanh-trinh': 'Tour bản đồ 3D có thuyết minh dẫn nguồn và hành trình đọc nối các hồ sơ văn hóa Nam Bộ.',
   'nguon-tu-lieu': 'Danh mục nguồn tư liệu mà các hồ sơ Nam Bộ Ký Sự dẫn tới: cơ quan chuyên môn, thư viện, báo chí, từ điển mở, dữ liệu bản đồ.',
 };
