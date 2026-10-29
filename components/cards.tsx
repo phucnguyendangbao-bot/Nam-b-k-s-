@@ -55,9 +55,9 @@ export function StoryCard({ item: c, preview = false, headingLevel = 3 }: { item
         {c.image_url
           ? <Image src={c.image_url} alt="" width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" />
           : isWord ? <span className="nb-story-word">{nfc(c.title)}</span> : <Motif kind={motif} />}
-        <span className="nb-sticker">{c.topic && topics[c.topic] ? topics[c.topic] : collection.name}</span>
       </a>
       <div className="nb-story-body">
+        <p className="nb-story-kicker">{c.topic && topics[c.topic] ? topics[c.topic] : collection.name}</p>
         <H className={isWord ? 'is-word' : undefined}><a href={href}>{isWord ? <>Mục từ “{nfc(c.title)}”</> : nfc(c.title)}</a></H>
         {c.part_of_speech && <p className="nb-word-pos">{c.part_of_speech}</p>}
         <p>{c.meaning ?? c.summary}</p>

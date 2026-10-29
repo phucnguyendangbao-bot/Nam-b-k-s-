@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import type { HeritagePlace, PlaceTheme, PlaceTour } from '@/lib/heritage-places';
 import { placeThemes } from '@/lib/heritage-places';
+import { fold } from '@/lib/catalog';
 import { MAP_LOCALE, heritageStyle, legFeatures, smoothLine } from '@/lib/map-style';
 
 type Mode = '2d' | '3d';
@@ -121,7 +122,12 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
   const [routes, setRoutes] = useState(true);
   const [picked, setPicked] = useState<string | null>(places.some(p => p.id === initialId) ? initialId! : null);
 
-  const visible = useMemo(() => places.filter(p => (theme === 'all' || p.theme === theme) && (!tour || p.tours.some(t => t.slug === tour))), [places, theme, tour]);
+  const [query, setQuery] = useState('');
+  const visible = useMemo(() => {
+    const q = fold(query);
+    return places.filter(p => (theme === 'all' || p.theme === theme) && (!tour || p.tours.some(t => t.slug === tour))
+      && (!q || fold(`${p.name} ${p.kicker} ${p.dossier?.title ?? ''}`).includes(q)));
+  }, [places, theme, tour, query]);
   const current = places.find(p => p.id === picked) ?? null;
   const themesPresent = (Object.keys(placeThemes) as PlaceTheme[]).filter(t => places.some(p => p.theme === t));
   const reviewedCount = places.filter(p => p.coord === 'reviewed').length;
@@ -217,7 +223,12 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
         <aside className="atlas-panel" aria-label="Thông tin địa điểm">
           {!current ? (
             <>
-              <p className="atlas-count" role="status">{visible.length} địa điểm{theme !== 'all' ? `, nhóm ${placeThemes[theme as PlaceTheme].toLowerCase()}` : ''}</p>
+              <div className="atlas-search">
+                <label className="sr-only" htmlFor="atlas-q">Tìm địa điểm</label>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+                <input id="atlas-q" type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Tìm địa điểm: chùa, chợ, Bình Thủy…" autoComplete="off" />
+              </div>
+              <p className="atlas-count" role="status">{visible.length} địa điểm{theme !== 'all' ? `, nhóm ${placeThemes[theme as PlaceTheme].toLowerCase()}` : ''}{query ? `, khớp “${query}”` : ''}</p>
               <ol className="atlas-list">
                 {visible.map(p => (
                   <li key={p.id}>
@@ -228,7 +239,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
                   </li>
                 ))}
               </ol>
-              {!visible.length && <div className="atlas-empty"><p>Không có địa điểm nào trong nhóm này.</p><button type="button" className="nb-text-button" onClick={() => { setTheme('all'); setTour(null); }}>Bỏ bộ lọc</button></div>}
+              {!visible.length && <div className="atlas-empty"><p>Không có địa điểm nào khớp bộ lọc hoặc từ khóa.</p><button type="button" className="nb-text-button" onClick={() => { setTheme('all'); setTour(null); setQuery(''); }}>Bỏ bộ lọc</button></div>}
             </>
           ) : (
             <article className="atlas-card" key={current.id}>

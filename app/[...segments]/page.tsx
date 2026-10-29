@@ -79,6 +79,8 @@ const sourceTypeLabels: Record<string, string> = {
   journalism: 'Báo chí', journalism_article: 'Bài báo', journalism_report: 'Phóng sự', journalism_interview: 'Phỏng vấn trên báo', journalism_report_interview: 'Phóng sự, phỏng vấn',
   geo_api: 'Dịch vụ dữ liệu bản đồ', geo_license: 'Giấy phép dữ liệu bản đồ', geo_download: 'Dữ liệu bản đồ tải về', unesco_profile: 'Hồ sơ UNESCO',
   open_dictionary: 'Từ điển mở', book_notice: 'Thông tin sách', library_catalog: 'Thư mục thư viện',
+  academic_article: 'Bài nghiên cứu', research_article: 'Bài nghiên cứu', organizer_report: 'Báo cáo của đơn vị tổ chức', official_portal_republication: 'Đăng lại trên cổng thông tin chính thức',
+  journalism_republication: 'Bài báo đăng lại', historical_book_transcription: 'Bản chép sách cổ', bibliographic_index: 'Chỉ mục thư tịch',
 };
 const kindLabels: Record<string, string> = { place: 'Địa điểm', custom: 'Phong tục', festival: 'Lễ hội', heritage: 'Di sản và nghề', proverb: 'Tục ngữ', dialect: 'Mục từ' };
 const tourKind: Record<string, string> = { physical: 'Đi thực địa', digital: 'Đọc từ xa', memory: 'Ký ức' };

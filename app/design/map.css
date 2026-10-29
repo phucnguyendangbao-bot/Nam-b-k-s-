@@ -7,16 +7,16 @@
 .atlas-filters { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .atlas-modes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); }
 .atlas-select select { margin: 0; min-height: 40px; padding-block: 6px; font-size: var(--t-sm); max-width: 260px; }
-.atlas-notice { padding: var(--s-2) var(--s-4); border-left: 3px solid var(--c-warning); background: var(--c-warning-soft); font-size: var(--t-sm); color: var(--c-ink); border-radius: 0 var(--r-xs) var(--r-xs) 0; }
-.atlas-body { display: grid; grid-template-columns: minmax(0, 1fr) 340px; height: var(--atlas-h); overflow: hidden; border: 1px solid var(--c-line-strong); border-radius: var(--r-sm); background: var(--c-surface); }
+.atlas-notice { padding: var(--s-2) var(--s-4); background: var(--c-warning-soft); font-size: var(--t-sm); color: var(--c-ink); border-radius: var(--r-sm); }
+.atlas-body { display: grid; grid-template-columns: minmax(0, 1fr) 340px; height: var(--atlas-h); overflow: hidden; border: 0; border-radius: var(--r-md); background: var(--c-surface); color: var(--c-ink); box-shadow: var(--sh-1); }
 .atlas-stage { position: relative; min-width: 0; background: var(--c-paper-deep); }
 .atlas-stage > .atlas-map { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; }
 .atlas[data-mode='3d'] .atlas-stage { background: var(--c-deep-2); }
-.atlas-note { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: var(--s-6); text-align: center; background: rgba(229, 218, 197, .7); pointer-events: none; }
+.atlas-note { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: var(--s-6); text-align: center; background: rgba(245, 245, 247, .72); pointer-events: none; }
 .atlas[data-mode='3d'] .atlas-note { background: rgba(11, 33, 29, .7); color: var(--c-on-deep); }
 .atlas-note.is-failed { pointer-events: auto; background: var(--c-paper-sunken); }
 .atlas-note p { max-width: 38ch; color: var(--c-ink-soft); }
-.atlas-legend { position: absolute; left: 10px; bottom: 26px; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 6px var(--s-4); max-width: calc(100% - 20px); padding: 6px 12px; background: rgba(252, 249, 243, .94); border: 1px solid var(--c-line); border-radius: var(--r-sm); font-size: 12px; color: var(--c-ink-soft); box-shadow: var(--sh-1); }
+.atlas-legend { position: absolute; left: 10px; bottom: 26px; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 6px var(--s-4); max-width: calc(100% - 20px); padding: 6px 12px; background: rgba(255, 255, 255, .9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 0; border-radius: var(--r-pill); font-size: 12px; color: var(--c-ink-soft); box-shadow: var(--sh-1); }
 .atlas-legend > span { display: inline-flex; align-items: center; gap: 6px; }
 .atlas-routes { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; }
 .atlas-routes input { width: 15px; height: 15px; margin: 0; }
@@ -28,7 +28,7 @@
 .ap-icon { background: none !important; border: 0 !important; padding: 0; cursor: pointer; }
 .leaflet-marker-icon.ap-icon:focus-visible { outline: none; }
 .ap-pin { position: relative; display: grid; place-items: center; width: 30px; height: 30px; }
-.ap-pin > b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--c-surface); color: var(--c-ink); border: 2px solid var(--c-accent-ink); font: 700 12px/1 var(--f-ui); box-shadow: 0 2px 6px rgba(11, 33, 29, .3); transition: transform var(--d-fast) var(--ease), background var(--d-fast); }
+.ap-pin > b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--c-surface); color: var(--c-ink); border: 2px solid var(--c-accent-ink); font: 700 12px/1 var(--f-ui); box-shadow: 0 2px 6px rgba(0, 0, 0, .25); transition: transform var(--d-fast) var(--ease), background var(--d-fast); }
 .ap-pin.coord-reviewed > b { background: var(--c-primary); color: var(--c-on-deep); border: 2px solid var(--c-surface); }
 .ap-pin.theme-worship > b { border-color: var(--c-tone-dusk); }
 .ap-pin.theme-river > b { border-color: var(--c-tone-river); }
@@ -42,7 +42,7 @@
 
 /* Bảng thông tin bên phải */
 .atlas-panel { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 0; overflow-y: auto; border-left: 1px solid var(--c-line); background: var(--c-surface); scrollbar-width: thin; }
-.atlas-count { position: sticky; top: 0; z-index: 1; padding: var(--s-3) var(--s-5); background: var(--c-surface); border-bottom: 1px solid var(--c-line); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); }
+.atlas-count { padding: var(--s-3) var(--s-5); background: var(--c-paper); border-bottom: 1px solid var(--c-line); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-soft); }
 .atlas-list { list-style: none; }
 .atlas-list button { display: grid; grid-template-columns: 32px 1fr; gap: var(--s-3); align-items: start; width: 100%; padding: var(--s-3) var(--s-5); text-align: left; border-bottom: 1px solid var(--c-line); transition: background var(--d-fast); }
 .atlas-list button:hover { background: var(--c-paper-sunken); }
@@ -52,7 +52,7 @@
 .ap-num.theme-worship { border-color: var(--c-tone-dusk); }
 .ap-num.theme-river { border-color: var(--c-tone-river); }
 .ap-num.theme-house { border-color: var(--c-tone-lily); }
-.atlas-list strong { display: block; font-family: var(--f-display); font-size: var(--t-md); font-weight: 400; line-height: 1.25; color: var(--c-ink); }
+.atlas-list strong { display: block; font-family: var(--f-display); font-size: var(--t-md); font-weight: 600; line-height: 1.25; color: var(--c-ink); }
 .atlas-list small { display: block; margin-top: 2px; font-size: var(--t-xs); color: var(--c-ink-muted); }
 .atlas-empty { display: grid; gap: var(--s-2); justify-items: start; padding: var(--s-5); color: var(--c-ink-muted); font-size: var(--t-sm); }
 .atlas-card { display: grid; gap: var(--s-3); padding: var(--s-4) var(--s-5) var(--s-6); animation: rise var(--d-base) var(--ease) both; }
@@ -64,7 +64,7 @@
 .atlas-photo figcaption a { text-decoration: underline; text-underline-offset: 2px; }
 .atlas-theme { font-size: var(--t-sm); font-weight: 600; color: var(--c-accent-ink); }
 .atlas-card h3 { font-size: var(--t-xl); margin-top: -6px; }
-.atlas-kicker { font-family: var(--f-read); font-size: var(--t-sm); color: var(--c-ink-soft); }
+.atlas-kicker { font-size: var(--t-sm); color: var(--c-ink-soft); }
 .atlas-coord { display: grid; gap: 2px; padding: var(--s-3); border: 1px dashed var(--c-accent-ink); border-radius: var(--r-xs); font-size: var(--t-xs); color: var(--c-ink-soft); }
 .atlas-coord strong { font-size: var(--t-sm); color: var(--c-ink); }
 .atlas-coord.coord-reviewed { border-style: solid; border-color: var(--c-primary); background: var(--c-primary-tint); }
@@ -74,14 +74,16 @@
 .atlas-tour { display: flex; flex-wrap: wrap; align-items: center; gap: 6px var(--s-2); font-size: var(--t-xs); color: var(--c-ink-muted); }
 .atlas-tour .badge-draft { color: var(--c-warning); }
 .atlas-foot { font-size: var(--t-xs); line-height: 1.6; color: var(--c-ink-muted); max-width: 90ch; }
-.on-deep .atlas-foot, .is-deep .atlas-foot { color: var(--c-on-deep-soft); }
+.on-deep .atlas-foot, .is-deep .atlas-foot, [data-surface='deep'] .atlas-foot { color: var(--c-on-deep-soft); }
+[data-surface='deep'] .atlas .nb-segment { background: rgba(255, 255, 255, .14); }
+[data-surface='deep'] .atlas .nb-segment button { color: var(--c-on-deep); }
+[data-surface='deep'] .atlas .nb-segment button[aria-pressed='true'], [data-surface='deep'] .atlas .nb-segment button[aria-selected='true'] { color: var(--c-ink); }
 .is-deep .atlas-select select { background-color: var(--c-surface); }
 
 /* Leaflet theo tông giấy */
 .atlas .leaflet-container { font-family: var(--f-ui); background: var(--c-paper-deep); }
-.atlas .leaflet-tile-pane { filter: sepia(.18) saturate(.82) contrast(.96); }
 .atlas .leaflet-bar a { color: var(--c-primary); }
-.atlas .leaflet-control-attribution { font-size: 11px; background: rgba(252, 249, 243, .85); }
+.atlas .leaflet-control-attribution { font-size: 11px; background: rgba(255, 255, 255, .85); }
 .atlas .maplibregl-ctrl-group { background: var(--c-surface); }
 
 @media (max-width: 860px) {
@@ -96,17 +98,15 @@
 }
 
 /* ---------- Trang chủ: khung mở bản đồ và sơ đồ tuyến ---------- */
-.atlas-launch { display: grid; gap: var(--s-5); padding: var(--s-6); background: var(--c-surface); color: var(--c-ink); border-radius: var(--r-sm); }
+.atlas-launch { display: grid; gap: var(--s-5); padding: var(--s-6); background: var(--c-surface); color: var(--c-ink); border-radius: var(--r-md); }
 .atlas-launch-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
-.atlas-launch-actions .button.dark { --btn-fg: var(--c-primary); --btn-bd: var(--c-line-strong); }
-.atlas-launch-actions .button.dark:hover { --btn-bg: var(--c-primary-tint); --btn-bd: var(--c-primary); }
 .atlas-placeholder { display: grid; place-items: center; height: 520px; background: var(--c-surface); border-radius: var(--r-sm); }
 .is-deep .atlas { padding: var(--s-4); background: var(--c-surface); border-radius: var(--r-sm); color: var(--c-ink); }
 .is-deep .atlas-foot { color: var(--c-ink-muted); }
 
 .rd { display: grid; gap: var(--s-6); margin: 0; }
 .rd-tour { display: grid; gap: var(--s-3); }
-.rd-title a { font-family: var(--f-display); font-size: var(--t-lg); color: var(--c-ink); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
+.rd-title a { font-family: var(--f-display); font-size: var(--t-lg); font-weight: 600; color: var(--c-ink); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; }
 .rd-title a:hover { text-decoration-color: var(--c-accent); }
 .rd-line { list-style: none; display: flex; align-items: flex-start; }
 .rd-line li { position: relative; flex: 1 1 0; min-width: 0; }
@@ -139,3 +139,10 @@
 .two-column aside h2:first-child { margin-top: 0; }
 .atlas > *, .atlas-bar > * { min-width: 0; }
 @media (max-width: 860px) { .atlas-filters { width: calc(100% + var(--gutter) * 2); } }
+
+/* Ô tìm địa điểm trong bảng bên */
+.atlas-search { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: var(--s-2); padding: var(--s-3) var(--s-4) 0; background: var(--c-paper); color: var(--c-ink-muted); }
+.atlas-search input:not([type=hidden]) { margin: 0; min-height: 44px; padding: 8px 12px; border: 0; border-radius: var(--r-pill); background: var(--c-paper-sunken); font-size: var(--t-base); }
+.atlas-search input:focus-visible { box-shadow: 0 0 0 3px rgba(10, 102, 194, .35); }
+.atlas-search svg { position: absolute; left: calc(var(--s-4) + 12px); pointer-events: none; }
+.atlas-search input { padding-left: 36px !important; }

@@ -125,19 +125,49 @@ function Sheet({ open, onClose, id, children }: { open: boolean; onClose: () => 
   );
 }
 
-/** Điều hướng chính: liên kết trực tiếp, một ngăn “Chuyên mục” mở ra từ chính nút bấm, và tấm menu trên điện thoại. */
-export function SiteNav({ primary, collections, secondary }: { primary: NavLink[]; collections: NavLink[]; secondary: NavLink[] }) {
+export type NavMenu = { label: string; menu: NavLink[]; all?: NavLink };
+export type NavItem = NavLink | NavMenu;
+const isMenu = (x: NavItem): x is NavMenu => 'menu' in x;
+
+/** Một ngăn thả xuống: mở ra từ chính nút bấm, chỉ một ngăn mở tại một thời điểm. */
+function MenuItem({ item, path, open, onToggle, onClose }: { item: NavMenu; path: string; open: boolean; onToggle: () => void; onClose: () => void }) {
+  const root = useRef<HTMLLIElement>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+  const id = useId();
+  useDismiss(open, onClose, root, btn);
+  const current = item.menu.some(c => isCurrent(path, c.href));
+  return (
+    <li className="sn-has-menu" ref={root}>
+      <button ref={btn} type="button" aria-expanded={open} aria-controls={id} onClick={onToggle} className={current ? 'is-current' : undefined}>
+        {item.label}
+        <svg width="10" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+      </button>
+      <div className="sn-menu material" id={id} data-state={open ? 'open' : 'closed'} inert={!open}>
+        <ul>
+          {item.menu.map(c => (
+            <li key={c.href}>
+              <a href={c.href} aria-current={isCurrent(path, c.href) ? 'page' : undefined}>
+                <strong>{c.label}</strong>
+                {c.note && <small>{c.note}</small>}
+              </a>
+            </li>
+          ))}
+        </ul>
+        {item.all && <a className="sn-menu-all" href={item.all.href}>{item.all.label} <span aria-hidden="true">→</span></a>}
+      </div>
+    </li>
+  );
+}
+
+/** Điều hướng chính: liên kết trực tiếp, ngăn thả xuống khi thật cần, và tấm menu trên điện thoại. */
+export function SiteNav({ items, secondary }: { items: NavItem[]; secondary: NavLink[] }) {
   const path = usePathname() ?? '/';
-  const [menu, setMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [drawer, setDrawer] = useState(false);
-  const menuRoot = useRef<HTMLLIElement>(null);
-  const menuBtn = useRef<HTMLButtonElement>(null);
   const drawerBtn = useRef<HTMLButtonElement>(null);
-  const menuId = useId();
   const drawerId = useId();
-  const closeMenu = useCallback(() => setMenu(false), []);
+  const closeMenu = useCallback(() => setOpenMenu(null), []);
   const closeDrawer = useCallback(() => { setDrawer(false); drawerBtn.current?.focus({ preventScroll: true }); }, []);
-  useDismiss(menu, closeMenu, menuRoot, menuBtn);
   useEffect(() => {
     if (!drawer) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeDrawer(); };
@@ -145,42 +175,23 @@ export function SiteNav({ primary, collections, secondary }: { primary: NavLink[
     return () => document.removeEventListener('keydown', onKey);
   }, [drawer, closeDrawer]);
 
-  // Mép cuộn: thanh đầu trang chỉ hiện lớp mờ chuyển tiếp khi nội dung thực sự trượt bên dưới.
+  // Mép cuộn: thanh đầu trang chỉ hiện nền mờ và lớp chuyển tiếp khi nội dung thực sự trượt bên dưới.
   useEffect(() => {
     const header = document.querySelector<HTMLElement>('.sh');
     if (!header) return;
-    const onScroll = () => { header.dataset.scrolled = window.scrollY > 4 ? 'true' : 'false'; };
+    const onScroll = () => { header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false'; };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const inCollections = collections.some(c => isCurrent(path, c.href));
 
   return (
     <>
       <nav className="sn" aria-label="Điều hướng chính">
         <ul className="sn-list">
-          {primary.slice(0, 1).map(l => <li key={l.href}><a href={l.href} aria-current={isCurrent(path, l.href) ? 'page' : undefined}>{l.label}</a></li>)}
-          <li className="sn-has-menu" ref={menuRoot}>
-            <button ref={menuBtn} type="button" aria-expanded={menu} aria-controls={menuId} onClick={() => setMenu(m => !m)} className={inCollections ? 'is-current' : undefined}>
-              Chuyên mục
-              <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
-            </button>
-            <div className="sn-menu material" id={menuId} data-state={menu ? 'open' : 'closed'} inert={!menu}>
-              <ul>
-                {collections.map(c => (
-                  <li key={c.href}>
-                    <a href={c.href} aria-current={isCurrent(path, c.href) ? 'page' : undefined}>
-                      <strong>{c.label}</strong>
-                      {c.note && <small>{c.note}</small>}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <a className="sn-menu-all" href="/kham-pha">Xem toàn bộ hồ sơ</a>
-            </div>
-          </li>
-          {primary.slice(1).map(l => <li key={l.href}><a href={l.href} aria-current={isCurrent(path, l.href) ? 'page' : undefined}>{l.label}</a></li>)}
+          {items.map(item => isMenu(item)
+            ? <MenuItem key={item.label} item={item} path={path} open={openMenu === item.label} onToggle={() => setOpenMenu(m => (m === item.label ? null : item.label))} onClose={closeMenu} />
+            : <li key={item.href}><a href={item.href} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>{item.label}</a></li>)}
         </ul>
       </nav>
 
@@ -191,14 +202,17 @@ export function SiteNav({ primary, collections, secondary }: { primary: NavLink[
         </button>
         <Sheet open={drawer} onClose={closeDrawer} id={drawerId}>
           <nav aria-label="Điều hướng trên điện thoại">
-            <p className="sn-drawer-label">Đọc và tra cứu</p>
             <ul className="sn-drawer-main">
-              {primary.map(l => <li key={l.href}><a href={l.href} aria-current={isCurrent(path, l.href) ? 'page' : undefined}>{l.label}</a></li>)}
+              {items.filter((x): x is NavLink => !isMenu(x)).map(l => <li key={l.href}><a href={l.href} aria-current={isCurrent(path, l.href) ? 'page' : undefined}>{l.label}</a></li>)}
             </ul>
-            <p className="sn-drawer-label">Chuyên mục</p>
-            <ul className="sn-drawer-grid">
-              {collections.map(c => <li key={c.href}><a href={c.href} aria-current={isCurrent(path, c.href) ? 'page' : undefined}>{c.label}</a></li>)}
-            </ul>
+            {items.filter(isMenu).map(m => (
+              <div key={m.label}>
+                <p className="sn-drawer-label">{m.label}</p>
+                <ul className="sn-drawer-grid">
+                  {m.menu.map(c => <li key={c.href}><a href={c.href} aria-current={isCurrent(path, c.href) ? 'page' : undefined}>{c.label}</a></li>)}
+                </ul>
+              </div>
+            ))}
             <p className="sn-drawer-label">Về dự án</p>
             <ul className="sn-drawer-small">
               {secondary.map(l => <li key={l.href}><a href={l.href}>{l.label}</a></li>)}

@@ -167,7 +167,7 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
 export function DocumentaryImage({ media: m, eager = false }: { media: Row; eager?: boolean }) {
   return (
     <figure className="documentary-photo">
-      <Image src={m.url} alt={m.caption} width={m.width ?? 1600} height={m.height ?? 1067} unoptimized loading={eager ? 'eager' : 'lazy'} />
+      <Image src={m.url} alt={m.caption} width={m.width ?? 1600} height={m.height ?? 1067} sizes="(max-width: 640px) 100vw, (max-width: 1260px) 96vw, 1200px" unoptimized={!String(m.url).startsWith('/')} loading={eager ? 'eager' : 'lazy'} />
       <figcaption>
         <strong>{m.caption}</strong>
         <span>{m.author}, <a href={m.source_url} target="_blank" rel="noreferrer">Wikimedia Commons</a>, <a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></span>
@@ -240,26 +240,29 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           contentLocation: c.historical_area ? { '@type': 'Place', name: c.historical_area } : undefined,
         }).replace(/</g, '\\u003c') }} />
       )}
+      <header className="nb-dossier-hero">
+        <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
+        <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
+        <p className="dossier-intro">{c.introduction || c.summary}</p>
+        <p className="dossier-meta">
+          <Classification value={c.classification} />
+          {preview ? <Status status={c.cms_status ?? 'draft'} /> : <span>Hồ sơ {c.id} · bản duyệt {c.revision}</span>}
+          {c.historical_area && <span>{c.historical_area}</span>}
+          <span>{minutes} phút đọc</span>
+          <a href="#nguon-tham-khao">{citations.length} nguồn</a>
+        </p>
+      </header>
+      {cover && <div className="nb-dossier-cover"><DocumentaryImage media={cover} eager /></div>}
       <div className="dossier-layout">
         <article className="dossier-main">
-          <header className="nb-dossier-hero">
-            <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
-            <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
-            <div className="badge-row">
-              <Classification value={c.classification} />
-              {preview ? <Status status={c.cms_status ?? 'draft'} /> : <span className="badge">Hồ sơ {c.id}, bản duyệt {c.revision}</span>}
-              <span className="badge">{c.historical_area}</span>
-              <span className="badge">Đọc khoảng {minutes} phút</span>
-            </div>
-            <p className="dossier-intro">{c.introduction || c.summary}</p>
-            {cover && <div className="nb-dossier-cover"><DocumentaryImage media={cover} eager /></div>}
+          <div className="dossier-lead">
             {c.scope_note && <p className="dossier-scope"><strong>Phạm vi bài viết</strong>{c.scope_note}</p>}
             {sections.length > 0 && <div className="dossier-mix"><span>Bài này gồm</span><EvidenceMix sectionsJson={c.sections_json} /></div>}
             <details className="toc-mobile">
               <summary>Trong bài này</summary>
               <nav aria-label="Mục lục bài"><ol>{toc.map(t => <li key={t.href}><a href={t.href}>{t.label}</a></li>)}</ol></nav>
             </details>
-          </header>
+          </div>
 
           {dialect && (
             <section className="lexicon-panel" id="nghia-tu">

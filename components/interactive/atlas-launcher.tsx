@@ -16,8 +16,8 @@ export function AtlasLauncher({ places, tours, children }: { places: HeritagePla
     <div className="atlas-launch">
       {children}
       <div className="atlas-launch-actions">
-        <button type="button" className="button gold" onClick={() => setOpen(true)}>Mở bản đồ tương tác tại đây</button>
-        <a className="button dark" href="/ban-do">Xem trang bản đồ</a>
+        <button type="button" className="button" onClick={() => setOpen(true)}>Mở bản đồ tại đây</button>
+        <a className="button outline" href="/ban-do">Xem trang bản đồ</a>
       </div>
     </div>
   );

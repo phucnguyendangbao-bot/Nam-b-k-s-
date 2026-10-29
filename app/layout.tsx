@@ -12,6 +12,7 @@ import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';
 import { CommandPalette } from '@/components/interactive/command-palette';
+import { RevealObserver } from '@/components/interactive/reveal';
 
 export const metadata: Metadata = {
   metadataBase:new URL(siteUrl),
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: '#183F39', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#FFFFFF', width: 'device-width', initialScale: 1 };
 export const dynamic='force-dynamic';
 export default async function RootLayout({
   children,
@@ -36,7 +37,12 @@ export default async function RootLayout({
   const structuredData=JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Nam Bộ Ký Sự',url:siteUrl,inLanguage:'vi',description:'Thư viện văn hóa có nguồn tư liệu và trạng thái kiểm chứng.'}).replace(/</g,'\\u003c');
   return (
     <html lang="vi">
-      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/></body>
+      <head>
+        <link rel="preload" href="/fonts/be-vietnam-pro-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
+      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/></body>
     </html>
   );
 }

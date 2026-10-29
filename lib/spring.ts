@@ -60,6 +60,9 @@ export class SpringValue {
     this.target = initial;
   }
 
+  /** Đích hiện tại (để cộng dồn khi người dùng bấm tiếp trong lúc đang chạy). */
+  get destination() { return this.target; }
+
   /** Đặt giá trị tức thì (bám theo ngón tay 1:1), dừng mọi chuyển động. */
   set(value: number) {
     this.stop();

@@ -1,7 +1,8 @@
 import { categories, classes, statusLabels } from '@/lib/catalog';
 import { stats, type Row } from '@/lib/static-data';
 import { SearchTrigger } from '@/components/interactive/command-palette';
-import { SiteNav } from '@/components/interactive/site-nav';
+import { SiteNav, type NavItem } from '@/components/interactive/site-nav';
+import { knowledgeDomains } from '@/lib/knowledge-taxonomy';
 import { Arrow, Motif, StoryCard, categoryTone } from './cards';
 export { Arrow, EvidenceMix, Motif, StoryCard, categoryTone, evidenceMix, toneFor, collectionFor } from './cards';
 
@@ -16,12 +17,30 @@ export function Mark({ size = 44 }: { size?: number }) {
   );
 }
 
-const primaryNav = [
+const domain = (id: string, label?: string, href?: string) => {
+  const d = knowledgeDomains.find(x => x.id === id)!;
+  return { href: href ?? `/chuyen-de/${id}`, label: label ?? d.name, note: d.description };
+};
+const navItems: NavItem[] = [
   { href: '/kham-pha', label: 'Khám phá' },
+  {
+    label: 'Văn hóa',
+    menu: [
+      domain('phong-tuc-doi-song'), domain('tin-nguong-ton-giao'), domain('le-hoi'), domain('van-hoc-nghe-thuat'),
+      domain('am-thuc'), domain('lang-nghe-sinh-ke'), domain('kien-truc-khong-gian-song'), domain('phuong-ngu-nam-bo', 'Phương ngữ Nam Bộ', '/tu-dien'),
+    ],
+    all: { href: '/tri-thuc', label: 'Kho tri thức: đủ 12 lĩnh vực' },
+  },
+  {
+    label: 'Lịch sử',
+    menu: [
+      domain('lich-su-khao-co'), domain('dia-danh'), domain('nhan-vat-ky-uc'), domain('dia-ly-sinh-thai'),
+      { href: '/dong-thoi-gian', label: 'Dòng thời gian tư liệu', note: 'Các mốc có nguồn, phân biệt ghi danh và sự kiện.' },
+      { href: '/vi-sao-lai-the', label: 'Vì sao lại thế?', note: 'Lời giải thích và điều chưa rõ trong các hồ sơ.' },
+    ],
+  },
   { href: '/ban-do', label: 'Bản đồ' },
   { href: '/hanh-trinh', label: 'Hành trình' },
-  { href: '/tu-dien', label: 'Từ điển' },
-  { href: '/tri-thuc', label: 'Kho tri thức' },
 ];
 const aboutNav = [
   { href: '/ve-du-an', label: 'Về dự án' },
@@ -29,7 +48,6 @@ const aboutNav = [
   { href: '/huong-dan-doc', label: 'Hướng dẫn đọc' },
   { href: '/ky-uc-cong-dong', label: 'Gửi ký ức' },
 ];
-const collectionNav = categories.map(c => ({ href: `/chuyen-muc/${c.slug}`, label: c.name, note: c.subtitle }));
 
 export function Header({ user }: { user: Row | null }) {
   const staff = user && ['admin', 'editor', 'researcher'].includes(user.role);
@@ -39,10 +57,10 @@ export function Header({ user }: { user: Row | null }) {
       <header className="sh">
         <div className="sh-inner">
           <a className="sh-brand" href="/" aria-label="Nam Bộ Ký Sự, về trang chủ">
-            <Mark size={36} />
+            <Mark size={28} />
             <span className="sh-word">Nam Bộ <b>Ký Sự</b></span>
           </a>
-          <SiteNav primary={primaryNav} collections={collectionNav} secondary={staff ? [...aboutNav, { href: '/quan-tri', label: 'Bàn biên tập' }] : aboutNav} />
+          <SiteNav items={navItems} secondary={staff ? [...aboutNav, { href: '/quan-tri', label: 'Bàn biên tập' }] : aboutNav} />
           <div className="sh-tools">
             <SearchTrigger />
             {staff && <a className="sh-staff" href="/quan-tri">Bàn biên tập</a>}
@@ -54,26 +72,21 @@ export function Header({ user }: { user: Row | null }) {
 }
 
 const footerGroups: { title: string; links: [string, string][] }[] = [
-  { title: 'Chuyên mục', links: categories.map(c => [`/chuyen-muc/${c.slug}`, c.name]) },
+  { title: 'Khám phá', links: categories.map(c => [`/chuyen-muc/${c.slug}`, c.name]) },
   { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
-  { title: 'Cách làm', links: [['/ve-du-an', 'Về dự án'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/nguyen-tac-bien-tap', 'Nguyên tắc biên tập'], ['/quyen-su-dung', 'Sử dụng và ghi công'], ['/tinh-trang-tu-lieu', 'Tình trạng tư liệu'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
+  { title: 'Dự án', links: [['/ve-du-an', 'Giới thiệu dự án'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
+  { title: 'Chính sách', links: [['/nguyen-tac-bien-tap', 'Nguyên tắc biên tập'], ['/quyen-su-dung', 'Sử dụng và ghi công'], ['/tinh-trang-tu-lieu', 'Tình trạng tư liệu']] },
 ];
 
 export async function Footer({ user }: { user: Row | null }) {
   let n: { sources: number; published: number } | null = null;
   try { n = await stats(); } catch { /* chân trang vẫn hiển thị khi chưa đọc được số liệu */ }
   return (
-    <footer className="sf" data-surface="deep">
+    <footer className="sf">
       <div className="sf-inner">
         <div className="sf-brand">
-          <a className="sh-brand" href="/" aria-label="Nam Bộ Ký Sự, về trang chủ"><Mark size={40} /><span className="sh-word">Nam Bộ <b>Ký Sự</b></span></a>
+          <a className="sh-brand" href="/" aria-label="Nam Bộ Ký Sự, về trang chủ"><Mark size={28} /><span className="sh-word">Nam Bộ <b>Ký Sự</b></span></a>
           <p>Kho hồ sơ văn hóa Nam Bộ, bắt đầu từ Cần Thơ, Hậu Giang và Sóc Trăng. Mỗi nhận định dẫn về nguồn để bạn tự đối chiếu.</p>
-          <ul className="ev-key on-deep" aria-label="Cách đọc nhãn trong hồ sơ">
-            <li><span className="epistemic-label kind-documented_history">Có tư liệu</span></li>
-            <li><span className="epistemic-label kind-hypothesis">Giả thuyết</span></li>
-            <li><span className="epistemic-label kind-folk_belief">Truyền thống kể</span></li>
-            <li><span className="epistemic-label kind-editorial_note">Ghi chú biên tập</span></li>
-          </ul>
         </div>
         {footerGroups.map(g => (
           <nav className="sf-col" key={g.title} aria-label={g.title}>
@@ -82,17 +95,29 @@ export async function Footer({ user }: { user: Row | null }) {
           </nav>
         ))}
       </div>
+      <div className="sf-method">
+        <div>
+          <h2>Phương pháp kiểm chứng</h2>
+          <p>Mỗi đoạn trong hồ sơ được gắn nhãn loại thông tin và dẫn về nguồn. Hồ sơ chỉ công bố sau khi đối chiếu nguồn và duyệt quyền sử dụng ảnh. <a href="/huong-dan-doc">Cách đọc một hồ sơ</a></p>
+        </div>
+        <ul className="ev-key" aria-label="Các loại nhãn thông tin">
+          <li><span className="epistemic-label kind-documented_history">Có tư liệu</span></li>
+          <li><span className="epistemic-label kind-hypothesis">Giả thuyết</span></li>
+          <li><span className="epistemic-label kind-folk_belief">Truyền thống kể</span></li>
+          <li><span className="epistemic-label kind-editorial_note">Ghi chú biên tập</span></li>
+        </ul>
+      </div>
       <div className="sf-sources">
-        <h2>Nguồn tư liệu và giấy phép</h2>
+        <h2>Nguồn tư liệu và bản quyền</h2>
         <ul>
           <li><a href="/nguon-tu-lieu">{n ? `${n.sources} nguồn đăng ký` : 'Danh mục nguồn'}</a>: cơ quan chuyên môn, thư viện, báo chí, từ điển mở.</li>
           <li>Ảnh từ Wikimedia Commons, ghi tác giả và giấy phép tại từng ảnh.</li>
           <li>Bản đồ: dữ liệu © OpenStreetMap contributors; ảnh vệ tinh Esri World Imagery.</li>
-          <li>Thuyết minh tour: giọng tổng hợp Piper VAIS-1000, CC BY 4.0. Phông chữ Noto và Be Vietnam Pro, giấy phép OFL.</li>
+          <li>Thuyết minh tour: giọng tổng hợp Piper VAIS-1000, CC BY 4.0. Phông Be Vietnam Pro và Noto Serif, giấy phép OFL.</li>
         </ul>
       </div>
       <div className="sf-bottom">
-        <span>© 2026 Nam Bộ Ký Sự{n ? `, ${n.published} hồ sơ đang hiển thị` : ''}.</span>
+        <span>© 2026 Nam Bộ Ký Sự{n ? ` · ${n.published} hồ sơ đang hiển thị` : ''}</span>
         <span>{user ? `Đang xem: ${user.displayName}` : <a href="/quyen-su-dung">Điều kiện sử dụng và ghi công</a>}</span>
       </div>
     </footer>
