@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import { mapToursFor } from '@/lib/map-tours';
 import { notFound } from 'next/navigation';
-import { ActionForm, Arrow, Breadcrumb, Classification, Flash, Motif, Status, categoryTone } from './site';
+import { ActionForm, Arrow, Breadcrumb, Classification, EvidenceMix, Flash, Motif, Status, StoryCard, categoryTone } from './site';
 import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/static-data';
 import { categories } from '@/lib/catalog';
 import { nfc, parseSections, sectionLabels, topics } from '@/lib/editorial-model';
 import { LexiconPlay } from './interactive/lexicon-play';
 import { KnowledgeContext } from './knowledge-context';
 import { knowledgeRelated } from '@/lib/knowledge';
+import { siteUrl } from '@/lib/site-url';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -37,33 +38,7 @@ export const collectionDescriptions: Record<string, { intro: string; note: strin
 };
 
 export function DossierCards({ items, preview = false }: { items: Row[]; preview?: boolean }) {
-  return (
-    <div className="nb-card-grid">
-      {items.map(c => {
-        const href = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
-        const isWord = c.content_kind === 'dialect';
-        const tone = isWord ? 'lily' : c.content_kind === 'custom' ? 'dusk' : 'river';
-        return (
-          <article className={`nb-story-card tone-${tone}`} key={c.id}>
-            <a className="nb-story-media" href={href} tabIndex={-1} aria-hidden="true">
-              {c.image_url
-                ? <Image src={c.image_url} alt="" width={1600} height={1067} unoptimized loading="lazy" />
-                : isWord ? <span className="nb-story-word">{nfc(c.title)}</span> : <Motif kind={c.topic === 'architecture' ? 'house' : c.content_kind === 'custom' ? 'book' : 'river'} />}
-              <span className="nb-sticker">{topics[c.topic] ?? c.historical_area}</span>
-            </a>
-            <div className="nb-story-body">
-              <h3 className={isWord ? 'sr-only-title' : undefined}><a href={href}>{nfc(c.title)}</a></h3>
-              {c.part_of_speech && <p className="nb-word-pos">{c.part_of_speech}</p>}
-              <p>{c.meaning ?? c.summary}</p>
-              <a className="nb-link" href={href}>{preview ? 'Xem bản chuẩn bị' : isWord ? 'Xem nghĩa và nguồn' : 'Đọc hồ sơ'} <Arrow /></a>
-              {preview && <Status status={c.cms_status ?? 'draft'} />}
-            </div>
-            {c.image_url && <small className="nb-story-credit">Ảnh: {c.image_author}, <a href={c.image_source_url} target="_blank" rel="noreferrer">{c.image_license}</a></small>}
-          </article>
-        );
-      })}
-    </div>
-  );
+  return <div className="nb-card-grid">{items.map(c => <StoryCard key={c.id} item={c} preview={preview} />)}</div>;
 }
 
 function Chip({ href, on, children }: { href: string; on: boolean; children: React.ReactNode }) {
@@ -97,14 +72,27 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
   };
   const isWords = slug === 'tieng-que-minh';
   const unit = isWords ? 'mục từ' : 'hồ sơ';
+  const heroItem = allItems.find(i => i.image_url);
+  const filtering = Boolean(params.q || params.topic || params.word_type || params.area || params.sort);
+  const featured = !isWords && !filtering && filtered.length > 3 ? (filtered.find(i => i.image_url) ?? filtered[0]) : undefined;
+  const grid = featured ? filtered.filter(i => i !== featured) : filtered;
 
   return (
     <main id="main" className="wrap page">
       <Breadcrumb items={[{ label: 'Khám phá', href: '/kham-pha' }, { label: collection.name }]} />
-      <header className={`nb-collection-hero tone-${tone}`} style={allItems.find(i => i.image_url) ? { backgroundImage: `url(${allItems.find(i => i.image_url)!.image_url})` } : undefined}>
-        <h1>{nfc(collection.name)}</h1>
-        <p>{copy.intro}</p>
-        <Motif kind={collection.motif} />
+      <header className={`coll-hero tone-${tone}`}>
+        <div className="coll-hero-copy">
+          <p className="coll-sub">{collection.subtitle}</p>
+          <h1>{nfc(collection.name)}</h1>
+          <p className="coll-intro">{copy.intro}</p>
+          <p className="coll-count">{allItems.length ? `${allItems.length} ${unit} đã công bố` : 'Đang biên soạn'}</p>
+        </div>
+        {heroItem ? (
+          <figure className="coll-hero-photo">
+            <Image src={heroItem.image_url} alt="" width={960} height={720} priority sizes="(max-width: 900px) 100vw, 44vw" />
+            <figcaption>Ảnh trong hồ sơ <a href={`/ho-so/${heroItem.slug}`}>{nfc(heroItem.title)}</a>: {heroItem.image_author}, {heroItem.image_license}</figcaption>
+          </figure>
+        ) : <div className="coll-hero-motif" aria-hidden="true"><Motif kind={collection.motif} /></div>}
       </header>
       <nav className="nb-collection-tabs" aria-label="Các chuyên mục">
         {categories.map(c => <a key={c.slug} href={`/chuyen-muc/${c.slug}`} aria-current={slug === c.slug ? 'page' : undefined}>{nfc(c.name)}</a>)}
@@ -113,7 +101,7 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
       {isWords && words.length > 0 && <LexiconPlay words={words} />}
 
       {allItems.length > 0 && (
-        <div className="nb-filter" style={{ marginTop: isWords ? 44 : 0 }}>
+        <div className="nb-filter">
           <form className="search-form" action={base} method="get" role="search">
             <label className="sr-only" htmlFor="collection-q">{isWords ? 'Tìm từ, nghĩa hoặc ngữ cảnh' : 'Tìm bài, địa danh hoặc chủ đề'}</label>
             <svg className="nb-search-glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2.4" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
@@ -148,7 +136,21 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
         </div>
       )}
 
-      {filtered.length ? <DossierCards items={filtered} /> : (
+      {featured && (
+        <article className={`coll-feature tone-${tone}`}>
+          <a className="coll-feature-media" href={`/ho-so/${featured.slug}`} tabIndex={-1} aria-hidden="true">
+            {featured.image_url ? <Image src={featured.image_url} alt="" width={1200} height={800} sizes="(max-width: 900px) 100vw, 55vw" /> : <Motif kind={collection.motif} />}
+          </a>
+          <div className="coll-feature-body">
+            <p className="coll-sub">Nên đọc trước</p>
+            <h2><a href={`/ho-so/${featured.slug}`}>{nfc(featured.title)}</a></h2>
+            <p>{featured.introduction || featured.summary}</p>
+            <EvidenceMix sectionsJson={featured.sections_json} />
+            {featured.image_url && <small className="nb-story-credit">Ảnh: {featured.image_author}, {featured.image_license}</small>}
+          </div>
+        </article>
+      )}
+      {filtered.length ? <DossierCards items={grid} /> : (
         <div className="empty-state">
           <Motif kind={collection.motif} />
           <h2>{allItems.length ? 'Không có kết quả phù hợp' : 'Chuyên mục đang biên soạn'}</h2>
@@ -208,9 +210,17 @@ export function DossierView({ article: c, citations, media, dialect, related, to
   const collection = categories.find(item => (item.types as readonly string[]).includes(c.category)) ?? categories[0];
   const back = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
   const mapStops = preview ? [] : mapToursFor(c.id);
+  const words = (sections.length ? sections.map(x => x.text).join(' ') : String(c.body ?? '')).split(/\s+/).filter(Boolean).length + String(c.introduction ?? '').split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 200));
+  const toc = [
+    ...(dialect ? [{ href: '#nghia-tu', label: 'Nghĩa, ngữ cảnh, phát âm' }] : []),
+    ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
+    ...(showGallery ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
+    { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
+    { href: '#bai-lien-quan', label: 'Đọc tiếp' },
+  ];
   return (
     <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
-      <div className="nb-progress" aria-hidden="true" />
       <Breadcrumb items={[{ label: collection.name, href: `/chuyen-muc/${collection.slug}` }, { label: c.title }]} />
       <Flash params={params} />
       {preview && (
@@ -220,6 +230,16 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           <p><a className="text-link" href="/quan-tri/ban-thao">Về bàn bản thảo</a></p>
         </div>
       )}
+      {!preview && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org', '@type': 'Article', headline: c.title, description: c.summary ?? c.introduction,
+          inLanguage: 'vi', url: `${siteUrl}/ho-so/${c.slug}`, image: cover ? [`${siteUrl}${cover.url}`] : undefined,
+          dateModified: c.updated_at, publisher: { '@type': 'Organization', name: 'Nam Bộ Ký Sự' },
+          isPartOf: { '@type': 'CollectionPage', name: collection.name, url: `${siteUrl}/chuyen-muc/${collection.slug}` },
+          citation: citations.filter(e => e.source_url).map(e => ({ '@type': 'CreativeWork', name: e.source_name, url: e.source_url })),
+          contentLocation: c.historical_area ? { '@type': 'Place', name: c.historical_area } : undefined,
+        }).replace(/</g, '\\u003c') }} />
+      )}
       <div className="dossier-layout">
         <article className="dossier-main">
           <header className="nb-dossier-hero">
@@ -227,21 +247,27 @@ export function DossierView({ article: c, citations, media, dialect, related, to
             <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
             <div className="badge-row">
               <Classification value={c.classification} />
-              {preview ? <Status status={c.cms_status ?? 'draft'} /> : <span>Bản duyệt số {c.revision}</span>}
-              <span>{c.historical_area}</span>
+              {preview ? <Status status={c.cms_status ?? 'draft'} /> : <span className="badge">Hồ sơ {c.id}, bản duyệt {c.revision}</span>}
+              <span className="badge">{c.historical_area}</span>
+              <span className="badge">Đọc khoảng {minutes} phút</span>
             </div>
             <p className="dossier-intro">{c.introduction || c.summary}</p>
             {cover && <div className="nb-dossier-cover"><DocumentaryImage media={cover} eager /></div>}
-            {c.scope_note && <p className="dossier-scope"><strong>Phạm vi bài viết: </strong>{c.scope_note}</p>}
+            {c.scope_note && <p className="dossier-scope"><strong>Phạm vi bài viết</strong>{c.scope_note}</p>}
+            {sections.length > 0 && <div className="dossier-mix"><span>Bài này gồm</span><EvidenceMix sectionsJson={c.sections_json} /></div>}
+            <details className="toc-mobile">
+              <summary>Trong bài này</summary>
+              <nav aria-label="Mục lục bài"><ol>{toc.map(t => <li key={t.href}><a href={t.href}>{t.label}</a></li>)}</ol></nav>
+            </details>
           </header>
 
           {dialect && (
             <section className="lexicon-panel" id="nghia-tu">
               <p className="eyebrow">{dialect.part_of_speech}</p>
               <h2>Nghĩa và ngữ cảnh</h2>
-              <p style={{ fontSize: 20, color: 'var(--ink)', fontWeight: 600 }}>{dialect.meaning}</p>
+              <p className="lexicon-meaning">{dialect.meaning}</p>
               <p>{dialect.usage_context}</p>
-              <h2 style={{ marginTop: 24 }}>Ví dụ</h2>
+              <h3>Ví dụ</h3>
               <p className="usage-example">{dialect.example}</p>
               <p className="help-text">{dialect.example_note}</p>
               <p className="help-text">{dialect.regional_scope}</p>
@@ -254,7 +280,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
                   </>
                 ) : <p className="sound-unavailable">Chưa có bản ghi phát âm được cấp quyền. Dự án không dùng giọng máy đọc thay cho bản ghi thật.</p>}
               </div>
-              {!preview && <p style={{ marginTop: 18 }}><a className="button" href="/chuyen-muc/tieng-que-minh#choi">Ôn từ này bằng thẻ lật <Arrow /></a></p>}
+              {!preview && <p className="lexicon-cta"><a className="button" href="/chuyen-muc/tieng-que-minh#choi">Ôn từ này bằng thẻ lật</a></p>}
             </section>
           )}
 
@@ -265,9 +291,9 @@ export function DossierView({ article: c, citations, media, dialect, related, to
               <p className={`epistemic-label kind-${s.kind}`}>{sectionLabels[s.kind]}</p>
               <h2>{s.heading}</h2>
               <p className="preserve">{s.text}</p>
-              <div className="section-sources">
-                {s.sourceIds.map(sid => { const e = citations.find(x => x.source_id === sid); return e ? <a key={sid} href={`#nguon-${e.id}`}>Nguồn {sid}</a> : null; })}
-              </div>
+              <p className="section-sources"><span>Nguồn:</span>
+                {s.sourceIds.map(sid => { const e = citations.find(x => x.source_id === sid); return e ? <a key={sid} href={`#nguon-${e.id}`} title={e.source_name}>{sid}</a> : null; })}
+              </p>
             </section>
           )) : (
             <div className="article-body">
@@ -276,7 +302,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           )}
 
           {showGallery && <section className="dossier-section" id="hinh-anh">
-            <p className="epistemic-label">Ảnh và quyền sử dụng</p>
+            <p className="epistemic-label kind-media">Ảnh và quyền sử dụng</p>
             <h2>Hình ảnh</h2>
             {gallery.length ? gallery.map(m => <DocumentaryImage key={m.id} media={m} />) : (
               <figure className="missing-documentary-image">
@@ -339,20 +365,25 @@ export function DossierView({ article: c, citations, media, dialect, related, to
 
         <aside className="dossier-rail">
           <h2>Trong bài này</h2>
-          <nav>
-            {dialect && <a href="#nghia-tu">Nghĩa, ngữ cảnh, phát âm</a>}
-            {sections.map((s, i) => <a key={i} href={`#muc-${i + 1}`}>{s.heading}</a>)}
-            {showGallery && <a href="#hinh-anh">Hình ảnh</a>}
-            <a href="#nguon-tham-khao">Nguồn tham khảo</a>
-            <a href="#bai-lien-quan">Đọc tiếp</a>
+          <nav aria-label="Mục lục bài">
+            <ol>{toc.map(t => <li key={t.href} className={'kind' in t && t.kind ? `toc-kind-${t.kind}` : undefined}><a href={t.href}>{t.label}</a></li>)}</ol>
           </nav>
+          <div className="rail-key">
+            <h3>Cách đọc nhãn</h3>
+            <ul className="ev-key">
+              <li><span className="epistemic-label kind-documented_history">Có tư liệu</span></li>
+              <li><span className="epistemic-label kind-hypothesis">Giả thuyết</span></li>
+              <li><span className="epistemic-label kind-folk_belief">Truyền thống kể</span></li>
+              <li><span className="epistemic-label kind-editorial_note">Ghi chú biên tập</span></li>
+            </ul>
+            <a className="text-link" href="/huong-dan-doc">Hướng dẫn đọc hồ sơ</a>
+          </div>
           {!preview && user && (
             <ActionForm action="bookmark" id={c.id} back={back} className="inline-form">
               <input type="hidden" name="kind" value="content" />
-              <button className="button outline" style={{ width: '100%' }}>Lưu vào sổ tay</button>
+              <button className="button outline">Lưu vào sổ tay</button>
             </ActionForm>
           )}
-          {!preview && !user && <a className="button outline" href="/huong-dan-doc" style={{ width: '100%' }}>Gợi ý đọc và đối chiếu</a>}
           {preview && user && c.can_stage && ['admin', 'editor'].includes(user.role) && (
             <ActionForm action="stage_prepared" id={c.id} back={back}>
               <label className="check"><input name="review_before_import" type="checkbox" required />Đã xem bản chuẩn bị; nhập vào CMS dưới dạng nháp.</label>
@@ -360,8 +391,10 @@ export function DossierView({ article: c, citations, media, dialect, related, to
             </ActionForm>
           )}
           {preview && c.cms_status && <p><a className="text-link" href={`/quan-tri/noi-dung/${c.id}`}>Mở phiên bản hiện tại trong CMS</a></p>}
-          <p>Cộng đồng, phạm vi: {c.community}</p>
-          <small>Ảnh và bản ghi có giấy phép riêng. Dẫn nguồn không có nghĩa là được chép toàn văn.</small>
+          <dl className="rail-meta">
+            <dt>Cộng đồng, phạm vi</dt><dd>{c.community}</dd>
+            <dt>Quyền sử dụng</dt><dd>Ảnh và bản ghi có giấy phép riêng. Dẫn nguồn không có nghĩa là được chép toàn văn. <a href="/quyen-su-dung">Chi tiết</a></dd>
+          </dl>
         </aside>
       </div>
     </main>

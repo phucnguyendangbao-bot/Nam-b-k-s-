@@ -8,11 +8,15 @@ import { knowledgeDomains } from '../lib/knowledge-taxonomy.ts';
 
 const data = await loadKnowledgeInputs();
 const items = data.articles.map(item => ({ ...item, status: 'published', knowledge: data.metadata.bindings[item.id] }));
-test('12 domains map all 25 public records; 3 new drafts never promote publication', () => {
+test('12 domains map 32 approved public records and preserve three promoted sample identities', () => {
   const audit = auditKnowledge(data);
-  assert.equal(knowledgeDomains.length, 12); assert.equal(audit.mapped_articles, 25); assert.equal(audit.counts.total_tracked, 51);
-  assert.equal(audit.counts.newly_published, 0); assert.equal(audit.counts.publication_eligible, 25);
-  assert.equal(audit.sample_claims, 6); assert.equal(audit.counts.source_union, 54);
+  assert.equal(knowledgeDomains.length, 12); assert.equal(audit.mapped_articles, 32); assert.equal(audit.counts.total_tracked, 54);
+  assert.equal(audit.counts.newly_published, 7); assert.equal(audit.counts.publication_eligible, 32);
+  assert.equal(audit.counts.promoted_samples, 3); assert.equal(audit.counts.sample_drafts, 0);
+  assert.equal(audit.sample_claims, 6);
+  assert.equal(audit.counts.source_union, new Set([...data.context.sourceIds, ...data.samples.sources.map(source => source.id)]).size);
+  for (const sample of data.samples.samples) assert.equal(items.filter(item => item.id === sample.id).length, 1);
+  for (const domain of knowledgeDomains) assert.ok(filterKnowledge(items, { domain: domain.id }).length > 0, `Empty domain: ${domain.id}`);
 });
 test('accentless historical place lookup preserves publication-place meaning', () => {
   const result = filterKnowledge(items, { q: 'sai gon' });
@@ -29,7 +33,10 @@ test('hypothesis terms can be found without becoming equivalent names', () => {
 });
 test('filters intersect; draft records cannot enter public results or relations', () => {
   assert.equal(filterKnowledge(items, { domain: 'phuong-ngu-nam-bo' }).length, 8);
-  assert.equal(filterKnowledge(items, { region: 'dong-nam-bo' }).length, 0);
+  assert.ok(filterKnowledge(items, { region: 'dong-nam-bo' }).length > 0);
+  assert.ok(filterKnowledge(items, { region: 'tay-nam-bo' }).length > 0);
+  assert.ok(filterKnowledge(items, { community: 'hoa' }).length > 0);
+  assert.ok(filterKnowledge(items, { community: 'cham' }).length > 0);
   assert.equal(filterKnowledge(items, { community: 'khmer', domain: 'le-hoi' }).length, 4);
   const draft = { ...items[0], id: 'private', status: 'draft' };
   assert.equal(filterKnowledge([draft], {}).length, 0);
@@ -41,10 +48,30 @@ test('duplicate detection queues manual decisions and keeps differing entities',
   assert.ok(result.some(row => row.left === 'a' && row.right === 'b' && row.reason === 'shared_alias'));
   assert.ok(result.every(row => row.decision === 'pending' && row.auto_merge === false));
 });
-test('samples require seven bounded answers and prohibit media, coordinates and publication', () => {
+test('archived sample drafts retain their seven bounded answers and cannot grant publication themselves', () => {
   for (const mutate of [pack => pack.samples[0].publish_approval = true, pack => pack.samples[0].latitude = 10, pack => pack.samples[0].media.push({}), pack => delete pack.samples[0].answers.origins, pack => pack.samples[0].answers.what.claim_ids = [], pack => pack.samples[0].claims[0].kind = 'made_up']) {
     const pack = structuredClone(data.samples); mutate(pack);
     assert.throws(() => validateKnowledge(data.metadata, pack, data.context));
+  }
+});
+
+test('released dossiers have seven source-bounded answers, genuine references and no invented media', () => {
+  const released = data.inputs.release.articles;
+  assert.equal(released.length, 7);
+  for (const article of released) {
+    const sources = new Set(article.claims.map(claim => claim.source_id));
+    assert.equal(Object.keys(article.answers).length, 7, article.id);
+    for (const key of ['what', 'when_where', 'community', 'origins', 'changes', 'unknowns', 'related']) {
+      const answer = article.answers[key];
+      assert.ok(answer?.text.trim(), `${article.id}: ${key}`);
+      assert.ok(['supported', 'partial', 'unknown'].includes(answer.state));
+      assert.ok(answer.source_ids.every(id => sources.has(id)), `${article.id}: answer with orphan source`);
+      if (answer.state !== 'unknown') assert.ok(answer.source_ids.length > 0, `${article.id}: unsupported answer`);
+    }
+    assert.equal(article.knowledge.current_admin, null);
+    assert.ok(!('latitude' in article) && !('longitude' in article));
+    assert.ok(article.claims.every(claim => data.context.sourceIds.has(claim.source_id) && claim.locator.trim() && claim.statement.trim()));
+    assert.ok(!article.audio_url);
   }
 });
 test('bibliographic year precision and official register evidence stay distinct', () => {

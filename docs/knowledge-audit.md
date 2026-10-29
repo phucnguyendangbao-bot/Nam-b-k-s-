@@ -1,64 +1,70 @@
 # Audit hệ thống tri thức — 2026-10-28
 
-25 hồ sơ đã đối chiếu nguồn và đang công khai; 23 bản nháp cũ; 3 mẫu mới có nhận định được đối chiếu nhưng chưa duyệt bài/quyền công bố. Tổng 51 ID, 26 bản nháp. Đủ điều kiện công bố theo snapshot hiện có: 25; công bố mới: 0. Không đồng nhất nhận định được kiểm tra với một bài đã hoàn tất thẩm định.
+32 hồ sơ đã đối chiếu nguồn và đủ điều kiện công bố; 22 bản nháp chờ nghiên cứu. Tổng 54 ID. Đợt được chủ dự án ủy quyền này thêm 7 bài đã duyệt và 3 hành trình đọc. Ba mẫu trước đây được thay bằng phiên bản công bố cùng ID, không tăng số lượng bằng bản sao.
 
-45 nguồn trong snapshot công khai; 51 nguồn duy nhất trước đợt này; 3 nguồn mẫu mới chỉ được lưu trong gói biên tập; hợp 54. Chưa nhập ba mẫu vào SQLite hoặc API công khai.
+63 nguồn trong snapshot công khai; 68 nguồn duy nhất tính cả kho nghiên cứu. Có tên trong registry không đồng nghĩa mọi nội dung của nguồn đã được đọc hoặc mọi tài sản được phép tái sử dụng.
 
-## Schema hiện tại
+## Quyết định biên tập
 
-D1/Drizzle có cultural_contents, source_registry, source_citations, entity_relationships, dialect_entries, media_assets và cổng xét quyền/nguồn. category, historical_area, community còn là chuỗi; chưa biểu diễn đa lĩnh vực, dị danh có loại, địa giới theo thời kỳ hoặc độ chính xác của mốc thời gian. SQLite nghiên cứu ở thư mục cha là schema khác (source_registry/editorial_queue); vẫn 40 mục, 15 mục có nhận định được đối chiếu, 25 chờ, 0 đủ điều kiện công bố. Không áp dụng SQL D1 lên kho này.
+Gói data/release/published-2026-10-28.json và publication-approval-2026-10-28.json ghi rõ từng ID được duyệt. Hash toàn tệp và payload, nguồn/locator từng nhận định, bảy câu hỏi, trạng thái quyền và hash ảnh đều được kiểm trước khi build. Không biến tất cả bản nháp hoặc mọi nguồn thư mục thành bài công khai.
 
-## Mức bao phủ theo lĩnh vực
+- **E002 — Trầu cau trong lễ hỏi: lễ vật và tình thông gia**: 2 nhận định; 1 ảnh đã rà quyền; [nguồn chính](https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html).
+- **KN-SAMPLE-DOC-CHUA — Tượng động vật Dốc Chùa: những dấu vết và câu hỏi còn mở**: 4 nhận định; 0 ảnh đã rà quyền; [nguồn chính](https://dsvh.gov.vn/tuong-dong-vat-doc-chua-3062).
+- **NBS-NGUYEN-HUU-CANH — Nguyễn Hữu Cảnh: đọc dấu mốc hành chính năm 1698**: 3 nhận định; 0 ảnh đã rà quyền; [nguồn chính](https://baotanglichsu.vn/VI/Articles/3098/14383/le-thanh-hau-nguyen-huu-canh-voi-su-nghiep-mo-coi-phuong-nam-cuoi-the-ky-xvii.html).
+- **KN-SAMPLE-NGUYEN-TIEU — Nguyên Tiêu 2024: cuộc gặp gỡ văn hóa Việt–Hoa**: 3 nhận định; 0 ảnh đã rà quyền; [nguồn chính](https://svhtt.hochiminhcity.gov.vn/web/guest/tin-chi-tiet/-/chi-tiet/chuong-trinh-%C4%91em-hoi-nguyen-tieu-giap-thin-2024-24548-1.html).
+- **KN-SAMPLE-CHAU-GIANG — Châu Giang–Phũm Soài: đọc đời sống Chăm qua tư liệu địa phương**: 3 nhận định; 0 ảnh đã rà quyền; [nguồn chính](https://chauphong.angiang.gov.vn/vien-khoa-hoc-xa-hoi-vung-nam-bo-den-khao-sat-thu-thap-thong-tin-dong-bao-dan-toc-thieu-so-tai-xa).
+- **KN-CAN-GIO — Cần Giờ: rừng ngập mặn và công việc giữ rừng**: 3 nhận định; 1 ảnh đã rà quyền; [nguồn chính](https://www.unesco.org/en/mab/can-gio-mangrove).
+- **KN-TRAM-CHIM — Tràm Chim: đồng cỏ, rừng tràm và nhịp nước**: 3 nhận định; 1 ảnh đã rà quyền; [nguồn chính](https://rsis.ramsar.org/ris/2000).
+
+## Bao phủ theo lĩnh vực
 
 | Nhóm | Công khai | Mẫu nháp |
 |---|---:|---:|
-| Lịch sử và khảo cổ | 0 | 1 |
-| Phong tục và đời sống | 6 | 2 |
-| Tín ngưỡng và tôn giáo | 4 | 2 |
+| Lịch sử và khảo cổ | 2 | 0 |
+| Phong tục và đời sống | 9 | 0 |
+| Tín ngưỡng và tôn giáo | 7 | 0 |
 | Phương ngữ Nam Bộ | 8 | 0 |
-| Văn học và nghệ thuật dân gian | 4 | 1 |
+| Văn học và nghệ thuật dân gian | 5 | 0 |
 | Địa danh và nguồn gốc tên gọi | 2 | 0 |
 | Ẩm thực | 1 | 0 |
-| Làng nghề và sinh kế | 2 | 1 |
+| Làng nghề và sinh kế | 5 | 0 |
 | Kiến trúc và không gian sống | 2 | 0 |
-| Lễ hội | 4 | 1 |
-| Nhân vật và ký ức lịch sử | 0 | 0 |
-| Địa lý và sinh thái | 4 | 0 |
+| Lễ hội | 5 | 0 |
+| Nhân vật và ký ức lịch sử | 1 | 0 |
+| Địa lý và sinh thái | 6 | 0 |
 
-Một bài có thể thuộc nhiều lĩnh vực nên không cộng các dòng để tính số bài.
+Một bài có thể thuộc nhiều lĩnh vực; không cộng các dòng để tính tổng bài. Có hồ sơ trong một lĩnh vực không có nghĩa đã bao quát toàn bộ tri thức của lĩnh vực đó.
 
-## Địa bàn tư liệu
-
-| Nhóm | Công khai | Mẫu nháp |
-|---|---:|---:|
-| Đông Nam Bộ | 0 | 2 |
-| Tây Nam Bộ | 10 | 1 |
-| Liên vùng theo tư liệu | 5 | 0 |
-
-10 hồ sơ chưa gắn vùng riêng. Nơi xuất bản không được xem là nguồn gốc thực hành.
-
-## Cộng đồng được nguồn nêu
+## Địa bàn và cộng đồng theo nguồn
 
 | Nhóm | Công khai | Mẫu nháp |
 |---|---:|---:|
-| Kinh (Việt) | 2 | 0 |
+| Đông Nam Bộ | 4 | 0 |
+| Tây Nam Bộ | 12 | 0 |
+| Liên vùng theo tư liệu | 6 | 0 |
+
+| Nhóm | Công khai | Mẫu nháp |
+|---|---:|---:|
+| Kinh (Việt) | 3 | 0 |
 | Khmer | 5 | 0 |
-| Hoa | 0 | 1 |
-| Chăm | 0 | 1 |
+| Hoa | 1 | 0 |
+| Chăm | 1 | 0 |
 | Cộng đồng khác | 0 | 0 |
 
-18 hồ sơ chưa gắn nhãn cộng đồng. Đây là khoảng trống metadata, không kết luận cộng đồng vắng mặt. Kinh, Khmer, Hoa, Chăm không phải danh sách đóng; nhóm khác cần tên tự nhận và nguồn cụ thể khi mở rộng.
+10 hồ sơ chưa gắn vùng riêng; 22 hồ sơ chưa gắn nhãn cộng đồng. Đây là giới hạn tư liệu, không kết luận cộng đồng vắng mặt. Nơi in sách không được xem là nơi phát sinh câu tục ngữ. Tên cũ giữ riêng; địa giới hiện hành chưa đối chiếu vẫn để null.
 
-## Trùng lặp và tên gọi
+## Chỗ chưa thể khẳng định
 
-0 cặp trùng tên chuẩn hóa/dị danh cần đọc tay, không tự gộp. Báo cáo máy ở outputs/knowledge/audit.json. Khác loại thực thể (địa danh/chợ/lễ hội) vẫn giữ ID riêng. Các từ khóa giả thuyết như cà ràng không được đưa vào tập dị danh tương đương.
+- Dốc Chùa: Cục DSVH ghi 1977, bài đăng lại trên BTLSQG ghi 1997; chưa có báo cáo khai quật gốc để giải quyết, không tạo mốc chắc chắn.
+- Nguyễn Hữu Cảnh: chỉ dùng phạm vi 1698 đã đối chiếu bảo tàng và Đồng Nai; không chép các niên đại lỗi ngoài phạm vi bài.
+- Nguyên Tiêu: phân biệt sự kiện 20/02 và 24/02/2024; không dùng như lịch lễ hội hiện tại.
+- Châu Phong 2026: dự thảo phát triển du lịch, không phải bằng chứng dịch vụ đã hoạt động.
+- Cần Giờ/Tràm Chim: mốc ghi danh và dữ liệu cũ không thay niên đại hình thành hoặc số liệu giám sát hiện nay.
+- Đờn ca tài tử: UNESCO trực tiếp gặp human-verification khi đọc lại. Đã thay nhận định công khai bằng nguồn Cục DSVH/Bộ VHTTDL đọc được, tách ghi danh khỏi thực hành và kế hoạch 2022.
+- 22 đầu mối còn lại tiếp tục là bản nháp, có công việc tiếp theo trong docs/research-progress.md. Nguồn thư mục, bài tóm tắt và metadata ghi danh chưa đủ thay toàn văn hoặc nghiên cứu riêng.
 
-## Phạm vi kiểm chứng
+## Quyền và schema
 
-25 ánh xạ có nguồn đã gắn với bài; 6 mốc có độ chính xác năm/ngày và loại mốc riêng; 3 mẫu có 7 câu hỏi, tổng 6 nhận định nguồn trực tiếp. Chưa đối chiếu địa giới hiện hành, không thêm tọa độ, bản thu hoặc ảnh nguồn chưa có quyền. SQL tại docs/database/knowledge-extension.sql chỉ là đề xuất bổ sung, chưa được áp dụng.
+Hai ảnh Commons mới dùng JPEG gốc (Cần Giờ: Tho nau, CC BY-SA3.0; Tràm Chim: trungydang, CC BY3.0), giữ nguồn, giấy phép, thay đổi và SHA-256. Ảnh trầu cau dùng lại asset public domain đã rà từ trước, có giới hạn chưa xác định địa phương chụp. Không lấy ảnh báo chí; bốn bài mới chưa có ảnh phù hợp được cấp quyền dùng nhãn thiếu ảnh rõ ràng. Không tạo bản thu, tọa độ hoặc tuyến thực địa mới.
 
-## Mẫu biên tập
-
-- **Tượng động vật Dốc Chùa: đọc một hiện vật khảo cổ** — draft; nguồn: [Cục Di sản văn hóa](https://dsvh.gov.vn/tuong-dong-vat-doc-chua-3062). Không phê duyệt công bố.
-- **Nguyên Tiêu 2024 tại Quận 5: một kỳ tổ chức được ghi nhận** — draft; nguồn: [Sở Văn hóa và Thể thao TP.HCM; Đỗ Thị Vân](https://svhtt.hochiminhcity.gov.vn/web/guest/tin-chi-tiet/-/chi-tiet/chuong-trinh-%C4%91em-hoi-nguyen-tieu-giap-thin-2024-24548-1.html). Không phê duyệt công bố.
-- **Châu Giang và Phũm Soài: đầu mối về cộng đồng Chăm** — draft; nguồn: [UBND xã Châu Phong, tỉnh An Giang; Ro Phy Á](https://chauphong.angiang.gov.vn/vien-khoa-hoc-xa-hoi-vung-nam-bo-den-khao-sat-thu-thap-thong-tin-dong-bao-dan-toc-thieu-so-tai-xa). Không phê duyệt công bố.
+SQL trong docs/database/knowledge-extension.sql vẫn là đề xuất cho D1, chưa áp dụng. Website Vercel đọc snapshot đã duyệt; SQLite nghiên cứu ở thư mục cha là kho khác, vẫn 40 mục workbook và không tự đổi trạng thái từ release web. 0 cặp trùng tên/dị danh được phát hiện; mọi quyết định gộp cần người biên tập.

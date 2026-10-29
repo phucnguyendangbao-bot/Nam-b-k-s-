@@ -1,15 +1,15 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Admin } from '@/components/admin';
-import { ActionForm, Arrow, Breadcrumb, CategoryCards, ContentCards, Empty, Flash, PageTitle, SearchForm, SignIn, Status, toneFor } from '@/components/site';
+import { ActionForm, Arrow, Breadcrumb, ContentCards, Empty, Flash, PageTitle, SearchForm, SignIn, Status } from '@/components/site';
 import { all, content, ensureSeed, one, publicContents, publicTours, stats, tourStops, viewer, type Row } from '@/lib/static-data';
 import { categories, fold } from '@/lib/catalog';
-import { CollectionPage, PublicDossier } from '@/components/collections';
+import { CollectionPage, PublicDossier, collectionDescriptions } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
-import { MapView, type MapPoint } from '@/components/interactive/map-view';
 import { MapTourCards, MapTourPage } from '@/components/map-tour-page';
-import { mapTourBySlug, mapTours, legCoords } from '@/lib/map-tours';
-import { HeritageAtlas, type AtlasTour } from '@/components/interactive/heritage-atlas';
+import { mapTourBySlug } from '@/lib/map-tours';
+import { heritagePlaces } from '@/lib/heritage-places';
+import { HeritageAtlas } from '@/components/interactive/heritage-atlas';
 import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/content-guides';
 import { guidePages } from '@/lib/reading-guides';
 import { KnowledgePage, DictionaryPage, TimelinePage, KnowledgeLinksPage, WhyPage, MemoriesPage } from '@/components/knowledge-pages';
@@ -24,16 +24,40 @@ const titles: Record<string, string> = {
   'hoi-dap': 'Tra cứu', 've-du-an': 'Về dự án', 'quan-tri': 'Bàn biên tập',
 };
 
+const descriptions: Record<string, string> = {
+  'kham-pha': 'Tìm và lọc hồ sơ văn hóa Nam Bộ theo chuyên mục: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói, mỗi hồ sơ có nguồn để đối chiếu.',
+  'ban-do': 'Bản đồ di sản Cần Thơ: các điểm trong tour bản đồ và hồ sơ, xem 2D hoặc 3D vệ tinh, kèm trạng thái đối chiếu tọa độ.',
+  'hanh-trinh': 'Tour bản đồ 3D có thuyết minh dẫn nguồn và hành trình đọc nối các hồ sơ văn hóa Nam Bộ.',
+  'nguon-tu-lieu': 'Danh mục nguồn tư liệu mà các hồ sơ Nam Bộ Ký Sự dẫn tới: cơ quan chuyên môn, thư viện, báo chí, từ điển mở, dữ liệu bản đồ.',
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { segments } = await params;
   let title = titles[segments[0]] ?? 'Thư viện văn hóa';
-  title = guidePages.find(page => page.slug === segments[0])?.title ?? title;
+  let description: string | undefined = descriptions[segments[0]];
+  let image: string | undefined;
+  let type: 'website' | 'article' = 'website';
+  const guide = guidePages.find(page => page.slug === segments[0]);
+  if (guide) { title = guide.title; description = guide.description; }
   title = knowledgePages.find(page => page.slug === segments[0])?.title ?? title;
-  if (segments[0] === 'chuyen-de') title = domainById(segments[1])?.name ?? title;
-  if (segments[0] === 'chuyen-muc') title = categories.find(c => c.slug === segments[1])?.name ?? title;
-  if (segments[0] === 'hanh-trinh' && segments[1]) title = mapTourBySlug(segments[1])?.title ?? title;
-  if (segments[0] === 'ho-so') { try { title = (await content(segments[1]))?.title ?? 'Hồ sơ chưa công bố'; } catch { /* dùng tiêu đề mặc định */ } }
-  return { title, robots: segments[0] === 'quan-tri' || segments[0] === 'so-tay' ? { index: false, follow: false } : undefined };
+  if (segments[0] === 'chuyen-de') { const d = domainById(segments[1]); title = d?.name ?? title; description = d?.description ?? description; }
+  if (segments[0] === 'chuyen-muc') { const c = categories.find(x => x.slug === segments[1]); title = c?.name ?? title; description = collectionDescriptions[segments[1]]?.intro ?? description; }
+  if (segments[0] === 'hanh-trinh' && segments[1]) { const t = mapTourBySlug(segments[1]); title = t?.title ?? title; description = t?.summary ?? description; image = t?.cover?.src; }
+  if (segments[0] === 'ho-so') {
+    try {
+      const c = await content(segments[1]);
+      title = c?.title ?? 'Hồ sơ chưa công bố';
+      description = c ? String(c.summary ?? c.introduction ?? '') || undefined : undefined;
+      image = c?.image_url ?? undefined; type = 'article';
+    } catch { /* dùng tiêu đề mặc định */ }
+  }
+  const path = '/' + segments.map(encodeURIComponent).join('/');
+  return {
+    title, description,
+    alternates: { canonical: path },
+    openGraph: { title, description, type, locale: 'vi_VN', siteName: 'Nam Bộ Ký Sự', url: path, images: image ? [{ url: image }] : undefined },
+    robots: segments[0] === 'quan-tri' || segments[0] === 'so-tay' ? { index: false, follow: false } : undefined,
+  };
 }
 
 function Body({ text }: { text: string }) {
@@ -50,6 +74,13 @@ function Save({ id, kind, back, user }: { id: string; kind: string; back: string
     : <a className="button outline" href="/huong-dan-doc">Gợi ý đọc và đối chiếu</a>;
 }
 
+const sourceTypeLabels: Record<string, string> = {
+  official_pdf: 'Văn bản chính thức (PDF)', official_register: 'Danh mục ghi danh chính thức', official_dataset: 'Dữ liệu cơ quan nhà nước', official_article: 'Bài trên cổng thông tin chính thức', official_record: 'Hồ sơ chính thức',
+  journalism: 'Báo chí', journalism_article: 'Bài báo', journalism_report: 'Phóng sự', journalism_interview: 'Phỏng vấn trên báo', journalism_report_interview: 'Phóng sự, phỏng vấn',
+  geo_api: 'Dịch vụ dữ liệu bản đồ', geo_license: 'Giấy phép dữ liệu bản đồ', geo_download: 'Dữ liệu bản đồ tải về', unesco_profile: 'Hồ sơ UNESCO',
+  open_dictionary: 'Từ điển mở', book_notice: 'Thông tin sách', library_catalog: 'Thư mục thư viện',
+};
+const kindLabels: Record<string, string> = { place: 'Địa điểm', custom: 'Phong tục', festival: 'Lễ hội', heritage: 'Di sản và nghề', proverb: 'Tục ngữ', dialect: 'Mục từ' };
 const tourKind: Record<string, string> = { physical: 'Đi thực địa', digital: 'Đọc từ xa', memory: 'Ký ức' };
 
 export default async function Page({ params, searchParams }: Props) {
@@ -81,15 +112,50 @@ export default async function Page({ params, searchParams }: Props) {
 
   if (route === 'kham-pha' || route === 'tim-kiem') {
     const items = await publicContents();
-    const counts: Record<string, number> = {};
-    for (const c of categories) counts[c.slug] = items.filter(i => (c.types as readonly string[]).includes(i.category)).length;
+    const cat = categories.find(c => c.slug === q['chuyen-muc']);
+    const kind = q.loai && kindLabels[q.loai] ? q.loai : undefined;
+    const inCat = cat ? items.filter(i => (cat.types as readonly string[]).includes(i.category)) : items;
+    const shown = kind ? inCat.filter(i => i.content_kind === kind) : inCat;
+    const link = (patch: Record<string, string | undefined>) => {
+      const next = new URLSearchParams();
+      const merged = { 'chuyen-muc': cat?.slug, loai: kind, ...patch };
+      for (const [k, v] of Object.entries(merged)) if (v) next.set(k, v);
+      const qs = next.toString();
+      return `/${route}${qs ? `?${qs}` : ''}`;
+    };
+    const kinds = Object.keys(kindLabels).filter(k => inCat.some(i => i.content_kind === k));
     return (
-      <main id="main" className="wrap page">
-        <PageTitle title={route === 'tim-kiem' ? 'Bạn đang tìm gì?' : 'Khám phá Nam Bộ'} description={`${items.length} hồ sơ đã kiểm chứng nguồn. Gõ để tìm ngay, hoặc chọn một chuyên mục.`} />
+      <main id="main" className="wrap page page-explore">
+        <Breadcrumb items={[{ label: route === 'tim-kiem' ? 'Tìm kiếm' : 'Khám phá' }]} />
+        <PageTitle title={route === 'tim-kiem' ? 'Bạn đang tìm gì?' : 'Khám phá Nam Bộ'} description={`${items.length} hồ sơ đã kiểm chứng nguồn: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói. Gõ để tìm ngay, hoặc lọc theo chuyên mục.`} />
         <InstantSearch initial={q.q ?? ''}>
-          <CategoryCards counts={counts} />
-          <div className="nb-section-head" style={{ marginTop: 44 }}><h2>Tất cả hồ sơ</h2></div>
-          {items.length ? <ContentCards items={items} /> : <Empty />}
+          <div className="explore-filters" aria-label="Bộ lọc hồ sơ">
+            <div className="filter-group" role="group" aria-labelledby="loc-chuyen-muc">
+              <span id="loc-chuyen-muc" className="filter-label">Chuyên mục</span>
+              <div className="filter-chips">
+                <a className={`nb-chip ${!cat ? 'is-on' : ''}`} href={link({ 'chuyen-muc': undefined, loai: undefined })} aria-current={!cat ? 'true' : undefined}>Tất cả <small>{items.length}</small></a>
+                {categories.map(c => {
+                  const n = items.filter(i => (c.types as readonly string[]).includes(i.category)).length;
+                  return <a key={c.slug} className={`nb-chip ${cat?.slug === c.slug ? 'is-on' : ''}`} href={link({ 'chuyen-muc': c.slug, loai: undefined })} aria-current={cat?.slug === c.slug ? 'true' : undefined}>{c.name} <small>{n}</small></a>;
+                })}
+              </div>
+            </div>
+            {kinds.length > 1 && (
+              <div className="filter-group" role="group" aria-labelledby="loc-loai">
+                <span id="loc-loai" className="filter-label">Loại hồ sơ</span>
+                <div className="filter-chips">
+                  <a className={`nb-chip ${!kind ? 'is-on' : ''}`} href={link({ loai: undefined })} aria-current={!kind ? 'true' : undefined}>Mọi loại</a>
+                  {kinds.map(k => <a key={k} className={`nb-chip ${kind === k ? 'is-on' : ''}`} href={link({ loai: k })} aria-current={kind === k ? 'true' : undefined}>{kindLabels[k]} <small>{inCat.filter(i => i.content_kind === k).length}</small></a>)}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="explore-head">
+            <p className="result-count" role="status">{shown.length} hồ sơ{cat ? ` trong ${cat.name}` : ''}{kind ? `, loại ${kindLabels[kind].toLowerCase()}` : ''}</p>
+            {(cat || kind) && <a className="nb-text-button" href={`/${route}`}>Xóa bộ lọc</a>}
+            {cat && <a className="text-link" href={`/chuyen-muc/${cat.slug}`}>Mở trang chuyên mục {cat.name}</a>}
+          </div>
+          {shown.length ? <ContentCards items={shown} /> : <Empty title="Không có hồ sơ khớp bộ lọc" description="Thử bỏ bớt một bộ lọc, hoặc gõ từ khóa vào ô tìm kiếm ở trên." action={`/${route}`} label="Xóa bộ lọc" />}
         </InstantSearch>
       </main>
     );
@@ -110,19 +176,19 @@ export default async function Page({ params, searchParams }: Props) {
         <PageTitle title="Nguồn để lần theo" description="Cơ quan chuyên môn, thư viện, báo chí, từ điển mở và dữ liệu bản đồ mà các hồ sơ dẫn tới. Có tên trong danh sách chưa có nghĩa là toàn bộ nội dung của nguồn đã được kiểm chứng." />
         <details className="admin-box"><summary>Cách đọc danh sách nguồn và nhãn kiểm chứng</summary><EvidenceGuide /><p>Một bản ghi thư mục chỉ dẫn đến tài liệu cần tìm. Với bài đã công bố, xem mục Nguồn tham khảo trong từng hồ sơ để biết nhận định nào đã được đối chiếu, ở trang hoặc đoạn nào.</p></details>
         <SearchForm action="/nguon-tu-lieu" q={q.q} placeholder="Tìm tên tài liệu hoặc chủ đề" />
-        <p className="result-count" style={{ margin: '22px 0 14px' }}>{sources.length} nguồn</p>
+        <p className="result-count">{sources.length} nguồn</p>
         <div className="source-list">
           {sources.map(x => (
             <article className="source-card" key={x.id}>
               <div className="source-id">{x.id}</div>
               <div>
-                <p className="eyebrow">{String(x.source_type).replace(/_/g, ' ')}{x.format ? `, ${x.format}` : ''}</p>
+                <p className="eyebrow">{sourceTypeLabels[String(x.source_type)] ?? String(x.source_type).replace(/_/g, ' ')}{x.format ? `, ${x.format}` : ''}</p>
                 <h2><a href={x.url} target="_blank" rel="noreferrer">{x.name} <Arrow diagonal /></a></h2>
                 {x.notes && <p>{x.notes}</p>}
                 {x.publisher && <p><strong>Đơn vị xuất bản:</strong> {x.publisher}</p>}
                 {x.source_version && <p><strong>Phiên bản đối chiếu:</strong> {x.source_version}</p>}
                 {x.rights && <p><strong>Phạm vi sử dụng:</strong> {x.rights}</p>}
-                <div className="badge-row" style={{ marginTop: 10, marginBottom: 0 }}>
+                <div className="badge-row">
                   {x.license_reported && <span className="classification">Giấy phép ghi nhận: {x.license_reported}</span>}
                   {x.topics && <span>{String(x.topics).replace(/,/g, ', ')}</span>}
                 </div>
@@ -136,29 +202,17 @@ export default async function Page({ params, searchParams }: Props) {
   }
 
   if (route === 'ban-do') {
-    const points: MapPoint[] = (await publicContents())
-      .filter(c => c.latitude !== null && c.longitude !== null && c.geo_reviewed === 1)
-      .map(c => ({ id: c.id, slug: c.slug, title: c.title, summary: c.summary ?? '', area: c.historical_area, lat: Number(c.latitude), lng: Number(c.longitude), tone: toneFor(c.category) }));
-    const atlasTours: AtlasTour[] = mapTours.map(t => ({
-      slug: t.slug, title: t.title, kicker: t.kicker, draft: t.review === 'draft',
-      stops: t.stops.map(s => ({ id: s.id, name: s.name, kicker: s.kicker, lat: s.lat, lng: s.lng, dossier: s.dossier?.slug })),
-      legs: t.stops.slice(0, -1).map((s, k) => ({ coords: legCoords(t, k), traced: Boolean(s.next?.path) })),
-    }));
+    const { places, tours } = heritagePlaces(await publicContents());
+    const reviewed = places.filter(p => p.coord === 'reviewed').length;
     return (
-      <main id="main" className="wrap page">
+      <main id="main" className="wrap page page-map">
         <Breadcrumb items={[{ label: 'Bản đồ' }]} />
-        <PageTitle title="Bản đồ ký sự" description="Bay qua các điểm di sản đã có trong tour trên bản đồ 3D. Tọa độ lấy từ OpenStreetMap và đang chờ đối chiếu tại chỗ; khung bản đồ không thể hiện ranh giới hành chính." />
-        {atlasTours.length > 0 && <HeritageAtlas tours={atlasTours} />}
-        <section className="tp-index-block" aria-labelledby="tour-3d" style={{ marginBottom: 40 }}>
-          <div className="nb-section-head"><h2 id="tour-3d">Đi theo tour bản đồ 3D</h2></div>
+        <PageTitle title="Bản đồ di sản" description={`${places.length} địa điểm trong các tour bản đồ và hồ sơ. Chọn một điểm để xem trạng thái tọa độ, đọc hồ sơ hoặc mở chặng tour tương ứng. ${reviewed ? `${reviewed} điểm đã đối chiếu tọa độ.` : 'Hiện chưa điểm nào được đối chiếu tọa độ tại chỗ; các ghim lấy từ OpenStreetMap.'}`} />
+        <HeritageAtlas places={places} tours={tours} initialId={q.diem} />
+        <section className="map-tours" aria-labelledby="tour-3d">
+          <div className="sec-head"><div><h2 id="tour-3d">Đi theo tour bản đồ 3D</h2><p>Camera bay qua từng chặng, kèm thuyết minh có số nguồn ở cuối mỗi câu.</p></div></div>
           <MapTourCards />
         </section>
-        {points.length > 0 && (
-          <section aria-labelledby="ho-so-ghim">
-            <div className="nb-section-head"><h2 id="ho-so-ghim">Hồ sơ đã đối chiếu tọa độ</h2></div>
-            <MapView points={points} initialId={q.diem} />
-          </section>
-        )}
       </main>
     );
   }
@@ -177,14 +231,14 @@ export default async function Page({ params, searchParams }: Props) {
           ))}
         </div>
         {showMap && (
-          <section className="tp-index-block" aria-labelledby="tour-3d">
-            <div className="nb-section-head"><h2 id="tour-3d">Tour bản đồ 3D</h2></div>
+          <section className="tour-index-block" aria-labelledby="tour-3d">
+            <div className="sec-head"><div><h2 id="tour-3d">Tour bản đồ 3D</h2><p>Bay qua từng điểm di sản, nghe thuyết minh có số nguồn ở cuối mỗi câu.</p></div></div>
             <MapTourCards />
           </section>
         )}
         {tours.length ? (
           <section aria-labelledby="tour-doc">
-            {showMap && <div className="nb-section-head" style={{ marginTop: 48 }}><h2 id="tour-doc">Hành trình đọc</h2></div>}
+            {showMap && <div className="sec-head tour-doc-head"><div><h2 id="tour-doc">Hành trình đọc</h2><p>Chuỗi hồ sơ để đọc từ xa, không phải tuyến đi thực địa.</p></div></div>}
             <div className="content-grid">
               {tours.map(t => (
                 <a className="tour-card" href={`/hanh-trinh/${t.slug}`} key={t.id}>
@@ -218,7 +272,7 @@ export default async function Page({ params, searchParams }: Props) {
         <Flash params={q} />
         <Breadcrumb items={[{ label: 'Hành trình', href: '/hanh-trinh' }, { label: tour.title }]} />
         <PageTitle eyebrow={`${tourKind[tour.kind] ?? tour.kind}, ${stops.length} chặng`} title={tour.title} description={tour.description}>
-          <div style={{ marginTop: 20 }}><Save id={tour.id} kind="tour" back={back} user={user} /></div>
+          <div className="page-title-actions"><Save id={tour.id} kind="tour" back={back} user={user} /></div>
         </PageTitle>
         <div className="nb-tour-progress" role="progressbar" aria-valuemin={1} aria-valuemax={stops.length} aria-valuenow={index + 1} aria-label="Tiến độ hành trình"><span style={{ width: `${((index + 1) / stops.length) * 100}%` }} /></div>
         <div className="tour-layout">
@@ -232,9 +286,9 @@ export default async function Page({ params, searchParams }: Props) {
           <article key={active.stop_id}>
             <p className="eyebrow">Chặng {index + 1} trên {stops.length}</p>
             <h2>{active.title}</h2>
-            <p style={{ fontSize: 19, color: 'var(--ink)' }}>{active.summary}</p>
+            <p className="tour-summary">{active.summary}</p>
             <Body text={active.body ?? ''} />
-            <p style={{ marginTop: 20 }}><a className="text-link" href={`/ho-so/${active.slug}`}>Đọc hồ sơ đầy đủ và nguồn <Arrow /></a></p>
+            <p className="tour-more"><a className="text-link" href={`/ho-so/${active.slug}`}>Đọc hồ sơ đầy đủ và nguồn</a></p>
             <div className="tour-controls">
               {index > 0 && <a className="button outline" href={`${back}?chang=${stops[index - 1].stop_id}`}>Chặng trước</a>}
               {index < stops.length - 1 && <a className="button" href={`${back}?chang=${stops[index + 1].stop_id}`}>Chặng tiếp <Arrow /></a>}
@@ -274,14 +328,14 @@ export default async function Page({ params, searchParams }: Props) {
               </ActionForm>
             </section>
             <aside>
-              <h2 style={{ fontSize: 26, marginBottom: 12 }}>Vài lưu ý nhỏ</h2>
+              <h2>Vài lưu ý nhỏ</h2>
               <ol className="process-list">
                 <li>Ghi rõ đây là trải nghiệm, lời kể hay tư liệu ghi chép.</li>
                 <li>Giữ nguyên cách gọi địa phương và ghi thời điểm dùng.</li>
                 <li>Không gửi toàn văn sách hay tư liệu của người khác khi chưa có quyền.</li>
                 <li>Điều chưa chắc thì cứ để trống.</li>
               </ol>
-              <h2 style={{ fontSize: 26, margin: '28px 0 12px' }}>Bạn đã gửi</h2>
+              <h2>Bạn đã gửi</h2>
               {own.length ? own.map(x => <div className="submission-item" key={x.id}><h3>{x.title}</h3><Status status={x.status} /><p>{x.review_note || 'Đang chờ ban biên tập xem.'}</p></div>) : <p>Bạn chưa gửi gì.</p>}
             </aside>
           </div>
@@ -317,7 +371,7 @@ export default async function Page({ params, searchParams }: Props) {
       <main id="main" className="wrap page">
         <PageTitle title="Tra cứu" description="Tìm trong các hồ sơ đã đăng. Câu hỏi về nguồn gốc tên đất, phong tục hay từ ngữ chỉ được trả lời bằng hồ sơ có nguồn." />
         <InstantSearch initial={q.q ?? ''}>
-          <div className="notice" style={{ maxWidth: 760 }}>Hỏi đáp bằng AI chưa được bật. Trang này chỉ tìm trong các hồ sơ đã kiểm chứng, không tự tạo câu trả lời.</div>
+          <div className="notice">Hỏi đáp bằng AI chưa được bật. Trang này chỉ tìm trong các hồ sơ đã kiểm chứng, không tự tạo câu trả lời.</div>
         </InstantSearch>
         <ContentFAQ />
       </main>
@@ -333,7 +387,7 @@ export default async function Page({ params, searchParams }: Props) {
           {([[n.verified, 'đã kiểm chứng nguồn'], [n.pending, 'chờ kiểm chứng'], [n.eligible, 'đủ điều kiện hiển thị']] as const).map(([v, l]) => <div key={l}><strong>{v}</strong><span>{l}</span></div>)}
         </div>
         <Body text={'## Mỗi hồ sơ có đường về nguồn\n\nDự án tách riêng dữ kiện có tư liệu, giả thuyết, truyền thuyết, dị bản và lời kể. Điều chưa rõ được ghi là chưa rõ.\n\n## Giữ sự khác biệt\n\nMột cách làm không đại diện cho mọi gia đình hay cộng đồng. Hồ sơ ghi rõ phạm vi, thời điểm và các cách nhìn có nguồn.\n\n## Có quyền mới chia sẻ\n\nĐọc được một trang web không có nghĩa là được dùng lại ảnh, âm thanh hay toàn văn sách. Từng tư liệu được xét quyền riêng trước khi đăng.'} />
-        <p style={{ marginTop: 28 }}><a className="button" href="/nguon-tu-lieu">Xem các nguồn tư liệu <Arrow /></a></p>
+        <p className="page-cta"><a className="button" href="/nguon-tu-lieu">Xem các nguồn tư liệu</a></p>
         <section className="article-body"><h2>Đi sâu hơn vào cách đọc và cách làm</h2><ul>{guidePages.map(page => <li key={page.slug}><a href={`/${page.slug}`}>{page.title}</a> — {page.description}</li>)}</ul><p>Thư viện có {n.published} hồ sơ hiển thị và {n.sources} nguồn đăng ký. Số liệu theo dõi tự cập nhật từ kho; đầu mối chưa kiểm chứng vẫn được giữ để nghiên cứu tiếp.</p></section>
       </main>
     );

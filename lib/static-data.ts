@@ -3,6 +3,8 @@ import seedJson from './research-seed.json';
 import { fold, similarity, slugify } from './catalog';
 import { imagePathAllowed, nfc, permitsCommercialMedia } from './editorial-model';
 import { contentExpansion } from './content-expansion';
+import { publicationApproval, reviewedRelease } from './reviewed-release';
+import { canReleaseArticle, type ReleaseArticle } from './release-model';
 
 export const READ_ONLY_DEPLOYMENT = true;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,9 +12,9 @@ export type Row = Record<string, any>;
 
 const originalBundle = bundleJson as unknown as { reviewed_at: string; sources: Row[]; articles: Row[]; tours: Row[] };
 const bundle = { reviewed_at: contentExpansion.reviewed_at,
-  sources: [...originalBundle.sources, ...contentExpansion.sources],
-  articles: [...originalBundle.articles, ...contentExpansion.articles] as Row[],
-  tours: [...originalBundle.tours, ...contentExpansion.tours] as Row[],
+  sources: [...originalBundle.sources, ...contentExpansion.sources, ...reviewedRelease.sources],
+  articles: [...originalBundle.articles, ...contentExpansion.articles, ...reviewedRelease.articles] as Row[],
+  tours: [...originalBundle.tours, ...contentExpansion.tours, ...reviewedRelease.tours] as Row[],
 };
 const seed = seedJson as unknown as { sources: Row[]; contents: Row[]; links: Row[] };
 
@@ -33,9 +35,12 @@ const registeredSourceIds = new Set([...seed.sources, ...bundle.sources].map(sou
 // The original eleven records were explicitly approved by the owner on 27 October.
 // New records must pass the snapshot review gate; draft metadata never becomes public.
 const ownerApprovedIds = new Set(Object.keys(articleSlugs));
+const previousReleaseIds = new Set(['NBS-NINH-KIEU','E004','E010','E011','E012','E013','E018','E014','E027','NBS-TUCNGU-18','NBS-TUCNGU-22','NBS-TU-VAY','NBS-TU-VO','NBS-TU-NGHEN']);
+const newReleaseIds = new Set(reviewedRelease.articles.map(article => article.id));
 function canPublish(article: Row): boolean {
-  const approved = ownerApprovedIds.has(article.id) || (article.publication_status === 'published'
-    && article.review_status === 'verified' && article.rights_review_status === 'cleared');
+  const approved = ownerApprovedIds.has(article.id) || (previousReleaseIds.has(article.id) && article.publication_status === 'published'
+    && article.review_status === 'verified' && article.rights_review_status === 'cleared')
+    || (newReleaseIds.has(article.id) && canReleaseArticle(article as ReleaseArticle, publicationApproval, registeredSourceIds));
   const claims = (article.claims ?? []) as Row[];
   const sections = (article.sections ?? []) as Row[];
   const assets = (article.media ?? []) as Row[];
@@ -50,7 +55,7 @@ const articles: Row[] = approvedArticles.map(article => {
   const cover = ((article.media ?? []) as Row[]).find(item => item.kind === 'image');
   return displayRow({
     ...article,
-    slug: articleSlugs[article.id] ?? `${slugify(article.title)}-${String(article.id).toLowerCase()}`,
+    slug: articleSlugs[article.id] ?? article.slug ?? `${slugify(article.title)}-${String(article.id).toLowerCase()}`,
     content_kind: article.kind === 'dialect' ? 'dialect' : article.kind,
     classification: article.classification ?? 'source_supported', status: 'published', cms_status: 'published', revision: 1,
     sections_json: JSON.stringify(article.sections ?? []),
@@ -78,7 +83,7 @@ const citations: Row[] = approvedArticles.flatMap(article => ((article.claims ??
 }));
 const approvedTours = bundle.tours.filter(tour => tour.kind === 'digital' && tour.content_ids.length > 0 && tour.content_ids.every((id: string) => articleById.has(id)));
 const tours: Row[] = approvedTours.map(tour => displayRow({ ...tour,
-  slug: tourSlugs[tour.id] ?? `${slugify(tour.title)}-${String(tour.id).toLowerCase()}`,
+  slug: tourSlugs[tour.id] ?? tour.slug ?? `${slugify(tour.title)}-${String(tour.id).toLowerCase()}`,
   status: 'published', stop_count: (tour.content_ids ?? []).length, created_at: `${bundle.reviewed_at}T00:00:00+07:00` }));
 const tourStopRows: Row[] = approvedTours.flatMap(tour => ((tour.content_ids ?? []) as string[]).map((contentId, index) => ({
   id: `${tour.id}-${index + 1}`, stop_id: `${tour.id}-${index + 1}`, tour_id: tour.id, content_id: contentId, position: index + 1,

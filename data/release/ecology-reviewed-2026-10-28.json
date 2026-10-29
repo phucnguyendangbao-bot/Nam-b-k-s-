@@ -1,0 +1,376 @@
+{
+  "version": "ecology-reviewed-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "review_status": "source_checked",
+  "sources": [
+    {
+      "id": "KN-CANGIO-UNESCO",
+      "name": "Can Gio mangrove — Man and the Biosphere Programme",
+      "url": "https://www.unesco.org/en/mab/can-gio-mangrove",
+      "source_type": "unesco_profile",
+      "publisher": "UNESCO, Chương trình Con người và Sinh quyển (MAB)",
+      "source_version": "Hồ sơ web đọc 28/10/2026; Year of nomination: 2000; trang không hiển thị ngày cập nhật dữ liệu",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và lời diễn giải mới ngắn, dẫn đúng hồ sơ. Không sao chép ảnh, bản đồ, toàn văn hoặc coi số liệu chưa có ngày cập nhật là thống kê hiện hành."
+    },
+    {
+      "id": "KN-CANGIO-FAO",
+      "name": "Phan Nguyên Hồng — Reforestation of mangroves after severe impacts of herbicides during the Viet Nam war: the case of Can Gio",
+      "url": "https://www.fao.org/4/y2795e/y2795e11.htm",
+      "source_type": "academic_article",
+      "publisher": "FAO, Unasylva 207, tập 52, số 2001/4; tác giả P. N. Hong",
+      "source_version": "Toàn bài HTML; thông tin số báo đối chiếu trang mục lục https://www.fao.org/4/y2795e/y2795e00.htm; đọc 28/10/2026",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Trang số báo cho phép in lại phần không có bản quyền kèm ghi công, nhưng chưa xác định quyền từng tài sản. Chỉ diễn giải ngắn mới và dẫn nguồn; không tái sử dụng ảnh hoặc toàn văn."
+    },
+    {
+      "id": "KN-CANGIO-UNDP",
+      "name": "Tổng kết 20 năm Việt Nam tham gia mạng lưới khu dự trữ sinh quyển thế giới",
+      "url": "https://www.undp.org/vietnam/press-releases/summarizing-and-evaluating-results-after-20-years-joining-world-biosphere-reserve-network-and-proposing-solutions-development",
+      "source_type": "official_article",
+      "publisher": "Chương trình Phát triển Liên Hợp Quốc (UNDP) tại Việt Nam",
+      "source_version": "Thông cáo tiếng Anh ngày 17/11/2020, đọc 28/10/2026; chỉ dùng mốc Cần Giờ và cách giải thích chức năng khu sinh quyển, không dùng tổng số khu năm 2020 như số hiện hành",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Biên soạn lời giải thích mới ngắn có dẫn nguồn. Không lấy ảnh thông cáo, lời phát biểu nguyên văn hoặc tái bản toàn văn."
+    },
+    {
+      "id": "KN-TRAMCHIM-RSIS",
+      "name": "Tram Chim National Park — Ramsar Sites Information Service, hồ sơ 2000",
+      "url": "https://rsis.ramsar.org/ris/2000",
+      "source_type": "official_register",
+      "publisher": "Ban Thư ký Công ước về các vùng đất ngập nước, Ramsar Sites Information Service",
+      "source_version": "Site number 2000; Designation date 02-02-2012; Last publication date 02-02-2012; đọc 28/10/2026",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata ghi danh và diễn giải ngắn theo phạm vi hồ sơ 2012. Không tải lại ảnh, bản đồ hoặc tự nâng số liệu sinh thái thành hiện trạng 2026."
+    },
+    {
+      "id": "KN-TRAMCHIM-NBCA",
+      "name": "Tram Chim Ramsar Site, Dong Thap Province (2012)",
+      "url": "https://en.nbca.gov.vn/4154-2/",
+      "source_type": "official_article",
+      "publisher": "Trang thông tin quốc gia về bảo tồn thiên nhiên và đa dạng sinh học, Cục Bảo tồn thiên nhiên và Đa dạng sinh học",
+      "source_version": "Bản giới thiệu tiếng Anh, không hiện ngày đăng; tiêu đề gắn mốc 2012; đọc 28/10/2026. Chỉ đối chiếu cảnh quan đồng cỏ, rừng tràm và giá trị đất ngập nước",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải mới những đặc điểm được đối chiếu với RSIS. Không sao chép ảnh hoặc dùng số loài/bản dịch tên loài chưa được kiểm tra như dữ kiện hiện hành."
+    }
+  ],
+  "articles": [
+    {
+      "id": "KN-CAN-GIO",
+      "title": "Cần Giờ: rừng ngập mặn và công việc giữ rừng",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "ecology",
+      "classification": "source_supported",
+      "historical_area": "Cần Giờ, TP. Hồ Chí Minh theo hồ sơ nguồn",
+      "community": "Người giữ rừng và cư dân ven biển theo các tư liệu được dẫn",
+      "summary": "Đọc cảnh quan rừng ngập mặn Cần Giờ qua hồ sơ UNESCO và tư liệu phục hồi rừng.",
+      "scope_note": "Hồ sơ UNESCO không ghi ngày cập nhật; bài FAO phản ánh tư liệu xuất bản năm 2001. Bài không xác nhận địa giới, số dân, diện tích rừng hay tình trạng bảo tồn hiện nay; chưa đánh giá tác động của các dự án mới.",
+      "sections": [
+        {
+          "heading": "Rừng ở ngưỡng mặn và lợ",
+          "kind": "explanation",
+          "text": "UNESCO đặt Cần Giờ ở vùng ven biển phía đông nam TP. Hồ Chí Minh. Hồ sơ mô tả phù sa sông Sài Gòn, Đồng Nai cùng hệ thống sông rạch, với nhiều sinh cảnh như rừng ngập mặn, đầm lầy mặn và bãi bùn.",
+          "sourceIds": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        {
+          "heading": "Một quá trình phục hồi có người tham gia",
+          "kind": "documented_history",
+          "text": "Trong bài năm 2001, Phan Nguyên Hồng ghi việc đầu tư trồng lại rừng bắt đầu năm 1978. Tác giả liên hệ phục hồi sinh cảnh với sinh kế và công việc bảo vệ rừng; đây là ghi nhận theo thời điểm của nghiên cứu.",
+          "sourceIds": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        {
+          "heading": "Vì sao bảo tồn đi cùng sinh kế?",
+          "kind": "explanation",
+          "text": "Thông cáo UNDP năm 2020 xác nhận Cần Giờ được công nhận khu sinh quyển năm 2000. Nguồn giải thích mô hình này phối hợp bảo tồn, phát triển và hỗ trợ nghiên cứu, nhằm tìm cách sử dụng tài nguyên hài hòa với thiên nhiên.",
+          "sourceIds": [
+            "KN-CANGIO-UNDP"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-CANGIO-UNESCO",
+          "statement": "Hồ sơ mô tả vị trí ven biển, phù sa từ hai sông và các sinh cảnh mặn lợ.",
+          "locator": "General information, đoạn đầu; Ecological Characteristics, hai đoạn đầu.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-CANGIO-FAO",
+          "statement": "Tác giả ghi đầu tư trồng lại rừng từ năm 1978 và vai trò người bảo vệ rừng.",
+          "locator": "MANGROVE REFORESTATION IN CAN GIO DISTRICT, đoạn đầu; MANAGEMENT AND PROTECTION OF REPLANTED FORESTS AT CAN GIO, các đoạn 3–5.",
+          "kind": "historical_interpretation"
+        },
+        {
+          "source_id": "KN-CANGIO-UNDP",
+          "statement": "Thông cáo ghi mốc công nhận Cần Giờ năm 2000 và ba chức năng khu sinh quyển.",
+          "locator": "Đoạn bắt đầu Worldwide; đoạn giải thích Biosphere Reserve gần cuối nội dung, trước ảnh và thông tin liên hệ.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Khu dự trữ sinh quyển rừng ngập mặn Cần Giờ",
+        "entity_type": "ecosystem",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-CANGIO-UNESCO",
+          "KN-CANGIO-FAO",
+          "KN-CANGIO-UNDP"
+        ],
+        "aliases": [
+          {
+            "value": "Can Gio mangrove",
+            "kind": "alternate_name",
+            "source_id": "KN-CANGIO-UNESCO",
+            "locator": "Tên hồ sơ UNESCO"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Cần Giờ, TP. Hồ Chí Minh",
+            "role": "area_as_recorded",
+            "source_id": "KN-CANGIO-UNESCO",
+            "locator": "General information, đoạn đầu",
+            "as_of": "Theo hồ sơ web UNESCO, không hiển thị ngày cập nhật; đọc 28/10/2026",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Một khu sinh quyển có các sinh cảnh ven biển mặn lợ.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Ven biển đông nam TP. Hồ Chí Minh; mốc công nhận là năm 2000, không phải năm rừng hình thành.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO",
+            "KN-CANGIO-UNDP"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Tư liệu FAO ghi vai trò người giữ rừng và ngư dân; chưa nghiên cứu riêng từng cộng đồng văn hóa.",
+          "source_ids": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "UNESCO giải thích nền phù sa và môi trường mặn lợ; chưa có chứng cứ về nguồn gốc tên Cần Giờ trong bài này.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Bài FAO ghi trồng lại rừng từ 1978 và thay đổi quản lý bảo vệ; chưa đủ dữ liệu để đánh giá hiện trạng.",
+          "source_ids": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần đối chiếu địa giới hiện hành, báo cáo giám sát mới và lời kể được đồng ý của cư dân. Chưa xác minh số dân, diện tích hoặc hiệu quả bảo tồn hiện nay.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Có thể đọc tiếp các hồ sơ cùng lĩnh vực sinh thái và sinh kế; liên kết biên tập không tự chứng minh quan hệ lịch sử giữa các địa điểm.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "rights_basis": "Lời biên soạn mới, tóm lược ngắn từ các nguồn đã dẫn và giới hạn đúng thời điểm. Không lưu hoặc công bố ảnh, bản đồ, bản thu hay toàn văn của các cơ quan nguồn."
+    },
+    {
+      "id": "KN-TRAM-CHIM",
+      "title": "Tràm Chim: đồng cỏ, rừng tràm và nhịp nước",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "ecology",
+      "classification": "source_supported",
+      "historical_area": "Đồng Tháp theo hồ sơ Ramsar năm 2012",
+      "community": "Cư dân quanh vùng đất ngập nước theo hồ sơ năm 2012",
+      "summary": "Đất ngập nước Tràm Chim được đọc như một cảnh quan có quan hệ với đời sống quanh vùng.",
+      "scope_note": "Hồ sơ RSIS ghi lần công bố cuối là 02/02/2012. Các mô tả được giới hạn theo hồ sơ; không dùng số loài, số chim, diện tích hoặc địa chỉ cũ để khẳng định hiện trạng năm 2026.",
+      "sections": [
+        {
+          "heading": "Một phần cảnh quan Đồng Tháp Mười",
+          "kind": "explanation",
+          "text": "Trang thông tin bảo tồn thiên nhiên quốc gia mô tả đồng cỏ và rừng tràm ở Tràm Chim, trong cảnh quan đất ngập nước tiêu biểu của vùng Đồng Tháp Mười.",
+          "sourceIds": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        {
+          "heading": "Đọc đúng mốc ghi danh",
+          "kind": "documented_history",
+          "text": "RSIS ghi Tràm Chim là khu Ramsar số 2000, được chỉ định ngày 02/02/2012. Đây là mốc ghi danh quốc tế, không phải niên đại hình thành vùng đất.",
+          "sourceIds": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        {
+          "heading": "Bảo tồn và đời sống quanh vùng",
+          "kind": "explanation",
+          "text": "Hồ sơ năm 2012 nêu vai trò nguồn cá đối với cư dân. Việc bảo vệ đất ngập nước được đặt cùng mục tiêu sử dụng tài nguyên bền vững, thay vì tách cảnh quan khỏi đời sống con người.",
+          "sourceIds": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-TRAMCHIM-RSIS",
+          "statement": "Khu số 2000 có ngày chỉ định 02/02/2012.",
+          "locator": "Đầu hồ sơ: Site number; Designation date. Cuối hồ sơ: Last publication date.",
+          "kind": "register_entry"
+        },
+        {
+          "source_id": "KN-TRAMCHIM-NBCA",
+          "statement": "Bản giới thiệu mô tả đồng cỏ, rừng tràm và giá trị đất ngập nước.",
+          "locator": "Hai đoạn đầu dưới tiêu đề, sau chú thích ảnh.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-TRAMCHIM-RSIS",
+          "statement": "Hồ sơ ghi vai trò nguồn cá và hỗ trợ phục hồi sinh cảnh giai đoạn 2007–2011.",
+          "locator": "Overview, hai đoạn cuối, trước Administrative region.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Vườn quốc gia Tràm Chim",
+        "entity_type": "ecosystem",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke"
+        ],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-TRAMCHIM-RSIS",
+          "KN-TRAMCHIM-NBCA"
+        ],
+        "aliases": [
+          {
+            "value": "Tram Chim National Park",
+            "kind": "alternate_name",
+            "source_id": "KN-TRAMCHIM-RSIS",
+            "locator": "Tiêu đề hồ sơ RSIS"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Đồng Tháp",
+            "role": "area_as_recorded",
+            "source_id": "KN-TRAMCHIM-RSIS",
+            "locator": "Administrative region: Dong Thap Province",
+            "as_of": "Hồ sơ có Last publication date 02/02/2012",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Cảnh quan đất ngập nước với đồng cỏ, rừng tràm.",
+          "source_ids": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Hồ sơ ghi Đồng Tháp; chỉ định Ramsar ngày 02/02/2012.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Cư dân sử dụng nguồn cá theo hồ sơ; chưa phân tích từng cộng đồng.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Bài giới thiệu xem đây là cảnh quan tiêu biểu của Đồng Tháp Mười; chưa xác minh nguồn gốc tên Tràm Chim.",
+          "source_ids": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "RSIS nhắc hỗ trợ phục hồi năm 2007–2011; chưa có chuỗi giám sát mới để kết luận biến đổi.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần báo cáo giám sát mới về nước, sinh cảnh và quần thể. Chưa xác nhận địa chỉ hành chính, điều kiện tham quan hoặc nguồn gốc tên gọi hiện hành.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Các hồ sơ sông nước và sinh kế là gợi ý đọc thêm; chưa khẳng định cùng lịch sử hình thành hoặc cùng cách quản lý.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "reviewed_at": "2026-10-28",
+      "review_status": "source_checked",
+      "rights_basis": "Lời biên soạn mới ngắn với nguồn và phạm vi thời gian rõ. Không tái sử dụng ảnh, bản đồ, tài liệu tải xuống hoặc toàn văn khi chưa xác định quyền riêng."
+    }
+  ],
+  "notes": [
+    "Không có bài Cần Giờ hoặc Tràm Chim trong 25 hồ sơ công khai được audit trước khi nghiên cứu; hai ID mới không thay thế hồ sơ cũ.",
+    "Không đưa diện tích, tọa độ, số dân, số loài hoặc số lượng chim từ hồ sơ cũ thành dữ liệu hiện trạng. Không thêm tọa độ mới vào bản đồ.",
+    "Bản NBCA tiếng Anh có khác biệt về số loài chim so với RSIS và có cách dịch tên loài đáng nghi. Không dùng các số hoặc tên loài ấy trong bài.",
+    "Trang tin Ramsar về mốc 2012 trả 403 khi mở trực tiếp. Dùng hồ sơ RSIS truy cập được, không vượt cơ chế bảo vệ và không coi kết quả tìm kiếm là toàn văn đã đọc.",
+    "Nguồn có ảnh không đồng nghĩa được tái sử dụng ảnh. Hai bài không có ảnh, bản thu, tour mới hoặc giả thuyết tên đất.",
+    "Root cần duyệt bản bài và kiểm tra cổng công bố trước release. review_status source_checked chỉ ghi việc đối chiếu nguồn trong phạm vi các nhận định đã liệt kê."
+  ]
+}

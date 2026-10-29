@@ -1,6 +1,6 @@
 # Hệ thống tri thức Nam Bộ — thiết kế và vận hành
 
-Ngày thiết kế: 28/10/2026. Phạm vi giai đoạn này: mô hình bổ sung, giao diện đọc, audit và ba hồ sơ mẫu. Không nhập hoặc công bố hàng loạt bài, không chuyển nền tảng và không áp dụng migration vào database đang dùng.
+Ngày thiết kế và cập nhật: 28/10/2026. Nền tảng đã có 12 lĩnh vực và đợt công bố 7 hồ sơ/3 hành trình đọc được rà nguồn riêng theo ủy quyền chủ dự án. Ba mẫu gốc được lưu lịch sử; phiên bản đã duyệt thay thế cùng ID nằm trong data/release. Cổng hash/allowlist không cho các bản nháp khác tự công bố. Không áp dụng migration vào database đang dùng.
 
 ## Taxonomy và metadata
 

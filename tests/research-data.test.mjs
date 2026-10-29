@@ -3,16 +3,22 @@ import assert from 'node:assert/strict';
 import { validateReview, createLedger, loadInputs } from '../scripts/research-data.mjs';
 
 const inputs = await loadInputs();
-const copy = () => structuredClone(inputs);
+// Keep the research-only state as a separate fixture. A release is an explicit
+// editorial action, not a side effect of loading claims or sample metadata.
+const baseline = { ...inputs, release: undefined, expansion: inputs.baseExpansion };
+const copy = () => structuredClone(baseline);
+const baselineSourceIds = new Set([...baseline.seed.sources, ...baseline.bundle.sources, ...baseline.expansion.sources].map(source => source.id));
+const baselineResearchSourceIds = new Set([...baselineSourceIds, ...[baseline.review, ...baseline.sourceReviews].flatMap(pack => pack.sources.map(source => source.id))]);
 
 test('register evidence and full article verification have distinct totals', () => {
-  const ledger = createLedger(inputs);
-  assert.deepEqual(ledger.counts, {
-    tracked: 48, registered_sources: 45, research_sources: 51, article_source_checked: 25,
+  const ledger = createLedger(baseline);
+  const expected = {
+    tracked: 48, registered_sources: baselineSourceIds.size, research_sources: baselineResearchSourceIds.size, article_source_checked: 25,
     publication_eligible: 25, published: 25, draft: 23,
     draft_with_checked_register_claim: 4, draft_with_checked_source_claim: 7, draft_research_pending: 12,
     checked_register_claims: 8, checked_source_claims: 8, newly_published: 0,
-  });
+  };
+  assert.deepEqual(Object.fromEntries(Object.keys(expected).map(key => [key, ledger.counts[key]])), expected);
   assert.equal(ledger.items.length, new Set(ledger.items.map(item => item.id)).size);
   for (const id of ['E015', 'E016', 'E017', 'E019']) {
     const item = ledger.items.find(item => item.id === id);
@@ -22,7 +28,7 @@ test('register evidence and full article verification have distinct totals', () 
 });
 
 test('new source dossiers remain drafts with exact consulted extent and claim links', () => {
-  const ledger = createLedger(inputs);
+  const ledger = createLedger(baseline);
   const pack = inputs.sourceReviews[0];
   assert.equal(pack.records.length, 7);
   assert.equal(validateReview(pack, inputs.seed).source_claims, 8);
@@ -90,13 +96,36 @@ test('context observations and a prepared bundle do not become published article
 });
 
 test('report generation preserves the source snapshots and tracks every draft', () => {
-  const before = JSON.stringify(inputs);
-  const ledger = createLedger(inputs);
-  assert.equal(JSON.stringify(inputs), before);
+  const before = JSON.stringify(baseline);
+  const ledger = createLedger(baseline);
+  assert.equal(JSON.stringify(baseline), before);
   const drafts = ledger.items.filter(item => item.publication_status === 'draft');
   assert.equal(drafts.length, 23);
   assert.ok(drafts.every(item => item.next_action.length > 20));
   for (const id of ['E006', 'E007', 'E038', 'E039', 'E040']) {
     assert.equal(drafts.find(item => item.id === id).verification, 'research_pending');
+  }
+});
+
+test('explicit reviewed release publishes seven records while the research baseline stays unchanged', () => {
+  assert.ok(inputs.release, 'Expected the separately approved release package');
+  const before = JSON.stringify(inputs);
+  const released = createLedger(inputs);
+  const old = createLedger(baseline);
+  const oldIds = new Set(old.items.filter(item => item.publication_status === 'published').map(item => item.id));
+  const newIds = released.items.filter(item => item.publication_status === 'published' && !oldIds.has(item.id)).map(item => item.id).sort();
+  assert.equal(released.counts.published, 32);
+  assert.equal(released.counts.article_source_checked, 32);
+  assert.equal(released.counts.publication_eligible, 32);
+  assert.equal(released.counts.draft, 22);
+  assert.equal(released.counts.tracked, 54);
+  assert.equal(released.counts.newly_published, 7);
+  assert.deepEqual(newIds, inputs.release.articles.map(item => item.id).sort());
+  assert.equal(released.items.length, new Set(released.items.map(item => item.id)).size);
+  assert.equal(JSON.stringify(inputs), before);
+  assert.equal(old.counts.published, 25);
+  assert.equal(old.counts.draft, 23);
+  for (const id of ['E006', 'E007', 'E038', 'E039', 'E040']) {
+    assert.equal(released.items.find(item => item.id === id).publication_status, 'draft');
   }
 });

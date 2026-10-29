@@ -1,10 +1,16 @@
 import type { Row } from '@/lib/static-data';
 import { bindingFor } from '@/lib/knowledge';
-import { domainById, knowledgeCommunities } from '@/lib/knowledge-taxonomy';
+import { domainById, knowledgeCommunities, editorialQuestions } from '@/lib/knowledge-taxonomy';
 import { parseSections, sectionLabels } from '@/lib/editorial-model';
+import type { ReleaseAnswer } from '@/lib/release-model';
 
 export function KnowledgeContext({ article }: { article: Row }) {
   const binding = bindingFor(article.id); if (!binding) return null;
+  const answers = article.answers as Record<string, ReleaseAnswer> | undefined;
+  if (answers) return <details className="kn-context" id="ho-so-tri-thuc"><summary>Hồ sơ tri thức · Phạm vi và điều còn bỏ ngỏ</summary><div className="kn-context-body"><div className="badge-row">{[binding.primary_domain,...binding.secondary_domains].map(id => <a key={id} href={`/chuyen-de/${id}`}>{domainById(id)?.name}</a>)}</div><dl>{editorialQuestions.map(question => {
+    const answer = answers[question.id];
+    return <div key={question.id}><dt>{question.id === 'unknowns' ? 'Điều gì chưa được xác minh?' : question.label}</dt><dd><span className="kn-answer-state">{({ supported: 'Có nguồn đối chiếu', partial: 'Có nguồn trong phạm vi giới hạn', unknown: 'Chưa xác minh' })[answer.state]}</span><p>{answer.text}</p>{answer.source_ids.length > 0 && <p><a href="#nguon-tham-khao">Đối chiếu: {answer.source_ids.join(', ')}</a></p>}</dd></div>;
+  })}</dl>{binding.historical_places?.length ? <><h3>Tên địa bàn theo tư liệu</h3><ul>{binding.historical_places.map((place,index) => <li key={index}>{place.name} ({place.as_of}). <a href="#nguon-tham-khao">Nguồn {place.source_id}</a></li>)}</ul></> : null}<p>Đơn vị hành chính hiện hành: chưa đối chiếu riêng. Giữ cách ghi địa bàn của từng nguồn.</p><p><a href={`/lien-ket-tri-thuc?id=${encodeURIComponent(article.id)}`}>Mở các nhánh đọc tiếp</a></p></div></details>;
   const sections = parseSections(article.sections_json ?? '[]');
   const origin = binding.origin_section !== undefined ? sections[binding.origin_section] : undefined;
   const change = binding.change_section !== undefined ? sections[binding.change_section] : undefined;

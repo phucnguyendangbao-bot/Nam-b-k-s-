@@ -1,0 +1,372 @@
+{
+  "version": "communities-reviewed-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "scope": "Hai hồ sơ có phạm vi cụ thể; không khái quát lịch sử người Hoa hoặc người Chăm từ bản tin sự kiện.",
+  "sources": [
+    {
+      "id": "KN-NGUYEN-TIEU-2024",
+      "name": "Chương trình Đêm hội Nguyên Tiêu Giáp Thìn 2024",
+      "url": "https://svhtt.hochiminhcity.gov.vn/web/guest/tin-chi-tiet/-/chi-tiet/chuong-trinh-%C4%91em-hoi-nguyen-tieu-giap-thin-2024-24548-1.html",
+      "source_type": "official_article",
+      "publisher": "Sở Văn hóa và Thể thao TP.HCM; Đỗ Thị Vân",
+      "source_version": "Bài hiển thị 26/02/2024 03:26; sự kiện 24/02/2024; đọc nội dung bài ngày 2026-10-28.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và bản diễn giải mới ngắn, có dẫn nguồn. Không tải lại ảnh, không chép toàn văn hoặc bản diễn. Việc cơ quan tổ chức đăng ảnh không được coi là cấp phép tái sử dụng."
+    },
+    {
+      "id": "KN-NT-LHPN-2024",
+      "name": "Hội LHPN Thành phố tổ chức các hoạt động nhân dịp lễ Nguyên Tiêu của đồng bào Hoa",
+      "url": "https://phunu.hochiminhcity.gov.vn/hoi-lhpn-thanh-pho-to-chuc-cac-hoat-dong-nhan-dip-le-nguyen-tieu-cua-dong-bao-hoa-post2336.html",
+      "source_type": "organizer_report",
+      "publisher": "Hội Liên hiệp Phụ nữ TP.HCM; Tuyết Nhung",
+      "source_version": "Bài ký Tuyết Nhung, thuật buổi họp mặt sáng 20/02/2024. Không thấy ngày đăng riêng trong phần nội dung đã đọc; đọc ngày 2026-10-28 bằng HTTP trực tiếp vì bộ đọc web báo cache miss.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải mới về hoạt động do tổ chức tự tường thuật; không sao chép ảnh, danh sách người tham dự hoặc lời văn dài."
+    },
+    {
+      "id": "KN-CHAU-PHONG-2025",
+      "name": "Viện Khoa học Xã hội vùng Nam Bộ đến khảo sát, thu thập thông tin đồng bào dân tộc thiểu số tại xã Châu Phong",
+      "url": "https://chauphong.angiang.gov.vn/vien-khoa-hoc-xa-hoi-vung-nam-bo-den-khao-sat-thu-thap-thong-tin-dong-bao-dan-toc-thieu-so-tai-xa",
+      "source_type": "official_article",
+      "publisher": "UBND xã Châu Phong; Ro Phy Á",
+      "source_version": "Bài ngày 18/12/2025, đọc 2026-10-28; không coi ngày bài đăng là ngày cư dân lập làng hoặc ngày khảo sát chính xác.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải ngắn mới; không tải ảnh, phiếu điều tra hoặc thông tin cá nhân. Không dùng số dân trong tin làm thống kê hiện hành."
+    },
+    {
+      "id": "KN-CHAU-PHONG-DU-THAO-2026",
+      "name": "Châu Phong trao đổi với đơn vị tư vấn xây dựng Đề án phát triển du lịch đặc trưng địa phương",
+      "url": "https://chauphong.angiang.gov.vn/chau-phong-trao-doi-voi-don-vi-tu-van-xay-dung-de-phat-trien-du-lich-dac-trung-dia-phuong",
+      "source_type": "official_article",
+      "publisher": "UBND xã Châu Phong; Trần Huyện",
+      "source_version": "Bài ngày 21/07/2026, tường thuật hội nghị chiều 17/07/2026; đọc 2026-10-28. Tài liệu được giới thiệu là dự thảo đề án, chưa phải bằng chứng đã triển khai.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải mới có giới hạn, không chép toàn văn hoặc ảnh hội nghị; không coi phương án trong dự thảo là dịch vụ đã hoạt động."
+    }
+  ],
+  "articles": [
+    {
+      "id": "KN-SAMPLE-NGUYEN-TIEU",
+      "title": "Nguyên Tiêu 2024: cuộc gặp gỡ văn hóa Việt–Hoa",
+      "category": "le_hoi",
+      "kind": "festival",
+      "topic": "nguyen_tieu",
+      "historical_area": "Quận 5, TP.HCM theo tư liệu sự kiện năm 2024",
+      "community": "Cộng đồng Hoa và những người tham gia các hoạt động giao lưu tại TP.HCM năm 2024",
+      "classification": "source_supported",
+      "summary": "Hai ghi nhận năm 2024 cho thấy hoạt động gặp gỡ, trình diễn và chăm lo cộng đồng nhân Nguyên Tiêu.",
+      "scope_note": "Hồ sơ đọc hai hoạt động được đơn vị tổ chức tường thuật trong tháng 2/2024. Chưa xác lập nguồn gốc từng nghi thức, lịch tổ chức năm khác hay địa chỉ hành chính hiện hành.",
+      "sections": [
+        {
+          "heading": "Một đêm hội, hai địa điểm",
+          "kind": "observed_practice",
+          "text": "Ngày 24/02/2024, lễ hội được tổ chức tại Trung tâm Văn hóa Quận 5 và Hội quán Nghĩa An. Bài của Sở Văn hóa và Thể thao đăng ngày 26/02, sau ngày diễn ra chương trình.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        {
+          "heading": "Gặp nhau trong không gian văn hóa",
+          "kind": "explanation",
+          "text": "Giao lưu Việt–Hoa và gắn kết cộng đồng là ý nghĩa Sở nêu. Diễu hành và lân–sư–rồng thuộc phần hội được ghi nhận, chưa phải trình tự nghi lễ chung.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        {
+          "heading": "Lễ hội cũng là dịp chăm lo cho nhau",
+          "kind": "observed_practice",
+          "text": "Ở một hoạt động khác ngày 20/02/2024, Hội LHPN Thành phố tổ chức gặp mặt phụ nữ Hoa, giao lưu món ăn, văn nghệ và trao quà cho hội viên gặp khó khăn. Tổ chức Hội giải thích việc gặp gỡ giúp hội viên giao lưu và tìm hiểu văn hóa. Sự kiện này diễn ra trước đêm hội ngày 24/02; không gộp hai chương trình thành một nghi thức.",
+          "sourceIds": [
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        {
+          "heading": "Điều một kỳ lễ chưa thể trả lời",
+          "kind": "editorial_note",
+          "text": "Các bản tin giúp đọc những việc đã diễn ra, nhưng chưa đủ để giải thích toàn bộ lịch sử hình thành lễ hội. Cần thêm tư liệu qua nhiều thời kỳ trước khi kết luận nghi thức nào đã thay đổi. Những lời cầu mong thuộc đời sống tín ngưỡng; hồ sơ không dùng chúng làm bằng chứng về tác dụng siêu nhiên.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-NGUYEN-TIEU-2024",
+          "statement": "Chương trình ngày 24/02/2024 có hai địa điểm nêu trong bài.",
+          "locator": "Đoạn mở đầu ngay dưới thời gian đăng 26/02/2024; không dùng địa chỉ này như địa giới hiện hành.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-NGUYEN-TIEU-2024",
+          "statement": "Nguồn nêu giao lưu Việt–Hoa, gắn kết cộng đồng và trình diễn đường phố.",
+          "locator": "Các đoạn bắt đầu Tết Nguyên tiêu mang nét đẹp và Lễ hội Nguyên Tiêu còn thu hút; đoạn ngày 24/02/2024.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-NT-LHPN-2024",
+          "statement": "Hội tổ chức gặp mặt ngày 20/02/2024, có giao lưu và trao quà.",
+          "locator": "Đoạn mở đầu và đoạn Việc tổ chức các hoạt động nhân dịp Lễ Nguyên tiêu; đây là tường thuật của đơn vị tổ chức.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Nguyên Tiêu 2024 tại Quận 5",
+        "entity_type": "festival_event",
+        "primary_domain": "le-hoi",
+        "secondary_domains": [
+          "tin-nguong-ton-giao",
+          "phong-tuc-doi-song"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [
+          "hoa"
+        ],
+        "source_ids": [
+          "KN-NGUYEN-TIEU-2024",
+          "KN-NT-LHPN-2024"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Quận 5, TP.HCM",
+            "role": "area_as_recorded",
+            "source_id": "KN-NGUYEN-TIEU-2024",
+            "locator": "Đoạn mở đầu bài về chương trình",
+            "as_of": "2024-02-24",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Hồ sơ về những hoạt động Nguyên Tiêu năm 2024.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        "when_where": {
+          "state": "supported",
+          "text": "Đêm hội ngày 24/02/2024; Quận 5 theo tư liệu.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Giao lưu Việt–Hoa.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Giao lưu, gắn kết theo cách lý giải của Sở; chưa xác minh nguồn gốc nghi lễ.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đối chiếu chuỗi tư liệu đủ dài để kết luận biến đổi của lễ hội.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa kiểm tra lịch kỳ lễ tiếp theo, địa chỉ hành chính hiện hành, quyền ảnh và bản diễn.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Có thể đọc tiếp hoạt động giao lưu, ẩm thực và công tác Hội trong bản tin ngày 20/02.",
+          "source_ids": [
+            "KN-NT-LHPN-2024"
+          ]
+        }
+      },
+      "media": [],
+      "audio_asset_id": null,
+      "rights_basis": "Bản biên soạn mới từ các sự kiện và nhận định có dẫn nguồn; không sao chép ảnh, toàn văn hay lời diễn. Ảnh và bản ghi được để trống vì chưa có giấy phép tái sử dụng."
+    },
+    {
+      "id": "KN-SAMPLE-CHAU-GIANG",
+      "title": "Châu Giang–Phũm Soài: đọc đời sống Chăm qua tư liệu địa phương",
+      "category": "phong_tuc",
+      "kind": "custom",
+      "topic": "community_life",
+      "historical_area": "Châu Giang, Phũm Soài, xã Châu Phong, An Giang theo nguồn 2025–2026",
+      "community": "Cộng đồng Chăm tại Châu Giang và Phũm Soài trong phạm vi nguồn",
+      "classification": "source_supported",
+      "summary": "Nghề dệt và thánh đường xuất hiện trong một ghi nhận khảo sát về cộng đồng Chăm, bên cạnh hướng nghiên cứu du lịch địa phương.",
+      "scope_note": "Chỉ dùng bản tin khảo sát năm 2025 và cuộc họp về dự thảo năm 2026. Không suy ra lịch sử cư trú, nguồn gốc tên đất, trình tự nghi lễ, địa giới hiện hành hoặc dịch vụ đã triển khai.",
+      "sections": [
+        {
+          "heading": "Bắt đầu từ địa bàn và người đang sống ở đó",
+          "kind": "observed_practice",
+          "text": "Bài của UBND xã Châu Phong ngày 18/12/2025 nêu cộng đồng Chăm tại Châu Giang và Phũm Soài, trong một ghi nhận khảo sát.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        {
+          "heading": "Hai nơi được đoàn khảo sát tìm đến",
+          "kind": "observed_practice",
+          "text": "Đoàn đến cơ sở dệt Mohamach và Thánh đường Nia Mah ở Phũm Soài. Đây là đầu mối nghiên cứu, chưa giải thích hoa văn hoặc lịch sử từng nơi.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        {
+          "heading": "Từ ghi nhận thực tế đến hướng phát triển",
+          "kind": "observed_practice",
+          "text": "Tại cuộc họp ngày 17/07/2026, địa phương và đơn vị tư vấn thảo luận dự thảo phát triển du lịch gắn với văn hóa Chăm, nghề dệt và ẩm thực Halal. Những nội dung này cho thấy hướng quan tâm của dự thảo; chưa chứng minh các tour, điểm trải nghiệm hoặc dịch vụ đã hoàn thành.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        {
+          "heading": "Đọc một cộng đồng mà không đóng khung",
+          "kind": "editorial_note",
+          "text": "Một bản tin hành chính không thay thế lời kể của người thực hành hoặc công trình nghiên cứu chuyên sâu. Hồ sơ giữ cách viết tên nơi trong nguồn và không dùng số dân của một báo cáo làm thống kê hiện tại. Lịch sử cư trú, ý nghĩa từng hoa văn và biến đổi của đời sống cần tiếp tục đối chiếu; điều chưa biết được để ngỏ.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025",
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-CHAU-PHONG-2025",
+          "statement": "Nguồn nêu cộng đồng Chăm tại Châu Giang và Phũm Soài.",
+          "locator": "Đoạn Theo báo cáo tại buổi làm việc; không tái sử dụng số dân thành dữ liệu hiện hành.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-CHAU-PHONG-2025",
+          "statement": "Đoàn khảo sát tới cơ sở dệt Mohamach và Thánh đường Nia Mah.",
+          "locator": "Đoạn cuối nội dung, bắt đầu Trong khuôn khổ buổi khảo sát, trước tên tác giả Ro Phy Á.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-CHAU-PHONG-DU-THAO-2026",
+          "statement": "Cuộc họp 17/07/2026 thảo luận dự thảo gắn văn hóa Chăm, nghề dệt và du lịch.",
+          "locator": "Đoạn mở đầu về ngày hội nghị; các đoạn Tại hội nghị và Theo dự thảo. Không phải xác nhận đề án đã duyệt hoặc dịch vụ đã hoạt động.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Châu Giang và Phũm Soài",
+        "entity_type": "community_place",
+        "primary_domain": "phong-tuc-doi-song",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke",
+          "tin-nguong-ton-giao"
+        ],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [
+          "cham"
+        ],
+        "source_ids": [
+          "KN-CHAU-PHONG-2025",
+          "KN-CHAU-PHONG-DU-THAO-2026"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Châu Giang, Phũm Soài, xã Châu Phong, An Giang",
+            "role": "area_as_recorded",
+            "source_id": "KN-CHAU-PHONG-2025",
+            "locator": "Đoạn báo cáo tại buổi làm việc và đoạn khảo sát thực tế",
+            "as_of": "2025-12-18 theo ngày bài",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "partial",
+          "text": "Hồ sơ địa bàn có nghề dệt và thánh đường.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Địa bàn theo bài 18/12/2025; chưa có mốc lập làng.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "community": {
+          "state": "supported",
+          "text": "Cộng đồng Chăm tại hai ấp trong báo cáo.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Dự thảo năm 2026 đặt văn hóa địa phương trong hướng phát triển sinh kế; chưa xác minh nguồn gốc tên đất hoặc nghề.",
+          "source_ids": [
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Hai thời điểm ghi nhận khác nhau, chưa đủ đo biến đổi đời sống.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025",
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa xác minh lịch sử cư trú, ý nghĩa hoa văn, địa giới hiện hành hoặc quyền lời kể, ảnh và bản thu.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc thêm từ hai địa điểm trong bản tin.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        }
+      },
+      "media": [],
+      "audio_asset_id": null,
+      "rights_basis": "Chỉ lưu bản biên soạn mới ngắn và dẫn nguồn. Chưa có quyền tái sử dụng ảnh, bản thu, phiếu khảo sát hoặc lời kể cá nhân; các trường tài sản được để trống."
+    }
+  ],
+  "notes": [
+    "Hai ID khớp hồ sơ mẫu cũ, không tạo bản sao khi chuyển sang bản biên tập công khai.",
+    "Không nhập nhận định ghi danh vào official_register: gói này chỉ chứng minh sự kiện và các ý kiến có phạm vi trong bản tin; chưa đối chiếu quyết định gốc.",
+    "Bài Châu Phong ngày 23/09/2026 trên trang UBND là đăng lại Báo An Giang, không được dùng như kiểm chứng độc lập của UBND.",
+    "Không đồng nhất các cách viết Mohamach, Mohamad hoặc Mohammad giữa các nguồn. Gói giữ nguyên tên Mohamach của bản tin khảo sát, không tự lập alias cho cá nhân/cơ sở.",
+    "Đã xem tài liệu hội nghị ngành di sản TP.HCM năm 2025 trên website Sở, bìa ghi Lưu hành nội bộ. Không dùng nội dung tài liệu đó trong hồ sơ công khai này; hai nguồn HTML của đơn vị tổ chức đã đủ chứng minh phạm vi bài.",
+    "Không tải hoặc chèn ảnh từ các bản tin; không thêm tọa độ, phát âm, lời kể hay lịch nghi lễ mới."
+  ]
+}

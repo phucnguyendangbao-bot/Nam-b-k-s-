@@ -1,0 +1,244 @@
+{
+  "version": "legacy-source-audit-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "scope": "Audit độc lập bảy bài đã công khai; không sửa code, không đổi trạng thái công bố, không đánh giá lại giấy phép ảnh Commons.",
+  "counts": {
+    "articles_audited": 7,
+    "sources_read_successfully": 6,
+    "articles_unable_to_recheck": 1,
+    "claims_found_false": 0
+  },
+  "records": [
+    {
+      "content_id": "E018",
+      "source_ids": [
+        "R-DONCA-UNESCO"
+      ],
+      "access_status": "unable_to_recheck",
+      "urls_checked": [
+        "https://ich.unesco.org/en/RL/art-of-on-ca-tai-tu-music-and-song-in-southern-viet-nam-00733",
+        "https://ich.unesco.org/en/decisions/8.COM/8.31",
+        "https://ich.unesco.org/en/news/eleven-new-inscriptions-on-the-representative-list-00073"
+      ],
+      "consulted_extent": "human_verification_page_only",
+      "source_version": "Hồ sơ, quyết định và bản tin UNESCO độc lập đều trả human-verification ngày đọc 2026-10-28; không vượt CAPTCHA.",
+      "claim_checks": [
+        {
+          "topic": "Ghi danh UNESCO 2013 và quyết định 8.COM 8.31",
+          "result": "unable_to_recheck"
+        },
+        {
+          "topic": "Ứng tác, truyền dạy, các dịp diễn trong mô tả hồ sơ",
+          "result": "unable_to_recheck"
+        }
+      ],
+      "findings": [
+        {
+          "severity": "requires_evidence",
+          "issue": "Không đọc được hồ sơ, quyết định hoặc bản tin độc lập trong đợt audit; không kết luận dữ kiện sai. Phiên bản hiện ghi bản chỉ mục chưa đủ để tự nhận đã đọc toàn bộ mô tả.",
+          "action": "Cần bản UNESCO đọc được hợp lệ hoặc nguồn chuyên môn trực tiếp đã đọc hỗ trợ từng nhận định. Không dùng kết quả tìm kiếm thay toàn văn; không nâng trạng thái nguồn do CAPTCHA."
+        },
+        {
+          "severity": "metadata",
+          "issue": "Một claim register_entry gộp ghi danh và cách thực hành.",
+          "action": "Tách nhận định ghi danh khỏi nhận định mô tả; mỗi phần có locator và phạm vi đọc riêng."
+        }
+      ],
+      "search_only_observation": "Kết quả tìm kiếm có bản tin UNESCO ngày 05/12/2013 nhắc ghi danh, nhưng trang trực tiếp bị challenge nên không được tính fulltextrechecked."
+    },
+    {
+      "content_id": "E027",
+      "source_ids": [
+        "R-PIA-DSVH"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://dsvh.gov.vn/nghe-lam-banh-pia-tinh-soc-trang-3329"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "Hồ sơ Cục DSVH, Dương Anh; đọc 2026-10-28. Trang không hiện ngày xuất bản riêng.",
+      "claim_checks": [
+        {
+          "topic": "Các công đoạn, lớp vỏ và sử dụng máy móc",
+          "result": "supported",
+          "locator": "Các đoạn Quy trình; Vỏ bánh; phần tạo hình và nướng."
+        },
+        {
+          "topic": "Quà tặng, lễ vật và sinh kế",
+          "result": "supported",
+          "locator": "Đoạn vai trò của nghề gần cuối."
+        },
+        {
+          "topic": "Quyết định 2728/QĐ-BVHTTDL, 30/9/2020",
+          "result": "supported_as_reported",
+          "locator": "Đoạn cuối trước tên tác giả; chưa đọc bản quyết định gốc."
+        }
+      ],
+      "findings": [
+        {
+          "severity": "metadata",
+          "issue": "Một claim register_entry hiện bao cả quy trình, sinh kế và ghi danh.",
+          "action": "Tách ít nhất claim fact cho nghề và claim ghi danh riêng. Hồ sơ official_article không tự trở thành official_register; nối claim ghi danh với S04 hoặc bản quyết định đã đối chiếu nếu cần giữ mức official_register."
+        }
+      ],
+      "scope_notes": [
+        "Các nội dung đang dùng không lấy mốc di dân thế kỷ XVI trong đoạn đầu nguồn. Giữ giới hạn đó.",
+        "Địa danh nguồn không xác nhận đơn vị hành chính hiện tại."
+      ]
+    },
+    {
+      "content_id": "E014",
+      "source_ids": [
+        "R-ROBAM-VGP"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://baochinhphu.vn/nguoi-tron-doi-giu-gin-net-van-hoa-tu-hao-cua-dong-bao-khmer-nam-bo-102250123172405118.htm"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "Báo Chính phủ, Minh Thúy, hiển thị 02/02/2025 10:02; đọc 2026-10-28.",
+      "claim_checks": [
+        {
+          "topic": "Lâm Thị Hương, Bưng Chông, gia đình giữ nghề và truyền dạy",
+          "result": "supported",
+          "locator": "Các đoạn sau ảnh đầu và phần dạy nghệ sĩ trẻ."
+        },
+        {
+          "topic": "Động tác, mặt nạ, trang phục",
+          "result": "supported",
+          "locator": "Đoạn Nghệ nhân Lâm Thị Hương cho biết."
+        }
+      ],
+      "findings": [],
+      "scope_notes": [
+        "Ngày trong source_version hiện đúng; không lấy dãy số trong URL thành ngày đăng.",
+        "Trường hợp năm 2025 không đại diện toàn bộ lịch sử hoặc mọi đoàn diễn."
+      ]
+    },
+    {
+      "content_id": "E010",
+      "source_ids": [
+        "R-DOLTA-TITC"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://dantoc.vietnamtourism.gov.vn/can-tho-ton-vinh-le-sene-dolta-2025-gin-giu-van-hoa-thuc-day-phat-trien/"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "TITC; tiêu đề năm 2025, đoạn đầu ghi 22/9; đọc 2026-10-28. Không thấy ngày đăng riêng.",
+      "claim_checks": [
+        {
+          "topic": "Tri ân tổ tiên, ông bà, cha mẹ",
+          "result": "supported",
+          "locator": "Đoạn mở đầu."
+        },
+        {
+          "topic": "Sự kiện 22/9/2025 tại Học viện Phật giáo Nam tông Khmer, Cần Thơ",
+          "result": "supported",
+          "locator": "Tiêu đề cùng đoạn mở đầu."
+        }
+      ],
+      "findings": [],
+      "scope_notes": [
+        "Đúng giới hạn một sự kiện; không dùng làm lịch lễ mọi năm."
+      ]
+    },
+    {
+      "content_id": "E011",
+      "source_ids": [
+        "R-CHOL-TITC"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://dantoc.vietnamtourism.gov.vn/hoa-minh-cung-tet-chol-chnam-thmay-cua-nguoi-khmer-nam-bo/"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "TITC; không thấy ngày đăng riêng; đọc 2026-10-28.",
+      "claim_checks": [
+        {
+          "topic": "Giữa tháng 4, sau thu hoạch; các nghi lễ được bài liệt kê",
+          "result": "supported",
+          "locator": "Hai đoạn ngay sau ảnh đám rước quanh chùa Khedol."
+        }
+      ],
+      "findings": [
+        {
+          "severity": "wording_optional",
+          "issue": "Summary dùng chuyển mùa; nguồn trực tiếp nói thời điểm sau thu hoạch, chưa giải thích khí hậu.",
+          "action": "Nếu muốn sát nguồn hơn, đổi chuyển mùa thành sau vụ thu hoạch; không cần đổi claim đã có."
+        }
+      ],
+      "scope_notes": [
+        "Không lấy danh sách hoạt động của bài quảng bá làm trình tự bắt buộc tại mọi chùa."
+      ]
+    },
+    {
+      "content_id": "E012",
+      "source_ids": [
+        "R-OOC-TITC"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://dantoc.vietnamtourism.gov.vn/le-hoi-dua-ghe-ngo-sac-mau-van-hoa-khmer-nam-bo/"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "TITC; không thấy ngày đăng riêng; đọc 2026-10-28.",
+      "claim_checks": [
+        {
+          "topic": "Lễ cúng trăng, rằm tháng 10 âm lịch, ý nghĩa cầu mùa",
+          "result": "supported",
+          "locator": "Đoạn mở đầu và đoạn định nghĩa Oóc om Bóc."
+        }
+      ],
+      "findings": [],
+      "scope_notes": [
+        "Nhãn folk_belief và giới hạn không khẳng định tác dụng siêu nhiên phù hợp nội dung nguồn."
+      ]
+    },
+    {
+      "content_id": "E013",
+      "source_ids": [
+        "R-NGO-TDTT"
+      ],
+      "access_status": "source_checked",
+      "urls_checked": [
+        "https://tdtt.gov.vn/the-thao-trong-nuoc/id/9253/giai-dua-ghe-ngo-truyen-thong-le-hoi-oocomboc-2009"
+      ],
+      "consulted_extent": "full_article",
+      "source_version": "Cục TDTT; bài hiển thị 16/11/2009 13:21; đọc 2026-10-28.",
+      "claim_checks": [
+        {
+          "topic": "Tuyển vận động viên sau Đôn-ta",
+          "result": "supported",
+          "locator": "Đoạn mở đầu."
+        },
+        {
+          "topic": "Ghe Ngo là hoạt động trong dịp Oóc-om-bóc",
+          "result": "supported",
+          "locator": "Đoạn khái quát ở phần sau bài, sau các trường hợp tập luyện."
+        }
+      ],
+      "findings": [
+        {
+          "severity": "locator",
+          "issue": "Locator hiện chỉ ghi các đoạn mở đầu, chưa trỏ tới phần liên hệ với lễ Oóc-om-bóc ở sau.",
+          "action": "Bổ sung vị trí đoạn liên hệ lễ hội vào citation."
+        },
+        {
+          "severity": "scope_optional",
+          "issue": "Metadata historical_area Nam Bộ còn rộng so với tư liệu địa bàn Long Phú.",
+          "action": "Nên ghi Long Phú, Sóc Trăng theo tư liệu mùa giải 2009; không suy thành khảo sát toàn vùng."
+        }
+      ],
+      "scope_notes": [
+        "Không dùng cự ly, số đội, số tay chèo hay ngày giải năm 2009 cho lịch hiện hành."
+      ]
+    }
+  ],
+  "cross_cutting_notes": [
+    "Không đồng nhất nguồn chính thức với việc mọi nhận định trong nguồn đều thành lịch sử xác lập.",
+    "Bản ghi ghi danh, mô tả thực hành và quyền tài sản là ba phạm vi riêng.",
+    "Audit không cấp quyền lấy ảnh báo chí; không sao chép nội dung dài.",
+    "Không truy cập tiếp hoặc vượt trang human-verification của UNESCO."
+  ]
+}

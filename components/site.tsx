@@ -1,8 +1,9 @@
 import { categories, classes, statusLabels } from '@/lib/catalog';
-import type { Row } from '@/lib/static-data';
+import { stats, type Row } from '@/lib/static-data';
 import { SearchTrigger } from '@/components/interactive/command-palette';
+import { SiteNav } from '@/components/interactive/site-nav';
 import { Arrow, Motif, StoryCard, categoryTone } from './cards';
-export { Arrow, Motif, StoryCard, categoryTone, toneFor, collectionFor } from './cards';
+export { Arrow, EvidenceMix, Motif, StoryCard, categoryTone, evidenceMix, toneFor, collectionFor } from './cards';
 
 /** Biểu tượng: mặt trời trên sông, nét vàng đồng trên nền nâu phù sa. */
 export function Mark({ size = 44 }: { size?: number }) {
@@ -15,141 +16,84 @@ export function Mark({ size = 44 }: { size?: number }) {
   );
 }
 
-/** Hình vẽ nét nhà cổ Nam Bộ bên bến sông, dùng làm minh họa trang trí (không phải tư liệu). */
-/** Hoa văn ngăn cách: hai nét mảnh và một con sóng nhỏ ở giữa. */
-export function Ornament() {
-  return (
-    <svg className="hs-ornament" viewBox="0 0 160 16" aria-hidden="true">
-      <path d="M0 8h58M102 8h58" stroke="currentColor" strokeWidth="1" />
-      <path d="M62 8c3-4 6-4 9 0s6 4 9 0 6-4 9 0 6 4 9 0" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <circle cx="58" cy="8" r="1.6" fill="currentColor" /><circle cx="102" cy="8" r="1.6" fill="currentColor" />
-    </svg>
-  );
-}
-
-export function LineArt() {
-  const bays = [40, 88, 136, 184, 232];
-  return (
-    <svg className="hs-lineart" viewBox="0 0 320 420" role="img" aria-label="Hình vẽ minh họa nhà cổ bên sông, không phải ảnh tư liệu">
-      <g fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="252" cy="68" r="22" />
-        <circle cx="252" cy="68" r="32" strokeDasharray="2 7" />
-        <path d="M22 330C34 260 26 210 46 124" />
-        <path d="M46 124c-22-6-40 4-48 16 18-6 32-8 48-16Zm0 0c-6-22-24-30-38-30 14 10 26 18 38 30Zm0 0c10-20 30-26 46-24-16 6-30 12-46 24Zm0 0c22-4 38 8 44 22-16-10-28-16-44-22Zm0 0c4 18-4 34-14 42 4-14 8-28 14-42Z" />
-        <path d="M120 150l15-22h50l15 22M135 128c-4-6-2-10 2-12M185 128c4-6 2-10-2-12" />
-        <path d="M30 200l30-50h200l30 50Z" />
-        <path d="M60 150c-8-6-8-14-2-18M260 150c8-6 8-14 2-18" />
-        <path d="M51 165h218M43 178h234M36 191h248" strokeDasharray="1 5" />
-        <path d="M40 200h240v130H40ZM40 214h240" />
-        {bays.map(x => <path key={x} d={`M${x + 10} 330v-70a14 14 0 0 1 28 0v70M${x + 24} 246v84M${x} 214v116`} />)}
-        <path d="M280 214v116M30 338h260M20 346h280" />
-        <path d="M0 368c20-6 40 6 60 0s40-6 60 0 40 6 60 0 40-6 60 0 40 6 60 0 20-4 20-2M0 384c20-6 40 6 60 0s40-6 60 0 40 6 60 0 40-6 60 0 40 6 60 0M0 400c20-6 40 6 60 0s40-6 60 0 40 6 60 0 40-6 60 0 40 6 60 0" />
-        <path d="M112 362h100l-14 13h-72ZM132 362v-13h40v13M128 349l24-10 24 10M206 362l18-30" />
-      </g>
-    </svg>
-  );
-}
-
-const navLeft = [
+const primaryNav = [
   { href: '/kham-pha', label: 'Khám phá' },
-  { href: '/chuyen-muc/dat-nam-bo', label: 'Đất Nam Bộ' },
-  { href: '/chuyen-muc/nep-xua', label: 'Nếp xưa' },
-  { href: '/chuyen-muc/tieng-que-minh', label: 'Tiếng quê' },
-];
-const navRight = [
-  { href: '/hanh-trinh', label: 'Hành trình' },
   { href: '/ban-do', label: 'Bản đồ' },
-  { href: '/ky-uc-cong-dong', label: 'Gửi ký ức' },
+  { href: '/hanh-trinh', label: 'Hành trình' },
+  { href: '/tu-dien', label: 'Từ điển' },
   { href: '/tri-thuc', label: 'Kho tri thức' },
 ];
+const aboutNav = [
+  { href: '/ve-du-an', label: 'Về dự án' },
+  { href: '/nguon-tu-lieu', label: 'Nguồn tư liệu' },
+  { href: '/huong-dan-doc', label: 'Hướng dẫn đọc' },
+  { href: '/ky-uc-cong-dong', label: 'Gửi ký ức' },
+];
+const collectionNav = categories.map(c => ({ href: `/chuyen-muc/${c.slug}`, label: c.name, note: c.subtitle }));
 
 export function Header({ user }: { user: Row | null }) {
   const staff = user && ['admin', 'editor', 'researcher'].includes(user.role);
   return (
     <>
       <a href="#main" className="skip-link">Đến nội dung chính</a>
-      <div className="hs-topbar">
-        <div className="hs-topbar-inner">
-          <div className="hs-topbar-left">
-            <SearchTrigger />
-            <a href="/nguon-tu-lieu">Nguồn tư liệu</a>
-            <a href="/hoi-dap">Tra cứu</a>
-          </div>
-          <div className="hs-topbar-right">
-            <a href="/ve-du-an">Về dự án</a>
-            {staff && <a href="/quan-tri">Bàn biên tập</a>}
-            {user ? <span>Đang xem: {user.displayName}</span> : <span>Bản đọc công khai</span>}
-          </div>
-        </div>
-      </div>
-      <header className="nb-header">
-        <div className="nb-header-inner">
-          <nav className="hs-nav hs-nav-left" aria-label="Điều hướng chính">
-            <a href="/" className="hs-home" aria-label="Trang chủ"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8v10h-6v-6H9v6H3Z" fill="currentColor" /></svg></a>
-            {navLeft.map(n => <a key={n.href} href={n.href}>{n.label}</a>)}
-          </nav>
-          <a className="hs-emblem" href="/" aria-label="Nam Bộ Ký Sự — Trang chủ">
-            <Mark size={46} />
-            <span>Nam Bộ<b>Ký Sự</b></span>
+      <header className="sh">
+        <div className="sh-inner">
+          <a className="sh-brand" href="/" aria-label="Nam Bộ Ký Sự, về trang chủ">
+            <Mark size={36} />
+            <span className="sh-word">Nam Bộ <b>Ký Sự</b></span>
           </a>
-          <nav className="hs-nav hs-nav-right" aria-label="Điều hướng phụ">
-            {navRight.map(n => <a key={n.href} href={n.href}>{n.label}</a>)}
-          </nav>
-          <details className="nb-mobile-menu">
-            <summary aria-label="Mở menu"><span /><span /><span /></summary>
-            <nav aria-label="Điều hướng trên điện thoại">
-              <a href="/">Trang chủ</a>
-              {[...navLeft, ...navRight].map(n => <a key={n.href} href={n.href}>{n.label}</a>)}
-              <a href="/nguon-tu-lieu">Nguồn tư liệu</a>
-              {staff && <a href="/quan-tri">Bàn biên tập</a>}
-            </nav>
-          </details>
+          <SiteNav primary={primaryNav} collections={collectionNav} secondary={staff ? [...aboutNav, { href: '/quan-tri', label: 'Bàn biên tập' }] : aboutNav} />
+          <div className="sh-tools">
+            <SearchTrigger />
+            {staff && <a className="sh-staff" href="/quan-tri">Bàn biên tập</a>}
+          </div>
         </div>
       </header>
     </>
   );
 }
 
-export function Footer({ user }: { user: Row | null }) {
+const footerGroups: { title: string; links: [string, string][] }[] = [
+  { title: 'Chuyên mục', links: categories.map(c => [`/chuyen-muc/${c.slug}`, c.name]) },
+  { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
+  { title: 'Cách làm', links: [['/ve-du-an', 'Về dự án'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/nguyen-tac-bien-tap', 'Nguyên tắc biên tập'], ['/quyen-su-dung', 'Sử dụng và ghi công'], ['/tinh-trang-tu-lieu', 'Tình trạng tư liệu'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
+];
+
+export async function Footer({ user }: { user: Row | null }) {
+  let n: { sources: number; published: number } | null = null;
+  try { n = await stats(); } catch { /* chân trang vẫn hiển thị khi chưa đọc được số liệu */ }
   return (
-    <footer className="hs-footer">
-      <div className="hs-footer-inner">
-        <div className="hs-footer-about">
-          <h2>Nam Bộ Ký Sự</h2>
-          <p>Kho hồ sơ văn hóa Nam Bộ, khởi đầu với tư liệu về Cần Thơ, Hậu Giang và Sóc Trăng.</p>
-          <ul>
-            <li>Mỗi hồ sơ ghi rõ nguồn và vị trí đối chiếu trong tài liệu.</li>
-            <li>Giả thuyết, lời kể và dữ kiện được gắn nhãn riêng.</li>
-            <li>Ảnh và văn bản chỉ được đăng khi giấy phép cho phép.</li>
+    <footer className="sf" data-surface="deep">
+      <div className="sf-inner">
+        <div className="sf-brand">
+          <a className="sh-brand" href="/" aria-label="Nam Bộ Ký Sự, về trang chủ"><Mark size={40} /><span className="sh-word">Nam Bộ <b>Ký Sự</b></span></a>
+          <p>Kho hồ sơ văn hóa Nam Bộ, bắt đầu từ Cần Thơ, Hậu Giang và Sóc Trăng. Mỗi nhận định dẫn về nguồn để bạn tự đối chiếu.</p>
+          <ul className="ev-key on-deep" aria-label="Cách đọc nhãn trong hồ sơ">
+            <li><span className="epistemic-label kind-documented_history">Có tư liệu</span></li>
+            <li><span className="epistemic-label kind-hypothesis">Giả thuyết</span></li>
+            <li><span className="epistemic-label kind-folk_belief">Truyền thống kể</span></li>
+            <li><span className="epistemic-label kind-editorial_note">Ghi chú biên tập</span></li>
           </ul>
         </div>
-        <nav className="hs-footer-links" aria-label="Liên kết chân trang">
-          <a href="/kham-pha">Khám phá</a>
-          <a href="/tri-thuc">Kho tri thức</a>
-          <a href="/tu-dien">Từ điển phương ngữ</a>
-          <a href="/dong-thoi-gian">Dòng thời gian</a>
-          <a href="/ong-ba-ke-chuyen">Ông bà kể chuyện</a>
-          <a href="/so-tay">Sổ tay</a>
-          <a href="/hanh-trinh">Hành trình</a>
-          <a href="/ban-do">Bản đồ</a>
-          <a href="/nguon-tu-lieu">Nguồn tư liệu</a>
-          <a href="/hoi-dap">Tra cứu</a>
-          <a href="/ky-uc-cong-dong">Gửi ký ức</a>
-          <a href="/ve-du-an">Về dự án</a>
-          <a href="/huong-dan-doc">Hướng dẫn đọc</a>
-          <a href="/nguyen-tac-bien-tap">Nguyên tắc biên tập</a>
-          <a href="/quyen-su-dung">Sử dụng &amp; ghi công</a>
-          <a href="/tinh-trang-tu-lieu">Tình trạng tư liệu</a>
-          <a href="/quan-tri">Nghiên cứu &amp; biên tập</a>
-        </nav>
-        <div className="hs-footer-mark">
-          <Mark size={64} />
-          <span>Nam Bộ<b>Ký Sự</b></span>
-        </div>
+        {footerGroups.map(g => (
+          <nav className="sf-col" key={g.title} aria-label={g.title}>
+            <h2>{g.title}</h2>
+            <ul>{g.links.map(([href, label]) => <li key={href}><a href={href}>{label}</a></li>)}</ul>
+          </nav>
+        ))}
       </div>
-      <div className="hs-footer-bottom">
-        <span>© 2026 Nam Bộ Ký Sự. Ảnh từ Wikimedia Commons theo giấy phép ghi tại từng ảnh. Bản đồ © OpenStreetMap contributors.</span>
-        {user ? <span>Đang xem: {user.displayName}</span> : <span>Mỗi hồ sơ có nguồn để bạn tự đối chiếu</span>}
+      <div className="sf-sources">
+        <h2>Nguồn tư liệu và giấy phép</h2>
+        <ul>
+          <li><a href="/nguon-tu-lieu">{n ? `${n.sources} nguồn đăng ký` : 'Danh mục nguồn'}</a>: cơ quan chuyên môn, thư viện, báo chí, từ điển mở.</li>
+          <li>Ảnh từ Wikimedia Commons, ghi tác giả và giấy phép tại từng ảnh.</li>
+          <li>Bản đồ: dữ liệu © OpenStreetMap contributors; ảnh vệ tinh Esri World Imagery.</li>
+          <li>Thuyết minh tour: giọng tổng hợp Piper VAIS-1000, CC BY 4.0. Phông chữ Noto và Be Vietnam Pro, giấy phép OFL.</li>
+        </ul>
+      </div>
+      <div className="sf-bottom">
+        <span>© 2026 Nam Bộ Ký Sự{n ? `, ${n.published} hồ sơ đang hiển thị` : ''}.</span>
+        <span>{user ? `Đang xem: ${user.displayName}` : <a href="/quyen-su-dung">Điều kiện sử dụng và ghi công</a>}</span>
       </div>
     </footer>
   );

@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Nam Bộ Ký Sự — Design tokens (Modern Heritage Editorial)
+   Mọi màu, cỡ chữ, khoảng cách, bo góc, đổ bóng và chuyển động đều lấy từ đây.
+   Không viết mã màu trực tiếp trong các file thành phần.
+   ========================================================================== */
+:root {
+  color-scheme: light;
+
+  /* Màu nền: giấy phù sa */
+  --c-paper: #F7F2E8;
+  --c-paper-sunken: #EFE7D7;
+  --c-paper-deep: #E5DAC5;
+  --c-surface: #FCF9F3;
+
+  /* Chữ */
+  --c-ink: #272B26;
+  --c-ink-soft: #464B44;
+  --c-ink-muted: #5E6258;          /* ≥ 5.4:1 trên --c-paper */
+
+  /* Đường kẻ */
+  --c-line: #DCD1BE;
+  --c-line-strong: #BFAF93;
+
+  /* Màu thương hiệu */
+  --c-primary: #183F39;            /* lá dừa nước */
+  --c-primary-hover: #0F2E29;
+  --c-primary-soft: #DDE7E1;
+  --c-primary-tint: #EAF0EB;
+  --c-accent: #B67A41;             /* đồng thau, chỉ dùng cho mảng/đường, không cho chữ nhỏ */
+  --c-accent-ink: #8A5627;         /* đồng thau đủ tương phản cho chữ (≥ 4.9:1) */
+  --c-accent-soft: #F1E2CF;
+  --c-gold: #C6A55F;               /* lúa chín, dùng trên nền tối */
+  --c-gold-soft: #EADCB6;
+
+  /* Nền tối (khối nhấn, sân khấu bản đồ) */
+  --c-deep: #12312C;
+  --c-deep-2: #0B211D;
+  --c-on-deep: #F2ECDF;
+  --c-on-deep-soft: #C6CFC5;
+
+  /* Ba sắc chuyên mục */
+  --c-tone-river: #1F5A52;
+  --c-tone-river-soft: #DCE8E3;
+  --c-tone-dusk: #8A5627;
+  --c-tone-dusk-soft: #F1E2CF;
+  --c-tone-lily: #6A4F72;
+  --c-tone-lily-soft: #ECE3EC;
+
+  /* Nhãn tri thức: phân biệt dữ kiện, giả thuyết, truyền thống kể, ghi chú */
+  --c-ev-fact: #1F5A52;
+  --c-ev-fact-soft: #DCE8E3;
+  --c-ev-hypo: #8A5627;
+  --c-ev-hypo-soft: #F4E6D3;
+  --c-ev-lore: #6A4F72;
+  --c-ev-lore-soft: #EEE5EE;
+  --c-ev-note: #4E544B;
+  --c-ev-note-soft: #E9E4D9;
+
+  /* Trạng thái */
+  --c-success: #2D6A47;
+  --c-success-soft: #E1EEE4;
+  --c-warning: #7A5A12;
+  --c-warning-soft: #F5EACB;
+  --c-danger: #9B3B24;
+  --c-danger-soft: #F6E3DC;
+  --c-focus: #1E6B8F;
+
+  /* Chữ */
+  --f-display: 'Noto Serif Display', 'Noto Serif', Georgia, serif;
+  --f-read: 'Noto Serif', Georgia, 'Times New Roman', serif;
+  --f-ui: 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif;
+
+  /* Thang chữ (tỉ lệ ~1.25, co giãn theo khung nhìn) */
+  --t-xs: 0.8125rem;   /* 13 */
+  --t-sm: 0.875rem;    /* 14 */
+  --t-base: 1rem;      /* 16 */
+  --t-md: 1.125rem;    /* 18 */
+  --t-read: clamp(1.0625rem, 0.98rem + 0.3vw, 1.1875rem); /* 17–19, chữ đọc */
+  --t-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);          /* 20–24 */
+  --t-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);              /* 24–32 */
+  --t-2xl: clamp(1.875rem, 1.45rem + 1.7vw, 2.75rem);      /* 30–44 */
+  --t-3xl: clamp(2.375rem, 1.7rem + 2.8vw, 4rem);          /* 38–64 */
+  --t-4xl: clamp(2.75rem, 1.8rem + 4.2vw, 5.25rem);        /* 44–84 */
+  /* Khoảng chữ theo cỡ: chữ lớn khít lại, chữ nhỏ thưa ra một chút, chữ thường để 0 */
+  --tr-display: -0.025em;
+  --tr-heading: -0.015em;
+  --tr-title: -0.008em;
+  --tr-body: 0;
+  --tr-small: 0.012em;
+  --lh-display: 1.04;
+  --lh-tight: 1.12;
+  --lh-snug: 1.3;
+  --lh-ui: 1.55;
+  --lh-read: 1.78;
+
+  /* Khoảng cách (bội số 4) */
+  /* Khoảng cách tính bằng rem để giãn theo cỡ chữ người dùng chọn trong trình duyệt */
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.25rem; --s-6: 1.5rem;
+  --s-8: 2rem; --s-10: 2.5rem; --s-12: 3rem; --s-16: 4rem; --s-20: 5rem; --s-24: 6rem;
+  --section-y: clamp(3.5rem, 4vw + 2rem, 7rem);
+
+  /* Bố cục */
+  --container: 1240px;
+  --container-read: 720px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 4.25rem;
+
+  /* Bo góc theo cấp: điều khiển nhỏ bo ít, khung ảnh vuông */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-pill: 999px;
+
+  /* Đổ bóng: ấm, thấp */
+  --sh-1: 0 1px 2px rgba(39, 43, 38, .06), 0 1px 1px rgba(39, 43, 38, .04);
+  --sh-2: 0 6px 18px -8px rgba(24, 63, 57, .28);
+  --sh-3: 0 22px 48px -24px rgba(11, 33, 29, .45);
+
+  /* Chuyển động. Thao tác chạm/kéo dùng lò xo trong lib/spring.ts; CSS chỉ dùng cho chuyển trạng thái không do cử chỉ. */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-in: cubic-bezier(.8, 0, .8, .3);   /* đường cong ngược của --ease, cho chiều đi ra */
+  --press-scale: .97;
+  --d-press: 100ms;
+
+  /* Chất liệu mờ (thanh đầu trang, ngăn menu, bảng tìm) */
+  --mat-bar: rgba(247, 242, 232, .72);
+  --mat-thick: rgba(252, 249, 243, .93);
+  --mat-blur-thick: blur(30px) saturate(180%);
+  --mat-blur: blur(20px) saturate(180%);
+  --mat-edge: rgba(255, 255, 255, .55);
+  --d-fast: 140ms;
+  --d-base: 240ms;
+  --d-slow: 520ms;
+
+  /* Tên cũ dùng trong tour.css, trỏ về token mới */
+  --night: var(--c-deep-2);
+  --ivory: var(--c-surface);
+  --on-dark: var(--c-on-deep);
+  --on-dark-soft: var(--c-on-deep-soft);
+  --brass: var(--c-accent-ink);
+  --ivory-2: var(--c-paper-sunken);
+  --gold: var(--c-gold);
+  --ink: var(--c-ink);
+  --ink-soft: var(--c-ink-soft);
+  --display: var(--f-display);
+  --read: var(--f-read);
+  --sans: var(--f-ui);
+  --serif: var(--f-read);
+  --teal: var(--c-primary);
+  --muted: var(--c-ink-muted);
+  --line: var(--c-line);
+  --line-strong: var(--c-line-strong);
+  --paper: var(--c-paper);
+}

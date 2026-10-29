@@ -1,0 +1,413 @@
+{
+  "version": "history-reviewed-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "publication_action": "root_review_required",
+  "sources": [
+    {
+      "id": "KN-DOC-CHUA",
+      "name": "Tượng động vật Dốc Chùa",
+      "url": "https://dsvh.gov.vn/tuong-dong-vat-doc-chua-3062",
+      "source_type": "official_article",
+      "publisher": "Cục Di sản văn hóa",
+      "source_version": "Hồ sơ hiện vật đọc 2026-10-28; ngày thanh website không phải ngày xuất bản.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-DOC-BTLS-2011",
+      "name": "Tượng thú đồng ở Dốc Chùa",
+      "url": "https://baotanglichsu.vn/vi/Articles/2001/65927/tuong-thu-djong-o-doc-chua.html",
+      "source_type": "journalism_republication",
+      "publisher": "Bảo tàng Lịch sử Quốc gia đăng lại Hà Đình Nguyên / thanhnien.com.vn",
+      "source_version": "Bài hiển thị 23/12/2011 15:49; đọc 2026-10-28. Dùng phát hiện sai khác và ghi nhận các ý kiến, không thay báo cáo khai quật.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-DOC-BTLS-2014",
+      "name": "Thông báo công nhận 37 bảo vật quốc gia đợt 2",
+      "url": "https://baotanglichsu.vn/VI/Articles/3090/15594/thu-tuong-chinh-phu-vua-ra-quyet-djinh-cong-nhan-37-bao-vat-quoc-gia-djot-2-cho-cac-hien-vat-nhom-hien-vat.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Minh Vượng",
+      "source_version": "Bài 02/01/2014 11:04; đoạn mở đầu và danh sách mục 26; đọc 2026-10-28. Đây là thông báo, chưa phải bản gốc quyết định.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-BTLS-2013",
+      "name": "Lễ Thành Hầu Nguyễn Hữu Cảnh với sự nghiệp mở cõi phương Nam cuối thế kỷ XVII",
+      "url": "https://baotanglichsu.vn/VI/Articles/3098/14383/le-thanh-hau-nguyen-huu-canh-voi-su-nghiep-mo-coi-phuong-nam-cuoi-the-ky-xvii.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Hoàng Ngọc Chính tổng hợp",
+      "source_version": "Bài 28/05/2013 21:46, đọc 2026-10-28; chỉ dùng phần 1698 đã đối chiếu.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-DN-2018",
+      "name": "Dấu ấn lịch sử, văn hóa Biên Hòa - Đồng Nai",
+      "url": "https://dongnai.gov.vn/vi/news/chuong-trinh-ke-hoach-phat-trien-ktxh/dau-an-lich-su-van-hoa-bien-hoa-dong-nai-6501.html",
+      "source_type": "official_article",
+      "publisher": "Cổng thông tin điện tử Đồng Nai",
+      "source_version": "Bài về kỷ niệm 320 năm; mục Nhớ về người mở cõi, các đoạn về Nguyễn Hữu Cảnh; đọc 2026-10-28. Giữ tên địa bàn theo tư liệu.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-DN-2026",
+      "name": "Nhớ ơn Lễ Thành hầu Nguyễn Hữu Cảnh",
+      "url": "https://dongnai.gov.vn/vi/news/Di-tich-Danh-thang/nho-on-le-thanh-hau-nguyen-huu-canh-62885.html",
+      "source_type": "official_portal_republication",
+      "publisher": "Cổng thông tin điện tử Đồng Nai đăng lại My Ny / Báo Đồng Nai",
+      "source_version": "Bài 28/06/2026 20:01; đọc 2026-10-28. Thông báo không thay lịch sự kiện hiện tại.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    }
+  ],
+  "articles": [
+    {
+      "id": "KN-SAMPLE-DOC-CHUA",
+      "title": "Tượng động vật Dốc Chùa: những dấu vết và câu hỏi còn mở",
+      "category": "di_san",
+      "kind": "artifact",
+      "topic": "archaeology",
+      "historical_area": "Dốc Chùa, Bình Dương theo hồ sơ",
+      "community": "Cư dân tiền sử; chưa gán cho một dân tộc hiện đại",
+      "summary": "Một tượng đồng nhỏ mở ra câu hỏi về hình tượng, kỹ thuật và cách đọc chứng cứ khảo cổ.",
+      "scope_note": "Phân biệt mô tả hiện vật với diễn giải công năng. Năm phát hiện có sai khác giữa nguồn; chưa dùng làm mốc lịch sử đã chốt. Tên nơi lưu giữ và địa bàn được giữ theo từng tài liệu, chưa xác nhận địa giới hoặc đơn vị hiện hành.",
+      "sections": [
+        {
+          "heading": "Quan sát trước khi diễn giải",
+          "text": "Tượng bằng đồng, dài 6,4 cm, cao 5,4 cm; trên lưng có quai nhỏ, theo Cục Di sản văn hóa. Hồ sơ ghi đơn vị lưu giữ là Bảo tàng Bình Dương.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-DOC-CHUA"
+          ]
+        },
+        {
+          "heading": "Một mốc cần đối chiếu",
+          "text": "Hồ sơ Cục ghi khai quật năm 1977. Bài đăng lại trên website Bảo tàng Lịch sử Quốc gia năm 2011 lại nêu phát hiện năm 1997. Cần báo cáo khai quật và hồ sơ nhập kho để giải quyết khác biệt này.",
+          "kind": "editorial_note",
+          "sourceIds": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        {
+          "heading": "Con vật nào, dùng để làm gì?",
+          "text": "Bài năm 2011 tập hợp các nhận dạng khác nhau và cách giải thích công dụng. Những ý kiến ấy chưa đủ để đổi tên hồ sơ thành một loài vật hay khẳng định đây là đồ dùng nghi lễ.",
+          "kind": "hypothesis",
+          "sourceIds": [
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        {
+          "heading": "Từ hiện vật đến hồ sơ bảo vật",
+          "text": "Thông báo của bảo tàng về đợt công nhận năm 2013 liệt kê tượng tại mục 26. Đây là dấu mốc ghi nhận giá trị, không phải niên đại chế tác.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-DOC-BTLS-2014"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-DOC-CHUA",
+          "statement": "Chất liệu, kích thước, hình dáng và đơn vị lưu giữ được mô tả trong hồ sơ.",
+          "locator": "Các mục Đơn vị lưu giữ, Chất liệu, Kích thước, Miêu tả.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-DOC-CHUA",
+          "statement": "Hồ sơ ghi năm khai quật 1977.",
+          "locator": "Mục Nguồn gốc, xuất xứ.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-DOC-BTLS-2011",
+          "statement": "Bài có mốc 1997 và nhiều ý kiến về hình tượng, công năng.",
+          "locator": "Đoạn bắt đầu Tượng được phát hiện; phần Những nhận định chung quanh tượng thú.",
+          "kind": "historical_interpretation"
+        },
+        {
+          "source_id": "KN-DOC-BTLS-2014",
+          "statement": "Hiện vật xuất hiện tại mục 26 của thông báo về đợt công nhận.",
+          "locator": "Đoạn mở đầu về Quyết định 2599/QĐ-TTg ngày 30/12/2013; danh sách mục 26.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Tượng động vật Dốc Chùa",
+        "entity_type": "artifact",
+        "primary_domain": "lich-su-khao-co",
+        "secondary_domains": [
+          "van-hoc-nghe-thuat"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-DOC-CHUA",
+          "KN-DOC-BTLS-2011",
+          "KN-DOC-BTLS-2014"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Tân Mỹ, Tân Uyên, Bình Dương",
+            "role": "area_as_recorded",
+            "source_id": "KN-DOC-CHUA",
+            "locator": "Nguồn gốc, xuất xứ",
+            "as_of": "Địa danh theo hồ sơ, chưa đối chiếu đơn vị hiện hành",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Tượng động vật bằng đồng.",
+          "source_ids": [
+            "KN-DOC-CHUA"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Dốc Chùa; năm tìm thấy còn sai khác.",
+          "source_ids": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa có chứng cứ để gán cho cộng đồng dân tộc hiện đại.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Biết nơi khai quật theo hồ sơ; công năng chưa chốt.",
+          "source_ids": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa có chuỗi tư liệu bảo quản để mô tả biến đổi qua từng giai đoạn.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần đối chiếu báo cáo gốc, niên đại đo đạc, cách nhận dạng và quyền ảnh; không tự quy đổi số năm cách ngày nay.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Có thể đọc tiếp hồ sơ công nhận bảo vật. Đây là gợi ý đọc.",
+          "source_ids": [
+            "KN-DOC-BTLS-2014"
+          ]
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "rights_basis": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "review_status": "source_checked",
+      "reviewed_at": "2026-10-28",
+      "classification": "source_supported"
+    },
+    {
+      "id": "NBS-NGUYEN-HUU-CANH",
+      "title": "Nguyễn Hữu Cảnh: đọc dấu mốc hành chính năm 1698",
+      "category": "di_san",
+      "kind": "person",
+      "topic": "historical_person",
+      "historical_area": "Đồng Nai - Gia Định theo tư liệu năm 1698",
+      "community": "Nhân vật lịch sử và cộng đồng tưởng niệm tại Đồng Nai; không dùng lời tôn vinh thay chứng cứ",
+      "summary": "Lần theo một sự kiện hành chính và cách tên tuổi nhân vật được nhắc nhớ trong đời sống văn hóa.",
+      "scope_note": "Giới thiệu có phạm vi, không thay tiểu sử chuyên khảo. Không xem việc lập bộ máy hành chính là điểm bắt đầu mọi lịch sử cư trú. Chưa kết luận về gia phả, nơi sinh, ranh giới cụ thể hoặc những giai thoại chưa đối chiếu.",
+      "sections": [
+        {
+          "heading": "Dấu mốc năm 1698",
+          "text": "Bài của Bảo tàng Lịch sử Quốc gia gắn Nguyễn Hữu Cảnh với việc tổ chức phủ Gia Định năm 1698: huyện Phước Long với dinh Trấn Biên, huyện Tân Bình với dinh Phiên Trấn. Mốc này cũng được Cổng Đồng Nai nhắc lại.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-NHC-BTLS-2013",
+            "KN-NHC-DN-2018"
+          ]
+        },
+        {
+          "heading": "Đọc tên gọi trong tư liệu",
+          "text": "Tên Nguyễn Hữu Kính được Cổng Đồng Nai dùng bên cạnh Nguyễn Hữu Cảnh. Các tên phủ, huyện và dinh thuộc lớp địa lý hành chính của tư liệu; không thay bằng tên đơn vị hiện nay khi chưa đối chiếu.",
+          "kind": "explanation",
+          "sourceIds": [
+            "KN-NHC-DN-2018"
+          ]
+        },
+        {
+          "heading": "Tưởng niệm là một lớp tư liệu khác",
+          "text": "Bản tin năm 2026 ghi hoạt động chuẩn bị lễ giỗ tại di tích đền thờ và mộ, cùng sự tham gia của học sinh, thanh niên. Đó là một ghi nhận thực hành văn hóa, không phải bằng chứng trực tiếp về sự kiện thế kỷ XVII.",
+          "kind": "observed_practice",
+          "sourceIds": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        {
+          "heading": "Những điều cần đọc tiếp",
+          "text": "Chưa đủ tài liệu để trình bày toàn bộ tiểu sử. Những nhận định ngoài phạm vi cần được đối chiếu riêng.",
+          "kind": "editorial_note",
+          "sourceIds": [
+            "KN-NHC-BTLS-2013"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-NHC-BTLS-2013",
+          "statement": "Bài bảo tàng nêu cơ cấu phủ, huyện và dinh gắn với năm 1698.",
+          "locator": "Đoạn Năm 1698; đoạn dẫn Gia Định thành thông chí; hai gạch đầu dòng Phước Long/Tân Bình.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-NHC-DN-2018",
+          "statement": "Nguồn Đồng Nai dùng tên Nguyễn Hữu Kính và đối chiếu mốc kinh lược 1698.",
+          "locator": "Phần Nhớ về người mở cõi, hai đoạn đầu.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "KN-NHC-DN-2026",
+          "statement": "Bản tin ghi sự chuẩn bị lễ giỗ và người tham gia năm 2026.",
+          "locator": "Mục Tri ân công lao người mở cõi, các đoạn về Ban quý tế và học sinh.",
+          "kind": "fact"
+        }
+      ],
+      "knowledge": {
+        "name": "Nguyễn Hữu Cảnh",
+        "entity_type": "person",
+        "primary_domain": "nhan-vat-ky-uc",
+        "secondary_domains": [
+          "lich-su-khao-co",
+          "tin-nguong-ton-giao"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-NHC-BTLS-2013",
+          "KN-NHC-DN-2018",
+          "KN-NHC-DN-2026"
+        ],
+        "aliases": [
+          {
+            "value": "Nguyễn Hữu Kính",
+            "kind": "alternate_name",
+            "source_id": "KN-NHC-DN-2018",
+            "locator": "Phần Nhớ về người mở cõi, đoạn đầu"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Gia Định; Phước Long - Trấn Biên; Tân Bình - Phiên Trấn",
+            "role": "area_as_recorded",
+            "source_id": "KN-NHC-BTLS-2013",
+            "locator": "Phần hành chính năm 1698",
+            "as_of": "1698 theo tư liệu được bài bảo tàng dẫn",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Nhân vật gắn với tổ chức hành chính năm 1698.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "when_where": {
+          "state": "supported",
+          "text": "Phạm vi bài: Đồng Nai - Gia Định, năm 1698.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Nguồn ghi cộng đồng tưởng niệm ở Đồng Nai; không suy từ đó ra dân tộc của nhân vật.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Đã đối chiếu cơ cấu hành chính; chưa giải quyết toàn bộ bối cảnh hình thành.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Bản tin mới cho thấy một lớp tưởng niệm, chưa đủ dựng quá trình phát triển nghi lễ.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần chuyên khảo và sử liệu gốc cho gia phả, địa giới, những cách diễn giải khác nhau và lịch sử các nơi thờ.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc thêm tư liệu về đền thờ và lễ giỗ, tách lịch sử nhân vật khỏi lịch sử thực hành.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "rights_basis": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "review_status": "source_checked",
+      "reviewed_at": "2026-10-28",
+      "classification": "source_supported"
+    }
+  ],
+  "notes": [
+    "Không công bố tự động từ file này; root thẩm định bài và tích hợp cổng release.",
+    "Dốc Chùa: không chốt năm tìm thấy; không biến nhận dạng con vật/công năng thành fact; không quy đổi BP. Thông báo bảo tàng về danh mục không thay bản quyết định gốc.",
+    "Nguyễn Hữu Cảnh: bài bảo tàng 2013 có các niên đại khác sai khác rõ; chỉ dùng đoạn hành chính1698 được đối chiếu nguồn Đồng Nai. Không đưa các chi tiết 1893/1894 hoặc can-chi không khớp vào bài.",
+    "Không tải hoặc tái sử dụng ảnh, âm thanh của bất kỳ nguồn nào. Tất cả media trống; quyền phần diễn giải mới tách biệt quyền tài sản nguồn."
+  ]
+}

@@ -3,43 +3,613 @@
   "reviewed_at": "2026-10-28",
   "scope": "Metadata tra cứu cho bài đã công bố. Phân vùng và nhóm lĩnh vực là chỉ dẫn biên tập theo địa bàn nguồn, không xác lập địa giới hoặc quyền sở hữu văn hóa.",
   "bindings": {
-    "E001": { "name": "Coi mắt và đám nói", "entity_type": "practice", "primary_domain": "phong-tuc-doi-song", "secondary_domains": [], "regions": ["lien-vung"], "communities": ["kinh"], "source_ids": ["S07"], "aliases": [{ "value": "dạm hỏi", "kind": "related_term", "source_id": "S07", "locator": "Đoạn giới thiệu ba lễ chính và phần coi mắt, đám nói" }] },
-    "E004": { "name": "Mời cưới", "entity_type": "practice", "primary_domain": "phong-tuc-doi-song", "secondary_domains": [], "regions": ["lien-vung"], "communities": ["kinh"], "source_ids": ["S07"], "aliases": [] },
-    "E008": { "name": "Đám giỗ", "entity_type": "practice", "primary_domain": "phong-tuc-doi-song", "secondary_domains": ["tin-nguong-ton-giao"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-GIO-TN", "R-GIO-TT", "R-GIO-CT"], "aliases": [] },
-    "E020": { "name": "Đầu Sấu", "entity_type": "place", "primary_domain": "dia-danh", "secondary_domains": ["dia-ly-sinh-thai"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["S13"], "aliases": [], "historical_places": [{ "name": "Cần Thơ", "role": "area_as_recorded", "source_id": "S13", "locator": "Địa bàn của bài viết về Đầu Sấu", "as_of": "theo tư liệu nguồn", "valid_from": null, "valid_to": null }], "current_admin": null, "origin_section": 0 },
-    "E021": { "name": "Cái Răng", "entity_type": "place", "primary_domain": "dia-danh", "secondary_domains": [], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-CAIRANG-ND"], "aliases": [{ "value": "cà ràng", "kind": "hypothesis_keyword", "source_id": "R-CAIRANG-ND", "locator": "Giả thuyết về tên gọi và vật dụng được bài dẫn" }], "historical_places": [{ "name": "Cần Thơ", "role": "area_as_recorded", "source_id": "R-CAIRANG-ND", "locator": "Địa bàn bài Bâng khuâng Cái Răng", "as_of": "theo tư liệu nguồn", "valid_from": null, "valid_to": null }], "current_admin": null, "origin_section": 0 },
-    "NBS-BINH-THUY": { "name": "Nhà cổ Bình Thủy", "entity_type": "building", "primary_domain": "kien-truc-khong-gian-song", "secondary_domains": ["phong-tuc-doi-song"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-BINHTHUY-VNAT", "R-BINHTHUY-CT"], "aliases": [], "historical_places": [{ "name": "Bình Thủy, Cần Thơ", "role": "area_as_recorded", "source_id": "R-BINHTHUY-CT", "locator": "Địa chỉ trong hồ sơ nhà cổ", "as_of": "theo hồ sơ nguồn, chưa xác nhận địa giới hiện hành", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "NBS-CHO-NOI": { "name": "Chợ nổi Cái Răng", "entity_type": "market", "primary_domain": "lang-nghe-sinh-ke", "secondary_domains": ["dia-ly-sinh-thai", "phong-tuc-doi-song"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-MARKET-CONGBAO", "R-MARKET-BVHTTDL"], "aliases": [], "historical_places": [{ "name": "Cái Răng, Cần Thơ", "role": "area_as_recorded", "source_id": "R-MARKET-CONGBAO", "locator": "Quyết định 1189/QĐ-UBND trong Công báo 2024", "as_of": "2024", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "NBS-NINH-KIEU": { "name": "Bến Ninh Kiều", "entity_type": "place", "primary_domain": "kien-truc-khong-gian-song", "secondary_domains": ["dia-ly-sinh-thai"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-NINHKIEU-CT"], "aliases": [{ "value": "công viên Ninh Kiều", "kind": "alternate_name", "source_id": "R-NINHKIEU-CT", "locator": "Giới thiệu không gian bến sông, công viên" }], "historical_places": [{ "name": "Cần Thơ", "role": "area_as_recorded", "source_id": "R-NINHKIEU-CT", "locator": "Mục giới thiệu", "as_of": "theo hồ sơ du lịch", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "E010": { "name": "Sene Dolta", "entity_type": "practice", "primary_domain": "phong-tuc-doi-song", "secondary_domains": ["le-hoi", "tin-nguong-ton-giao"], "regions": ["tay-nam-bo"], "communities": ["khmer"], "source_ids": ["R-DOLTA-TITC"], "aliases": [] },
-    "E011": { "name": "Chôl Chnăm Thmây", "entity_type": "festival", "primary_domain": "le-hoi", "secondary_domains": ["tin-nguong-ton-giao"], "regions": ["lien-vung"], "communities": ["khmer"], "source_ids": ["R-CHOL-TITC"], "aliases": [] },
-    "E012": { "name": "Oóc Om Bóc", "entity_type": "festival", "primary_domain": "le-hoi", "secondary_domains": ["tin-nguong-ton-giao"], "regions": ["lien-vung"], "communities": ["khmer"], "source_ids": ["R-OOC-TITC"], "aliases": [] },
-    "E013": { "name": "Đua ghe Ngo", "entity_type": "festival", "primary_domain": "le-hoi", "secondary_domains": ["dia-ly-sinh-thai"], "regions": ["tay-nam-bo"], "communities": ["khmer"], "source_ids": ["R-NGO-TDTT"], "aliases": [] },
-    "E014": { "name": "Rô Băm", "entity_type": "performing_art", "primary_domain": "van-hoc-nghe-thuat", "secondary_domains": [], "regions": ["tay-nam-bo"], "communities": ["khmer"], "source_ids": ["R-ROBAM-VGP"], "aliases": [], "historical_places": [{ "name": "Bưng Chông, Tài Văn, Sóc Trăng", "role": "area_as_recorded", "source_id": "R-ROBAM-VGP", "locator": "Trường hợp nghệ nhân trong bài năm 2025", "as_of": "2025 theo bài nguồn", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "E018": { "name": "Đờn ca tài tử Nam Bộ", "entity_type": "performing_art", "primary_domain": "van-hoc-nghe-thuat", "secondary_domains": [], "regions": ["lien-vung"], "communities": [], "source_ids": ["R-DONCA-UNESCO"], "aliases": [] },
-    "E027": { "name": "Nghề bánh pía", "entity_type": "craft", "primary_domain": "lang-nghe-sinh-ke", "secondary_domains": ["am-thuc"], "regions": ["tay-nam-bo"], "communities": [], "source_ids": ["R-PIA-DSVH"], "aliases": [], "historical_places": [{ "name": "Sóc Trăng", "role": "area_as_recorded", "source_id": "R-PIA-DSVH", "locator": "Hồ sơ nghề bánh pía", "as_of": "theo hồ sơ nguồn", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "NBS-TUCNGU-18": { "name": "Bắt cá hai tay", "entity_type": "proverb", "primary_domain": "van-hoc-nghe-thuat", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["R-TUCNGU-1897"], "aliases": [], "historical_places": [{ "name": "Sài Gòn", "role": "publication_place", "source_id": "R-TUCNGU-1897", "locator": "Thông tin bản in 1897; không phải địa bàn phát sinh câu nói", "as_of": "1897", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "NBS-TUCNGU-22": { "name": "Bắt cóc, bỏ vào dĩa", "entity_type": "proverb", "primary_domain": "van-hoc-nghe-thuat", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["R-TUCNGU-1897"], "aliases": [], "historical_places": [{ "name": "Sài Gòn", "role": "publication_place", "source_id": "R-TUCNGU-1897", "locator": "Thông tin bản in 1897; không phải địa bàn phát sinh câu nói", "as_of": "1897", "valid_from": null, "valid_to": null }], "current_admin": null },
-    "E029": { "name": "bậu", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-E029"], "aliases": [] },
-    "E030": { "name": "qua", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-E030"], "aliases": [] },
-    "E031": { "name": "mần", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-E031"], "aliases": [] },
-    "E032": { "name": "bển", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-E032"], "aliases": [] },
-    "E033": { "name": "hổng", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-E033"], "aliases": [] },
-    "NBS-TU-VAY": { "name": "vầy", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-VAY"], "aliases": [] },
-    "NBS-TU-VO": { "name": "vô", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-VO"], "aliases": [] },
-    "NBS-TU-NGHEN": { "name": "nghen", "entity_type": "word", "primary_domain": "phuong-ngu-nam-bo", "secondary_domains": [], "regions": [], "communities": [], "source_ids": ["WT-NGHEN"], "aliases": [] }
+    "E001": {
+      "name": "Coi mắt và đám nói",
+      "entity_type": "practice",
+      "primary_domain": "phong-tuc-doi-song",
+      "secondary_domains": [],
+      "regions": [
+        "lien-vung"
+      ],
+      "communities": [
+        "kinh"
+      ],
+      "source_ids": [
+        "S07"
+      ],
+      "aliases": [
+        {
+          "value": "dạm hỏi",
+          "kind": "related_term",
+          "source_id": "S07",
+          "locator": "Đoạn giới thiệu ba lễ chính và phần coi mắt, đám nói"
+        }
+      ]
+    },
+    "E004": {
+      "name": "Mời cưới",
+      "entity_type": "practice",
+      "primary_domain": "phong-tuc-doi-song",
+      "secondary_domains": [],
+      "regions": [
+        "lien-vung"
+      ],
+      "communities": [
+        "kinh"
+      ],
+      "source_ids": [
+        "S07"
+      ],
+      "aliases": []
+    },
+    "E008": {
+      "name": "Đám giỗ",
+      "entity_type": "practice",
+      "primary_domain": "phong-tuc-doi-song",
+      "secondary_domains": [
+        "tin-nguong-ton-giao"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-GIO-TN",
+        "R-GIO-TT",
+        "R-GIO-CT"
+      ],
+      "aliases": []
+    },
+    "E020": {
+      "name": "Đầu Sấu",
+      "entity_type": "place",
+      "primary_domain": "dia-danh",
+      "secondary_domains": [
+        "dia-ly-sinh-thai"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "S13"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Cần Thơ",
+          "role": "area_as_recorded",
+          "source_id": "S13",
+          "locator": "Địa bàn của bài viết về Đầu Sấu",
+          "as_of": "theo tư liệu nguồn",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null,
+      "origin_section": 0
+    },
+    "E021": {
+      "name": "Cái Răng",
+      "entity_type": "place",
+      "primary_domain": "dia-danh",
+      "secondary_domains": [],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-CAIRANG-ND"
+      ],
+      "aliases": [
+        {
+          "value": "cà ràng",
+          "kind": "hypothesis_keyword",
+          "source_id": "R-CAIRANG-ND",
+          "locator": "Giả thuyết về tên gọi và vật dụng được bài dẫn"
+        }
+      ],
+      "historical_places": [
+        {
+          "name": "Cần Thơ",
+          "role": "area_as_recorded",
+          "source_id": "R-CAIRANG-ND",
+          "locator": "Địa bàn bài Bâng khuâng Cái Răng",
+          "as_of": "theo tư liệu nguồn",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null,
+      "origin_section": 0
+    },
+    "NBS-BINH-THUY": {
+      "name": "Nhà cổ Bình Thủy",
+      "entity_type": "building",
+      "primary_domain": "kien-truc-khong-gian-song",
+      "secondary_domains": [
+        "phong-tuc-doi-song"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-BINHTHUY-VNAT",
+        "R-BINHTHUY-CT"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Bình Thủy, Cần Thơ",
+          "role": "area_as_recorded",
+          "source_id": "R-BINHTHUY-CT",
+          "locator": "Địa chỉ trong hồ sơ nhà cổ",
+          "as_of": "theo hồ sơ nguồn, chưa xác nhận địa giới hiện hành",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "NBS-CHO-NOI": {
+      "name": "Chợ nổi Cái Răng",
+      "entity_type": "market",
+      "primary_domain": "lang-nghe-sinh-ke",
+      "secondary_domains": [
+        "dia-ly-sinh-thai",
+        "phong-tuc-doi-song"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-MARKET-CONGBAO",
+        "R-MARKET-BVHTTDL"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Cái Răng, Cần Thơ",
+          "role": "area_as_recorded",
+          "source_id": "R-MARKET-CONGBAO",
+          "locator": "Quyết định 1189/QĐ-UBND trong Công báo 2024",
+          "as_of": "2024",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "NBS-NINH-KIEU": {
+      "name": "Bến Ninh Kiều",
+      "entity_type": "place",
+      "primary_domain": "kien-truc-khong-gian-song",
+      "secondary_domains": [
+        "dia-ly-sinh-thai"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-NINHKIEU-CT"
+      ],
+      "aliases": [
+        {
+          "value": "công viên Ninh Kiều",
+          "kind": "alternate_name",
+          "source_id": "R-NINHKIEU-CT",
+          "locator": "Giới thiệu không gian bến sông, công viên"
+        }
+      ],
+      "historical_places": [
+        {
+          "name": "Cần Thơ",
+          "role": "area_as_recorded",
+          "source_id": "R-NINHKIEU-CT",
+          "locator": "Mục giới thiệu",
+          "as_of": "theo hồ sơ du lịch",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "E010": {
+      "name": "Sene Dolta",
+      "entity_type": "practice",
+      "primary_domain": "phong-tuc-doi-song",
+      "secondary_domains": [
+        "le-hoi",
+        "tin-nguong-ton-giao"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [
+        "khmer"
+      ],
+      "source_ids": [
+        "R-DOLTA-TITC"
+      ],
+      "aliases": []
+    },
+    "E011": {
+      "name": "Chôl Chnăm Thmây",
+      "entity_type": "festival",
+      "primary_domain": "le-hoi",
+      "secondary_domains": [
+        "tin-nguong-ton-giao"
+      ],
+      "regions": [
+        "lien-vung"
+      ],
+      "communities": [
+        "khmer"
+      ],
+      "source_ids": [
+        "R-CHOL-TITC"
+      ],
+      "aliases": []
+    },
+    "E012": {
+      "name": "Oóc Om Bóc",
+      "entity_type": "festival",
+      "primary_domain": "le-hoi",
+      "secondary_domains": [
+        "tin-nguong-ton-giao"
+      ],
+      "regions": [
+        "lien-vung"
+      ],
+      "communities": [
+        "khmer"
+      ],
+      "source_ids": [
+        "R-OOC-TITC"
+      ],
+      "aliases": []
+    },
+    "E013": {
+      "name": "Đua ghe Ngo",
+      "entity_type": "festival",
+      "primary_domain": "le-hoi",
+      "secondary_domains": [
+        "dia-ly-sinh-thai"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [
+        "khmer"
+      ],
+      "source_ids": [
+        "R-NGO-TDTT"
+      ],
+      "aliases": []
+    },
+    "E014": {
+      "name": "Rô Băm",
+      "entity_type": "performing_art",
+      "primary_domain": "van-hoc-nghe-thuat",
+      "secondary_domains": [],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [
+        "khmer"
+      ],
+      "source_ids": [
+        "R-ROBAM-VGP"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Bưng Chông, Tài Văn, Sóc Trăng",
+          "role": "area_as_recorded",
+          "source_id": "R-ROBAM-VGP",
+          "locator": "Trường hợp nghệ nhân trong bài năm 2025",
+          "as_of": "2025 theo bài nguồn",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "E018": {
+      "name": "Đờn ca tài tử Nam Bộ",
+      "entity_type": "performing_art",
+      "primary_domain": "van-hoc-nghe-thuat",
+      "secondary_domains": [],
+      "regions": [
+        "lien-vung"
+      ],
+      "communities": [],
+      "source_ids": [
+        "KN-DONCA-DSVH-LIST",
+        "KN-DONCA-MOCST-2022"
+      ],
+      "aliases": []
+    },
+    "E027": {
+      "name": "Nghề bánh pía",
+      "entity_type": "craft",
+      "primary_domain": "lang-nghe-sinh-ke",
+      "secondary_domains": [
+        "am-thuc"
+      ],
+      "regions": [
+        "tay-nam-bo"
+      ],
+      "communities": [],
+      "source_ids": [
+        "R-PIA-DSVH",
+        "S04"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Sóc Trăng",
+          "role": "area_as_recorded",
+          "source_id": "R-PIA-DSVH",
+          "locator": "Hồ sơ nghề bánh pía",
+          "as_of": "theo hồ sơ nguồn",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "NBS-TUCNGU-18": {
+      "name": "Bắt cá hai tay",
+      "entity_type": "proverb",
+      "primary_domain": "van-hoc-nghe-thuat",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "R-TUCNGU-1897"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Sài Gòn",
+          "role": "publication_place",
+          "source_id": "R-TUCNGU-1897",
+          "locator": "Thông tin bản in 1897; không phải địa bàn phát sinh câu nói",
+          "as_of": "1897",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "NBS-TUCNGU-22": {
+      "name": "Bắt cóc, bỏ vào dĩa",
+      "entity_type": "proverb",
+      "primary_domain": "van-hoc-nghe-thuat",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "R-TUCNGU-1897"
+      ],
+      "aliases": [],
+      "historical_places": [
+        {
+          "name": "Sài Gòn",
+          "role": "publication_place",
+          "source_id": "R-TUCNGU-1897",
+          "locator": "Thông tin bản in 1897; không phải địa bàn phát sinh câu nói",
+          "as_of": "1897",
+          "valid_from": null,
+          "valid_to": null
+        }
+      ],
+      "current_admin": null
+    },
+    "E029": {
+      "name": "bậu",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-E029"
+      ],
+      "aliases": []
+    },
+    "E030": {
+      "name": "qua",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-E030"
+      ],
+      "aliases": []
+    },
+    "E031": {
+      "name": "mần",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-E031"
+      ],
+      "aliases": []
+    },
+    "E032": {
+      "name": "bển",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-E032"
+      ],
+      "aliases": []
+    },
+    "E033": {
+      "name": "hổng",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-E033"
+      ],
+      "aliases": []
+    },
+    "NBS-TU-VAY": {
+      "name": "vầy",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-VAY"
+      ],
+      "aliases": []
+    },
+    "NBS-TU-VO": {
+      "name": "vô",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-VO"
+      ],
+      "aliases": []
+    },
+    "NBS-TU-NGHEN": {
+      "name": "nghen",
+      "entity_type": "word",
+      "primary_domain": "phuong-ngu-nam-bo",
+      "secondary_domains": [],
+      "regions": [],
+      "communities": [],
+      "source_ids": [
+        "WT-NGHEN"
+      ],
+      "aliases": []
+    }
   },
   "events": [
-    { "id": "EV-1897-BOOK", "content_id": "NBS-TUCNGU-18", "title": "Bản in Tục ngữ, cổ ngữ, gia ngôn", "value": "1897", "year": 1897, "precision": "year", "kind": "publication", "source_id": "R-TUCNGU-1897", "locator": "Thông tin ấn bản; không phải năm phát sinh tục ngữ", "source_as_written": "1897", "review_status": "source_checked" },
-    { "id": "EV-2012-DONCA", "content_id": "E018", "title": "Ghi danh đờn ca tài tử trong danh mục quốc gia", "value": "2012-12-27", "year": 2012, "precision": "day", "kind": "register", "source_id": "S04", "locator": "STT 6, 5079/QĐ-BVHTTDL", "source_as_written": "27/12/2012", "evidence_ref": "REG-20261028-E018", "review_status": "source_checked" },
-    { "id": "EV-2019-ROBAM", "content_id": "E014", "title": "Ghi danh Rô-băm của người Khmer tại Sóc Trăng", "value": "2019-01-29", "year": 2019, "precision": "day", "kind": "register", "source_id": "S04", "locator": "STT 284, 446/QĐ-BVHTTDL", "source_as_written": "29/01/2019", "evidence_ref": "REG-20261028-E014", "review_status": "source_checked" },
-    { "id": "EV-2020-PIA", "content_id": "E027", "title": "Ghi danh nghề làm bánh pía tại Sóc Trăng", "value": "2020-09-30", "year": 2020, "precision": "day", "kind": "register", "source_id": "S04", "locator": "STT 360, 2728/QĐ-BVHTTDL; chưa dùng cột loại hình có sai khác", "source_as_written": "30/9/2020", "evidence_ref": "REG-20261028-E027", "review_status": "source_checked" },
-    { "id": "EV-2022-NGO", "content_id": "E013", "title": "Ghi danh đua ghe Ngo trong lễ Óoc om bóc tại Sóc Trăng", "value": "2022-01-12", "year": 2022, "precision": "day", "kind": "register", "source_id": "S04", "locator": "STT 414, 74/QĐ-BVHTTDL", "source_as_written": "12/1/2022", "evidence_ref": "REG-20261028-E013", "review_status": "source_checked" },
-    { "id": "EV-2025-DOLTA", "content_id": "E010", "title": "Một lễ Sene Dolta được ghi nhận tại Cần Thơ", "value": "2025-09-22", "year": 2025, "precision": "day", "kind": "observed_event", "source_id": "R-DOLTA-TITC", "locator": "Đoạn mở đầu bài về lễ Sene Dolta 2025", "source_as_written": "Ngày 22/9, lễ Sene Dolta năm 2025", "review_status": "source_checked" }
+    {
+      "id": "EV-1897-BOOK",
+      "content_id": "NBS-TUCNGU-18",
+      "title": "Bản in Tục ngữ, cổ ngữ, gia ngôn",
+      "value": "1897",
+      "year": 1897,
+      "precision": "year",
+      "kind": "publication",
+      "source_id": "R-TUCNGU-1897",
+      "locator": "Thông tin ấn bản; không phải năm phát sinh tục ngữ",
+      "source_as_written": "1897",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "EV-2012-DONCA",
+      "content_id": "E018",
+      "title": "Ghi danh đờn ca tài tử trong danh mục quốc gia",
+      "value": "2012-12-27",
+      "year": 2012,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "S04",
+      "locator": "STT 6, 5079/QĐ-BVHTTDL",
+      "source_as_written": "27/12/2012",
+      "evidence_ref": "REG-20261028-E018",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "EV-2019-ROBAM",
+      "content_id": "E014",
+      "title": "Ghi danh Rô-băm của người Khmer tại Sóc Trăng",
+      "value": "2019-01-29",
+      "year": 2019,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "S04",
+      "locator": "STT 284, 446/QĐ-BVHTTDL",
+      "source_as_written": "29/01/2019",
+      "evidence_ref": "REG-20261028-E014",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "EV-2020-PIA",
+      "content_id": "E027",
+      "title": "Ghi danh nghề làm bánh pía tại Sóc Trăng",
+      "value": "2020-09-30",
+      "year": 2020,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "S04",
+      "locator": "STT 360, 2728/QĐ-BVHTTDL; chưa dùng cột loại hình có sai khác",
+      "source_as_written": "30/9/2020",
+      "evidence_ref": "REG-20261028-E027",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "EV-2022-NGO",
+      "content_id": "E013",
+      "title": "Ghi danh đua ghe Ngo trong lễ Óoc om bóc tại Sóc Trăng",
+      "value": "2022-01-12",
+      "year": 2022,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "S04",
+      "locator": "STT 414, 74/QĐ-BVHTTDL",
+      "source_as_written": "12/1/2022",
+      "evidence_ref": "REG-20261028-E013",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "EV-2025-DOLTA",
+      "content_id": "E010",
+      "title": "Một lễ Sene Dolta được ghi nhận tại Cần Thơ",
+      "value": "2025-09-22",
+      "year": 2025,
+      "precision": "day",
+      "kind": "observed_event",
+      "source_id": "R-DOLTA-TITC",
+      "locator": "Đoạn mở đầu bài về lễ Sene Dolta 2025",
+      "source_as_written": "Ngày 22/9, lễ Sene Dolta năm 2025",
+      "review_status": "source_checked"
+    }
   ],
   "questions": [
-    { "id": "ten-dau-sau", "question": "Vì sao tên Đầu Sấu có nhiều cách giải thích?", "content_id": "E020", "use": "scope_note" },
-    { "id": "moi-cuoi", "question": "Vì sao lời mời cưới được coi trọng?", "content_id": "E004", "use": "section", "section_index": 0 },
-    { "id": "tuc-ngu-vung", "question": "Có bản in ở Sài Gòn thì câu tục ngữ chỉ thuộc Nam Bộ?", "content_id": "NBS-TUCNGU-18", "use": "scope_note" }
+    {
+      "id": "ten-dau-sau",
+      "question": "Vì sao tên Đầu Sấu có nhiều cách giải thích?",
+      "content_id": "E020",
+      "use": "scope_note"
+    },
+    {
+      "id": "moi-cuoi",
+      "question": "Vì sao lời mời cưới được coi trọng?",
+      "content_id": "E004",
+      "use": "section",
+      "section_index": 0
+    },
+    {
+      "id": "tuc-ngu-vung",
+      "question": "Có bản in ở Sài Gòn thì câu tục ngữ chỉ thuộc Nam Bộ?",
+      "content_id": "NBS-TUCNGU-18",
+      "use": "scope_note"
+    }
   ]
 }

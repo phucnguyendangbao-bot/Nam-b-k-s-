@@ -31,6 +31,8 @@ export function SearchTrigger() {
 /** Bảng tìm kiếm toàn trang, mở bằng Ctrl/⌘ + K hoặc phím /. */
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const [origin, setOrigin] = useState('50% 0%');
   const [query, setQuery] = useState('');
   const [entries, setEntries] = useState<SearchEntry[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -41,28 +43,34 @@ export function CommandPalette() {
 
   const show = useCallback(() => {
     lastFocus.current = document.activeElement as HTMLElement | null;
+    // Bảng tìm mở ra từ nút đã bấm (nếu có), để thấy rõ nó đến từ đâu.
+    const trigger = document.querySelector('.nb-search-trigger')?.getBoundingClientRect();
+    const width = Math.min(680, window.innerWidth - 32);
+    const left = (window.innerWidth - width) / 2;
+    if (trigger) setOrigin(`${Math.round(trigger.left + trigger.width / 2 - left)}px -40px`);
+    setClosing(false);
     setOpen(true);
     setFailed(false);
     loadIndex().then(setEntries).catch(() => setFailed(true));
   }, []);
   const hide = useCallback(() => {
-    setOpen(false);
-    setQuery('');
-    setActive(0);
+    // Đi ra đúng đường đã vào: thu nhỏ về phía nút tìm rồi mới gỡ khỏi trang.
+    setClosing(true);
     lastFocus.current?.focus?.();
+    window.setTimeout(() => { setOpen(false); setClosing(false); setQuery(''); setActive(0); }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 120 : 200);
   }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
       const typing = target.closest('input,textarea,select,[contenteditable=true]');
-      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); if (open) hide(); else show(); }
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); if (open && !closing) hide(); else show(); }
       else if (e.key === '/' && !typing && !open) { e.preventDefault(); show(); }
     };
     window.addEventListener('keydown', onKey);
     window.addEventListener(OPEN_EVENT, show);
     return () => { window.removeEventListener('keydown', onKey); window.removeEventListener(OPEN_EVENT, show); };
-  }, [open, show, hide]);
+  }, [open, closing, show, hide]);
 
   useEffect(() => {
     if (!open) return;
@@ -93,8 +101,8 @@ export function CommandPalette() {
   };
 
   return (
-    <div className="nb-palette-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) hide(); }}>
-      <div className="nb-palette" role="dialog" aria-modal="true" aria-label="Tìm nhanh" onKeyDown={onKeyDown}>
+    <div className="nb-palette-backdrop" data-state={closing ? 'closing' : 'open'} onPointerDown={e => { if (e.target === e.currentTarget) hide(); }}>
+      <div className="nb-palette material" role="dialog" aria-modal="true" aria-label="Tìm nhanh" onKeyDown={onKeyDown} style={{ transformOrigin: origin }}>
         <div className="nb-palette-input">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2.4" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
           <input

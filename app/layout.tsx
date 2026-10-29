@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import "./styles.css";
-import "./collections.css";
-import "./fonts-bvp.css";
-import "./fonts-display.css";
-import "./theme.css";
+import "./design/fonts.css";
+import "./design/tokens.css";
+import "./design/base.css";
+import "./design/components.css";
+import "./design/chrome.css";
+import "./design/home.css";
+import "./design/content.css";
+import "./design/map.css";
 import "./tour.css";
-import "./knowledge.css";
-import 'leaflet/dist/leaflet.css';
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: '#1E140F' };
+export const viewport: Viewport = { themeColor: '#183F39', width: 'device-width', initialScale: 1 };
 export const dynamic='force-dynamic';
 export default async function RootLayout({
   children,

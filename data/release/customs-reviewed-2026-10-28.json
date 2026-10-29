@@ -1,0 +1,155 @@
+{
+  "sources": [
+    {
+      "id": "R-TRAU-NM-2012",
+      "name": "Bảo tàng Lịch sử Quốc gia trưng bày chuyên đề Văn hóa Trầu cau Việt Nam",
+      "url": "https://baotanglichsu.vn/vi/Articles/4002/12790/bao-tang-lich-su-quoc-gia-trung-bay-chuyen-dje-van-hoa-trau-cau-viet-nam.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Lê Khiêm",
+      "source_version": "Bài 22/10/2012 16:44; đọc trực tiếp ngày 2026-10-28",
+      "checked_at": "2026-10-28",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ viết nhận xét ngắn mới và dẫn nguồn; không tái bản ảnh, thơ, truyện hoặc toàn văn bài bảo tàng."
+    }
+  ],
+  "articles": [
+    {
+      "id": "E002",
+      "title": "Trầu cau trong lễ hỏi: lễ vật và tình thông gia",
+      "category": "cuoi_hoi",
+      "kind": "custom",
+      "topic": "wedding",
+      "historical_area": "Nam Bộ theo cuộc phỏng vấn; đối chiếu trưng bày văn hóa Việt Nam năm 2012",
+      "community": "Người Việt Nam Bộ theo Nguyễn Hữu Hiệp; ý nghĩa trầu cau theo bảo tàng, không đại diện mọi cộng đồng",
+      "summary": "Từ một lễ vật quen thuộc, đọc cách hai gia đình xác lập quan hệ và gửi gắm tình nghĩa trong lễ hỏi.",
+      "scope_note": "Bài đối chiếu một cuộc phỏng vấn về Nam Bộ với cách diễn giải của bảo tàng ở phạm vi Việt Nam. Chưa có khảo sát để xác định một mâm lễ, trình tự hoặc số lượng trầu cau chung cho các địa phương hiện nay.",
+      "sections": [
+        {
+          "heading": "Lễ vật trong quan hệ hai họ",
+          "text": "Trong cuộc phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp đặt đám nói ở thời điểm cha mẹ hai bên kết tình thông gia. Bài phỏng vấn nhắc mâm trầu trong lễ phẩm; chú thích ảnh gọi mâm trầu cau là lễ vật trong lễ hỏi. Cách đọc này hướng sự chú ý tới quan hệ gia đình, thay vì chỉ nhìn mâm lễ như một danh sách đồ vật.",
+          "kind": "observed_practice",
+          "sourceIds": [
+            "S07"
+          ]
+        },
+        {
+          "heading": "Vì sao lại là trầu cau?",
+          "text": "Bảo tàng Lịch sử Quốc gia giải thích trầu cau như biểu tượng của tình nghĩa vợ chồng, anh em và gia đình. Đây là ý nghĩa văn hóa được bảo tàng trình bày; không phải bằng chứng rằng một lễ vật quyết định hạnh phúc của đôi trẻ.",
+          "kind": "explanation",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        {
+          "heading": "Truyền thuyết và niên đại",
+          "text": "Bài bảo tàng đặt chuyện nguồn gốc trầu cau trong lời tương truyền. Vì vậy, truyện kể không được dùng để xác định năm xuất hiện tục lệ. Hồ sơ này chưa kết luận lễ hỏi Nam Bộ bắt đầu từ thời điểm nào.",
+          "kind": "legend",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        {
+          "heading": "Một ghi nhận về sự thay đổi",
+          "text": "Ở thời điểm viết năm 2012, bảo tàng nhận xét thói quen ăn trầu suy giảm nhưng lễ vật trầu cau vẫn có mặt trong nghi lễ. Nhận xét ấy có phạm vi và thời điểm riêng, chưa thay cho khảo sát cưới hỏi Nam Bộ hiện nay.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "S07",
+          "statement": "Lời phỏng vấn gắn đám nói với quan hệ thông gia và nhắc mâm trầu; chú thích ảnh xác định mâm trầu cau trong lễ hỏi.",
+          "locator": "Phần hỏi về nghi lễ hôn nhân; đoạn bắt đầu Đám nói và chú thích ảnh mâm trầu cau. Đây là lời Nguyễn Hữu Hiệp, không phải khảo sát đại diện.",
+          "kind": "fact"
+        },
+        {
+          "source_id": "R-TRAU-NM-2012",
+          "statement": "Bảo tàng diễn giải ý nghĩa tình nghĩa của trầu cau, nêu truyện nguồn gốc như tương truyền và ghi nhận thay đổi thói quen ăn trầu tại thời điểm năm 2012.",
+          "locator": "Các đoạn về biểu tượng trước Chủ đề 1; Chủ đề 1 ghi Tương truyền; Chủ đề 3 Bảo tồn giá trị văn hóa Trầu cau Việt Nam.",
+          "kind": "historical_interpretation"
+        }
+      ],
+      "knowledge": {
+        "name": "Trầu cau trong lễ hỏi",
+        "entity_type": "practice",
+        "primary_domain": "phong-tuc-doi-song",
+        "secondary_domains": [],
+        "regions": [
+          "lien-vung"
+        ],
+        "communities": [
+          "kinh"
+        ],
+        "source_ids": [
+          "S07",
+          "R-TRAU-NM-2012"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 1,
+        "change_section": 3
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Một lễ vật được đọc trong quan hệ thông gia và ý nghĩa tình nghĩa gia đình.",
+          "source_ids": [
+            "S07",
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Cuộc phỏng vấn nói về Nam Bộ; bài bảo tàng năm 2012 nói ở phạm vi Việt Nam. Chưa xác định thời điểm tục lệ ra đời.",
+          "source_ids": [
+            "S07",
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Phạm vi người Việt Nam Bộ theo người được phỏng vấn; không suy rộng cho mọi cộng đồng.",
+          "source_ids": [
+            "S07"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Bảo tàng diễn giải biểu tượng tình nghĩa; nguồn gốc trong truyện kể chưa xác lập niên đại lịch sử.",
+          "source_ids": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Nhận xét về biến đổi thói quen trong bài bảo tàng được giữ ở thời điểm 2012; chưa xác minh hiện trạng chung.",
+          "source_ids": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa xác minh niên đại khởi đầu, khác biệt từng địa phương và một mâm lễ dùng chung. Không đưa số lượng lễ vật thành quy định.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc tiếp coi mắt và cách mời cưới để hiểu các khâu khác trong hồ sơ hôn nhân. Đây là liên kết biên tập.",
+          "source_ids": [
+            "S07"
+          ]
+        }
+      },
+      "media": [],
+      "rights_basis": "Bài diễn giải mới, chỉ tóm lược nhận định ngắn và ghi nguồn/locator. Không tái bản ảnh của báo, truyện, thơ hoặc bài bảo tàng; ảnh nếu có sẽ qua rà quyền riêng."
+    }
+  ],
+  "notes": [
+    "E002 dùng lại ID backlog, không tạo bài trùng lễ coi mắt. Giữ E003, E005 và các hồ sơ tang lễ ở bản nháp khi chưa có chứng minh riêng.",
+    "Không dùng truyền thuyết Hùng Vương làm mốc lịch sử; không đưa lời khuyên sức khỏe hoặc hướng dẫn ăn trầu."
+  ]
+}

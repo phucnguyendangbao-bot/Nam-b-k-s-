@@ -1,0 +1,1500 @@
+{
+  "version": "knowledge-publication-2026-10-28-v1",
+  "reviewed_at": "2026-10-28",
+  "sources": [
+    {
+      "id": "R-TRAU-NM-2012",
+      "name": "Bảo tàng Lịch sử Quốc gia trưng bày chuyên đề Văn hóa Trầu cau Việt Nam",
+      "url": "https://baotanglichsu.vn/vi/Articles/4002/12790/bao-tang-lich-su-quoc-gia-trung-bay-chuyen-dje-van-hoa-trau-cau-viet-nam.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Lê Khiêm",
+      "source_version": "Bài 22/10/2012 16:44; đọc trực tiếp ngày 2026-10-28",
+      "checked_at": "2026-10-28",
+      "consulted_extent": "full_article",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ viết nhận xét ngắn mới và dẫn nguồn; không tái bản ảnh, thơ, truyện hoặc toàn văn bài bảo tàng.",
+      "review_status": "accepted"
+    },
+    {
+      "id": "KN-DOC-CHUA",
+      "name": "Tượng động vật Dốc Chùa",
+      "url": "https://dsvh.gov.vn/tuong-dong-vat-doc-chua-3062",
+      "source_type": "official_article",
+      "publisher": "Cục Di sản văn hóa",
+      "source_version": "Hồ sơ hiện vật đọc 2026-10-28; ngày thanh website không phải ngày xuất bản.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-DOC-BTLS-2011",
+      "name": "Tượng thú đồng ở Dốc Chùa",
+      "url": "https://baotanglichsu.vn/vi/Articles/2001/65927/tuong-thu-djong-o-doc-chua.html",
+      "source_type": "journalism_republication",
+      "publisher": "Bảo tàng Lịch sử Quốc gia đăng lại Hà Đình Nguyên / thanhnien.com.vn",
+      "source_version": "Bài hiển thị 23/12/2011 15:49; đọc 2026-10-28. Dùng phát hiện sai khác và ghi nhận các ý kiến, không thay báo cáo khai quật.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-DOC-BTLS-2014",
+      "name": "Thông báo công nhận 37 bảo vật quốc gia đợt 2",
+      "url": "https://baotanglichsu.vn/VI/Articles/3090/15594/thu-tuong-chinh-phu-vua-ra-quyet-djinh-cong-nhan-37-bao-vat-quoc-gia-djot-2-cho-cac-hien-vat-nhom-hien-vat.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Minh Vượng",
+      "source_version": "Bài 02/01/2014 11:04; đoạn mở đầu và danh sách mục 26; đọc 2026-10-28. Đây là thông báo, chưa phải bản gốc quyết định.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-BTLS-2013",
+      "name": "Lễ Thành Hầu Nguyễn Hữu Cảnh với sự nghiệp mở cõi phương Nam cuối thế kỷ XVII",
+      "url": "https://baotanglichsu.vn/VI/Articles/3098/14383/le-thanh-hau-nguyen-huu-canh-voi-su-nghiep-mo-coi-phuong-nam-cuoi-the-ky-xvii.html",
+      "source_type": "official_article",
+      "publisher": "Bảo tàng Lịch sử Quốc gia; Hoàng Ngọc Chính tổng hợp",
+      "source_version": "Bài 28/05/2013 21:46, đọc 2026-10-28; chỉ dùng phần 1698 đã đối chiếu.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-DN-2018",
+      "name": "Dấu ấn lịch sử, văn hóa Biên Hòa - Đồng Nai",
+      "url": "https://dongnai.gov.vn/vi/news/chuong-trinh-ke-hoach-phat-trien-ktxh/dau-an-lich-su-van-hoa-bien-hoa-dong-nai-6501.html",
+      "source_type": "official_article",
+      "publisher": "Cổng thông tin điện tử Đồng Nai",
+      "source_version": "Bài về kỷ niệm 320 năm; mục Nhớ về người mở cõi, các đoạn về Nguyễn Hữu Cảnh; đọc 2026-10-28. Giữ tên địa bàn theo tư liệu.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NHC-DN-2026",
+      "name": "Nhớ ơn Lễ Thành hầu Nguyễn Hữu Cảnh",
+      "url": "https://dongnai.gov.vn/vi/news/Di-tich-Danh-thang/nho-on-le-thanh-hau-nguyen-huu-canh-62885.html",
+      "source_type": "official_portal_republication",
+      "publisher": "Cổng thông tin điện tử Đồng Nai đăng lại My Ny / Báo Đồng Nai",
+      "source_version": "Bài 28/06/2026 20:01; đọc 2026-10-28. Thông báo không thay lịch sự kiện hiện tại.",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "reviewer": "Codex — đối chiếu nguồn trực tiếp"
+    },
+    {
+      "id": "KN-NGUYEN-TIEU-2024",
+      "name": "Chương trình Đêm hội Nguyên Tiêu Giáp Thìn 2024",
+      "url": "https://svhtt.hochiminhcity.gov.vn/web/guest/tin-chi-tiet/-/chi-tiet/chuong-trinh-%C4%91em-hoi-nguyen-tieu-giap-thin-2024-24548-1.html",
+      "source_type": "official_article",
+      "publisher": "Sở Văn hóa và Thể thao TP.HCM; Đỗ Thị Vân",
+      "source_version": "Bài hiển thị 26/02/2024 03:26; sự kiện 24/02/2024; đọc nội dung bài ngày 2026-10-28.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và bản diễn giải mới ngắn, có dẫn nguồn. Không tải lại ảnh, không chép toàn văn hoặc bản diễn. Việc cơ quan tổ chức đăng ảnh không được coi là cấp phép tái sử dụng."
+    },
+    {
+      "id": "KN-NT-LHPN-2024",
+      "name": "Hội LHPN Thành phố tổ chức các hoạt động nhân dịp lễ Nguyên Tiêu của đồng bào Hoa",
+      "url": "https://phunu.hochiminhcity.gov.vn/hoi-lhpn-thanh-pho-to-chuc-cac-hoat-dong-nhan-dip-le-nguyen-tieu-cua-dong-bao-hoa-post2336.html",
+      "source_type": "organizer_report",
+      "publisher": "Hội Liên hiệp Phụ nữ TP.HCM; Tuyết Nhung",
+      "source_version": "Bài ký Tuyết Nhung, thuật buổi họp mặt sáng 20/02/2024. Không thấy ngày đăng riêng trong phần nội dung đã đọc; đọc ngày 2026-10-28 bằng HTTP trực tiếp vì bộ đọc web báo cache miss.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải mới về hoạt động do tổ chức tự tường thuật; không sao chép ảnh, danh sách người tham dự hoặc lời văn dài."
+    },
+    {
+      "id": "KN-CHAU-PHONG-2025",
+      "name": "Viện Khoa học Xã hội vùng Nam Bộ đến khảo sát, thu thập thông tin đồng bào dân tộc thiểu số tại xã Châu Phong",
+      "url": "https://chauphong.angiang.gov.vn/vien-khoa-hoc-xa-hoi-vung-nam-bo-den-khao-sat-thu-thap-thong-tin-dong-bao-dan-toc-thieu-so-tai-xa",
+      "source_type": "official_article",
+      "publisher": "UBND xã Châu Phong; Ro Phy Á",
+      "source_version": "Bài ngày 18/12/2025, đọc 2026-10-28; không coi ngày bài đăng là ngày cư dân lập làng hoặc ngày khảo sát chính xác.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải ngắn mới; không tải ảnh, phiếu điều tra hoặc thông tin cá nhân. Không dùng số dân trong tin làm thống kê hiện hành."
+    },
+    {
+      "id": "KN-CHAU-PHONG-DU-THAO-2026",
+      "name": "Châu Phong trao đổi với đơn vị tư vấn xây dựng Đề án phát triển du lịch đặc trưng địa phương",
+      "url": "https://chauphong.angiang.gov.vn/chau-phong-trao-doi-voi-don-vi-tu-van-xay-dung-de-phat-trien-du-lich-dac-trung-dia-phuong",
+      "source_type": "official_article",
+      "publisher": "UBND xã Châu Phong; Trần Huyện",
+      "source_version": "Bài ngày 21/07/2026, tường thuật hội nghị chiều 17/07/2026; đọc 2026-10-28. Tài liệu được giới thiệu là dự thảo đề án, chưa phải bằng chứng đã triển khai.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và diễn giải mới có giới hạn, không chép toàn văn hoặc ảnh hội nghị; không coi phương án trong dự thảo là dịch vụ đã hoạt động."
+    },
+    {
+      "id": "KN-CANGIO-UNESCO",
+      "name": "Can Gio mangrove — Man and the Biosphere Programme",
+      "url": "https://www.unesco.org/en/mab/can-gio-mangrove",
+      "source_type": "unesco_profile",
+      "publisher": "UNESCO, Chương trình Con người và Sinh quyển (MAB)",
+      "source_version": "Hồ sơ web đọc 28/10/2026; Year of nomination: 2000; trang không hiển thị ngày cập nhật dữ liệu",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata và lời diễn giải mới ngắn, dẫn đúng hồ sơ. Không sao chép ảnh, bản đồ, toàn văn hoặc coi số liệu chưa có ngày cập nhật là thống kê hiện hành.",
+      "checked_at": "2026-10-28"
+    },
+    {
+      "id": "KN-CANGIO-FAO",
+      "name": "Phan Nguyên Hồng — Reforestation of mangroves after severe impacts of herbicides during the Viet Nam war: the case of Can Gio",
+      "url": "https://www.fao.org/4/y2795e/y2795e11.htm",
+      "source_type": "academic_article",
+      "publisher": "FAO, Unasylva 207, tập 52, số 2001/4; tác giả P. N. Hong",
+      "source_version": "Toàn bài HTML; thông tin số báo đối chiếu trang mục lục https://www.fao.org/4/y2795e/y2795e00.htm; đọc 28/10/2026",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Trang số báo cho phép in lại phần không có bản quyền kèm ghi công, nhưng chưa xác định quyền từng tài sản. Chỉ diễn giải ngắn mới và dẫn nguồn; không tái sử dụng ảnh hoặc toàn văn.",
+      "checked_at": "2026-10-28"
+    },
+    {
+      "id": "KN-CANGIO-UNDP",
+      "name": "Tổng kết 20 năm Việt Nam tham gia mạng lưới khu dự trữ sinh quyển thế giới",
+      "url": "https://www.undp.org/vietnam/press-releases/summarizing-and-evaluating-results-after-20-years-joining-world-biosphere-reserve-network-and-proposing-solutions-development",
+      "source_type": "official_article",
+      "publisher": "Chương trình Phát triển Liên Hợp Quốc (UNDP) tại Việt Nam",
+      "source_version": "Thông cáo tiếng Anh ngày 17/11/2020, đọc 28/10/2026; chỉ dùng mốc Cần Giờ và cách giải thích chức năng khu sinh quyển, không dùng tổng số khu năm 2020 như số hiện hành",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Biên soạn lời giải thích mới ngắn có dẫn nguồn. Không lấy ảnh thông cáo, lời phát biểu nguyên văn hoặc tái bản toàn văn.",
+      "checked_at": "2026-10-28"
+    },
+    {
+      "id": "KN-TRAMCHIM-RSIS",
+      "name": "Tram Chim National Park — Ramsar Sites Information Service, hồ sơ 2000",
+      "url": "https://rsis.ramsar.org/ris/2000",
+      "source_type": "official_register",
+      "publisher": "Ban Thư ký Công ước về các vùng đất ngập nước, Ramsar Sites Information Service",
+      "source_version": "Site number 2000; Designation date 02-02-2012; Last publication date 02-02-2012; đọc 28/10/2026",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu metadata ghi danh và diễn giải ngắn theo phạm vi hồ sơ 2012. Không tải lại ảnh, bản đồ hoặc tự nâng số liệu sinh thái thành hiện trạng 2026.",
+      "checked_at": "2026-10-28"
+    },
+    {
+      "id": "KN-TRAMCHIM-NBCA",
+      "name": "Tram Chim Ramsar Site, Dong Thap Province (2012)",
+      "url": "https://en.nbca.gov.vn/4154-2/",
+      "source_type": "official_article",
+      "publisher": "Trang thông tin quốc gia về bảo tồn thiên nhiên và đa dạng sinh học, Cục Bảo tồn thiên nhiên và Đa dạng sinh học",
+      "source_version": "Bản giới thiệu tiếng Anh, không hiện ngày đăng; tiêu đề gắn mốc 2012; đọc 28/10/2026. Chỉ đối chiếu cảnh quan đồng cỏ, rừng tràm và giá trị đất ngập nước",
+      "consulted_extent": "full_article",
+      "reviewed_at": "2026-10-28",
+      "review_status": "accepted",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải mới những đặc điểm được đối chiếu với RSIS. Không sao chép ảnh hoặc dùng số loài/bản dịch tên loài chưa được kiểm tra như dữ kiện hiện hành.",
+      "checked_at": "2026-10-28"
+    },
+    {
+      "id": "S07",
+      "name": "Phong tục hôn nhân thể hiện nét văn hóa của người Nam bộ",
+      "url": "https://baocantho.com.vn/phong-tuc-hon-nhan-the-hien-net-van-hoa-cua-nguoi-nam-bo-a21132.html",
+      "source_type": "journalism_interview",
+      "publisher": "Báo Cần Thơ; Đăng Huỳnh phỏng vấn Nguyễn Hữu Hiệp",
+      "source_version": "Bản web đọc lại 2026-10-28, phần hỏi đáp về nghi lễ hôn nhân; không suy ngày đăng từ thời gian ở đầu trang",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải mới và quy thuộc lời người được phỏng vấn; không lấy ảnh, ca dao hoặc toàn văn nguồn.",
+      "review_status": "accepted",
+      "checked_at": "2026-10-28",
+      "consulted_extent": "full_article"
+    }
+  ],
+  "articles": [
+    {
+      "id": "E002",
+      "title": "Trầu cau trong lễ hỏi: lễ vật và tình thông gia",
+      "category": "cuoi_hoi",
+      "kind": "custom",
+      "topic": "wedding",
+      "historical_area": "Nam Bộ theo cuộc phỏng vấn; đối chiếu trưng bày văn hóa Việt Nam năm 2012",
+      "community": "Người Việt Nam Bộ theo Nguyễn Hữu Hiệp; ý nghĩa trầu cau theo bảo tàng, không đại diện mọi cộng đồng",
+      "summary": "Từ một lễ vật quen thuộc, đọc cách hai gia đình xác lập quan hệ và gửi gắm tình nghĩa trong lễ hỏi.",
+      "scope_note": "Bài đối chiếu một cuộc phỏng vấn về Nam Bộ với cách diễn giải của bảo tàng ở phạm vi Việt Nam. Chưa có khảo sát để xác định một mâm lễ, trình tự hoặc số lượng trầu cau chung cho các địa phương hiện nay.",
+      "sections": [
+        {
+          "heading": "Lễ vật trong quan hệ hai họ",
+          "text": "Trong cuộc phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp đặt đám nói ở thời điểm cha mẹ hai bên kết tình thông gia. Bài phỏng vấn nhắc mâm trầu trong lễ phẩm; chú thích ảnh gọi mâm trầu cau là lễ vật trong lễ hỏi. Cách đọc này hướng sự chú ý tới quan hệ gia đình, thay vì chỉ nhìn mâm lễ như một danh sách đồ vật.",
+          "kind": "observed_practice",
+          "sourceIds": [
+            "S07"
+          ]
+        },
+        {
+          "heading": "Vì sao lại là trầu cau?",
+          "text": "Bảo tàng Lịch sử Quốc gia giải thích trầu cau như biểu tượng của tình nghĩa vợ chồng, anh em và gia đình. Đây là ý nghĩa văn hóa được bảo tàng trình bày; không phải bằng chứng rằng một lễ vật quyết định hạnh phúc của đôi trẻ.",
+          "kind": "explanation",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        {
+          "heading": "Truyền thuyết và niên đại",
+          "text": "Bài bảo tàng đặt chuyện nguồn gốc trầu cau trong lời tương truyền. Vì vậy, truyện kể không được dùng để xác định năm xuất hiện tục lệ. Hồ sơ này chưa kết luận lễ hỏi Nam Bộ bắt đầu từ thời điểm nào.",
+          "kind": "legend",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        {
+          "heading": "Một ghi nhận về sự thay đổi",
+          "text": "Ở thời điểm viết năm 2012, bảo tàng nhận xét thói quen ăn trầu suy giảm nhưng lễ vật trầu cau vẫn có mặt trong nghi lễ. Nhận xét ấy có phạm vi và thời điểm riêng, chưa thay cho khảo sát cưới hỏi Nam Bộ hiện nay.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "R-TRAU-NM-2012"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "S07",
+          "statement": "Lời phỏng vấn gắn đám nói với quan hệ thông gia và nhắc mâm trầu; chú thích ảnh xác định mâm trầu cau trong lễ hỏi.",
+          "locator": "Phần hỏi về nghi lễ hôn nhân; đoạn bắt đầu Đám nói và chú thích ảnh mâm trầu cau. Đây là lời Nguyễn Hữu Hiệp, không phải khảo sát đại diện.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "R-TRAU-NM-2012",
+          "statement": "Bảo tàng diễn giải ý nghĩa tình nghĩa của trầu cau, nêu truyện nguồn gốc như tương truyền và ghi nhận thay đổi thói quen ăn trầu tại thời điểm năm 2012.",
+          "locator": "Các đoạn về biểu tượng trước Chủ đề 1; Chủ đề 1 ghi Tương truyền; Chủ đề 3 Bảo tồn giá trị văn hóa Trầu cau Việt Nam.",
+          "kind": "historical_interpretation",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Trầu cau trong lễ hỏi",
+        "entity_type": "practice",
+        "primary_domain": "phong-tuc-doi-song",
+        "secondary_domains": [],
+        "regions": [
+          "lien-vung"
+        ],
+        "communities": [
+          "kinh"
+        ],
+        "source_ids": [
+          "S07",
+          "R-TRAU-NM-2012"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 1,
+        "change_section": 3
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Một lễ vật được đọc trong quan hệ thông gia và ý nghĩa tình nghĩa gia đình.",
+          "source_ids": [
+            "S07",
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Cuộc phỏng vấn nói về Nam Bộ; bài bảo tàng năm 2012 nói ở phạm vi Việt Nam. Chưa xác định thời điểm tục lệ ra đời.",
+          "source_ids": [
+            "S07",
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Phạm vi người Việt Nam Bộ theo người được phỏng vấn; không suy rộng cho mọi cộng đồng.",
+          "source_ids": [
+            "S07"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Bảo tàng diễn giải biểu tượng tình nghĩa; nguồn gốc trong truyện kể chưa xác lập niên đại lịch sử.",
+          "source_ids": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Nhận xét về biến đổi thói quen trong bài bảo tàng được giữ ở thời điểm 2012; chưa xác minh hiện trạng chung.",
+          "source_ids": [
+            "R-TRAU-NM-2012"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa xác minh niên đại khởi đầu, khác biệt từng địa phương và một mâm lễ dùng chung. Không đưa số lượng lễ vật thành quy định.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc tiếp coi mắt và cách mời cưới để hiểu các khâu khác trong hồ sơ hôn nhân. Đây là liên kết biên tập.",
+          "source_ids": [
+            "S07"
+          ]
+        }
+      },
+      "media": [
+        {
+          "id": "trau-cau-khuong-viet-ha",
+          "kind": "image",
+          "url": "/media/trau-cau-khuong-viet-ha.webp",
+          "caption": "Mâm trầu cau trong lễ vật ăn hỏi ở Việt Nam. Chưa xác định địa phương chụp; không xem là khuôn mẫu nghi lễ Nam Bộ.",
+          "author": "Khương Việt Hà",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Trau_cau_(Vietnam).JPG",
+          "license_name": "Public domain",
+          "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+          "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Commons current original was rotated by Rotatebot in 2011. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+          "attribution": "Trau cau (Vietnam).JPG — Khương Việt Hà, Wikimedia Commons, Public domain (PD-self).",
+          "commercial_allowed": 1,
+          "file_sha256": "fdb697fdd5b1bd87149d4af6c95799206d5691a786a4c9286d37196af33e9444",
+          "width": 1067,
+          "height": 1600,
+          "rights_review": "accepted"
+        }
+      ],
+      "rights_basis": "Bài diễn giải mới, chỉ tóm lược nhận định ngắn và ghi nguồn/locator. Không tái bản ảnh của báo, truyện, thơ hoặc bài bảo tàng; ảnh nếu có sẽ qua rà quyền riêng.",
+      "slug": "trau-cau-trong-le-dinh-hon",
+      "introduction": "Từ một lễ vật quen thuộc, đọc cách hai gia đình xác lập quan hệ và gửi gắm tình nghĩa trong lễ hỏi.",
+      "body": "## Lễ vật trong quan hệ hai họ\n\nTrong cuộc phỏng vấn của Báo Cần Thơ, Nguyễn Hữu Hiệp đặt đám nói ở thời điểm cha mẹ hai bên kết tình thông gia. Bài phỏng vấn nhắc mâm trầu trong lễ phẩm; chú thích ảnh gọi mâm trầu cau là lễ vật trong lễ hỏi. Cách đọc này hướng sự chú ý tới quan hệ gia đình, thay vì chỉ nhìn mâm lễ như một danh sách đồ vật.\n\n## Vì sao lại là trầu cau?\n\nBảo tàng Lịch sử Quốc gia giải thích trầu cau như biểu tượng của tình nghĩa vợ chồng, anh em và gia đình. Đây là ý nghĩa văn hóa được bảo tàng trình bày; không phải bằng chứng rằng một lễ vật quyết định hạnh phúc của đôi trẻ.\n\n## Truyền thuyết và niên đại\n\nBài bảo tàng đặt chuyện nguồn gốc trầu cau trong lời tương truyền. Vì vậy, truyện kể không được dùng để xác định năm xuất hiện tục lệ. Hồ sơ này chưa kết luận lễ hỏi Nam Bộ bắt đầu từ thời điểm nào.\n\n## Một ghi nhận về sự thay đổi\n\nỞ thời điểm viết năm 2012, bảo tàng nhận xét thói quen ăn trầu suy giảm nhưng lễ vật trầu cau vẫn có mặt trong nghi lễ. Nhận xét ấy có phạm vi và thời điểm riêng, chưa thay cho khảo sát cưới hỏi Nam Bộ hiện nay.",
+      "classification": "source_supported",
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-10-28"
+    },
+    {
+      "id": "KN-SAMPLE-DOC-CHUA",
+      "title": "Tượng động vật Dốc Chùa: những dấu vết và câu hỏi còn mở",
+      "category": "di_san",
+      "kind": "artifact",
+      "topic": "archaeology",
+      "historical_area": "Dốc Chùa, Bình Dương theo hồ sơ",
+      "community": "Cư dân tiền sử; chưa gán cho một dân tộc hiện đại",
+      "summary": "Một tượng đồng nhỏ mở ra câu hỏi về hình tượng, kỹ thuật và cách đọc chứng cứ khảo cổ.",
+      "scope_note": "Phân biệt mô tả hiện vật với diễn giải công năng. Năm phát hiện có sai khác giữa nguồn; chưa dùng làm mốc lịch sử đã chốt. Tên nơi lưu giữ và địa bàn được giữ theo từng tài liệu, chưa xác nhận địa giới hoặc đơn vị hiện hành.",
+      "sections": [
+        {
+          "heading": "Quan sát trước khi diễn giải",
+          "text": "Tượng bằng đồng, dài 6,4 cm, cao 5,4 cm; trên lưng có quai nhỏ, theo Cục Di sản văn hóa. Hồ sơ ghi đơn vị lưu giữ là Bảo tàng Bình Dương.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-DOC-CHUA"
+          ]
+        },
+        {
+          "heading": "Một mốc cần đối chiếu",
+          "text": "Hồ sơ Cục ghi khai quật năm 1977. Bài đăng lại trên website Bảo tàng Lịch sử Quốc gia năm 2011 lại nêu phát hiện năm 1997. Cần báo cáo khai quật và hồ sơ nhập kho để giải quyết khác biệt này.",
+          "kind": "editorial_note",
+          "sourceIds": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        {
+          "heading": "Con vật nào, dùng để làm gì?",
+          "text": "Bài năm 2011 tập hợp các nhận dạng khác nhau và cách giải thích công dụng. Những ý kiến ấy chưa đủ để đổi tên hồ sơ thành một loài vật hay khẳng định đây là đồ dùng nghi lễ.",
+          "kind": "hypothesis",
+          "sourceIds": [
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        {
+          "heading": "Từ hiện vật đến hồ sơ bảo vật",
+          "text": "Thông báo của bảo tàng về đợt công nhận năm 2013 liệt kê tượng tại mục 26. Đây là dấu mốc ghi nhận giá trị, không phải niên đại chế tác.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-DOC-BTLS-2014"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-DOC-CHUA",
+          "statement": "Chất liệu, kích thước, hình dáng và đơn vị lưu giữ được mô tả trong hồ sơ.",
+          "locator": "Các mục Đơn vị lưu giữ, Chất liệu, Kích thước, Miêu tả.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-DOC-CHUA",
+          "statement": "Hồ sơ ghi năm khai quật 1977.",
+          "locator": "Mục Nguồn gốc, xuất xứ.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-DOC-BTLS-2011",
+          "statement": "Bài có mốc 1997 và nhiều ý kiến về hình tượng, công năng.",
+          "locator": "Đoạn bắt đầu Tượng được phát hiện; phần Những nhận định chung quanh tượng thú.",
+          "kind": "historical_interpretation",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-DOC-BTLS-2014",
+          "statement": "Hiện vật xuất hiện tại mục 26 của thông báo về đợt công nhận.",
+          "locator": "Đoạn mở đầu về Quyết định 2599/QĐ-TTg ngày 30/12/2013; danh sách mục 26.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Tượng động vật Dốc Chùa",
+        "entity_type": "artifact",
+        "primary_domain": "lich-su-khao-co",
+        "secondary_domains": [
+          "van-hoc-nghe-thuat"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-DOC-CHUA",
+          "KN-DOC-BTLS-2011",
+          "KN-DOC-BTLS-2014"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Tân Mỹ, Tân Uyên, Bình Dương",
+            "role": "area_as_recorded",
+            "source_id": "KN-DOC-CHUA",
+            "locator": "Nguồn gốc, xuất xứ",
+            "as_of": "Địa danh theo hồ sơ, chưa đối chiếu đơn vị hiện hành",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Tượng động vật bằng đồng.",
+          "source_ids": [
+            "KN-DOC-CHUA"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Dốc Chùa; năm tìm thấy còn sai khác.",
+          "source_ids": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa có chứng cứ để gán cho cộng đồng dân tộc hiện đại.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Biết nơi khai quật theo hồ sơ; công năng chưa chốt.",
+          "source_ids": [
+            "KN-DOC-CHUA",
+            "KN-DOC-BTLS-2011"
+          ]
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa có chuỗi tư liệu bảo quản để mô tả biến đổi qua từng giai đoạn.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần đối chiếu báo cáo gốc, niên đại đo đạc, cách nhận dạng và quyền ảnh; không tự quy đổi số năm cách ngày nay.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Có thể đọc tiếp hồ sơ công nhận bảo vật. Đây là gợi ý đọc.",
+          "source_ids": [
+            "KN-DOC-BTLS-2014"
+          ]
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "rights_basis": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "review_status": "verified",
+      "reviewed_at": "2026-10-28",
+      "classification": "source_supported",
+      "slug": "tuong-dong-vat-doc-chua",
+      "introduction": "Một tượng đồng nhỏ mở ra câu hỏi về hình tượng, kỹ thuật và cách đọc chứng cứ khảo cổ.",
+      "body": "## Quan sát trước khi diễn giải\n\nTượng bằng đồng, dài 6,4 cm, cao 5,4 cm; trên lưng có quai nhỏ, theo Cục Di sản văn hóa. Hồ sơ ghi đơn vị lưu giữ là Bảo tàng Bình Dương.\n\n## Một mốc cần đối chiếu\n\nHồ sơ Cục ghi khai quật năm 1977. Bài đăng lại trên website Bảo tàng Lịch sử Quốc gia năm 2011 lại nêu phát hiện năm 1997. Cần báo cáo khai quật và hồ sơ nhập kho để giải quyết khác biệt này.\n\n## Con vật nào, dùng để làm gì?\n\nBài năm 2011 tập hợp các nhận dạng khác nhau và cách giải thích công dụng. Những ý kiến ấy chưa đủ để đổi tên hồ sơ thành một loài vật hay khẳng định đây là đồ dùng nghi lễ.\n\n## Từ hiện vật đến hồ sơ bảo vật\n\nThông báo của bảo tàng về đợt công nhận năm 2013 liệt kê tượng tại mục 26. Đây là dấu mốc ghi nhận giá trị, không phải niên đại chế tác.",
+      "publication_status": "published",
+      "rights_review_status": "cleared",
+      "publish_approval": true
+    },
+    {
+      "id": "NBS-NGUYEN-HUU-CANH",
+      "title": "Nguyễn Hữu Cảnh: đọc dấu mốc hành chính năm 1698",
+      "category": "di_san",
+      "kind": "person",
+      "topic": "historical_person",
+      "historical_area": "Đồng Nai - Gia Định theo tư liệu năm 1698",
+      "community": "Nhân vật lịch sử và cộng đồng tưởng niệm tại Đồng Nai; không dùng lời tôn vinh thay chứng cứ",
+      "summary": "Lần theo một sự kiện hành chính và cách tên tuổi nhân vật được nhắc nhớ trong đời sống văn hóa.",
+      "scope_note": "Giới thiệu có phạm vi, không thay tiểu sử chuyên khảo. Không xem việc lập bộ máy hành chính là điểm bắt đầu mọi lịch sử cư trú. Chưa kết luận về gia phả, nơi sinh, ranh giới cụ thể hoặc những giai thoại chưa đối chiếu.",
+      "sections": [
+        {
+          "heading": "Dấu mốc năm 1698",
+          "text": "Bài của Bảo tàng Lịch sử Quốc gia gắn Nguyễn Hữu Cảnh với việc tổ chức phủ Gia Định năm 1698: huyện Phước Long với dinh Trấn Biên, huyện Tân Bình với dinh Phiên Trấn. Mốc này cũng được Cổng Đồng Nai nhắc lại.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "KN-NHC-BTLS-2013",
+            "KN-NHC-DN-2018"
+          ]
+        },
+        {
+          "heading": "Đọc tên gọi trong tư liệu",
+          "text": "Tên Nguyễn Hữu Kính được Cổng Đồng Nai dùng bên cạnh Nguyễn Hữu Cảnh. Các tên phủ, huyện và dinh thuộc lớp địa lý hành chính của tư liệu; không thay bằng tên đơn vị hiện nay khi chưa đối chiếu.",
+          "kind": "explanation",
+          "sourceIds": [
+            "KN-NHC-DN-2018"
+          ]
+        },
+        {
+          "heading": "Tưởng niệm là một lớp tư liệu khác",
+          "text": "Bản tin năm 2026 ghi hoạt động chuẩn bị lễ giỗ tại di tích đền thờ và mộ, cùng sự tham gia của học sinh, thanh niên. Đó là một ghi nhận thực hành văn hóa, không phải bằng chứng trực tiếp về sự kiện thế kỷ XVII.",
+          "kind": "observed_practice",
+          "sourceIds": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        {
+          "heading": "Những điều cần đọc tiếp",
+          "text": "Chưa đủ tài liệu để trình bày toàn bộ tiểu sử. Những nhận định ngoài phạm vi cần được đối chiếu riêng.",
+          "kind": "editorial_note",
+          "sourceIds": [
+            "KN-NHC-BTLS-2013"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-NHC-BTLS-2013",
+          "statement": "Bài bảo tàng nêu cơ cấu phủ, huyện và dinh gắn với năm 1698.",
+          "locator": "Đoạn Năm 1698; đoạn dẫn Gia Định thành thông chí; hai gạch đầu dòng Phước Long/Tân Bình.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-NHC-DN-2018",
+          "statement": "Nguồn Đồng Nai dùng tên Nguyễn Hữu Kính và đối chiếu mốc kinh lược 1698.",
+          "locator": "Phần Nhớ về người mở cõi, hai đoạn đầu.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-NHC-DN-2026",
+          "statement": "Bản tin ghi sự chuẩn bị lễ giỗ và người tham gia năm 2026.",
+          "locator": "Mục Tri ân công lao người mở cõi, các đoạn về Ban quý tế và học sinh.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Nguyễn Hữu Cảnh",
+        "entity_type": "person",
+        "primary_domain": "nhan-vat-ky-uc",
+        "secondary_domains": [
+          "lich-su-khao-co",
+          "tin-nguong-ton-giao"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-NHC-BTLS-2013",
+          "KN-NHC-DN-2018",
+          "KN-NHC-DN-2026"
+        ],
+        "aliases": [
+          {
+            "value": "Nguyễn Hữu Kính",
+            "kind": "alternate_name",
+            "source_id": "KN-NHC-DN-2018",
+            "locator": "Phần Nhớ về người mở cõi, đoạn đầu"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Gia Định; Phước Long - Trấn Biên; Tân Bình - Phiên Trấn",
+            "role": "area_as_recorded",
+            "source_id": "KN-NHC-BTLS-2013",
+            "locator": "Phần hành chính năm 1698",
+            "as_of": "1698 theo tư liệu được bài bảo tàng dẫn",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Nhân vật gắn với tổ chức hành chính năm 1698.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "when_where": {
+          "state": "supported",
+          "text": "Phạm vi bài: Đồng Nai - Gia Định, năm 1698.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Nguồn ghi cộng đồng tưởng niệm ở Đồng Nai; không suy từ đó ra dân tộc của nhân vật.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Đã đối chiếu cơ cấu hành chính; chưa giải quyết toàn bộ bối cảnh hình thành.",
+          "source_ids": [
+            "KN-NHC-BTLS-2013"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Bản tin mới cho thấy một lớp tưởng niệm, chưa đủ dựng quá trình phát triển nghi lễ.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần chuyên khảo và sử liệu gốc cho gia phả, địa giới, những cách diễn giải khác nhau và lịch sử các nơi thờ.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc thêm tư liệu về đền thờ và lễ giỗ, tách lịch sử nhân vật khỏi lịch sử thực hành.",
+          "source_ids": [
+            "KN-NHC-DN-2026"
+          ]
+        }
+      },
+      "media": [],
+      "audio_url": null,
+      "rights_basis": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi. Chưa xác định giấy phép tái sử dụng tài sản nguồn.",
+      "review_status": "verified",
+      "reviewed_at": "2026-10-28",
+      "classification": "source_supported",
+      "slug": "nguyen-huu-canh-dau-moc-1698",
+      "introduction": "Lần theo một sự kiện hành chính và cách tên tuổi nhân vật được nhắc nhớ trong đời sống văn hóa.",
+      "body": "## Dấu mốc năm 1698\n\nBài của Bảo tàng Lịch sử Quốc gia gắn Nguyễn Hữu Cảnh với việc tổ chức phủ Gia Định năm 1698: huyện Phước Long với dinh Trấn Biên, huyện Tân Bình với dinh Phiên Trấn. Mốc này cũng được Cổng Đồng Nai nhắc lại.\n\n## Đọc tên gọi trong tư liệu\n\nTên Nguyễn Hữu Kính được Cổng Đồng Nai dùng bên cạnh Nguyễn Hữu Cảnh. Các tên phủ, huyện và dinh thuộc lớp địa lý hành chính của tư liệu; không thay bằng tên đơn vị hiện nay khi chưa đối chiếu.\n\n## Tưởng niệm là một lớp tư liệu khác\n\nBản tin năm 2026 ghi hoạt động chuẩn bị lễ giỗ tại di tích đền thờ và mộ, cùng sự tham gia của học sinh, thanh niên. Đó là một ghi nhận thực hành văn hóa, không phải bằng chứng trực tiếp về sự kiện thế kỷ XVII.\n\n## Những điều cần đọc tiếp\n\nChưa đủ tài liệu để trình bày toàn bộ tiểu sử. Những nhận định ngoài phạm vi cần được đối chiếu riêng.",
+      "publication_status": "published",
+      "rights_review_status": "cleared",
+      "publish_approval": true
+    },
+    {
+      "id": "KN-SAMPLE-NGUYEN-TIEU",
+      "title": "Nguyên Tiêu 2024: cuộc gặp gỡ văn hóa Việt–Hoa",
+      "category": "le_hoi",
+      "kind": "festival",
+      "topic": "nguyen_tieu",
+      "historical_area": "Quận 5, TP.HCM theo tư liệu sự kiện năm 2024",
+      "community": "Cộng đồng Hoa và những người tham gia các hoạt động giao lưu tại TP.HCM năm 2024",
+      "classification": "source_supported",
+      "summary": "Hai ghi nhận năm 2024 cho thấy hoạt động gặp gỡ, trình diễn và chăm lo cộng đồng nhân Nguyên Tiêu.",
+      "scope_note": "Hồ sơ đọc hai hoạt động được đơn vị tổ chức tường thuật trong tháng 2/2024. Chưa xác lập nguồn gốc từng nghi thức, lịch tổ chức năm khác hay địa chỉ hành chính hiện hành.",
+      "sections": [
+        {
+          "heading": "Một đêm hội, hai địa điểm",
+          "kind": "observed_practice",
+          "text": "Ngày 24/02/2024, lễ hội được tổ chức tại Trung tâm Văn hóa Quận 5 và Hội quán Nghĩa An. Bài của Sở Văn hóa và Thể thao đăng ngày 26/02, sau ngày diễn ra chương trình.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        {
+          "heading": "Gặp nhau trong không gian văn hóa",
+          "kind": "explanation",
+          "text": "Giao lưu Việt–Hoa và gắn kết cộng đồng là ý nghĩa Sở nêu. Diễu hành và lân–sư–rồng thuộc phần hội được ghi nhận, chưa phải trình tự nghi lễ chung.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        {
+          "heading": "Lễ hội cũng là dịp chăm lo cho nhau",
+          "kind": "observed_practice",
+          "text": "Ở một hoạt động khác ngày 20/02/2024, Hội LHPN Thành phố tổ chức gặp mặt phụ nữ Hoa, giao lưu món ăn, văn nghệ và trao quà cho hội viên gặp khó khăn. Tổ chức Hội giải thích việc gặp gỡ giúp hội viên giao lưu và tìm hiểu văn hóa. Sự kiện này diễn ra trước đêm hội ngày 24/02; không gộp hai chương trình thành một nghi thức.",
+          "sourceIds": [
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        {
+          "heading": "Điều một kỳ lễ chưa thể trả lời",
+          "kind": "editorial_note",
+          "text": "Các bản tin giúp đọc những việc đã diễn ra, nhưng chưa đủ để giải thích toàn bộ lịch sử hình thành lễ hội. Cần thêm tư liệu qua nhiều thời kỳ trước khi kết luận nghi thức nào đã thay đổi. Những lời cầu mong thuộc đời sống tín ngưỡng; hồ sơ không dùng chúng làm bằng chứng về tác dụng siêu nhiên.",
+          "sourceIds": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-NGUYEN-TIEU-2024",
+          "statement": "Chương trình ngày 24/02/2024 có hai địa điểm nêu trong bài.",
+          "locator": "Đoạn mở đầu ngay dưới thời gian đăng 26/02/2024; không dùng địa chỉ này như địa giới hiện hành.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-NGUYEN-TIEU-2024",
+          "statement": "Nguồn nêu giao lưu Việt–Hoa, gắn kết cộng đồng và trình diễn đường phố.",
+          "locator": "Các đoạn bắt đầu Tết Nguyên tiêu mang nét đẹp và Lễ hội Nguyên Tiêu còn thu hút; đoạn ngày 24/02/2024.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-NT-LHPN-2024",
+          "statement": "Hội tổ chức gặp mặt ngày 20/02/2024, có giao lưu và trao quà.",
+          "locator": "Đoạn mở đầu và đoạn Việc tổ chức các hoạt động nhân dịp Lễ Nguyên tiêu; đây là tường thuật của đơn vị tổ chức.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Nguyên Tiêu 2024 tại Quận 5",
+        "entity_type": "festival_event",
+        "primary_domain": "le-hoi",
+        "secondary_domains": [
+          "tin-nguong-ton-giao",
+          "phong-tuc-doi-song"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [
+          "hoa"
+        ],
+        "source_ids": [
+          "KN-NGUYEN-TIEU-2024",
+          "KN-NT-LHPN-2024"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Quận 5, TP.HCM",
+            "role": "area_as_recorded",
+            "source_id": "KN-NGUYEN-TIEU-2024",
+            "locator": "Đoạn mở đầu bài về chương trình",
+            "as_of": "2024-02-24",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Hồ sơ về những hoạt động Nguyên Tiêu năm 2024.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        "when_where": {
+          "state": "supported",
+          "text": "Đêm hội ngày 24/02/2024; Quận 5 theo tư liệu.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Giao lưu Việt–Hoa.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024",
+            "KN-NT-LHPN-2024"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Giao lưu, gắn kết theo cách lý giải của Sở; chưa xác minh nguồn gốc nghi lễ.",
+          "source_ids": [
+            "KN-NGUYEN-TIEU-2024"
+          ]
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đối chiếu chuỗi tư liệu đủ dài để kết luận biến đổi của lễ hội.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa kiểm tra lịch kỳ lễ tiếp theo, địa chỉ hành chính hiện hành, quyền ảnh và bản diễn.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Có thể đọc tiếp hoạt động giao lưu, ẩm thực và công tác Hội trong bản tin ngày 20/02.",
+          "source_ids": [
+            "KN-NT-LHPN-2024"
+          ]
+        }
+      },
+      "media": [],
+      "audio_asset_id": null,
+      "rights_basis": "Bản biên soạn mới từ các sự kiện và nhận định có dẫn nguồn; không sao chép ảnh, toàn văn hay lời diễn. Ảnh và bản ghi được để trống vì chưa có giấy phép tái sử dụng.",
+      "slug": "nguyen-tieu-2024-viet-hoa",
+      "introduction": "Hai ghi nhận năm 2024 cho thấy hoạt động gặp gỡ, trình diễn và chăm lo cộng đồng nhân Nguyên Tiêu.",
+      "body": "## Một đêm hội, hai địa điểm\n\nNgày 24/02/2024, lễ hội được tổ chức tại Trung tâm Văn hóa Quận 5 và Hội quán Nghĩa An. Bài của Sở Văn hóa và Thể thao đăng ngày 26/02, sau ngày diễn ra chương trình.\n\n## Gặp nhau trong không gian văn hóa\n\nGiao lưu Việt–Hoa và gắn kết cộng đồng là ý nghĩa Sở nêu. Diễu hành và lân–sư–rồng thuộc phần hội được ghi nhận, chưa phải trình tự nghi lễ chung.\n\n## Lễ hội cũng là dịp chăm lo cho nhau\n\nỞ một hoạt động khác ngày 20/02/2024, Hội LHPN Thành phố tổ chức gặp mặt phụ nữ Hoa, giao lưu món ăn, văn nghệ và trao quà cho hội viên gặp khó khăn. Tổ chức Hội giải thích việc gặp gỡ giúp hội viên giao lưu và tìm hiểu văn hóa. Sự kiện này diễn ra trước đêm hội ngày 24/02; không gộp hai chương trình thành một nghi thức.\n\n## Điều một kỳ lễ chưa thể trả lời\n\nCác bản tin giúp đọc những việc đã diễn ra, nhưng chưa đủ để giải thích toàn bộ lịch sử hình thành lễ hội. Cần thêm tư liệu qua nhiều thời kỳ trước khi kết luận nghi thức nào đã thay đổi. Những lời cầu mong thuộc đời sống tín ngưỡng; hồ sơ không dùng chúng làm bằng chứng về tác dụng siêu nhiên.",
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-10-28"
+    },
+    {
+      "id": "KN-SAMPLE-CHAU-GIANG",
+      "title": "Châu Giang–Phũm Soài: đọc đời sống Chăm qua tư liệu địa phương",
+      "category": "phong_tuc",
+      "kind": "custom",
+      "topic": "community_life",
+      "historical_area": "Châu Giang, Phũm Soài, xã Châu Phong, An Giang theo nguồn 2025–2026",
+      "community": "Cộng đồng Chăm tại Châu Giang và Phũm Soài trong phạm vi nguồn",
+      "classification": "source_supported",
+      "summary": "Nghề dệt và thánh đường xuất hiện trong một ghi nhận khảo sát về cộng đồng Chăm, bên cạnh hướng nghiên cứu du lịch địa phương.",
+      "scope_note": "Chỉ dùng bản tin khảo sát năm 2025 và cuộc họp về dự thảo năm 2026. Không suy ra lịch sử cư trú, nguồn gốc tên đất, trình tự nghi lễ, địa giới hiện hành hoặc dịch vụ đã triển khai.",
+      "sections": [
+        {
+          "heading": "Bắt đầu từ địa bàn và người đang sống ở đó",
+          "kind": "observed_practice",
+          "text": "Bài của UBND xã Châu Phong ngày 18/12/2025 nêu cộng đồng Chăm tại Châu Giang và Phũm Soài, trong một ghi nhận khảo sát.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        {
+          "heading": "Hai nơi được đoàn khảo sát tìm đến",
+          "kind": "observed_practice",
+          "text": "Đoàn đến cơ sở dệt Mohamach và Thánh đường Nia Mah ở Phũm Soài. Đây là đầu mối nghiên cứu, chưa giải thích hoa văn hoặc lịch sử từng nơi.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        {
+          "heading": "Từ ghi nhận thực tế đến hướng phát triển",
+          "kind": "observed_practice",
+          "text": "Tại cuộc họp ngày 17/07/2026, địa phương và đơn vị tư vấn thảo luận dự thảo phát triển du lịch gắn với văn hóa Chăm, nghề dệt và ẩm thực Halal. Những nội dung này cho thấy hướng quan tâm của dự thảo; chưa chứng minh các tour, điểm trải nghiệm hoặc dịch vụ đã hoàn thành.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        {
+          "heading": "Đọc một cộng đồng mà không đóng khung",
+          "kind": "editorial_note",
+          "text": "Một bản tin hành chính không thay thế lời kể của người thực hành hoặc công trình nghiên cứu chuyên sâu. Hồ sơ giữ cách viết tên nơi trong nguồn và không dùng số dân của một báo cáo làm thống kê hiện tại. Lịch sử cư trú, ý nghĩa từng hoa văn và biến đổi của đời sống cần tiếp tục đối chiếu; điều chưa biết được để ngỏ.",
+          "sourceIds": [
+            "KN-CHAU-PHONG-2025",
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-CHAU-PHONG-2025",
+          "statement": "Nguồn nêu cộng đồng Chăm tại Châu Giang và Phũm Soài.",
+          "locator": "Đoạn Theo báo cáo tại buổi làm việc; không tái sử dụng số dân thành dữ liệu hiện hành.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-CHAU-PHONG-2025",
+          "statement": "Đoàn khảo sát tới cơ sở dệt Mohamach và Thánh đường Nia Mah.",
+          "locator": "Đoạn cuối nội dung, bắt đầu Trong khuôn khổ buổi khảo sát, trước tên tác giả Ro Phy Á.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-CHAU-PHONG-DU-THAO-2026",
+          "statement": "Cuộc họp 17/07/2026 thảo luận dự thảo gắn văn hóa Chăm, nghề dệt và du lịch.",
+          "locator": "Đoạn mở đầu về ngày hội nghị; các đoạn Tại hội nghị và Theo dự thảo. Không phải xác nhận đề án đã duyệt hoặc dịch vụ đã hoạt động.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Châu Giang và Phũm Soài",
+        "entity_type": "community_place",
+        "primary_domain": "phong-tuc-doi-song",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke",
+          "tin-nguong-ton-giao"
+        ],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [
+          "cham"
+        ],
+        "source_ids": [
+          "KN-CHAU-PHONG-2025",
+          "KN-CHAU-PHONG-DU-THAO-2026"
+        ],
+        "aliases": [],
+        "historical_places": [
+          {
+            "name": "Châu Giang, Phũm Soài, xã Châu Phong, An Giang",
+            "role": "area_as_recorded",
+            "source_id": "KN-CHAU-PHONG-2025",
+            "locator": "Đoạn báo cáo tại buổi làm việc và đoạn khảo sát thực tế",
+            "as_of": "2025-12-18 theo ngày bài",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "partial",
+          "text": "Hồ sơ địa bàn có nghề dệt và thánh đường.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Địa bàn theo bài 18/12/2025; chưa có mốc lập làng.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "community": {
+          "state": "supported",
+          "text": "Cộng đồng Chăm tại hai ấp trong báo cáo.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Dự thảo năm 2026 đặt văn hóa địa phương trong hướng phát triển sinh kế; chưa xác minh nguồn gốc tên đất hoặc nghề.",
+          "source_ids": [
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Hai thời điểm ghi nhận khác nhau, chưa đủ đo biến đổi đời sống.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025",
+            "KN-CHAU-PHONG-DU-THAO-2026"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chưa xác minh lịch sử cư trú, ý nghĩa hoa văn, địa giới hiện hành hoặc quyền lời kể, ảnh và bản thu.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "partial",
+          "text": "Đọc thêm từ hai địa điểm trong bản tin.",
+          "source_ids": [
+            "KN-CHAU-PHONG-2025"
+          ]
+        }
+      },
+      "media": [],
+      "audio_asset_id": null,
+      "rights_basis": "Chỉ lưu bản biên soạn mới ngắn và dẫn nguồn. Chưa có quyền tái sử dụng ảnh, bản thu, phiếu khảo sát hoặc lời kể cá nhân; các trường tài sản được để trống.",
+      "slug": "chau-giang-phum-soai-cong-dong-cham",
+      "introduction": "Nghề dệt và thánh đường xuất hiện trong một ghi nhận khảo sát về cộng đồng Chăm, bên cạnh hướng nghiên cứu du lịch địa phương.",
+      "body": "## Bắt đầu từ địa bàn và người đang sống ở đó\n\nBài của UBND xã Châu Phong ngày 18/12/2025 nêu cộng đồng Chăm tại Châu Giang và Phũm Soài, trong một ghi nhận khảo sát.\n\n## Hai nơi được đoàn khảo sát tìm đến\n\nĐoàn đến cơ sở dệt Mohamach và Thánh đường Nia Mah ở Phũm Soài. Đây là đầu mối nghiên cứu, chưa giải thích hoa văn hoặc lịch sử từng nơi.\n\n## Từ ghi nhận thực tế đến hướng phát triển\n\nTại cuộc họp ngày 17/07/2026, địa phương và đơn vị tư vấn thảo luận dự thảo phát triển du lịch gắn với văn hóa Chăm, nghề dệt và ẩm thực Halal. Những nội dung này cho thấy hướng quan tâm của dự thảo; chưa chứng minh các tour, điểm trải nghiệm hoặc dịch vụ đã hoàn thành.\n\n## Đọc một cộng đồng mà không đóng khung\n\nMột bản tin hành chính không thay thế lời kể của người thực hành hoặc công trình nghiên cứu chuyên sâu. Hồ sơ giữ cách viết tên nơi trong nguồn và không dùng số dân của một báo cáo làm thống kê hiện tại. Lịch sử cư trú, ý nghĩa từng hoa văn và biến đổi của đời sống cần tiếp tục đối chiếu; điều chưa biết được để ngỏ.",
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-10-28"
+    },
+    {
+      "id": "KN-CAN-GIO",
+      "title": "Cần Giờ: rừng ngập mặn và công việc giữ rừng",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "ecology",
+      "classification": "source_supported",
+      "historical_area": "Cần Giờ, TP. Hồ Chí Minh theo hồ sơ nguồn",
+      "community": "Người giữ rừng và cư dân ven biển theo các tư liệu được dẫn",
+      "summary": "Đọc cảnh quan rừng ngập mặn Cần Giờ qua hồ sơ UNESCO và tư liệu phục hồi rừng.",
+      "scope_note": "Hồ sơ UNESCO không ghi ngày cập nhật; bài FAO phản ánh tư liệu xuất bản năm 2001. Bài không xác nhận địa giới, số dân, diện tích rừng hay tình trạng bảo tồn hiện nay; chưa đánh giá tác động của các dự án mới.",
+      "sections": [
+        {
+          "heading": "Rừng ở ngưỡng mặn và lợ",
+          "kind": "explanation",
+          "text": "UNESCO đặt Cần Giờ ở vùng ven biển phía đông nam TP. Hồ Chí Minh. Hồ sơ mô tả phù sa sông Sài Gòn, Đồng Nai cùng hệ thống sông rạch, với nhiều sinh cảnh như rừng ngập mặn, đầm lầy mặn và bãi bùn.",
+          "sourceIds": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        {
+          "heading": "Một quá trình phục hồi có người tham gia",
+          "kind": "documented_history",
+          "text": "Trong bài năm 2001, Phan Nguyên Hồng ghi việc đầu tư trồng lại rừng bắt đầu năm 1978. Tác giả liên hệ phục hồi sinh cảnh với sinh kế và công việc bảo vệ rừng; đây là ghi nhận theo thời điểm của nghiên cứu.",
+          "sourceIds": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        {
+          "heading": "Vì sao bảo tồn đi cùng sinh kế?",
+          "kind": "explanation",
+          "text": "Thông cáo UNDP năm 2020 xác nhận Cần Giờ được công nhận khu sinh quyển năm 2000. Nguồn giải thích mô hình này phối hợp bảo tồn, phát triển và hỗ trợ nghiên cứu, nhằm tìm cách sử dụng tài nguyên hài hòa với thiên nhiên.",
+          "sourceIds": [
+            "KN-CANGIO-UNDP"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-CANGIO-UNESCO",
+          "statement": "Hồ sơ mô tả vị trí ven biển, phù sa từ hai sông và các sinh cảnh mặn lợ.",
+          "locator": "General information, đoạn đầu; Ecological Characteristics, hai đoạn đầu.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-CANGIO-FAO",
+          "statement": "Tác giả ghi đầu tư trồng lại rừng từ năm 1978 và vai trò người bảo vệ rừng.",
+          "locator": "MANGROVE REFORESTATION IN CAN GIO DISTRICT, đoạn đầu; MANAGEMENT AND PROTECTION OF REPLANTED FORESTS AT CAN GIO, các đoạn 3–5.",
+          "kind": "historical_interpretation",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-CANGIO-UNDP",
+          "statement": "Thông cáo ghi mốc công nhận Cần Giờ năm 2000 và ba chức năng khu sinh quyển.",
+          "locator": "Đoạn bắt đầu Worldwide; đoạn giải thích Biosphere Reserve gần cuối nội dung, trước ảnh và thông tin liên hệ.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Khu dự trữ sinh quyển rừng ngập mặn Cần Giờ",
+        "entity_type": "ecosystem",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke"
+        ],
+        "regions": [
+          "dong-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-CANGIO-UNESCO",
+          "KN-CANGIO-FAO",
+          "KN-CANGIO-UNDP"
+        ],
+        "aliases": [
+          {
+            "value": "Can Gio mangrove",
+            "kind": "alternate_name",
+            "source_id": "KN-CANGIO-UNESCO",
+            "locator": "Tên hồ sơ UNESCO"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Cần Giờ, TP. Hồ Chí Minh",
+            "role": "area_as_recorded",
+            "source_id": "KN-CANGIO-UNESCO",
+            "locator": "General information, đoạn đầu",
+            "as_of": "Theo hồ sơ web UNESCO, không hiển thị ngày cập nhật; đọc 28/10/2026",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Một khu sinh quyển có các sinh cảnh ven biển mặn lợ.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Ven biển đông nam TP. Hồ Chí Minh; mốc công nhận là năm 2000, không phải năm rừng hình thành.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO",
+            "KN-CANGIO-UNDP"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Tư liệu FAO ghi vai trò người giữ rừng và ngư dân; chưa nghiên cứu riêng từng cộng đồng văn hóa.",
+          "source_ids": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "UNESCO giải thích nền phù sa và môi trường mặn lợ; chưa có chứng cứ về nguồn gốc tên Cần Giờ trong bài này.",
+          "source_ids": [
+            "KN-CANGIO-UNESCO"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "Bài FAO ghi trồng lại rừng từ 1978 và thay đổi quản lý bảo vệ; chưa đủ dữ liệu để đánh giá hiện trạng.",
+          "source_ids": [
+            "KN-CANGIO-FAO"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần đối chiếu địa giới hiện hành, báo cáo giám sát mới và lời kể được đồng ý của cư dân. Chưa xác minh số dân, diện tích hoặc hiệu quả bảo tồn hiện nay.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Có thể đọc tiếp các hồ sơ cùng lĩnh vực sinh thái và sinh kế; liên kết biên tập không tự chứng minh quan hệ lịch sử giữa các địa điểm.",
+          "source_ids": []
+        }
+      },
+      "media": [
+        {
+          "id": "can-gio-tho-nau",
+          "kind": "image",
+          "url": "/media/can-gio-tho-nau.jpg",
+          "caption": "Rừng ngập mặn Cần Giờ theo mô tả tệp Commons. Ngày chụp chưa ghi rõ; tệp được tải lên năm 2008, không xác nhận hiện trạng 2026.",
+          "author": "Tho nau",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Mangrove_in_Can_Gio_forest.jpg",
+          "license_name": "CC BY-SA 3.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "modifications": "Dùng tệp JPEG gốc từ Commons, không đổi kích thước, màu sắc hoặc xóa dấu. Thẻ danh sách có thể cắt khung bằng CSS; ảnh chi tiết giữ khung đầy đủ.",
+          "attribution": "Mangrove in Can Gio forest.jpg — Tho nau, Wikimedia Commons, CC BY-SA 3.0.",
+          "commercial_allowed": 1,
+          "width": 1024,
+          "height": 768,
+          "file_sha256": "dcc9eef12698650ca286069e5bbfca75645035d2b3bd9e5cafd117ee10838ab7",
+          "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Mangrove_in_Can_Gio_forest.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "checked_at": "2026-10-28",
+          "rights_review": "accepted"
+        }
+      ],
+      "audio_url": null,
+      "reviewed_at": "2026-10-28",
+      "review_status": "verified",
+      "rights_basis": "Lời biên soạn mới, tóm lược ngắn từ các nguồn đã dẫn và giới hạn đúng thời điểm. Không lưu hoặc công bố ảnh, bản đồ, bản thu hay toàn văn của các cơ quan nguồn.",
+      "slug": "rung-ngap-man-can-gio",
+      "introduction": "Đọc cảnh quan rừng ngập mặn Cần Giờ qua hồ sơ UNESCO và tư liệu phục hồi rừng.",
+      "body": "## Rừng ở ngưỡng mặn và lợ\n\nUNESCO đặt Cần Giờ ở vùng ven biển phía đông nam TP. Hồ Chí Minh. Hồ sơ mô tả phù sa sông Sài Gòn, Đồng Nai cùng hệ thống sông rạch, với nhiều sinh cảnh như rừng ngập mặn, đầm lầy mặn và bãi bùn.\n\n## Một quá trình phục hồi có người tham gia\n\nTrong bài năm 2001, Phan Nguyên Hồng ghi việc đầu tư trồng lại rừng bắt đầu năm 1978. Tác giả liên hệ phục hồi sinh cảnh với sinh kế và công việc bảo vệ rừng; đây là ghi nhận theo thời điểm của nghiên cứu.\n\n## Vì sao bảo tồn đi cùng sinh kế?\n\nThông cáo UNDP năm 2020 xác nhận Cần Giờ được công nhận khu sinh quyển năm 2000. Nguồn giải thích mô hình này phối hợp bảo tồn, phát triển và hỗ trợ nghiên cứu, nhằm tìm cách sử dụng tài nguyên hài hòa với thiên nhiên.",
+      "publication_status": "published",
+      "rights_review_status": "cleared",
+      "publish_approval": true
+    },
+    {
+      "id": "KN-TRAM-CHIM",
+      "title": "Tràm Chim: đồng cỏ, rừng tràm và nhịp nước",
+      "category": "dia_danh",
+      "kind": "place",
+      "topic": "ecology",
+      "classification": "source_supported",
+      "historical_area": "Đồng Tháp theo hồ sơ Ramsar năm 2012",
+      "community": "Cư dân quanh vùng đất ngập nước theo hồ sơ năm 2012",
+      "summary": "Đất ngập nước Tràm Chim được đọc như một cảnh quan có quan hệ với đời sống quanh vùng.",
+      "scope_note": "Hồ sơ RSIS ghi lần công bố cuối là 02/02/2012. Các mô tả được giới hạn theo hồ sơ; không dùng số loài, số chim, diện tích hoặc địa chỉ cũ để khẳng định hiện trạng năm 2026.",
+      "sections": [
+        {
+          "heading": "Một phần cảnh quan Đồng Tháp Mười",
+          "kind": "explanation",
+          "text": "Trang thông tin bảo tồn thiên nhiên quốc gia mô tả đồng cỏ và rừng tràm ở Tràm Chim, trong cảnh quan đất ngập nước tiêu biểu của vùng Đồng Tháp Mười.",
+          "sourceIds": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        {
+          "heading": "Đọc đúng mốc ghi danh",
+          "kind": "documented_history",
+          "text": "RSIS ghi Tràm Chim là khu Ramsar số 2000, được chỉ định ngày 02/02/2012. Đây là mốc ghi danh quốc tế, không phải niên đại hình thành vùng đất.",
+          "sourceIds": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        {
+          "heading": "Bảo tồn và đời sống quanh vùng",
+          "kind": "explanation",
+          "text": "Hồ sơ năm 2012 nêu vai trò nguồn cá đối với cư dân. Việc bảo vệ đất ngập nước được đặt cùng mục tiêu sử dụng tài nguyên bền vững, thay vì tách cảnh quan khỏi đời sống con người.",
+          "sourceIds": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "KN-TRAMCHIM-RSIS",
+          "statement": "Khu số 2000 có ngày chỉ định 02/02/2012.",
+          "locator": "Đầu hồ sơ: Site number; Designation date. Cuối hồ sơ: Last publication date.",
+          "kind": "register_entry",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-TRAMCHIM-NBCA",
+          "statement": "Bản giới thiệu mô tả đồng cỏ, rừng tràm và giá trị đất ngập nước.",
+          "locator": "Hai đoạn đầu dưới tiêu đề, sau chú thích ảnh.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        },
+        {
+          "source_id": "KN-TRAMCHIM-RSIS",
+          "statement": "Hồ sơ ghi vai trò nguồn cá và hỗ trợ phục hồi sinh cảnh giai đoạn 2007–2011.",
+          "locator": "Overview, hai đoạn cuối, trước Administrative region.",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — source review",
+          "checked_at": "2026-10-28"
+        }
+      ],
+      "knowledge": {
+        "name": "Vườn quốc gia Tràm Chim",
+        "entity_type": "ecosystem",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [
+          "lang-nghe-sinh-ke"
+        ],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "KN-TRAMCHIM-RSIS",
+          "KN-TRAMCHIM-NBCA"
+        ],
+        "aliases": [
+          {
+            "value": "Tram Chim National Park",
+            "kind": "alternate_name",
+            "source_id": "KN-TRAMCHIM-RSIS",
+            "locator": "Tiêu đề hồ sơ RSIS"
+          }
+        ],
+        "historical_places": [
+          {
+            "name": "Đồng Tháp",
+            "role": "area_as_recorded",
+            "source_id": "KN-TRAMCHIM-RSIS",
+            "locator": "Administrative region: Dong Thap Province",
+            "as_of": "Hồ sơ có Last publication date 02/02/2012",
+            "valid_from": null,
+            "valid_to": null
+          }
+        ],
+        "current_admin": null
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Cảnh quan đất ngập nước với đồng cỏ, rừng tràm.",
+          "source_ids": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        "when_where": {
+          "state": "partial",
+          "text": "Hồ sơ ghi Đồng Tháp; chỉ định Ramsar ngày 02/02/2012.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "community": {
+          "state": "partial",
+          "text": "Cư dân sử dụng nguồn cá theo hồ sơ; chưa phân tích từng cộng đồng.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "origins": {
+          "state": "partial",
+          "text": "Bài giới thiệu xem đây là cảnh quan tiêu biểu của Đồng Tháp Mười; chưa xác minh nguồn gốc tên Tràm Chim.",
+          "source_ids": [
+            "KN-TRAMCHIM-NBCA"
+          ]
+        },
+        "changes": {
+          "state": "partial",
+          "text": "RSIS nhắc hỗ trợ phục hồi năm 2007–2011; chưa có chuỗi giám sát mới để kết luận biến đổi.",
+          "source_ids": [
+            "KN-TRAMCHIM-RSIS"
+          ]
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Cần báo cáo giám sát mới về nước, sinh cảnh và quần thể. Chưa xác nhận địa chỉ hành chính, điều kiện tham quan hoặc nguồn gốc tên gọi hiện hành.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Các hồ sơ sông nước và sinh kế là gợi ý đọc thêm; chưa khẳng định cùng lịch sử hình thành hoặc cùng cách quản lý.",
+          "source_ids": []
+        }
+      },
+      "media": [
+        {
+          "id": "tram-chim-trungydang",
+          "kind": "image",
+          "url": "/media/tram-chim-trungydang.jpg",
+          "caption": "Cảnh Tràm Chim trong ảnh trungydang chụp ngày 06/10/2013 theo hồ sơ Commons; không phải ảnh hiện trạng 2026.",
+          "author": "trungydang",
+          "source_url": "https://commons.wikimedia.org/wiki/File:TRam_chim,_Phu_Duc,_Tam_Nong,_Dong_Thap._vietnam_-_panoramio.jpg",
+          "license_name": "CC BY 3.0",
+          "license_url": "https://creativecommons.org/licenses/by/3.0/",
+          "modifications": "Dùng tệp JPEG gốc từ Commons, không đổi kích thước, màu sắc hoặc xóa dấu. Thẻ danh sách có thể cắt khung bằng CSS; ảnh chi tiết giữ khung đầy đủ.",
+          "attribution": "TRam chim, Phu Duc, Tam Nong, Dong Thap. vietnam - panoramio.jpg — trungydang, Wikimedia Commons, CC BY 3.0.",
+          "commercial_allowed": 1,
+          "width": 2749,
+          "height": 1010,
+          "file_sha256": "46e77ed3d48a110f91378fa04622e234e3c8038386e780e52171481becf5746f",
+          "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/TRam_chim%2C_Phu_Duc%2C_Tam_Nong%2C_Dong_Thap._vietnam_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "checked_at": "2026-10-28",
+          "rights_review": "accepted"
+        }
+      ],
+      "audio_url": null,
+      "reviewed_at": "2026-10-28",
+      "review_status": "verified",
+      "rights_basis": "Lời biên soạn mới ngắn với nguồn và phạm vi thời gian rõ. Không tái sử dụng ảnh, bản đồ, tài liệu tải xuống hoặc toàn văn khi chưa xác định quyền riêng.",
+      "slug": "vuon-quoc-gia-tram-chim",
+      "introduction": "Đất ngập nước Tràm Chim được đọc như một cảnh quan có quan hệ với đời sống quanh vùng.",
+      "body": "## Một phần cảnh quan Đồng Tháp Mười\n\nTrang thông tin bảo tồn thiên nhiên quốc gia mô tả đồng cỏ và rừng tràm ở Tràm Chim, trong cảnh quan đất ngập nước tiêu biểu của vùng Đồng Tháp Mười.\n\n## Đọc đúng mốc ghi danh\n\nRSIS ghi Tràm Chim là khu Ramsar số 2000, được chỉ định ngày 02/02/2012. Đây là mốc ghi danh quốc tế, không phải niên đại hình thành vùng đất.\n\n## Bảo tồn và đời sống quanh vùng\n\nHồ sơ năm 2012 nêu vai trò nguồn cá đối với cư dân. Việc bảo vệ đất ngập nước được đặt cùng mục tiêu sử dụng tài nguyên bền vững, thay vì tách cảnh quan khỏi đời sống con người.",
+      "publication_status": "published",
+      "rights_review_status": "cleared",
+      "publish_approval": true
+    }
+  ],
+  "tours": [
+    {
+      "id": "KN-DOC-DAU-VET",
+      "slug": "doc-dau-vet-va-cac-lop-lich-su",
+      "title": "Dấu vết và các lớp lịch sử",
+      "kind": "digital",
+      "description": "Đọc một hiện vật Dốc Chùa, dấu mốc hành chính năm 1698 và kiến trúc Bình Thủy. Đây là mạch đọc đối chiếu các loại tư liệu, không khẳng định cùng nguồn gốc và không phải tuyến đi thực địa.",
+      "content_ids": [
+        "KN-SAMPLE-DOC-CHUA",
+        "NBS-NGUYEN-HUU-CANH",
+        "NBS-BINH-THUY"
+      ]
+    },
+    {
+      "id": "KN-DOC-CONG-DONG",
+      "slug": "gap-go-cac-cong-dong-qua-tu-lieu",
+      "title": "Gặp gỡ các cộng đồng qua tư liệu",
+      "kind": "digital",
+      "description": "Từ Nguyên Tiêu Việt–Hoa đến một ghi nhận về đời sống Chăm, rồi đọc trầu cau và Tết Khmer. Các trường hợp giữ bối cảnh riêng, không gộp thành một nghi thức chung.",
+      "content_ids": [
+        "KN-SAMPLE-NGUYEN-TIEU",
+        "KN-SAMPLE-CHAU-GIANG",
+        "E002",
+        "E011"
+      ]
+    },
+    {
+      "id": "KN-DOC-NGAP-NUOC",
+      "slug": "hai-khong-gian-dat-ngap-nuoc-nam-bo",
+      "title": "Hai không gian đất ngập nước Nam Bộ",
+      "kind": "digital",
+      "description": "Đọc Cần Giờ và Tràm Chim qua hồ sơ sinh thái, rồi nhìn lại sinh kế sông nước tại chợ nổi. Hành trình đọc nối chủ đề, không mô phỏng một đường đi hoặc điều kiện tham quan hiện tại.",
+      "content_ids": [
+        "KN-CAN-GIO",
+        "KN-TRAM-CHIM",
+        "NBS-CHO-NOI"
+      ]
+    }
+  ],
+  "review_notes": [
+    "Nguồn được đọc trực tiếp và đối chiếu từng nhận định; chỗ chưa xác minh giữ partial/unknown.",
+    "Dốc Chùa giữ sai khác 1977/1997; không lấy truyền thuyết làm niên đại.",
+    "Châu Phong 2026 là dự thảo, không xác nhận tour hoặc dịch vụ đã hoạt động.",
+    "Mốc ghi danh Cần Giờ và Tràm Chim không phải niên đại hình thành hệ sinh thái.",
+    "Ảnh nguồn chưa có quyền không nhập; không bổ sung âm thanh hoặc tọa độ."
+  ]
+}

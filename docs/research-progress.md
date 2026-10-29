@@ -1,21 +1,23 @@
 # Tiến độ kho dữ liệu — 2026-10-28
 
-Gói nghiên cứu: `register-review-2026-10-28-v1`. Chỉ bổ sung chứng minh và đầu mối, không công bố bài mới.
-Gói bổ sung: `source-review-2026-10-28-v1` — 7 hồ sơ nháp, 8 nhận định có phạm vi.
+Gói nghiên cứu: `register-review-2026-10-28-v1`. Gói chứng minh không tự công bố bài.
+Gói bổ sung: `source-review-2026-10-28-v1` — 7 hồ sơ nháp gốc được lưu lịch sử, 8 nhận định có phạm vi.
+
+Đợt phát hành được chủ dự án ủy quyền có 7 bài đã duyệt riêng trong data/release. Các bài ấy đi qua kiểm tra nguồn, quyền và allowlist ID; không phát sinh do nhập gói nghiên cứu.
 
 | Chỉ tiêu của snapshot website | Số mục |
 |---|---:|
-| Hồ sơ và ý tưởng riêng biệt | 48 |
-| Nguồn đăng ký | 45 |
-| Nguồn trong kho nghiên cứu và snapshot (không cộng trùng) | 51 |
-| Bài đã đối chiếu nguồn và đang công bố | 25 |
-| Bản nháp cần hoàn thiện | 23 |
+| Hồ sơ và ý tưởng riêng biệt | 54 |
+| Nguồn đăng ký | 63 |
+| Nguồn trong kho nghiên cứu và snapshot (không cộng trùng) | 68 |
+| Bài đã đối chiếu nguồn và đang công bố | 32 |
+| Bản nháp cần hoàn thiện | 22 |
 | Trong số bản nháp: có chứng minh ghi danh | 4 |
-| Trong số bản nháp: có nhận định đối chiếu tài liệu | 7 |
+| Trong số bản nháp: có nhận định đối chiếu tài liệu | 6 |
 | Trong số bản nháp: còn chờ nghiên cứu | 12 |
 | Nhận định ghi danh đối chiếu trong đợt này | 8 |
 | Nhận định từ tài liệu trong gói bổ sung | 8 |
-| Bài mới được công bố trong đợt này | 0 |
+| Bài mới được duyệt công bố trong đợt này | 7 |
 
 8 nhận định ghi danh không phải 8 bài mới. Có 4 mục đã có bài công bố, 4 mục còn nháp.
 SQLite local vẫn theo dõi 40 mục workbook; số liệu từ view của SQLite có phạm vi riêng.
@@ -63,7 +65,6 @@ E006/E007 vẫn là đầu mối thư mục vì chưa đọc được toàn văn
 
 | ID | Hồ sơ | Chứng minh hiện có | Việc tiếp theo |
 |---|---|---|---|
-| E002 | Lễ hỏi và mâm trầu cau | Nhận định có giới hạn; còn nháp | Bổ sung khảo sát có địa bàn, niên đại và quyền ảnh; không áp một số lượng lễ vật cho mọi đám hỏi. |
 | E003 | Lễ rước dâu | Chưa đủ | Tìm khảo sát hoặc tư liệu gốc mô tả rước dâu ở địa bàn, thời kỳ cụ thể; phân biệt nghi thức và niềm tin dân gian. |
 | E005 | Phong tục cưới Hoa Triều Châu | Chưa đủ | Tìm nghiên cứu có địa bàn, thời kỳ, người cung cấp thông tin và quyền trích dẫn; đối chiếu từng nghi thức. |
 | E006 | Nghi lễ phát tang | Chưa đủ | Đọc hợp pháp toàn văn gốc và trang mô tả phát tang/thành phục; ghi phạm vi thời kỳ, cộng đồng, dị bản và quyền trích dẫn trước khi nâng mức kiểm chứng. |

@@ -1,0 +1,42 @@
+[
+  {
+    "content_id": "KN-CAN-GIO",
+    "id": "can-gio-tho-nau",
+    "kind": "image",
+    "url": "/media/can-gio-tho-nau.jpg",
+    "caption": "Rừng ngập mặn Cần Giờ theo mô tả tệp Commons. Ngày chụp chưa ghi rõ; tệp được tải lên năm 2008, không xác nhận hiện trạng 2026.",
+    "author": "Tho nau",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mangrove_in_Can_Gio_forest.jpg",
+    "license_name": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "modifications": "Dùng tệp JPEG gốc từ Commons, không đổi kích thước, màu sắc hoặc xóa dấu. Thẻ danh sách có thể cắt khung bằng CSS; ảnh chi tiết giữ khung đầy đủ.",
+    "attribution": "Mangrove in Can Gio forest.jpg — Tho nau, Wikimedia Commons, CC BY-SA 3.0.",
+    "commercial_allowed": 1,
+    "width": 1024,
+    "height": 768,
+    "file_sha256": "dcc9eef12698650ca286069e5bbfca75645035d2b3bd9e5cafd117ee10838ab7",
+    "original_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Mangrove_in_Can_Gio_forest.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "checked_at": "2026-10-28",
+    "rights_review": "accepted"
+  },
+  {
+    "content_id": "KN-TRAM-CHIM",
+    "id": "tram-chim-trungydang",
+    "kind": "image",
+    "url": "/media/tram-chim-trungydang.jpg",
+    "caption": "Cảnh Tràm Chim trong ảnh trungydang chụp ngày 06/10/2013 theo hồ sơ Commons; không phải ảnh hiện trạng 2026.",
+    "author": "trungydang",
+    "source_url": "https://commons.wikimedia.org/wiki/File:TRam_chim,_Phu_Duc,_Tam_Nong,_Dong_Thap._vietnam_-_panoramio.jpg",
+    "license_name": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "modifications": "Dùng tệp JPEG gốc từ Commons, không đổi kích thước, màu sắc hoặc xóa dấu. Thẻ danh sách có thể cắt khung bằng CSS; ảnh chi tiết giữ khung đầy đủ.",
+    "attribution": "TRam chim, Phu Duc, Tam Nong, Dong Thap. vietnam - panoramio.jpg — trungydang, Wikimedia Commons, CC BY 3.0.",
+    "commercial_allowed": 1,
+    "width": 2749,
+    "height": 1010,
+    "file_sha256": "46e77ed3d48a110f91378fa04622e234e3c8038386e780e52171481becf5746f",
+    "original_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/TRam_chim%2C_Phu_Duc%2C_Tam_Nong%2C_Dong_Thap._vietnam_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "checked_at": "2026-10-28",
+    "rights_review": "accepted"
+  }
+]

@@ -1,0 +1,99 @@
+{
+  "version": "don-ca-recheck-2026-10-28-v1",
+  "content_id": "E018",
+  "reviewed_at": "2026-10-28",
+  "result": "replacement_source_supported_with_narrowed_scope",
+  "sources": [
+    {
+      "id": "KN-DONCA-DSVH-LIST",
+      "name": "Di sản văn hóa phi vật thể đại diện của nhân loại",
+      "url": "https://dsvh.gov.vn/di-san-van-hoa-phi-vat-the-dai-dien-cua-nhan-loai-1755",
+      "source_type": "official_register",
+      "publisher": "Cục Di sản văn hóa",
+      "source_version": "Bảng HTML đọc 2026-10-28, dòng 6; chỉ đối chiếu tên và năm của mục đờn ca tài tử, không xem bảng là danh sách cập nhật đầy đủ.",
+      "consulted_extent": "register_entry",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh, âm thanh. Trang nguồn không phải giấy phép tự do cho tài sản đính kèm."
+    },
+    {
+      "id": "KN-DONCA-MOCST-2022",
+      "name": "Không gian Đờn ca tài tử năm 2022",
+      "url": "https://bvhttdl.gov.vn/hoi-thi-nghe-thuat-don-ca-tai-tu-khong-gian-don-ca-tai-tubao-ton-va-phat-huy-gia-tri-dac-sac-cua-di-san-2022040516111061.htm",
+      "source_type": "official_article",
+      "publisher": "Cổng thông tin điện tử Bộ VHTTDL; Minh Ngọc, Báo Văn Hóa",
+      "source_version": "Bài 05/04/2022 00:00 GMT+7; đọc 2026-10-28; phần giới thiệu di sản và kế hoạch truyền dạy.",
+      "consulted_extent": "full_article",
+      "checked_at": "2026-10-28",
+      "review_status": "source_checked",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ lưu diễn giải mới ngắn và dẫn nguồn; không tái bản toàn văn, ảnh, âm thanh. Trang nguồn không phải giấy phép tự do cho tài sản đính kèm."
+    }
+  ],
+  "claims": [
+    {
+      "source_id": "KN-DONCA-DSVH-LIST",
+      "statement": "Bảng Cục Di sản văn hóa ghi nghệ thuật đờn ca tài tử Nam Bộ ở mục 6, năm 2013.",
+      "locator": "Bảng Di sản văn hóa phi vật thể đại diện của nhân loại, dòng 6.",
+      "kind": "register_entry"
+    },
+    {
+      "source_id": "KN-DONCA-MOCST-2022",
+      "statement": "Thực hành được gắn với lễ hội, truyền khẩu và nghề thủ công.",
+      "locator": "Mục Di sản đất phương Nam, đoạn bắt đầu Là tinh hoa của nghệ thuật dân tộc.",
+      "kind": "fact"
+    },
+    {
+      "source_id": "KN-DONCA-MOCST-2022",
+      "statement": "Bản tin dự kiến hướng dẫn hát và nhạc cụ.",
+      "locator": "Mục Lan tỏa giá trị di sản, đoạn bắt đầu Để tổ chức Không gian Đờn ca tài tử.",
+      "kind": "fact"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Dấu mốc ghi danh",
+      "text": "Danh mục do Cục Di sản văn hóa công bố ghi nghệ thuật đờn ca tài tử Nam Bộ được ghi danh năm 2013. Đây là mốc ghi danh, không phải năm ra đời của nghệ thuật.",
+      "kind": "documented_history",
+      "sourceIds": [
+        "KN-DONCA-DSVH-LIST"
+      ]
+    },
+    {
+      "heading": "Thực hành trong đời sống văn hóa",
+      "text": "Nguồn của Bộ VHTTDL gắn đờn ca tài tử với lễ hội, truyền khẩu và nghề thủ công.",
+      "kind": "explanation",
+      "sourceIds": [
+        "KN-DONCA-MOCST-2022"
+      ]
+    },
+    {
+      "heading": "Một kế hoạch biểu diễn và truyền dạy",
+      "text": "Bản tin năm 2022 dự kiến nghệ nhân biểu diễn, hướng dẫn hát và nhạc cụ; kết quả sự kiện chưa được bài này xác nhận.",
+      "kind": "explanation",
+      "sourceIds": [
+        "KN-DONCA-MOCST-2022"
+      ]
+    }
+  ],
+  "suggested_summary": "Từ mốc ghi danh đến các hoạt động biểu diễn, truyền dạy được giới thiệu, đọc đờn ca tài tử trong quan hệ với đời sống văn hóa.",
+  "suggested_scope_note": "Mốc ghi danh không phải năm ra đời. Bản tin năm 2022 trình bày kế hoạch sự kiện, không thay khảo sát mọi nhóm nghệ nhân. Bản ghi và hình ảnh có quyền sử dụng riêng.",
+  "remove_or_hold_until_directly_verified": [
+    "Số hồ sơ 00733 và mã quyết định 8.COM8.31: không có trong hai nguồn thay thế đã đọc.",
+    "Ứng tác và trang sức trên khung giai điệu, nhịp điệu theo mô tả UNESCO: chưa đối chiếu lại qua tài liệu đọc được.",
+    "Cách học bằng nghe/làm theo thầy và các dịp giỗ/cuộc mừng theo UNESCO: chưa được hai nguồn thay thế chứng minh đầy đủ."
+  ],
+  "unesco_status": {
+    "profile": "unable_to_recheck",
+    "decision": "unable_to_recheck",
+    "independent_news": "unable_to_recheck",
+    "reason": "Human-verification; đã dừng, không đổi ngôn ngữ, host, tham số hoặc truy cập mirror để vượt challenge. Kết quả tìm kiếm không được coi là fulltextrechecked."
+  },
+  "implementation_notes": [
+    "Hai nguồn khác nhau cho ghi danh và mô tả; không dùng register_entry làm chứng minh cho mọi chi tiết âm nhạc.",
+    "Nếu giữ R-DONCA-UNESCO trong registry, ghi đúng phạm vi phiên bản cũ và tình trạng chưa kiểm tra lại; không đánh dấu full_article đã đọc 2026-10-28.",
+    "Giữ ID và slug hiện có nếu root dùng đề xuất; không thêm bài mới hoặc tự tăng số bài verified.",
+    "Không thêm ảnh, âm thanh, tọa độ hoặc địa giới hiện hành. Không biến chương trình dự kiến2022 thành sự kiện đã xác nhận."
+  ]
+}

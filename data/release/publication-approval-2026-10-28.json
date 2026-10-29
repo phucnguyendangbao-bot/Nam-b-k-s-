@@ -1,0 +1,34 @@
+{
+  "version": "publication-approval-2026-10-28-v1",
+  "status": "approved",
+  "authority": "owner_delegation",
+  "reviewer": "Codex — source review",
+  "reviewed_at": "2026-10-28",
+  "authorization": "Tôi cho bạn toàn quyền để hoàn thiện toàn bộ thông tin để up lên web, nguồn dữ liệu phải thật và có sự kiểm chứng.",
+  "approved_article_ids": [
+    "E002",
+    "KN-SAMPLE-DOC-CHUA",
+    "NBS-NGUYEN-HUU-CANH",
+    "KN-SAMPLE-NGUYEN-TIEU",
+    "KN-SAMPLE-CHAU-GIANG",
+    "KN-CAN-GIO",
+    "KN-TRAM-CHIM"
+  ],
+  "approved_tour_ids": [
+    "KN-DOC-DAU-VET",
+    "KN-DOC-CONG-DONG",
+    "KN-DOC-NGAP-NUOC"
+  ],
+  "release_sha256": "a51d438095ce5472ad92f95cc6371fd8c0dda23d2a2b1247e37cccb13ccca5b6",
+  "release_payload_sha256": "0eff581aec5a58cfc10b720bc877e45bbf841801412a47ee444a0c55c8e9fab3",
+  "legacy_files_sha256": {
+    "lib/content-expansion.ts": "c295f693176e7c03a5a86ecfbc71ae9d5b7855852a4bc3e75529cff2b0bedf59",
+    "data/knowledge/metadata.json": "c707479b08140536fcd8f77e2e999dcc5fea3fc920881269981059d2256314fb"
+  },
+  "reviewed_legacy_corrections": [
+    "E018",
+    "E027",
+    "E013",
+    "E011"
+  ]
+}

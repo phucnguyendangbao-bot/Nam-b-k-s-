@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { categories } from '@/lib/catalog';
 import type { Row } from '@/lib/static-data';
+import { nfc, topics } from '@/lib/editorial-model';
 
 /** Màu nhận diện cho từng chuyên mục: sông, hoàng hôn, bông súng. */
 export const categoryTone: Record<string, 'river' | 'dusk' | 'lily'> = {
@@ -40,24 +41,58 @@ export function Motif({ kind = 'river' }: { kind?: string }) {
   );
 }
 
-export function StoryCard({ item: c, size = 'normal' }: { item: Row; size?: 'normal' | 'large' }) {
+/** Thẻ hồ sơ dạng “nhãn hiện vật”: khung ảnh, chuyên mục, tiêu đề, mô tả, lớp thông tin và ghi công ảnh. */
+export function StoryCard({ item: c, preview = false, headingLevel = 3 }: { item: Row; preview?: boolean; headingLevel?: 2 | 3 }) {
   const collection = collectionFor(c.category);
   const tone = categoryTone[collection.slug];
   const isWord = c.content_kind === 'dialect';
+  const href = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
+  const H = headingLevel === 2 ? 'h2' : 'h3';
+  const motif = c.topic === 'architecture' ? 'house' : collection.motif;
   return (
-    <a className={`nb-story-card tone-${tone} size-${size}`} href={`/ho-so/${c.slug}`}>
-      <div className="nb-story-media">
+    <article className={`nb-story-card tone-${tone}`}>
+      <a className="nb-story-media" href={href} tabIndex={-1} aria-hidden="true">
         {c.image_url
-          ? <Image src={c.image_url} alt="" width={800} height={533} unoptimized loading="lazy" />
-          : isWord ? <span className="nb-story-word">{c.title}</span> : <Motif kind={collection.motif} />}
-        <span className="nb-sticker">{collection.name}</span>
-      </div>
+          ? <Image src={c.image_url} alt="" width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" />
+          : isWord ? <span className="nb-story-word">{nfc(c.title)}</span> : <Motif kind={motif} />}
+        <span className="nb-sticker">{c.topic && topics[c.topic] ? topics[c.topic] : collection.name}</span>
+      </a>
       <div className="nb-story-body">
-        <h3>{c.title}</h3>
+        <H className={isWord ? 'is-word' : undefined}><a href={href}>{isWord ? <>Mục từ “{nfc(c.title)}”</> : nfc(c.title)}</a></H>
+        {c.part_of_speech && <p className="nb-word-pos">{c.part_of_speech}</p>}
         <p>{c.meaning ?? c.summary}</p>
+        {!isWord && <EvidenceMix sectionsJson={c.sections_json} compact />}
+        {preview && <span className={`status status-${c.cms_status ?? 'draft'}`}>{c.cms_status ?? 'Bản nháp'}</span>}
       </div>
-      {c.image_url && <small className="nb-story-credit">Ảnh: {c.image_author}, {c.image_license}</small>}
-    </a>
+      {c.image_url && <small className="nb-story-credit">Ảnh: {c.image_author}, {c.image_source_url ? <a href={c.image_source_url} target="_blank" rel="noreferrer">{c.image_license}</a> : c.image_license}</small>}
+    </article>
   );
 }
 
+/** Nhóm nhãn tri thức thành bốn lớp đọc được: có tư liệu, giả thuyết, truyền thống kể, ghi chú biên tập. */
+export const evidenceGroups = [
+  { id: 'fact', kind: 'documented_history', label: 'có tư liệu', kinds: ['documented_history', 'observed_practice', 'explanation'] },
+  { id: 'hypo', kind: 'hypothesis', label: 'giả thuyết', kinds: ['hypothesis'] },
+  { id: 'lore', kind: 'folk_belief', label: 'truyền thống kể', kinds: ['folk_belief', 'legend', 'anecdote', 'community_memory'] },
+  { id: 'note', kind: 'editorial_note', label: 'ghi chú biên tập', kinds: ['editorial_note'] },
+] as const;
+
+export function evidenceMix(sectionsJson?: string | null) {
+  let kinds: string[] = [];
+  try { const parsed: unknown = JSON.parse(sectionsJson ?? '[]'); if (Array.isArray(parsed)) kinds = parsed.map(s => (s && typeof s === 'object' && 'kind' in s ? String((s as { kind: unknown }).kind) : '')); } catch { kinds = []; }
+  return evidenceGroups.map(g => ({ ...g, count: kinds.filter(k => (g.kinds as readonly string[]).includes(k)).length })).filter(g => g.count > 0);
+}
+
+/** Dải nhỏ cho biết bài gồm những lớp thông tin nào, để người đọc biết trước đâu là dữ kiện, đâu là giả thuyết. */
+export function EvidenceMix({ sectionsJson, compact = false }: { sectionsJson?: string | null; compact?: boolean }) {
+  const mix = evidenceMix(sectionsJson);
+  if (!mix.length) return null;
+  return (
+    <p className={`ev-mix ${compact ? 'is-compact' : ''}`}>
+      <span className="sr-only">Số đoạn theo loại thông tin: </span>
+      {mix.map(g => (
+        <span key={g.id} className={`ev-mix-item kind-${g.kind}`}><i aria-hidden="true" />{g.count} {g.label}</span>
+      ))}
+    </p>
+  );
+}

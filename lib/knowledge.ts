@@ -3,8 +3,9 @@ import { publicContents, type Row } from './static-data';
 import { filterKnowledge, knowledgeSearchText, relatedKnowledge } from './knowledge-core';
 import type { KnowledgeMetadata, KnowledgeFilter, KnowledgeItem, KnowledgeBinding } from './knowledge-core';
 import { knowledgeDomains } from './knowledge-taxonomy';
+import { reviewedRelease } from './reviewed-release';
 
-export const knowledgeMetadata = rawMetadata as unknown as KnowledgeMetadata;
+export const knowledgeMetadata = { ...rawMetadata, bindings: { ...rawMetadata.bindings, ...Object.fromEntries(reviewedRelease.articles.map(article => [article.id, article.knowledge])) } } as unknown as KnowledgeMetadata;
 export function bindingFor(id: string): KnowledgeBinding | undefined { return knowledgeMetadata.bindings[id]; }
 export function knowledgeSearchTerms(id: string) { const binding = bindingFor(id); return binding ? knowledgeSearchText(binding) : ''; }
 

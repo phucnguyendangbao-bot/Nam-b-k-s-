@@ -4,6 +4,8 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import ts from 'typescript';
 import { imagePathAllowed, permitsCommercialMedia } from '../lib/editorial-model.ts';
+import { loadValidatedRelease } from './validate-published-release.mjs';
+import { canReleaseArticle } from '../lib/release-model.ts';
 
 const root = new URL('../', import.meta.url);
 export const reviewFile = new URL('data/research/register-review-2026-10-28.json', root);
@@ -123,10 +125,13 @@ export async function loadInputs() {
   const output = ts.transpileModule(expansionSource, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText;
   assert.ok(!/^import\s/m.test(output), 'Expansion data gained a runtime import; update the snapshot reader');
   const { contentExpansion: expansion } = await import(`data:text/javascript;base64,${Buffer.from(output).toString('base64')}`);
-  return { review, sourceReviews: [sourceReview], seed, bundle, expansion };
+  const { release, approval: publicationApproval } = await loadValidatedRelease();
+  const sourceMap = new Map([...expansion.sources, ...release.sources].map(source => [source.id, source]));
+  return { review, sourceReviews: [sourceReview], seed, bundle, baseExpansion: expansion, release, publicationApproval,
+    expansion: { ...expansion, sources: [...sourceMap.values()], articles: [...expansion.articles, ...release.articles], tours: [...expansion.tours, ...release.tours] } };
 }
 
-export function createLedger({ review, sourceReviews = [], seed, bundle, expansion }) {
+export function createLedger({ review, sourceReviews = [], seed, bundle, expansion, release, publicationApproval }) {
   const reviews = [review, ...sourceReviews];
   reviews.forEach(pack => validateReview(pack, seed));
   const reviewedRecords = reviews.flatMap(pack => pack.records);
@@ -136,11 +141,14 @@ export function createLedger({ review, sourceReviews = [], seed, bundle, expansi
   // The eleven IDs explicitly approved by the owner on 27 October. Merely
   // appending a prepared article to editorial-bundle.json is not an approval.
   const ownerApproved = new Set(['E001', 'E008', 'E020', 'E021', 'E029', 'E030', 'E031', 'E032', 'E033', 'NBS-BINH-THUY', 'NBS-CHO-NOI']);
+  const previousReleaseIds = new Set(['NBS-NINH-KIEU','E004','E010','E011','E012','E013','E018','E014','E027','NBS-TUCNGU-18','NBS-TUCNGU-22','NBS-TU-VAY','NBS-TU-VO','NBS-TU-NGHEN']);
+  const approvedNewIds = new Set(release?.articles.map(article => article.id) ?? []);
   const articles = [...bundle.articles, ...expansion.articles];
   unique(articles.map(article => article.id), 'release articles');
   const published = articles.filter(article => {
-    const approved = ownerApproved.has(article.id) || (article.publication_status === 'published'
-      && article.review_status === 'verified' && article.rights_review_status === 'cleared');
+    const approved = ownerApproved.has(article.id) || (previousReleaseIds.has(article.id) && article.publication_status === 'published'
+      && article.review_status === 'verified' && article.rights_review_status === 'cleared')
+      || (approvedNewIds.has(article.id) && publicationApproval && canReleaseArticle(article, publicationApproval, new Set(sources.keys())));
     return approved && article.claims?.length > 0
       && article.claims.every(claim => sources.has(claim.source_id) && text(claim.statement) && text(claim.locator))
       && (article.sections ?? []).every(section => section.sourceIds?.length > 0 && section.sourceIds.every(id => sources.has(id)))
@@ -187,13 +195,13 @@ export function createLedger({ review, sourceReviews = [], seed, bundle, expansi
       draft_research_pending: items.length - published.length - checkedDrafts - sourceDrafts,
       checked_register_claims: reviewedRecords.filter(record => record.classification === 'official_register').flatMap(claimsForRecord).length,
       checked_source_claims: reviewedRecords.filter(record => record.classification === 'source_supported').flatMap(claimsForRecord).length,
-      newly_published: 0 },
+      newly_published: published.filter(article => approvedNewIds.has(article.id)).length },
     definitions: {
       checked_register_claims: 'Số nhận định ghi danh đã đối chiếu; không phải số bài hoàn chỉnh hoặc quyền ảnh/âm thanh.',
       draft_with_checked_register_claim: 'Bản nháp có chứng minh ghi danh, còn thiếu bài/quyền/duyệt; nằm trong tổng bản nháp.',
       draft_with_checked_source_claim: 'Có nhận định được đối chiếu theo đúng phạm vi tài liệu; chưa phải bài hoàn chỉnh đã duyệt.',
       research_sources: 'Nguồn của snapshot công khai và các gói nghiên cứu, gồm đầu mối thư mục; không đồng nghĩa tất cả đã đọc toàn văn.',
-      sqlite: 'SQLite chỉ chứa 40 mục workbook; phải đọc báo cáo SQLite riêng, không cộng thẳng vào 48 hồ sơ website.',
+      sqlite: 'SQLite chỉ chứa 40 mục workbook; phải đọc báo cáo SQLite riêng, không cộng thẳng vào tổng hồ sơ website.',
       approval: 'Gói nghiên cứu không thay đổi bài, tour hoặc cổng công bố của website.',
     },
     items,
@@ -205,8 +213,10 @@ export function renderReport(ledger, review, sourceReviews = []) {
   const drafts = ledger.items.filter(item => item.publication_status === 'draft');
   return `# Tiến độ kho dữ liệu — ${review.reviewed_at}
 
-Gói nghiên cứu: \`${review.version}\`. Chỉ bổ sung chứng minh và đầu mối, không công bố bài mới.
-${sourceReviews.map(pack => `Gói bổ sung: \`${pack.version}\` — ${pack.records.length} hồ sơ nháp, ${pack.records.flatMap(claimsForRecord).length} nhận định có phạm vi.`).join('\n')}
+Gói nghiên cứu: \`${review.version}\`. Gói chứng minh không tự công bố bài.
+${sourceReviews.map(pack => `Gói bổ sung: \`${pack.version}\` — ${pack.records.length} hồ sơ nháp gốc được lưu lịch sử, ${pack.records.flatMap(claimsForRecord).length} nhận định có phạm vi.`).join('\n')}
+
+Đợt phát hành được chủ dự án ủy quyền có ${n.newly_published} bài đã duyệt riêng trong data/release. Các bài ấy đi qua kiểm tra nguồn, quyền và allowlist ID; không phát sinh do nhập gói nghiên cứu.
 
 | Chỉ tiêu của snapshot website | Số mục |
 |---|---:|
@@ -220,7 +230,7 @@ ${sourceReviews.map(pack => `Gói bổ sung: \`${pack.version}\` — ${pack.reco
 | Trong số bản nháp: còn chờ nghiên cứu | ${n.draft_research_pending} |
 | Nhận định ghi danh đối chiếu trong đợt này | ${n.checked_register_claims} |
 | Nhận định từ tài liệu trong gói bổ sung | ${n.checked_source_claims} |
-| Bài mới được công bố trong đợt này | 0 |
+| Bài mới được duyệt công bố trong đợt này | ${n.newly_published} |
 
 ${n.checked_register_claims} nhận định ghi danh không phải ${n.checked_register_claims} bài mới. Có ${n.checked_register_claims - n.draft_with_checked_register_claim} mục đã có bài công bố, ${n.draft_with_checked_register_claim} mục còn nháp.
 SQLite local vẫn theo dõi 40 mục workbook; số liệu từ view của SQLite có phạm vi riêng.

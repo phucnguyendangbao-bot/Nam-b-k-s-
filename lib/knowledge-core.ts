@@ -74,7 +74,7 @@ const text = (value: unknown) => typeof value === 'string' && value.trim().lengt
 const https = (value: string) => { try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password; } catch { return false; } };
 const unique = (values: string[], label: string) => need(new Set(values).size === values.length, `Trùng ${label}`);
 
-export function validateKnowledge(metadata: KnowledgeMetadata, samplePack: SamplePack, context: { articles: { id: string; claims: { source_id: string }[]; sections?: unknown[] }[]; sourceIds: Set<string>; registerClaims: Map<string, { content_id: string; source_id: string; decision_date: string }> }) {
+export function validateKnowledge(metadata: KnowledgeMetadata, samplePack: SamplePack, context: { articles: { id: string; claims: { source_id: string }[]; sections?: unknown[] }[]; sourceIds: Set<string>; registerClaims: Map<string, { content_id: string; source_id: string; decision_date: string }>; releasedSampleIds?: Set<string> }) {
   const domains = new Set<string>(knowledgeDomains.map(domain => domain.id));
   const regions = new Set<string>(knowledgeRegions.map(region => region.id));
   const communities = new Set<string>(knowledgeCommunities.map(community => community.id));
@@ -120,7 +120,7 @@ export function validateKnowledge(metadata: KnowledgeMetadata, samplePack: Sampl
   const claimIds: string[] = [];
   for (const sample of samplePack.samples) {
     validateAxes(sample);
-    need(!articles.has(sample.id) && sample.publication_status === 'draft' && sample.publish_approval === false, 'Hồ sơ mẫu không được tự công bố');
+    need((!articles.has(sample.id) || context.releasedSampleIds?.has(sample.id)) && sample.publication_status === 'draft' && sample.publish_approval === false, 'Hồ sơ mẫu không được tự công bố; chỉ phiên bản release có phê duyệt riêng được dùng cùng ID');
     need(sample.media.length === 0 && sample.audio_url === null, 'Ảnh/âm thanh cần quy trình quyền riêng');
     need(sample.current_admin === null, 'Mẫu chưa đối chiếu địa giới hiện hành');
     need(!('latitude' in sample) && !('longitude' in sample), 'Không tự tạo tọa độ mẫu');
