@@ -27,15 +27,7 @@
 .hx-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-8); }
 .hx-credit { position: absolute; right: var(--gutter); bottom: var(--s-4); max-width: min(32rem, calc(100% - var(--gutter) * 2)); font-size: 11px; line-height: 1.4; color: rgba(255, 255, 255, .78); text-align: right; }
 .hx-credit a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .4); text-underline-offset: 2px; }
-@media (prefers-reduced-motion: no-preference) {
-  .hx-image { animation: hx-settle 1600ms var(--ease-out) both; }
-  .hx-inner > * { animation: hx-rise 700ms var(--ease-out) both; }
-  .hx-inner > :nth-child(2) { animation-delay: 80ms; }
-  .hx-inner > :nth-child(3) { animation-delay: 160ms; }
-  .hx-inner > :nth-child(4) { animation-delay: 240ms; }
-}
-@keyframes hx-settle { from { transform: scale(1.06); } }
-@keyframes hx-rise { from { opacity: 0; translate: 0 16px; } }
+/* Chuyển động của hero nằm trong motion.css. */
 
 /* ---------- 2. Bento lĩnh vực ---------- */
 .bento { --row: clamp(13rem, 17vw, 15.5rem); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(var(--row), auto); grid-auto-flow: dense; gap: var(--grid-gap); list-style: none; }
@@ -47,8 +39,8 @@
 .bento-card { position: relative; display: flex; height: 100%; overflow: hidden; border-radius: var(--r-md); background: var(--c-surface); color: var(--c-ink); isolation: isolate; transition: transform var(--d-hover) var(--ease); }
 .bento-card:active { transform: scale(.985); transition-duration: var(--d-press); }
 .bento-media { position: absolute; inset: 0; z-index: -1; background: var(--c-paper-deep); }
-.bento-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out); }
-@media (hover: hover) { .bento-card:hover .bento-media img { transform: scale(1.04); } }
+.bento-media img { width: 100%; height: 100%; object-fit: cover; transition: scale var(--d-reveal) var(--ease-out); }
+@media (hover: hover) { .bento-card:hover .bento-media img { scale: var(--m-zoom); } }
 .bento-copy { display: grid; align-content: end; gap: 6px; width: 100%; padding: var(--s-6); }
 .bento-eyebrow { font-size: var(--t-xs); font-weight: 600; color: var(--c-accent-ink); }
 .bento-title { font-size: var(--t-xl); line-height: 1.15; letter-spacing: var(--tr-title); color: inherit; }
@@ -56,7 +48,7 @@
 .bento-text { max-width: 34ch; font-size: var(--t-sm); line-height: 1.45; color: var(--c-ink-muted); }
 .bento-meta { margin-top: var(--s-1); font-size: var(--t-sm); font-weight: 600; color: var(--c-primary); }
 .bento-meta span { display: inline-block; transition: translate var(--d-hover) var(--ease); }
-.bento-card:hover .bento-meta span { translate: 3px 0; }
+.bento-card:hover .bento-meta span { translate: var(--m-nudge) 0; }
 /* Thẻ ảnh: chữ trắng trên dải tối ở đáy */
 .bento-card.is-image { color: #fff; }
 .bento-card.is-image::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .62) 45%, rgba(0, 0, 0, .12) 80%, rgba(0, 0, 0, 0) 100%); }
@@ -111,8 +103,8 @@
 .fx { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
 .fx-lead { grid-column: span 7; display: grid; gap: var(--s-6); }
 .fx-lead-media { display: block; overflow: hidden; aspect-ratio: 3 / 2; border-radius: var(--r-md); background: var(--c-paper-sunken); }
-.fx-lead-media img, .fx-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out); }
-.fx-lead:hover .fx-lead-media img, .fx-card.is-media:hover .fx-card-media img { transform: scale(1.03); }
+.fx-lead-media img, .fx-card-media img { width: 100%; height: 100%; object-fit: cover; transition: scale var(--d-reveal) var(--ease-out); }
+@media (hover: hover) { .fx-lead:hover .fx-lead-media img, .fx-card.is-media:hover .fx-card-media img { scale: var(--m-zoom); } }
 .fx-lead-body { display: grid; gap: var(--s-3); max-width: 38rem; }
 .fx-kicker { font-size: var(--t-sm); font-weight: 600; color: var(--c-accent-ink); }
 .fx-lead h3 { font-size: var(--t-2xl); line-height: 1.12; letter-spacing: var(--tr-heading); }
@@ -177,7 +169,7 @@
 .story[data-enhanced] .story-inline { display: none; }
 .story-stage { position: sticky; top: calc(var(--header-h) + 2rem); align-self: start; height: calc(100vh - var(--header-h) - 4rem); max-height: 46rem; display: grid; grid-template-rows: 1fr auto; gap: var(--s-2); }
 .story-frame { position: relative; overflow: hidden; border-radius: var(--r-lg); background: var(--c-deep-2); }
-.story-frame img { object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 650ms var(--ease), transform 1200ms var(--ease-out); }
+.story-frame img { object-fit: cover; opacity: 0; transform: scale(1.03); transition: opacity var(--d-reveal) var(--ease), transform var(--d-scene) var(--ease-out); }
 .story-frame img.is-active { opacity: 1; transform: scale(1); }
 .story-progress { position: absolute; left: var(--s-5); bottom: var(--s-5); display: flex; gap: 6px; }
 .story-progress i { width: 22px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .45); transition: background var(--d-ui) var(--ease), width var(--d-ui) var(--ease); }

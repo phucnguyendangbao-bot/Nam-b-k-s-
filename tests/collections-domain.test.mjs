@@ -34,3 +34,20 @@ test('article sections reject malformed payloads and categorize uncertainty expl
 test('asset paths cannot escape vetted media folder',()=>{
  assert.equal(imagePathAllowed('/media/../private/photo.jpg'),false);assert.equal(audioPathAllowed('javascript:alert(1)'),false);assert.equal(audioPathAllowed('/media/voice.ogg'),true);
 });
+
+test('câu chuyện sáu chương: phủ đủ hồ sơ, không trùng, ảnh chương đủ quyền và đúng tệp', async () => {
+  const { chapters, storyImages, storyImageCleared, storyPosition } = await import('../lib/story.ts');
+  const { createHash } = await import('node:crypto');
+  const { readFile } = await import('node:fs/promises');
+  const ids = chapters.flatMap(c => c.ids);
+  assert.equal(new Set(ids).size, ids.length, 'mỗi hồ sơ chỉ thuộc một chương');
+  assert.deepEqual(chapters.map(c => c.n), [1, 2, 3, 4, 5, 6]);
+  for (const img of Object.values(storyImages)) {
+    assert.ok(storyImageCleared(img), img.url);
+    const bytes = await readFile(new URL('../public' + img.url, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), img.sha256, img.url);
+  }
+  const first = storyPosition(ids[0]), last = storyPosition(ids.at(-1));
+  assert.equal(first.prev, null); assert.equal(last.next, null);
+  assert.equal(storyPosition('E021').next.id, 'NBS-NINH-KIEU', 'cuối chương 2 sang đầu chương 3');
+});

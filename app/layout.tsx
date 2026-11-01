@@ -7,12 +7,15 @@ import "./design/chrome.css";
 import "./design/home.css";
 import "./design/content.css";
 import "./design/map.css";
+import "./design/story.css";
+import "./design/motion.css";
 import "./tour.css";
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';
 import { CommandPalette } from '@/components/interactive/command-palette';
 import { RevealObserver } from '@/components/interactive/reveal';
+import { PageTransitions } from '@/components/interactive/page-transitions';
 
 export const metadata: Metadata = {
   metadataBase:new URL(siteUrl),
@@ -38,11 +41,13 @@ export default async function RootLayout({
   return (
     <html lang="vi">
       <head>
+        {/* Bật chuyển trang ngay từ dòng đầu của <head>, trước mọi stylesheet, để trang mới luôn nhận chuyển cảnh. */}
+        <style>{"@view-transition{navigation:auto}@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}"}</style>
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/></body>
+      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><PageTransitions/></body>
     </html>
   );
 }

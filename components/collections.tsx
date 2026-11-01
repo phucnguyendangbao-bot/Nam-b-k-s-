@@ -9,6 +9,7 @@ import { LexiconPlay } from './interactive/lexicon-play';
 import { KnowledgeContext } from './knowledge-context';
 import { knowledgeRelated } from '@/lib/knowledge';
 import { siteUrl } from '@/lib/site-url';
+import { chapterAnchor, storyPosition } from '@/lib/story';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -197,10 +198,38 @@ export async function PublicDossier({ article: c, user, params }: { article: Row
   const related = allRelated.filter(x => x.id !== c.id).slice(0, 3);
   const relatedTours = [];
   for (const t of tours) { if (await one('SELECT id FROM tour_stops WHERE tour_id=? AND content_id=?', t.id, c.id)) relatedTours.push(t); }
-  return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params} />;
+  return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params} story={await storyNav(c.id)} />;
 }
 
-export function DossierView({ article: c, citations, media, dialect, related, tours, user, params = {}, preview = false }: { article: Row; citations: Row[]; media: Row[]; dialect: Row | null; related: Row[]; tours: Row[]; user: Row | null; params?: Record<string, string | undefined>; preview?: boolean }) {
+/** Vị trí của hồ sơ trong câu chuyện sáu chương và hai bài kề bên, để đọc liền mạch từ đầu đến cuối. */
+type StoryLink = { href: string; title: string; summary: string; chapter: string | null };
+type StoryNavData = { chapter: { n: number; name: string; href: string }; index: number; total: number; order: number; count: number; prev: StoryLink | null; next: StoryLink | null };
+async function storyNav(id: string): Promise<StoryNavData | null> {
+  const pos = storyPosition(id);
+  if (!pos) return null;
+  const rows = new Map((await publicContents()).map(r => [r.id, r]));
+  const link = (x: typeof pos.prev): StoryLink | null => {
+    const r = x && rows.get(x.id);
+    if (!x || !r) return null;
+    return { href: `/ho-so/${r.slug}`, title: nfc(r.title), summary: r.summary, chapter: x.chapter.n !== pos.chapter.n ? `Chương ${x.chapter.n} · ${x.chapter.name}` : null };
+  };
+  return { chapter: { n: pos.chapter.n, name: pos.chapter.name, href: `/#${chapterAnchor(pos.chapter)}` }, index: pos.index, total: pos.total, order: pos.order, count: pos.count, prev: link(pos.prev), next: link(pos.next) };
+}
+
+function StoryNav({ story }: { story: StoryNavData }) {
+  return (
+    <nav className="story-next" aria-label="Đọc tiếp trong câu chuyện">
+      {story.prev ? (
+        <a href={story.prev.href} className="is-prev"><small>← {story.prev.chapter ?? 'Bài trước'}</small><strong>{story.prev.title}</strong></a>
+      ) : <a href="/#muc-luc" className="is-prev"><small>← Mục lục</small><strong>Về đầu câu chuyện</strong></a>}
+      {story.next ? (
+        <a href={story.next.href} className="is-next"><small>{story.next.chapter ? `Sang ${story.next.chapter}` : 'Bài tiếp theo'} →</small><strong>{story.next.title}</strong><span>{story.next.summary}</span></a>
+      ) : <a href="/#ket" className="is-next"><small>Kết →</small><strong>Câu chuyện còn tiếp</strong><span>Bản đồ di sản, hành trình và lời kể của bạn.</span></a>}
+    </nav>
+  );
+}
+
+export function DossierView({ article: c, citations, media, dialect, related, tours, user, params = {}, preview = false, story = null }: { article: Row; citations: Row[]; media: Row[]; dialect: Row | null; related: Row[]; tours: Row[]; user: Row | null; params?: Record<string, string | undefined>; preview?: boolean; story?: StoryNavData | null }) {
   const sections = parseSections(c.sections_json ?? '[]');
   const images = media.filter(m => m.kind === 'image');
   const cover = !dialect ? images[0] : undefined;
@@ -217,7 +246,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
     ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
     ...(showGallery ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
     { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
-    { href: '#bai-lien-quan', label: 'Đọc tiếp' },
+    { href: '#bai-lien-quan', label: 'Cùng chủ đề' },
   ];
   return (
     <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
@@ -240,7 +269,9 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           contentLocation: c.historical_area ? { '@type': 'Place', name: c.historical_area } : undefined,
         }).replace(/</g, '\\u003c') }} />
       )}
+      <div className="read-progress" aria-hidden="true" />
       <header className="nb-dossier-hero">
+        {story && <p className="story-pill">Chương {story.chapter.n} · <a href={story.chapter.href}>{story.chapter.name}</a> · bài {story.index + 1}/{story.total}</p>}
         <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
         <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
         <p className="dossier-intro">{c.introduction || c.summary}</p>
@@ -336,8 +367,9 @@ export function DossierView({ article: c, citations, media, dialect, related, to
             </div>
           )}
 
+          {story && <StoryNav story={story} />}
           <section className="related-section" id="bai-lien-quan">
-            <h2>Đọc tiếp</h2>
+            <h2>Cùng chủ đề</h2>
             {related.length ? <DossierCards items={related} preview={preview} /> : <p>Chưa có hồ sơ cùng chủ đề.</p>}
           </section>
           <section className="related-section" id="tour-lien-quan">

@@ -68,8 +68,7 @@ legend { font-weight: 600; padding: 0 var(--s-2); }
 
 /* Hiện khối khi cuộn: chỉ bật sau khi JS đã đánh dấu những khối đang trong khung nhìn,
    nên không có khối nào bị ẩn nếu JS không chạy, và không gây dịch bố cục (chỉ đổi opacity/translate). */
-[data-reveal] { transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out); }
-.reveal-ready [data-reveal]:not([data-revealed]) { opacity: 0; translate: 0 24px; }
+/* Quy tắc hiện khối nằm trong motion.css (các phần tử con hiện nối nhau). */
 
 /* Giảm chuyển động: không trượt, không nảy, không thị sai; vẫn giữ các chuyển mờ ngắn giúp hiểu trạng thái. */
 @media (prefers-reduced-motion: reduce) {

@@ -3,7 +3,7 @@ import seedJson from './research-seed.json';
 import { fold, similarity, slugify } from './catalog';
 import { imagePathAllowed, nfc, permitsCommercialMedia } from './editorial-model';
 import { contentExpansion } from './content-expansion';
-import { publicationApproval, reviewedRelease } from './reviewed-release';
+import { approvalFor, reviewedRelease } from './reviewed-release';
 import { canReleaseArticle, type ReleaseArticle } from './release-model';
 
 export const READ_ONLY_DEPLOYMENT = true;
@@ -13,7 +13,8 @@ export type Row = Record<string, any>;
 const originalBundle = bundleJson as unknown as { reviewed_at: string; sources: Row[]; articles: Row[]; tours: Row[] };
 const bundle = { reviewed_at: contentExpansion.reviewed_at,
   sources: [...originalBundle.sources, ...contentExpansion.sources, ...reviewedRelease.sources],
-  articles: [...originalBundle.articles, ...contentExpansion.articles, ...reviewedRelease.articles] as Row[],
+  // Cùng một ID: bản duyệt sau thay bản trước, giữ lại các trường riêng của bản cũ (ví dụ mục từ phương ngữ) mà bản sau không đụng tới.
+  articles: [...([...originalBundle.articles, ...contentExpansion.articles, ...reviewedRelease.articles] as Row[]).reduce((map, article) => map.set(article.id, { ...(map.get(article.id) ?? {}), ...article }), new Map<string, Row>()).values()],
   tours: [...originalBundle.tours, ...contentExpansion.tours, ...reviewedRelease.tours] as Row[],
 };
 const seed = seedJson as unknown as { sources: Row[]; contents: Row[]; links: Row[] };
@@ -40,7 +41,7 @@ const newReleaseIds = new Set(reviewedRelease.articles.map(article => article.id
 function canPublish(article: Row): boolean {
   const approved = ownerApprovedIds.has(article.id) || (previousReleaseIds.has(article.id) && article.publication_status === 'published'
     && article.review_status === 'verified' && article.rights_review_status === 'cleared')
-    || (newReleaseIds.has(article.id) && canReleaseArticle(article as ReleaseArticle, publicationApproval, registeredSourceIds));
+    || (newReleaseIds.has(article.id) && canReleaseArticle(article as ReleaseArticle, approvalFor(article.id), registeredSourceIds));
   const claims = (article.claims ?? []) as Row[];
   const sections = (article.sections ?? []) as Row[];
   const assets = (article.media ?? []) as Row[];

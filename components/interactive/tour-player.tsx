@@ -3,9 +3,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { Map as MLMap, Marker as MLMarker, GeoJSONSource } from 'maplibre-gl';
 import { googleLinks, hasGoogleMaps } from '@/lib/google-maps';
+import { hasCesium } from '@/lib/cesium';
 import { StreetViewPanel } from './street-view';
 import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures, markHeritageBuildings, smoothLine, type MapLook } from '@/lib/map-style';
 import type { LegMode, MapSource, MapTour } from '@/lib/map-tours';
+
+/** Có nguồn ảnh 3D chân thực (Google qua khóa riêng hoặc qua Cesium ion) hay chỉ có 3D vệ tinh. */
+const hasRealistic3D = hasGoogleMaps || hasCesium;
 
 export type Leg = { mode: LegMode; label: string; note: string; distance: string; coords: [number, number][]; traced: boolean };
 /** File thuyết minh thu sẵn của một chặng; cues là giây bắt đầu từng câu (câu 0 là tên chặng). */
@@ -531,7 +535,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
             </dl>
             {stop.dossier && <p><a className="tp-link" href={`/ho-so/${stop.dossier.slug}`}>Đọc hồ sơ đầy đủ về {stop.name} »</a></p>}
             {hasGoogleMaps && <p><button type="button" className="tp-link tp-360" onClick={() => setView360(true)}>Xem ảnh 360° quanh {stop.name} (Google) »</button></p>}
-            <p className="tp-google">Xem trên Google: <a href={googleLinks(stop).streetView} target="_blank" rel="noreferrer">Chế độ xem phố ↗</a> · <a href={googleLinks(stop).earth} target="_blank" rel="noreferrer">Google Earth 3D ↗</a></p>
+            <p className="tp-google"><a href={`/ban-do?diem=${stop.id}&xem=3d`}>{hasRealistic3D ? 'Xem 3D chân thực' : 'Xem 3D vệ tinh'} quanh {stop.name} »</a> · <a href={googleLinks(stop).streetView} target="_blank" rel="noreferrer">Ảnh đường phố trên Google ↗</a></p>
             {stop.related && stop.related.length > 0 && (
               <div className="tp-related">
                 <span>Đọc thêm</span>

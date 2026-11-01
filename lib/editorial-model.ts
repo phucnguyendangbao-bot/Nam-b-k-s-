@@ -14,6 +14,7 @@ export function permitsCommercialMedia(license:string,url:string){
     (license==='Public domain'&&url==='https://commons.wikimedia.org/wiki/Template:PD-self')||
     (license==='Public domain'&&url==='https://commons.wikimedia.org/wiki/Template:PD-old-100-expired')||
     (license==='Public domain'&&url==='https://creativecommons.org/publicdomain/mark/1.0/')||
+    (license==='Public domain'&&url==='https://commons.wikimedia.org/wiki/Template:PD-USGov-NASA')||
     /^https:\/\/creativecommons\.org\/licenses\/by(?:-sa)?\/(?:2\.0|2\.5|3\.0|4\.0)\/?$/.test(url);
 }
 export function imagePathAllowed(value:string){return /^\/media\/[a-z0-9][a-z0-9._-]*\.(?:jpg|jpeg|png|webp)$/.test(value);}

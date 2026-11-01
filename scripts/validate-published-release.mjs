@@ -73,9 +73,10 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
   unicode(release); unicode(approval);
   return { articles: release.articles.length, sources: release.sources.length, claims, assets, reading_journeys: release.tours.length };
 }
-export async function loadValidatedRelease() {
-  const bytes = await readFile(new URL('data/release/published-2026-10-28.json', root));
-  const release = JSON.parse(bytes.toString('utf8')); const approval = await json('data/release/publication-approval-2026-10-28.json');
+export const releaseDates = ['2026-10-28', '2026-11-01'];
+export async function loadValidatedRelease(date = '2026-10-28') {
+  const bytes = await readFile(new URL(`data/release/published-${date}.json`, root));
+  const release = JSON.parse(bytes.toString('utf8')); const approval = await json(`data/release/publication-approval-${date}.json`);
   assert.equal(createHash('sha256').update(bytes).digest('hex'), approval.release_sha256, 'Release bytes changed after source/rights review');
   assert.equal(createHash('sha256').update(JSON.stringify(release)).digest('hex'), approval.release_payload_sha256, 'Release semantic payload changed after approval');
   for (const [file, expected] of Object.entries(approval.legacy_files_sha256 ?? {})) {
@@ -84,8 +85,10 @@ export async function loadValidatedRelease() {
   }
   const seed = await json('lib/research-seed.json'), bundle = await json('lib/editorial-bundle.json');
   const mediaBytes = new Map(await Promise.all(release.articles.flatMap(article => article.media).map(async asset => { assert.ok(imagePathAllowed(asset.url)); return [asset.url, await readFile(new URL('public' + asset.url, root))]; })));
-  const sourceMap = new Map([...seed.sources, ...bundle.sources, ...contentExpansion.sources].map(source => [source.id, source]));
+  // Nguồn đã có trong kho (kể cả gói duyệt trước) không được đổi URL hay loại nguồn khi đọc lại cho gói sau.
+  const earlier = await Promise.all(releaseDates.filter(other => other < date).map(other => json(`data/release/published-${other}.json`)));
+  const sourceMap = new Map([...seed.sources, ...bundle.sources, ...contentExpansion.sources, ...earlier.flatMap(other => other.sources)].map(source => [source.id, source]));
   const context = { sourceIds: new Set(sourceMap.keys()), sourceMap, mediaBytes };
   return { release, approval, context, counts: validatePublishedRelease(release, approval, context) };
 }
-if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) { const { counts } = await loadValidatedRelease(); console.log(JSON.stringify(counts, null, 2)); }
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) { for (const date of process.argv[2] ? [process.argv[2]] : releaseDates) { const { counts } = await loadValidatedRelease(date); console.log(date, JSON.stringify(counts)); } }

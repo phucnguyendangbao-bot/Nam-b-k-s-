@@ -11,7 +11,9 @@ import { StreetViewPanel } from './street-view';
 import { hasCesium, loadCesium } from '@/lib/cesium';
 
 type Mode = '2d' | MapLook | 'google';
-const modeLabel: Record<Mode, string> = { '2d': '2D', street: '3D phố', satellite: '3D vệ tinh', google: '3D Google' };
+const modeLabel: Record<Mode, string> = { '2d': '2D', street: '3D phố', satellite: '3D vệ tinh', google: '3D chân thực' };
+/** Chế độ 3D đẹp nhất có trên site: ảnh 3D chân thực nếu đã cấu hình, nếu không thì 3D vệ tinh. */
+const realMode: Mode = hasGoogleMaps || hasCesium ? 'google' : 'satellite';
 type Engine = {
   show: (ids: Set<string>, routes: boolean, tourSlug: string | null) => void;
   focus: (p: HeritagePlace | null, fit: HeritagePlace[]) => void;
@@ -299,6 +301,21 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
   }, [theme, tour]);
 
   const switchMode = (next: Mode) => { if (next === mode) return; setNotice(''); setState('loading'); setMode(next); };
+  // Thay liên kết Google Earth: mở chế độ 3D tốt nhất ngay trên site, bay tới điểm đang chọn.
+  const view3DHere = () => {
+    if (mode === realMode) engine.current?.focus(current, visible); else switchMode(realMode);
+    const box = mapEl.current?.getBoundingClientRect();
+    if (box && (box.bottom < 0 || box.top > window.innerHeight * 0.5)) mapEl.current?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center' });
+  };
+  // Liên kết từ tour (?xem=3d) mở thẳng chế độ 3D tốt nhất.
+  useEffect(() => {
+    if (webgl === false) return;
+    let wants = false;
+    try { wants = new URLSearchParams(window.location.search).get('xem') === '3d'; } catch { /* bỏ qua */ }
+    if (!wants) return;
+    const id = requestAnimationFrame(() => { setState('loading'); setMode(realMode); });
+    return () => cancelAnimationFrame(id);
+  }, [webgl]);
   const [street360, setStreet360] = useState(false);
   const close360 = useCallback(() => setStreet360(false), [setStreet360]);
   // Khóa Google sai hoặc chưa cho phép tên miền: đóng ảnh 360°, rời chế độ 3D Google về 3D phố miễn phí.
@@ -331,7 +348,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
           <div className="nb-segment" role="group" aria-label="Kiểu bản đồ">
             <button type="button" aria-pressed={mode === '2d'} onClick={() => switchMode('2d')}>2D</button>
             <button type="button" aria-pressed={mode === 'street'} disabled={webgl === false} title={webgl === false ? 'Thiết bị chưa hỗ trợ WebGL nên chưa xem được 3D' : 'Đường phố, tên đường và khối nhà 3D'} onClick={() => switchMode('street')}>3D phố</button>
-            {(hasGoogleMaps || hasCesium) && <button type="button" aria-pressed={mode === 'google'} disabled={webgl === false} title="Thành phố 3D chân thực từ ảnh chụp của Google" onClick={() => switchMode('google')}>3D Google</button>}
+            {(hasGoogleMaps || hasCesium) && <button type="button" aria-pressed={mode === 'google'} disabled={webgl === false} title="Thành phố 3D dựng từ ảnh chụp thật (dữ liệu © Google)" onClick={() => switchMode('google')}>3D chân thực</button>}
             <button type="button" aria-pressed={mode === 'satellite'} disabled={webgl === false} title={webgl === false ? 'Thiết bị chưa hỗ trợ WebGL nên chưa xem được 3D' : 'Ảnh vệ tinh nhìn nghiêng, kèm tên đường'} onClick={() => switchMode('satellite')}>3D vệ tinh</button>
           </div>
         </div>
@@ -402,9 +419,8 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
                 {hasGoogleMaps && <button type="button" className="button outline" onClick={() => setStreet360(true)}>Ảnh 360° quanh đây</button>}
               </div>
               <p className="atlas-google">
-                <span>Xem trên Google:</span>
-                <a href={googleLinks(current).streetView} target="_blank" rel="noreferrer">Chế độ xem phố<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
-                <a href={googleLinks(current).earth} target="_blank" rel="noreferrer">Google Earth 3D<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
+                {webgl !== false && <button type="button" className="atlas-3d-here" onClick={view3DHere}>{realMode === 'google' ? 'Xem 3D chân thực tại đây' : 'Xem 3D vệ tinh tại đây'}</button>}
+                <a href={googleLinks(current).streetView} target="_blank" rel="noreferrer">Ảnh đường phố trên Google<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
               </p>
               {current.tours.map(t => <p key={t.slug} className="atlas-tour">{t.title}{t.draft && <span className="badge-draft">Bản nháp, chờ duyệt nguồn</span>}</p>)}
             </article>

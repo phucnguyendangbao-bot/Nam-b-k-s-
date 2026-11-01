@@ -119,17 +119,26 @@
   --sh-2: 0 10px 30px -12px rgba(0, 0, 0, .18);
   --sh-3: 0 24px 60px -20px rgba(0, 0, 0, .28), 0 2px 8px rgba(0, 0, 0, .06);
 
-  /* Chuyển động */
-  --ease: cubic-bezier(.25, .1, .25, 1);
-  --ease-out: cubic-bezier(.2, .8, .2, 1);     /* vào cảnh, mở ra */
-  --ease-in: cubic-bezier(.8, .2, .8, .2);     /* nghịch đảo của --ease-out, cho chiều đi ra */
-  --d-press: 100ms;
+  /* Chuyển động tối giản: ba đường cong, năm nhịp, ba quãng. Mỗi chuyển động phải trả lời được "để làm gì".
+     Vào cảnh dùng --ease-out (nhanh lúc đầu, lắng rất êm), đổi trạng thái tại chỗ dùng --ease,
+     đi ra dùng --ease-in và nhanh hơn chiều vào khoảng một phần ba. Chỉ đổi opacity và transform. */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --d-press: 90ms;      /* phản hồi chạm */
   --d-hover: 200ms;     /* hover 150–250 */
-  --d-ui: 280ms;        /* chuyển trạng thái 200–350 */
-  --d-reveal: 560ms;    /* hiện khối khi cuộn 400–650 */
-  --d-fast: 160ms;
-  --d-base: 280ms;
-  --d-slow: 560ms;
+  --d-ui: 280ms;        /* mở menu, đổi tab, đổi trạng thái 200–350 */
+  --d-exit: 180ms;      /* đóng, rời đi */
+  --d-reveal: 600ms;    /* nội dung hiện khi cuộn, chuyển trang 400–650 */
+  --d-scene: 1400ms;    /* chỉ cho ảnh nền lắng xuống, không dùng cho chữ */
+  --stagger: 70ms;      /* các phần tử cùng nhóm hiện nối nhau, tối đa 6 nhịp */
+  --m-rise: 12px;       /* quãng trượt khi hiện */
+  --m-nudge: 4px;       /* mũi tên nhích khi hover */
+  --m-zoom: 1.02;       /* ảnh nhích lại gần khi hover */
+  /* Tên cũ, giữ để không vỡ chỗ đang dùng */
+  --d-fast: var(--d-hover);
+  --d-base: var(--d-ui);
+  --d-slow: var(--d-reveal);
   --press-scale: .97;
 
   /* Chất liệu mờ: chỉ cho thanh đầu trang và lớp nổi */

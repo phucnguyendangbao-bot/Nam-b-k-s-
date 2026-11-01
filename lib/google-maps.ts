@@ -68,13 +68,11 @@ export function metersBetween(a: { lat: number; lng: number }, b: { lat: number;
 /**
  * Liên kết mở đúng vị trí trên ứng dụng của Google, không cần khóa API và không tốn phí:
  * - Ảnh 360° (Chế độ xem phố): Google tự tìm ảnh gần nhất quanh tọa độ.
- * - Google Earth 3D: góc nhìn nghiêng ~60°, cách mặt đất khoảng 600 m.
  */
 export function googleLinks(p: { lat: number; lng: number }) {
   const at = `${p.lat.toFixed(6)},${p.lng.toFixed(6)}`;
   return {
     streetView: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${at}`,
-    earth: `https://earth.google.com/web/@${at},10a,600d,35y,0h,60t,0r`,
     satellite: `https://www.google.com/maps/@?api=1&map_action=map&center=${at}&zoom=18&basemap=satellite`,
   };
 }

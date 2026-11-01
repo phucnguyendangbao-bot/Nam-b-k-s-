@@ -1,14 +1,15 @@
 import Image from 'next/image';
-import { EvidenceMix, categoryTone, collectionFor } from '@/components/site';
+import { collectionFor } from '@/components/site';
 import { BentoGrid, type BentoItem } from '@/components/bento';
 import { MapPreview } from '@/components/map-preview';
 import { AtlasLauncher } from '@/components/interactive/atlas-launcher';
-import { StoryScroll, type StoryChapter } from '@/components/interactive/story-scroll';
+import { ChapterRail } from '@/components/interactive/chapter-rail';
 import { WordExplorer } from '@/components/interactive/word-explorer';
 import { nfc, topics } from '@/lib/editorial-model';
 import { heritagePlaces } from '@/lib/heritage-places';
 import { knowledgeCounts } from '@/lib/knowledge';
-import { ensureSeed, publicContents, publicWords, stats, type Row } from '@/lib/static-data';
+import { ensureSeed, publicContents, publicWords, type Row } from '@/lib/static-data';
+import { chapterAnchor, chapters, storyImages, type StoryImage } from '@/lib/story';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,21 +40,13 @@ const bentoPlan: { domain: string; title: string; size: BentoItem['size']; image
   { domain: 'van-hoc-nghe-thuat', title: 'Nghệ thuật', size: 'md', imageFrom: 'NBS-TUCNGU-18', position: '50% 20%' },
 ];
 
-const featuredIds = { lead: 'NBS-CHO-NOI', withImage: 'NBS-NINH-KIEU', text: ['E020', 'E018', 'NBS-NGUYEN-HUU-CANH'] };
-const storyIds: [string, string][] = [
-  ['KN-CAN-GIO', 'Nơi sông gặp biển'],
-  ['NBS-NINH-KIEU', 'Bến sông giữa phố'],
-  ['NBS-CHO-NOI', 'Chợ họp trên nước'],
-  ['NBS-BINH-THUY', 'Nếp nhà bên rạch'],
-];
 const vocab = ['hổng', 'bển', 'nghen', 'mần', 'bậu', 'qua', 'vầy', 'vô'];
 
 export default async function Home() {
   await ensureSeed();
-  const [items, words, numbers, domains] = await Promise.all([publicContents(), publicWords(), stats(), knowledgeCounts()]);
+  const [items, words, domains] = await Promise.all([publicContents(), publicWords(), knowledgeCounts()]);
   const byId = new Map(items.map(i => [i.id, i]));
   const { places, tours } = heritagePlaces(items);
-  const hero = byId.get('KN-TRAM-CHIM');
 
   const bento: BentoItem[] = bentoPlan.flatMap(p => {
     const d = domains.find(x => x.id === p.domain);
@@ -74,141 +67,102 @@ export default async function Home() {
     meta: 'Mở kho tri thức',
   });
 
-  const lead = byId.get(featuredIds.lead);
-  const second = byId.get(featuredIds.withImage);
-  const textStories = featuredIds.text.map(id => byId.get(id)).filter((x): x is Row => Boolean(x));
-  const chapters: StoryChapter[] = storyIds.flatMap(([id, kicker]) => {
-    const r = byId.get(id);
-    if (!r?.image_url) return [];
-    return [{ id, kicker, title: nfc(r.title), text: r.introduction || r.summary, href: `/ho-so/${r.slug}`, image: { src: r.image_url, alt: r.title, credit: credit(r) } }];
-  });
   const vocabWords = vocab.map(h => words.find(w => w.headword === h)).filter(Boolean).map(w => ({ id: String(w!.id), headword: w!.headword, meaning: w!.meaning, pos: w!.pos, example: w!.example, href: w!.href }));
+  const vocabIds = new Set(vocabWords.map(w => w.id));
+  const hero = storyImages.prologue;
+  const story = chapters.map(c => ({ ...c, rows: c.ids.map(id => byId.get(id)).filter((x): x is Row => Boolean(x)) }));
+  const total = story.reduce((n, c) => n + c.rows.length, 0);
+  const usedImages = new Set<string>();
 
   return (
-    <main id="main" className="home">
-      {/* 1. Hero điện ảnh */}
+    <main id="main" className="home is-story">
+      {/* Mở đầu */}
       <section className="hx" aria-labelledby="hx-title">
-        {hero?.image_url && (
-          <Image className="hx-image" src={hero.image_url} alt="" fill priority fetchPriority="high" sizes="100vw" style={{ objectPosition: '60% 50%' }} />
-        )}
+        <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={80} style={{ objectPosition: hero.position }} />
         <div className="hx-scrim" aria-hidden="true" />
         <div className="hx-inner wrap">
-          <p className="hx-eyebrow">Kho hồ sơ văn hóa có nguồn · {numbers.published} hồ sơ đã kiểm chứng</p>
+          <p className="hx-eyebrow">Sáu chương · {total} hồ sơ đã kiểm chứng</p>
           <h1 id="hx-title">Nam Bộ — <span>Miền đất của những câu chuyện.</span></h1>
           <p className="hx-sub">Khám phá lịch sử, văn hóa, con người và những ký ức tạo nên bản sắc phương Nam.</p>
           <div className="hx-actions">
-            <a className="button light" href="/kham-pha">Khám phá ngay</a>
+            <a className="button light" href="#chuong-1">Bắt đầu đọc</a>
             <a className="button ghost-light" href="/ban-do">Xem bản đồ di sản</a>
           </div>
         </div>
-        {hero && (
-          <p className="hx-credit">
-            <a href={`/ho-so/${hero.slug}`}>{nfc(hero.title)}</a> · Ảnh: {credit(hero)}
-          </p>
-        )}
+        <p className="hx-credit">{hero.caption} <a href={hero.source_url}>{hero.author}, {hero.license_name}</a></p>
       </section>
 
-      {/* 2. Lĩnh vực văn hóa — Bento */}
-      <section className="sx is-alt" aria-labelledby="linh-vuc">
+      {/* Mục lục */}
+      <section className="sx toc-x" aria-labelledby="muc-luc">
         <div className="wrap" data-reveal>
-          <SectionIntro id="linh-vuc" eyebrow="Lối vào" title="Mỗi lĩnh vực, một cách nhìn phương Nam." lede="Chọn một chủ đề để đọc các hồ sơ cùng lĩnh vực. Mỗi thẻ cho biết đã có bao nhiêu hồ sơ được kiểm chứng." />
-          <BentoGrid items={bento} label="Lĩnh vực văn hóa" />
+          <SectionIntro id="muc-luc" eyebrow="Mục lục" title="Một câu chuyện, sáu chương." lede="Đọc lần lượt từ dòng nước đến tiếng nói, hoặc chọn chương bạn muốn. Mỗi chương dẫn vào các hồ sơ đã kiểm chứng, cuối mỗi hồ sơ có lối sang bài tiếp theo." />
+          <ol className="toc">
+            {story.map(c => (
+              <li key={c.n}>
+                <a href={`#${chapterAnchor(c)}`}>
+                  <span className="toc-n" aria-hidden="true">{String(c.n).padStart(2, '0')}</span>
+                  <span className="toc-body"><strong>{c.name}</strong><span>{c.title}</span></span>
+                  <span className="toc-count">{c.rows.length} hồ sơ</span>
+                </a>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* 3. Câu chuyện tuyển chọn */}
-      {lead && (
-        <section className="sx" aria-labelledby="tuyen-chon">
-          <div className="wrap" data-reveal>
-            <SectionIntro id="tuyen-chon" eyebrow="Tuyển chọn" title="Đọc chậm, có nguồn để lần theo." action={{ href: '/kham-pha', label: 'Tất cả hồ sơ' }} />
-            <div className="fx">
-              <article className="fx-lead">
-                <a className="fx-lead-media" href={`/ho-so/${lead.slug}`} tabIndex={-1} aria-hidden="true">
-                  {lead.image_url && <Image src={lead.image_url} alt="" width={1536} height={1024} sizes="(max-width: 900px) 100vw, 58vw" />}
-                </a>
-                <div className="fx-lead-body">
-                  <p className="fx-kicker">{topics[lead.topic] ?? collectionFor(lead.category).name}</p>
-                  <h3><a href={`/ho-so/${lead.slug}`}>{nfc(lead.title)}</a></h3>
-                  <p className="fx-lede">{lead.introduction || lead.summary}</p>
-                  <EvidenceMix sectionsJson={lead.sections_json} />
-                  {lead.image_url && <small className="fx-credit">Ảnh: {credit(lead)}</small>}
-                </div>
-              </article>
-              <div className="fx-side">
-                {second && (
-                  <article className="fx-card is-media">
-                    <a className="fx-card-media" href={`/ho-so/${second.slug}`} tabIndex={-1} aria-hidden="true">
-                      {second.image_url && <Image src={second.image_url} alt="" width={800} height={530} sizes="(max-width: 900px) 100vw, 30vw" />}
-                    </a>
-                    <p className="fx-kicker">{topics[second.topic] ?? collectionFor(second.category).name}</p>
-                    <h3><a href={`/ho-so/${second.slug}`}>{nfc(second.title)}</a></h3>
-                    {second.image_url && <small className="fx-credit">Ảnh: {credit(second)}</small>}
-                  </article>
-                )}
-                {textStories.map((s, i) => (
-                  <article key={s.id} className={`fx-card is-text tone-${categoryTone[collectionFor(s.category).slug]}`}>
-                    <span className="fx-num" aria-hidden="true">{String(i + 2).padStart(2, '0')}</span>
-                    <div>
-                      <p className="fx-kicker">{topics[s.topic] ?? collectionFor(s.category).name}</p>
-                      <h3><a href={`/ho-so/${s.slug}`}>{nfc(s.title)}</a></h3>
-                      <p className="fx-sum">{s.summary}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      <ChapterRail items={story.map(c => ({ n: c.n, name: c.name, anchor: chapterAnchor(c) }))} />
 
-      {/* 4. Bản đồ di sản — trình bày như một sản phẩm */}
-      <section className="sx is-alt" aria-labelledby="ban-do">
+      {story.map((c, ci) => {
+        const next = story[ci + 1];
+        const isWords = c.slug === 'tieng-noi';
+        const list = isWords ? c.rows.filter(r => !vocabIds.has(String(r.id))) : c.rows;
+        if (c.image?.sameAs) usedImages.add(c.image.sameAs);
+        // Một ảnh chỉ hiện một lần trên trang: hồ sơ dùng chung ảnh với bài trước thì chỉ hiện chữ.
+        const shown = list.map(r => { const u = r.image_url as string | null; const show = Boolean(u && !usedImages.has(u)); if (u) usedImages.add(u); return show; });
+        return (
+          <section key={c.n} className={`ch ${ci % 2 ? 'is-alt' : ''} ${c.image ? 'has-media' : 'is-type'}`} id={chapterAnchor(c)} data-chapter={c.n} aria-labelledby={`${chapterAnchor(c)}-title`}>
+            <div className="wrap">
+              <header className="ch-head" data-reveal>
+                <p className="ch-num"><span>Chương {String(c.n).padStart(2, '0')}</span>{c.name}</p>
+                <h2 id={`${chapterAnchor(c)}-title`}>{c.title}</h2>
+                <p className="ch-lede">{c.lede}</p>
+              </header>
+              {c.image && <ChapterFigure img={c.image} />}
+              <ol className={`ch-list n-${Math.min(list.length, 8)}`} data-reveal>
+                {list.map((r, i) => <ChapterEntry key={r.id} row={r} label={`${c.n}.${c.ids.indexOf(r.id) + 1}`} image={shown[i]} />)}
+              </ol>
+              {isWords && vocabWords.length > 0 && (
+                <div className="ch-words" data-reveal>
+                  <p className="ch-words-head">Tám tiếng nói mỗi ngày <a className="text-link" href="/tu-dien">Từ điển {words.length} mục từ <span aria-hidden="true">→</span></a></p>
+                  <WordExplorer words={vocabWords} />
+                </div>
+              )}
+              <p className="ch-next">
+                {next
+                  ? <a href={`#${chapterAnchor(next)}`}><span>Chương tiếp</span>{String(next.n).padStart(2, '0')} · {next.name} <span aria-hidden="true">↓</span></a>
+                  : <a href="#ket"><span>Kết</span>Câu chuyện còn tiếp <span aria-hidden="true">↓</span></a>}
+              </p>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* Kết */}
+      <section className="sx ket" id="ket" aria-labelledby="ket-title">
         <div className="wrap" data-reveal>
-          <SectionIntro id="ban-do" eyebrow="Bản đồ di sản" title="Đặt mỗi câu chuyện về đúng chỗ của nó." lede={`${places.length} điểm quanh sông Cần Thơ và rạch Bình Thủy, mỗi điểm ghi rõ tọa độ đã đối chiếu hay chưa.`} center />
+          <SectionIntro id="ket-title" eyebrow="Kết" title="Câu chuyện còn tiếp, ở đúng chỗ của nó." lede={`${places.length} điểm quanh sông Cần Thơ và rạch Bình Thủy đã được đặt lên bản đồ, mỗi điểm ghi rõ tọa độ đã đối chiếu hay chưa. Đi theo một hành trình, hoặc góp thêm một lời kể.`} center />
           <div className="mx">
             <AtlasLauncher places={places} tours={tours}>
               <MapPreview places={places} tours={tours} />
             </AtlasLauncher>
-            <ul className="mx-features">
-              <li><strong>Tìm và lọc</strong><span>Tìm theo tên, lọc đình chùa, bến chợ, nhà cổ hoặc theo tuyến.</span></li>
-              <li><strong>Xem từng điểm</strong><span>Ảnh có ghi công, trạng thái tọa độ, chặng trong tour.</span></li>
-              <li><strong>Đọc tiếp</strong><span>Mỗi điểm dẫn về hồ sơ và nguồn tư liệu của nó.</span></li>
-              <li><strong>Nhẹ trên điện thoại</strong><span>Bản đồ 2D mặc định; 3D phố và 3D vệ tinh chỉ tải khi bạn chọn.</span></li>
-            </ul>
           </div>
         </div>
-      </section>
-
-      {/* 5. Câu chuyện theo chiều cuộn */}
-      {chapters.length > 1 && (
-        <section className="sx" aria-labelledby="theo-dong-nuoc">
-          <div className="wrap">
-            <div data-reveal>
-              <SectionIntro id="theo-dong-nuoc" eyebrow="Câu chuyện" title="Theo dòng nước phương Nam." lede="Bốn hồ sơ, đi từ rừng ngập mặn nơi sông ra biển đến nếp nhà bên rạch. Mỗi đoạn dẫn lại lời giới thiệu của hồ sơ đã kiểm chứng." />
-            </div>
-            <StoryScroll chapters={chapters} label="Theo dòng nước phương Nam" />
-          </div>
-        </section>
-      )}
-
-      {/* 6. Phương ngữ */}
-      {vocabWords.length > 0 && (
-        <section className="sx is-alt" aria-labelledby="phuong-ngu">
-          <div className="wrap wx-wrap" data-reveal>
-            <SectionIntro id="phuong-ngu" eyebrow="Tiếng quê mình" title="Nói như người miền Tây." lede="Chọn một từ để xem nghĩa, cách dùng và ví dụ. Nghĩa dẫn về mục từ có nguồn." action={{ href: '/tu-dien', label: `Từ điển ${words.length} mục từ` }} />
-            <WordExplorer words={vocabWords} />
-          </div>
-        </section>
-      )}
-
-      {/* 7. Ký ức cộng đồng — phương pháp, không lời chứng thực giả */}
-      <section className="sx" aria-labelledby="ky-uc">
         <div className="wrap mem" data-reveal>
           <div className="mem-copy">
             <SectionIntro id="ky-uc" eyebrow="Ký ức cộng đồng" title="Giữ lời kể, đúng giọng người kể." lede="Một cách gọi trong nhà, một lần đi chợ nổi với bà, một bài hát ru còn nhớ. Kho chưa nhận gửi trực tuyến; bạn có thể soạn bản nháp trên máy và giữ lại." />
             <div className="mem-actions">
               <a className="button" href="/ong-ba-ke-chuyen">Soạn một lời kể</a>
-              <a className="text-link" href="/nguyen-tac-bien-tap">Nguyên tắc tiếp nhận <span aria-hidden="true">→</span></a>
+              <a className="text-link" href="/hanh-trinh">Đi theo một hành trình <span aria-hidden="true">→</span></a>
             </div>
           </div>
           <ol className="mem-steps">
@@ -218,6 +172,47 @@ export default async function Home() {
           </ol>
         </div>
       </section>
+
+      {/* Phụ lục: đọc theo lĩnh vực */}
+      <section className="sx is-alt" aria-labelledby="linh-vuc">
+        <div className="wrap" data-reveal>
+          <SectionIntro id="linh-vuc" eyebrow="Phụ lục" title="Hoặc đọc theo lĩnh vực." lede="Cùng các hồ sơ ấy, xếp theo mười hai lĩnh vực. Mỗi thẻ cho biết đã có bao nhiêu hồ sơ được kiểm chứng." />
+          <BentoGrid items={bento} label="Lĩnh vực văn hóa" />
+        </div>
+      </section>
     </main>
   );
 }
+
+/** Ảnh chương: ảnh minh họa của trang, luôn kèm chú thích và ghi công đầy đủ. */
+function ChapterFigure({ img }: { img: StoryImage }) {
+  return (
+    <figure className="ch-media" data-reveal>
+      <div className="ch-media-frame">
+        <Image src={img.url} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 1240px) 100vw, 1200px" quality={80} style={{ objectPosition: img.position }} />
+      </div>
+      <figcaption>{img.caption} Ảnh: <a href={img.source_url}>{img.author}</a>, {img.license_name}.</figcaption>
+    </figure>
+  );
+}
+
+/** Một hồ sơ trong chương: số thứ tự, lĩnh vực, tiêu đề, tóm tắt; ảnh tư liệu của chính hồ sơ nếu có. */
+function ChapterEntry({ row: r, label, image }: { row: Row; label: string; image: boolean }) {
+  const img = image ? r.image_url as string : null;
+  return (
+    <li className={`ch-entry ${img ? 'has-img' : ''}`}>
+      {img && (
+        <a className="ch-entry-media" href={`/ho-so/${r.slug}`} tabIndex={-1} aria-hidden="true">
+          <Image src={img} alt="" width={720} height={480} sizes="(max-width: 900px) 100vw, 360px" />
+        </a>
+      )}
+      <div className="ch-entry-body">
+        <p className="ch-entry-kicker"><span>{label}</span>{topics[r.topic] ?? collectionFor(r.category).name}</p>
+        <h3><a href={`/ho-so/${r.slug}`}>{nfc(r.title)}</a></h3>
+        <p className="ch-entry-sum">{r.summary}</p>
+        {img && <small className="ch-entry-credit">Ảnh: {credit(r)}</small>}
+      </div>
+    </li>
+  );
+}
+

@@ -158,7 +158,7 @@
 .nb-loading span:nth-child(2) { animation-delay: .15s; } .nb-loading span:nth-child(3) { animation-delay: .3s; }
 .nb-loading b { font-weight: 500; margin-left: var(--s-2); }
 .loading-line, .skeleton { display: block; height: 18px; border-radius: var(--r-xs); background: linear-gradient(90deg, var(--c-paper-sunken), var(--c-paper-deep), var(--c-paper-sunken)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
-@keyframes pulse { 50% { opacity: .3; transform: scale(.8); } }
+@keyframes pulse { 50% { opacity: .3; } }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 .nb-404 { display: grid; align-content: center; justify-items: start; gap: var(--s-4); min-height: 62vh; }
@@ -176,11 +176,11 @@
 .nb-story-card {
   position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; color: var(--c-ink);
   background: var(--c-surface); border-radius: var(--r-md); box-shadow: var(--sh-1);
-  transition: box-shadow 300ms var(--ease), transform 300ms var(--ease);
+  transition: transform var(--d-press) var(--ease);
 }
-.nb-story-card:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
 .nb-story-media { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--tone-soft, var(--c-paper-sunken)); }
-.nb-story-media img { width: 100%; height: 100%; object-fit: cover; }
+.nb-story-media img { width: 100%; height: 100%; object-fit: cover; transition: scale var(--d-reveal) var(--ease-out); }
+@media (hover: hover) { .nb-story-card:hover .nb-story-media img { scale: var(--m-zoom); } }
 .nb-story-media .motif { position: absolute; inset: 18% 22%; width: auto; height: auto; color: var(--tone); opacity: .9; }
 .nb-story-word { position: absolute; inset: 0; display: grid; place-items: center; padding: var(--s-4); font-family: var(--f-display); font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--tone); text-align: center; }
 .nb-story-body { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-5) var(--s-6) var(--s-4); flex: 1; }
@@ -202,9 +202,9 @@
 .tour-card {
   position: relative; display: flex; flex-direction: column; gap: var(--s-3); min-height: 220px; padding: var(--s-6) var(--s-6) var(--s-5);
   background: var(--c-surface); border: 0; border-radius: var(--r-md); box-shadow: var(--sh-1);
-  transition: box-shadow 300ms var(--ease), transform 300ms var(--ease);
+  transition: background-color var(--d-hover) var(--ease), transform var(--d-press) var(--ease);
 }
-.tour-card:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
+@media (hover: hover) { .tour-card:hover { background: var(--c-paper-deep); } }
 .tour-card h2, .tour-card h3 { font-size: var(--t-xl); line-height: var(--lh-tight); }
 .tour-card p { font-size: var(--t-sm); line-height: 1.43; color: var(--c-ink-muted); }
 .tour-card .text-link { margin-top: auto; }
@@ -213,12 +213,12 @@
 .nb-category-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: var(--s-3); margin-bottom: var(--s-10); }
 .nb-category-chip {
   display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: var(--s-4); padding: var(--s-4);
-  background: var(--c-surface); border-radius: var(--r-md); box-shadow: var(--sh-1); transition: box-shadow 300ms var(--ease), transform 300ms var(--ease);
+  background: var(--c-surface); border-radius: var(--r-md); box-shadow: var(--sh-1); transition: background-color var(--d-hover) var(--ease), transform var(--d-press) var(--ease);
 }
 .nb-category-chip .motif { height: 44px; color: var(--tone); }
 .nb-category-chip strong { display: block; font-size: var(--t-base); font-weight: 600; color: var(--c-ink); }
 .nb-category-chip small { font-size: var(--t-xs); color: var(--c-ink-muted); }
-.nb-category-chip:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
+@media (hover: hover) { .nb-category-chip:hover { background: var(--c-paper-deep); } }
 .nb-category-chip.is-soon { opacity: .75; }
 
 /* ---------- Ô tìm kiếm ---------- */
@@ -262,13 +262,13 @@
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
 
 /* Bảng tìm nhanh (Ctrl K) */
-.nb-palette-backdrop { position: fixed; inset: 0; z-index: 300; display: grid; justify-items: center; align-items: start; padding: max(8vh, 24px) var(--s-4) var(--s-4); background: rgba(0, 0, 0, .32); transition: opacity 200ms var(--ease); }
-.nb-palette-backdrop[data-state='closing'] { opacity: 0; transition: opacity 180ms var(--ease-in); }
+.nb-palette-backdrop { position: fixed; inset: 0; z-index: 300; display: grid; justify-items: center; align-items: start; padding: max(8vh, 24px) var(--s-4) var(--s-4); background: rgba(0, 0, 0, .32); transition: opacity var(--d-ui) var(--ease-out); }
+.nb-palette-backdrop[data-state='closing'] { opacity: 0; transition: opacity var(--d-exit) var(--ease-in); }
 @starting-style { .nb-palette-backdrop[data-state='open'] { opacity: 0; } }
-.nb-palette { width: min(680px, 100%); max-height: min(78vh, 680px); display: flex; flex-direction: column; overflow: hidden; border-radius: var(--r-md); transition: opacity 200ms var(--ease), transform 260ms var(--ease), filter 260ms var(--ease); }
-/* Hiện ra như một tấm chất liệu: mờ nét và nhỏ hơn một chút rồi rõ dần, mọc ra từ nút tìm; đóng thì đi ngược lại. */
-@starting-style { .nb-palette-backdrop[data-state='open'] .nb-palette { opacity: 0; transform: scale(.94) translateY(-8px); filter: blur(8px); } }
-.nb-palette-backdrop[data-state='closing'] .nb-palette { opacity: 0; transform: scale(.94) translateY(-8px); filter: blur(8px); transition: opacity 160ms var(--ease-in), transform 180ms var(--ease-in), filter 180ms var(--ease-in); }
+.nb-palette { width: min(680px, 100%); max-height: min(78vh, 680px); display: flex; flex-direction: column; overflow: hidden; border-radius: var(--r-md); transition: opacity var(--d-ui) var(--ease-out), transform var(--d-ui) var(--ease-out); }
+/* Hiện ra: rõ dần và hạ xuống 4px; đóng thì đi ngược lại, nhanh hơn. Không làm mờ nét, không nảy. */
+@starting-style { .nb-palette-backdrop[data-state='open'] .nb-palette { opacity: 0; transform: translateY(calc(var(--m-nudge) * -2)) scale(.98); } }
+.nb-palette-backdrop[data-state='closing'] .nb-palette { opacity: 0; transform: translateY(calc(var(--m-nudge) * -1)) scale(.98); transition: opacity var(--d-exit) var(--ease-in), transform var(--d-exit) var(--ease-in); }
 .nb-palette .nb-palette-input, .nb-palette .nb-palette-foot { background: transparent; }
 .nb-palette-input { display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--c-line); color: var(--c-ink-muted); }
 .nb-palette-input input { flex: 1; margin: 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; font-size: var(--t-md) !important; padding: 10px 0 !important; }
@@ -288,7 +288,7 @@
 
 /* ---------- Thẻ lật & trắc nghiệm ---------- */
 .nb-flip { display: block; width: 100%; max-width: 380px; aspect-ratio: 5 / 6; perspective: 1400px; text-align: center; }
-.nb-flip-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 640ms var(--ease); }
+.nb-flip-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform var(--d-reveal) var(--ease-out); }
 .nb-flip.is-flipped .nb-flip-inner { transform: rotateY(180deg); }
 .nb-flip-face {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-3); padding: var(--s-8) var(--s-6);

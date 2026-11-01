@@ -171,3 +171,6 @@
 .atlas-map .cesium-host { position: absolute; inset: 0; }
 .atlas-map .cesium-host .cesium-widget, .atlas-map .cesium-host .cesium-viewer { width: 100%; height: 100%; }
 .atlas-map .cesium-viewer-bottom { left: 8px; bottom: 6px; }
+.atlas-google .atlas-3d-here { display: inline-flex; align-items: center; min-height: 36px; padding: 0 var(--s-4); border-radius: 999px; border: 0; background: var(--c-primary); color: #fff; font: inherit; font-weight: 600; cursor: pointer; transition: background var(--d-hover) var(--ease, ease); }
+.atlas-google .atlas-3d-here:hover { background: var(--c-deep); }
+.atlas-google .atlas-3d-here:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }

@@ -47,3 +47,28 @@ test('an image changed after clearance fails the byte hash check', () => {
 test('register claims cannot be proven by an ordinary article alone', () => {
   const release=structuredClone(data.release);release.articles[0].claims[0].kind='register_entry';assert.throws(()=>check(release));
 });
+test('2026-11-01 enrichment layer: every dossier approved, payload-bound, and keeps earlier public slugs', async () => {
+  const later = await loadValidatedRelease('2026-11-01');
+  const result = validatePublishedRelease(later.release, later.approval, later.context);
+  assert.equal(result.articles, later.release.articles.length);
+  assert.equal(createHash('sha256').update(JSON.stringify(later.release)).digest('hex'), later.approval.release_payload_sha256);
+  assert.deepEqual(later.release.articles.map(article=>article.id).sort(), [...later.approval.approved_article_ids].sort());
+  for (const earlier of data.release.articles) {
+    const next = later.release.articles.find(article=>article.id===earlier.id);
+    if (next) assert.equal(next.slug, earlier.slug, `slug changed for ${earlier.id}`);
+  }
+  for (const article of later.release.articles) {
+    assert.ok(article.claims.every(claim=>claim.reviewer===later.approval.reviewer && claim.checked_at===later.approval.reviewed_at));
+    assert.ok(new Set(article.claims.map(claim=>claim.source_id)).size >= 1);
+  }
+});
+test('story chapters only point to dossiers that are public in some reviewed layer or the legacy bundle', async () => {
+  const { chapters } = await import('../lib/story.ts');
+  const later = await loadValidatedRelease('2026-11-01');
+  const { readFile } = await import('node:fs/promises');
+  const legacy = JSON.parse(await readFile(new URL('../lib/editorial-bundle.json', import.meta.url), 'utf8'));
+  const expansion = await readFile(new URL('../lib/content-expansion.ts', import.meta.url), 'utf8');
+  const known = new Set([...data.release.articles, ...later.release.articles, ...legacy.articles].map(article=>article.id));
+  for (const id of chapters.flatMap(chapter=>chapter.ids)) assert.ok(known.has(id) || expansion.includes(`"${id}"`) || expansion.includes(`'${id}'`), id);
+  for (const id of ['NBS-TEN-CAN-THO','NBS-KENH-VINH-TE','NBS-NGUYEN-DINH-CHIEU','NBS-DINH-BINH-THUY','NBS-BANH-TRANG-TRANG-BANG']) assert.ok(later.release.articles.some(article=>article.id===id && article.slug), id);
+});
