@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ph } from '@/lib/media';
 import { mapToursFor } from '@/lib/map-tours';
 import { notFound } from 'next/navigation';
 import { ActionForm, Arrow, Breadcrumb, Classification, EvidenceMix, Flash, Motif, Status, StoryCard, categoryTone } from './site';
@@ -90,7 +91,7 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
         </div>
         {heroItem ? (
           <figure className="coll-hero-photo">
-            <Image src={heroItem.image_url} alt="" width={960} height={720} priority sizes="(max-width: 900px) 100vw, 44vw" />
+            <span className="ph" style={ph(heroItem.image_url)}><Image src={heroItem.image_url} alt="" width={960} height={720} priority quality={85} sizes="(max-width: 900px) 100vw, 44vw" /></span>
             <figcaption>Ảnh trong hồ sơ <a href={`/ho-so/${heroItem.slug}`}>{nfc(heroItem.title)}</a>: {heroItem.image_author}, {heroItem.image_license}</figcaption>
           </figure>
         ) : <div className="coll-hero-motif" aria-hidden="true"><Motif kind={collection.motif} /></div>}
@@ -139,7 +140,7 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
 
       {featured && (
         <article className={`coll-feature tone-${tone}`}>
-          <a className="coll-feature-media" href={`/ho-so/${featured.slug}`} tabIndex={-1} aria-hidden="true">
+          <a className={`coll-feature-media ${featured.image_url ? 'ph' : ''}`} href={`/ho-so/${featured.slug}`} tabIndex={-1} aria-hidden="true" style={ph(featured.image_url)}>
             {featured.image_url ? <Image src={featured.image_url} alt="" width={1200} height={800} sizes="(max-width: 900px) 100vw, 55vw" /> : <Motif kind={collection.motif} />}
           </a>
           <div className="coll-feature-body">
@@ -168,7 +169,9 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
 export function DocumentaryImage({ media: m, eager = false }: { media: Row; eager?: boolean }) {
   return (
     <figure className="documentary-photo">
-      <Image src={m.url} alt={m.caption} width={m.width ?? 1600} height={m.height ?? 1067} sizes="(max-width: 640px) 100vw, (max-width: 1260px) 96vw, 1200px" unoptimized={!String(m.url).startsWith('/')} loading={eager ? 'eager' : 'lazy'} />
+      <div className="ph photo-frame" style={ph(m.url)}>
+        <Image src={m.url} alt={m.caption} width={m.width ?? 1600} height={m.height ?? 1067} sizes="(max-width: 640px) 100vw, (max-width: 1260px) 96vw, 1200px" quality={eager ? 85 : 75} unoptimized={!String(m.url).startsWith('/')} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} />
+      </div>
       <figcaption>
         <strong>{m.caption}</strong>
         <span>{m.author}, <a href={m.source_url} target="_blank" rel="noreferrer">Wikimedia Commons</a>, <a href={m.license_url} target="_blank" rel="noreferrer">{m.license_name}</a></span>

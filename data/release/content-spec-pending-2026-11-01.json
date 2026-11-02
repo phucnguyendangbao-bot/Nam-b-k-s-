@@ -1,0 +1,36 @@
+{
+  "version": "content-spec-pending-v1",
+  "publication_status": "draft",
+  "publish_approval": false,
+  "input": "E:/nam_bo_ky_su_content_and_ui_spec.md",
+  "note": "Các đề xuất dưới đây được giữ lại để đối chiếu, không dùng làm nguồn đã kiểm chứng.",
+  "words": [
+    {
+      "id": "NBS-TD-CA-RANG",
+      "headword": "cà ràng",
+      "proposed_meaning": "Bếp đất nung có thể mang lên ghe xuồng.",
+      "gap": "Chưa đọc mục từ gốc và vị trí trang trong Tự vị tiếng nói miền Nam; chưa xác minh từ nguyên Khmer."
+    },
+    {
+      "id": "NBS-TD-THEO-LEO",
+      "headword": "thèo lèo",
+      "proposed_meaning": "Kẹo đậu phộng, mè và đường mạch nha.",
+      "gap": "Chưa đối chiếu mục từ gốc; chưa xác minh từ nguyên Triều Châu."
+    },
+    {
+      "id": "NBS-TD-MUNG",
+      "headword": "mửng",
+      "proposed_meaning": "Thói quen, kiểu cách hoặc việc làm lặp lại.",
+      "gap": "Chưa đối chiếu nghĩa phương ngữ Nam Bộ với trang từ điển. Không dùng mục mửng tiếng Tày trên Wiktionary làm bằng chứng."
+    }
+  ],
+  "events": [
+    {
+      "year": 1895,
+      "value": "1895–1896",
+      "title": "Đại Nam quấc âm tự vị",
+      "review_status": "pending",
+      "gap": "Cần đọc trang tên sách của cả hai tập; chưa gắn mốc thư mục này vào hồ sơ cà ràng chưa công bố."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "version": "publication-approval-2026-11-01-supplement-v1",
+  "status": "approved",
+  "authority": "owner_delegation",
+  "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+  "reviewed_at": "2026-11-01",
+  "authorization": "Chủ dự án yêu cầu “bổ sung nội dung” theo nam_bo_ky_su_content_and_ui_spec.md trong chat ngày 01/11/2026. Codex đối chiếu các đoạn nguồn được ghi vị trí và bổ sung nội dung trong repo; quyết định này không yêu cầu deploy hoặc sửa UI/UX.",
+  "scope": "Chỉ các đoạn đã đối chiếu; nguồn excerpt không được ghi là đã đọc toàn bài. Hai mục từ có kiểm tra riêng về nghĩa và ví dụ biên soạn; ba mục từ chưa đủ nguồn ở gói pending. Tọa độ do đặc tả cung cấp giữ trạng thái proposed, không nhận là đã kiểm chứng.",
+  "approved_article_ids": [
+    "NBS-RUNG-TRAM-TRA-SU",
+    "NBS-U-MINH-THUONG",
+    "NBS-OC-EO-BA-THE",
+    "NBS-VAN-THANH-MIEU-VL",
+    "NBS-GIA-DINH-THONG-CHI",
+    "NBS-CHO-NOI-NGA-BAY",
+    "NBS-GACH-GOM-MANG-THIT",
+    "NBS-CHUA-DOI-MAHATUP",
+    "NBS-VIA-BA-CHUA-XU",
+    "NBS-DA-CO-HOAI-LANG",
+    "NBS-NHA-CO-CAI-CUONG",
+    "NBS-TD-CAY-BEO",
+    "NBS-TD-LI-XI"
+  ],
+  "approved_tour_ids": [
+    "NBS-LONG-HO-CO-CHIEN",
+    "NBS-THUY-DAO-TAY-NAM"
+  ],
+  "approved_dialect_ids": [
+    "NBS-TD-CAY-BEO",
+    "NBS-TD-LI-XI"
+  ],
+  "release_sha256": "59b25994a8f43792f39977f3179ad2e32ca41b3fb51d32c5f2e70b791423573c",
+  "release_payload_sha256": "02d647493f4316c884c54a5d3898f826375f65284013665b43ae0327356ad817"
+}

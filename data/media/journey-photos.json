@@ -1,0 +1,71 @@
+{
+  "version": "journey-photos-2026-11-02-v1",
+  "checked_at": "2026-11-02",
+  "photos": [
+    {
+      "stop_id": "munir-ansay",
+      "src": "/media/journey-munir-ansay.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Munirensay_Temple_Gate_Can_Tho.JPG",
+      "author": "Dragfyre",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "modifications": "Thu nhỏ theo tỷ lệ từ 2048 × 1536 px về 1920 × 1440 px và lưu WebP. Không cắt, không sửa cảnh, màu hoặc xóa dấu.",
+      "width": 1920,
+      "height": 1440,
+      "sha256": "a6b825092b7174ec1b70f7b40765653f842047025fe554636b131acadd366c91",
+      "checked_at": "2026-11-02"
+    },
+    {
+      "stop_id": "chua-ong",
+      "src": "/media/journey-chua-ong.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ch%C3%B9a_%C3%94ng_C%E1%BA%A7n_Th%C6%A1.jpg",
+      "author": "Bùi Thụy Đào Nguyên",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "modifications": "Thu nhỏ theo tỷ lệ từ 4544 × 3408 px về 1920 × 1440 px và lưu WebP. Không cắt, không sửa cảnh, màu hoặc xóa dấu.",
+      "width": 1920,
+      "height": 1440,
+      "sha256": "3f90c0849ab2349660c93054edd2079e1eba011481c4d9bbe8a9c87e2cc6b17f",
+      "checked_at": "2026-11-02"
+    },
+    {
+      "stop_id": "cho-co",
+      "src": "/media/journey-cho-co.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ch%E1%BB%A3_C%E1%BA%A7n_Th%C6%A1.jpg",
+      "author": "Bùi Thụy Đào Nguyên",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "modifications": "Thu nhỏ theo tỷ lệ từ 4608 × 3456 px về 1920 × 1440 px và lưu WebP. Không cắt, không sửa cảnh, màu hoặc xóa dấu.",
+      "width": 1920,
+      "height": 1440,
+      "sha256": "5d54d2b3d7c1fa5d688ff6fdb2a9b5732f156921756513b0774a4c5d15e43a80",
+      "checked_at": "2026-11-02"
+    },
+    {
+      "stop_id": "dinh-binh-thuy",
+      "src": "/media/journey-dinh-binh-thuy.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y%2C_C%E1%BA%A7n_Th%C6%A1.jpg",
+      "author": "Bùi Thụy Đào Nguyên",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "modifications": "Thu nhỏ theo tỷ lệ từ 3296 × 2472 px về 1920 × 1440 px và lưu WebP. Không cắt, không sửa cảnh, màu hoặc xóa dấu.",
+      "width": 1920,
+      "height": 1440,
+      "sha256": "be702dd09334e438272d6512e5b5da793d2b07f1667d2e2f0871b1bc066c4384",
+      "checked_at": "2026-11-02"
+    },
+    {
+      "stop_id": "chua-nam-nha",
+      "src": "/media/journey-chua-nam-nha.webp",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ch%C3%B9a_Nam_Nh%C3%A3_1.jpg",
+      "author": "Bùi Thụy Đào Nguyên",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "modifications": "Thu nhỏ theo tỷ lệ từ 4608 × 3456 px về 1920 × 1440 px và lưu WebP. Không cắt, không sửa cảnh, màu hoặc xóa dấu.",
+      "width": 1920,
+      "height": 1440,
+      "sha256": "4743fb3b5fd132d6364c56e5fce73e78c92a29952a50d34105cd985e7a0325b1",
+      "checked_at": "2026-11-02"
+    }
+  ]
+}

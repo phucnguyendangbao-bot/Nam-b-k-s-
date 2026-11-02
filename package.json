@@ -21,7 +21,8 @@
     "knowledge:validate": "node --experimental-strip-types scripts/audit-knowledge.mjs",
     "knowledge:report": "node --experimental-strip-types scripts/audit-knowledge.mjs --report",
     "data:validate": "node --experimental-strip-types scripts/research-data.mjs",
-    "data:report": "node --experimental-strip-types scripts/research-data.mjs --report"
+    "data:report": "node --experimental-strip-types scripts/research-data.mjs --report",
+    "media:placeholders": "node scripts/build-placeholders.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

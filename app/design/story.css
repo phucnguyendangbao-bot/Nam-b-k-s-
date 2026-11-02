@@ -48,6 +48,14 @@
 .ch-entry-media img { width: 100%; height: 100%; object-fit: cover; transition: scale var(--d-reveal) var(--ease-out); }
 @media (hover: hover) { .ch-entry:hover .ch-entry-media img { scale: var(--m-zoom); } }
 .ch-entry-body { display: grid; gap: var(--s-2); }
+/* Hồ sơ chỉ có chữ, đặt sau lưới thẻ ảnh: hai cột gọn, số thứ tự đứng trước. */
+.ch-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--grid-gap); margin-top: var(--s-8); list-style: none; }
+.ch-more > li { display: grid; grid-template-columns: 3.25rem 1fr; gap: var(--s-4); padding: var(--s-5) 0; border-top: 1px solid var(--c-line); }
+.ch-more-n { padding-top: 2px; font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-muted); font-variant-numeric: tabular-nums; }
+.ch-more h3 { margin: var(--s-1) 0 var(--s-2); font-size: var(--t-lg); line-height: 1.22; letter-spacing: var(--tr-title); }
+.ch-more h3 a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--d-ui) var(--ease); }
+@media (hover: hover) { .ch-more li:hover h3 a { background-size: 100% 1px; } .ch-more li:hover .ch-more-n { color: var(--c-accent-ink); } }
+@media (max-width: 900px) { .ch-more { grid-template-columns: 1fr; } }
 .ch-entry-kicker { display: flex; gap: var(--s-3); font-size: var(--t-xs); font-weight: 600; color: var(--c-accent-ink); }
 .ch-entry-kicker span { color: var(--c-ink-muted); font-variant-numeric: tabular-nums; }
 .ch-entry h3 { font-size: var(--t-lg); line-height: 1.22; letter-spacing: var(--tr-title); }

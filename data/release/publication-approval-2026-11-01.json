@@ -1,11 +1,18 @@
 {
- "version": "publication-approval-2026-11-01-v1",
+ "version": "publication-approval-2026-11-01-v2",
  "status": "approved",
  "authority": "owner_delegation",
  "reviewer": "Claude — source review",
  "reviewed_at": "2026-11-01",
  "authorization": "Chủ dự án yêu cầu \"Tập trung hoàn thiện nội dung\", chọn phạm vi \"Cả hai\" (làm dày hồ sơ hiện có và viết hồ sơ mới cho lĩnh vực còn trống) và chọn \"Mình tự duyệt và đăng luôn\" (Claude kiểm nguồn, ghi bản duyệt theo ủy quyền rồi công bố), ngày 01/11/2026.",
  "scope": "Mỗi nguồn trong gói được đọc lại hoặc đọc mới ngày 01/11/2026; mỗi nhận định ghi vị trí trong nguồn. Gói này thay phiên bản cũ của các hồ sơ cùng ID và bổ sung hồ sơ mới; không sửa gói 2026-10-28.",
+ "revisions": [
+  {
+   "date": "2026-11-02",
+   "request": "Chủ dự án yêu cầu \"cải thiện ảnh và animation\".",
+   "change": "Bổ sung 12 ảnh Wikimedia Commons cho 10 hồ sơ; mỗi ảnh đã kiểm giấy phép (CC BY, CC BY-SA, CC0), tác giả, trang nguồn và mã SHA-1 tệp gốc ngày 02/11/2026. Không đổi lời văn, nhận định hay nguồn tư liệu."
+  }
+ ],
  "approved_article_ids": [
   "E001",
   "E002",
@@ -36,6 +43,6 @@
   "NBS-TEN-CAN-THO"
  ],
  "approved_tour_ids": [],
- "release_sha256": "26956b91942043cd69476dfcf1d49d1feac4efd64b5399b70fdf816e0abb557f",
- "release_payload_sha256": "b8db13c44c05c75111cbcba642376cb86faa657e723f197702a486f84fa7df7b"
+ "release_sha256": "daebbee95254b6d92e1f4350ca253358dbee388628d43bbeb329004b365ce060",
+ "release_payload_sha256": "be7e5672f8243e1636e56267b61c44fa4b15fd697fb1c49d591b061a8d427dca"
 }

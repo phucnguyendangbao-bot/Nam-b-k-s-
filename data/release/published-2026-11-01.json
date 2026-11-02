@@ -1,5 +1,5 @@
 {
- "version": "published-2026-11-01-v1",
+ "version": "published-2026-11-01-v2",
  "reviewed_at": "2026-11-01",
  "sources": [
   {
@@ -1945,7 +1945,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "E011-chua-ang-tra-vinh-btdn",
+     "kind": "image",
+     "url": "/media/chua-ang-tra-vinh-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Chùa_Âng.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 4608 × 3456 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Chùa Âng (Angkorajaborey) bên ao Bà Om, Trà Vinh, ảnh Bùi Thụy Đào Nguyên chụp ngày 17-3-2013; ảnh không gian chùa Khmer, không phải ảnh lễ Tết.",
+     "attribution": "Chùa Âng.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "65534109342d82e0c86ef3625f5bb80c945275888362643eec78fdaaef0743cc",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -2802,7 +2820,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "E018-dan-nguyet-truc-dong",
+     "kind": "image",
+     "url": "/media/dan-nguyet-truc-dong.webp",
+     "author": "Trúc Đồng",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Đàn_nguyệt_Việt_Nam,_02-2025.jpg",
+     "license_name": "CC BY-SA 4.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3893 × 5839 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Một cây đàn nguyệt (người Nam Bộ gọi là đàn kìm), nhạc cụ có trong dàn đờn ca tài tử theo hồ sơ UNESCO; ảnh Trúc Đồng chụp ngày 22-2-2025, ảnh minh họa nhạc cụ, không phải một buổi đờn ca.",
+     "attribution": "Đàn nguyệt Việt Nam, 02-2025.jpg — Trúc Đồng, Wikimedia Commons, CC BY-SA 4.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "bd3bb848a8f2d69d8bedd1ee1be3a0983efb8de610469c1fe517f4d297e38cf3",
+     "rights_review": "accepted",
+     "width": 1333,
+     "height": 2000
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -3833,7 +3869,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "KN-SAMPLE-CHAU-GIANG-thanh-duong-cham-chau-giang-trungydang",
+     "kind": "image",
+     "url": "/media/thanh-duong-cham-chau-giang-trungydang.webp",
+     "author": "trungydang",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Chua_Cham,_Tan_chau-chau_giang_vietnam_-_panoramio.jpg",
+     "license_name": "CC BY 3.0",
+     "license_url": "https://creativecommons.org/licenses/by/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 1494 × 2288 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Một thánh đường Hồi giáo của người Chăm ở Châu Giang, Tân Châu (địa danh theo trang ảnh; trang ảnh không ghi tên thánh đường), ảnh trungydang chụp ngày 4-7-2012.",
+     "attribution": "Chua Cham, Tan chau-chau giang vietnam — trungydang, Panoramio qua Wikimedia Commons, CC BY 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "0c90853a0470ffe3bc6e7c0c104ae7a6b84774fc8650c1b2101e2d51ce0f253b",
+     "rights_review": "accepted",
+     "width": 1306,
+     "height": 2000
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -4209,7 +4263,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "KN-SAMPLE-NGUYEN-TIEU-nghia-an-hoi-quan-gary-todd",
+     "kind": "image",
+     "url": "/media/nghia-an-hoi-quan-gary-todd.webp",
+     "author": "Gary Todd",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nghia_An_Hoi_Quan_Pagoda_(10018256906).jpg",
+     "license_name": "Public domain",
+     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 4752 × 3168 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Hội quán Nghĩa An ở Chợ Lớn, ảnh Gary Todd chụp ngày 30-9-2013; ảnh không gian hội quán, không phải ảnh lễ hội.",
+     "attribution": "Nghia An Hoi Quan Pagoda (10018256906).jpg — Gary Todd, Wikimedia Commons, CC0 (phạm vi công cộng).",
+     "commercial_allowed": 1,
+     "file_sha256": "bb1de231fff1afb26adc8aa0ca9e2e371a263993a7e9081db3c31c14c6f57188",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1333
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -4705,7 +4777,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-BANH-TRANG-TRANG-BANG-banh-trang-trang-bang-vietcuongdao",
+     "kind": "image",
+     "url": "/media/banh-trang-trang-bang-vietcuongdao.webp",
+     "author": "Vietcuongdao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bánh_tráng_TB.jpg",
+     "license_name": "CC BY-SA 4.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 2592 × 1456 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Bánh tráng Trảng Bàng ăn kèm rau, ảnh Vietcuongdao chụp ngày 6-2-2019; ảnh minh họa món ăn, không phải một lò bánh cụ thể.",
+     "attribution": "Bánh tráng TB.jpg — Vietcuongdao, Wikimedia Commons, CC BY-SA 4.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "dffd72feac90e083207db442f69712cee869496a3a800af94d5e24f640e6cd03",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1123
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -5380,7 +5470,42 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-DINH-BINH-THUY-dinh-binh-thuy-noi-that-btdn",
+     "kind": "image",
+     "url": "/media/dinh-binh-thuy-noi-that-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nội_thất_đình_Bình_Thủy.png",
+     "license_name": "CC BY-SA 4.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 2048 × 1365 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Nội thất đình Bình Thủy, Cần Thơ, ảnh Bùi Thụy Đào Nguyên chụp ngày 27-12-2018.",
+     "attribution": "Nội thất đình Bình Thủy.png — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 4.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "289951f3b8a4d7f10121b6c1b59a66cf44f4cf3f3bdfbbfdc4f3d6a4712f0b22",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1333
+    },
+    {
+     "id": "NBS-DINH-BINH-THUY-dinh-binh-thuy-can-tho-btdn",
+     "kind": "image",
+     "url": "/media/dinh-binh-thuy-can-tho-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Đình_Bình_Thủy,_Cần_Thơ.jpg",
+     "license_name": "CC BY 3.0",
+     "license_url": "https://creativecommons.org/licenses/by/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3296 × 2472 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Sân và mặt tiền đình Bình Thủy, Cần Thơ, ảnh Bùi Thụy Đào Nguyên (trang ảnh không ghi ngày chụp).",
+     "attribution": "Đình Bình Thủy, Cần Thơ.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, tác giả cấp phép kép PD-user và CC BY 3.0; dùng theo CC BY 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "8b4a8cec0c2b732e8d4a41ffdeeb5cf8db79b9e8b79cf62476e3879a507d037a",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -5591,7 +5716,42 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-KENH-VINH-TE-kenh-vinh-te-chau-doc-btdn",
+     "kind": "image",
+     "url": "/media/kenh-vinh-te-chau-doc-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Kinh_Vĩnh_Tế.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3296 × 2472 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Kênh Vĩnh Tế đoạn chảy qua cầu Vĩnh Ngươn, Châu Đốc (địa danh theo trang ảnh), ảnh Bùi Thụy Đào Nguyên chụp ngày 10-5-2008.",
+     "attribution": "Kinh Vĩnh Tế.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "29cf044e40f925bd60654eeff4752fdd6bcf0ab63698f9e4ec30fa77301a68ad",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    },
+    {
+     "id": "NBS-KENH-VINH-TE-kenh-vinh-te-cao-dinh-btdn",
+     "kind": "image",
+     "url": "/media/kenh-vinh-te-cao-dinh-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Kênh_Vĩnh_Tế_trên_Cao_đỉnh.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3296 × 2472 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Hình kênh Vĩnh Tế chạm trên Cao đỉnh ở Huế, có ba chữ “Vĩnh Tế hà”; ảnh Bùi Thụy Đào Nguyên chụp ngày 16-11-2009.",
+     "attribution": "Kênh Vĩnh Tế trên Cao đỉnh.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "4ed67b7f0ae2fa379e87c4935b7c90d728d6d1b14d78eabb3eabec76e16e1c69",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -5816,7 +5976,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-NGUYEN-DINH-CHIEU-den-tho-nguyen-dinh-chieu-btdn",
+     "kind": "image",
+     "url": "/media/den-tho-nguyen-dinh-chieu-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Đền_thờ_Nguyễn_Đình_Chiểu.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3296 × 2472 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Đền thờ Nguyễn Đình Chiểu ở Ba Tri, Bến Tre, ảnh Bùi Thụy Đào Nguyên chụp ngày 3-3-2008.",
+     "attribution": "Đền thờ Nguyễn Đình Chiểu.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "f095e849a692db664c8b06109fc4bc4279629a8c73869038b7b2c042b5ae8007",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -6030,7 +6208,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-NGUYEN-HUU-CANH-den-tho-nguyen-huu-canh-btdn",
+     "kind": "image",
+     "url": "/media/den-tho-nguyen-huu-canh-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Đền_thờ_Nguyễn_Hữu_Cảnh_tại_Cù_lao_Phố.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 2472 × 3296 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Tượng Nguyễn Hữu Cảnh tại đền thờ ở Cù lao Phố, Biên Hòa (địa danh theo trang ảnh), ảnh Bùi Thụy Đào Nguyên.",
+     "attribution": "Đền thờ Nguyễn Hữu Cảnh tại Cù lao Phố.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "b9d1b5b809fb82411d689f7bd1a55600c4d74279f1c11d4aaa75c0ba04ee1906",
+     "rights_review": "accepted",
+     "width": 1500,
+     "height": 2000
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",
@@ -6455,7 +6651,25 @@
      ]
     }
    },
-   "media": [],
+   "media": [
+    {
+     "id": "NBS-TEN-CAN-THO-song-can-tho-my-khanh-btdn",
+     "kind": "image",
+     "url": "/media/song-can-tho-my-khanh-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Sông_Cần_Thơ,_đoạn_chảy_qua_xã_Mỹ_Khánh.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 4752 × 3168 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Sông Cần Thơ đoạn chảy qua xã Mỹ Khánh, Phong Điền (địa danh theo trang ảnh), ảnh Bùi Thụy Đào Nguyên chụp ngày 7-7-2014.",
+     "attribution": "Sông Cần Thơ, đoạn chảy qua xã Mỹ Khánh.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "f4fca078ebcc92654280d912a992a16e6bc03af290b3c25eb68a7724c01b526f",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1333
+    }
+   ],
    "publication_status": "published",
    "review_status": "verified",
    "rights_review_status": "cleared",

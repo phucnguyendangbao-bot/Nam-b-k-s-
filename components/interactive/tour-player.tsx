@@ -1,12 +1,17 @@
 'use client';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import type { Map as MLMap, Marker as MLMarker, GeoJSONSource } from 'maplibre-gl';
 import { googleLinks, hasGoogleMaps } from '@/lib/google-maps';
 import { hasCesium } from '@/lib/cesium';
 import { StreetViewPanel } from './street-view';
 import { GLOBE_VIEW, MAP_LOCALE, heritageStyle, legFeatures, markHeritageBuildings, smoothLine, type MapLook } from '@/lib/map-style';
 import type { LegMode, MapSource, MapTour } from '@/lib/map-tours';
+import { JourneyScene, type JourneyPhoto } from './journey-scene';
+import { useJourneyProgress } from './use-journey-progress';
+import { journeyArrivalAllusions, journeyArrivals, journeyNarratives } from '@/lib/journey-narrative';
+import { JourneyWords } from '../journey-words';
+import { journeyLiterature } from '@/lib/journey-literature';
 
 /** Có nguồn ảnh 3D chân thực (Google qua khóa riêng hoặc qua Cesium ion) hay chỉ có 3D vệ tinh. */
 const hasRealistic3D = hasGoogleMaps || hasCesium;
@@ -56,6 +61,7 @@ function Icon({ name }: { name: 'play' | 'pause' | 'prev' | 'next' | 'sound' | '
 
 export function TourPlayer({ tour, sources, audio, legs, length, others, reading }: Props) {
   const stops = tour.stops;
+  const narrative = journeyNarratives[tour.id];
   const last = stops.length - 1;
   const mapEl = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
@@ -66,6 +72,16 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
   const playingRef = useRef(false);
   const goRef = useRef<(i: number) => void>(() => {});
   const panelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [view, setView] = useState<'cinema' | 'map'>('cinema');
+  const { saved, save } = useJourneyProgress(tour.slug, stops.map(stop => stop.id));
+  const savedIndex = stops.findIndex(stop => stop.id === saved);
+  const photos = useMemo<JourneyPhoto[]>(() => stops.map(stop => ({
+    src: stop.image?.src ?? tour.cover?.src ?? '', alt: `Ảnh tư liệu: ${stop.name}`,
+    credit: stop.image?.credit ?? tour.cover?.credit ?? '', href: stop.image?.href,
+  })), [stops, tour.cover]);
+  const coverPhoto = useMemo<JourneyPhoto>(() => ({ src: tour.cover?.src ?? photos[0].src,
+    alt: tour.title, credit: tour.cover?.credit ?? photos[0].credit }), [tour.cover, tour.title, photos]);
 
   const [active, setActive] = useState(-1);
   const [playing, setPlaying] = useState(false);
@@ -86,6 +102,8 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
   const hasAudio = stops.every(s => audio[s.id]);
   const canListen = hasAudio || canSpeak;
   const audioEl = useRef<HTMLAudioElement | null>(null);
+  const pausedAudio = useRef<{ id: string; time: number } | null>(null);
+  const [audioNotice, setAudioNotice] = useState<string | null>(null);
   const [rate, setRate] = useState(1);
   const rateRef = useRef(1);
   /** Một thẻ audio dùng lại cho mọi chặng, để trình duyệt điện thoại cho phát tiếp sau lần bấm đầu. */
@@ -137,6 +155,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     if (rec) {
       const a = player();
       const token = ++speech.current;
+      setAudioNotice(null);
       if (hasSpeech()) window.speechSynthesis.cancel();
       const finish = () => {
         if (speech.current !== token) return;
@@ -145,7 +164,12 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
         advance(i);
       };
       a.onended = finish;
-      a.onerror = finish;
+      const unavailable = () => {
+        if (speech.current !== token) return;
+        setSpeaking(false); setPlaying(false); playingRef.current = false;
+        setAudioNotice('Chưa phát được thuyết minh. Bấm Nghe để thử lại, hoặc tiếp tục đọc và chọn chặng bằng tay.');
+      };
+      a.onerror = unavailable;
       a.ontimeupdate = () => {
         if (speech.current !== token) return;
         let k = 0;
@@ -153,16 +177,11 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
         setSentence(k - 1);
       };
       if (!a.src.endsWith(rec.src)) a.src = rec.src;
-      a.currentTime = 0;
+      a.currentTime = pausedAudio.current?.id === stops[i].id ? pausedAudio.current.time : 0;
+      pausedAudio.current = null;
       a.playbackRate = rateRef.current;
       setSpeaking(true);
-      a.play().catch(() => {
-        // Trình duyệt chặn tự phát: giữ chữ, chờ đủ thời gian rồi sang chặng.
-        if (speech.current !== token) return;
-        setSpeaking(false);
-        window.clearTimeout(timer.current);
-        timer.current = window.setTimeout(() => advance(i), rec.duration * 1000);
-      });
+      a.play().catch(unavailable);
       return true;
     }
     if (!hasSpeech() || !canSpeak) return false;
@@ -177,7 +196,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
       const u = new SpeechSynthesisUtterance(text);
       u.lang = v?.lang ?? 'vi-VN';
       if (v) u.voice = v;
-      u.rate = 0.98;
+      u.rate = rateRef.current;
       u.onstart = () => { if (speech.current === token) setSentence(k - 1); };
       if (k === texts.length - 1) {
         const finish = () => {
@@ -249,20 +268,24 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
   }, [padding]);
 
   const go = useCallback((i: number) => {
+    i = Math.max(-1, Math.min(i, last));
+    const prev = activeIndex.current;
+    activeIndex.current = i;
+    const token = ++flight.current;
     window.clearTimeout(timer.current);
     stopSpeech();
     setDone(false);
     setActive(i);
+    if (pausedAudio.current?.id !== stops[i]?.id) pausedAudio.current = null;
+    if (i >= 0) save(stops[i].id);
     const url = `${window.location.pathname}${window.location.search}${i >= 0 ? `#chang-${i + 1}` : ''}`;
     window.history.replaceState(null, '', url);
     panelRef.current?.scrollTo({ top: 0, behavior: reduceMotion() ? 'auto' : 'smooth' });
     const map = mapRef.current;
-    if (i < 0) { overview(); return; }
+    if (i < 0) { playingRef.current = false; setPlaying(false); overview(); return; }
     if (!map) { arrive(i); return; }
     const s = stops[i];
-    const token = ++flight.current;
     map.stop();
-    const prev = activeIndex.current;
     // Thẻ bị ẩn (chuyển tab, khung xem bị thu) làm hoạt ảnh dừng: quá hạn thì đặt camera tới nơi và đọc tiếp.
     const safety = (ms: number) => window.setTimeout(() => {
       if (flight.current !== token) return;
@@ -287,22 +310,31 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     });
     map.once('moveend', () => { if (flight.current === token) { flight.current++; arrive(i); } });
     safety(duration + 2500);
-  }, [stopSpeech, overview, arrive, stops, padding, legs, followLeg]);
+  }, [stopSpeech, overview, arrive, stops, padding, legs, followLeg, last, save]);
 
   useEffect(() => { goRef.current = go; }, [go]);
+  useEffect(() => {
+    const match = window.location.hash.match(/^#chang-(\d+)$/);
+    if (match) goRef.current(Number(match[1]) - 1);
+    return () => {
+      flight.current++;
+      speech.current++;
+      window.clearTimeout(timer.current);
+      if (hasSpeech()) window.speechSynthesis.cancel();
+      audioEl.current?.pause();
+    };
+  }, []);
+
+  useEffect(() => {
+    const rail = rootRef.current?.querySelector<HTMLElement>('.tp-rail');
+    const selected = rail?.querySelector<HTMLElement>('[aria-current="step"]');
+    if (rail && selected) rail.scrollTo({ left: selected.offsetLeft - rail.clientWidth / 2 + selected.clientWidth / 2, behavior: reduceMotion() ? 'auto' : 'smooth' });
+  }, [active]);
 
   const startTour = () => {
     setPlaying(true);
     playingRef.current = true;
-    const first = active < 0 || done ? 0 : active;
-    const rec = audio[stops[first].id];
-    if (rec) {
-      // Mở khóa phát âm thanh ngay trong lần bấm (Safari, Chrome trên điện thoại).
-      const a = player();
-      a.src = rec.src;
-      a.muted = true;
-      a.play().then(() => { a.pause(); a.muted = false; a.currentTime = 0; }).catch(() => { a.muted = false; });
-    }
+    const first = done ? 0 : active < 0 ? Math.max(0, savedIndex) : active;
     go(first);
   };
   const cycleRate = () => {
@@ -311,7 +343,10 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     setRate(next);
     if (audioEl.current) audioEl.current.playbackRate = next;
   };
-  const pauseTour = () => { setPlaying(false); playingRef.current = false; window.clearTimeout(timer.current); stopSpeech(); };
+  const pauseTour = () => {
+    if (active >= 0 && audioEl.current && speaking) pausedAudio.current = { id: stops[active].id, time: audioEl.current.currentTime };
+    setPlaying(false); playingRef.current = false; flight.current++; mapRef.current?.stop(); window.clearTimeout(timer.current); stopSpeech();
+  };
   const toggleFlat = () => {
     const next = !flatRef.current;
     flatRef.current = next;
@@ -337,6 +372,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
 
   /* ---------- Khởi tạo bản đồ ---------- */
   useEffect(() => {
+    if (view !== 'map') return;
     let cancelled = false;
     let map: MLMap | null = null;
     (async () => {
@@ -386,9 +422,9 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           setMapState('ready');
           // Trên màn hình hẹp, thu gọn dòng ghi công thành nút (i) để không che dải chặng.
           if (!wide()) map.getContainer().querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
-          const m = window.location.hash.match(/^#chang-(\d+)$/);
-          const start = m ? Math.min(Math.max(Number(m[1]) - 1, 0), last) : -1;
-          window.setTimeout(() => (start >= 0 ? goRef.current(start) : overview(5200)), 500);
+          const current = stops[activeIndex.current];
+          if (current) map.jumpTo({ center: [current.lng, current.lat], ...current.camera, padding: padding() });
+          else overview(2600);
         });
       } catch {
         if (!cancelled) setMapState('failed');
@@ -396,14 +432,12 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     })();
     return () => {
       cancelled = true;
-      window.clearTimeout(timer.current);
-      if (hasSpeech()) window.speechSynthesis.cancel();
-      audioEl.current?.pause();
+      flight.current++;
       markers.current = [];
       map?.remove();
       mapRef.current = null;
     };
-  }, [stops, last, overview, legs]);
+  }, [stops, overview, legs, view, padding]);
 
   /* ---------- Đồng bộ trạng thái chặng lên bản đồ ---------- */
   useEffect(() => {
@@ -428,10 +462,11 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
+      if (!t || !rootRef.current?.contains(t)) return;
       if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
       if (e.key === 'ArrowRight') { e.preventDefault(); goRef.current(Math.min(activeIndex.current + 1, last)); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); goRef.current(Math.max(activeIndex.current - 1, -1)); }
-      if (e.key === 'Escape') goRef.current(-1);
+      if (e.key === 'Escape') { playingRef.current = false; setPlaying(false); goRef.current(-1); }
     };
     const onHash = () => {
       const m = window.location.hash.match(/^#chang-(\d+)$/);
@@ -452,13 +487,18 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
     : 'Thuyết minh dùng giọng đọc máy có sẵn trong trình duyệt của bạn, không phải giọng người thật.';
 
   return (
-    <div className={`tp ${active >= 0 ? 'is-stop' : 'is-intro'}`} data-look={look}>
+    <div className={`tp ${active >= 0 ? 'is-stop' : 'is-intro'}`} data-look={look} data-view={view} ref={rootRef}>
       <div className="tp-stage">
-        <div className="tp-map" ref={mapEl} role="application" aria-label={`Bản đồ 3D của tour ${tour.title}. Dùng phím mũi tên trái, phải để chuyển chặng.`} />
-        {mapState === 'loading' && <div className="tp-map-note" aria-hidden="true">Đang mở địa cầu…</div>}
-        {mapState === 'failed' && (
+        <JourneyScene photo={active >= 0 ? photos[active] : coverPhoto} next={photos[Math.min(active + 1, last)]} />
+        <div className="tp-map" ref={mapEl} role="application" tabIndex={view === 'map' ? 0 : -1} aria-hidden={view !== 'map'} aria-label={`Bản đồ 3D của tour ${tour.title}. Dùng phím mũi tên trái, phải để chuyển chặng.`} />
+        <div className="journey-view" role="group" aria-label="Cách khám phá hành trình">
+          <button type="button" aria-pressed={view === 'cinema'} onClick={() => { if (playingRef.current && active >= 0 && !speaking) speak(active); setView('cinema'); }}>Ảnh & câu chuyện</button>
+          <button type="button" aria-pressed={view === 'map'} onClick={() => setView('map')}>Khám phá bản đồ</button>
+        </div>
+        {view === 'map' && mapState === 'loading' && <div className="tp-map-note" aria-hidden="true">Đang mở bản đồ…</div>}
+        {view === 'map' && mapState === 'failed' && (
           <div className="tp-map-note is-failed" role="status">
-            Trình duyệt chưa hiển thị được bản đồ 3D (cần WebGL). Bạn vẫn đọc được toàn bộ thuyết minh và nguồn ở khung bên cạnh.
+            Chưa mở được bản đồ. <button type="button" onClick={() => setView('cinema')}>Tiếp tục với ảnh thật và câu chuyện →</button>
           </div>
         )}
         <div className="tp-tools" role="group" aria-label="Chế độ xem">
@@ -473,6 +513,8 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           {stops.map((s, i) => (
             <li key={s.id} className={i === active ? 'is-active' : i < active ? 'is-past' : ''}>
               <button type="button" onClick={() => go(i)} aria-current={i === active ? 'step' : undefined}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={photos[i].src} alt="" loading="lazy" />
                 <b>{i + 1}</b><span>{s.name}</span>
               </button>
             </li>
@@ -486,16 +528,20 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           <span className="tp-kicker">{tour.kicker}</span>
           {tour.review === 'draft' && <span className="tp-draft" title="Nội dung đã dẫn nguồn nhưng chưa qua bước duyệt cuối của ban biên tập">Bản nháp · chờ duyệt nguồn</span>}
         </div>
+        {audioNotice && <p className="tp-audio-notice" role="status">{audioNotice}</p>}
+        {done && <div className="tp-complete" role="status"><strong>Một hành trình vừa khép lại.</strong>{narrative && <p>{narrative.closing}</p>}<p>Chọn một điểm để xem lại, hoặc <a href="#journey-next-title">mở câu chuyện tiếp theo →</a></p></div>}
 
         {!stop ? (
           <div className="tp-intro">
             <h1>{tour.title}</h1>
-            <p className="tp-lede">{tour.summary}</p>
+            {narrative && <JourneyWords text={narrative.quote} epigraph={journeyLiterature[narrative.epigraph ?? '']} allusion={journeyLiterature[narrative.allusion ?? '']} />}
+            <p className="tp-lede">{narrative?.opening ?? tour.summary}</p>
             <ul className="tp-meta">
               <li><span>Khu vực</span>{tour.area}</li>
               <li><span>Chiều dài</span>khoảng {length}</li>
               <li><span>Thời lượng</span>{tour.duration}</li>
             </ul>
+            {savedIndex >= 0 && !done && <button type="button" className="journey-resume" onClick={() => { playingRef.current = false; setPlaying(false); go(savedIndex); }}>Tiếp tục nơi đã dừng · Chặng {savedIndex + 1} →</button>}
             <ol className="tp-stoplist">
               {stops.map((s, i) => (
                 <li key={s.id}>
@@ -515,6 +561,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
             <p className="tp-count">Chặng {active + 1} <span>/ {stops.length}</span></p>
             <h2>{stop.name}</h2>
             <p className="tp-stop-kicker">{stop.kicker}</p>
+            {journeyArrivals[stop.id] && <JourneyWords text={journeyArrivals[stop.id]} allusion={journeyLiterature[journeyArrivalAllusions[stop.id] ?? '']} />}
             {stop.image && (
               <figure className="tp-photo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -543,12 +590,14 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
               </div>
             )}
             {leg && (
-              <p className="tp-next">
+              <button type="button" className="tp-next" onClick={() => go(active + 1)}>
                 <span>Tiếp theo</span>
                 <strong>{stops[active + 1].name}</strong>
+                {narrative?.bridges[stop.id] && <span className="tp-next-story">{narrative.bridges[stop.id]}</span>}
                 <em>{leg.label} · khoảng {leg.distance} · {leg.note}</em>
-              </p>
+              </button>
             )}
+            {!leg && !done && narrative && <div className="tp-last-word"><p className="journey-eyebrow">MANG THEO SAU CHUYẾN ĐI</p><p>{narrative.closing}</p></div>}
             {usedSources.length > 0 && (
               <details className="tp-sources">
                 <summary>Nguồn của chặng này ({usedSources.length})</summary>
@@ -566,7 +615,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
           <button type="button" className="tp-icon" onClick={() => go(Math.max(active - 1, -1))} disabled={active < 0} aria-label="Chặng trước"><Icon name="prev" /></button>
           {playing
             ? <button type="button" className="tp-main" onClick={pauseTour}><Icon name="pause" /> Tạm dừng</button>
-            : <button type="button" className="tp-main" onClick={startTour}><Icon name="play" /> {active < 0 || done ? 'Bắt đầu tour' : 'Tự chạy'}</button>}
+            : <button type="button" className="tp-main" onClick={startTour}><Icon name="play" /> {done ? 'Trải nghiệm lại' : active < 0 ? savedIndex >= 0 ? 'Tiếp tục & nghe' : 'Bắt đầu hành trình' : 'Tự chạy & nghe'}</button>}
           {active >= 0 && canListen && (
             <button type="button" className="tp-ghost" onClick={toggleListen} aria-pressed={speaking} aria-label={speaking ? 'Dừng đọc thuyết minh' : 'Nghe thuyết minh chặng này'}>
               <Icon name={speaking ? 'stop' : 'sound'} /> <span className="tp-label">{speaking ? 'Dừng' : 'Nghe'}</span>

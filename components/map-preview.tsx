@@ -51,7 +51,7 @@ export function MapPreview({ places, tours }: { places: HeritagePlace[]; tours: 
           );
         })}
       </svg>
-      <figcaption>Vị trí tương đối theo tọa độ: {reviewed} điểm đã đối chiếu, {places.length - reviewed} điểm lấy từ OpenStreetMap chưa đối chiếu tại chỗ. Nét liền là chặng đi ghe đã dò theo lòng sông, nét đứt là chặng đi bộ.</figcaption>
+      <figcaption>Vị trí tương đối theo tọa độ: {reviewed} điểm đã đối chiếu, {places.filter(p => p.coord === 'osm').length} điểm OpenStreetMap chưa đối chiếu tại chỗ, {places.filter(p => p.coord === 'proposed').length} điểm đề xuất từ tài liệu biên tập chưa đối chiếu bản đồ. Nét liền là chặng đi ghe đã dò theo lòng sông, nét đứt là chặng đi bộ.</figcaption>
     </figure>
   );
 }

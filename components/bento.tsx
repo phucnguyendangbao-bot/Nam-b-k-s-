@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ph } from '@/lib/media';
 import { Motif } from './cards';
 
 /**
@@ -38,7 +39,7 @@ export function BentoCard({ item }: { item: BentoItem }) {
     <li className={`bento-cell is-${item.size}`}>
       <a href={item.href} className={`bento-card is-${kind} tone-${item.tone ?? 'river'}`}>
         {item.image ? (
-          <span className="bento-media">
+          <span className="bento-media ph" style={ph(item.image.src)}>
             <Image src={item.image.src} alt="" width={item.image.width ?? 1200} height={item.image.height ?? 900} sizes={sizes[item.size]} style={item.image.position ? { objectPosition: item.image.position } : undefined} />
           </span>
         ) : (

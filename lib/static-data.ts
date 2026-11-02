@@ -62,6 +62,7 @@ const articles: Row[] = approvedArticles.map(article => {
     sections_json: JSON.stringify(article.sections ?? []),
     updated_at: `${article.reviewed_at ?? originalBundle.reviewed_at}T00:00:00+07:00`, created_at: `${article.reviewed_at ?? originalBundle.reviewed_at}T00:00:00+07:00`,
     geo_reviewed: 0, latitude: null, longitude: null, eligible: 1,
+    map_location: reviewedRelease.locations?.find(location => location.content_id === article.id) ?? null,
     image_url: cover?.url ?? null, image_author: cover?.author ?? null,
     image_license: cover?.license_name ?? null, image_source_url: cover?.source_url ?? null,
     meaning: dialect?.meaning ?? null, usage_context: dialect?.usage_context ?? null, part_of_speech: dialect?.part_of_speech ?? null,

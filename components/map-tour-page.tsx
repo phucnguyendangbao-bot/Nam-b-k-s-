@@ -3,6 +3,7 @@ import { TourPlayer, type Leg, type StopAudio } from '@/components/interactive/t
 import { formatDistance, legLabel, legLength, legCoords, mapSources, mapTours, tourLength, type MapSource, type MapTour } from '@/lib/map-tours';
 import type { Row } from '@/lib/static-data';
 import tourAudio from '@/lib/tour-audio.json';
+import { journeyNarratives } from '@/lib/journey-narrative';
 
 /** Nguồn theo thứ tự xuất hiện đầu tiên trong tour, để số chú thích liền mạch 1, 2, 3… */
 export function tourSources(tour: MapTour) {
@@ -27,11 +28,11 @@ export function MapTourCards({ tours = mapTours }: { tours?: MapTour[] }) {
             <span className="tp-card-kicker">{t.kicker}</span>
             {t.review === 'draft' && <span className="tp-card-draft">Bản nháp · chờ duyệt nguồn</span>}
             <strong>{t.title}</strong>
-            <span className="tp-card-sum">{t.summary}</span>
+            <span className="tp-card-sum">{journeyNarratives[t.id]?.quote ?? t.summary}</span>
             <span className="tp-card-meta">
               {t.stops.length} chặng · {formatDistance(tourLength(t))} · {t.stops.map(s => s.name).join(' → ')}
             </span>
-            <span className="tp-card-go">Mở tour 3D <span aria-hidden="true">»</span></span>
+            <span className="tp-card-go">Bước vào hành trình <span aria-hidden="true">↗</span></span>
           </span>
           {t.cover && <small className="tp-card-credit">{t.cover.credit}</small>}
         </a>
@@ -50,9 +51,9 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
     coords: legCoords(tour, i),
     traced: Boolean(s.next?.path),
   }));
-  const reading = (tour.readingTours ?? [])
-    .map(slug => readingTours.find(r => r.slug === slug))
-    .filter((r): r is Row => Boolean(r))
+  const dossierIds = new Set(tour.stops.flatMap(stop => stop.dossier ? [stop.dossier.id] : []));
+  const reading = readingTours.filter(row => (tour.readingTours ?? []).includes(row.slug)
+    || (row.content_ids as string[] | undefined)?.some(id => dossierIds.has(id)))
     .map(r => ({ slug: String(r.slug), title: String(r.title) }));
   const others = mapTours.filter(t => t.id !== tour.id).map(t => ({ slug: t.slug, title: t.title }));
   return (
@@ -91,6 +92,11 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
             </li>
           ))}
         </ol>
+      </section>
+      <section className="tp-after" aria-labelledby="journey-next-title">
+        <p className="journey-eyebrow">CÂU CHUYỆN CÒN TIẾP</p><h2 id="journey-next-title">Từ đây, mở một lối khác.</h2>
+        <MapTourCards tours={mapTours.filter(other => other.id !== tour.id)} />
+        {reading.length > 0 && <div className="tp-reading-links">{reading.map(item => <a key={item.slug} href={`/hanh-trinh/${item.slug}`}><small>ĐỌC SÂU HƠN QUA HỒ SƠ LIÊN QUAN</small><strong>{item.title} ↗</strong></a>)}</div>}
       </section>
     </main>
   );

@@ -1,6 +1,7 @@
 import { categories } from './catalog';
 import { legCoords, mapTours, type MapTour } from './map-tours';
 import type { Row } from './static-data';
+import type { ReleaseLocation } from './release-model';
 
 /**
  * Điểm di sản trên bản đồ: gom điểm dừng của tour bản đồ và hồ sơ đã đối chiếu tọa độ.
@@ -10,13 +11,14 @@ import type { Row } from './static-data';
  * - `osm`: tọa độ lấy từ OpenStreetMap, chưa đối chiếu tại chỗ.
  * Nhóm địa điểm dưới đây là cách sắp xếp của trang để lọc, không phải phân loại di tích chính thức.
  */
-export type CoordStatus = 'reviewed' | 'osm';
-export type PlaceTheme = 'worship' | 'river' | 'house' | 'other';
+export type CoordStatus = 'reviewed' | 'osm' | 'proposed';
+export type PlaceTheme = 'worship' | 'river' | 'house' | 'other' | 'ecology' | 'archaeology' | 'craft' | 'arts';
 export const placeThemes: Record<PlaceTheme, string> = {
   worship: 'Đình, chùa, hội quán',
   river: 'Bến sông và chợ',
   house: 'Nhà cổ',
   other: 'Địa điểm khác',
+  ecology: 'Sinh thái & thủy hệ', archaeology: 'Khảo cổ & lịch sử', craft: 'Làng nghề & sinh kế', arts: 'Nghệ thuật & ký ức',
 };
 const stopTheme: Record<string, PlaceTheme> = {
   'munir-ansay': 'worship', 'chua-ong': 'worship', 'dinh-binh-thuy': 'worship', 'chua-nam-nha': 'worship',
@@ -58,6 +60,13 @@ export function heritagePlaces(dossiers: Row[] = []): { places: HeritagePlace[];
     });
   }
   // Hồ sơ có tọa độ đã đối chiếu nhưng chưa nằm trong tour nào.
+  for (const d of dossiers) {
+    const location = d.map_location as ReleaseLocation | null;
+    if (!location || [...places.values()].some(place => place.dossier?.slug === d.slug)) continue;
+    places.set(location.id, { id: location.id, name: String(d.title), kicker: String(d.historical_area),
+      lat: location.lat, lng: location.lng, theme: location.theme, coord: 'proposed',
+      dossier: { slug: String(d.slug), title: String(d.title) }, tours: [] });
+  }
   for (const d of dossiers) {
     if (d.geo_reviewed !== 1 || d.latitude === null || d.longitude === null) continue;
     if ([...places.values()].some(p => p.dossier?.slug === d.slug)) continue;

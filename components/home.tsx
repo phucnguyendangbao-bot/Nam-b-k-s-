@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ph } from '@/lib/media';
 import { collectionFor } from '@/components/site';
 import { BentoGrid, type BentoItem } from '@/components/bento';
 import { MapPreview } from '@/components/map-preview';
@@ -78,7 +79,7 @@ export default async function Home() {
     <main id="main" className="home is-story">
       {/* Mở đầu */}
       <section className="hx" aria-labelledby="hx-title">
-        <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={80} style={{ objectPosition: hero.position }} />
+        <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={85} style={{ objectPosition: hero.position }} />
         <div className="hx-scrim" aria-hidden="true" />
         <div className="hx-inner wrap">
           <p className="hx-eyebrow">Sáu chương · {total} hồ sơ đã kiểm chứng</p>
@@ -128,9 +129,34 @@ export default async function Home() {
                 <p className="ch-lede">{c.lede}</p>
               </header>
               {c.image && <ChapterFigure img={c.image} />}
-              <ol className={`ch-list n-${Math.min(list.length, 8)}`} data-reveal>
-                {list.map((r, i) => <ChapterEntry key={r.id} row={r} label={`${c.n}.${c.ids.indexOf(r.id) + 1}`} image={shown[i]} />)}
-              </ol>
+              {(() => {
+                // Có ảnh lẫn không ảnh: hồ sơ có ảnh xếp lưới, hồ sơ chỉ có chữ xếp thành danh sách gọn bên dưới,
+                // số thứ tự giữ nguyên để vẫn đọc được trình tự của chương. Không có ô trống giả làm ảnh.
+                const label = (r: Row) => `${c.n}.${c.ids.indexOf(r.id) + 1}`;
+                const pics = list.filter((_, i) => shown[i]), words = list.filter((_, i) => !shown[i]);
+                if (!pics.length || !words.length) return (
+                  <ol className={`ch-list n-${Math.min(list.length, 8)}`} data-reveal>
+                    {list.map((r, i) => <ChapterEntry key={r.id} row={r} label={label(r)} image={shown[i]} />)}
+                  </ol>
+                );
+                return <>
+                  <ol className={`ch-list n-${Math.min(pics.length, 8)}`} data-reveal>
+                    {pics.map(r => <ChapterEntry key={r.id} row={r} label={label(r)} image />)}
+                  </ol>
+                  <ol className="ch-more" data-reveal aria-label={`Hồ sơ khác trong chương ${c.n}`}>
+                    {words.map(r => (
+                      <li key={r.id}>
+                        <span className="ch-more-n">{label(r)}</span>
+                        <div>
+                          <p className="ch-entry-kicker">{topics[r.topic] ?? collectionFor(r.category).name}</p>
+                          <h3><a href={`/ho-so/${r.slug}`}>{nfc(r.title)}</a></h3>
+                          <p className="ch-entry-sum">{r.summary}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </>;
+              })()}
               {isWords && vocabWords.length > 0 && (
                 <div className="ch-words" data-reveal>
                   <p className="ch-words-head">Tám tiếng nói mỗi ngày <a className="text-link" href="/tu-dien">Từ điển {words.length} mục từ <span aria-hidden="true">→</span></a></p>
@@ -188,8 +214,8 @@ export default async function Home() {
 function ChapterFigure({ img }: { img: StoryImage }) {
   return (
     <figure className="ch-media" data-reveal>
-      <div className="ch-media-frame">
-        <Image src={img.url} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 1240px) 100vw, 1200px" quality={80} style={{ objectPosition: img.position }} />
+      <div className="ch-media-frame ph" style={ph(img.url)}>
+        <Image src={img.url} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 1240px) 100vw, 1200px" quality={85} style={{ objectPosition: img.position }} />
       </div>
       <figcaption>{img.caption} Ảnh: <a href={img.source_url}>{img.author}</a>, {img.license_name}.</figcaption>
     </figure>
@@ -202,8 +228,8 @@ function ChapterEntry({ row: r, label, image }: { row: Row; label: string; image
   return (
     <li className={`ch-entry ${img ? 'has-img' : ''}`}>
       {img && (
-        <a className="ch-entry-media" href={`/ho-so/${r.slug}`} tabIndex={-1} aria-hidden="true">
-          <Image src={img} alt="" width={720} height={480} sizes="(max-width: 900px) 100vw, 360px" />
+        <a className="ch-entry-media ph" href={`/ho-so/${r.slug}`} tabIndex={-1} aria-hidden="true" style={ph(img)}>
+          <Image src={img} alt="" width={720} height={480} sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 600px" />
         </a>
       )}
       <div className="ch-entry-body">

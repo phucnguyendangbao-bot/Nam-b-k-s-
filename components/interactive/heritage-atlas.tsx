@@ -31,7 +31,7 @@ function hasWebGL() {
   return webglCache;
 }
 const noSubscribe = () => () => {};
-const coordLabel = { reviewed: 'Tọa độ đã đối chiếu', osm: 'Tọa độ OpenStreetMap, chưa đối chiếu tại chỗ' } as const;
+const coordLabel = { reviewed: 'Tọa độ đã đối chiếu', osm: 'Tọa độ OpenStreetMap, chưa đối chiếu tại chỗ', proposed: 'Tọa độ đề xuất theo tài liệu biên tập, chưa đối chiếu bản đồ hoặc thực địa' } as const;
 const pinHtml = (p: HeritagePlace, n: number) => `<span class="ap-pin theme-${p.theme} coord-${p.coord}"><b>${n}</b><span>${escapeHtml(p.name)}</span></span>`;
 
 /** Bản đồ 2D bằng Leaflet: không cần WebGL, dùng làm mặc định và phương án dự phòng. */
@@ -81,7 +81,7 @@ async function mount3D(el: HTMLDivElement, places: HeritagePlace[], tours: Place
   // Khối nhà nằm ngay dưới điểm di sản được tô vàng khi bản đồ đứng yên.
   map.on('idle', () => markHeritageBuildings(map, places));
   map.addControl(new ml.NavigationControl({ visualizePitch: true }), 'top-right');
-  map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Tọa độ: © OpenStreetMap' }), 'bottom-right');
+  map.addControl(new ml.AttributionControl({ compact: true, customAttribution: 'Bản đồ nền: © OpenStreetMap; nguồn tọa độ ghi riêng theo từng điểm' }), 'bottom-right');
   map.on('error', () => {});
   await new Promise<void>(resolve => { map.once('load', () => resolve()); window.setTimeout(resolve, 8000); });
   const markers = new Map<string, import('maplibre-gl').Marker>();
@@ -363,6 +363,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
           {state === 'failed' && <div className="atlas-note is-failed" role="status"><p>Chưa tải được bản đồ. Kiểm tra kết nối mạng rồi tải lại trang. Danh sách địa điểm bên cạnh vẫn dùng được.</p></div>}
           <div className="atlas-legend">
             <span><i className="ap-key coord-osm" />Tọa độ OSM, chờ đối chiếu</span>
+            {places.some(p => p.coord === 'proposed') && <span><i className="ap-key coord-proposed" />Tọa độ đề xuất từ tài liệu biên tập</span>}
             <span><i className="ap-key coord-reviewed" />Đã đối chiếu{reviewedCount ? ` (${reviewedCount})` : ' (chưa có)'}</span>
             <label className="atlas-routes"><input type="checkbox" checked={routes} onChange={e => setRoutes(e.target.checked)} />Thứ tự chặng</label>
             {mode === 'street' && <span className="atlas-legend-note"><i className="ap-key is-heritage" />Khối nhà tại điểm di sản · chiều cao nhà là ước lượng từ OpenStreetMap</span>}

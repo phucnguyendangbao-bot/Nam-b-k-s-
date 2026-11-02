@@ -1,0 +1,2155 @@
+{
+  "version": "published-2026-11-01-supplement-v1",
+  "reviewed_at": "2026-11-01",
+  "sources": [
+    {
+      "id": "NB-TRASU-VACNE-2011",
+      "name": "Rừng Tràm Trà Sư, An Giang",
+      "url": "https://vacne.org.vn/rung-tram-tra-su-an-giang-cid35737.html",
+      "publisher": "Nguyễn Đình Hòe, Nguyễn Thị Mỹ Linh — VACNE",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: phần 1, diện tích, đê bao và sinh cảnh",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-UMINH-RSIS-2228",
+      "name": "U Minh Thuong National Park — Annotated List of Wetlands of International Importance",
+      "url": "https://rsis.ramsar.org/sites/default/files/rsiswp_search/exports/Ramsar-Sites-annotated-summary-Viet-Nam.pdf",
+      "publisher": "Ramsar Sites Information Service",
+      "source_type": "official_register",
+      "source_version": "Đối chiếu 2026-11-01: mục U Minh Thuong, site 2228, ngày 30-04-2015, diện tích và vai trò giữ nước",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-OCEO-BTLSQG-2012",
+      "name": "Trưng bày: Văn hóa Óc Eo - Phù Nam",
+      "url": "https://baotanglichsuquocgia.vn/vi/Articles/3090/11981/trung-bay-van-hoa-oc-eo-phu-nam.html",
+      "publisher": "Bảo tàng Lịch sử Quốc gia — Thu Nhuần",
+      "source_type": "official_article",
+      "source_version": "Đối chiếu 2026-11-01: các đoạn về khai quật 1944 và ba nhóm hiện vật",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-VTMVL-ND-2025",
+      "name": "Văn Thánh miếu Vĩnh Long – Nơi tập hợp giáo dục lòng yêu nước",
+      "url": "https://nhandan.vn/van-thanh-mieu-vinh-long-noi-tap-hop-giao-duc-long-yeu-nuoc-post901653.html",
+      "publisher": "Báo Nhân Dân",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: Kiến trúc độc đáo: khởi công, hoàn thành, Văn Xương Các và năm ghi danh",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-VTMVL-WIKI-2026",
+      "name": "Văn Thánh Miếu Vĩnh Long",
+      "url": "https://vi.wikipedia.org/wiki/Văn_Thánh_Miếu_Vĩnh_Long",
+      "publisher": "Cộng tác viên Wikipedia tiếng Việt",
+      "source_type": "open_encyclopedia",
+      "source_version": "Đối chiếu 2026-11-01: Lịch sử; Tụy Văn lâu; Thông tin thêm; oldid 75495631",
+      "license_reported": "CC BY-SA 4.0",
+      "rights": "Diễn giải và ghi công cộng tác viên; phần biên soạn theo CC BY-SA 4.0, dẫn trang và lịch sử. Không dùng ảnh hay âm thanh từ nguồn.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-GDTTC-WIKI-2026",
+      "name": "Gia Định thành thông chí",
+      "url": "https://vi.wikipedia.org/wiki/Gia_Định_thành_thông_chí",
+      "publisher": "Cộng tác viên Wikipedia tiếng Việt",
+      "source_type": "open_encyclopedia",
+      "source_version": "Đối chiếu 2026-11-01: hộp thông tin và mục Cấu trúc và nội dung; chưa đọc bản dịch hoặc nguyên bản",
+      "license_reported": "CC BY-SA 4.0",
+      "rights": "Diễn giải và ghi công cộng tác viên; phần biên soạn theo CC BY-SA 4.0, dẫn trang và lịch sử. Không dùng ảnh hay âm thanh từ nguồn.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-NGABAY-TT-2013",
+      "name": "Sông nước Ngã Bảy",
+      "url": "https://tuoitre.vn/song-nuoc-nga-bay-543830.htm",
+      "publisher": "Tuổi Trẻ Online",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: các đoạn đầu về bảy ngã sông, chợ năm 1915 và giao thương",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-MANGTHIT-ND-2025",
+      "name": "Người dân mong sớm triển khai “Dự án Di sản đương đại Mang Thít”",
+      "url": "https://nhandan.vn/nguoi-dan-mong-som-trien-khai-du-an-di-san-duong-dai-mang-thit-post904137.html",
+      "publisher": "Báo Nhân Dân",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: bài 27/08/2025: hiện trạng lò gạch và tờ trình 01/08/2025",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-CHUADOI-WIKI-2026",
+      "name": "Chùa Dơi",
+      "url": "https://vi.wikipedia.org/wiki/Chùa_Dơi",
+      "publisher": "Cộng tác viên Wikipedia tiếng Việt",
+      "source_type": "open_encyclopedia",
+      "source_version": "Đối chiếu 2026-11-01: hộp thông tin và Lịch sử hình thành; mốc 1569, 1960, 12/02/1999",
+      "license_reported": "CC BY-SA 4.0",
+      "rights": "Diễn giải và ghi công cộng tác viên; phần biên soạn theo CC BY-SA 4.0, dẫn trang và lịch sử. Không dùng ảnh hay âm thanh từ nguồn.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-BACHUAXU-UNESCO-2024",
+      "name": "Festival of Bà Chúa Xứ Goddess at Sam Mountain",
+      "url": "https://ich.unesco.org/en/RL/festival-of-ba-chua-x-goddess-at-sam-mountain-01999?RL=01999",
+      "publisher": "UNESCO — Intangible Cultural Heritage",
+      "source_type": "unesco_profile",
+      "source_version": "Đối chiếu 2026-11-01: Nomination 01999: mô tả lễ hội và Inscribed in 2024",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-DCHL-CINET-2014",
+      "name": "Dạ cổ hoài lang - Niềm tự hào của người dân Nam Bộ",
+      "url": "https://toquoc.vn/da-co-hoai-lang-niem-tu-hao-cua-nguoi-dan-nam-bo-99216988.htm",
+      "publisher": "Tổ Quốc / Cinet — T.H",
+      "source_type": "official_article",
+      "source_version": "Đối chiếu 2026-11-01: đoạn giới thiệu và đoạn về 20 câu nhịp 2, mốc 1919, quá trình biến đổi",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-DCHL-WIKI-2026",
+      "name": "Dạ cổ hoài lang",
+      "url": "https://vi.wikipedia.org/wiki/Dạ_cổ_hoài_lang",
+      "publisher": "Cộng tác viên Wikipedia tiếng Việt",
+      "source_type": "open_encyclopedia",
+      "source_version": "Đối chiếu 2026-11-01: Thời điểm ra đời: các ý kiến 1918, 1919, 1920",
+      "license_reported": "CC BY-SA 4.0",
+      "rights": "Diễn giải và ghi công cộng tác viên; phần biên soạn theo CC BY-SA 4.0, dẫn trang và lịch sử. Không dùng ảnh hay âm thanh từ nguồn.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-CAICUONG-VNA-2013",
+      "name": "Nhà cổ Cai Cường",
+      "url": "https://vietnam.vnanet.vn/vietnamese/tin-tuc/nha-co-cai-cuong-49639.html",
+      "publisher": "Báo Ảnh Việt Nam / TTXVN",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: bài 22/10/2013, đoạn mở đầu và mô tả nhà chữ Đinh năm 1885",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-CHONOI-ND-2010",
+      "name": "Chợ nổi Cái Răng",
+      "url": "https://nhandan.vn/cho-noi-cai-rang-post429801.html",
+      "publisher": "Báo Nhân Dân",
+      "source_type": "journalism_article",
+      "source_version": "Đối chiếu 2026-11-01: đoạn mô tả sào trên mũi ghe, treo bẹo và nhận diện hàng bán",
+      "license_reported": "copyright_unspecified",
+      "rights": "Chỉ diễn giải ngắn bằng lời mới và dẫn nguồn. Không chép toàn văn, ảnh hoặc âm thanh.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    },
+    {
+      "id": "NB-LIXI-WT-2026",
+      "name": "Wiktionary tiếng Việt — lì xì",
+      "url": "https://vi.wiktionary.org/wiki/lì_xì",
+      "publisher": "Cộng tác viên Wiktionary tiếng Việt",
+      "source_type": "open_dictionary",
+      "source_version": "Đối chiếu 2026-11-01: Danh từ nghĩa 2; Động từ; oldid 2369555",
+      "license_reported": "CC BY-SA 4.0",
+      "rights": "Diễn giải và ghi công cộng tác viên; phần biên soạn theo CC BY-SA 4.0, dẫn trang và lịch sử. Không dùng ảnh hay âm thanh từ nguồn.",
+      "consulted_extent": "excerpt",
+      "review_status": "accepted",
+      "checked_at": "2026-11-01"
+    }
+  ],
+  "articles": [
+    {
+      "id": "NBS-RUNG-TRAM-TRA-SU",
+      "title": "Rừng tràm Trà Sư — Đê bao và sinh cảnh đất ngập nước",
+      "slug": "rung-tram-tra-su-kenh-bao-ngan-va-sinh-canh-tinh-bien",
+      "chapter": "nuoc",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "ecology",
+      "historical_area": "Tịnh Biên, An Giang theo tư liệu năm 2011",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.",
+      "introduction": "Bài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.",
+      "body": "## Rừng trong hệ thống thủy văn\n\nBài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.\n\n## Nơi cư trú và trao đổi sinh vật\n\nCác tầng cây, khoảng đất ngập nước và lung đìa tạo chỗ cư trú cho chim cùng sinh vật thủy sinh. Bài viết cũng ghi nhận cá di cư từ Mê Kông, cho thấy khu rừng có quan hệ với mạng đất ngập nước rộng hơn.\n\n## Giới hạn đối chiếu\n\nSố liệu thuộc bài VACNE năm 2011, không phải kiểm kê sinh học hiện hành. Chưa xác minh tuyến kênh bao ngạn dài 14 km hoặc địa giới hành chính hiện nay.",
+      "scope_note": "Số liệu thuộc bài VACNE năm 2011, không phải kiểm kê sinh học hiện hành. Chưa xác minh tuyến kênh bao ngạn dài 14 km hoặc địa giới hành chính hiện nay.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Rừng trong hệ thống thủy văn",
+          "text": "Bài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-TRASU-VACNE-2011"
+          ]
+        },
+        {
+          "heading": "Nơi cư trú và trao đổi sinh vật",
+          "text": "Các tầng cây, khoảng đất ngập nước và lung đìa tạo chỗ cư trú cho chim cùng sinh vật thủy sinh. Bài viết cũng ghi nhận cá di cư từ Mê Kông, cho thấy khu rừng có quan hệ với mạng đất ngập nước rộng hơn.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-TRASU-VACNE-2011"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Số liệu thuộc bài VACNE năm 2011, không phải kiểm kê sinh học hiện hành. Chưa xác minh tuyến kênh bao ngạn dài 14 km hoặc địa giới hành chính hiện nay.",
+          "sourceIds": [
+            "NB-TRASU-VACNE-2011"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-TRASU-VACNE-2011",
+          "statement": "Bài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.",
+          "locator": "phần 1, hai đoạn đầu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-TRASU-VACNE-2011",
+          "statement": "Các tầng cây, khoảng đất ngập nước và lung đìa tạo chỗ cư trú cho chim cùng sinh vật thủy sinh. Bài viết cũng ghi nhận cá di cư từ Mê Kông, cho thấy khu rừng có quan hệ với mạng đất ngập nước rộng hơn.",
+          "locator": "phần 1, đoạn về sinh cảnh và cá di cư",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Rừng tràm Trà Sư — Đê bao và sinh cảnh đất ngập nước",
+        "entity_type": "cultural_record",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-TRASU-VACNE-2011"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bài VACNE ghi diện tích Trà Sư là 845 ha và đặt khu rừng trong địa bàn ba xã Văn Giáo, Ô Long Vĩ, Thới Sơn lúc bài được viết. Rừng ngập phèn này hình thành gắn với hệ thống đê bao và chịu tác động của nước lũ Mê Kông.",
+          "source_ids": [
+            "NB-TRASU-VACNE-2011"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Số liệu thuộc bài VACNE năm 2011, không phải kiểm kê sinh học hiện hành. Chưa xác minh tuyến kênh bao ngạn dài 14 km hoặc địa giới hành chính hiện nay.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-U-MINH-THUONG",
+      "title": "U Minh Thượng — Rừng tràm và khả năng giữ nước của đất than bùn",
+      "slug": "vuon-quoc-gia-u-minh-thuong-rung-tram-tren-dat-than-bun",
+      "chapter": "nuoc",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "ecology",
+      "historical_area": "U Minh Thượng, Kiên Giang theo hồ sơ Ramsar",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Hồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.",
+      "introduction": "Hồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.",
+      "body": "## Rừng trên đất than bùn\n\nHồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.\n\n## Mốc ghi danh và chức năng sinh thái\n\nNgày chỉ định trong sổ Ramsar là 30/04/2015. Lớp than bùn cùng hệ thống kênh giữ nước và điều hòa dòng chảy cho vùng xung quanh. Đây là mốc ghi danh quốc tế, không phải ngày hình thành rừng hay tuổi của đất than bùn.\n\n## Giới hạn đối chiếu\n\nChỉ đối chiếu mục U Minh Thuong trong danh sách Ramsar. Chưa có nghiên cứu địa tầng để xác nhận tuổi 3.000 năm của than bùn; không dùng năm 2016 làm ngày chỉ định.",
+      "scope_note": "Chỉ đối chiếu mục U Minh Thuong trong danh sách Ramsar. Chưa có nghiên cứu địa tầng để xác nhận tuổi 3.000 năm của than bùn; không dùng năm 2016 làm ngày chỉ định.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Rừng trên đất than bùn",
+          "text": "Hồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-UMINH-RSIS-2228"
+          ]
+        },
+        {
+          "heading": "Mốc ghi danh và chức năng sinh thái",
+          "text": "Ngày chỉ định trong sổ Ramsar là 30/04/2015. Lớp than bùn cùng hệ thống kênh giữ nước và điều hòa dòng chảy cho vùng xung quanh. Đây là mốc ghi danh quốc tế, không phải ngày hình thành rừng hay tuổi của đất than bùn.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-UMINH-RSIS-2228"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Chỉ đối chiếu mục U Minh Thuong trong danh sách Ramsar. Chưa có nghiên cứu địa tầng để xác nhận tuổi 3.000 năm của than bùn; không dùng năm 2016 làm ngày chỉ định.",
+          "sourceIds": [
+            "NB-UMINH-RSIS-2228"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-UMINH-RSIS-2228",
+          "statement": "Hồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.",
+          "locator": "mục U Minh Thuong, diện tích và đoạn mô tả đầu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-UMINH-RSIS-2228",
+          "statement": "Ngày chỉ định trong sổ Ramsar là 30/04/2015. Lớp than bùn cùng hệ thống kênh giữ nước và điều hòa dòng chảy cho vùng xung quanh. Đây là mốc ghi danh quốc tế, không phải ngày hình thành rừng hay tuổi của đất than bùn.",
+          "locator": "mục U Minh Thuong, Designation dates và đoạn cuối",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "U Minh Thượng — Rừng tràm và khả năng giữ nước của đất than bùn",
+        "entity_type": "cultural_record",
+        "primary_domain": "dia-ly-sinh-thai",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-UMINH-RSIS-2228"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Hồ sơ Ramsar số 2228 mô tả U Minh Thượng là phần còn lại của rừng đầm lầy than bùn, gồm rừng hỗn giao và rừng tràm. Diện tích khu Ramsar được ghi là 8.038 ha; khoảng 3.000 ha có lớp than bùn.",
+          "source_ids": [
+            "NB-UMINH-RSIS-2228"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chỉ đối chiếu mục U Minh Thuong trong danh sách Ramsar. Chưa có nghiên cứu địa tầng để xác nhận tuổi 3.000 năm của than bùn; không dùng năm 2016 làm ngày chỉ định.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-OC-EO-BA-THE",
+      "title": "Óc Eo – Ba Thê — Từ khai quật đến cách đọc hiện vật",
+      "slug": "di-tich-khao-co-oc-eo-ba-the-dau-vet-do-thi-co",
+      "chapter": "dau-vet",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "archaeology",
+      "historical_area": "Óc Eo – Ba Thê, An Giang",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.",
+      "introduction": "Bảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.",
+      "body": "## Dấu mốc nghiên cứu năm 1944\n\nBảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.\n\n## Đọc văn hóa qua vật liệu\n\nBài giới thiệu trưng bày chia hiện vật thành đồ trang sức và kim loại, đồ gốm, cùng tượng Phật giáo và Hindu giáo. Những nhóm này mở ra cách đọc kỹ thuật, sinh hoạt và giao lưu qua di vật thay vì suy toàn bộ lịch sử từ một hiện vật riêng.\n\n## Giới hạn đối chiếu\n\nPhạm vi là bài giới thiệu trưng bày của bảo tàng, chưa phải khảo sát toàn bộ báo cáo khai quật. Chưa xác nhận ngày 10/02/1944 hay danh hiệu UNESCO hiện hành.",
+      "scope_note": "Phạm vi là bài giới thiệu trưng bày của bảo tàng, chưa phải khảo sát toàn bộ báo cáo khai quật. Chưa xác nhận ngày 10/02/1944 hay danh hiệu UNESCO hiện hành.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Dấu mốc nghiên cứu năm 1944",
+          "text": "Bảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-OCEO-BTLSQG-2012"
+          ]
+        },
+        {
+          "heading": "Đọc văn hóa qua vật liệu",
+          "text": "Bài giới thiệu trưng bày chia hiện vật thành đồ trang sức và kim loại, đồ gốm, cùng tượng Phật giáo và Hindu giáo. Những nhóm này mở ra cách đọc kỹ thuật, sinh hoạt và giao lưu qua di vật thay vì suy toàn bộ lịch sử từ một hiện vật riêng.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-OCEO-BTLSQG-2012"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Phạm vi là bài giới thiệu trưng bày của bảo tàng, chưa phải khảo sát toàn bộ báo cáo khai quật. Chưa xác nhận ngày 10/02/1944 hay danh hiệu UNESCO hiện hành.",
+          "sourceIds": [
+            "NB-OCEO-BTLSQG-2012"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-OCEO-BTLSQG-2012",
+          "statement": "Bảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.",
+          "locator": "đoạn Trải qua gần 70 năm phát hiện và nghiên cứu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-OCEO-BTLSQG-2012",
+          "statement": "Bài giới thiệu trưng bày chia hiện vật thành đồ trang sức và kim loại, đồ gốm, cùng tượng Phật giáo và Hindu giáo. Những nhóm này mở ra cách đọc kỹ thuật, sinh hoạt và giao lưu qua di vật thay vì suy toàn bộ lịch sử từ một hiện vật riêng.",
+          "locator": "ba nhóm hiện vật trong bài trưng bày",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Óc Eo – Ba Thê — Từ khai quật đến cách đọc hiện vật",
+        "entity_type": "cultural_record",
+        "primary_domain": "lich-su-khao-co",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-OCEO-BTLSQG-2012"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bảo tàng Lịch sử Quốc gia lấy cuộc khai quật của Louis Malleret tại Óc Eo – Ba Thê năm 1944 làm mốc trong lịch sử nghiên cứu. Mốc khảo cổ này khác với niên đại cư trú của cộng đồng cổ.",
+          "source_ids": [
+            "NB-OCEO-BTLSQG-2012"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Phạm vi là bài giới thiệu trưng bày của bảo tàng, chưa phải khảo sát toàn bộ báo cáo khai quật. Chưa xác nhận ngày 10/02/1944 hay danh hiệu UNESCO hiện hành.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-VAN-THANH-MIEU-VL",
+      "title": "Văn Thánh Miếu Vĩnh Long và Tụy Văn Lâu — Một không gian của sự học",
+      "slug": "van-thanh-mieu-vinh-long-va-tuy-van-lau",
+      "chapter": "dau-vet",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "architecture",
+      "historical_area": "Vĩnh Long, bên sông Long Hồ",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.",
+      "introduction": "Bài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.",
+      "body": "## Dựng miếu giữa biến động\n\nBài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.\n\n## Tụy Văn Lâu và việc gìn giữ\n\nTụy Văn Lâu, sau mang tên Văn Xương Các, là không gian cất sách, thờ tự và đàm đạo trong khuôn viên. Bài báo ghi việc gìn giữ công trình cùng các lần trùng tu, nhắc người đọc phân biệt thời điểm dựng miếu với những lớp sửa chữa về sau.\n\n## Giới hạn đối chiếu\n\nĐọc bài Nhân Dân và đối chiếu các mục lịch sử trên Wikipedia; chưa trực tiếp đọc bản rập bia hoặc sách Vĩnh Long xưa. Năm dựng bia số 1 khác nhau giữa hai nguồn nên chưa kết luận.",
+      "scope_note": "Đọc bài Nhân Dân và đối chiếu các mục lịch sử trên Wikipedia; chưa trực tiếp đọc bản rập bia hoặc sách Vĩnh Long xưa. Năm dựng bia số 1 khác nhau giữa hai nguồn nên chưa kết luận.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Dựng miếu giữa biến động",
+          "text": "Bài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-VTMVL-ND-2025"
+          ]
+        },
+        {
+          "heading": "Tụy Văn Lâu và việc gìn giữ",
+          "text": "Tụy Văn Lâu, sau mang tên Văn Xương Các, là không gian cất sách, thờ tự và đàm đạo trong khuôn viên. Bài báo ghi việc gìn giữ công trình cùng các lần trùng tu, nhắc người đọc phân biệt thời điểm dựng miếu với những lớp sửa chữa về sau.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-VTMVL-ND-2025"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Đọc bài Nhân Dân và đối chiếu các mục lịch sử trên Wikipedia; chưa trực tiếp đọc bản rập bia hoặc sách Vĩnh Long xưa. Năm dựng bia số 1 khác nhau giữa hai nguồn nên chưa kết luận.",
+          "sourceIds": [
+            "NB-VTMVL-ND-2025"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-VTMVL-ND-2025",
+          "statement": "Bài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.",
+          "locator": "Kiến trúc độc đáo, đoạn năm 1862 và đoạn khởi công",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-VTMVL-ND-2025",
+          "statement": "Tụy Văn Lâu, sau mang tên Văn Xương Các, là không gian cất sách, thờ tự và đàm đạo trong khuôn viên. Bài báo ghi việc gìn giữ công trình cùng các lần trùng tu, nhắc người đọc phân biệt thời điểm dựng miếu với những lớp sửa chữa về sau.",
+          "locator": "Kiến trúc độc đáo, đoạn Văn Xương Các và các lần trùng tu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-VTMVL-WIKI-2026",
+          "statement": "Nguồn tổng hợp ghi Tụy Văn lâu gắn với mốc 1869–1872 và ngày ghi danh miếu 25/03/1991.",
+          "locator": "Tụy Văn lâu; Thông tin thêm",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Văn Thánh Miếu Vĩnh Long và Tụy Văn Lâu — Một không gian của sự học",
+        "entity_type": "cultural_record",
+        "primary_domain": "kien-truc-khong-gian-song",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-VTMVL-ND-2025",
+          "NB-VTMVL-WIKI-2026"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bài Nhân Dân ngày 18/08/2025 đặt việc dựng Văn Thánh Miếu trong bối cảnh sĩ phu tỵ địa về Vĩnh Long. Công trình do Phan Thanh Giản và Nguyễn Thông khởi xướng, khởi công năm 1864 và hoàn thành năm 1866.",
+          "source_ids": [
+            "NB-VTMVL-ND-2025"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Đọc bài Nhân Dân và đối chiếu các mục lịch sử trên Wikipedia; chưa trực tiếp đọc bản rập bia hoặc sách Vĩnh Long xưa. Năm dựng bia số 1 khác nhau giữa hai nguồn nên chưa kết luận.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn. Ghi công cộng tác viên Wikimedia; phần biên soạn theo CC BY-SA 4.0.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "NBS-GIA-DINH-THONG-CHI",
+      "title": "Gia Định thành thông chí — Một lối đọc địa chí Nam Bộ",
+      "slug": "gia-dinh-thanh-thong-chi-trinh-hoai-duc",
+      "chapter": "dau-vet",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "archaeology",
+      "historical_area": "Gia Định thành theo tư liệu đầu thế kỷ XIX",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Trang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.",
+      "introduction": "Trang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.",
+      "body": "## Văn bản và người biên soạn\n\nTrang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.\n\n## Sáu phần để lần theo đất và người\n\nMục lục giới thiệu sáu quyển: Tinh dã chí, Sơn xuyên chí, Cương vực chí, Phong tục chí, Vật sản chí và Thành trì chí. Có thể dùng cấu trúc này làm đường dẫn tìm tư liệu về sông núi, địa vực và đời sống, trước khi kiểm chứng từng chi tiết ở bản văn.\n\n## Giới hạn đối chiếu\n\nBài này giới thiệu tác phẩm qua Wikipedia, chưa đọc hay đối chiếu nguyên bản Hán Nôm và bản dịch Lý Việt Dũng. Không coi đây là chứng cứ đã kiểm tra các dữ kiện bên trong bộ sách.",
+      "scope_note": "Bài này giới thiệu tác phẩm qua Wikipedia, chưa đọc hay đối chiếu nguyên bản Hán Nôm và bản dịch Lý Việt Dũng. Không coi đây là chứng cứ đã kiểm tra các dữ kiện bên trong bộ sách.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Văn bản và người biên soạn",
+          "text": "Trang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-GDTTC-WIKI-2026"
+          ]
+        },
+        {
+          "heading": "Sáu phần để lần theo đất và người",
+          "text": "Mục lục giới thiệu sáu quyển: Tinh dã chí, Sơn xuyên chí, Cương vực chí, Phong tục chí, Vật sản chí và Thành trì chí. Có thể dùng cấu trúc này làm đường dẫn tìm tư liệu về sông núi, địa vực và đời sống, trước khi kiểm chứng từng chi tiết ở bản văn.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-GDTTC-WIKI-2026"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Bài này giới thiệu tác phẩm qua Wikipedia, chưa đọc hay đối chiếu nguyên bản Hán Nôm và bản dịch Lý Việt Dũng. Không coi đây là chứng cứ đã kiểm tra các dữ kiện bên trong bộ sách.",
+          "sourceIds": [
+            "NB-GDTTC-WIKI-2026"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-GDTTC-WIKI-2026",
+          "statement": "Trang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.",
+          "locator": "hộp thông tin sách",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-GDTTC-WIKI-2026",
+          "statement": "Mục lục giới thiệu sáu quyển: Tinh dã chí, Sơn xuyên chí, Cương vực chí, Phong tục chí, Vật sản chí và Thành trì chí. Có thể dùng cấu trúc này làm đường dẫn tìm tư liệu về sông núi, địa vực và đời sống, trước khi kiểm chứng từng chi tiết ở bản văn.",
+          "locator": "Cấu trúc và nội dung, danh sách sáu quyển",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Gia Định thành thông chí — Một lối đọc địa chí Nam Bộ",
+        "entity_type": "cultural_record",
+        "primary_domain": "lich-su-khao-co",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-GDTTC-WIKI-2026"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Trang giới thiệu Gia Định thành thông chí xác định tác giả là Trịnh Hoài Đức và thể loại là địa chí. Ngôn ngữ văn bản được ghi là Hán, Nôm; thời điểm phát hành chỉ được nêu xấp xỉ năm 1820.",
+          "source_ids": [
+            "NB-GDTTC-WIKI-2026"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Bài này giới thiệu tác phẩm qua Wikipedia, chưa đọc hay đối chiếu nguyên bản Hán Nôm và bản dịch Lý Việt Dũng. Không coi đây là chứng cứ đã kiểm tra các dữ kiện bên trong bộ sách.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn. Ghi công cộng tác viên Wikimedia; phần biên soạn theo CC BY-SA 4.0.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "NBS-CHO-NOI-NGA-BAY",
+      "title": "Chợ nổi Ngã Bảy — Đọc một đầu mối giao thương qua tư liệu năm 2013",
+      "slug": "cho-noi-nga-bay-phung-hiep-noi-bay-nhanh-song-hoi-tu",
+      "chapter": "ben-song",
+      "category": "dia_danh",
+      "kind": "article",
+      "topic": "floating_market",
+      "historical_area": "Phụng Hiệp, Hậu Giang theo bài năm 2013",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.",
+      "introduction": "Bài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.",
+      "body": "## Giao điểm thủy lộ\n\nBài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.\n\n## Hàng hóa kể chuyện sinh kế\n\nNguồn mô tả ghe chở nông sản, thủy sản, hàng thủ công và vật dụng từ nhiều vùng về chợ. Danh mục ấy cho thấy sự gặp nhau giữa nghề vườn, nghề sông và hoạt động trao đổi, nhưng không phải thống kê về quy mô chợ hiện nay.\n\n## Giới hạn đối chiếu\n\nChỉ phản ánh phạm vi bài Tuổi Trẻ năm 2013; chưa có đối chiếu độc lập lịch di dời và hiện trạng chợ. Không chốt danh sách bảy nhánh sông vì tên trong đặc tả khác bài nguồn.",
+      "scope_note": "Chỉ phản ánh phạm vi bài Tuổi Trẻ năm 2013; chưa có đối chiếu độc lập lịch di dời và hiện trạng chợ. Không chốt danh sách bảy nhánh sông vì tên trong đặc tả khác bài nguồn.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Giao điểm thủy lộ",
+          "text": "Bài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-NGABAY-TT-2013"
+          ]
+        },
+        {
+          "heading": "Hàng hóa kể chuyện sinh kế",
+          "text": "Nguồn mô tả ghe chở nông sản, thủy sản, hàng thủ công và vật dụng từ nhiều vùng về chợ. Danh mục ấy cho thấy sự gặp nhau giữa nghề vườn, nghề sông và hoạt động trao đổi, nhưng không phải thống kê về quy mô chợ hiện nay.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-NGABAY-TT-2013"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Chỉ phản ánh phạm vi bài Tuổi Trẻ năm 2013; chưa có đối chiếu độc lập lịch di dời và hiện trạng chợ. Không chốt danh sách bảy nhánh sông vì tên trong đặc tả khác bài nguồn.",
+          "sourceIds": [
+            "NB-NGABAY-TT-2013"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-NGABAY-TT-2013",
+          "statement": "Bài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.",
+          "locator": "đoạn Chợ nổi Ngã Bảy được thành lập năm 1915",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-NGABAY-TT-2013",
+          "statement": "Nguồn mô tả ghe chở nông sản, thủy sản, hàng thủ công và vật dụng từ nhiều vùng về chợ. Danh mục ấy cho thấy sự gặp nhau giữa nghề vườn, nghề sông và hoạt động trao đổi, nhưng không phải thống kê về quy mô chợ hiện nay.",
+          "locator": "đoạn Ghe bán khô cá biển và danh mục hàng hóa",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Chợ nổi Ngã Bảy — Đọc một đầu mối giao thương qua tư liệu năm 2013",
+        "entity_type": "cultural_record",
+        "primary_domain": "lang-nghe-sinh-ke",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-NGABAY-TT-2013"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bài Sông nước Ngã Bảy của Tuổi Trẻ ghi chợ hình thành năm 1915, gắn với việc đào kênh Xáng tạo các ngả đường thủy. Trong cách kể của nguồn, chợ là đầu mối nối nhiều hướng giao thương của đồng bằng.",
+          "source_ids": [
+            "NB-NGABAY-TT-2013"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chỉ phản ánh phạm vi bài Tuổi Trẻ năm 2013; chưa có đối chiếu độc lập lịch di dời và hiện trạng chợ. Không chốt danh sách bảy nhánh sông vì tên trong đặc tả khác bài nguồn.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-GACH-GOM-MANG-THIT",
+      "title": "Mang Thít — Những lò gạch giữa sinh kế và bảo tồn",
+      "slug": "lang-gach-gom-mang-thit-vuong-quoc-do-ben-dong-co-chien",
+      "chapter": "ben-song",
+      "category": "nghe",
+      "kind": "article",
+      "topic": "craft",
+      "historical_area": "Mang Thít, Vĩnh Long",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.",
+      "introduction": "Bài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.",
+      "body": "## Giữ lại những lò cũ\n\nBài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.\n\n## Quy hoạch chưa phải kết quả thực hiện\n\nNguồn dẫn tờ trình ngày 01/08/2025 về nhiệm vụ quy hoạch phân khu vùng lõi, diện tích khoảng 341,70 ha. Tờ trình cho biết hướng bảo tồn được đề xuất; nó không chứng minh toàn bộ dự án đã hoàn thành hoặc dịch vụ tham quan đã vận hành.\n\n## Giới hạn đối chiếu\n\nGiới hạn ở bài báo năm 2025 và thông tin tờ trình được bài dẫn. Chưa đối chiếu quyết định triển khai cuối cùng, tình trạng nghề hiện tại hoặc danh hiệu di sản quốc gia.",
+      "scope_note": "Giới hạn ở bài báo năm 2025 và thông tin tờ trình được bài dẫn. Chưa đối chiếu quyết định triển khai cuối cùng, tình trạng nghề hiện tại hoặc danh hiệu di sản quốc gia.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Giữ lại những lò cũ",
+          "text": "Bài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-MANGTHIT-ND-2025"
+          ]
+        },
+        {
+          "heading": "Quy hoạch chưa phải kết quả thực hiện",
+          "text": "Nguồn dẫn tờ trình ngày 01/08/2025 về nhiệm vụ quy hoạch phân khu vùng lõi, diện tích khoảng 341,70 ha. Tờ trình cho biết hướng bảo tồn được đề xuất; nó không chứng minh toàn bộ dự án đã hoàn thành hoặc dịch vụ tham quan đã vận hành.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-MANGTHIT-ND-2025"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Giới hạn ở bài báo năm 2025 và thông tin tờ trình được bài dẫn. Chưa đối chiếu quyết định triển khai cuối cùng, tình trạng nghề hiện tại hoặc danh hiệu di sản quốc gia.",
+          "sourceIds": [
+            "NB-MANGTHIT-ND-2025"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-MANGTHIT-ND-2025",
+          "statement": "Bài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.",
+          "locator": "sapo và đoạn mở đầu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-MANGTHIT-ND-2025",
+          "statement": "Nguồn dẫn tờ trình ngày 01/08/2025 về nhiệm vụ quy hoạch phân khu vùng lõi, diện tích khoảng 341,70 ha. Tờ trình cho biết hướng bảo tồn được đề xuất; nó không chứng minh toàn bộ dự án đã hoàn thành hoặc dịch vụ tham quan đã vận hành.",
+          "locator": "đoạn Ngày 1/8/2025 vừa qua",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Mang Thít — Những lò gạch giữa sinh kế và bảo tồn",
+        "entity_type": "cultural_record",
+        "primary_domain": "lang-nghe-sinh-ke",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-MANGTHIT-ND-2025"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bài Nhân Dân ngày 27/08/2025 ghi nhận người dân ở Nhơn Phú mong dự án bảo tồn khu lò gạch, gốm Mang Thít sớm triển khai. Nhiều người ủng hộ giữ lò cũ, trong khi cảnh quan được bài báo mô tả đang xuống cấp.",
+          "source_ids": [
+            "NB-MANGTHIT-ND-2025"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Giới hạn ở bài báo năm 2025 và thông tin tờ trình được bài dẫn. Chưa đối chiếu quyết định triển khai cuối cùng, tình trạng nghề hiện tại hoặc danh hiệu di sản quốc gia.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-CHUA-DOI-MAHATUP",
+      "title": "Chùa Dơi (Mahatup) — Các lớp xây dựng của một ngôi chùa Khmer",
+      "slug": "chua-doi-mahatup-kien-truc-nam-tong-khmer",
+      "chapter": "nep-nha",
+      "category": "tin_nguong",
+      "kind": "article",
+      "topic": "architecture",
+      "historical_area": "Sóc Trăng theo địa bàn lịch sử",
+      "community": "Khmer",
+      "summary": "Trang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.",
+      "introduction": "Trang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.",
+      "body": "## Tên gọi và mốc khởi lập\n\nTrang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.\n\n## Phân biệt dựng chùa và sửa chánh điện\n\nNguồn ghi năm 1960 chánh điện được sửa lớn bằng vật liệu kiên cố, còn ngày công nhận di tích là 12/02/1999. Những mốc này chỉ các lớp xây dựng và ghi danh khác nhau, không thể dùng thay thế cho nhau.\n\n## Giới hạn đối chiếu\n\nĐọc các mục giới thiệu và lịch sử trên Wikipedia, chưa tiếp cận bản quyết định 05/1999/QĐ-BVHTT. Chưa kiểm chứng số lượng dơi hoặc những lời kể dơi không ăn trái trong chùa.",
+      "scope_note": "Đọc các mục giới thiệu và lịch sử trên Wikipedia, chưa tiếp cận bản quyết định 05/1999/QĐ-BVHTT. Chưa kiểm chứng số lượng dơi hoặc những lời kể dơi không ăn trái trong chùa.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Tên gọi và mốc khởi lập",
+          "text": "Trang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-CHUADOI-WIKI-2026"
+          ]
+        },
+        {
+          "heading": "Phân biệt dựng chùa và sửa chánh điện",
+          "text": "Nguồn ghi năm 1960 chánh điện được sửa lớn bằng vật liệu kiên cố, còn ngày công nhận di tích là 12/02/1999. Những mốc này chỉ các lớp xây dựng và ghi danh khác nhau, không thể dùng thay thế cho nhau.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-CHUADOI-WIKI-2026"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Đọc các mục giới thiệu và lịch sử trên Wikipedia, chưa tiếp cận bản quyết định 05/1999/QĐ-BVHTT. Chưa kiểm chứng số lượng dơi hoặc những lời kể dơi không ăn trái trong chùa.",
+          "sourceIds": [
+            "NB-CHUADOI-WIKI-2026"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-CHUADOI-WIKI-2026",
+          "statement": "Trang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.",
+          "locator": "hộp thông tin, Tên chùa và Lịch sử hình thành",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-CHUADOI-WIKI-2026",
+          "statement": "Nguồn ghi năm 1960 chánh điện được sửa lớn bằng vật liệu kiên cố, còn ngày công nhận di tích là 12/02/1999. Những mốc này chỉ các lớp xây dựng và ghi danh khác nhau, không thể dùng thay thế cho nhau.",
+          "locator": "Lịch sử hình thành và hộp thông tin di tích",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Chùa Dơi (Mahatup) — Các lớp xây dựng của một ngôi chùa Khmer",
+        "entity_type": "cultural_record",
+        "primary_domain": "tin-nguong-ton-giao",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [
+          "khmer"
+        ],
+        "source_ids": [
+          "NB-CHUADOI-WIKI-2026"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Trang Chùa Dơi giới thiệu tên Mahatup, tên gọi Mã Tộc và truyền thống Phật giáo Nam tông Khmer. Nguồn ghi Thạch Út khởi công năm 1569, với vật liệu gỗ và lá dừa nước trong giai đoạn đầu.",
+          "source_ids": [
+            "NB-CHUADOI-WIKI-2026"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Đọc các mục giới thiệu và lịch sử trên Wikipedia, chưa tiếp cận bản quyết định 05/1999/QĐ-BVHTT. Chưa kiểm chứng số lượng dơi hoặc những lời kể dơi không ăn trái trong chùa.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn. Ghi công cộng tác viên Wikimedia; phần biên soạn theo CC BY-SA 4.0.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "NBS-VIA-BA-CHUA-XU",
+      "title": "Vía Bà Chúa Xứ núi Sam — Lễ hội và sự tham gia của cộng đồng",
+      "slug": "le-hoi-via-ba-chua-xu-nui-sam-di-san-unesco",
+      "chapter": "mua-hoi",
+      "category": "le_hoi",
+      "kind": "article",
+      "topic": "community_life",
+      "historical_area": "Châu Đốc, An Giang theo hồ sơ UNESCO",
+      "community": "Kinh, Khmer, Chăm, Hoa",
+      "summary": "Hồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.",
+      "introduction": "Hồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.",
+      "body": "## Những ngày cùng chuẩn bị lễ\n\nHồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.\n\n## Ghi danh và trao truyền\n\nLễ hội được ghi vào Danh sách Di sản văn hóa phi vật thể đại diện của nhân loại năm 2024, hồ sơ 01999. UNESCO nhấn mạnh việc cộng đồng cùng tổ chức và trao truyền qua thực hành, gắn kết giữa những nhóm cùng sống trong một địa bàn.\n\n## Giới hạn đối chiếu\n\nChỉ dùng hồ sơ UNESCO 01999. Lịch âm truyền thống không thay cho thông báo tổ chức năm nay; niềm tin về sự che chở của Bà là niềm tin của cộng đồng, không phải kết luận khoa học.",
+      "scope_note": "Chỉ dùng hồ sơ UNESCO 01999. Lịch âm truyền thống không thay cho thông báo tổ chức năm nay; niềm tin về sự che chở của Bà là niềm tin của cộng đồng, không phải kết luận khoa học.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Những ngày cùng chuẩn bị lễ",
+          "text": "Hồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-BACHUAXU-UNESCO-2024"
+          ]
+        },
+        {
+          "heading": "Ghi danh và trao truyền",
+          "text": "Lễ hội được ghi vào Danh sách Di sản văn hóa phi vật thể đại diện của nhân loại năm 2024, hồ sơ 01999. UNESCO nhấn mạnh việc cộng đồng cùng tổ chức và trao truyền qua thực hành, gắn kết giữa những nhóm cùng sống trong một địa bàn.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-BACHUAXU-UNESCO-2024"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Chỉ dùng hồ sơ UNESCO 01999. Lịch âm truyền thống không thay cho thông báo tổ chức năm nay; niềm tin về sự che chở của Bà là niềm tin của cộng đồng, không phải kết luận khoa học.",
+          "sourceIds": [
+            "NB-BACHUAXU-UNESCO-2024"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-BACHUAXU-UNESCO-2024",
+          "statement": "Hồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.",
+          "locator": "phần mô tả lễ hội, đoạn đầu",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-BACHUAXU-UNESCO-2024",
+          "statement": "Lễ hội được ghi vào Danh sách Di sản văn hóa phi vật thể đại diện của nhân loại năm 2024, hồ sơ 01999. UNESCO nhấn mạnh việc cộng đồng cùng tổ chức và trao truyền qua thực hành, gắn kết giữa những nhóm cùng sống trong một địa bàn.",
+          "locator": "Inscribed in 2024 và phần mô tả trao truyền",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Vía Bà Chúa Xứ núi Sam — Lễ hội và sự tham gia của cộng đồng",
+        "entity_type": "cultural_record",
+        "primary_domain": "le-hoi",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [
+          "kinh",
+          "khmer",
+          "cham",
+          "hoa"
+        ],
+        "source_ids": [
+          "NB-BACHUAXU-UNESCO-2024"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Hồ sơ UNESCO mô tả lễ hội từ ngày 22 đến 27 tháng tư âm lịch, với sự tham gia của cộng đồng Kinh, Khmer, Chăm và Hoa ở Châu Đốc. Các hoạt động gồm rước, tắm và thay trang phục tượng, chuẩn bị lễ vật cùng diễn xướng.",
+          "source_ids": [
+            "NB-BACHUAXU-UNESCO-2024"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chỉ dùng hồ sơ UNESCO 01999. Lịch âm truyền thống không thay cho thông báo tổ chức năm nay; niềm tin về sự che chở của Bà là niềm tin của cộng đồng, không phải kết luận khoa học.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-DA-CO-HOAI-LANG",
+      "title": "Dạ cổ hoài lang và Cao Văn Lầu — Từ bản nhịp đôi đến vọng cổ",
+      "slug": "da-co-hoai-lang-va-nhac-si-cao-van-lau-1919",
+      "chapter": "mua-hoi",
+      "category": "nghe_thuat",
+      "kind": "article",
+      "topic": "music",
+      "historical_area": "Bạc Liêu trong tư liệu âm nhạc",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Bài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.",
+      "introduction": "Bài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.",
+      "body": "## Một bản nhạc tiếp tục biến đổi\n\nBài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.\n\n## Nghe lời kể trong phạm vi tư liệu\n\nBài nguồn dẫn lời kể về cảnh vợ chồng phải xa nhau, xem đó là một bối cảnh cảm xúc của tác phẩm. Hồ sơ này trình bày như lời kể được thuật lại, không dùng để kết luận chung về mọi gia đình Nam Bộ.\n\n## Giới hạn đối chiếu\n\nĐọc bài Tổ Quốc/Cinet; đối chiếu mục Thời điểm ra đời trên Wikipedia thấy còn các mốc 1918, 1919, 1920. Giữ 1919 là mốc theo bài Cinet, không khẳng định ngày sáng tác chính xác. Không chép lời ca hay sử dụng bản thu.",
+      "scope_note": "Đọc bài Tổ Quốc/Cinet; đối chiếu mục Thời điểm ra đời trên Wikipedia thấy còn các mốc 1918, 1919, 1920. Giữ 1919 là mốc theo bài Cinet, không khẳng định ngày sáng tác chính xác. Không chép lời ca hay sử dụng bản thu.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Một bản nhạc tiếp tục biến đổi",
+          "text": "Bài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-DCHL-CINET-2014"
+          ]
+        },
+        {
+          "heading": "Nghe lời kể trong phạm vi tư liệu",
+          "text": "Bài nguồn dẫn lời kể về cảnh vợ chồng phải xa nhau, xem đó là một bối cảnh cảm xúc của tác phẩm. Hồ sơ này trình bày như lời kể được thuật lại, không dùng để kết luận chung về mọi gia đình Nam Bộ.",
+          "kind": "anecdote",
+          "sourceIds": [
+            "NB-DCHL-CINET-2014"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Đọc bài Tổ Quốc/Cinet; đối chiếu mục Thời điểm ra đời trên Wikipedia thấy còn các mốc 1918, 1919, 1920. Giữ 1919 là mốc theo bài Cinet, không khẳng định ngày sáng tác chính xác. Không chép lời ca hay sử dụng bản thu.",
+          "sourceIds": [
+            "NB-DCHL-CINET-2014"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-DCHL-CINET-2014",
+          "statement": "Bài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.",
+          "locator": "đoạn giới thiệu, đoạn Nhắc đến ông và đoạn về biến đổi nhịp",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-DCHL-CINET-2014",
+          "statement": "Bài nguồn dẫn lời kể về cảnh vợ chồng phải xa nhau, xem đó là một bối cảnh cảm xúc của tác phẩm. Hồ sơ này trình bày như lời kể được thuật lại, không dùng để kết luận chung về mọi gia đình Nam Bộ.",
+          "locator": "đoạn Nỗi niềm ấy đã nhiều lần ông thổ lộ",
+          "kind": "variant",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-DCHL-WIKI-2026",
+          "statement": "Mục Thời điểm ra đời ghi các ý kiến khác nhau về năm sáng tác.",
+          "locator": "Thời điểm ra đời",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Dạ cổ hoài lang và Cao Văn Lầu — Từ bản nhịp đôi đến vọng cổ",
+        "entity_type": "cultural_record",
+        "primary_domain": "van-hoc-nghe-thuat",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-DCHL-CINET-2014",
+          "NB-DCHL-WIKI-2026"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Bài Tổ Quốc/Cinet giới thiệu Dạ cổ hoài lang của Cao Văn Lầu gồm 20 câu nhịp 2 và gắn tác phẩm với mốc 1919. Từ cấu trúc ấy, các nghệ sĩ tiếp tục phát triển nhịp thức để hình thành những cách diễn vọng cổ.",
+          "source_ids": [
+            "NB-DCHL-CINET-2014"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Đọc bài Tổ Quốc/Cinet; đối chiếu mục Thời điểm ra đời trên Wikipedia thấy còn các mốc 1918, 1919, 1920. Giữ 1919 là mốc theo bài Cinet, không khẳng định ngày sáng tác chính xác. Không chép lời ca hay sử dụng bản thu.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn. Ghi công cộng tác viên Wikimedia; phần biên soạn theo CC BY-SA 4.0.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "id": "NBS-NHA-CO-CAI-CUONG",
+      "title": "Nhà cổ Cai Cường — Kiến trúc bên rạch Cái Muối",
+      "slug": "nha-co-cai-cuong-ben-rach-cai-muoi",
+      "chapter": "nep-nha",
+      "category": "di_san",
+      "kind": "article",
+      "topic": "architecture",
+      "historical_area": "Bình Hòa Phước, Long Hồ theo bài năm 2013",
+      "community": "Trong phạm vi nguồn",
+      "summary": "Báo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.",
+      "introduction": "Báo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.",
+      "body": "## Ngôi nhà bên rạch\n\nBáo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.\n\n## Kết cấu và giao thoa kiến trúc\n\nNguồn ghi nhà dựng năm 1885, theo dạng chữ Đinh với hai nếp vuông góc. Bài nhấn mạnh sự kết hợp Đông – Tây ở nội và ngoại thất. Mô tả ấy giúp đọc tổ chức không gian nhưng không thay cho đo vẽ kiến trúc tại chỗ.\n\n## Giới hạn đối chiếu\n\nBài ngắn hỗ trợ điểm dừng trong tuyến Long Hồ–Cổ Chiên; chỉ dựa vào bài Báo Ảnh Việt Nam năm 2013. Chưa kiểm chứng giờ mở cửa, hiện trạng sở hữu hoặc điều kiện tham quan.",
+      "scope_note": "Bài ngắn hỗ trợ điểm dừng trong tuyến Long Hồ–Cổ Chiên; chỉ dựa vào bài Báo Ảnh Việt Nam năm 2013. Chưa kiểm chứng giờ mở cửa, hiện trạng sở hữu hoặc điều kiện tham quan.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Ngôi nhà bên rạch",
+          "text": "Báo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-CAICUONG-VNA-2013"
+          ]
+        },
+        {
+          "heading": "Kết cấu và giao thoa kiến trúc",
+          "text": "Nguồn ghi nhà dựng năm 1885, theo dạng chữ Đinh với hai nếp vuông góc. Bài nhấn mạnh sự kết hợp Đông – Tây ở nội và ngoại thất. Mô tả ấy giúp đọc tổ chức không gian nhưng không thay cho đo vẽ kiến trúc tại chỗ.",
+          "kind": "documented_history",
+          "sourceIds": [
+            "NB-CAICUONG-VNA-2013"
+          ]
+        },
+        {
+          "heading": "Giới hạn đối chiếu",
+          "kind": "editorial_note",
+          "text": "Bài ngắn hỗ trợ điểm dừng trong tuyến Long Hồ–Cổ Chiên; chỉ dựa vào bài Báo Ảnh Việt Nam năm 2013. Chưa kiểm chứng giờ mở cửa, hiện trạng sở hữu hoặc điều kiện tham quan.",
+          "sourceIds": [
+            "NB-CAICUONG-VNA-2013"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-CAICUONG-VNA-2013",
+          "statement": "Báo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.",
+          "locator": "đoạn mở đầu bài 22/10/2013",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        },
+        {
+          "source_id": "NB-CAICUONG-VNA-2013",
+          "statement": "Nguồn ghi nhà dựng năm 1885, theo dạng chữ Đinh với hai nếp vuông góc. Bài nhấn mạnh sự kết hợp Đông – Tây ở nội và ngoại thất. Mô tả ấy giúp đọc tổ chức không gian nhưng không thay cho đo vẽ kiến trúc tại chỗ.",
+          "locator": "đoạn Nhà cổ Cai Cường được xây dựng năm 1885",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "Nhà cổ Cai Cường — Kiến trúc bên rạch Cái Muối",
+        "entity_type": "cultural_record",
+        "primary_domain": "kien-truc-khong-gian-song",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-CAICUONG-VNA-2013"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Báo Ảnh Việt Nam giới thiệu nhà Cai Cường bên rạch Cái Muối, tại Bình Hòa Phước, Long Hồ, Vĩnh Long theo địa danh lúc bài đăng. Đây là điểm nối trong hành trình đọc cảnh quan nhà ở và đường sông.",
+          "source_ids": [
+            "NB-CAICUONG-VNA-2013"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Bài ngắn hỗ trợ điểm dừng trong tuyến Long Hồ–Cổ Chiên; chỉ dựa vào bài Báo Ảnh Việt Nam năm 2013. Chưa kiểm chứng giờ mở cửa, hiện trạng sở hữu hoặc điều kiện tham quan.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời diễn giải mới từ các đoạn nguồn có vị trí đối chiếu. Không dùng ảnh, bản thu hoặc lời ca từ nguồn.",
+      "text_license": "",
+      "text_license_url": ""
+    },
+    {
+      "id": "NBS-TD-CAY-BEO",
+      "title": "cây bẹo / treo bẹo",
+      "slug": "cay-beo-treo-beo",
+      "chapter": "tieng-noi",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "particle",
+      "historical_area": "Nam Bộ trong phạm vi nguồn",
+      "community": "Người dùng tiếng Việt",
+      "summary": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+      "introduction": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+      "body": "## Nghĩa được chọn\n\nCây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.\n\n## Ngữ cảnh và ví dụ\n\nNgữ cảnh mua bán tại chợ nổi Cái Răng trong bài báo năm 2010. Ví dụ do ban biên soạn đặt: “Thấy cây bẹo treo bí, mình ghé hỏi ghe bán bí.”",
+      "scope_note": "Chỉ đối chiếu nghĩa và ngữ cảnh ở nguồn nêu dưới đây; chưa đọc trực tiếp mục từ trong Tự vị tiếng nói miền Nam hoặc Đại Nam quấc âm tự vị. Chưa kết luận từ nguyên. Ví dụ do ban biên soạn đặt, không phải lời kể hay câu sưu tầm.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn",
+          "kind": "explanation",
+          "text": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+          "sourceIds": [
+            "NB-CHONOI-ND-2010"
+          ]
+        },
+        {
+          "heading": "Ngữ cảnh và ví dụ",
+          "kind": "editorial_note",
+          "text": "Ngữ cảnh mua bán tại chợ nổi Cái Răng trong bài báo năm 2010. Ví dụ do ban biên soạn đặt: “Thấy cây bẹo treo bí, mình ghé hỏi ghe bán bí.”",
+          "sourceIds": [
+            "NB-CHONOI-ND-2010"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-CHONOI-ND-2010",
+          "statement": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+          "locator": "đoạn về treo bẹo và bẹo hàng",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "cây bẹo / treo bẹo",
+        "entity_type": "dialect_entry",
+        "primary_domain": "phuong-ngu-nam-bo",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-CHONOI-ND-2010"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+          "source_ids": [
+            "NB-CHONOI-ND-2010"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chỉ đối chiếu nghĩa và ngữ cảnh ở nguồn nêu dưới đây; chưa đọc trực tiếp mục từ trong Tự vị tiếng nói miền Nam hoặc Đại Nam quấc âm tự vị. Chưa kết luận từ nguyên. Ví dụ do ban biên soạn đặt, không phải lời kể hay câu sưu tầm.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời giải nghĩa và ví dụ mới, không dùng bản thu.",
+      "text_license": "",
+      "text_license_url": "",
+      "dialect": {
+        "headword": "cây bẹo / treo bẹo",
+        "meaning": "Cây sào trên mũi ghe dùng treo nông sản để báo cho người đi chợ biết ghe bán thứ gì.",
+        "usage_context": "Ngữ cảnh mua bán tại chợ nổi Cái Răng trong bài báo năm 2010.",
+        "example": "Thấy cây bẹo treo bí, mình ghé hỏi ghe bán bí.",
+        "example_note": "Ví dụ mới do ban biên soạn đặt, không phải trích dẫn nguồn.",
+        "regional_scope": "Theo phạm vi nguồn; không khẳng định chỉ có ở Nam Bộ.",
+        "part_of_speech": "Danh từ / động từ",
+        "audio_asset_id": null
+      },
+      "dialect_clearance": {
+        "status": "accepted",
+        "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+        "checked_at": "2026-11-01",
+        "source_ids": [
+          "NB-CHONOI-ND-2010"
+        ],
+        "example_origin": "editorial",
+        "audio_cleared": false
+      }
+    },
+    {
+      "id": "NBS-TD-LI-XI",
+      "title": "lì xì",
+      "slug": "li-xi-mung-tuoi",
+      "chapter": "tieng-noi",
+      "category": "ngon_ngu",
+      "kind": "dialect",
+      "topic": "particle",
+      "historical_area": "Nam Bộ trong phạm vi nguồn",
+      "community": "Người dùng tiếng Việt",
+      "summary": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+      "introduction": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+      "body": "## Nghĩa được chọn\n\nỞ nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.\n\n## Ngữ cảnh và ví dụ\n\nChọn nghĩa mừng tuổi, không gộp với tính từ trong cách nói “mặt lì xì”. Ví dụ do ban biên soạn đặt: “Mùng một, bà lì xì cho cháu sau lời chúc Tết.”",
+      "scope_note": "Chỉ đối chiếu nghĩa và ngữ cảnh ở nguồn nêu dưới đây; chưa đọc trực tiếp mục từ trong Tự vị tiếng nói miền Nam hoặc Đại Nam quấc âm tự vị. Chưa kết luận từ nguyên. Ví dụ do ban biên soạn đặt, không phải lời kể hay câu sưu tầm.",
+      "classification": "source_supported",
+      "sections": [
+        {
+          "heading": "Nghĩa được chọn",
+          "kind": "explanation",
+          "text": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+          "sourceIds": [
+            "NB-LIXI-WT-2026"
+          ]
+        },
+        {
+          "heading": "Ngữ cảnh và ví dụ",
+          "kind": "editorial_note",
+          "text": "Chọn nghĩa mừng tuổi, không gộp với tính từ trong cách nói “mặt lì xì”. Ví dụ do ban biên soạn đặt: “Mùng một, bà lì xì cho cháu sau lời chúc Tết.”",
+          "sourceIds": [
+            "NB-LIXI-WT-2026"
+          ]
+        }
+      ],
+      "claims": [
+        {
+          "source_id": "NB-LIXI-WT-2026",
+          "statement": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+          "locator": "Danh từ nghĩa 2 và Động từ, oldid 2369555",
+          "kind": "fact",
+          "review_status": "accepted",
+          "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+          "checked_at": "2026-11-01"
+        }
+      ],
+      "knowledge": {
+        "name": "lì xì",
+        "entity_type": "dialect_entry",
+        "primary_domain": "phuong-ngu-nam-bo",
+        "secondary_domains": [],
+        "regions": [
+          "tay-nam-bo"
+        ],
+        "communities": [],
+        "source_ids": [
+          "NB-LIXI-WT-2026"
+        ],
+        "aliases": [],
+        "historical_places": [],
+        "current_admin": null,
+        "origin_section": 0,
+        "change_section": 1
+      },
+      "answers": {
+        "what": {
+          "state": "supported",
+          "text": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+          "source_ids": [
+            "NB-LIXI-WT-2026"
+          ]
+        },
+        "when_where": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "community": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "origins": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "changes": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        },
+        "unknowns": {
+          "state": "unknown",
+          "text": "Chỉ đối chiếu nghĩa và ngữ cảnh ở nguồn nêu dưới đây; chưa đọc trực tiếp mục từ trong Tự vị tiếng nói miền Nam hoặc Đại Nam quấc âm tự vị. Chưa kết luận từ nguyên. Ví dụ do ban biên soạn đặt, không phải lời kể hay câu sưu tầm.",
+          "source_ids": []
+        },
+        "related": {
+          "state": "unknown",
+          "text": "Chưa đủ tư liệu để kết luận riêng trong phạm vi nguồn đã đọc.",
+          "source_ids": []
+        }
+      },
+      "media": [],
+      "publication_status": "published",
+      "review_status": "verified",
+      "rights_review_status": "cleared",
+      "publish_approval": true,
+      "reviewed_at": "2026-11-01",
+      "rights_basis": "Lời giải nghĩa và ví dụ mới, không dùng bản thu. Ghi công cộng tác viên Wiktionary; mục từ theo CC BY-SA 4.0.",
+      "text_license": "CC BY-SA 4.0",
+      "text_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "dialect": {
+        "headword": "lì xì",
+        "meaning": "Ở nghĩa danh từ được chọn, tiền mừng tuổi đặt trong phong bao; cũng dùng làm động từ chỉ việc mừng tuổi trẻ em dịp Tết.",
+        "usage_context": "Chọn nghĩa mừng tuổi, không gộp với tính từ trong cách nói “mặt lì xì”.",
+        "example": "Mùng một, bà lì xì cho cháu sau lời chúc Tết.",
+        "example_note": "Ví dụ mới do ban biên soạn đặt, không phải trích dẫn nguồn.",
+        "regional_scope": "Theo phạm vi nguồn; không khẳng định chỉ có ở Nam Bộ.",
+        "part_of_speech": "Danh từ / động từ",
+        "audio_asset_id": null
+      },
+      "dialect_clearance": {
+        "status": "accepted",
+        "reviewer": "Codex — đối chiếu nguồn cho phần bổ sung",
+        "checked_at": "2026-11-01",
+        "source_ids": [
+          "NB-LIXI-WT-2026"
+        ],
+        "example_origin": "editorial",
+        "audio_cleared": false
+      }
+    }
+  ],
+  "tours": [
+    {
+      "id": "NBS-LONG-HO-CO-CHIEN",
+      "slug": "doc-bo-long-ho-co-chien-vinh-long",
+      "title": "Dọc bờ Long Hồ – Cổ Chiên",
+      "kind": "digital",
+      "description": "Hành trình đọc từ Văn Thánh Miếu qua nhà cổ Cai Cường đến lò gạch Mang Thít. Đây là liên kết biên tập, không phải tuyến giao thông hoặc bản thuyết minh thu âm.",
+      "content_ids": [
+        "NBS-VAN-THANH-MIEU-VL",
+        "NBS-NHA-CO-CAI-CUONG",
+        "NBS-GACH-GOM-MANG-THIT"
+      ]
+    },
+    {
+      "id": "NBS-THUY-DAO-TAY-NAM",
+      "slug": "thuy-dao-bien-vien-tay-nam-an-giang",
+      "title": "Thủy đạo biên viễn Tây Nam",
+      "kind": "digital",
+      "description": "Đọc kênh Vĩnh Tế, lễ hội núi Sam, Trà Sư và Óc Eo. Các điểm dừng được ghép để đọc tư liệu, không khẳng định quan hệ nhân quả hoặc cung cấp tuyến tham quan thực địa.",
+      "content_ids": [
+        "NBS-KENH-VINH-TE",
+        "NBS-VIA-BA-CHUA-XU",
+        "NBS-RUNG-TRAM-TRA-SU",
+        "NBS-OC-EO-BA-THE"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "SUP-CHUADOI-1569",
+      "content_id": "NBS-CHUA-DOI-MAHATUP",
+      "title": "Khởi lập Chùa Dơi theo nguồn tổng hợp",
+      "value": "1569",
+      "year": 1569,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-CHUADOI-WIKI-2026",
+      "locator": "Lịch sử hình thành",
+      "source_as_written": "1569",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-GDTTC-1820",
+      "content_id": "NBS-GIA-DINH-THONG-CHI",
+      "title": "Thời điểm phát hành xấp xỉ của Gia Định thành thông chí",
+      "value": "Khoảng 1820",
+      "year": 1820,
+      "precision": "year",
+      "kind": "publication",
+      "source_id": "NB-GDTTC-WIKI-2026",
+      "locator": "hộp thông tin sách; không đồng nhất với việc đào kênh Vĩnh Tế",
+      "source_as_written": "Khoảng 1820",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-VTM-1864",
+      "content_id": "NBS-VAN-THANH-MIEU-VL",
+      "title": "Khởi công và hoàn thành Văn Thánh Miếu",
+      "value": "1864–1866",
+      "year": 1864,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-VTMVL-ND-2025",
+      "locator": "Kiến trúc độc đáo, hai mốc xây dựng",
+      "source_as_written": "1864–1866",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-TUYVAN-1869",
+      "content_id": "NBS-VAN-THANH-MIEU-VL",
+      "title": "Xây Tụy Văn lâu theo nguồn tổng hợp",
+      "value": "1869–1872",
+      "year": 1869,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-VTMVL-WIKI-2026",
+      "locator": "Tụy Văn lâu — Lịch sử",
+      "source_as_written": "1869–1872",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-NGABAY-1915",
+      "content_id": "NBS-CHO-NOI-NGA-BAY",
+      "title": "Chợ nổi Ngã Bảy hình thành theo bài Tuổi Trẻ",
+      "value": "1915",
+      "year": 1915,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-NGABAY-TT-2013",
+      "locator": "đoạn về thành lập chợ",
+      "source_as_written": "1915",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-DCHL-1919",
+      "content_id": "NBS-DA-CO-HOAI-LANG",
+      "title": "Dạ cổ hoài lang: mốc theo Cinet, còn ý kiến khác",
+      "value": "1919 (theo Cinet)",
+      "year": 1919,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-DCHL-CINET-2014",
+      "locator": "đoạn Nhắc đến ông; xem ghi chú về các niên đại khác trong hồ sơ",
+      "source_as_written": "1919 (theo Cinet)",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-OCEO-1944",
+      "content_id": "NBS-OC-EO-BA-THE",
+      "title": "Louis Malleret khai quật Óc Eo – Ba Thê",
+      "value": "1944",
+      "year": 1944,
+      "precision": "year",
+      "kind": "observed_event",
+      "source_id": "NB-OCEO-BTLSQG-2012",
+      "locator": "đoạn Trải qua gần 70 năm",
+      "source_as_written": "1944",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-VTM-1991",
+      "content_id": "NBS-VAN-THANH-MIEU-VL",
+      "title": "Văn Thánh Miếu được xếp hạng, theo nguồn tổng hợp",
+      "value": "1991-03-25",
+      "year": 1991,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "NB-VTMVL-WIKI-2026",
+      "locator": "Thông tin thêm; chưa đọc quyết định gốc",
+      "source_as_written": "1991-03-25",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-CHUADOI-1999",
+      "content_id": "NBS-CHUA-DOI-MAHATUP",
+      "title": "Chùa Dơi được xếp hạng, theo nguồn tổng hợp",
+      "value": "1999-02-12",
+      "year": 1999,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "NB-CHUADOI-WIKI-2026",
+      "locator": "hộp thông tin di tích; chưa đọc quyết định gốc",
+      "source_as_written": "1999-02-12",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-UMINH-2015",
+      "content_id": "NBS-U-MINH-THUONG",
+      "title": "Chỉ định khu Ramsar U Minh Thượng, số 2228",
+      "value": "2015-04-30",
+      "year": 2015,
+      "precision": "day",
+      "kind": "register",
+      "source_id": "NB-UMINH-RSIS-2228",
+      "locator": "mục U Minh Thuong, Designation dates",
+      "source_as_written": "2015-04-30",
+      "review_status": "source_checked"
+    },
+    {
+      "id": "SUP-BACHUAXU-2024",
+      "content_id": "NBS-VIA-BA-CHUA-XU",
+      "title": "UNESCO ghi danh lễ hội Vía Bà Chúa Xứ núi Sam",
+      "value": "2024",
+      "year": 2024,
+      "precision": "year",
+      "kind": "register",
+      "source_id": "NB-BACHUAXU-UNESCO-2024",
+      "locator": "Inscribed in 2024, hồ sơ 01999",
+      "source_as_written": "2024",
+      "review_status": "source_checked"
+    }
+  ],
+  "locations": [
+    {
+      "id": "rung-tram-tra-su",
+      "content_id": "NBS-RUNG-TRAM-TRA-SU",
+      "lat": 10.5761,
+      "lng": 105.0447,
+      "theme": "ecology",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "u-minh-thuong",
+      "content_id": "NBS-U-MINH-THUONG",
+      "lat": 9.5914,
+      "lng": 105.0886,
+      "theme": "ecology",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "oc-eo-ba-the",
+      "content_id": "NBS-OC-EO-BA-THE",
+      "lat": 10.2519,
+      "lng": 105.1517,
+      "theme": "archaeology",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "van-thanh-mieu-vinh-long",
+      "content_id": "NBS-VAN-THANH-MIEU-VL",
+      "lat": 10.2494,
+      "lng": 105.9861,
+      "theme": "worship",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "cho-noi-nga-bay",
+      "content_id": "NBS-CHO-NOI-NGA-BAY",
+      "lat": 9.8117,
+      "lng": 105.8219,
+      "theme": "river",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "lo-gach-mang-thit",
+      "content_id": "NBS-GACH-GOM-MANG-THIT",
+      "lat": 10.1983,
+      "lng": 106.0581,
+      "theme": "craft",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "chua-doi-mahatup",
+      "content_id": "NBS-CHUA-DOI-MAHATUP",
+      "lat": 9.5836,
+      "lng": 105.9669,
+      "theme": "worship",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "mieu-ba-chua-xu",
+      "content_id": "NBS-VIA-BA-CHUA-XU",
+      "lat": 10.6744,
+      "lng": 105.0806,
+      "theme": "worship",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    },
+    {
+      "id": "khu-luu-niem-cao-van-lau",
+      "content_id": "NBS-DA-CO-HOAI-LANG",
+      "lat": 9.2811,
+      "lng": 105.7244,
+      "theme": "arts",
+      "status": "proposed",
+      "provenance": "nam_bo_ky_su_content_and_ui_spec.md — bảng tọa độ do chủ dự án cung cấp; chưa đối chiếu nguồn bản đồ hoặc thực địa."
+    }
+  ]
+}

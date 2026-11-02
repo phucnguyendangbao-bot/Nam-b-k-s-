@@ -10,7 +10,7 @@
 
 /* ---------- 1. Hiện khi cuộn: tiêu đề trước, nội dung sau, các thẻ nối nhau ---------- */
 [data-reveal] > *,
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li) {
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li) {
   transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out);
   transition-delay: calc(min(var(--i, 0), 6) * var(--stagger));
 }
@@ -20,11 +20,11 @@
 }
 [data-reveal] > :nth-child(2) { --i: 1; }
 [data-reveal] > :nth-child(3) { --i: 2; }
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li):nth-child(1) { --i: 2; }
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li):nth-child(2) { --i: 3; }
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li):nth-child(3) { --i: 4; }
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li):nth-child(4) { --i: 5; }
-[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li):nth-child(n+5) { --i: 6; }
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li):nth-child(1) { --i: 2; }
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li):nth-child(2) { --i: 3; }
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li):nth-child(3) { --i: 4; }
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li):nth-child(4) { --i: 5; }
+[data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li):nth-child(n+5) { --i: 6; }
 
 /* Nét vàng trước nhãn mục: dấu hiệu nhận diện duy nhất, tự vẽ ra khi khối hiện. */
 .sx-eyebrow, .hx-eyebrow { display: flex; align-items: center; gap: .625rem; }
@@ -89,10 +89,31 @@
 }
 @keyframes read-grow { to { scale: 1 1; } }
 
-/* ---------- 6. Giảm chuyển động: chỉ còn rõ dần ---------- */
+/* ---------- 6. Ảnh: khung không bao giờ trắng trơn, ảnh hiện dần khi tải xong, lắng nhẹ khi cuộn tới ----------
+   Khung `.ph` mang màu chủ đạo và một bản ảnh mờ 24px (lib/media-placeholders.json). Ảnh thật nằm trên, hiện rõ
+   dần khi đã tải (image-fade.tsx). Ảnh trong khối vừa cuộn tới lắng từ 106% về 100% chậm hơn chữ một nhịp. */
+:where(.ph) { position: relative; }
+.ph { isolation: isolate; background-color: var(--ph-c, var(--c-paper-deep)); }
+.ph::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--ph, none) center / cover no-repeat; filter: blur(14px) saturate(1.05); transform: scale(1.15); }
+.ph img[data-nimg] { transition: opacity 720ms var(--ease-out), scale 900ms var(--ease-out); }
+.ph-ready .ph img[data-nimg]:not([data-loaded]) { opacity: 0; }
+.reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: 1.06; }
+/* Ảnh chương: lắng từ 114% về 108%, rồi trôi chậm hơn trang một chút khi cuộn qua (chiều sâu rất nhẹ, không lắc).
+   Trình duyệt chưa có scroll-driven animation thì ảnh đứng yên ở 100%. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ch-media-frame img[data-nimg] { scale: 1.08; animation: ch-drift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame img[data-nimg] { scale: 1.14; }
+  }
+}
+@keyframes ch-drift { from { translate: 0 -3%; } to { translate: 0 3%; } }
+
+/* ---------- 7. Giảm chuyển động: chỉ còn rõ dần ---------- */
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready [data-reveal]:not([data-revealed]) > *,
   .reveal-ready [data-reveal]:not([data-revealed]) :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li) { translate: none; }
-  [data-reveal] > *, [data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li) { transition-delay: 0s !important; }
+  [data-reveal] > *, [data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li) { transition-delay: 0s !important; }
   .read-progress { animation-duration: auto !important; }
+  .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: 1; }
+  .ph img[data-nimg] { transition: opacity 200ms linear; }
 }

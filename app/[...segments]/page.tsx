@@ -2,11 +2,12 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Admin } from '@/components/admin';
 import { ActionForm, Arrow, Breadcrumb, ContentCards, Empty, Flash, PageTitle, SearchForm, SignIn, Status } from '@/components/site';
-import { all, content, ensureSeed, one, publicContents, publicTours, stats, tourStops, viewer, type Row } from '@/lib/static-data';
+import { all, content, ensureSeed, one, publicContents, publicTours, stats, viewer, type Row } from '@/lib/static-data';
 import { categories, fold } from '@/lib/catalog';
 import { CollectionPage, PublicDossier, collectionDescriptions } from '@/components/collections';
 import { InstantSearch } from '@/components/interactive/command-palette';
 import { MapTourCards, MapTourPage } from '@/components/map-tour-page';
+import { JourneyIndex, ReadingJourneyPage } from '@/components/journey-pages';
 import { mapTourBySlug } from '@/lib/map-tours';
 import { heritagePlaces } from '@/lib/heritage-places';
 import { HeritageAtlas } from '@/components/interactive/heritage-atlas';
@@ -68,12 +69,6 @@ function Body({ text }: { text: string }) {
   );
 }
 
-function Save({ id, kind, back, user }: { id: string; kind: string; back: string; user: Row | null }) {
-  return user
-    ? <ActionForm action="bookmark" id={id} back={back} className="inline-form"><input type="hidden" name="kind" value={kind} /><button className="button outline">Lưu vào sổ tay</button></ActionForm>
-    : <a className="button outline" href="/huong-dan-doc">Gợi ý đọc và đối chiếu</a>;
-}
-
 const sourceTypeLabels: Record<string, string> = {
   official_pdf: 'Văn bản chính thức (PDF)', official_register: 'Danh mục ghi danh chính thức', official_dataset: 'Dữ liệu cơ quan nhà nước', official_article: 'Bài trên cổng thông tin chính thức', official_record: 'Hồ sơ chính thức',
   journalism: 'Báo chí', journalism_article: 'Bài báo', journalism_report: 'Phóng sự', journalism_interview: 'Phỏng vấn trên báo', journalism_report_interview: 'Phóng sự, phỏng vấn',
@@ -83,7 +78,6 @@ const sourceTypeLabels: Record<string, string> = {
   journalism_republication: 'Bài báo đăng lại', historical_book_transcription: 'Bản chép sách cổ', bibliographic_index: 'Chỉ mục thư tịch',
 };
 const kindLabels: Record<string, string> = { place: 'Địa điểm', custom: 'Phong tục', festival: 'Lễ hội', heritage: 'Di sản và nghề', proverb: 'Tục ngữ', dialect: 'Mục từ' };
-const tourKind: Record<string, string> = { physical: 'Đi thực địa', digital: 'Đọc từ xa', memory: 'Ký ức' };
 
 export default async function Page({ params, searchParams }: Props) {
   await ensureSeed();
@@ -220,91 +214,18 @@ export default async function Page({ params, searchParams }: Props) {
   }
 
   if (route === 'hanh-trinh' && !s[1]) {
-    let tours = await publicTours();
-    if (q.loai) tours = tours.filter(t => t.kind === q.loai);
-    const showMap = !q.loai || q.loai === 'physical';
-    return (
-      <main id="main" className="wrap page">
-        <Breadcrumb items={[{ label: 'Hành trình' }]} />
-        <PageTitle title="Hành trình" description="Tour bản đồ 3D đưa bạn bay qua từng điểm di sản, có chú thích và thuyết minh dẫn nguồn. Hành trình đọc nối vài hồ sơ thành một mạch để hiểu một chủ đề từ nhiều phía." />
-        <div className="filter-tabs">
-          {[['', 'Tất cả'], ['physical', 'Tour bản đồ 3D'], ['digital', 'Đọc từ xa'], ['memory', 'Ký ức']].map(([v, l]) => (
-            <a className={(q.loai ?? '') === v ? 'active' : ''} href={`/hanh-trinh${v ? '?loai=' + v : ''}`} key={v}>{l}</a>
-          ))}
-        </div>
-        {showMap && (
-          <section className="tour-index-block" aria-labelledby="tour-3d">
-            <div className="sec-head"><div><h2 id="tour-3d">Tour bản đồ 3D</h2><p>Bay qua từng điểm di sản, nghe thuyết minh có số nguồn ở cuối mỗi câu.</p></div></div>
-            <MapTourCards />
-          </section>
-        )}
-        {tours.length ? (
-          <section aria-labelledby="tour-doc">
-            {showMap && <div className="sec-head tour-doc-head"><div><h2 id="tour-doc">Hành trình đọc</h2><p>Chuỗi hồ sơ để đọc từ xa, không phải tuyến đi thực địa.</p></div></div>}
-            <div className="content-grid">
-              {tours.map(t => (
-                <a className="tour-card" href={`/hanh-trinh/${t.slug}`} key={t.id}>
-                  <span className="eyebrow">{tourKind[t.kind] ?? t.kind}, {t.stop_count} chặng</span>
-                  <h2>{t.title}</h2>
-                  <p>{t.description}</p>
-                  <span className="text-link">Bắt đầu <Arrow /></span>
-                </a>
-              ))}
-            </div>
-          </section>
-        ) : !showMap && (
-          <Empty title="Chưa có hành trình ở mục này" description="Hành trình mới sẽ mở khi đủ hồ sơ đã kiểm chứng." action="/hanh-trinh" label="Xem tất cả hành trình" />
-        )}
-      </main>
-    );
+    const allTours = await publicTours();
+    const tours = q.loai ? allTours.filter(tour => tour.kind === q.loai) : allTours;
+    return <JourneyIndex tours={tours} allTours={allTours} contents={await publicContents()} filter={q.loai} />;
   }
 
   if (route === 'hanh-trinh' && s[1]) {
+    const allTours = await publicTours();
     const mapTour = mapTourBySlug(s[1]);
-    if (mapTour) return <MapTourPage tour={mapTour} readingTours={await publicTours()} />;
-    const tour = (await publicTours()).find(t => t.slug === s[1]);
+    if (mapTour) return <MapTourPage tour={mapTour} readingTours={allTours} />;
+    const tour = allTours.find(tour => tour.slug === s[1]);
     if (!tour) notFound();
-    const stops = await tourStops(tour.id);
-    const progress = user ? await one('SELECT stop_id FROM tour_progress WHERE user_id=? AND tour_id=?', user.userId, tour.id) : null;
-    const active = stops.find(x => x.stop_id === q.chang) ?? stops.find(x => x.stop_id === progress?.stop_id) ?? stops[0];
-    const index = stops.findIndex(x => x.stop_id === active.stop_id);
-    const back = `/hanh-trinh/${tour.slug}`;
-    return (
-      <main id="main" className="wrap page">
-        <Flash params={q} />
-        <Breadcrumb items={[{ label: 'Hành trình', href: '/hanh-trinh' }, { label: tour.title }]} />
-        <PageTitle eyebrow={`${tourKind[tour.kind] ?? tour.kind}, ${stops.length} chặng`} title={tour.title} description={tour.description}>
-          <div className="page-title-actions"><Save id={tour.id} kind="tour" back={back} user={user} /></div>
-        </PageTitle>
-        <div className="nb-tour-progress" role="progressbar" aria-valuemin={1} aria-valuemax={stops.length} aria-valuenow={index + 1} aria-label="Tiến độ hành trình"><span style={{ width: `${((index + 1) / stops.length) * 100}%` }} /></div>
-        <div className="tour-layout">
-          <nav aria-label="Các chặng">
-            {stops.map((stop, i) => (
-              <a className={stop.stop_id === active.stop_id ? 'active' : ''} aria-current={stop.stop_id === active.stop_id ? 'step' : undefined} key={stop.stop_id} href={`${back}?chang=${stop.stop_id}`}>
-                <span>{i + 1}</span>{stop.title}
-              </a>
-            ))}
-          </nav>
-          <article key={active.stop_id}>
-            <p className="eyebrow">Chặng {index + 1} trên {stops.length}</p>
-            <h2>{active.title}</h2>
-            <p className="tour-summary">{active.summary}</p>
-            <Body text={active.body ?? ''} />
-            <p className="tour-more"><a className="text-link" href={`/ho-so/${active.slug}`}>Đọc hồ sơ đầy đủ và nguồn</a></p>
-            <div className="tour-controls">
-              {index > 0 && <a className="button outline" href={`${back}?chang=${stops[index - 1].stop_id}`}>Chặng trước</a>}
-              {index < stops.length - 1 && <a className="button" href={`${back}?chang=${stops[index + 1].stop_id}`}>Chặng tiếp <Arrow /></a>}
-              {user && (
-                <ActionForm action="progress" id={tour.id} back={back} className="inline-form">
-                  <input type="hidden" name="stop_id" value={active.stop_id} />
-                  <button className="button outline">Lưu tiến độ ở chặng này</button>
-                </ActionForm>
-              )}
-            </div>
-          </article>
-        </div>
-      </main>
-    );
+    return <ReadingJourneyPage tour={tour} allTours={allTours} initialStop={q.chang} />;
   }
 
   if (route === 'ky-uc-cong-dong') {

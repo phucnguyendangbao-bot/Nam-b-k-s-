@@ -49,5 +49,19 @@ test('câu chuyện sáu chương: phủ đủ hồ sơ, không trùng, ảnh ch
   }
   const first = storyPosition(ids[0]), last = storyPosition(ids.at(-1));
   assert.equal(first.prev, null); assert.equal(last.next, null);
-  assert.equal(storyPosition('E021').next.id, 'NBS-NINH-KIEU', 'cuối chương 2 sang đầu chương 3');
+  for (let index = 0; index < chapters.length - 1; index++) {
+    assert.equal(storyPosition(chapters[index].ids.at(-1)).next.id, chapters[index + 1].ids[0], 'cuối mỗi chương sang đầu chương tiếp');
+  }
+});
+
+test('mọi ảnh trong public/media có ảnh mờ dựng sẵn và màu nền, để khung ảnh không trắng trơn khi đang tải', async () => {
+  const { readdir, readFile } = await import('node:fs/promises');
+  const placeholders = JSON.parse(await readFile(new URL('../lib/media-placeholders.json', import.meta.url), 'utf8'));
+  const files = (await readdir(new URL('../public/media/', import.meta.url))).filter(name => /\.(?:jpe?g|png|webp)$/i.test(name));
+  for (const name of files) {
+    const p = placeholders[`/media/${name}`];
+    assert.ok(p, `thiếu ảnh mờ cho ${name}: chạy npm run media:placeholders`);
+    assert.match(p.blur, /^data:image\/webp;base64,/); assert.ok(p.blur.length < 1200, name);
+    assert.match(p.color, /^#[0-9a-f]{6}$/);
+  }
 });

@@ -9,6 +9,8 @@
  * - Viết số và ngày theo cách đọc được thành tiếng, vì câu được đưa thẳng vào giọng đọc máy.
  */
 
+import journeyPhotos from '../data/media/journey-photos.json' with { type: 'json' };
+
 export type MapSource = { id: string; title: string; publisher: string; url: string; date?: string };
 export type NarrationLine = { text: string; src: string[] };
 export type LegMode = 'walk' | 'boat' | 'drive';
@@ -75,7 +77,7 @@ export const mapTourDrafts: MapTour[] = [
     duration: 'Khoảng 15 phút xem, 5 chặng',
     review: 'draft',
     publicDraft: true,
-    cover: { src: '/media/cai-rang-market-dalbera.webp', credit: 'Ảnh: Jean-Pierre Dalbéra, CC BY 2.0' },
+    cover: { src: '/media/story-cho-noi-cai-rang-astesana.webp', credit: 'Jean-Marc Astesana · CC BY-SA 2.0' },
     readingTours: ['doc-ten-dat-qua-nhung-gia-thuyet-nbs-doc-ten-dat'],
     stops: [
       {
@@ -202,7 +204,7 @@ export const mapTourDrafts: MapTour[] = [
     duration: 'Khoảng 10 phút xem, 3 chặng',
     review: 'draft',
     publicDraft: true,
-    cover: { src: '/media/binh-thuy-house-daae.webp', credit: 'Ảnh: Daaé, Public domain' },
+    cover: { src: '/media/story-nha-co-binh-thuy-daae.webp', credit: 'Daaé · Public domain' },
     readingTours: ['nep-nha-qua-tu-lieu-va-loi-ke-nbs-doc-nep-nha'],
     stops: [
       {
@@ -218,7 +220,7 @@ export const mapTourDrafts: MapTour[] = [
           { text: 'Năm 1989, đình được công nhận là di tích kiến trúc nghệ thuật cấp quốc gia.', src: ['S-DINHBT-BVH'] },
           { text: 'Lễ hội Kỳ yên Thượng điền diễn ra vào dịp rằm tháng tư âm lịch, Hạ điền vào dịp rằm tháng chạp. Năm 2018, lễ hội được đưa vào danh mục di sản văn hóa phi vật thể quốc gia.', src: ['S-DINHBT-BVH'] },
         ],
-        image: { src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y%2C_C%E1%BA%A7n_Th%C6%A1.jpg/960px-%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y%2C_C%E1%BA%A7n_Th%C6%A1.jpg', credit: 'Bùi Thụy Đào Nguyên, Public domain, Wikimedia Commons', href: 'https://commons.wikimedia.org/wiki/File:%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y,_C%E1%BA%A7n_Th%C6%A1.jpg' },
+        image: { src: '/media/journey-dinh-binh-thuy.webp', credit: 'Bùi Thụy Đào Nguyên · CC BY 3.0', href: 'https://commons.wikimedia.org/wiki/File:%C4%90%C3%ACnh_B%C3%ACnh_Th%E1%BB%A7y,_C%E1%BA%A7n_Th%C6%A1.jpg' },
         facts: [
           { label: 'Xây dựng', value: '1844; xây lại xong 1910' },
           { label: 'Xếp hạng', value: 'Di tích quốc gia, 1989' },
@@ -270,7 +272,12 @@ export const mapTourDrafts: MapTour[] = [
 ];
 
 /** Tuyến được dùng trong trang, sitemap và liên kết hồ sơ: đã duyệt, hoặc nháp được phép công bố kèm nhãn. */
-export const mapTours: MapTour[] = mapTourDrafts.filter(tour => tour.review === 'reviewed' || tour.publicDraft);
+export const mapTours: MapTour[] = mapTourDrafts.filter(tour => tour.review === 'reviewed' || tour.publicDraft).map(tour => ({
+  ...tour, stops: tour.stops.map(stop => {
+    const image = journeyPhotos.photos.find(photo => photo.stop_id === stop.id);
+    return image ? { ...stop, image: { src: image.src, credit: `${image.author} · ${image.license}`, href: image.source_url } } : stop;
+  }),
+}));
 
 /** Khoảng cách theo đường chim bay, mét. */
 export function distance(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {

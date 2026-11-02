@@ -75,22 +75,22 @@ export type Chapter = {
 export const chapters: Chapter[] = [
   { n: 1, slug: 'nuoc', name: 'Nước', title: 'Trước hết là nước.',
     lede: 'Nhìn từ trên cao, sông Hậu mang phù sa ra biển. Câu chuyện bắt đầu ở hai vùng đất ngập nước: đồng cỏ, rừng tràm Tràm Chim sống theo nhịp nước, và rừng ngập mặn Cần Giờ với công việc giữ rừng.',
-    ids: ['KN-TRAM-CHIM', 'KN-CAN-GIO'], image: storyImages.nuoc },
+    ids: ['KN-TRAM-CHIM', 'KN-CAN-GIO', 'NBS-RUNG-TRAM-TRA-SU', 'NBS-U-MINH-THUONG'], image: storyImages.nuoc },
   { n: 2, slug: 'dau-vet', name: 'Dấu vết', title: 'Những lớp đất biết kể.',
     lede: 'Có câu hỏi đã có tư liệu trả lời, có câu hỏi còn để ngỏ. Từ tượng động vật Dốc Chùa, mốc hành chính năm 1698, con kênh Vĩnh Tế đào bằng tay, cuộc đời thầy đồ Nguyễn Đình Chiểu đến những giả thuyết về tên Đầu Sấu, Cái Răng, mỗi hồ sơ tách rõ dữ kiện với chuyện kể.',
-    ids: ['KN-SAMPLE-DOC-CHUA', 'NBS-NGUYEN-HUU-CANH', 'NBS-KENH-VINH-TE', 'NBS-NGUYEN-DINH-CHIEU', 'E020', 'E021'] },
+    ids: ['KN-SAMPLE-DOC-CHUA', 'NBS-NGUYEN-HUU-CANH', 'NBS-KENH-VINH-TE', 'NBS-NGUYEN-DINH-CHIEU', 'E020', 'E021', 'NBS-OC-EO-BA-THE', 'NBS-VAN-THANH-MIEU-VL', 'NBS-GIA-DINH-THONG-CHI'] },
   { n: 3, slug: 'ben-song', name: 'Bến sông', title: 'Đời sống họp lại bên bến.',
     lede: 'Nơi sông gặp sông thành bến, bến thành chợ. Đọc bến Ninh Kiều, cái tên Cần Thơ của một con sông nhỏ, chợ nổi Cái Răng, rồi nghề bánh pía và bánh tráng phơi sương qua bàn tay người làm.',
-    ids: ['NBS-NINH-KIEU', 'NBS-TEN-CAN-THO', 'NBS-CHO-NOI', 'E027', 'NBS-BANH-TRANG-TRANG-BANG'], image: storyImages.ben },
+    ids: ['NBS-NINH-KIEU', 'NBS-TEN-CAN-THO', 'NBS-CHO-NOI', 'E027', 'NBS-BANH-TRANG-TRANG-BANG', 'NBS-CHO-NOI-NGA-BAY', 'NBS-GACH-GOM-MANG-THIT'], image: storyImages.ben },
   { n: 4, slug: 'nep-nha', name: 'Nếp nhà', title: 'Từ bậc thềm vào gian nhà.',
     lede: 'Một ngôi nhà cổ, một mái đình làng, một mâm trầu cau, một lời mời cưới, một ngày giỗ. Những nếp sống gia đình và xóm làng được đọc qua tư liệu và lời kể.',
-    ids: ['NBS-BINH-THUY', 'NBS-DINH-BINH-THUY', 'E001', 'E002', 'E004', 'E008'], image: storyImages.nha },
+    ids: ['NBS-BINH-THUY', 'NBS-DINH-BINH-THUY', 'E001', 'E002', 'E004', 'E008', 'NBS-CHUA-DOI-MAHATUP', 'NBS-NHA-CO-CAI-CUONG'], image: storyImages.nha },
   { n: 5, slug: 'mua-hoi', name: 'Mùa hội', title: 'Khi các cộng đồng gặp nhau.',
     lede: 'Năm mới và mùa trăng của người Khmer, nhịp chèo ghe Ngo, đêm Nguyên Tiêu, đời sống Chăm ở Châu Giang, tiếng đờn ca tài tử và sân khấu Rô Băm: phương Nam là nơi nhiều cộng đồng cùng sống.',
-    ids: ['E011', 'E010', 'E012', 'E013', 'KN-SAMPLE-NGUYEN-TIEU', 'KN-SAMPLE-CHAU-GIANG', 'E018', 'E014'], image: storyImages.hoi },
+    ids: ['E011', 'E010', 'E012', 'E013', 'KN-SAMPLE-NGUYEN-TIEU', 'KN-SAMPLE-CHAU-GIANG', 'E018', 'E014', 'NBS-VIA-BA-CHUA-XU', 'NBS-DA-CO-HOAI-LANG'], image: storyImages.hoi },
   { n: 6, slug: 'tieng-noi', name: 'Tiếng nói', title: 'Lời xưa còn trong lời nay.',
     lede: 'Từ hai câu tục ngữ in ở Sài Gòn năm 1897 đến những tiếng xưng hô, tiếng đệm người miền Tây vẫn nói mỗi ngày.',
-    ids: ['NBS-TUCNGU-18', 'NBS-TUCNGU-22', 'E029', 'E030', 'E031', 'E032', 'E033', 'NBS-TU-VAY', 'NBS-TU-VO', 'NBS-TU-NGHEN'] },
+    ids: ['NBS-TUCNGU-18', 'NBS-TUCNGU-22', 'E029', 'E030', 'E031', 'E032', 'E033', 'NBS-TU-VAY', 'NBS-TU-VO', 'NBS-TU-NGHEN', 'NBS-TD-CAY-BEO', 'NBS-TD-LI-XI'] },
 ];
 
 export const chapterAnchor = (c: Pick<Chapter, 'n'>) => `chuong-${c.n}`;

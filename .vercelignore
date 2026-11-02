@@ -1,0 +1,27 @@
+# Local dependencies, generated builds and caches
+node_modules
+.next
+.vercel
+.vinext
+dist
+out
+coverage
+*.tsbuildinfo
+
+# Local environment, keys and tool state
+.env*
+.dev.vars*
+*.pem
+.git
+.agents
+.codex
+.aws
+.ssh
+.wrangler
+.sites-runtime
+
+# Working files, reports, screenshots and source-image downloads
+work
+outputs
+__pycache__
+*.pyc

@@ -23,6 +23,7 @@
 .coll-intro { margin-top: var(--s-4); max-width: 46ch; font-size: var(--t-lg); line-height: 1.38; letter-spacing: .011em; color: var(--c-ink-soft); }
 .coll-count { margin-top: var(--s-5); font-size: var(--t-sm); font-weight: 600; color: var(--c-ink-muted); }
 .coll-hero-photo { margin: 0; }
+.coll-hero-photo .ph { display: block; overflow: hidden; border-radius: var(--r-sm); }
 .coll-hero-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r-sm); box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); }
 .coll-hero-photo figcaption { margin-top: var(--s-2); font-size: 12px; line-height: 1.5; color: var(--c-ink-muted); }
 .coll-hero-photo figcaption a { color: var(--c-ink-soft); text-decoration: underline; text-underline-offset: 2px; }
@@ -79,6 +80,8 @@
 .toc-mobile a { display: block; padding: 10px 0; border-top: 1px solid var(--c-line); font-size: var(--t-sm); color: var(--c-primary); }
 
 .documentary-photo { margin: 0; }
+.documentary-photo .photo-frame { overflow: hidden; border-radius: var(--r-sm); }
+.nb-dossier-cover .documentary-photo .photo-frame { border-radius: var(--r-lg); }
 .documentary-photo img { width: 100%; height: auto; border-radius: var(--r-sm); background: var(--c-paper-sunken); }
 .documentary-photo figcaption { display: grid; gap: 4px; margin-top: var(--s-3); font-size: var(--t-sm); color: var(--c-ink-muted); }
 .documentary-photo figcaption strong { font-weight: 600; color: var(--c-ink-soft); }

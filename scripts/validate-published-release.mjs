@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
-import { canReleaseArticle } from '../lib/release-model.ts';
+import { canReleaseArticle, canReleaseDialect } from '../lib/release-model.ts';
 import { editorialQuestions, factKindLabels, knowledgeDomains, knowledgeRegions, knowledgeCommunities } from '../lib/knowledge-taxonomy.ts';
 import { imagePathAllowed, permitsCommercialMedia, sectionBody } from '../lib/editorial-model.ts';
 import { contentExpansion } from '../lib/content-expansion.ts';
@@ -13,7 +13,7 @@ const json = async file => JSON.parse(await readFile(new URL(file, root), 'utf8'
 const text = value => typeof value === 'string' && value.trim().length > 0;
 const https = value => { try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password; } catch { return false; } };
 const unique = (values, label) => assert.equal(new Set(values).size, values.length, `Duplicate ${label}`);
-export function validatePublishedRelease(release, approval, { sourceIds, sourceMap = new Map(), mediaBytes }) {
+export function validatePublishedRelease(release, approval, { sourceIds, sourceMap = new Map(), mediaBytes, knownArticleIds = new Set() }) {
   assert.equal(approval.status, 'approved'); assert.equal(approval.authority, 'owner_delegation');
   assert.ok(text(approval.authorization) && text(approval.reviewer) && /^\d{4}-\d{2}-\d{2}$/.test(approval.reviewed_at));
   unique(release.sources.map(source => source.id), 'release sources'); unique(release.articles.map(article => article.id), 'release articles'); unique(release.tours.map(tour => tour.id), 'release tours');
@@ -26,7 +26,7 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
     assert.ok(https(source.url) && text(source.name) && text(source.source_type) && text(source.publisher) && text(source.source_version) && text(source.license_reported) && text(source.rights), `Incomplete source ${source.id}`);
     assert.ok(!['library_catalog','bibliographic_index','book_notice'].includes(source.source_type), 'Bibliography is not factual evidence');
     assert.equal(source.review_status, 'accepted'); assert.equal(source.checked_at, approval.reviewed_at);
-    assert.ok(['full_article','transcription','abstract','register_entry'].includes(source.consulted_extent), `Unknown consulted extent ${source.id}`);
+    assert.ok(['full_article','transcription','abstract','register_entry','excerpt'].includes(source.consulted_extent), `Unknown consulted extent ${source.id}`);
     const registered = sourceMap.get(source.id);
     if (registered) { assert.equal(source.url, registered.url, `Existing source URL changed: ${source.id}`); assert.equal(source.source_type, registered.source_type, `Existing source type changed: ${source.id}`); }
   }
@@ -38,7 +38,13 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
     assert.equal(article.introduction, article.summary, 'Introduction needs the same reviewed text as summary');
     assert.equal(article.body, sectionBody(article.sections), 'Body must be built only from reviewed sections');
     assert.equal(article.classification, 'source_supported', 'This release makes scoped source-supported claims, not blanket register approval');
-    assert.equal(article.latitude, undefined); assert.equal(article.longitude, undefined); assert.ok(!article.dialect && !article.audio_url && !article.audio_asset_id, 'Audio and dialect need separate clearance');
+    assert.equal(article.latitude, undefined); assert.equal(article.longitude, undefined);
+    assert.ok(!article.audio_url && !article.audio_asset_id, 'Audio needs separate clearance');
+    assert.ok(canReleaseDialect(article, approval), 'Dialect needs a named source and example clearance');
+    if (article.dialect) {
+      assert.ok(article.sections.some(section => section.text.includes(article.dialect.meaning)), 'Dialect meaning must be in reviewed text');
+      assert.ok(article.sections.some(section => section.kind === 'editorial_note' && section.text.includes(article.dialect.example)), 'Example must be explicitly editorial');
+    }
     for (const section of article.sections) assert.ok(section.kind in factKindLabels && text(section.heading) && text(section.text));
     for (const claim of article.claims) {
       assert.ok(['fact','historical_interpretation','hypothesis','variant','register_entry'].includes(claim.kind));
@@ -68,12 +74,26 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
       assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.file_sha256, `Asset changed ${asset.url}`); assets++;
     }
   }
-  for (const tour of release.tours) assert.ok(tour.kind === 'digital' && text(tour.title) && text(tour.description) && tour.content_ids.length > 1 && tour.content_ids.every(id => release.articles.some(article => article.id === id) || ['E001','E011','NBS-BINH-THUY','NBS-CHO-NOI'].includes(id)), 'Reading journey has an unapproved stop');
+  for (const tour of release.tours) assert.ok(tour.kind === 'digital' && text(tour.title) && text(tour.description) && tour.content_ids.length > 1 && tour.content_ids.every(id => release.articles.some(article => article.id === id) || knownArticleIds.has(id) || ['E001','E011','NBS-BINH-THUY','NBS-CHO-NOI'].includes(id)), 'Reading journey has an unapproved stop');
+  unique((release.events ?? []).map(event => event.id), 'events');
+  for (const event of release.events ?? []) {
+    const article = release.articles.find(article => article.id === event.content_id);
+    assert.ok(article && article.claims.some(claim => claim.source_id === event.source_id), 'Event has no reviewed dossier/source');
+    assert.ok(['publication','register','observed_event'].includes(event.kind) && ['day','year'].includes(event.precision));
+    assert.ok(Number.isInteger(event.year) && text(event.value) && text(event.title) && text(event.locator) && text(event.source_as_written) && event.review_status === 'source_checked');
+  }
+  unique((release.locations ?? []).map(place => place.id), 'locations');
+  for (const place of release.locations ?? []) {
+    assert.ok(release.articles.some(article => article.id === place.content_id), 'Map pin has no released dossier');
+    assert.ok(Number.isFinite(place.lat) && Math.abs(place.lat) <= 90 && Number.isFinite(place.lng) && Math.abs(place.lng) <= 180, 'Invalid map coordinate');
+    assert.ok(place.status === 'proposed' && text(place.provenance), 'Spec coordinates must retain proposed provenance');
+    assert.ok(['ecology','archaeology','worship','river','craft','arts'].includes(place.theme));
+  }
   const unicode = value => { if (typeof value === 'string') assert.ok(value === value.normalize('NFC') && !value.includes('\uFFFD'), 'Malformed Unicode'); else if (Array.isArray(value)) value.forEach(unicode); else if (value && typeof value === 'object') Object.values(value).forEach(unicode); };
   unicode(release); unicode(approval);
   return { articles: release.articles.length, sources: release.sources.length, claims, assets, reading_journeys: release.tours.length };
 }
-export const releaseDates = ['2026-10-28', '2026-11-01'];
+export const releaseDates = ['2026-10-28', '2026-11-01', '2026-11-01-supplement', '2026-11-02-enrichment'];
 export async function loadValidatedRelease(date = '2026-10-28') {
   const bytes = await readFile(new URL(`data/release/published-${date}.json`, root));
   const release = JSON.parse(bytes.toString('utf8')); const approval = await json(`data/release/publication-approval-${date}.json`);
@@ -88,7 +108,7 @@ export async function loadValidatedRelease(date = '2026-10-28') {
   // Nguồn đã có trong kho (kể cả gói duyệt trước) không được đổi URL hay loại nguồn khi đọc lại cho gói sau.
   const earlier = await Promise.all(releaseDates.filter(other => other < date).map(other => json(`data/release/published-${other}.json`)));
   const sourceMap = new Map([...seed.sources, ...bundle.sources, ...contentExpansion.sources, ...earlier.flatMap(other => other.sources)].map(source => [source.id, source]));
-  const context = { sourceIds: new Set(sourceMap.keys()), sourceMap, mediaBytes };
+  const context = { sourceIds: new Set(sourceMap.keys()), sourceMap, mediaBytes, knownArticleIds: new Set(earlier.flatMap(other => other.articles.map(article => article.id))) };
   return { release, approval, context, counts: validatePublishedRelease(release, approval, context) };
 }
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) { for (const date of process.argv[2] ? [process.argv[2]] : releaseDates) { const { counts } = await loadValidatedRelease(date); console.log(date, JSON.stringify(counts)); } }

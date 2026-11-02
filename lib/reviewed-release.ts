@@ -3,6 +3,10 @@ import document from '@/data/release/published-2026-10-28.json';
 import decision from '@/data/release/publication-approval-2026-10-28.json';
 import enrichment from '@/data/release/published-2026-11-01.json';
 import enrichmentDecision from '@/data/release/publication-approval-2026-11-01.json';
+import supplement from '@/data/release/published-2026-11-01-supplement.json';
+import supplementDecision from '@/data/release/publication-approval-2026-11-01-supplement.json';
+import dossierEnrichment from '@/data/release/published-2026-11-02-enrichment.json';
+import dossierEnrichmentDecision from '@/data/release/publication-approval-2026-11-02-enrichment.json';
 import { canReleaseArticle } from './release-model';
 import type { PublicationApproval, ReleaseArticle, ReleaseData } from './release-model';
 
@@ -13,6 +17,8 @@ import type { PublicationApproval, ReleaseArticle, ReleaseData } from './release
 const layers = [
   { release: document as unknown as ReleaseData, raw: document, approval: decision as PublicationApproval },
   { release: enrichment as unknown as ReleaseData, raw: enrichment, approval: enrichmentDecision as PublicationApproval },
+  { release: supplement as unknown as ReleaseData, raw: supplement, approval: supplementDecision as PublicationApproval },
+  { release: dossierEnrichment as unknown as ReleaseData, raw: dossierEnrichment, approval: dossierEnrichmentDecision as PublicationApproval },
 ];
 for (const { release, raw, approval } of layers) {
   if (createHash('sha256').update(JSON.stringify(raw)).digest('hex') !== approval.release_payload_sha256) throw new Error(`Reviewed release ${release.version} payload has changed; source and rights review must be repeated.`);
@@ -35,4 +41,5 @@ for (const { release } of layers) {
 export const reviewedRelease: ReleaseData = {
   version: layers.map(layer => layer.release.version).join('+'), reviewed_at: layers.at(-1)!.release.reviewed_at,
   sources: [...sources.values()], articles: [...byId.values()], tours: layers.flatMap(layer => layer.release.tours),
+  events: layers.flatMap(layer => layer.release.events ?? []), locations: layers.flatMap(layer => layer.release.locations ?? []),
 };

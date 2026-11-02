@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ph } from '@/lib/media';
 import { categories } from '@/lib/catalog';
 import type { Row } from '@/lib/static-data';
 import { nfc, topics } from '@/lib/editorial-model';
@@ -51,9 +52,9 @@ export function StoryCard({ item: c, preview = false, headingLevel = 3 }: { item
   const motif = c.topic === 'architecture' ? 'house' : collection.motif;
   return (
     <article className={`nb-story-card tone-${tone}`}>
-      <a className="nb-story-media" href={href} tabIndex={-1} aria-hidden="true">
+      <a className={`nb-story-media ${c.image_url ? 'ph' : ''}`} href={href} tabIndex={-1} aria-hidden="true" style={ph(c.image_url)}>
         {c.image_url
-          ? <Image src={c.image_url} alt="" width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" />
+          ? <Image src={c.image_url} alt="" width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 480px" loading="lazy" />
           : isWord ? <span className="nb-story-word">{nfc(c.title)}</span> : <Motif kind={motif} />}
       </a>
       <div className="nb-story-body">

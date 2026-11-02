@@ -1,0 +1,26 @@
+{
+  "version": "publication-approval-2026-11-02-enrichment-v1",
+  "status": "approved",
+  "authority": "owner_delegation",
+  "reviewer": "Codex — đối chiếu nội dung làm dày 02/11/2026",
+  "reviewed_at": "2026-11-02",
+  "authorization": "Chủ dự án yêu cầu “cập nhật thêm thông tin nội dung” và chọn “Làm dày các hồ sơ hiện có” trong chat ngày 02/11/2026. Codex thực hiện biên soạn và đối chiếu nguồn cho đúng 11 hồ sơ trong gói này. Đây là bản ghi kiểm tra của Codex trong phạm vi yêu cầu, không phải phê duyệt học thuật của bên thứ ba.",
+  "scope": "Giữ ID, slug, ảnh và các gói duyệt trước. Mỗi hồ sơ thêm hai mục tư liệu và một ghi chú đọc liên quan; câu trả lời phân biệt supported, partial, unknown. Không thêm hồ sơ, mục từ, tọa độ, sự kiện, tour hoặc bản thu. Các nguồn không tải lại được ghi rõ trong source_version; nội dung mới không dựa vào phần chưa đọc.",
+  "approved_article_ids": [
+    "NBS-RUNG-TRAM-TRA-SU",
+    "NBS-U-MINH-THUONG",
+    "NBS-OC-EO-BA-THE",
+    "NBS-VAN-THANH-MIEU-VL",
+    "NBS-GIA-DINH-THONG-CHI",
+    "NBS-CHO-NOI-NGA-BAY",
+    "NBS-GACH-GOM-MANG-THIT",
+    "NBS-CHUA-DOI-MAHATUP",
+    "NBS-VIA-BA-CHUA-XU",
+    "NBS-DA-CO-HOAI-LANG",
+    "NBS-NHA-CO-CAI-CUONG"
+  ],
+  "approved_tour_ids": [],
+  "approved_dialect_ids": [],
+  "release_sha256": "a4bc0660d0e50c5ef9ab0bb96a686221224df36fd3e4c1909db6521e8359d1cc",
+  "release_payload_sha256": "260f06f6249c5e20b847c546a5223b75bdbf19779c12f203b20f095b498ff651"
+}
