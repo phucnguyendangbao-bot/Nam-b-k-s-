@@ -7,6 +7,7 @@ import "./design/chrome.css";
 import "./design/home.css";
 import "./design/content.css";
 import "./design/map.css";
+import "./design/festivals.css";
 import "./design/story.css";
 import "./design/motion.css";
 import "./tour.css";

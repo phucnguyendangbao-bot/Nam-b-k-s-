@@ -7,6 +7,7 @@ import { canReleaseArticle, canReleaseDialect } from '../lib/release-model.ts';
 import { editorialQuestions, factKindLabels, knowledgeDomains, knowledgeRegions, knowledgeCommunities } from '../lib/knowledge-taxonomy.ts';
 import { imagePathAllowed, permitsCommercialMedia, sectionBody } from '../lib/editorial-model.ts';
 import { contentExpansion } from '../lib/content-expansion.ts';
+import { canChi, lunarOf } from '../lib/lunar.ts';
 
 const root = new URL('../', import.meta.url);
 const json = async file => JSON.parse(await readFile(new URL(file, root), 'utf8'));
@@ -89,11 +90,37 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
     assert.ok(place.status === 'proposed' && text(place.provenance), 'Spec coordinates must retain proposed provenance');
     assert.ok(['ecology','archaeology','worship','river','craft','arts'].includes(place.theme));
   }
+  // Kỳ lễ: ngày lấy từ nguồn của chính gói này; ngày âm ghi kèm phải khớp lịch âm Việt Nam; nhãn trạng thái phải đúng loại nguồn.
+  const occurrences = release.occurrences ?? [];
+  unique(occurrences.map(o => o.id), 'festival occurrences');
+  if (occurrences.length || approval.approved_occurrence_ids) assert.deepEqual([...(approval.approved_occurrence_ids ?? [])].sort(), occurrences.map(o => o.id).sort(), 'Approval must name exactly these festival dates');
+  const iso = value => /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value + 'T00:00:00Z'));
+  const known = id => release.articles.some(article => article.id === id) || knownArticleIds.has(id);
+  for (const o of occurrences) {
+    for (const key of ['id', 'name', 'edition', 'place_as_written', 'locator', 'source_as_written', 'why']) assert.ok(text(o[key]), `Festival date lacks ${key}: ${o.id}`);
+    assert.ok(known(o.content_id) && (o.related_ids ?? []).every(known), `Festival date points to an unreleased dossier: ${o.id}`);
+    assert.ok(['dong-nam-bo', 'tay-nam-bo', 'lien-vung'].includes(o.region), `Unknown region: ${o.id}`);
+    assert.ok(o.place_id === null || (typeof o.place_id === 'string' && /^[a-z0-9-]+$/.test(o.place_id)), `Bad place id: ${o.id}`);
+    assert.ok(iso(o.start) && iso(o.end) && o.start <= o.end, `Festival date range invalid: ${o.id}`);
+    assert.ok(o.source_ids.length > 0 && o.source_ids.every(id => sources.has(id)), `Festival date lacks a source read for this release: ${o.id}`);
+    for (const [which, [day, month]] of [['start', o.lunar.start], ['end', o.lunar.end]]) {
+      const l = lunarOf(o[which]);
+      assert.ok(l.day === day && l.month === month && !l.leap, `Lunar date does not match ${o[which]} for ${o.id}`);
+      if (which === 'start') assert.equal(canChi(l.year), o.lunar.year, `Lunar year name mismatch: ${o.id}`);
+    }
+    const types = o.source_ids.map(id => sources.get(id).source_type);
+    if (o.date_status === 'reported') assert.ok(o.end < approval.reviewed_at, `Reported festival has not happened yet: ${o.id}`);
+    else if (o.date_status === 'announced') assert.ok(types.some(type => ['official_article', 'official_plan'].includes(type)), `Announced date needs an official source: ${o.id}`);
+    else if (o.date_status === 'listed') assert.ok(types.includes('official_event_listing'), `Listed date needs an official event listing: ${o.id}`);
+    else if (o.date_status === 'traditional') assert.ok(text(o.estimate_note) && /quy đổi/.test(o.estimate_note), `Traditional date must say it is an editorial conversion: ${o.id}`);
+    else assert.fail(`Unknown festival date status: ${o.id}`);
+    if (o.date_status !== 'reported') assert.ok(o.end >= approval.reviewed_at, `Future-only label on a past date: ${o.id}`);
+  }
   const unicode = value => { if (typeof value === 'string') assert.ok(value === value.normalize('NFC') && !value.includes('\uFFFD'), 'Malformed Unicode'); else if (Array.isArray(value)) value.forEach(unicode); else if (value && typeof value === 'object') Object.values(value).forEach(unicode); };
   unicode(release); unicode(approval);
-  return { articles: release.articles.length, sources: release.sources.length, claims, assets, reading_journeys: release.tours.length };
+  return { articles: release.articles.length, sources: release.sources.length, claims, assets, reading_journeys: release.tours.length, ...(occurrences.length ? { festival_dates: occurrences.length } : {}) };
 }
-export const releaseDates = ['2026-10-28', '2026-11-01', '2026-11-01-supplement', '2026-11-02-enrichment'];
+export const releaseDates = ['2026-10-28', '2026-11-01', '2026-11-01-supplement', '2026-11-02-enrichment', '2026-11-04-festivals'];
 export async function loadValidatedRelease(date = '2026-10-28') {
   const bytes = await readFile(new URL(`data/release/published-${date}.json`, root));
   const release = JSON.parse(bytes.toString('utf8')); const approval = await json(`data/release/publication-approval-${date}.json`);

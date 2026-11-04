@@ -6,6 +6,7 @@ import type { HeritagePlace, PlaceTheme, PlaceTour } from '@/lib/heritage-places
 import { placeThemes } from '@/lib/heritage-places';
 import { fold } from '@/lib/catalog';
 import { MAP_LOCALE, heritageStyle, legFeatures, markHeritageBuildings, smoothLine, type MapLook } from '@/lib/map-style';
+import { directionsUrl, lowerFirst } from '@/lib/festival-format';
 import { googleLinks, hasGoogleMaps, loadGoogleMaps, onGoogleAuthFailure, type Map3D } from '@/lib/google-maps';
 import { StreetViewPanel } from './street-view';
 import { hasCesium, loadCesium } from '@/lib/cesium';
@@ -227,24 +228,47 @@ async function mountCesium3D(el: HTMLDivElement, places: HeritagePlace[], tours:
 }
 
 /** Bản đồ di sản: 2D thuận tiện làm mặc định, 3D vệ tinh là lựa chọn nâng cao; lọc theo nhóm địa điểm và tuyến. */
-export function HeritageAtlas({ places, tours, initialId, compact = false }: { places: HeritagePlace[]; tours: PlaceTour[]; initialId?: string; compact?: boolean }) {
+type Initial = { theme?: string; tour?: string; query?: string; festivals?: boolean; festival?: string };
+const hasComing = (p: HeritagePlace) => Boolean(p.festivals?.some(f => f.time !== 'past'));
+
+export function HeritageAtlas({ places, tours, initialId, initial = {}, compact = false }: { places: HeritagePlace[]; tours: PlaceTour[]; initialId?: string; initial?: Initial; compact?: boolean }) {
   const mapEl = useRef<HTMLDivElement>(null);
   const engine = useRef<Engine | null>(null);
   const [mode, setMode] = useState<Mode>('2d');
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const webgl = useSyncExternalStore(noSubscribe, hasWebGL, () => null);
   const [notice, setNotice] = useState('');
-  const [theme, setTheme] = useState<PlaceTheme | 'all'>('all');
-  const [tour, setTour] = useState<string | null>(null);
+  const [theme, setTheme] = useState<PlaceTheme | 'all'>(initial.theme && initial.theme in placeThemes ? initial.theme as PlaceTheme : 'all');
+  const [tour, setTour] = useState<string | null>(tours.some(t => t.slug === initial.tour) ? initial.tour! : null);
+  const [festOnly, setFestOnly] = useState(Boolean(initial.festivals));
+  const [slow, setSlow] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
   const [routes, setRoutes] = useState(true);
   const [picked, setPicked] = useState<string | null>(places.some(p => p.id === initialId) ? initialId! : null);
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initial.query ?? '');
   const visible = useMemo(() => {
     const q = fold(query);
-    return places.filter(p => (theme === 'all' || p.theme === theme) && (!tour || p.tours.some(t => t.slug === tour))
-      && (!q || fold(`${p.name} ${p.kicker} ${p.dossier?.title ?? ''}`).includes(q)));
-  }, [places, theme, tour, query]);
+    return places.filter(p => (theme === 'all' || p.theme === theme) && (!tour || p.tours.some(t => t.slug === tour)) && (!festOnly || hasComing(p))
+      && (!q || fold(`${p.name} ${p.kicker} ${p.dossier?.title ?? ''} ${(p.festivals ?? []).map(f => f.name).join(' ')}`).includes(q)));
+  }, [places, theme, tour, query, festOnly]);
+  const festCount = places.filter(hasComing).length;
+
+  // Bộ lọc nằm trong địa chỉ trang: chép liên kết là chia sẻ đúng trạng thái đang xem.
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href), set = (k: string, v: string | null) => { if (v) url.searchParams.set(k, v); else url.searchParams.delete(k); };
+      set('loai', theme === 'all' ? null : theme); set('tuyen', tour); set('q', query.trim() || null); set('lich', festOnly ? '1' : null);
+      window.history.replaceState(null, '', url);
+    } catch { /* trình duyệt chặn đổi URL: bỏ qua */ }
+  }, [theme, tour, query, festOnly]);
+
+  // Bản đồ nền tải quá lâu: báo rõ và chỉ sang danh sách, thay vì để vòng xoay mãi.
+  useEffect(() => {
+    if (state !== 'loading') return;
+    const id = window.setTimeout(() => setSlow(true), 9000);
+    return () => { window.clearTimeout(id); setSlow(false); };
+  }, [state, mode]);
   const current = places.find(p => p.id === picked) ?? null;
   const themesPresent = (Object.keys(placeThemes) as PlaceTheme[]).filter(t => places.some(p => p.theme === t));
   const reviewedCount = places.filter(p => p.coord === 'reviewed').length;
@@ -254,8 +278,16 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
     try {
       const url = new URL(window.location.href);
       if (id) url.searchParams.set('diem', id); else url.searchParams.delete('diem');
+      url.searchParams.delete('le');
       window.history.replaceState(null, '', url);
     } catch { /* trình duyệt chặn đổi URL: bỏ qua */ }
+    // Trên điện thoại bảng thông tin nằm dưới bản đồ: đưa thẻ vào tầm mắt sau khi chọn điểm.
+    if (id && window.matchMedia('(max-width: 860px)').matches) {
+      window.setTimeout(() => {
+        const box = panelRef.current?.getBoundingClientRect();
+        if (box && box.top > window.innerHeight * 0.6) panelRef.current?.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+      }, 120);
+    }
   }, []);
 
   // Dựng lại bản đồ khi đổi chế độ 2D/3D.
@@ -298,7 +330,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
     if (state !== 'ready' || picked) return;
     engine.current?.focus(null, visible);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, tour]);
+  }, [theme, tour, festOnly]);
 
   const switchMode = (next: Mode) => { if (next === mode) return; setNotice(''); setState('loading'); setMode(next); };
   // Thay liên kết Google Earth: mở chế độ 3D tốt nhất ngay trên site, bay tới điểm đang chọn.
@@ -334,6 +366,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
         <div className="atlas-filters" role="group" aria-label="Lọc theo nhóm địa điểm">
           <button type="button" className="nb-chip" aria-pressed={theme === 'all'} onClick={() => setTheme('all')}>Tất cả <small>{count('all')}</small></button>
           {themesPresent.map(t => <button key={t} type="button" className="nb-chip" aria-pressed={theme === t} onClick={() => setTheme(t)}>{placeThemes[t]} <small>{count(t)}</small></button>)}
+          {festCount > 0 && <button type="button" className="nb-chip is-fest" aria-pressed={festOnly} onClick={() => setFestOnly(v => !v)} title="Chỉ hiện điểm có kỳ lễ sắp hoặc đang diễn ra">Có lịch lễ sắp tới <small>{festCount}</small></button>}
         </div>
         <div className="atlas-modes">
           {!compact && tours.length > 1 && (
@@ -360,6 +393,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
           <div className="atlas-map" ref={mapEl} role="region" aria-label={`Bản đồ ${modeLabel[mode]} các điểm di sản. Dùng danh sách bên cạnh để chọn bằng bàn phím.`} />
           {state === 'loading' && <div className="atlas-note" aria-hidden="true"><span className="nb-loading"><span /><span /><span /><b>Đang tải bản đồ…</b></span></div>}
           {street360 && current && <StreetViewPanel key={current.id} lat={current.lat} lng={current.lng} name={current.name} onClose={close360} />}
+          {state === 'loading' && slow && <p className="atlas-slow" role="status">Bản đồ nền đang tải chậm. Danh sách địa điểm {compact ? 'bên dưới' : 'bên cạnh'} vẫn dùng được.</p>}
           {state === 'failed' && <div className="atlas-note is-failed" role="status"><p>Chưa tải được bản đồ. Kiểm tra kết nối mạng rồi tải lại trang. Danh sách địa điểm bên cạnh vẫn dùng được.</p></div>}
           <div className="atlas-legend">
             <span><i className="ap-key coord-osm" />Tọa độ OSM, chờ đối chiếu</span>
@@ -370,7 +404,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
           </div>
         </div>
 
-        <aside className="atlas-panel" aria-label="Thông tin địa điểm">
+        <aside className="atlas-panel" aria-label="Thông tin địa điểm" ref={panelRef}>
           {!current ? (
             <>
               <div className="atlas-search">
@@ -384,12 +418,12 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
                   <li key={p.id}>
                     <button type="button" onClick={() => pick(p.id)}>
                       <b className={`ap-num theme-${p.theme} coord-${p.coord}`}>{places.indexOf(p) + 1}</b>
-                      <span><strong>{p.name}</strong><small>{p.kicker}</small></span>
+                      <span><strong>{p.name}{hasComing(p) && <span className="ap-fest">Lễ {p.festivals!.find(f => f.time !== 'past')!.range}</span>}</strong><small>{p.kicker}</small></span>
                     </button>
                   </li>
                 ))}
               </ol>
-              {!visible.length && <div className="atlas-empty"><p>Không có địa điểm nào khớp bộ lọc hoặc từ khóa.</p><button type="button" className="nb-text-button" onClick={() => { setTheme('all'); setTour(null); setQuery(''); }}>Bỏ bộ lọc</button></div>}
+              {!visible.length && <div className="atlas-empty"><p>Không có địa điểm nào khớp bộ lọc hoặc từ khóa.</p><button type="button" className="nb-text-button" onClick={() => { setTheme('all'); setTour(null); setQuery(''); setFestOnly(false); }}>Bỏ bộ lọc</button></div>}
             </>
           ) : (
             <article className="atlas-card" key={current.id}>
@@ -412,6 +446,20 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
                 <span>{current.lat.toFixed(5)}, {current.lng.toFixed(5)}</span>
                 {current.coord === 'osm' && <span>Vị trí ghim có thể lệch vài chục mét so với thực địa.</span>}
               </p>
+              {current.festivals && current.festivals.length > 0 && (
+                <section className="atlas-fest" aria-label="Kỳ lễ tại điểm này">
+                  <h4>Kỳ lễ tại đây</h4>
+                  <ul>
+                    {[...current.festivals].sort((a, b) => Number(a.time === 'past') - Number(b.time === 'past')).map(f => (
+                      <li key={f.id} className={f.id === initial.festival ? 'is-chosen' : undefined}>
+                        <a href={`/lich-le-hoi#le-${f.id.toLowerCase()}`}>{f.name}, {lowerFirst(f.edition)}</a>
+                        <span>{f.range} · {f.lunar} âm lịch</span>
+                        <small>{f.time === 'past' ? f.status : `${f.time === 'ongoing' ? 'Đang diễn ra' : 'Sắp diễn ra'} · ${f.status}`}</small>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
               <div className="atlas-actions">
                 {current.dossier && <a className="button" href={`/ho-so/${current.dossier.slug}`}>Đọc hồ sơ</a>}
                 {current.tours.map(t => (
@@ -421,6 +469,7 @@ export function HeritageAtlas({ places, tours, initialId, compact = false }: { p
               </div>
               <p className="atlas-google">
                 {webgl !== false && <button type="button" className="atlas-3d-here" onClick={view3DHere}>{realMode === 'google' ? 'Xem 3D chân thực tại đây' : 'Xem 3D vệ tinh tại đây'}</button>}
+                <a href={directionsUrl(current)} target="_blank" rel="noreferrer">Chỉ đường<span className="sr-only"> (mở Google Maps ở thẻ mới)</span> ↗</a>
                 <a href={googleLinks(current).streetView} target="_blank" rel="noreferrer">Ảnh đường phố trên Google<span className="sr-only"> (mở thẻ mới)</span> ↗</a>
               </p>
               {current.tours.map(t => <p key={t.slug} className="atlas-tour">{t.title}{t.draft && <span className="badge-draft">Bản nháp, chờ duyệt nguồn</span>}</p>)}

@@ -37,7 +37,10 @@ export type HeritagePlace = {
   image?: { src: string; credit: string; href?: string };
   dossier?: { slug: string; title: string };
   tours: { slug: string; title: string; index: number; total: number; draft: boolean }[];
+  /** Kỳ lễ có ngày gắn với điểm này (từ gói lịch lễ hội đã duyệt). */
+  festivals?: PlaceFestival[];
 };
+export type PlaceFestival = { id: string; name: string; edition: string; range: string; lunar: string; time: 'upcoming' | 'ongoing' | 'past'; status: string };
 export type PlaceTour = { slug: string; title: string; draft: boolean; stopIds: string[]; legs: { coords: [number, number][]; traced: boolean }[] };
 
 export function heritagePlaces(dossiers: Row[] = []): { places: HeritagePlace[]; tours: PlaceTour[] } {

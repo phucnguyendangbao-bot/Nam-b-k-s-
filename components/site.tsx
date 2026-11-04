@@ -39,6 +39,7 @@ const navItems: NavItem[] = [
       { href: '/vi-sao-lai-the', label: 'Vì sao lại thế?', note: 'Lời giải thích và điều chưa rõ trong các hồ sơ.' },
     ],
   },
+  { href: '/lich-le-hoi', label: 'Lịch lễ hội' },
   { href: '/ban-do', label: 'Bản đồ' },
   { href: '/hanh-trinh', label: 'Hành trình' },
 ];
@@ -73,7 +74,7 @@ export function Header({ user }: { user: Row | null }) {
 
 const footerGroups: { title: string; links: [string, string][] }[] = [
   { title: 'Khám phá', links: categories.map(c => [`/chuyen-muc/${c.slug}`, c.name]) },
-  { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
+  { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian'], ['/lich-le-hoi', 'Lịch lễ hội'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
   { title: 'Dự án', links: [['/ve-du-an', 'Giới thiệu dự án'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
   { title: 'Chính sách', links: [['/nguyen-tac-bien-tap', 'Nguyên tắc biên tập'], ['/quyen-su-dung', 'Sử dụng và ghi công'], ['/tinh-trang-tu-lieu', 'Tình trạng tư liệu']] },
 ];

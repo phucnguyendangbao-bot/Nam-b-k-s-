@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Lịch lễ hội: thẻ kỳ lễ, nhãn ngày, khối trong hồ sơ, thanh số liệu bản đồ
+   ========================================================================== */
+.fx-stats, .atlas-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s-3); margin: 0 0 var(--s-6); }
+.fx-stats > div, .atlas-stats > div { display: grid; gap: 2px; align-content: start; padding: var(--s-3) var(--s-4); border-radius: var(--r-md); background: var(--c-surface); box-shadow: var(--sh-1); }
+.fx-stats dt, .atlas-stats dt { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-muted); }
+.fx-stats dd, .atlas-stats dd { margin: 0; font-family: var(--f-display); font-size: var(--t-xl); font-weight: 600; line-height: 1.15; color: var(--c-ink); font-variant-numeric: tabular-nums; }
+.fx-stats .is-next dd, .atlas-stats .is-next dd { font-size: var(--t-md); }
+.fx-stats .is-next a, .atlas-stats .is-next a { color: var(--c-primary); text-decoration: none; }
+.fx-stats .is-next a:hover, .atlas-stats .is-next a:hover { text-decoration: underline; }
+.fx-stats small, .atlas-stats small { display: block; font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 500; color: var(--c-ink-soft); }
+
+.fx-filters { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); margin-bottom: var(--s-4); }
+.fx-filters > div { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.fx-filters a { text-decoration: none; }
+
+.fx-legend { margin-bottom: var(--s-8); padding: var(--s-3) var(--s-4); border-radius: var(--r-md); background: var(--c-paper-sunken); font-size: var(--t-sm); }
+.fx-legend summary { cursor: pointer; font-weight: 600; }
+.fx-legend dl { display: grid; gap: var(--s-2); margin: var(--s-3) 0; }
+.fx-legend dl > div { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; gap: var(--s-3); padding-left: var(--s-3); border-left: 3px solid var(--fx-tone, var(--c-line-strong)); }
+.fx-legend dt { font-weight: 600; }
+.fx-legend dd { margin: 0; color: var(--c-ink-soft); }
+.fx-legend p { color: var(--c-ink-soft); }
+
+/* Màu theo độ chắc của ngày: tường thuật / kế hoạch / lịch của Bộ / lịch truyền thống */
+.st-reported { --fx-tone: var(--c-ink-muted); --fx-soft: var(--c-paper-sunken); }
+.st-announced { --fx-tone: var(--c-success); --fx-soft: var(--c-success-soft); }
+.st-listed { --fx-tone: var(--c-primary); --fx-soft: var(--c-primary-tint); }
+.st-traditional { --fx-tone: var(--c-warning); --fx-soft: var(--c-warning-soft); }
+
+.fx-group { margin-bottom: var(--s-12); }
+.fx-group > h2 { margin-bottom: var(--s-5); font-size: var(--t-2xl); }
+.fx-list { display: grid; gap: var(--s-5); }
+.fx-card { display: grid; grid-template-columns: 240px minmax(0, 1fr); overflow: hidden; border-radius: var(--r-lg); background: var(--c-surface); box-shadow: var(--sh-1); scroll-margin-top: 96px; }
+.fx-card:target { box-shadow: 0 0 0 3px var(--c-focus), var(--sh-1); }
+.fx-card:not(:has(.fx-photo)) { grid-template-columns: minmax(0, 1fr); }
+.fx-photo { position: relative; overflow: hidden; min-height: 220px; background: var(--c-paper-deep); }
+.fx-photo img { object-fit: cover; }
+.fx-card.is-past .fx-photo img { filter: saturate(.55); }
+.fx-body { display: grid; gap: var(--s-2); align-content: start; padding: var(--s-5) var(--s-6) var(--s-5); min-width: 0; }
+.fx-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px var(--s-3); font-size: var(--t-sm); }
+.fx-when time { font-family: var(--f-display); font-size: var(--t-lg); font-weight: 600; color: var(--c-ink); font-variant-numeric: tabular-nums; }
+.fx-lunar { color: var(--c-ink-muted); }
+.fx-time { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: var(--r-pill); font-size: var(--t-xs); font-weight: 700; background: var(--c-paper-sunken); color: var(--c-ink-soft); }
+.fx-time small { font-weight: 500; }
+.fx-time.is-upcoming { background: var(--c-accent-soft); color: var(--c-accent-ink); }
+.fx-time.is-ongoing { background: var(--c-accent); color: #fff; }
+.fx-title { font-size: var(--t-xl); line-height: 1.2; }
+.fx-title span { font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 500; color: var(--c-ink-muted); white-space: nowrap; }
+.fx-place { font-size: var(--t-sm); color: var(--c-ink-soft); }
+.fx-why { max-width: 62ch; }
+.fx-status { padding: var(--s-2) var(--s-3); border-left: 3px solid var(--fx-tone); border-radius: 0 var(--r-sm) var(--r-sm) 0; background: var(--fx-soft); font-size: var(--t-sm); color: var(--c-ink-soft); }
+.fx-status strong { color: var(--c-ink); }
+.fx-status-tag { display: inline-block; padding: 1px 8px; border-radius: var(--r-pill); background: var(--fx-soft); color: var(--c-ink); font-size: var(--t-xs); font-weight: 600; box-shadow: inset 0 0 0 1px var(--fx-tone); }
+.fx-sources { font-size: var(--t-sm); }
+.fx-sources summary { cursor: pointer; width: fit-content; font-weight: 600; color: var(--c-primary); }
+.fx-sources ul { display: grid; gap: 4px; margin: var(--s-2) 0 0; padding-left: 1.1em; }
+.fx-sources small, .fx-written small { color: var(--c-ink-muted); }
+.fx-written { margin-top: var(--s-2); color: var(--c-ink-soft); }
+.fx-links { display: flex; flex-wrap: wrap; gap: 4px var(--s-4); font-size: var(--t-sm); }
+.fx-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); margin-top: var(--s-1); }
+.fx-actions .button { min-height: 40px; padding-inline: var(--s-4); font-size: var(--t-sm); }
+.fx-toast { font-size: var(--t-sm); color: var(--c-success); }
+.fx-toast:empty { display: none; }
+.fx-credit { font-size: var(--t-xs); color: var(--c-ink-muted); }
+.fx-credit a { color: inherit; }
+.fx-empty { padding: var(--s-6); border-radius: var(--r-md); background: var(--c-paper-sunken); }
+
+/* Khối "Các kỳ tổ chức" trong hồ sơ */
+.fx-dossier { margin: var(--s-8) 0; padding: var(--s-5) var(--s-6); border-radius: var(--r-lg); background: var(--c-paper-sunken); }
+.fx-dossier h2 { margin-bottom: var(--s-4); font-size: var(--t-xl); }
+.fx-dossier ol { display: grid; gap: var(--s-4); margin: 0; padding: 0; list-style: none; }
+.fx-dossier li { display: grid; gap: var(--s-2); padding-bottom: var(--s-4); border-bottom: 1px solid var(--c-line); }
+.fx-dossier li:last-child { border-bottom: 0; padding-bottom: 0; }
+.fx-dossier li.is-past { opacity: .82; }
+.fx-more { margin-top: var(--s-4); font-size: var(--t-sm); }
+
+/* Bản đồ: kỳ lễ trong thẻ địa điểm */
+.atlas-stats { margin-bottom: var(--s-4); }
+.atlas-fest { display: grid; gap: var(--s-2); padding: var(--s-3); border-radius: var(--r-md); background: var(--c-paper-sunken); font-size: var(--t-sm); }
+.atlas-fest h4 { font-size: var(--t-sm); font-weight: 700; }
+.atlas-fest ul { display: grid; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.atlas-fest li { display: grid; gap: 2px; }
+.atlas-fest li.is-chosen { padding: var(--s-2); margin: calc(var(--s-2) * -1); border-radius: var(--r-sm); box-shadow: inset 0 0 0 2px var(--c-focus); }
+.atlas-fest a { color: var(--c-primary); font-weight: 600; }
+.atlas-fest small { color: var(--c-ink-muted); }
+.atlas-list .ap-fest { display: inline-block; margin-left: 6px; padding: 0 7px; border-radius: var(--r-pill); background: var(--c-accent-soft); color: var(--c-accent-ink); font-size: 11px; font-weight: 700; vertical-align: 2px; }
+.atlas-slow { position: absolute; left: 50%; top: var(--s-4); z-index: 6; translate: -50% 0; max-width: calc(100% - 24px); padding: var(--s-2) var(--s-4); border-radius: var(--r-pill); background: var(--c-surface); box-shadow: var(--sh-1); font-size: var(--t-sm); color: var(--c-ink-soft); text-align: center; }
+
+@media (max-width: 860px) {
+  .fx-card { grid-template-columns: minmax(0, 1fr); }
+  .fx-photo { min-height: 0; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 640px) {
+  .fx-body { padding: var(--s-4); }
+  .fx-legend dl > div { grid-template-columns: 1fr; gap: 2px; }
+  .fx-dossier { padding: var(--s-4); margin-inline: calc(var(--gutter, 16px) * -0.5); }
+  .fx-stats, .atlas-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fx-stats .is-next, .atlas-stats .is-next { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fx-card { transition: box-shadow var(--d-base, .2s) var(--ease, ease); }
+}
+.fx-filters .nb-chip[aria-current='true'] { background: var(--c-ink); border-color: var(--c-ink); color: #fff; }
+.nb-chip.is-fest[aria-pressed='false'] { border-color: var(--c-accent); color: var(--c-accent-ink); }
+.fx-card, .fx-stats > div, .atlas-stats > div { border: 1px solid var(--c-line); }
+@media (max-width: 640px) {
+  .atlas-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2); }
+  .atlas-stats > div { padding: var(--s-2) var(--s-3); }
+  .atlas-stats dd { font-size: var(--t-lg); }
+}

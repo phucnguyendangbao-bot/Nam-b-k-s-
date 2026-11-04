@@ -15,17 +15,21 @@ import { ContentFAQ, ContentGuidePage, EvidenceGuide } from '@/components/conten
 import { guidePages } from '@/lib/reading-guides';
 import { KnowledgePage, DictionaryPage, TimelinePage, KnowledgeLinksPage, WhyPage, MemoriesPage } from '@/components/knowledge-pages';
 import { knowledgePages, domainById } from '@/lib/knowledge-taxonomy';
+import { FestivalCalendarPage } from '@/components/festivals';
+import { festivalViews } from '@/lib/festivals';
+import { dateStatusLabels, formatRange, lunarLabel } from '@/lib/festival-format';
 
 export const dynamic = 'force-dynamic';
 type Props = { params: Promise<{ segments: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> };
 
 const titles: Record<string, string> = {
-  'kham-pha': 'Khám phá', 'tim-kiem': 'Tìm kiếm', 'ban-do': 'Bản đồ', 'hanh-trinh': 'Hành trình',
+  'kham-pha': 'Khám phá', 'tim-kiem': 'Tìm kiếm', 'ban-do': 'Bản đồ', 'lich-le-hoi': 'Lịch lễ hội', 'hanh-trinh': 'Hành trình',
   'ky-uc-cong-dong': 'Gửi ký ức', 'so-tay': 'Sổ tay của bạn', 'nguon-tu-lieu': 'Nguồn tư liệu',
   'hoi-dap': 'Tra cứu', 've-du-an': 'Về dự án', 'quan-tri': 'Bàn biên tập',
 };
 
 const descriptions: Record<string, string> = {
+  'lich-le-hoi': 'Lịch các kỳ lễ hội Nam Bộ có ngày cụ thể: Kỳ yên đình Bình Thủy, Oóc Om Bóc, Nguyên Tiêu. Mỗi ngày kèm nguồn và nhãn cho biết đã công bố hay chỉ theo lịch truyền thống.',
   'kham-pha': 'Tìm và lọc hồ sơ văn hóa Nam Bộ theo chuyên mục: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói, mỗi hồ sơ có nguồn để đối chiếu.',
   'ban-do': 'Bản đồ di sản Cần Thơ: các điểm trong tour bản đồ và hồ sơ, xem 2D, 3D phố có khối nhà và tên đường, hoặc 3D vệ tinh, kèm trạng thái đối chiếu tọa độ.',
   'hanh-trinh': 'Tour bản đồ 3D có thuyết minh dẫn nguồn và hành trình đọc nối các hồ sơ văn hóa Nam Bộ.',
@@ -197,14 +201,29 @@ export default async function Page({ params, searchParams }: Props) {
     );
   }
 
+  if (route === 'lich-le-hoi') { if (s.length !== 1) notFound(); return <FestivalCalendarPage params={q} />; }
+
   if (route === 'ban-do') {
-    const { places, tours } = heritagePlaces(await publicContents());
+    const rows = await publicContents();
+    const { places, tours } = heritagePlaces(rows);
+    const fests = await festivalViews(rows);
+    for (const p of places) {
+      const own = fests.filter(f => f.place_id === p.id);
+      if (own.length) p.festivals = own.map(f => ({ id: f.id, name: f.name, edition: f.edition, range: formatRange(f.start, f.end), lunar: lunarLabel(f.lunar), time: f.time, status: dateStatusLabels[f.date_status].label }));
+    }
     const reviewed = places.filter(p => p.coord === 'reviewed').length;
+    const nextFest = fests.find(f => f.time !== 'past');
     return (
       <main id="main" className="wrap page page-map">
         <Breadcrumb items={[{ label: 'Bản đồ' }]} />
-        <PageTitle title="Bản đồ di sản" description={`${places.length} địa điểm trong các tour bản đồ và hồ sơ. Chọn một điểm để xem trạng thái tọa độ, đọc hồ sơ hoặc mở chặng tour tương ứng. ${reviewed ? `${reviewed} điểm đã đối chiếu tọa độ.` : 'Hiện chưa điểm nào được đối chiếu tọa độ tại chỗ; các ghim lấy từ OpenStreetMap.'}`} />
-        <HeritageAtlas places={places} tours={tours} initialId={q.diem} />
+        <PageTitle title="Bản đồ di sản" description={`${places.length} địa điểm trong các tour bản đồ và hồ sơ. Chọn một điểm để xem trạng thái tọa độ, kỳ lễ sắp tới, đọc hồ sơ hoặc mở chặng tour tương ứng. Mỗi bộ lọc và điểm đang chọn đều nằm trong liên kết, chép là chia sẻ được. ${reviewed ? `${reviewed} điểm đã đối chiếu tọa độ.` : 'Hiện chưa điểm nào được đối chiếu tọa độ tại chỗ; các ghim lấy từ OpenStreetMap.'}`} />
+        <dl className="atlas-stats" aria-label="Số liệu bản đồ">
+          <div><dt>Địa điểm trên bản đồ</dt><dd>{places.length}</dd></div>
+          <div><dt>Tọa độ đã đối chiếu</dt><dd>{reviewed}</dd></div>
+          <div><dt>Điểm có hồ sơ</dt><dd>{places.filter(p => p.dossier).length}</dd></div>
+          {nextFest && <div className="is-next"><dt>Kỳ lễ gần nhất</dt><dd><a href={`/lich-le-hoi#le-${nextFest.id.toLowerCase()}`}>{nextFest.name}</a><small>{formatRange(nextFest.start, nextFest.end)} · {dateStatusLabels[nextFest.date_status].label.toLowerCase()}</small></dd></div>}
+        </dl>
+        <HeritageAtlas places={places} tours={tours} initialId={q.diem ?? places.find(p => p.festivals?.some(f => f.id === q.le))?.id} initial={{ theme: q.loai, tour: q.tuyen, query: q.q, festivals: q.lich === '1', festival: q.le }} />
         <section className="map-tours" aria-labelledby="tour-3d">
           <div className="sec-head"><div><h2 id="tour-3d">Đi theo tour bản đồ 3D</h2><p>Camera bay qua từng chặng, kèm thuyết minh có số nguồn ở cuối mỗi câu.</p></div></div>
           <MapTourCards />

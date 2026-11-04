@@ -1,0 +1,23 @@
+{
+ "version": "publication-approval-2026-11-04-festivals-v1",
+ "status": "approved",
+ "authority": "owner_delegation",
+ "reviewer": "Claude — source review",
+ "reviewed_at": "2026-11-04",
+ "authorization": "Chủ dự án gửi trang Bản đồ văn hóa (cmap.vn), yêu cầu \"Học tập và đúc kết để viết kế hoạch thực hiện cải thiện web\", rồi yêu cầu \"thực theo md\" ngày 04/11/2026, tức thực hiện kế hoạch claude/ke-hoach-hoc-tu-cmap-2026-11-04.md, gồm lịch các kỳ lễ có nguồn và hồ sơ lễ Kỳ yên. Claude kiểm nguồn và ghi bản duyệt theo ủy quyền tự duyệt mà chủ dự án đã chọn cho các gói nội dung; đây không phải phê duyệt học thuật của bên thứ ba.",
+ "scope": "Một hồ sơ mới (Kỳ yên đình Bình Thủy) và sáu kỳ lễ có ngày. Mỗi nguồn được đọc hoặc đọc lại ngày 04/11/2026. Ngày của kỳ lễ chỉ lấy từ nguồn; kỳ chưa có thông báo ghi nhãn \"theo lịch truyền thống\" và ghi rõ ngày dương lịch do ban biên tập quy đổi. Không sửa các gói trước, không thêm tọa độ hay ảnh mới.",
+ "approved_article_ids": [
+  "NBS-KY-YEN-BINH-THUY"
+ ],
+ "approved_tour_ids": [],
+ "approved_occurrence_ids": [
+  "KYH-HA-DIEN-2026",
+  "KYH-HA-DIEN-2027",
+  "KYH-THUONG-DIEN-2026",
+  "KYH-THUONG-DIEN-2027",
+  "NGUYEN-TIEU-2027",
+  "OOB-CAN-THO-2026"
+ ],
+ "release_sha256": "54a4483b8db71a7680280b491a0fff317037786fd2e0c718b6a9580cc473a9e9",
+ "release_payload_sha256": "cd0dffeca7c0e4576aa1fcfc88c0e6d8367f76882cebba429a76d6190367d91d"
+}

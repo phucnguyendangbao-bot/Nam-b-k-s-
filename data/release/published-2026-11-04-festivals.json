@@ -1,0 +1,657 @@
+{
+ "version": "published-2026-11-04-festivals-v1",
+ "reviewed_at": "2026-11-04",
+ "sources": [
+  {
+   "id": "NB-DINHBT-ND-2026",
+   "name": "Di tích kiến trúc nghệ thuật độc đáo, biểu tượng kết nối cộng đồng",
+   "url": "https://nhandan.vn/di-tich-kien-truc-nghe-thuat-doc-dao-bieu-tuong-ket-noi-cong-dong-post965821.html",
+   "publisher": "Báo Nhân Dân; Thanh Tâm",
+   "source_type": "journalism_article",
+   "source_version": "Bài ngày 30/05/2026; đọc lại 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-KYH-VNA-2024",
+   "name": "Giữ gìn nét văn hóa Lễ hội Kỳ Yên hạ điền Đình Bình Thủy",
+   "url": "https://chinhsachcuocsong.vnanet.vn/giu-gin-net-van-hoa-le-hoi-ky-yen-ha-dien-dinh-binh-thuy/33742.html",
+   "publisher": "Chính sách và Cuộc sống, Thông tấn xã Việt Nam; Ánh Tuyết",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 24/01/2024; đọc 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-KYH-BCT-2026",
+   "name": "Khai mạc Lễ hội Kỳ yên Hạ điền Đình Bình Thủy",
+   "url": "https://baocantho.com.vn/khai-mac-le-hoi-ky-yen-ha-dien-inh-binh-thuy-a197975.html",
+   "publisher": "Báo Cần Thơ; Đăng Huỳnh",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 01/02/2026; đọc 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-KYH-BVH-2023",
+   "name": "Độc đáo Lễ hội Kỳ yên đình Bình Thủy, Cần Thơ",
+   "url": "https://baovanhoa.vn/doi-song-van-hoa/doc-dao-le-hoi-ky-yen-dinh-binh-thuy-can-tho-16933.html",
+   "publisher": "Báo Văn Hóa; Thùy Trang",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 02/06/2023; đọc 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-KYH-BVH-2025",
+   "name": "Bảo tồn và phát huy giá trị di sản Lễ hội Kỳ Yên Đình Bình Thủy",
+   "url": "https://baovanhoa.vn/van-hoa/bao-ton-va-phat-huy-gia-tri-di-san-le-hoi-ky-yen-dinh-binh-thuy-132890.html",
+   "publisher": "Báo Văn Hóa; Tùng Thư",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 10/05/2025; đọc 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-DINHBT-BVH-2026",
+   "name": "Khai mạc Lễ hội Kỳ yên Thượng điền đình Bình Thủy 2026",
+   "url": "https://baovanhoa.vn/van-hoa/khai-mac-le-hoi-ky-yen-thuong-dien-dinh-binh-thuy-2026-232344.html",
+   "publisher": "Báo Văn Hóa; Thùy Trang",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 28/05/2026; đọc lại 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CMAP-KYH-2027",
+   "name": "Lễ Kỳ yên Hạ điền Đình Bình Thủy (thẻ sự kiện trên Bản đồ văn hóa)",
+   "url": "https://cmap.vn/ban-do-van-hoa?su-kien=le-ky-yen-ha-dien-dinh-binh-thuy-mRPyZF&tinh=can-tho",
+   "publisher": "Bản đồ văn hóa cmap.vn, Bộ Văn hóa, Thể thao và Du lịch (Cục Thông tin điện tử và Chuyển đổi số vận hành)",
+   "source_type": "official_event_listing",
+   "source_version": "Thẻ sự kiện đọc 04/11/2026, nhãn “Sắp diễn ra”; lớp bản đồ không tải được nên chỉ đọc tên, địa điểm và thời gian",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và thời gian, địa điểm ghi trên thẻ; không sao chép ảnh hay mô tả.",
+   "consulted_extent": "excerpt",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "S04",
+   "name": "Danh mục di sản phi vật thể quốc gia",
+   "url": "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789",
+   "publisher": "Danh mục di sản phi vật thể quốc gia",
+   "source_type": "official_register",
+   "source_version": "Trang danh mục HTML đọc lại 04/11/2026; số thứ tự trong danh mục có chỗ trùng lặp nên luôn ghi kèm số quyết định",
+   "license_reported": "unknown",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "register_entry",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-OOB-CACT-2026",
+   "name": "Công tác tham mưu, phối hợp chuẩn bị bảo đảm an ninh, trật tự Ngày Văn hóa Việt Nam (24/11) và Lễ hội Oóc Om Bóc - Đua ghe Ngo thành phố Cần Thơ năm 2026",
+   "url": "https://congan.cantho.gov.vn/hoat-dong-cua-cong-an-thanh-pho/cong-tac-tham-muu-phoi-hop-chuan-bi-bao-dam-an-ninh-trat-tu-ngay-van-hoa-viet-nam-24-11-va-le-hoi-ooc-om-boc-dua-ghe-ngo-thanh-pho-can-tho-nam-2026-9570.html",
+   "publisher": "Công an thành phố Cần Thơ; Phương Nhi",
+   "source_type": "official_article",
+   "source_version": "Bài ngày 06/08/2026; đọc 04/11/2026; dẫn Kế hoạch 351/KH-UBND, bài không ghi ngày ký kế hoạch",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-OOB-BCT-2026",
+   "name": "TP Cần Thơ ban hành kế hoạch tổ chức các hoạt động Ngày Văn hóa Việt Nam và Lễ hội Oóc Om Bóc - Đua ghe Ngo năm 2026",
+   "url": "https://baocantho.com.vn/tp-can-tho-ban-hanh-ke-hoach-to-chuc-cac-hoat-dong-ngay-van-hoa-viet-nam-va-le-hoi-ooc-om-boc-dua--a211431.html",
+   "publisher": "Báo Cần Thơ; Duy Khôi",
+   "source_type": "journalism_article",
+   "source_version": "Bài ngày 03/08/2026; đọc 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "R-OOC-TITC",
+   "name": "Lễ hội đua ghe Ngo – Sắc màu văn hóa Khmer Nam bộ",
+   "url": "https://dantoc.vietnamtourism.gov.vn/le-hoi-dua-ghe-ngo-sac-mau-van-hoa-khmer-nam-bo/",
+   "publisher": "Trung tâm Thông tin du lịch, Cục Du lịch Quốc gia Việt Nam",
+   "source_type": "official_article",
+   "source_version": "Bản web đọc lại 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu bản diễn giải mới và dẫn nguồn; không tái bản toàn văn, ảnh hoặc bản ghi của nhà xuất bản.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-NT-VOV-2018",
+   "name": "Đêm huyền ảo cùng Lễ hội Tết Nguyên Tiêu Xuân Mậu Tuất TP.HCM",
+   "url": "https://vov.vn/van-hoa-giai-tri/dem-huyen-ao-cung-le-hoi-tet-nguyen-tieu-xuan-mau-tuat-tphcm-735301.vov",
+   "publisher": "Báo điện tử VOV",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 02/03/2018; đọc lại 04/11/2026; trang không ghi tên tác giả",
+   "license_reported": "copyright_unspecified",
+   "rights": "Chỉ lưu metadata và lời diễn giải mới, ngắn, dẫn đúng vị trí. Không sao chép ảnh, bảng hoặc toàn văn.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  }
+ ],
+ "articles": [
+  {
+   "id": "NBS-KY-YEN-BINH-THUY",
+   "category": "le_hoi",
+   "kind": "festival",
+   "topic": "village_festival",
+   "historical_area": "Đình Bình Thủy, rạch Bình Thủy, Cần Thơ theo nguồn",
+   "community": "Người dân Bình Thủy và khách dự lễ Kỳ yên",
+   "summary": "Mỗi năm đình Bình Thủy mở hai kỳ lễ: Thượng điền quanh rằm tháng Tư và Hạ điền ngày 14, 15 tháng Chạp âm lịch. Lễ tưởng nhớ người mở đất, tạ ơn thần linh và cầu mùa màng; từ năm 2018, lễ có tên trong danh mục di sản văn hóa phi vật thể quốc gia.",
+   "introduction": "Mỗi năm đình Bình Thủy mở hai kỳ lễ: Thượng điền quanh rằm tháng Tư và Hạ điền ngày 14, 15 tháng Chạp âm lịch. Lễ tưởng nhớ người mở đất, tạ ơn thần linh và cầu mùa màng; từ năm 2018, lễ có tên trong danh mục di sản văn hóa phi vật thể quốc gia.",
+   "body": "## Hai mùa lễ trong một năm\n\nTheo Báo Nhân Dân năm 2026, đình Bình Thủy có hai kỳ lễ lớn mỗi năm. Kỳ yên Thượng điền kéo dài ba ngày, từ 12 đến 14 tháng Tư âm lịch, với các nghi thức tế lễ cổ truyền, rước thuyền hoa trên sông, hát bội và trò chơi dân gian. Lễ Hạ điền vào ngày 14 và 15 tháng Chạp, là lễ tạ ơn trời đất và chuẩn bị đón năm mới. Bài của Thông tấn xã Việt Nam năm 2024 cũng ghi Kỳ yên Hạ điền được tổ chức vào rằm tháng Chạp hằng năm.\n\n## Một đêm Hạ điền, theo từng giờ\n\nThông tấn xã Việt Nam ghi lịch lễ Hạ điền năm 2024 theo giờ: 6 giờ sáng ngày 14 tháng Chạp cúng Thần Nông và khai mạc; 12 giờ thay khăn Sắc Thần; 14 giờ cúng Túc Yết; 2 giờ sáng ngày 15 cúng Chánh tế; 4 giờ 30 tế Sơn Quân rồi bế mạc. Năm 2026, Báo Cần Thơ tường thuật lễ khai mạc ngày 1-2, tức 14 tháng Chạp năm Ất Tỵ, với cùng các nghi thức cúng Thần Nông, thay khăn Sắc Thần, Túc Yết và tế Sơn Quân.\n\n## Thượng điền: rước sắc và xây chầu\n\nBáo Văn Hóa năm 2023 kể trình tự Kỳ yên Thượng điền: rước Sắc thần đi qua các phường của quận Bình Thủy, cúng Thần Nông, thay khăn Sắc thần, xây chầu đại bội, rồi các lễ tế bàn soạn, túc yết, chánh tế, tôn vương, tế sơn quân, sau cùng là lễ tống khách. Kỳ lễ năm ấy diễn ra từ 30-5 đến 2-6, tức 12 đến 15 tháng Tư âm lịch. Bài cũng ghi đình còn cúng rằm hằng tháng và cúng Tết Nguyên đán.\n\n## Lễ để nhớ ơn ai\n\nBài tường thuật khai mạc năm 2026 của Báo Văn Hóa ghi lễ Thượng điền là dịp tưởng nhớ những người khai mở đất Bình Thủy, tạ ơn thần linh và các anh hùng dân tộc, cầu quốc thái dân an và mùa màng tươi tốt. Bài năm 2024 về lễ Hạ điền cũng ghi lễ tưởng niệm công tích các vị thần, tiền nhân mở đất và anh hùng dân tộc. Năm 2026, bên cạnh nghi lễ, Thượng điền còn có hội hát dân ca và các cuộc thi thể thao phong trào.\n\n## Mỗi năm một lịch\n\nCác nguồn ghi ngày Thượng điền hơi khác nhau. Nhân Dân ghi 12 đến 14 tháng Tư; Báo Văn Hóa ghi kỳ năm 2023 từ 12 đến 15 tháng Tư, kỳ năm 2025 từ 8 đến 12-5, tức 11 đến 15 tháng Tư, và kỳ năm 2026 từ 28 đến 31-5, tức 12 đến 15 tháng Tư. Ngày Hạ điền ổn định hơn: 14 và 15 tháng Chạp, như các kỳ ngày 24–25-1-2024 và 1–2-2-2026. Thẻ sự kiện trên Bản đồ văn hóa của Bộ Văn hóa, Thể thao và Du lịch ghi kỳ Hạ điền tới từ 21 đến 22-1-2027; theo lịch âm Việt Nam do ban biên tập quy đổi, đó là ngày 14 và 15 tháng Chạp năm Bính Ngọ. Ngày giờ chính thức nên đối chiếu lại với thông báo của ban tổ chức khi gần đến lễ.\n\n## Ai tổ chức, ai công nhận\n\nCác bài năm 2023 và 2025 của Báo Văn Hóa ghi Ủy ban nhân dân quận Bình Thủy đứng ra tổ chức lễ; năm 2023 có phối hợp với Sở Văn hóa, Thể thao và Du lịch thành phố Cần Thơ. Năm 2026, Báo Cần Thơ ghi đơn vị tổ chức lễ Hạ điền là Ban Tổ chức các ngày lễ, kỷ niệm phường Bình Thủy; ở lễ Thượng điền cùng năm, chủ tịch Ủy ban nhân dân phường phát biểu khai mạc. Tên đơn vị hành chính ở đây ghi theo từng nguồn. Danh mục di sản văn hóa phi vật thể quốc gia ghi “Lễ hội Kỳ yên Đình Bình Thủy”, thành phố Cần Thơ, theo Quyết định 266/QĐ-BVHTTDL ngày 30-1-2018.",
+   "scope_note": "Hồ sơ dựa trên năm bài báo từ 2023 đến 2026, một thẻ sự kiện của Bộ Văn hóa, Thể thao và Du lịch và danh mục di sản quốc gia. Chưa đọc văn bản của ban quý tế hay hồ sơ di sản; trang của Bảo tàng thành phố Cần Thơ về lễ không tải được khi đối chiếu. Ngày lễ ghi theo từng nguồn; kiến trúc và lịch sử ngôi đình xem ở hồ sơ đình Bình Thủy.",
+   "classification": "source_supported",
+   "sections": [
+    {
+     "heading": "Hai mùa lễ trong một năm",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-DINHBT-ND-2026",
+      "NB-KYH-VNA-2024"
+     ],
+     "text": "Theo Báo Nhân Dân năm 2026, đình Bình Thủy có hai kỳ lễ lớn mỗi năm. Kỳ yên Thượng điền kéo dài ba ngày, từ 12 đến 14 tháng Tư âm lịch, với các nghi thức tế lễ cổ truyền, rước thuyền hoa trên sông, hát bội và trò chơi dân gian. Lễ Hạ điền vào ngày 14 và 15 tháng Chạp, là lễ tạ ơn trời đất và chuẩn bị đón năm mới. Bài của Thông tấn xã Việt Nam năm 2024 cũng ghi Kỳ yên Hạ điền được tổ chức vào rằm tháng Chạp hằng năm."
+    },
+    {
+     "heading": "Một đêm Hạ điền, theo từng giờ",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-KYH-VNA-2024",
+      "NB-KYH-BCT-2026"
+     ],
+     "text": "Thông tấn xã Việt Nam ghi lịch lễ Hạ điền năm 2024 theo giờ: 6 giờ sáng ngày 14 tháng Chạp cúng Thần Nông và khai mạc; 12 giờ thay khăn Sắc Thần; 14 giờ cúng Túc Yết; 2 giờ sáng ngày 15 cúng Chánh tế; 4 giờ 30 tế Sơn Quân rồi bế mạc. Năm 2026, Báo Cần Thơ tường thuật lễ khai mạc ngày 1-2, tức 14 tháng Chạp năm Ất Tỵ, với cùng các nghi thức cúng Thần Nông, thay khăn Sắc Thần, Túc Yết và tế Sơn Quân."
+    },
+    {
+     "heading": "Thượng điền: rước sắc và xây chầu",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-KYH-BVH-2023"
+     ],
+     "text": "Báo Văn Hóa năm 2023 kể trình tự Kỳ yên Thượng điền: rước Sắc thần đi qua các phường của quận Bình Thủy, cúng Thần Nông, thay khăn Sắc thần, xây chầu đại bội, rồi các lễ tế bàn soạn, túc yết, chánh tế, tôn vương, tế sơn quân, sau cùng là lễ tống khách. Kỳ lễ năm ấy diễn ra từ 30-5 đến 2-6, tức 12 đến 15 tháng Tư âm lịch. Bài cũng ghi đình còn cúng rằm hằng tháng và cúng Tết Nguyên đán."
+    },
+    {
+     "heading": "Lễ để nhớ ơn ai",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-DINHBT-BVH-2026",
+      "NB-KYH-VNA-2024"
+     ],
+     "text": "Bài tường thuật khai mạc năm 2026 của Báo Văn Hóa ghi lễ Thượng điền là dịp tưởng nhớ những người khai mở đất Bình Thủy, tạ ơn thần linh và các anh hùng dân tộc, cầu quốc thái dân an và mùa màng tươi tốt. Bài năm 2024 về lễ Hạ điền cũng ghi lễ tưởng niệm công tích các vị thần, tiền nhân mở đất và anh hùng dân tộc. Năm 2026, bên cạnh nghi lễ, Thượng điền còn có hội hát dân ca và các cuộc thi thể thao phong trào."
+    },
+    {
+     "heading": "Mỗi năm một lịch",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-DINHBT-ND-2026",
+      "NB-KYH-BVH-2023",
+      "NB-KYH-BVH-2025",
+      "NB-DINHBT-BVH-2026",
+      "NB-KYH-VNA-2024",
+      "NB-KYH-BCT-2026",
+      "NB-CMAP-KYH-2027"
+     ],
+     "text": "Các nguồn ghi ngày Thượng điền hơi khác nhau. Nhân Dân ghi 12 đến 14 tháng Tư; Báo Văn Hóa ghi kỳ năm 2023 từ 12 đến 15 tháng Tư, kỳ năm 2025 từ 8 đến 12-5, tức 11 đến 15 tháng Tư, và kỳ năm 2026 từ 28 đến 31-5, tức 12 đến 15 tháng Tư. Ngày Hạ điền ổn định hơn: 14 và 15 tháng Chạp, như các kỳ ngày 24–25-1-2024 và 1–2-2-2026. Thẻ sự kiện trên Bản đồ văn hóa của Bộ Văn hóa, Thể thao và Du lịch ghi kỳ Hạ điền tới từ 21 đến 22-1-2027; theo lịch âm Việt Nam do ban biên tập quy đổi, đó là ngày 14 và 15 tháng Chạp năm Bính Ngọ. Ngày giờ chính thức nên đối chiếu lại với thông báo của ban tổ chức khi gần đến lễ."
+    },
+    {
+     "heading": "Ai tổ chức, ai công nhận",
+     "kind": "documented_history",
+     "sourceIds": [
+      "NB-KYH-BVH-2023",
+      "NB-KYH-BVH-2025",
+      "NB-KYH-BCT-2026",
+      "NB-DINHBT-BVH-2026",
+      "S04"
+     ],
+     "text": "Các bài năm 2023 và 2025 của Báo Văn Hóa ghi Ủy ban nhân dân quận Bình Thủy đứng ra tổ chức lễ; năm 2023 có phối hợp với Sở Văn hóa, Thể thao và Du lịch thành phố Cần Thơ. Năm 2026, Báo Cần Thơ ghi đơn vị tổ chức lễ Hạ điền là Ban Tổ chức các ngày lễ, kỷ niệm phường Bình Thủy; ở lễ Thượng điền cùng năm, chủ tịch Ủy ban nhân dân phường phát biểu khai mạc. Tên đơn vị hành chính ở đây ghi theo từng nguồn. Danh mục di sản văn hóa phi vật thể quốc gia ghi “Lễ hội Kỳ yên Đình Bình Thủy”, thành phố Cần Thơ, theo Quyết định 266/QĐ-BVHTTDL ngày 30-1-2018."
+    }
+   ],
+   "claims": [
+    {
+     "source_id": "NB-DINHBT-ND-2026",
+     "statement": "Kỳ yên Thượng điền kéo dài 3 ngày, 12–14 tháng Tư âm lịch hằng năm: tế lễ cổ truyền, rước thuyền hoa trên sông, hát bội, trò chơi dân gian; lễ Hạ điền ngày 14–15 tháng Chạp âm lịch hằng năm, tạ ơn trời đất và chuẩn bị đón năm mới.",
+     "locator": "Đoạn về lễ hội, bài ngày 30/05/2026.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-KYH-VNA-2024",
+     "statement": "Lễ hội Kỳ yên Hạ điền ngày 24–25/1/2024, tức 14–15 tháng Chạp, tổ chức vào rằm tháng Chạp hằng năm; lịch: 6 giờ ngày 14 cúng Thần Nông và khai mạc, 12 giờ thay khăn Sắc Thần, 14 giờ cúng Túc Yết, 2 giờ ngày 15 cúng Chánh tế, 4 giờ 30 tế Sơn Quân và bế mạc; lễ tưởng niệm công tích các vị thần, tiền nhân mở đất, anh hùng dân tộc.",
+     "locator": "Toàn bài ngày 24/01/2024.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-KYH-BCT-2026",
+     "statement": "Khai mạc Lễ hội Kỳ yên Hạ điền năm Ất Tỵ, diễn ra 1–2/2/2026 (14–15 tháng Chạp); đơn vị tổ chức là Ban Tổ chức các ngày lễ, kỷ niệm phường Bình Thủy; nghi thức cúng Thần Nông, thay khăn Sắc Thần, Túc Yết, tế Sơn Quân.",
+     "locator": "Toàn bài ngày 01/02/2026.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-KYH-BVH-2023",
+     "statement": "Kỳ yên Thượng điền năm 2023 từ 30/5 đến 2/6, tức 12–15 tháng Tư âm lịch; trình tự: rước Sắc thần qua các phường quận Bình Thủy, cúng Thần Nông, thay khăn Sắc thần, xây chầu đại bội, tế bàn soạn, túc yết, chánh tế, tôn vương, tế sơn quân, tống khách; đình cúng rằm hằng tháng và Tết Nguyên đán; UBND quận Bình Thủy phối hợp Sở VHTTDL TP Cần Thơ tổ chức.",
+     "locator": "Toàn bài ngày 02/06/2023.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-KYH-BVH-2025",
+     "statement": "Kỳ yên Thượng điền năm 2025 diễn ra 8–12/5/2025, tức 11–15 tháng Tư âm lịch; UBND quận Bình Thủy tổ chức, có ban trị sự đình.",
+     "locator": "Đoạn mở đầu, bài ngày 10/05/2025.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-DINHBT-BVH-2026",
+     "statement": "Khai mạc Kỳ yên Thượng điền ngày 28/5/2026 (12 tháng Tư năm Bính Ngọ), lễ đến 31/5 (15 tháng Tư); lễ tưởng nhớ tiền nhân khai mở đất Bình Thủy, tạ ơn thần linh và các anh hùng dân tộc, cầu quốc thái dân an, mùa màng tươi tốt; có hội hát dân ca, thi thể thao phong trào; chủ tịch UBND phường Bình Thủy phát biểu khai mạc.",
+     "locator": "Toàn bài ngày 28/05/2026.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CMAP-KYH-2027",
+     "statement": "Thẻ sự kiện “Lễ Kỳ yên Hạ điền Đình Bình Thủy”: địa điểm Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ; thời gian từ ngày 21/01 đến ngày 22/01/2027; nhãn “Sắp diễn ra”.",
+     "locator": "Thẻ sự kiện trong danh sách Cần Thơ, đọc 04/11/2026.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "S04",
+     "statement": "Lễ hội Kỳ yên Đình Bình Thủy, thành phố Cần Thơ, Quyết định 266/QĐ-BVHTTDL ngày 30/01/2018.",
+     "locator": "Mục số 230 trong danh mục HTML.",
+     "kind": "register_entry",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    }
+   ],
+   "knowledge": {
+    "name": "Lễ hội Kỳ yên Đình Bình Thủy",
+    "entity_type": "festival",
+    "primary_domain": "le-hoi",
+    "secondary_domains": [
+     "tin-nguong-ton-giao"
+    ],
+    "regions": [
+     "tay-nam-bo"
+    ],
+    "communities": [
+     "kinh"
+    ],
+    "aliases": [
+     {
+      "value": "Kỳ yên Thượng điền",
+      "kind": "related_term",
+      "source_id": "NB-DINHBT-ND-2026",
+      "locator": "Đoạn về lễ hội"
+     },
+     {
+      "value": "Kỳ yên Hạ điền",
+      "kind": "related_term",
+      "source_id": "NB-KYH-VNA-2024",
+      "locator": "Tiêu đề bài"
+     },
+     {
+      "value": "Lễ hội Kỳ yên Đình Bình Thủy",
+      "kind": "alternate_name",
+      "source_id": "S04",
+      "locator": "Mục 230"
+     }
+    ],
+    "historical_places": [
+     {
+      "name": "Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ",
+      "role": "area_as_recorded",
+      "source_id": "NB-DINHBT-BVH-2026",
+      "locator": "Đoạn mở đầu",
+      "as_of": "Theo bài năm 2026",
+      "valid_from": null,
+      "valid_to": null
+     }
+    ],
+    "origin_section": 3,
+    "change_section": 5,
+    "source_ids": [
+     "NB-DINHBT-ND-2026",
+     "NB-KYH-VNA-2024",
+     "NB-KYH-BCT-2026",
+     "NB-KYH-BVH-2023",
+     "NB-KYH-BVH-2025",
+     "NB-DINHBT-BVH-2026",
+     "NB-CMAP-KYH-2027",
+     "S04"
+    ],
+    "current_admin": null
+   },
+   "answers": {
+    "what": {
+     "state": "supported",
+     "text": "Lễ Kỳ yên của đình Bình Thủy, mỗi năm hai kỳ: Thượng điền và Hạ điền.",
+     "source_ids": [
+      "NB-DINHBT-ND-2026",
+      "S04"
+     ]
+    },
+    "when_where": {
+     "state": "supported",
+     "text": "Tại đình Bình Thủy, Cần Thơ; Thượng điền quanh rằm tháng Tư, Hạ điền ngày 14–15 tháng Chạp âm lịch.",
+     "source_ids": [
+      "NB-DINHBT-ND-2026",
+      "NB-KYH-VNA-2024",
+      "NB-DINHBT-BVH-2026"
+     ]
+    },
+    "community": {
+     "state": "partial",
+     "text": "Người dân Bình Thủy và khách dự lễ; nguồn ghi đơn vị tổ chức cấp quận rồi cấp phường, nhưng không mô tả ban quý tế.",
+     "source_ids": [
+      "NB-DINHBT-BVH-2026",
+      "NB-KYH-BCT-2026"
+     ]
+    },
+    "origins": {
+     "state": "partial",
+     "text": "Lễ tưởng nhớ tiền nhân mở đất, tạ ơn thần linh, cầu an và mùa màng; các nguồn đã đọc không ghi lễ bắt đầu từ khi nào.",
+     "source_ids": [
+      "NB-DINHBT-BVH-2026",
+      "NB-KYH-VNA-2024"
+     ]
+    },
+    "changes": {
+     "state": "supported",
+     "text": "Đơn vị tổ chức đổi từ quận sang phường theo nguồn; lễ được ghi danh di sản phi vật thể quốc gia năm 2018.",
+     "source_ids": [
+      "NB-KYH-BVH-2023",
+      "NB-KYH-BCT-2026",
+      "S04"
+     ]
+    },
+    "unknowns": {
+     "state": "unknown",
+     "text": "Chưa đọc văn bản của ban quý tế hay hồ sơ di sản; giờ từng nghi thức Thượng điền chưa có nguồn; ngày các kỳ tới cần thông báo của ban tổ chức.",
+     "source_ids": []
+    },
+    "related": {
+     "state": "supported",
+     "text": "Đọc cùng hồ sơ đình Bình Thủy và lịch lễ hội của trang.",
+     "source_ids": [
+      "NB-DINHBT-ND-2026"
+     ]
+    }
+   },
+   "media": [
+    {
+     "id": "dinh-binh-thuy-can-tho-btdn",
+     "kind": "image",
+     "url": "/media/dinh-binh-thuy-can-tho-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Đình_Bình_Thủy,_Cần_Thơ.jpg",
+     "license_name": "CC BY 3.0",
+     "license_url": "https://creativecommons.org/licenses/by/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 3296 × 2472 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Sân và mặt tiền đình Bình Thủy, Cần Thơ, ảnh Bùi Thụy Đào Nguyên (trang ảnh không ghi ngày chụp). Ảnh không chụp trong ngày lễ Kỳ yên.",
+     "attribution": "Đình Bình Thủy, Cần Thơ.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, tác giả cấp phép kép PD-user và CC BY 3.0; dùng theo CC BY 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "8b4a8cec0c2b732e8d4a41ffdeeb5cf8db79b9e8b79cf62476e3879a507d037a",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1500
+    }
+   ],
+   "publication_status": "published",
+   "review_status": "verified",
+   "rights_review_status": "cleared",
+   "publish_approval": true,
+   "reviewed_at": "2026-11-04",
+   "rights_basis": "Lời văn biên soạn mới, ngắn gọn, diễn giải và dẫn đúng vị trí trong nguồn đã đọc ngày 04/11/2026; không sao chép toàn văn, bảng hay ảnh của nguồn. Ảnh dùng lại tệp Commons đã kiểm giấy phép.",
+   "slug": "ky-yen-dinh-binh-thuy-thuong-dien-ha-dien",
+   "title": "Kỳ yên đình Bình Thủy: hai mùa lễ của một ngôi đình"
+  }
+ ],
+ "tours": [],
+ "occurrences": [
+  {
+   "id": "KYH-HA-DIEN-2026",
+   "content_id": "NBS-KY-YEN-BINH-THUY",
+   "related_ids": [
+    "NBS-DINH-BINH-THUY"
+   ],
+   "name": "Lễ hội Kỳ yên Hạ điền Đình Bình Thủy",
+   "edition": "Năm Ất Tỵ",
+   "place_as_written": "Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ",
+   "place_id": "dinh-binh-thuy",
+   "region": "tay-nam-bo",
+   "start": "2026-02-01",
+   "end": "2026-02-02",
+   "lunar": {
+    "start": [
+     14,
+     12
+    ],
+    "end": [
+     15,
+     12
+    ],
+    "year": "Ất Tỵ"
+   },
+   "date_status": "reported",
+   "source_ids": [
+    "NB-KYH-BCT-2026"
+   ],
+   "locator": "Toàn bài ngày 01/02/2026.",
+   "source_as_written": "Diễn ra ngày 1 và 2-2-2026, tức 14 và 15 tháng Chạp.",
+   "why": "Kỳ lễ cuối năm âm lịch của đình: cúng Thần Nông, thay khăn Sắc Thần, Túc Yết và tế Sơn Quân."
+  },
+  {
+   "id": "KYH-THUONG-DIEN-2026",
+   "content_id": "NBS-KY-YEN-BINH-THUY",
+   "related_ids": [
+    "NBS-DINH-BINH-THUY"
+   ],
+   "name": "Lễ hội Kỳ yên Thượng điền Đình Bình Thủy",
+   "edition": "Năm Bính Ngọ",
+   "place_as_written": "Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ",
+   "place_id": "dinh-binh-thuy",
+   "region": "tay-nam-bo",
+   "start": "2026-05-28",
+   "end": "2026-05-31",
+   "lunar": {
+    "start": [
+     12,
+     4
+    ],
+    "end": [
+     15,
+     4
+    ],
+    "year": "Bính Ngọ"
+   },
+   "date_status": "reported",
+   "source_ids": [
+    "NB-DINHBT-BVH-2026",
+    "NB-DINHBT-ND-2026"
+   ],
+   "locator": "Bài Báo Văn Hóa ngày 28/05/2026; đoạn về lễ hội trong bài Nhân Dân ngày 30/05/2026.",
+   "source_as_written": "Khai mạc 28-5, tức 12 tháng Tư năm Bính Ngọ, kéo dài đến 31-5.",
+   "why": "Kỳ lễ đầu mùa của đình, có tế lễ cổ truyền, rước thuyền hoa, hát bội và trò chơi dân gian."
+  },
+  {
+   "id": "OOB-CAN-THO-2026",
+   "content_id": "E012",
+   "related_ids": [
+    "E013"
+   ],
+   "name": "Lễ hội Oóc Om Bóc – Đua ghe Ngo thành phố Cần Thơ",
+   "edition": "Năm 2026",
+   "place_as_written": "Khai mạc tại Quảng trường Bạch Đằng, phường Phú Lợi; đua ghe tại Khán đài Đua ghe Ngo, phường Sóc Trăng, thành phố Cần Thơ",
+   "place_id": null,
+   "region": "tay-nam-bo",
+   "start": "2026-11-22",
+   "end": "2026-11-24",
+   "lunar": {
+    "start": [
+     14,
+     10
+    ],
+    "end": [
+     16,
+     10
+    ],
+    "year": "Bính Ngọ"
+   },
+   "date_status": "announced",
+   "source_ids": [
+    "NB-OOB-CACT-2026",
+    "NB-OOB-BCT-2026",
+    "R-OOC-TITC"
+   ],
+   "locator": "Bài Công an thành phố Cần Thơ ngày 06/08/2026 và bài Báo Cần Thơ ngày 03/08/2026; trang Cục Du lịch Quốc gia về ngày lễ.",
+   "source_as_written": "Theo Kế hoạch 351/KH-UBND: dự kiến khai mạc ngày 22/11; giải đua ghe Ngo dự kiến ngày 23 và 24/11.",
+   "why": "Lễ cúng trăng rằm tháng Mười của người Khmer sau mùa lúa, kèm giải đua ghe Ngo của hơn 60 đội.",
+   "note": "Thời gian là dự kiến theo kế hoạch của Ủy ban nhân dân thành phố; nguồn chưa ghi giờ từng hoạt động."
+  },
+  {
+   "id": "KYH-HA-DIEN-2027",
+   "content_id": "NBS-KY-YEN-BINH-THUY",
+   "related_ids": [
+    "NBS-DINH-BINH-THUY"
+   ],
+   "name": "Lễ Kỳ yên Hạ điền Đình Bình Thủy",
+   "edition": "Năm Bính Ngọ",
+   "place_as_written": "Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ",
+   "place_id": "dinh-binh-thuy",
+   "region": "tay-nam-bo",
+   "start": "2027-01-21",
+   "end": "2027-01-22",
+   "lunar": {
+    "start": [
+     14,
+     12
+    ],
+    "end": [
+     15,
+     12
+    ],
+    "year": "Bính Ngọ"
+   },
+   "date_status": "listed",
+   "source_ids": [
+    "NB-CMAP-KYH-2027",
+    "NB-DINHBT-ND-2026"
+   ],
+   "locator": "Thẻ sự kiện trên Bản đồ văn hóa, đọc 04/11/2026; đoạn về lễ hội trong bài Nhân Dân ngày 30/05/2026.",
+   "source_as_written": "Từ ngày 21/01 đến ngày 22/01/2027.",
+   "why": "Lễ tạ ơn trời đất và chuẩn bị đón năm mới, vào 14 và 15 tháng Chạp.",
+   "note": "Có trên lịch sự kiện của Bộ Văn hóa, Thể thao và Du lịch; chưa thấy thông báo riêng của ban tổ chức."
+  },
+  {
+   "id": "NGUYEN-TIEU-2027",
+   "content_id": "KN-SAMPLE-NGUYEN-TIEU",
+   "related_ids": [],
+   "name": "Tết Nguyên Tiêu",
+   "edition": "Năm Đinh Mùi",
+   "place_as_written": "Trung tâm Văn hóa Quận 5, Thành phố Hồ Chí Minh, nơi tổ chức năm 2018 theo nguồn",
+   "place_id": null,
+   "region": "dong-nam-bo",
+   "start": "2027-02-20",
+   "end": "2027-02-20",
+   "lunar": {
+    "start": [
+     15,
+     1
+    ],
+    "end": [
+     15,
+     1
+    ],
+    "year": "Đinh Mùi"
+   },
+   "date_status": "traditional",
+   "source_ids": [
+    "NB-NT-VOV-2018"
+   ],
+   "locator": "Đoạn mở đầu, bài ngày 02/03/2018.",
+   "source_as_written": "Rằm tháng Giêng âm lịch.",
+   "why": "Rằm tháng Giêng, cao điểm khép lại mùa Tết, là lễ hội truyền thống của người Hoa.",
+   "estimate_note": "Ngày dương lịch do ban biên tập quy đổi từ rằm tháng Giêng năm Đinh Mùi; chưa có thông báo của đơn vị tổ chức."
+  },
+  {
+   "id": "KYH-THUONG-DIEN-2027",
+   "content_id": "NBS-KY-YEN-BINH-THUY",
+   "related_ids": [
+    "NBS-DINH-BINH-THUY"
+   ],
+   "name": "Lễ hội Kỳ yên Thượng điền Đình Bình Thủy",
+   "edition": "Năm Đinh Mùi",
+   "place_as_written": "Đình Bình Thủy, phường Bình Thủy, thành phố Cần Thơ",
+   "place_id": "dinh-binh-thuy",
+   "region": "tay-nam-bo",
+   "start": "2027-05-17",
+   "end": "2027-05-20",
+   "lunar": {
+    "start": [
+     12,
+     4
+    ],
+    "end": [
+     15,
+     4
+    ],
+    "year": "Đinh Mùi"
+   },
+   "date_status": "traditional",
+   "source_ids": [
+    "NB-DINHBT-ND-2026",
+    "NB-DINHBT-BVH-2026"
+   ],
+   "locator": "Đoạn về lễ hội trong bài Nhân Dân ngày 30/05/2026; bài Báo Văn Hóa ngày 28/05/2026.",
+   "source_as_written": "Nhân Dân: 12 đến 14 tháng Tư âm lịch hằng năm; Báo Văn Hóa: kỳ 2026 kéo dài đến 15 tháng Tư.",
+   "why": "Kỳ lễ đầu mùa của đình, có tế lễ cổ truyền, rước thuyền hoa, hát bội và trò chơi dân gian.",
+   "estimate_note": "Ngày dương lịch do ban biên tập quy đổi từ 12–15 tháng Tư năm Đinh Mùi; chưa có thông báo của ban tổ chức."
+  }
+ ]
+}

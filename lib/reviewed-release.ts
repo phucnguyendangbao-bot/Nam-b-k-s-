@@ -7,6 +7,8 @@ import supplement from '@/data/release/published-2026-11-01-supplement.json';
 import supplementDecision from '@/data/release/publication-approval-2026-11-01-supplement.json';
 import dossierEnrichment from '@/data/release/published-2026-11-02-enrichment.json';
 import dossierEnrichmentDecision from '@/data/release/publication-approval-2026-11-02-enrichment.json';
+import festivals from '@/data/release/published-2026-11-04-festivals.json';
+import festivalsDecision from '@/data/release/publication-approval-2026-11-04-festivals.json';
 import { canReleaseArticle } from './release-model';
 import type { PublicationApproval, ReleaseArticle, ReleaseData } from './release-model';
 
@@ -19,11 +21,13 @@ const layers = [
   { release: enrichment as unknown as ReleaseData, raw: enrichment, approval: enrichmentDecision as PublicationApproval },
   { release: supplement as unknown as ReleaseData, raw: supplement, approval: supplementDecision as PublicationApproval },
   { release: dossierEnrichment as unknown as ReleaseData, raw: dossierEnrichment, approval: dossierEnrichmentDecision as PublicationApproval },
+  { release: festivals as unknown as ReleaseData, raw: festivals, approval: festivalsDecision as PublicationApproval },
 ];
 for (const { release, raw, approval } of layers) {
   if (createHash('sha256').update(JSON.stringify(raw)).digest('hex') !== approval.release_payload_sha256) throw new Error(`Reviewed release ${release.version} payload has changed; source and rights review must be repeated.`);
   const sourceIds = new Set(release.sources.map(source => source.id));
   if (!release.articles.every(article => canReleaseArticle(article, approval, sourceIds))) throw new Error(`Release ${release.version} contains an unapproved article.`);
+  if ((release.occurrences ?? []).some(o => !approval.approved_occurrence_ids?.includes(o.id))) throw new Error(`Release ${release.version} contains an unapproved festival date.`);
 }
 
 export const publicationApproval = layers[0].approval;
@@ -42,4 +46,5 @@ export const reviewedRelease: ReleaseData = {
   version: layers.map(layer => layer.release.version).join('+'), reviewed_at: layers.at(-1)!.release.reviewed_at,
   sources: [...sources.values()], articles: [...byId.values()], tours: layers.flatMap(layer => layer.release.tours),
   events: layers.flatMap(layer => layer.release.events ?? []), locations: layers.flatMap(layer => layer.release.locations ?? []),
+  occurrences: layers.flatMap(layer => layer.release.occurrences ?? []),
 };

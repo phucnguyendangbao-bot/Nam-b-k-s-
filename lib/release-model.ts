@@ -4,6 +4,22 @@ import type { KnowledgeEvent } from './knowledge-core';
 
 export type ReleaseLocation = { id: string; content_id: string; lat: number; lng: number; theme: 'ecology' | 'archaeology' | 'worship' | 'river' | 'craft' | 'arts'; status: 'proposed'; provenance: string };
 
+/**
+ * Một kỳ tổ chức cụ thể của lễ hội (khác với hồ sơ lễ thức). Ngày luôn đi kèm nguồn và trạng thái:
+ * - `reported`: đã diễn ra, có bài tường thuật;
+ * - `announced`: đơn vị tổ chức hoặc cơ quan quản lý đã công bố kế hoạch (có thể vẫn là "dự kiến");
+ * - `listed`: có trên lịch sự kiện chính thức, chưa thấy thông báo riêng của ban tổ chức;
+ * - `traditional`: chỉ có lịch âm truyền thống; ngày dương lịch là quy đổi của ban biên tập (`estimate_note`).
+ */
+export type OccurrenceStatus = 'reported' | 'announced' | 'listed' | 'traditional';
+export type FestivalOccurrence = {
+  id: string; content_id: string; related_ids: string[]; name: string; edition: string;
+  place_as_written: string; place_id: string | null; region: 'dong-nam-bo' | 'tay-nam-bo' | 'lien-vung';
+  start: string; end: string; lunar: { start: [number, number]; end: [number, number]; year: string };
+  date_status: OccurrenceStatus; source_ids: string[]; locator: string; source_as_written: string; why: string;
+  note?: string; estimate_note?: string;
+};
+
 export type ReleaseAnswer = { state: 'supported' | 'partial' | 'unknown'; text: string; source_ids: string[] };
 export type ReleaseArticle = {
   id: string; title: string; category: string; kind: string; topic: string; historical_area: string; community: string;
@@ -15,8 +31,8 @@ export type ReleaseArticle = {
   dialect?: { headword: string; meaning: string; usage_context: string; example: string; example_note: string; regional_scope: string; part_of_speech: string; audio_asset_id: null };
   dialect_clearance?: { status: string; reviewer: string; checked_at: string; source_ids: string[]; example_origin: string; audio_cleared: boolean };
 };
-export type PublicationApproval = { status: string; authority: string; reviewer: string; reviewed_at: string; authorization: string; approved_article_ids: string[]; approved_tour_ids: string[]; approved_dialect_ids?: string[]; release_sha256: string; release_payload_sha256: string };
-export type ReleaseData = { version: string; reviewed_at: string; sources: { id: string; name: string; url: string; publisher: string; source_type: string; source_version: string; license_reported: string; rights: string; consulted_extent?: string }[]; articles: ReleaseArticle[]; tours: { id: string; title: string; kind: string; description: string; content_ids: string[] }[]; events?: KnowledgeEvent[]; locations?: ReleaseLocation[] };
+export type PublicationApproval = { status: string; authority: string; reviewer: string; reviewed_at: string; authorization: string; approved_article_ids: string[]; approved_tour_ids: string[]; approved_dialect_ids?: string[]; approved_occurrence_ids?: string[]; release_sha256: string; release_payload_sha256: string };
+export type ReleaseData = { version: string; reviewed_at: string; sources: { id: string; name: string; url: string; publisher: string; source_type: string; source_version: string; license_reported: string; rights: string; consulted_extent?: string }[]; articles: ReleaseArticle[]; tours: { id: string; title: string; kind: string; description: string; content_ids: string[] }[]; events?: KnowledgeEvent[]; locations?: ReleaseLocation[]; occurrences?: FestivalOccurrence[] };
 
 /** Dialect additions require a named clearance, separate from general article review. */
 export function canReleaseDialect(article: ReleaseArticle, approval: PublicationApproval): boolean {

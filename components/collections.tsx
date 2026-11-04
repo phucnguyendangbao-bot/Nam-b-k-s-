@@ -11,6 +11,7 @@ import { KnowledgeContext } from './knowledge-context';
 import { knowledgeRelated } from '@/lib/knowledge';
 import { siteUrl } from '@/lib/site-url';
 import { chapterAnchor, storyPosition } from '@/lib/story';
+import { DossierFestivals } from './festivals';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -297,6 +298,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
               <nav aria-label="Mục lục bài"><ol>{toc.map(t => <li key={t.href}><a href={t.href}>{t.label}</a></li>)}</ol></nav>
             </details>
           </div>
+          {!preview && <DossierFestivals contentId={c.id} />}
 
           {dialect && (
             <section className="lexicon-panel" id="nghia-tu">
