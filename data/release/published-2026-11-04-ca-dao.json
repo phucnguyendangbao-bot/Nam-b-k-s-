@@ -1,0 +1,958 @@
+{
+ "version": "published-2026-11-04-ca-dao-v1",
+ "reviewed_at": "2026-11-04",
+ "sources": [
+  {
+   "id": "NB-CD-TPD-2021",
+   "name": "Hiểu thêm về một câu ca dao",
+   "url": "https://tintucmientay.baoangiang.com.vn/hieu-them-ve-mot-cau-ca-dao-a300864.html",
+   "publisher": "Trần Phỏng Diều (Báo Cần Thơ); đăng lại trên Tin tức miền Tây, Báo An Giang",
+   "source_type": "journalism_article",
+   "source_version": "Bài ngày 11/04/2021; đọc toàn bài 04/11/2026; bài dẫn Trần Ngọc Thêm (2018), Trần Văn Nam (2005), Địa chí Cần Thơ (2002), Nguyễn Phan Quang (2004), Nhâm Hùng (2007)",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CD-SGGP-2016",
+   "name": "Sông nước Phong Điền",
+   "url": "https://www.sggp.org.vn/song-nuoc-phong-dien-post21731.html",
+   "publisher": "Báo Sài Gòn Giải Phóng; Đặng Hoàng Thám",
+   "source_type": "journalism_article",
+   "source_version": "Bài ngày 30/09/2016; đọc toàn bài 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CD-DH-2017",
+   "name": "Chiếc xáng và cuộc khẩn hoang miền Nam",
+   "url": "https://baocantho.com.vn/chiec-xang-va-cuoc-khan-hoang-mien-nam-a88369.html",
+   "publisher": "Báo Cần Thơ; Đăng Huỳnh",
+   "source_type": "journalism_article",
+   "source_version": "Bài biên khảo ngày 09/07/2017; đọc toàn bài 04/11/2026; tài liệu tham khảo của bài: Sơn Nam, Tìm hiểu đất Hậu Giang (1959) và Lịch sử khẩn hoang miền Nam (1994)",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CD-VNP-2009",
+   "name": "Kênh xáng Xà No- con đường lúa gạo Hậu Giang",
+   "url": "https://www.vietnamplus.vn/kenh-xang-xa-no-con-duong-lua-gao-hau-giang-post27059.vnp",
+   "publisher": "TTXVN/Vietnam+",
+   "source_type": "journalism_report",
+   "source_version": "Bài ngày 30/11/2009; đọc toàn bài 04/11/2026",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CD-TVN-1998",
+   "name": "Ca dao Nam Bộ - Ca dao của vùng đất mới",
+   "url": "https://khoavanhoc-ngonngu.edu.vn/nghien-cuu/van-hoc-dan-gian/287-ca-dao-nam-b-ca-dao-ca-vung-t-mi.html",
+   "publisher": "Trần Văn Nam; Tập san Khoa học Xã hội số 05/1998, đăng lại trên trang Khoa Văn học, Trường Đại học Khoa học Xã hội và Nhân văn TP.HCM",
+   "source_type": "scholarly_article",
+   "source_version": "Bản web đăng ngày 13/03/2009; đọc toàn bài 04/11/2026; bản web có vài lỗi gõ, hồ sơ chỉ sửa lỗi dấu hiển nhiên và ghi chú chỗ sửa",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "full_article",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  },
+  {
+   "id": "NB-CD-HTLP-2020",
+   "name": "Kiều Thanh Quế với những công trình ra đời trong thời gian bị quản thúc ở Cần Thơ",
+   "url": "https://vjol.info.vn/khxh/article/download/49035/40984/",
+   "publisher": "Huỳnh Thị Lan Phương, Nguyễn Văn Nở; Tạp chí Khoa học Xã hội, số 3 (259), 2020, tr. 23–34",
+   "source_type": "scholarly_article",
+   "source_version": "Bản PDF trên Vietnam Journals Online; đọc 04/11/2026 phần dẫn ca dao ở tr. 24 và tr. 28",
+   "license_reported": "copyright_unspecified",
+   "rights": "Ca dao là lời dân gian, được dẫn nguyên văn như nguồn ghi. Lời phân tích của tác giả chỉ được diễn giải ngắn, ghi đúng tên người nói; không sao chép toàn văn, ảnh hay bảng.",
+   "consulted_extent": "excerpt",
+   "review_status": "accepted",
+   "checked_at": "2026-11-04"
+  }
+ ],
+ "articles": [
+  {
+   "id": "NBS-CD-CAI-RANG",
+   "category": "ca_dao",
+   "kind": "folk_verse",
+   "topic": "folk_verse",
+   "historical_area": "Dọc sông Cần Thơ, từ Cái Răng lên Phong Điền, theo nguồn",
+   "community": "Người Cần Thơ và miền Tây thuộc lòng câu ca; người đi ghe chài, chủ chành lúa đầu thế kỷ XX trong bối cảnh câu ca",
+   "summary": "Câu ca không có chữ “Cần Thơ” nhưng người Cần Thơ ai cũng thuộc. Bốn địa danh nằm dọc một dòng sông; có chữ Vàm Xáng nên câu ca không thể cũ hơn kênh Xà No đào xong năm 1903. Có ít nhất ba bản, và từ một câu “đừng cho lúa gạo” người ta đã đọc ra năm cách hiểu khác nhau.",
+   "introduction": "Câu ca không có chữ “Cần Thơ” nhưng người Cần Thơ ai cũng thuộc. Bốn địa danh nằm dọc một dòng sông; có chữ Vàm Xáng nên câu ca không thể cũ hơn kênh Xà No đào xong năm 1903. Có ít nhất ba bản, và từ một câu “đừng cho lúa gạo” người ta đã đọc ra năm cách hiểu khác nhau.",
+   "body": "## Bốn tên đất, một dòng sông\n\nBản người ta nhớ nhiều nhất:\n\n“Cái Răng, Ba Láng, Vàm Xáng, Phong Điền\nAnh có thương em thì cho bạc cho tiền\nĐừng cho lúa gạo xóm giềng cười chê.”\n\nĐăng Huỳnh viết rằng người Cần Thơ ai cũng thuộc lòng câu này; Trần Phỏng Diều lưu ý câu ca không hề nhắc chữ Cần Thơ mà vẫn được xem là lời khen Cần Thơ. Lý do nằm ở dòng đầu: bốn cái tên là bốn chặng dọc sông Cần Thơ. Đi từ cầu Cái Răng ngược lên, sông và lộ Vòng Cung chạy song song tới chợ nổi Phong Điền, như bài của Báo Sài Gòn Giải Phóng tả. Câu hát vì thế đọc như một chuyến ghe: kể tên bến trước, rồi mới tới chuyện thương.\n\n## Ba bản, khác nhau ở chỗ cho cái gì\n\nDòng đầu giữ nguyên, hai dòng sau thì khác.\n\nBản thứ nhất, phổ biến nhất, là bản ở trên: cho bạc cho tiền, đừng cho lúa gạo.\n\nBản thứ hai, Báo Sài Gòn Giải Phóng in năm 2016, chỉ thêm hai chữ: “Chớ đừng cho lúa gạo mà xóm giềng cười chê”. Nghĩa không đổi, nhưng nhịp kéo dài ra như khi hò.\n\nBản thứ ba nói ngược hẳn:\n\n“Anh thương em thì đừng cho bạc, cho tiền\nCho nhơn, cho nghĩa, kẻo xóm giềng cười chê.”\n\nTheo Trần Phỏng Diều, Trần Văn Nam năm 2005 đã dẫn bản thứ ba nhưng ngờ rằng nó bị ai đó sửa lời, vì trong dân gian bản thứ nhất được nhiều người nhớ hơn. Một bản đòi tiền, một bản chê tiền: đó chính là chỗ khiến câu ca đáng đọc kỹ.\n\n## Một câu ca có thể đoán được tuổi\n\nPhần lớn ca dao không có niên đại. Câu này thì có một mốc. Vàm Xáng là nơi kênh xáng Xà No gặp sông Cần Thơ; kênh được đào từ năm 1901 và xong vào tháng 7-1903. Vì có địa danh Vàm Xáng, Đăng Huỳnh cho rằng câu ca chắc chắn có sau năm 1903, và ông đoán còn muộn hơn chừng năm, bảy năm nữa, khi chuyện lúa gạo trên kênh đã thành cảnh thường ngày. Năm 1908, hương chức làng Nhơn Ái xin lập chợ Vàm Xáng. Như vậy câu ca nhiều khả năng ra đời trong khoảng đầu thế kỷ XX, cùng lúc với con kênh mà nó nhắc tên.\n\n## Lúa gạo ở Cái Răng thời ấy\n\nMuốn hiểu vì sao “đừng cho lúa gạo”, phải biết lúa gạo ở đây nhiều tới mức nào. Bài của Trần Phỏng Diều dẫn Địa chí Cần Thơ: trong hai thập niên đầu thế kỷ XX, người Pháp cho đào khoảng 350 km kênh trong địa phận tỉnh Cần Thơ; giai đoạn 1901–1906 sản lượng lúa bình quân của tỉnh đạt 116.000 tấn, đứng đầu khu vực; về sau, từ năm 1941, các nhà tư sản Pháp và Hoa xây thêm nhà máy xay, lập chành lúa, và Cái Răng cùng vùng phụ cận thành nơi tồn trữ, chế biến lúa gạo cho các tỉnh miền Tây. Theo bài của Thông tấn xã Việt Nam, năm 1908 gạo xuất khẩu của vùng Hậu Giang đạt 900.000 tấn trên tổng số 1,3 triệu tấn của cả nước. Đăng Huỳnh thêm một chi tiết: sau khi kênh Xà No đào xong, người Hoa ở Cái Răng mở hàng chục chành lúa lớn, ghe chài từ Bạc Liêu, Cà Mau, U Minh về tấp nập.\n\n## Năm cách hiểu một câu “đừng cho lúa gạo”\n\nThứ nhất, đồng tiền len vào tình yêu. Trần Phỏng Diều dẫn sách Văn hóa người Việt vùng Tây Nam Bộ do Trần Ngọc Thêm chủ biên (2018): từ cuối thế kỷ XIX, đồng bạc Đông Dương có mặt khắp nơi và chi phối cả quan hệ đôi lứa; câu ca được dẫn làm ví dụ.\n\nThứ hai, cô gái chân thật chứ không ham tiền. Theo Trần Văn Nam (2005), cô trân trọng sự giúp đỡ của người thương nhưng muốn chuyện đó đừng diễn ra thô kệch trước miệng người đời.\n\nThứ ba, lúa gạo chẳng có gì lạ. Nhâm Hùng (2007) giải thích rằng thời ấy lúa gạo chở dập dìu trên ghe chài qua kênh Xà No về nhà máy xay Cái Răng, chất đầy chành, nên đem cho lúa gạo không hấp dẫn.\n\nThứ tư, đây là lời khen quê. Trần Phỏng Diều cho rằng xứ cô gái đã có thừa gạo trắng, nên cho gạo chẳng khác chở củi về rừng; xóm giềng cười là cười chàng trai không hiểu quê người mình thương. Theo cách đọc này, câu ca chưa hẳn là bài ca tình yêu mà là bài ca ngợi Cần Thơ.\n\nThứ năm, Đăng Huỳnh không cho rằng cái lý nằm ở việc vùng này trồng nhiều lúa, vì ở đây còn có vườn tược; ông gắn câu ca với cảnh chành lúa của người Hoa và ghe chài lên xuống sau khi có kênh Xà No.\n\nCác cách hiểu này không loại trừ nhau hoàn toàn. Cách thứ ba, thứ tư và thứ năm cùng dựa vào một sự thật lịch sử: ở khúc sông này, đầu thế kỷ XX, lúa gạo là thứ ai cũng có.\n\n## Đọc chậm từng chữ\n\nXáng: chiếc máy đào kênh của người Pháp. Đăng Huỳnh dẫn Sơn Nam gọi nó là con quái vật bằng sắt; ở đồng bằng có nhiều địa danh mang chữ xáng như Xáng Cụt, Vàm Xáng, Búng Xáng.\n\nVàm Xáng: theo Đăng Huỳnh, đầu kênh Xà No nối với sông Cần Thơ được gọi là Vàm Xáng Xà No, đầu bên kia nối với sông Cái Lớn gọi là Vàm Xáng Hỏa Lựu.\n\nChành lúa: kho thu mua, tồn trữ lúa, ở đây gắn với người Hoa ở Cái Răng.\n\nXóm giềng cười chê: cả năm cách hiểu đều xoay quanh ánh mắt của làng xóm. Món quà giữa hai người không phải chuyện riêng; nó được người bên cạnh nhìn và phán xét. Đây là nhận xét của ban biên tập khi đặt các cách hiểu cạnh nhau.\n\n## Điều còn để ngỏ\n\nChưa biết bản nào xuất hiện trước, cũng chưa tìm thấy bản ghi in sớm nhất. Mốc sau năm 1903 dựa trên lập luận của Đăng Huỳnh về địa danh Vàm Xáng, chưa phải bằng chứng từ một bản sưu tầm có ngày tháng. Nguồn gốc tên Ba Láng và Phong Điền chưa được các nguồn đã đọc giải thích. Ý kiến của Trần Ngọc Thêm, Trần Văn Nam và Nhâm Hùng được đọc qua lời dẫn trong bài của Trần Phỏng Diều; cần đối chiếu sách gốc trước khi trích dài hơn.",
+   "scope_note": "Hồ sơ đối chiếu ba bài báo, một bài biên khảo và một bài tin về kênh Xà No; các ý kiến của Trần Ngọc Thêm, Trần Văn Nam và Nhâm Hùng được đọc qua lời dẫn của Trần Phỏng Diều, chưa đọc sách gốc. Chưa tìm thấy bản ghi in sớm nhất của câu ca, nên chưa biết bản nào có trước.",
+   "classification": "source_supported",
+   "sections": [
+    {
+     "heading": "Bốn tên đất, một dòng sông",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TPD-2021",
+      "NB-CD-DH-2017",
+      "NB-CD-SGGP-2016"
+     ],
+     "text": "Bản người ta nhớ nhiều nhất:\n\n“Cái Răng, Ba Láng, Vàm Xáng, Phong Điền\nAnh có thương em thì cho bạc cho tiền\nĐừng cho lúa gạo xóm giềng cười chê.”\n\nĐăng Huỳnh viết rằng người Cần Thơ ai cũng thuộc lòng câu này; Trần Phỏng Diều lưu ý câu ca không hề nhắc chữ Cần Thơ mà vẫn được xem là lời khen Cần Thơ. Lý do nằm ở dòng đầu: bốn cái tên là bốn chặng dọc sông Cần Thơ. Đi từ cầu Cái Răng ngược lên, sông và lộ Vòng Cung chạy song song tới chợ nổi Phong Điền, như bài của Báo Sài Gòn Giải Phóng tả. Câu hát vì thế đọc như một chuyến ghe: kể tên bến trước, rồi mới tới chuyện thương."
+    },
+    {
+     "heading": "Ba bản, khác nhau ở chỗ cho cái gì",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TPD-2021",
+      "NB-CD-SGGP-2016"
+     ],
+     "text": "Dòng đầu giữ nguyên, hai dòng sau thì khác.\n\nBản thứ nhất, phổ biến nhất, là bản ở trên: cho bạc cho tiền, đừng cho lúa gạo.\n\nBản thứ hai, Báo Sài Gòn Giải Phóng in năm 2016, chỉ thêm hai chữ: “Chớ đừng cho lúa gạo mà xóm giềng cười chê”. Nghĩa không đổi, nhưng nhịp kéo dài ra như khi hò.\n\nBản thứ ba nói ngược hẳn:\n\n“Anh thương em thì đừng cho bạc, cho tiền\nCho nhơn, cho nghĩa, kẻo xóm giềng cười chê.”\n\nTheo Trần Phỏng Diều, Trần Văn Nam năm 2005 đã dẫn bản thứ ba nhưng ngờ rằng nó bị ai đó sửa lời, vì trong dân gian bản thứ nhất được nhiều người nhớ hơn. Một bản đòi tiền, một bản chê tiền: đó chính là chỗ khiến câu ca đáng đọc kỹ."
+    },
+    {
+     "heading": "Một câu ca có thể đoán được tuổi",
+     "kind": "documented_history",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ],
+     "text": "Phần lớn ca dao không có niên đại. Câu này thì có một mốc. Vàm Xáng là nơi kênh xáng Xà No gặp sông Cần Thơ; kênh được đào từ năm 1901 và xong vào tháng 7-1903. Vì có địa danh Vàm Xáng, Đăng Huỳnh cho rằng câu ca chắc chắn có sau năm 1903, và ông đoán còn muộn hơn chừng năm, bảy năm nữa, khi chuyện lúa gạo trên kênh đã thành cảnh thường ngày. Năm 1908, hương chức làng Nhơn Ái xin lập chợ Vàm Xáng. Như vậy câu ca nhiều khả năng ra đời trong khoảng đầu thế kỷ XX, cùng lúc với con kênh mà nó nhắc tên."
+    },
+    {
+     "heading": "Lúa gạo ở Cái Răng thời ấy",
+     "kind": "documented_history",
+     "sourceIds": [
+      "NB-CD-TPD-2021",
+      "NB-CD-VNP-2009",
+      "NB-CD-DH-2017"
+     ],
+     "text": "Muốn hiểu vì sao “đừng cho lúa gạo”, phải biết lúa gạo ở đây nhiều tới mức nào. Bài của Trần Phỏng Diều dẫn Địa chí Cần Thơ: trong hai thập niên đầu thế kỷ XX, người Pháp cho đào khoảng 350 km kênh trong địa phận tỉnh Cần Thơ; giai đoạn 1901–1906 sản lượng lúa bình quân của tỉnh đạt 116.000 tấn, đứng đầu khu vực; về sau, từ năm 1941, các nhà tư sản Pháp và Hoa xây thêm nhà máy xay, lập chành lúa, và Cái Răng cùng vùng phụ cận thành nơi tồn trữ, chế biến lúa gạo cho các tỉnh miền Tây. Theo bài của Thông tấn xã Việt Nam, năm 1908 gạo xuất khẩu của vùng Hậu Giang đạt 900.000 tấn trên tổng số 1,3 triệu tấn của cả nước. Đăng Huỳnh thêm một chi tiết: sau khi kênh Xà No đào xong, người Hoa ở Cái Răng mở hàng chục chành lúa lớn, ghe chài từ Bạc Liêu, Cà Mau, U Minh về tấp nập."
+    },
+    {
+     "heading": "Năm cách hiểu một câu “đừng cho lúa gạo”",
+     "kind": "hypothesis",
+     "sourceIds": [
+      "NB-CD-TPD-2021",
+      "NB-CD-DH-2017"
+     ],
+     "text": "Thứ nhất, đồng tiền len vào tình yêu. Trần Phỏng Diều dẫn sách Văn hóa người Việt vùng Tây Nam Bộ do Trần Ngọc Thêm chủ biên (2018): từ cuối thế kỷ XIX, đồng bạc Đông Dương có mặt khắp nơi và chi phối cả quan hệ đôi lứa; câu ca được dẫn làm ví dụ.\n\nThứ hai, cô gái chân thật chứ không ham tiền. Theo Trần Văn Nam (2005), cô trân trọng sự giúp đỡ của người thương nhưng muốn chuyện đó đừng diễn ra thô kệch trước miệng người đời.\n\nThứ ba, lúa gạo chẳng có gì lạ. Nhâm Hùng (2007) giải thích rằng thời ấy lúa gạo chở dập dìu trên ghe chài qua kênh Xà No về nhà máy xay Cái Răng, chất đầy chành, nên đem cho lúa gạo không hấp dẫn.\n\nThứ tư, đây là lời khen quê. Trần Phỏng Diều cho rằng xứ cô gái đã có thừa gạo trắng, nên cho gạo chẳng khác chở củi về rừng; xóm giềng cười là cười chàng trai không hiểu quê người mình thương. Theo cách đọc này, câu ca chưa hẳn là bài ca tình yêu mà là bài ca ngợi Cần Thơ.\n\nThứ năm, Đăng Huỳnh không cho rằng cái lý nằm ở việc vùng này trồng nhiều lúa, vì ở đây còn có vườn tược; ông gắn câu ca với cảnh chành lúa của người Hoa và ghe chài lên xuống sau khi có kênh Xà No.\n\nCác cách hiểu này không loại trừ nhau hoàn toàn. Cách thứ ba, thứ tư và thứ năm cùng dựa vào một sự thật lịch sử: ở khúc sông này, đầu thế kỷ XX, lúa gạo là thứ ai cũng có."
+    },
+    {
+     "heading": "Đọc chậm từng chữ",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-TPD-2021"
+     ],
+     "text": "Xáng: chiếc máy đào kênh của người Pháp. Đăng Huỳnh dẫn Sơn Nam gọi nó là con quái vật bằng sắt; ở đồng bằng có nhiều địa danh mang chữ xáng như Xáng Cụt, Vàm Xáng, Búng Xáng.\n\nVàm Xáng: theo Đăng Huỳnh, đầu kênh Xà No nối với sông Cần Thơ được gọi là Vàm Xáng Xà No, đầu bên kia nối với sông Cái Lớn gọi là Vàm Xáng Hỏa Lựu.\n\nChành lúa: kho thu mua, tồn trữ lúa, ở đây gắn với người Hoa ở Cái Răng.\n\nXóm giềng cười chê: cả năm cách hiểu đều xoay quanh ánh mắt của làng xóm. Món quà giữa hai người không phải chuyện riêng; nó được người bên cạnh nhìn và phán xét. Đây là nhận xét của ban biên tập khi đặt các cách hiểu cạnh nhau."
+    },
+    {
+     "heading": "Điều còn để ngỏ",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-CD-TPD-2021",
+      "NB-CD-DH-2017"
+     ],
+     "text": "Chưa biết bản nào xuất hiện trước, cũng chưa tìm thấy bản ghi in sớm nhất. Mốc sau năm 1903 dựa trên lập luận của Đăng Huỳnh về địa danh Vàm Xáng, chưa phải bằng chứng từ một bản sưu tầm có ngày tháng. Nguồn gốc tên Ba Láng và Phong Điền chưa được các nguồn đã đọc giải thích. Ý kiến của Trần Ngọc Thêm, Trần Văn Nam và Nhâm Hùng được đọc qua lời dẫn trong bài của Trần Phỏng Diều; cần đối chiếu sách gốc trước khi trích dài hơn."
+    }
+   ],
+   "claims": [
+    {
+     "source_id": "NB-CD-TPD-2021",
+     "statement": "Ba bản dẫn: (1) Cái Răng, Ba Láng, Vàm Xáng, Phong Điền / Anh (có) thương em thì cho bạc cho tiền / Đừng cho lúa gạo xóm giềng cười chê; (2) bản Trần Văn Nam 2005 dẫn: Anh thương em thì đừng cho bạc, cho tiền / Cho nhơn, cho nghĩa, kẻo xóm giềng cười chê, và ông ngờ bản này bị sửa lời vì bản (1) phổ biến hơn. Câu ca quen thuộc với người Cần Thơ, không nhắc địa danh Cần Thơ. Cách hiểu của Trần Ngọc Thêm 2018 (tr. 787–788), Trần Văn Nam 2005, Nhâm Hùng 2007 (tr. 10) và của tác giả; Địa chí Cần Thơ (2002): 350 km kênh trong tỉnh hai thập niên đầu thế kỷ XX, 1901–1906 sản lượng lúa 116.000 tấn đứng đầu, từ năm 1941 nhà máy xay, chành lúa của tư sản Pháp, Hoa; Cái Răng thành kho tồn trữ chế biến cho miền Tây.",
+     "locator": "Toàn bài ngày 11/04/2021 và chú thích (1)–(5).",
+     "kind": "variant",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-SGGP-2016",
+     "statement": "Bản in ở đầu bài: Cái Răng, Ba Láng, Vàm Xáng, Phong Điền / Anh có thương em thì cho bạc cho tiền / Chớ đừng cho lúa gạo mà xóm giềng cười chê; từ cầu Cái Răng, sông Cần Thơ và Lộ Vòng Cung chạy song song tới ngã ba sông có chợ nổi Phong Điền.",
+     "locator": "Đoạn mở đầu và mục Chợ nổi, bài ngày 30/09/2016.",
+     "kind": "variant",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-DH-2017",
+     "statement": "Người Cần Thơ ai cũng thuộc lòng câu ca; câu ca có sau năm 1903 vì có địa danh Vàm Xáng, có lẽ thêm 5–7 năm; gắn với chành lúa của người Hoa ở Cái Răng và ghe chài Bạc Liêu, Cà Mau, U Minh sau khi đào kênh Xà No, không phải vì vùng này trồng nhiều lúa; kênh Xà No đào 1901 – 7/1903, đầu nối sông Cần Thơ gọi Vàm Xáng Xà No, đầu nối sông Cái Lớn gọi Vàm Xáng Hỏa Lựu; năm 1908 hương chức làng Nhơn Ái xin lập chợ Vàm Xáng; địa danh Xáng Cụt, Vàm Xáng, Búng Xáng; Sơn Nam gọi xáng là con quái vật bằng sắt.",
+     "locator": "Mục Kinh xáng thành con đường lúa gạo và mục Lạ kỳ chiếc xáng, bài ngày 09/07/2017.",
+     "kind": "historical_interpretation",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-VNP-2009",
+     "statement": "Kênh xáng Xà No đào từ năm 1901 đến tháng 7/1903, nối rạch Cần Thơ với sông Cái Tư, dài 34 km; năm 1908 gạo xuất khẩu vùng Hậu Giang đạt 900.000 tấn trên tổng 1,3 triệu tấn của cả nước.",
+     "locator": "Đoạn 4–6, bài ngày 30/11/2009.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    }
+   ],
+   "knowledge": {
+    "name": "Ca dao Cái Răng, Ba Láng, Vàm Xáng, Phong Điền",
+    "entity_type": "folk_verse",
+    "primary_domain": "van-hoc-nghe-thuat",
+    "secondary_domains": [
+     "dia-danh",
+     "lang-nghe-sinh-ke"
+    ],
+    "regions": [
+     "tay-nam-bo"
+    ],
+    "communities": [
+     "kinh",
+     "hoa"
+    ],
+    "aliases": [
+     {
+      "value": "Vàm Xáng Xà No",
+      "kind": "historical_name",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Kinh xáng thành con đường lúa gạo"
+     },
+     {
+      "value": "chành lúa",
+      "kind": "related_term",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Lạ kỳ chiếc xáng"
+     }
+    ],
+    "historical_places": [
+     {
+      "name": "Chợ Vàm Xáng, làng Nhơn Ái",
+      "role": "area_as_recorded",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Kinh xáng thành con đường lúa gạo",
+      "as_of": "Năm 1908 theo bài năm 2017",
+      "valid_from": null,
+      "valid_to": null
+     }
+    ],
+    "origin_section": 2,
+    "change_section": 1,
+    "source_ids": [
+     "NB-CD-TPD-2021",
+     "NB-CD-SGGP-2016",
+     "NB-CD-DH-2017",
+     "NB-CD-VNP-2009"
+    ],
+    "current_admin": null
+   },
+   "answers": {
+    "what": {
+     "state": "supported",
+     "text": "Một câu ca dao miền Tây kể bốn địa danh dọc sông Cần Thơ rồi nói chuyện quà giữa đôi lứa.",
+     "source_ids": [
+      "NB-CD-TPD-2021",
+      "NB-CD-DH-2017"
+     ]
+    },
+    "when_where": {
+     "state": "partial",
+     "text": "Dọc sông Cần Thơ từ Cái Răng lên Phong Điền; theo Đăng Huỳnh có sau năm 1903, chưa có bản ghi sớm nhất.",
+     "source_ids": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ]
+    },
+    "community": {
+     "state": "supported",
+     "text": "Người Cần Thơ thuộc lòng; bối cảnh là ghe chài và chành lúa của người Hoa ở Cái Răng.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    },
+    "origins": {
+     "state": "partial",
+     "text": "Ra đời cùng thời kênh xáng Xà No theo lập luận của Đăng Huỳnh; nghĩa có ít nhất năm cách hiểu.",
+     "source_ids": [
+      "NB-CD-DH-2017",
+      "NB-CD-TPD-2021"
+     ]
+    },
+    "changes": {
+     "state": "supported",
+     "text": "Có ít nhất ba bản, trong đó một bản đảo nghĩa thành cho nhơn cho nghĩa.",
+     "source_ids": [
+      "NB-CD-TPD-2021",
+      "NB-CD-SGGP-2016"
+     ]
+    },
+    "unknowns": {
+     "state": "unknown",
+     "text": "Chưa biết bản nào có trước, chưa có bản in sớm nhất, chưa rõ gốc tên Ba Láng và Phong Điền.",
+     "source_ids": []
+    },
+    "related": {
+     "state": "supported",
+     "text": "Đọc cùng hồ sơ ca dao thời kinh xáng, tên Cần Thơ và chợ nổi Cái Răng.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    }
+   },
+   "media": [
+    {
+     "id": "song-can-tho-my-khanh-btdn",
+     "kind": "image",
+     "url": "/media/song-can-tho-my-khanh-btdn.webp",
+     "author": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Sông_Cần_Thơ,_đoạn_chảy_qua_xã_Mỹ_Khánh.jpg",
+     "license_name": "CC BY-SA 3.0",
+     "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "modifications": "Thu nhỏ theo tỷ lệ từ tệp gốc 4752 × 3168 px về cạnh dài 2000 px (nếu tệp gốc lớn hơn), lưu WebP chất lượng 86; không cắt, không chỉnh màu hay sửa cảnh. Tệp có thêm khối thông tin xuất xứ C2PA do công cụ ghi tệp gắn vào; nội dung ảnh không đổi.",
+     "caption": "Sông Cần Thơ đoạn chảy qua xã Mỹ Khánh, Phong Điền (địa danh theo trang ảnh), ảnh Bùi Thụy Đào Nguyên chụp ngày 7-7-2014; khúc sông mà câu ca kể tên các bến, không phải cảnh đầu thế kỷ XX.",
+     "attribution": "Sông Cần Thơ, đoạn chảy qua xã Mỹ Khánh.jpg — Bùi Thụy Đào Nguyên, Wikimedia Commons, CC BY-SA 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "f4fca078ebcc92654280d912a992a16e6bc03af290b3c25eb68a7724c01b526f",
+     "rights_review": "accepted",
+     "width": 2000,
+     "height": 1333
+    }
+   ],
+   "publication_status": "published",
+   "review_status": "verified",
+   "rights_review_status": "cleared",
+   "publish_approval": true,
+   "reviewed_at": "2026-11-04",
+   "rights_basis": "Ca dao là lời dân gian, dẫn nguyên văn theo nguồn. Lời phân tích của các tác giả được diễn giải mới, ngắn, ghi đúng tên người nói và vị trí trong nguồn đọc ngày 04/11/2026; không sao chép toàn văn, bảng hay ảnh của nguồn. Ảnh dùng lại tệp Commons đã kiểm giấy phép.",
+   "slug": "cai-rang-ba-lang-vam-xang-phong-dien-ca-dao",
+   "title": "“Cái Răng, Ba Láng, Vàm Xáng, Phong Điền”: một câu ca, ba bản, năm cách hiểu"
+  },
+  {
+   "id": "NBS-CD-GAO-TRANG",
+   "category": "ca_dao",
+   "kind": "folk_verse",
+   "topic": "folk_verse",
+   "historical_area": "Đồng Nai, Gia Định, Cần Thơ trong các bản ca dao, theo nguồn",
+   "community": "Lưu dân người Việt đi khai hoang từ miền Đông xuống miền Tây, theo cách đọc của nguồn",
+   "summary": "Cùng một khuôn câu “gạo trắng nước trong”, ca dao đã gắn lần lượt vào Đồng Nai, Gia Định rồi Cần Thơ. Đọc các bản cạnh nhau, ta thấy một lời khen không thuộc riêng nơi nào: nó là lời mời của vùng đất mới, và nó dời chỗ theo bước chân người đi khẩn hoang.",
+   "introduction": "Cùng một khuôn câu “gạo trắng nước trong”, ca dao đã gắn lần lượt vào Đồng Nai, Gia Định rồi Cần Thơ. Đọc các bản cạnh nhau, ta thấy một lời khen không thuộc riêng nơi nào: nó là lời mời của vùng đất mới, và nó dời chỗ theo bước chân người đi khẩn hoang.",
+   "body": "## Một khuôn câu, nhiều tên đất\n\nTrần Văn Nam dẫn ba bản:\n\n“Đồng Nai gạo trắng nước trong\nAi đi đến đó thì không muốn về.”\n\n“Ai về Gia Định thì về\nNước trong gạo trắng dễ bề làm ăn.”\n\n“Cần Thơ gạo trắng nước trong\nAi về xứ bạc thong dong cuộc đời.”\n\nBài của Huỳnh Thị Lan Phương và Nguyễn Văn Nở dẫn một bản Cần Thơ khác, gần với bản Đồng Nai hơn:\n\n“Cần Thơ gạo trắng nước trong\nAi đi đến đó lòng không muốn về.”\n\nTrần Văn Nam gọi “gạo trắng nước trong” và “gạo thơm” là những cụm từ được lặp lại như một điệp khúc trong các bài ca về sự giàu có. Chỉ cần thay tên đất ở đầu câu, lời khen đã thuộc về một vùng khác.\n\n## Lời khen dời chỗ theo bước chân khẩn hoang\n\nTrần Văn Nam đặt các câu ca này trong câu chuyện người đi mở đất. Cuộc khai khẩn bắt đầu ở miền Đông, với lời khích lệ đàn ông: “Làm trai cho đáng thân trai / Phú Xuân đã trải, Đồng Nai đã từng”. Rồi người lập nghiệp xuống miền Tây, và bản Cần Thơ xuất hiện trong phần ông viết về chặng ấy, bên cạnh những câu như “Muốn ăn bông súng cá kho / Thì vô Đồng Tháp ăn cho đã thèm”. Theo cách sắp xếp đó, tên đất đứng đầu câu ca đi dần theo biên giới của vùng khai hoang: Đồng Nai, Gia Định, rồi Cần Thơ.\n\n## Thứ trời cho\n\nVì sao gạo và nước? Trần Văn Nam cho rằng sản vật “trời cho” ở vùng đất mới phong phú và dường như luôn sẵn có: gạo Đồng Nai, gạo Cần Đước, gạo Cần Thơ; lúa nàng co, nàng quốc, lúa trời. Ông dẫn: “Ai ơi về miệt Tháp Mười / Cá tôm sẵn bắt, lúa trời sẵn ăn”, và “Gạo Cần Đước, nước Đồng Nai / Ai về xin nhớ cho ai theo cùng”. Ông cũng chỉ ra mặt kia của sự giàu ấy: chính vì thiên nhiên còn hoang vu nên muông thú, cá tôm mới sinh sôi nhiều đến thế. Gạo trắng nước trong là lời khen của một vùng đất chưa ai khai thác hết.\n\n## Lời mời, và lời giữ chân\n\nHuỳnh Thị Lan Phương và Nguyễn Văn Nở đọc câu “Cần Thơ gạo trắng nước trong / Ai đi đến đó lòng không muốn về” như một lời chào mời, vẫy gọi người chưa đến, và nói Cần Thơ là đất biết lưu tình. Hai tác giả còn dùng câu ca để kể chuyện nhà nghiên cứu Kiều Thanh Quế, người bị chính quyền Pháp đưa tới Cần Thơ quản thúc năm 1940: với ông, “nước trong” như thứ gột rửa bức bối, “gạo trắng” như nguồn nuôi việc học. Trần Phỏng Diều thì mượn chính câu này để giải nghĩa một câu ca khác, “đừng cho lúa gạo xóm giềng cười chê”: xứ đã gạo trắng nước trong thì đem gạo làm quà chẳng khác chở củi về rừng. Một câu ca dao, vì thế, còn được dùng làm chìa khóa để đọc câu ca khác.\n\n## Đọc cạnh nhau thì thấy gì\n\nĐặt bốn bản cạnh nhau, ban biên tập thấy hai điều. Một, vế sau đổi giọng theo nơi chốn: ở Đồng Nai và một bản Cần Thơ là “không muốn về”, lời của người đã ở lại; ở Gia Định là “dễ bề làm ăn”, lời của người tính chuyện sinh kế; ở bản Cần Thơ kia là “thong dong cuộc đời”. Hai, chưa có căn cứ để nói bản nào sinh ra trước. Thứ tự theo lịch sử khẩn hoang chỉ là một giả định hợp lý, cần bản sưu tầm có ghi năm và nơi ghi mới kiểm được. Chữ “xứ bạc” trong một bản Cần Thơ chưa được nguồn nào đã đọc giải thích.",
+   "scope_note": "Hồ sơ dựa vào bài nghiên cứu của Trần Văn Nam (1998), bài của Huỳnh Thị Lan Phương và Nguyễn Văn Nở (2020) và bài của Trần Phỏng Diều (2021). Các bản ca dao được dẫn như nguồn ghi, không có năm sưu tầm; thứ tự Đồng Nai, Gia Định, Cần Thơ là cách sắp xếp theo lịch sử khẩn hoang, chưa phải bằng chứng về bản nào có trước.",
+   "classification": "source_supported",
+   "sections": [
+    {
+     "heading": "Một khuôn câu, nhiều tên đất",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TVN-1998",
+      "NB-CD-HTLP-2020"
+     ],
+     "text": "Trần Văn Nam dẫn ba bản:\n\n“Đồng Nai gạo trắng nước trong\nAi đi đến đó thì không muốn về.”\n\n“Ai về Gia Định thì về\nNước trong gạo trắng dễ bề làm ăn.”\n\n“Cần Thơ gạo trắng nước trong\nAi về xứ bạc thong dong cuộc đời.”\n\nBài của Huỳnh Thị Lan Phương và Nguyễn Văn Nở dẫn một bản Cần Thơ khác, gần với bản Đồng Nai hơn:\n\n“Cần Thơ gạo trắng nước trong\nAi đi đến đó lòng không muốn về.”\n\nTrần Văn Nam gọi “gạo trắng nước trong” và “gạo thơm” là những cụm từ được lặp lại như một điệp khúc trong các bài ca về sự giàu có. Chỉ cần thay tên đất ở đầu câu, lời khen đã thuộc về một vùng khác."
+    },
+    {
+     "heading": "Lời khen dời chỗ theo bước chân khẩn hoang",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Trần Văn Nam đặt các câu ca này trong câu chuyện người đi mở đất. Cuộc khai khẩn bắt đầu ở miền Đông, với lời khích lệ đàn ông: “Làm trai cho đáng thân trai / Phú Xuân đã trải, Đồng Nai đã từng”. Rồi người lập nghiệp xuống miền Tây, và bản Cần Thơ xuất hiện trong phần ông viết về chặng ấy, bên cạnh những câu như “Muốn ăn bông súng cá kho / Thì vô Đồng Tháp ăn cho đã thèm”. Theo cách sắp xếp đó, tên đất đứng đầu câu ca đi dần theo biên giới của vùng khai hoang: Đồng Nai, Gia Định, rồi Cần Thơ."
+    },
+    {
+     "heading": "Thứ trời cho",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Vì sao gạo và nước? Trần Văn Nam cho rằng sản vật “trời cho” ở vùng đất mới phong phú và dường như luôn sẵn có: gạo Đồng Nai, gạo Cần Đước, gạo Cần Thơ; lúa nàng co, nàng quốc, lúa trời. Ông dẫn: “Ai ơi về miệt Tháp Mười / Cá tôm sẵn bắt, lúa trời sẵn ăn”, và “Gạo Cần Đước, nước Đồng Nai / Ai về xin nhớ cho ai theo cùng”. Ông cũng chỉ ra mặt kia của sự giàu ấy: chính vì thiên nhiên còn hoang vu nên muông thú, cá tôm mới sinh sôi nhiều đến thế. Gạo trắng nước trong là lời khen của một vùng đất chưa ai khai thác hết."
+    },
+    {
+     "heading": "Lời mời, và lời giữ chân",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-HTLP-2020",
+      "NB-CD-TPD-2021"
+     ],
+     "text": "Huỳnh Thị Lan Phương và Nguyễn Văn Nở đọc câu “Cần Thơ gạo trắng nước trong / Ai đi đến đó lòng không muốn về” như một lời chào mời, vẫy gọi người chưa đến, và nói Cần Thơ là đất biết lưu tình. Hai tác giả còn dùng câu ca để kể chuyện nhà nghiên cứu Kiều Thanh Quế, người bị chính quyền Pháp đưa tới Cần Thơ quản thúc năm 1940: với ông, “nước trong” như thứ gột rửa bức bối, “gạo trắng” như nguồn nuôi việc học. Trần Phỏng Diều thì mượn chính câu này để giải nghĩa một câu ca khác, “đừng cho lúa gạo xóm giềng cười chê”: xứ đã gạo trắng nước trong thì đem gạo làm quà chẳng khác chở củi về rừng. Một câu ca dao, vì thế, còn được dùng làm chìa khóa để đọc câu ca khác."
+    },
+    {
+     "heading": "Đọc cạnh nhau thì thấy gì",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-CD-TVN-1998",
+      "NB-CD-HTLP-2020"
+     ],
+     "text": "Đặt bốn bản cạnh nhau, ban biên tập thấy hai điều. Một, vế sau đổi giọng theo nơi chốn: ở Đồng Nai và một bản Cần Thơ là “không muốn về”, lời của người đã ở lại; ở Gia Định là “dễ bề làm ăn”, lời của người tính chuyện sinh kế; ở bản Cần Thơ kia là “thong dong cuộc đời”. Hai, chưa có căn cứ để nói bản nào sinh ra trước. Thứ tự theo lịch sử khẩn hoang chỉ là một giả định hợp lý, cần bản sưu tầm có ghi năm và nơi ghi mới kiểm được. Chữ “xứ bạc” trong một bản Cần Thơ chưa được nguồn nào đã đọc giải thích."
+    }
+   ],
+   "claims": [
+    {
+     "source_id": "NB-CD-TVN-1998",
+     "statement": "Các bản: Đồng Nai gạo trắng nước trong / Ai đi đến đó thì không muốn về; Ai về Gia Định thì về / Nước trong gạo trắng dễ bề làm ăn; Cần Thơ gạo trắng nước trong / Ai về xứ bạc thong dong cuộc đời. Cụm gạo thơm, gạo trắng nước trong lặp lại như điệp khúc của bài ca về sự giàu có; sản vật trời cho: gạo Đồng Nai, Cần Đước, Cần Thơ, lúa nàng co, nàng quốc, lúa trời; câu Ai ơi về miệt Tháp Mười, Gạo Cần Đước nước Đồng Nai, Làm trai cho đáng thân trai, Muốn ăn bông súng cá kho; giàu có gắn với nét hoang sơ; khai khẩn miền Đông trước rồi miền Tây.",
+     "locator": "Mục 1 và mục 2 của bài.",
+     "kind": "variant",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-HTLP-2020",
+     "statement": "Câu Cần Thơ gạo trắng nước trong / Ai đi đến đó lòng không muốn về như lời chào mời, vẫy gọi; Cần Thơ biết lưu tình; Kiều Thanh Quế bị Pháp đưa tới Cần Thơ quản thúc năm 1940; đọc nước trong như gột rửa bức bối, gạo trắng như nguồn nuôi khát vọng học thuật.",
+     "locator": "Tr. 24 và tr. 28.",
+     "kind": "historical_interpretation",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-TPD-2021",
+     "statement": "Dùng câu Cần Thơ gạo trắng nước trong / Ai đi đến đó lòng không muốn về để giải nghĩa câu đừng cho lúa gạo: cho gạo như chở củi về rừng.",
+     "locator": "Đoạn sau bản thứ hai, bài ngày 11/04/2021.",
+     "kind": "historical_interpretation",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    }
+   ],
+   "knowledge": {
+    "name": "Ca dao gạo trắng nước trong",
+    "entity_type": "folk_verse",
+    "primary_domain": "van-hoc-nghe-thuat",
+    "secondary_domains": [
+     "dia-danh",
+     "am-thuc"
+    ],
+    "regions": [
+     "dong-nam-bo",
+     "tay-nam-bo"
+    ],
+    "communities": [
+     "kinh"
+    ],
+    "aliases": [
+     {
+      "value": "nước trong gạo trắng",
+      "kind": "alternate_name",
+      "source_id": "NB-CD-TVN-1998",
+      "locator": "Mục 1"
+     }
+    ],
+    "historical_places": [],
+    "origin_section": 2,
+    "change_section": 0,
+    "source_ids": [
+     "NB-CD-TVN-1998",
+     "NB-CD-HTLP-2020",
+     "NB-CD-TPD-2021"
+    ],
+    "current_admin": null
+   },
+   "answers": {
+    "what": {
+     "state": "supported",
+     "text": "Khuôn câu ca dao khen vùng đất có gạo trắng nước trong, gắn với nhiều tên đất Nam Bộ.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "when_where": {
+     "state": "partial",
+     "text": "Các bản gắn với Đồng Nai, Gia Định, Cần Thơ; chưa có năm sưu tầm.",
+     "source_ids": [
+      "NB-CD-TVN-1998",
+      "NB-CD-HTLP-2020"
+     ]
+    },
+    "community": {
+     "state": "partial",
+     "text": "Lưu dân người Việt đi khai hoang, theo cách đọc của Trần Văn Nam.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "origins": {
+     "state": "partial",
+     "text": "Gắn với sản vật trời cho của vùng đất mới còn hoang sơ.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "changes": {
+     "state": "supported",
+     "text": "Tên đất ở đầu câu và giọng của vế sau đổi theo nơi chốn; câu ca còn được dùng lại để đọc chuyện mới.",
+     "source_ids": [
+      "NB-CD-TVN-1998",
+      "NB-CD-HTLP-2020"
+     ]
+    },
+    "unknowns": {
+     "state": "unknown",
+     "text": "Chưa biết bản nào có trước; chưa rõ nghĩa chữ xứ bạc.",
+     "source_ids": []
+    },
+    "related": {
+     "state": "supported",
+     "text": "Đọc cùng câu ca Cái Răng, Ba Láng, Vàm Xáng, Phong Điền và hồ sơ tên Cần Thơ.",
+     "source_ids": [
+      "NB-CD-TPD-2021"
+     ]
+    }
+   },
+   "media": [],
+   "publication_status": "published",
+   "review_status": "verified",
+   "rights_review_status": "cleared",
+   "publish_approval": true,
+   "reviewed_at": "2026-11-04",
+   "rights_basis": "Ca dao là lời dân gian, dẫn nguyên văn theo nguồn. Lời phân tích của các tác giả được diễn giải mới, ngắn, ghi đúng tên người nói và vị trí trong nguồn đọc ngày 04/11/2026; không sao chép toàn văn, bảng hay ảnh của nguồn. Ảnh dùng lại tệp Commons đã kiểm giấy phép.",
+   "slug": "gao-trang-nuoc-trong-ca-dao",
+   "title": "“Gạo trắng nước trong”: một lời khen đi theo người mở đất"
+  },
+  {
+   "id": "NBS-CD-KINH-XANG",
+   "category": "ca_dao",
+   "kind": "folk_verse",
+   "topic": "folk_verse",
+   "historical_area": "Kênh xáng Xà No và các kênh xáng miền Tây đầu thế kỷ XX, theo nguồn",
+   "community": "Người khai hoang dọc kênh xáng, dân đi ghe chài, thương hồ và người Chăm bán cá vồ trong lời kể của nguồn",
+   "summary": "Đầu thế kỷ XX, những chiếc máy đào kênh của người Pháp gầm suốt ngày đêm trên đồng bằng. Người dân sợ rồi quen, rồi đem chiếc xáng vào câu hò: đèn treo dưới xáng soi bờ kênh, lời thề chừng nào xáng bung vành mới bỏ nhau. Đây là lớp ca dao hiếm hoi mà ta biết gần đúng nó ra đời lúc nào.",
+   "introduction": "Đầu thế kỷ XX, những chiếc máy đào kênh của người Pháp gầm suốt ngày đêm trên đồng bằng. Người dân sợ rồi quen, rồi đem chiếc xáng vào câu hò: đèn treo dưới xáng soi bờ kênh, lời thề chừng nào xáng bung vành mới bỏ nhau. Đây là lớp ca dao hiếm hoi mà ta biết gần đúng nó ra đời lúc nào.",
+   "body": "## Con quái vật bằng sắt\n\nTrước khi có kênh, nhiều vùng miền Tây phèn chua, không có hệ thống nước tưới tiêu, đất rộng người thưa, sức người không đào nổi. Khoảng năm 1866 người Pháp cho xáng nạo vét rạch Bến Lức và sông Bảo Định, sau đó đào kênh Chợ Gạo, kênh Trà Ôn. Kênh Xà No dùng bốn chiếc xáng: Loire, bà con quen gọi Xáng La; Nantes, gọi là Xáng Năn; Mỹ Tho I và Mỹ Tho II. Theo Đăng Huỳnh, Xáng La và Xáng Năn mạnh 350 sức ngựa, mỗi gàu múc 375 lít, đào sâu tới 9 thước. Sơn Nam tả chúng như những con quái vật sắt khổng lồ, ngày đêm gầm thét, cách mấy ngàn thước vẫn còn nghe. Cái tên Việt hóa Xáng La, Xáng Năn cho thấy người dân đã đặt tên thân mật cho cỗ máy lạ.\n\n## Kênh đào tới đâu, nhà mọc tới đó\n\nKênh Xà No đào từ năm 1901, xong tháng 7-1903, nối rạch Cần Thơ với sông Cái Tư. Theo Thông tấn xã Việt Nam, sau khi có kênh, nhiều điền Tây rộng hàng chục ngàn mẫu ra đời, nhà máy xay và kho lúa mọc dọc hai bờ. Đăng Huỳnh kể đất chưa ráo người ta đã cắm dùi giành chỗ; mặt tiền kênh hết thì lấn vào trong, cứ một cây số lại đào một kênh lớn đặt tên Một Ngàn, Hai Ngàn, nửa cây số một kênh nhỏ hơn như Mười Ngàn Rưỡi, rồi kênh cắt ngang thành thế bàn cờ. Năm 1908, khi dân đã đông, làng Nhơn Ái xin lập chợ Vàm Xáng.\n\n## Lời hò mới cho cảnh mới\n\nĐăng Huỳnh ghi lại mấy câu ca của thời kênh xáng. Một câu của cô gái miệt vườn:\n\n“Kinh xáng mới đào. Tàu Tây mới chạy\nThương thì thương đại. Bớ điệu chung tình\nCon nhạn bay cao khó bắn, con cá ở ao quỳnh khó câu.”\n\nMột câu khác lấy ánh đèn của chiếc xáng làm cớ để tỏ tình:\n\n“Đèn treo dưới xáng tỏ rạng bờ kinh\nEm có thương anh thì nói cho thiệt tình\nĐể anh lên xuống chớ một mình bơ vơ.”\n\nCảnh vật trong câu hò là cảnh vừa mới có: con kênh mới đào, chiếc tàu Tây mới chạy, ngọn đèn treo trên một cỗ máy. Cái mới được đưa ngay vào khuôn câu cũ của lời thương, với những hình ảnh quen thuộc như con nhạn, con cá, ao quỳnh.\n\n## Khi chiếc xáng thành thước đo của lời thề\n\nĐăng Huỳnh dẫn một câu thề:\n\n“Chừng nào chiếc xáng nọ bung vành,\nTàu Tây liệt máy, em mới đành bỏ anh.”\n\nÔng nhận xét chiếc xáng trong tâm trí bà con tượng trưng cho sự bền vững, lâu dài. Đặt cạnh câu thề quen thuộc hơn mà Trần Văn Nam dẫn trong bài về ca dao sông nước:\n\n“Biển cạn, sông cạn, lòng qua không cạn\nNúi lở non mòn, ngỡi bạn không quên.”\n\nta thấy một chuyển dịch: thứ được lấy làm thước đo cho sự không đổi không còn chỉ là biển, sông, núi, mà còn là một cỗ máy. Đây là nhận xét của ban biên tập khi đặt hai câu cạnh nhau, chưa phải kết luận của một nghiên cứu.\n\n## Ăn như xáng múc, và những cái tên còn lại\n\nChiếc xáng còn để lại một thành ngữ chê người ham hưởng mà lười: “Ăn như xáng múc, làm như lục bình trôi”. Và để lại cả ngàn địa danh. Ở nội ô Cần Thơ có hồ Xáng Thổi, Búng Xáng. Ở nhiều nơi có Xáng Nổ, Xáng Chìm, ghi lại sự cố khi đào. Ở Gò Quao, Kiên Giang, có Xáng Cụt, vì con kênh ở đó đào tới cùng mà không thông với kênh rạch nào. Ở Thới Lai có chợ Bà Đầm: theo lời bà con kể lại với tác giả, khi xáng đào nối kênh Ô Môn vào vùng này, vợ ông chủ xáng người Pháp chiều chiều mặc đồ đầm đi lại trên xáng, người ta gọi bà đầm, rồi thành tên chợ.\n\n## Nghề đi ghe trên những con kênh mới\n\nKênh mở đường cho nghề đi ghe. Một chàng trai Cần Thơ chở nông sản, lá lợp nhà, chán nghề mà than:\n\n“Ngồi trên mui ghe chài lớn\nCầm lái về kinh xáng Thới Lai\nNhìn thấy khói đốt đồng mù mịt lên khơi,\nBây giờ anh mới biết chán đời đi ghe.”\n\nĐăng Huỳnh còn nhớ ghe Chà Và mũi cong của người Chăm vùng An Giang về Bạc Liêu bán cá vồ giống, theo sông Tiền, sông Hậu vào sông Cần Thơ rồi kênh Xà No, và câu người trên bờ đọc: “Chèo ghe đi bán cá vồ / Nước chảy ồ ồ không thấy ai mua”. Trần Văn Nam cho biết hò chèo ghe có ở hầu hết các địa phương đồng bằng, với các điệu hò mái một, mái ba, mái đoản và mái trường.\n\n## Hai mặt của một con kênh\n\nĐăng Huỳnh viết rõ: người Pháp đào kênh xáng trước hết vì lợi ích khai thác thuộc địa, nhưng cũng phải nhận rằng kênh mang lại cho người khai hoang không ít lợi ích; chiếc xáng là của văn minh phương Tây, còn văn minh kinh xáng là do người Nam Bộ làm nên. Thông tấn xã Việt Nam gọi Xà No là con đường lúa gạo. Ca dao thời kênh xáng giữ cả hai mặt ấy: nỗi ngỡ ngàng trước cỗ máy, cảnh làm ăn phất lên, và nỗi nhọc của người làm thuê trên ghe chài.\n\n## Điều còn để ngỏ\n\nCác câu ca trong hồ sơ được dẫn qua một bài biên khảo, chưa có tên người hát, nơi hát hay năm ghi. Chiều dài kênh Xà No ghi khác nhau: bài của Thông tấn xã Việt Nam ghi 34 km từ rạch Cần Thơ tới sông Cái Tư, bài của Đăng Huỳnh ghi non 60 km khi tính tới sông Cái Lớn; hồ sơ không chọn một con số. Chuyện chợ Bà Đầm là lời bà con kể lại, chưa có tư liệu khác xác nhận.",
+   "scope_note": "Hồ sơ dựa chủ yếu vào bài biên khảo của Đăng Huỳnh (Báo Cần Thơ, 2017), bài này dựa vào hai sách của Sơn Nam; số liệu kênh Xà No đối chiếu thêm bài của Thông tấn xã Việt Nam năm 2009 và bài của Trần Văn Nam về ca dao sông nước. Các câu ca được dẫn như nguồn ghi; chưa đối chiếu với tập sưu tầm có ghi người hát và nơi hát.",
+   "classification": "source_supported",
+   "sections": [
+    {
+     "heading": "Con quái vật bằng sắt",
+     "kind": "documented_history",
+     "sourceIds": [
+      "NB-CD-DH-2017"
+     ],
+     "text": "Trước khi có kênh, nhiều vùng miền Tây phèn chua, không có hệ thống nước tưới tiêu, đất rộng người thưa, sức người không đào nổi. Khoảng năm 1866 người Pháp cho xáng nạo vét rạch Bến Lức và sông Bảo Định, sau đó đào kênh Chợ Gạo, kênh Trà Ôn. Kênh Xà No dùng bốn chiếc xáng: Loire, bà con quen gọi Xáng La; Nantes, gọi là Xáng Năn; Mỹ Tho I và Mỹ Tho II. Theo Đăng Huỳnh, Xáng La và Xáng Năn mạnh 350 sức ngựa, mỗi gàu múc 375 lít, đào sâu tới 9 thước. Sơn Nam tả chúng như những con quái vật sắt khổng lồ, ngày đêm gầm thét, cách mấy ngàn thước vẫn còn nghe. Cái tên Việt hóa Xáng La, Xáng Năn cho thấy người dân đã đặt tên thân mật cho cỗ máy lạ."
+    },
+    {
+     "heading": "Kênh đào tới đâu, nhà mọc tới đó",
+     "kind": "documented_history",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ],
+     "text": "Kênh Xà No đào từ năm 1901, xong tháng 7-1903, nối rạch Cần Thơ với sông Cái Tư. Theo Thông tấn xã Việt Nam, sau khi có kênh, nhiều điền Tây rộng hàng chục ngàn mẫu ra đời, nhà máy xay và kho lúa mọc dọc hai bờ. Đăng Huỳnh kể đất chưa ráo người ta đã cắm dùi giành chỗ; mặt tiền kênh hết thì lấn vào trong, cứ một cây số lại đào một kênh lớn đặt tên Một Ngàn, Hai Ngàn, nửa cây số một kênh nhỏ hơn như Mười Ngàn Rưỡi, rồi kênh cắt ngang thành thế bàn cờ. Năm 1908, khi dân đã đông, làng Nhơn Ái xin lập chợ Vàm Xáng."
+    },
+    {
+     "heading": "Lời hò mới cho cảnh mới",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-DH-2017"
+     ],
+     "text": "Đăng Huỳnh ghi lại mấy câu ca của thời kênh xáng. Một câu của cô gái miệt vườn:\n\n“Kinh xáng mới đào. Tàu Tây mới chạy\nThương thì thương đại. Bớ điệu chung tình\nCon nhạn bay cao khó bắn, con cá ở ao quỳnh khó câu.”\n\nMột câu khác lấy ánh đèn của chiếc xáng làm cớ để tỏ tình:\n\n“Đèn treo dưới xáng tỏ rạng bờ kinh\nEm có thương anh thì nói cho thiệt tình\nĐể anh lên xuống chớ một mình bơ vơ.”\n\nCảnh vật trong câu hò là cảnh vừa mới có: con kênh mới đào, chiếc tàu Tây mới chạy, ngọn đèn treo trên một cỗ máy. Cái mới được đưa ngay vào khuôn câu cũ của lời thương, với những hình ảnh quen thuộc như con nhạn, con cá, ao quỳnh."
+    },
+    {
+     "heading": "Khi chiếc xáng thành thước đo của lời thề",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Đăng Huỳnh dẫn một câu thề:\n\n“Chừng nào chiếc xáng nọ bung vành,\nTàu Tây liệt máy, em mới đành bỏ anh.”\n\nÔng nhận xét chiếc xáng trong tâm trí bà con tượng trưng cho sự bền vững, lâu dài. Đặt cạnh câu thề quen thuộc hơn mà Trần Văn Nam dẫn trong bài về ca dao sông nước:\n\n“Biển cạn, sông cạn, lòng qua không cạn\nNúi lở non mòn, ngỡi bạn không quên.”\n\nta thấy một chuyển dịch: thứ được lấy làm thước đo cho sự không đổi không còn chỉ là biển, sông, núi, mà còn là một cỗ máy. Đây là nhận xét của ban biên tập khi đặt hai câu cạnh nhau, chưa phải kết luận của một nghiên cứu."
+    },
+    {
+     "heading": "Ăn như xáng múc, và những cái tên còn lại",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-DH-2017"
+     ],
+     "text": "Chiếc xáng còn để lại một thành ngữ chê người ham hưởng mà lười: “Ăn như xáng múc, làm như lục bình trôi”. Và để lại cả ngàn địa danh. Ở nội ô Cần Thơ có hồ Xáng Thổi, Búng Xáng. Ở nhiều nơi có Xáng Nổ, Xáng Chìm, ghi lại sự cố khi đào. Ở Gò Quao, Kiên Giang, có Xáng Cụt, vì con kênh ở đó đào tới cùng mà không thông với kênh rạch nào. Ở Thới Lai có chợ Bà Đầm: theo lời bà con kể lại với tác giả, khi xáng đào nối kênh Ô Môn vào vùng này, vợ ông chủ xáng người Pháp chiều chiều mặc đồ đầm đi lại trên xáng, người ta gọi bà đầm, rồi thành tên chợ."
+    },
+    {
+     "heading": "Nghề đi ghe trên những con kênh mới",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Kênh mở đường cho nghề đi ghe. Một chàng trai Cần Thơ chở nông sản, lá lợp nhà, chán nghề mà than:\n\n“Ngồi trên mui ghe chài lớn\nCầm lái về kinh xáng Thới Lai\nNhìn thấy khói đốt đồng mù mịt lên khơi,\nBây giờ anh mới biết chán đời đi ghe.”\n\nĐăng Huỳnh còn nhớ ghe Chà Và mũi cong của người Chăm vùng An Giang về Bạc Liêu bán cá vồ giống, theo sông Tiền, sông Hậu vào sông Cần Thơ rồi kênh Xà No, và câu người trên bờ đọc: “Chèo ghe đi bán cá vồ / Nước chảy ồ ồ không thấy ai mua”. Trần Văn Nam cho biết hò chèo ghe có ở hầu hết các địa phương đồng bằng, với các điệu hò mái một, mái ba, mái đoản và mái trường."
+    },
+    {
+     "heading": "Hai mặt của một con kênh",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ],
+     "text": "Đăng Huỳnh viết rõ: người Pháp đào kênh xáng trước hết vì lợi ích khai thác thuộc địa, nhưng cũng phải nhận rằng kênh mang lại cho người khai hoang không ít lợi ích; chiếc xáng là của văn minh phương Tây, còn văn minh kinh xáng là do người Nam Bộ làm nên. Thông tấn xã Việt Nam gọi Xà No là con đường lúa gạo. Ca dao thời kênh xáng giữ cả hai mặt ấy: nỗi ngỡ ngàng trước cỗ máy, cảnh làm ăn phất lên, và nỗi nhọc của người làm thuê trên ghe chài."
+    },
+    {
+     "heading": "Điều còn để ngỏ",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ],
+     "text": "Các câu ca trong hồ sơ được dẫn qua một bài biên khảo, chưa có tên người hát, nơi hát hay năm ghi. Chiều dài kênh Xà No ghi khác nhau: bài của Thông tấn xã Việt Nam ghi 34 km từ rạch Cần Thơ tới sông Cái Tư, bài của Đăng Huỳnh ghi non 60 km khi tính tới sông Cái Lớn; hồ sơ không chọn một con số. Chuyện chợ Bà Đầm là lời bà con kể lại, chưa có tư liệu khác xác nhận."
+    }
+   ],
+   "claims": [
+    {
+     "source_id": "NB-CD-DH-2017",
+     "statement": "Khoảng 1866 người Pháp cho xáng nạo vét rạch Bến Lức, sông Bảo Định, rồi đào kênh Chợ Gạo, Trà Ôn; kênh Xà No đào 1901 – 7/1903, dài non 60 km tới sông Cái Lớn; bốn xáng Loire (Xáng La), Nantes (Xáng Năn), Mỹ Tho I, Mỹ Tho II, Xáng La và Xáng Năn 350 sức ngựa, gàu 375 lít, sâu 9 thước; Sơn Nam tả quái vật sắt gầm thét; kênh Một Ngàn, Hai Ngàn, Mười Ngàn Rưỡi, thế bàn cờ; 1908 làng Nhơn Ái xin lập chợ Vàm Xáng; ca dao Kinh xáng mới đào, Đèn treo dưới xáng, Chừng nào chiếc xáng nọ bung vành, Ngồi trên mui ghe chài lớn, Chèo ghe đi bán cá vồ; thành ngữ Ăn như xáng múc, làm như lục bình trôi; địa danh Xáng Thổi, Búng Xáng, Xáng Nổ, Xáng Chìm, Xáng Cụt, chợ Bà Đầm; Pháp đào vì lợi ích thuộc địa nhưng có lợi cho người khai hoang; văn minh kinh xáng do người Nam Bộ tạo nên.",
+     "locator": "Toàn bài ngày 09/07/2017.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-VNP-2009",
+     "statement": "Kênh xáng Xà No đào 1901 – 7/1903, nối rạch Cần Thơ với sông Cái Tư, dài 34 km; sau khi có kênh, nhiều điền Tây rộng hàng chục ngàn mẫu, nhà máy xay và kho lúa dọc hai bờ; được gọi là con đường lúa gạo.",
+     "locator": "Đoạn 4–7, bài ngày 30/11/2009.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    },
+    {
+     "source_id": "NB-CD-TVN-1998",
+     "statement": "Ca dao: Biển cạn, sông cạn, lòng qua không cạn / Núi lở non mòn, ngỡi bạn không quên; hò chèo ghe có ở hầu hết địa phương đồng bằng sông Cửu Long, gồm hò mái một, mái ba, mái đoản (cụt), mái trường (dài).",
+     "locator": "Mục 3, Ca dao Nam Bộ – ca dao vùng sông nước.",
+     "kind": "fact",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    }
+   ],
+   "knowledge": {
+    "name": "Ca dao thời kinh xáng",
+    "entity_type": "folk_verse",
+    "primary_domain": "van-hoc-nghe-thuat",
+    "secondary_domains": [
+     "dia-ly-sinh-thai",
+     "lich-su-khao-co"
+    ],
+    "regions": [
+     "tay-nam-bo"
+    ],
+    "communities": [
+     "kinh",
+     "cham"
+    ],
+    "aliases": [
+     {
+      "value": "Xáng La",
+      "kind": "alternate_name",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Kinh xáng thành con đường lúa gạo"
+     },
+     {
+      "value": "Xáng Năn",
+      "kind": "alternate_name",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Kinh xáng thành con đường lúa gạo"
+     },
+     {
+      "value": "ăn như xáng múc",
+      "kind": "related_term",
+      "source_id": "NB-CD-DH-2017",
+      "locator": "Mục Lạ kỳ chiếc xáng"
+     }
+    ],
+    "historical_places": [
+     {
+      "name": "Kênh xáng Xà No, từ rạch Cần Thơ tới sông Cái Tư",
+      "role": "area_as_recorded",
+      "source_id": "NB-CD-VNP-2009",
+      "locator": "Đoạn 4",
+      "as_of": "Đào 1901–1903 theo bài năm 2009",
+      "valid_from": null,
+      "valid_to": null
+     }
+    ],
+    "origin_section": 0,
+    "change_section": 3,
+    "source_ids": [
+     "NB-CD-DH-2017",
+     "NB-CD-VNP-2009",
+     "NB-CD-TVN-1998"
+    ],
+    "current_admin": null
+   },
+   "answers": {
+    "what": {
+     "state": "supported",
+     "text": "Những câu ca dao Nam Bộ nhắc chiếc xáng, kênh xáng và nghề đi ghe đầu thế kỷ XX.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    },
+    "when_where": {
+     "state": "partial",
+     "text": "Dọc các kênh xáng miền Tây, nhất là kênh Xà No đào 1901–1903; câu ca chưa có năm ghi riêng.",
+     "source_ids": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ]
+    },
+    "community": {
+     "state": "partial",
+     "text": "Người khai hoang, dân đi ghe chài, thương hồ; nguồn không ghi tên người hát.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    },
+    "origins": {
+     "state": "supported",
+     "text": "Ra đời từ cảnh đào kênh bằng máy của người Pháp và đời sống mới dọc kênh.",
+     "source_ids": [
+      "NB-CD-DH-2017",
+      "NB-CD-VNP-2009"
+     ]
+    },
+    "changes": {
+     "state": "supported",
+     "text": "Từ nỗi sợ cỗ máy lạ tới chỗ lấy chiếc xáng làm hình ảnh của sự bền lâu trong lời thề.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    },
+    "unknowns": {
+     "state": "unknown",
+     "text": "Chưa có tên người hát, nơi hát và năm ghi; chiều dài kênh ghi khác nhau giữa các nguồn.",
+     "source_ids": []
+    },
+    "related": {
+     "state": "supported",
+     "text": "Đọc cùng câu ca Cái Răng, Ba Láng, Vàm Xáng, Phong Điền.",
+     "source_ids": [
+      "NB-CD-DH-2017"
+     ]
+    }
+   },
+   "media": [
+    {
+     "id": "cai-rang-market-dalbera",
+     "kind": "image",
+     "url": "/media/cai-rang-market-dalbera.webp",
+     "author": "Jean-Pierre Dalbéra from Paris, France",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Le_march%C3%A9_flottant_(Cai_Rang,_Vietnam)_(6642690827).jpg",
+     "license_name": "CC BY 2.0",
+     "license_url": "https://creativecommons.org/licenses/by/2.0",
+     "modifications": "Resized proportionally to maximum 1600 px and converted JPEG to WebP (quality 86); no cropping or retouching. Thẻ bài có thể cắt khung hiển thị bằng CSS; ảnh chi tiết giữ trọn khung.",
+     "caption": "Ghe xuồng ở chợ nổi Cái Răng năm 2011, ảnh Jean-Pierre Dalbéra; cảnh sông nước ngày nay ở nơi các chành lúa thời kinh xáng từng nhộn nhịp, không phải ảnh kênh Xà No hay chiếc xáng.",
+     "attribution": "Le marché flottant (Cai Rang, Vietnam) (6642690827) — Jean-Pierre Dalbéra from Paris, France, Wikimedia Commons, CC BY 2.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "5218c42e7514fdb4f2f804d7bdf13acd6215764b97d9d02174766b41664061a3",
+     "rights_review": "accepted",
+     "width": 1536,
+     "height": 1024
+    }
+   ],
+   "publication_status": "published",
+   "review_status": "verified",
+   "rights_review_status": "cleared",
+   "publish_approval": true,
+   "reviewed_at": "2026-11-04",
+   "rights_basis": "Ca dao là lời dân gian, dẫn nguyên văn theo nguồn. Lời phân tích của các tác giả được diễn giải mới, ngắn, ghi đúng tên người nói và vị trí trong nguồn đọc ngày 04/11/2026; không sao chép toàn văn, bảng hay ảnh của nguồn. Ảnh dùng lại tệp Commons đã kiểm giấy phép.",
+   "slug": "ca-dao-thoi-kinh-xang",
+   "title": "Ca dao thời kinh xáng: khi con quái vật sắt đi vào lời thương"
+  },
+  {
+   "id": "NBS-CD-MO-DAT",
+   "category": "ca_dao",
+   "kind": "folk_verse",
+   "topic": "folk_verse",
+   "historical_area": "Miền Đông và miền Tây Nam Bộ thời khẩn hoang, từ thế kỷ XVII, theo nguồn",
+   "community": "Lưu dân người Việt từ miền Trung vào khai hoang; người Hoa cùng thời được nguồn nhắc tới",
+   "summary": "Người đi mở đất để lại trong ca dao một cái nhìn rất thật: muỗi kêu như sáo thổi, đỉa lội như bánh canh, chim kêu cũng sợ, cá vùng cũng ghê. Sau nỗi sợ là nỗi nhớ quê, rồi tới những bài ca nhớ ơn người đi trước, có bài đi theo người khai hoang từ Nam Trung Bộ vào tới Đồng Tháp.",
+   "introduction": "Người đi mở đất để lại trong ca dao một cái nhìn rất thật: muỗi kêu như sáo thổi, đỉa lội như bánh canh, chim kêu cũng sợ, cá vùng cũng ghê. Sau nỗi sợ là nỗi nhớ quê, rồi tới những bài ca nhớ ơn người đi trước, có bài đi theo người khai hoang từ Nam Trung Bộ vào tới Đồng Tháp.",
+   "body": "## Cái nhìn đầu tiên: mọi thứ đều lạ\n\nTrần Văn Nam viết rằng phải tới thế kỷ XVII, những người Việt đầu tiên đi mở cõi mới tới vùng đất này, và họ nhận ra ngay vẻ hoang sơ của nó:\n\n“Muỗi kêu như sáo thổi\nĐỉa lội như bánh canh\nCỏ mọc thành tinh\nRắn đồng biết gáy.”\n\nPhép so sánh rất đời thường: tiếng muỗi như tiếng sáo, đỉa đặc như sợi bánh canh trong tô. Cái hoang dã được kể bằng những thứ người ta biết rõ nhất, là âm nhạc và món ăn. Rồi tới nỗi sợ:\n\n“Tới đây xứ sở lạ lùng\nCon chim kêu cũng sợ, con cá vùng cũng ghê.”\n\n“Chèo ghe sợ sấu ăn chưng\nXuống bưng sợ đỉa, lên rừng sợ ma.”\n\nNgay trong bài, tác giả dẫn câu “Tới đây” hai lần với hai cách viết hơi khác, một lần là “Chim kêu cũng sợ, cá vùng cũng ghê”. Một câu ca, ngay trong một bài viết, đã có hai bản.\n\n## Sấu dưới sông, cọp trên rừng\n\nTheo Trần Văn Nam, sấu và cọp là hai loài tượng trưng cho sức mạnh hoang dã luôn đe dọa con người, và ca dao nói về chúng rất nhiều:\n\n“U Minh, Rạch Giá thị quá sơn trường\nDưới sông sấu lội trên rừng cọp đua.”\n\n“Cà Mau khỉ khọt trên bưng\nDưới sông sấu lội trên rừng cọp um.”\n\nTục ngữ “xuống sông hớt trứng sấu, lên bờ xỉa răng cọp” và thành ngữ “hùm tha, sấu bắt” vẫn còn trong lời ăn tiếng nói. Tác giả ghi một thái độ hai mặt với con cọp: người ta kính nể, gọi bằng ông, có khi tôn làm hương cả, nhưng cũng có lúc coi thường và tìm cách giết. Cả người lẫn cọp đều quyết bám lấy đất mà sống.\n\n## Sau nỗi sợ là nỗi nhớ\n\nĐã quyết chí ở lại, người ta vẫn buồn:\n\n“U Minh, Rạch Giá thị quá Sơn Trường\nGió đưa bông sậy dạ buồn nhớ ai.”\n\n“Mênh mông trời nước một màu\nNhóc nhen kêu rộ bắt xàu ruột gan.”\n\nTrần Văn Nam phân biệt nỗi buồn ấy: buồn trước cảnh hiu quạnh, buồn vì xa xứ, nhớ quê, nhớ người. Theo ông, đó là nỗi nhớ của người buộc phải bỏ quê ra đi, chấp nhận cực khổ, chết chóc vì rừng thiêng nước độc và thú dữ, chứ không cam tâm chết vì quan lại, địa chủ ở quê nhà. Ông cũng nhận định nét nổi bật của người mở đất trong ca dao không phải nỗi buồn mà là ý chí vượt gian nan. (Bản web viết “dạ buốn”; hồ sơ sửa thành “dạ buồn”.)\n\n## Ông Lữ đi câu: một bài ca đi theo người khai hoang\n\nĐây là chỗ thú vị nhất của bài nghiên cứu. Trần Văn Nam dẫn ba bản của cùng một câu mở đầu, ở ba vùng:\n\nỞ Nam Trung Bộ:\n“Chiều chiều ông Lữ đi câu\nBỏ ve, bỏ chén, bỏ bầu ai mang.”\n\nỞ Đồng Tháp:\n“Chiều chiều ông Lữ đi câu\nSấu cắn ông Lữ biết đâu mà tìm.”\n\nỞ Phú Tân, An Giang:\n“Chiều chiều ông Ngữ thả câu\nSấu lôi ông Ngữ cắm đầu xuống sông.”\n\nCâu mở đầu giữ nguyên, câu sau đổi theo nơi chốn: ở quê cũ, ông Lữ chỉ bỏ lại ve, chén, bầu; vào tới miền Tây thì con sấu xuất hiện. Theo tác giả, ông Lữ, ông Ngữ là những người mang tính tượng trưng cho nông dân Nam Bộ với công việc “phá sơn lâm, đâm hà bá”, và bài ca cho thấy ông Lữ đi khai phá từ Trung Bộ dần vào Nam Trung Bộ rồi vào Nam Bộ. Tục ngữ “nhất phá sơn lâm, nhì đâm hà bá” chỉ hai việc nuôi sống lưu dân buổi đầu: khai phá rừng hoang và đánh bắt thủy sản.\n\n## Mâm cơm cho người khuất mặt\n\nTrần Văn Nam viết rằng những bậc tiền hiền, hậu hiền, tức các thế hệ đầu có công khai phá, được thờ trong đình làng và trong từng nhà. Mỗi khi đám giỗ, người Nam Bộ thường bày thêm một mâm ở ngưỡng cửa hoặc ngoài sân, gọi là mâm đất đai, để tỏ lòng biết ơn người đi trước và xin phù hộ; có lễ cúng xin “mướn đất” với người khuất mặt. Ca dao giữ lại vài cái tên cụ thể. Ông Chưởng, tức Chưởng cơ Nguyễn Hữu Cảnh, có cù lao mang tên mình ở An Giang: “Chiều chiều quạ nói với diều / Cù lao ông Chưởng có nhiều cá tôm”. Ông Móm, theo tác giả là người từ Quảng Ngãi vào khai phá vùng Truông Cóc ở Gò Công đầu thế kỷ XVII, thì kém may hơn: “Cháu con ông Móm lăn lóc cơ hàn / … / Mồ ông còn đó họ hàng chẳng thăm”.\n\n## Trai tứ chiếng, gái giang hồ\n\n“Trai tứ chiếng, gái giang hồ / Gặp nhau ta nổi cơ đồ cũng nên.” Trần Văn Nam đọc câu này như một nhận định khái quát về lịch sử khai phá: người của mọi miền quê tụ về đây. Ông cũng nhắc người Hoa, nhất là người Triều Châu, có mặt ở Nam Bộ gần như cùng lúc với người Việt, vừa là người khai hoang; câu “Bạc Liêu nước chảy lờ đờ / Dưới sông cá chốt trên bờ Triều Châu” là một dấu vết trong ca dao. Từ “Đất Cần Thơ nam thanh nữ tú, xứ Rạch Giá vượn hú chim kêu”, tác giả nhận xét vùng nam thanh nữ tú lớn dần còn vùng vượn hú chim kêu hẹp dần theo sức người.\n\n## Điều còn để ngỏ\n\nToàn bộ hồ sơ dựa vào một bài nghiên cứu; các câu ca chưa được đối chiếu với tập sưu tầm có ghi người hát và năm ghi. Cụm “thị quá sơn trường” chưa được nguồn giải thích. Chuyện ông Lữ đi từ Trung Bộ vào Nam là cách đọc của tác giả dựa trên việc so các bản, chưa có tư liệu khác xác nhận. Mốc thế kỷ XVII là nhận định chung của bài, không phải niên đại của từng câu ca.",
+   "scope_note": "Hồ sơ dựa vào một bài nghiên cứu: Trần Văn Nam, Ca dao Nam Bộ – ca dao của vùng đất mới (1998). Các câu ca, nơi sưu tầm và cách hiểu được ghi theo bài ấy; chưa đối chiếu với các tập sưu tầm gốc. Bản web của bài có vài lỗi gõ; hồ sơ chỉ sửa lỗi dấu hiển nhiên và ghi rõ chỗ sửa.",
+   "classification": "source_supported",
+   "sections": [
+    {
+     "heading": "Cái nhìn đầu tiên: mọi thứ đều lạ",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Trần Văn Nam viết rằng phải tới thế kỷ XVII, những người Việt đầu tiên đi mở cõi mới tới vùng đất này, và họ nhận ra ngay vẻ hoang sơ của nó:\n\n“Muỗi kêu như sáo thổi\nĐỉa lội như bánh canh\nCỏ mọc thành tinh\nRắn đồng biết gáy.”\n\nPhép so sánh rất đời thường: tiếng muỗi như tiếng sáo, đỉa đặc như sợi bánh canh trong tô. Cái hoang dã được kể bằng những thứ người ta biết rõ nhất, là âm nhạc và món ăn. Rồi tới nỗi sợ:\n\n“Tới đây xứ sở lạ lùng\nCon chim kêu cũng sợ, con cá vùng cũng ghê.”\n\n“Chèo ghe sợ sấu ăn chưng\nXuống bưng sợ đỉa, lên rừng sợ ma.”\n\nNgay trong bài, tác giả dẫn câu “Tới đây” hai lần với hai cách viết hơi khác, một lần là “Chim kêu cũng sợ, cá vùng cũng ghê”. Một câu ca, ngay trong một bài viết, đã có hai bản."
+    },
+    {
+     "heading": "Sấu dưới sông, cọp trên rừng",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Theo Trần Văn Nam, sấu và cọp là hai loài tượng trưng cho sức mạnh hoang dã luôn đe dọa con người, và ca dao nói về chúng rất nhiều:\n\n“U Minh, Rạch Giá thị quá sơn trường\nDưới sông sấu lội trên rừng cọp đua.”\n\n“Cà Mau khỉ khọt trên bưng\nDưới sông sấu lội trên rừng cọp um.”\n\nTục ngữ “xuống sông hớt trứng sấu, lên bờ xỉa răng cọp” và thành ngữ “hùm tha, sấu bắt” vẫn còn trong lời ăn tiếng nói. Tác giả ghi một thái độ hai mặt với con cọp: người ta kính nể, gọi bằng ông, có khi tôn làm hương cả, nhưng cũng có lúc coi thường và tìm cách giết. Cả người lẫn cọp đều quyết bám lấy đất mà sống."
+    },
+    {
+     "heading": "Sau nỗi sợ là nỗi nhớ",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Đã quyết chí ở lại, người ta vẫn buồn:\n\n“U Minh, Rạch Giá thị quá Sơn Trường\nGió đưa bông sậy dạ buồn nhớ ai.”\n\n“Mênh mông trời nước một màu\nNhóc nhen kêu rộ bắt xàu ruột gan.”\n\nTrần Văn Nam phân biệt nỗi buồn ấy: buồn trước cảnh hiu quạnh, buồn vì xa xứ, nhớ quê, nhớ người. Theo ông, đó là nỗi nhớ của người buộc phải bỏ quê ra đi, chấp nhận cực khổ, chết chóc vì rừng thiêng nước độc và thú dữ, chứ không cam tâm chết vì quan lại, địa chủ ở quê nhà. Ông cũng nhận định nét nổi bật của người mở đất trong ca dao không phải nỗi buồn mà là ý chí vượt gian nan. (Bản web viết “dạ buốn”; hồ sơ sửa thành “dạ buồn”.)"
+    },
+    {
+     "heading": "Ông Lữ đi câu: một bài ca đi theo người khai hoang",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Đây là chỗ thú vị nhất của bài nghiên cứu. Trần Văn Nam dẫn ba bản của cùng một câu mở đầu, ở ba vùng:\n\nỞ Nam Trung Bộ:\n“Chiều chiều ông Lữ đi câu\nBỏ ve, bỏ chén, bỏ bầu ai mang.”\n\nỞ Đồng Tháp:\n“Chiều chiều ông Lữ đi câu\nSấu cắn ông Lữ biết đâu mà tìm.”\n\nỞ Phú Tân, An Giang:\n“Chiều chiều ông Ngữ thả câu\nSấu lôi ông Ngữ cắm đầu xuống sông.”\n\nCâu mở đầu giữ nguyên, câu sau đổi theo nơi chốn: ở quê cũ, ông Lữ chỉ bỏ lại ve, chén, bầu; vào tới miền Tây thì con sấu xuất hiện. Theo tác giả, ông Lữ, ông Ngữ là những người mang tính tượng trưng cho nông dân Nam Bộ với công việc “phá sơn lâm, đâm hà bá”, và bài ca cho thấy ông Lữ đi khai phá từ Trung Bộ dần vào Nam Trung Bộ rồi vào Nam Bộ. Tục ngữ “nhất phá sơn lâm, nhì đâm hà bá” chỉ hai việc nuôi sống lưu dân buổi đầu: khai phá rừng hoang và đánh bắt thủy sản."
+    },
+    {
+     "heading": "Mâm cơm cho người khuất mặt",
+     "kind": "observed_practice",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Trần Văn Nam viết rằng những bậc tiền hiền, hậu hiền, tức các thế hệ đầu có công khai phá, được thờ trong đình làng và trong từng nhà. Mỗi khi đám giỗ, người Nam Bộ thường bày thêm một mâm ở ngưỡng cửa hoặc ngoài sân, gọi là mâm đất đai, để tỏ lòng biết ơn người đi trước và xin phù hộ; có lễ cúng xin “mướn đất” với người khuất mặt. Ca dao giữ lại vài cái tên cụ thể. Ông Chưởng, tức Chưởng cơ Nguyễn Hữu Cảnh, có cù lao mang tên mình ở An Giang: “Chiều chiều quạ nói với diều / Cù lao ông Chưởng có nhiều cá tôm”. Ông Móm, theo tác giả là người từ Quảng Ngãi vào khai phá vùng Truông Cóc ở Gò Công đầu thế kỷ XVII, thì kém may hơn: “Cháu con ông Móm lăn lóc cơ hàn / … / Mồ ông còn đó họ hàng chẳng thăm”."
+    },
+    {
+     "heading": "Trai tứ chiếng, gái giang hồ",
+     "kind": "explanation",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "“Trai tứ chiếng, gái giang hồ / Gặp nhau ta nổi cơ đồ cũng nên.” Trần Văn Nam đọc câu này như một nhận định khái quát về lịch sử khai phá: người của mọi miền quê tụ về đây. Ông cũng nhắc người Hoa, nhất là người Triều Châu, có mặt ở Nam Bộ gần như cùng lúc với người Việt, vừa là người khai hoang; câu “Bạc Liêu nước chảy lờ đờ / Dưới sông cá chốt trên bờ Triều Châu” là một dấu vết trong ca dao. Từ “Đất Cần Thơ nam thanh nữ tú, xứ Rạch Giá vượn hú chim kêu”, tác giả nhận xét vùng nam thanh nữ tú lớn dần còn vùng vượn hú chim kêu hẹp dần theo sức người."
+    },
+    {
+     "heading": "Điều còn để ngỏ",
+     "kind": "editorial_note",
+     "sourceIds": [
+      "NB-CD-TVN-1998"
+     ],
+     "text": "Toàn bộ hồ sơ dựa vào một bài nghiên cứu; các câu ca chưa được đối chiếu với tập sưu tầm có ghi người hát và năm ghi. Cụm “thị quá sơn trường” chưa được nguồn giải thích. Chuyện ông Lữ đi từ Trung Bộ vào Nam là cách đọc của tác giả dựa trên việc so các bản, chưa có tư liệu khác xác nhận. Mốc thế kỷ XVII là nhận định chung của bài, không phải niên đại của từng câu ca."
+    }
+   ],
+   "claims": [
+    {
+     "source_id": "NB-CD-TVN-1998",
+     "statement": "Người Việt tới vùng đất mới từ thế kỷ XVII; ca dao Muỗi kêu như sáo thổi / Đỉa lội như bánh canh / Cỏ mọc thành tinh / Rắn đồng biết gáy; Tới đây xứ sở lạ lùng / Con chim kêu cũng sợ, con cá vùng cũng ghê (và bản Chim kêu cũng sợ, cá vùng cũng ghê); Chèo ghe sợ sấu ăn chưng / Xuống bưng sợ đỉa, lên rừng sợ ma; U Minh, Rạch Giá thị quá sơn trường / Dưới sông sấu lội trên rừng cọp đua; Cà Mau khỉ khọt trên bưng; tục ngữ xuống sông hớt trứng sấu, lên bờ xỉa răng cọp; cọp gọi bằng ông, hương cả; Gió đưa bông sậy dạ buồn nhớ ai; Mênh mông trời nước một màu; ba bản ông Lữ (Nam Trung Bộ), ông Lữ (Đồng Tháp), ông Ngữ (Phú Tân, An Giang) và cách đọc ông Lữ đi từ Trung Bộ vào Nam Bộ; nhất phá sơn lâm, nhì đâm hà bá; mâm đất đai, cúng mướn đất; ông Chưởng Nguyễn Hữu Cảnh, ông Móm ở Truông Cóc; Trai tứ chiếng, gái giang hồ; người Triều Châu; Đất Cần Thơ nam thanh nữ tú.",
+     "locator": "Mục 1 và mục 2 của bài.",
+     "kind": "variant",
+     "review_status": "accepted",
+     "reviewer": "Claude — source review",
+     "checked_at": "2026-11-04"
+    }
+   ],
+   "knowledge": {
+    "name": "Ca dao người mở đất",
+    "entity_type": "folk_verse",
+    "primary_domain": "van-hoc-nghe-thuat",
+    "secondary_domains": [
+     "lich-su-khao-co",
+     "dia-ly-sinh-thai",
+     "tin-nguong-ton-giao"
+    ],
+    "regions": [
+     "dong-nam-bo",
+     "tay-nam-bo"
+    ],
+    "communities": [
+     "kinh",
+     "hoa"
+    ],
+    "aliases": [
+     {
+      "value": "nhất phá sơn lâm, nhì đâm hà bá",
+      "kind": "related_term",
+      "source_id": "NB-CD-TVN-1998",
+      "locator": "Mục 2"
+     },
+     {
+      "value": "mâm đất đai",
+      "kind": "related_term",
+      "source_id": "NB-CD-TVN-1998",
+      "locator": "Mục 2"
+     }
+    ],
+    "historical_places": [],
+    "origin_section": 0,
+    "change_section": 3,
+    "source_ids": [
+     "NB-CD-TVN-1998"
+    ],
+    "current_admin": null
+   },
+   "answers": {
+    "what": {
+     "state": "supported",
+     "text": "Những câu ca dao ghi lại cảnh hoang sơ, nỗi sợ, nỗi nhớ và lòng biết ơn của người khai hoang Nam Bộ.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "when_where": {
+     "state": "partial",
+     "text": "Gắn với thời khẩn hoang từ thế kỷ XVII; nơi sưu tầm chỉ có ở vài câu (Phú Tân, Đồng Tháp).",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "community": {
+     "state": "supported",
+     "text": "Lưu dân người Việt từ miền Trung; người Hoa cùng thời được nhắc trong ca dao.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "origins": {
+     "state": "partial",
+     "text": "Theo Trần Văn Nam, sinh ra từ trải nghiệm trực tiếp của người mở đất trước thiên nhiên hoang dã.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "changes": {
+     "state": "supported",
+     "text": "Bài ông Lữ đổi câu sau theo vùng: từ bỏ ve chén ở Nam Trung Bộ tới sấu cắn ở miền Tây.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    },
+    "unknowns": {
+     "state": "unknown",
+     "text": "Chưa đối chiếu tập sưu tầm gốc; chưa rõ nghĩa thị quá sơn trường; đường đi của ông Lữ là cách đọc của một tác giả.",
+     "source_ids": []
+    },
+    "related": {
+     "state": "supported",
+     "text": "Đọc cùng hồ sơ Nguyễn Hữu Cảnh, U Minh Thượng và ca dao gạo trắng nước trong.",
+     "source_ids": [
+      "NB-CD-TVN-1998"
+     ]
+    }
+   },
+   "media": [
+    {
+     "id": "tram-chim-trungydang",
+     "kind": "image",
+     "url": "/media/tram-chim-trungydang.jpg",
+     "author": "trungydang",
+     "source_url": "https://commons.wikimedia.org/wiki/File:TRam_chim,_Phu_Duc,_Tam_Nong,_Dong_Thap._vietnam_-_panoramio.jpg",
+     "license_name": "CC BY 3.0",
+     "license_url": "https://creativecommons.org/licenses/by/3.0/",
+     "modifications": "Dùng tệp JPEG gốc từ Commons, không đổi kích thước, màu sắc hoặc xóa dấu. Thẻ danh sách có thể cắt khung bằng CSS; ảnh chi tiết giữ khung đầy đủ.",
+     "caption": "Đồng ngập nước Tràm Chim, Đồng Tháp, ảnh trungydang chụp ngày 06/10/2013 theo hồ sơ Commons; ảnh minh họa cảnh bưng biền ngày nay, không phải cảnh thời khẩn hoang.",
+     "attribution": "TRam chim, Phu Duc, Tam Nong, Dong Thap. vietnam - panoramio.jpg — trungydang, Wikimedia Commons, CC BY 3.0.",
+     "commercial_allowed": 1,
+     "file_sha256": "46e77ed3d48a110f91378fa04622e234e3c8038386e780e52171481becf5746f",
+     "rights_review": "accepted",
+     "width": 2749,
+     "height": 1010
+    }
+   ],
+   "publication_status": "published",
+   "review_status": "verified",
+   "rights_review_status": "cleared",
+   "publish_approval": true,
+   "reviewed_at": "2026-11-04",
+   "rights_basis": "Ca dao là lời dân gian, dẫn nguyên văn theo nguồn. Lời phân tích của các tác giả được diễn giải mới, ngắn, ghi đúng tên người nói và vị trí trong nguồn đọc ngày 04/11/2026; không sao chép toàn văn, bảng hay ảnh của nguồn. Ảnh dùng lại tệp Commons đã kiểm giấy phép.",
+   "slug": "toi-day-xu-so-la-lung-ca-dao-nguoi-mo-dat",
+   "title": "“Tới đây xứ sở lạ lùng”: nỗi sợ, nỗi nhớ và lòng biết ơn của người mở đất"
+  }
+ ],
+ "tours": []
+}

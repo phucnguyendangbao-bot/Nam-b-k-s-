@@ -89,8 +89,8 @@ export const chapters: Chapter[] = [
     lede: 'Năm mới và mùa trăng của người Khmer, nhịp chèo ghe Ngo, đêm Nguyên Tiêu, đời sống Chăm ở Châu Giang, tiếng đờn ca tài tử và sân khấu Rô Băm: phương Nam là nơi nhiều cộng đồng cùng sống.',
     ids: ['E011', 'E010', 'E012', 'E013', 'KN-SAMPLE-NGUYEN-TIEU', 'KN-SAMPLE-CHAU-GIANG', 'E018', 'E014', 'NBS-VIA-BA-CHUA-XU', 'NBS-DA-CO-HOAI-LANG'], image: storyImages.hoi },
   { n: 6, slug: 'tieng-noi', name: 'Tiếng nói', title: 'Lời xưa còn trong lời nay.',
-    lede: 'Từ hai câu tục ngữ in ở Sài Gòn năm 1897 đến những tiếng xưng hô, tiếng đệm người miền Tây vẫn nói mỗi ngày.',
-    ids: ['NBS-TUCNGU-18', 'NBS-TUCNGU-22', 'E029', 'E030', 'E031', 'E032', 'E033', 'NBS-TU-VAY', 'NBS-TU-VO', 'NBS-TU-NGHEN', 'NBS-TD-CAY-BEO', 'NBS-TD-LI-XI'] },
+    lede: 'Một câu hò kể bốn bến sông Cần Thơ mà đoán được tuổi, những lời thương thời kinh xáng, nỗi sợ của người mở đất; rồi hai câu tục ngữ in ở Sài Gòn năm 1897 và những tiếng xưng hô người miền Tây vẫn nói mỗi ngày.',
+    ids: ['NBS-CD-CAI-RANG', 'NBS-CD-KINH-XANG', 'NBS-CD-GAO-TRANG', 'NBS-CD-MO-DAT', 'NBS-TUCNGU-18', 'NBS-TUCNGU-22', 'E029', 'E030', 'E031', 'E032', 'E033', 'NBS-TU-VAY', 'NBS-TU-VO', 'NBS-TU-NGHEN', 'NBS-TD-CAY-BEO', 'NBS-TD-LI-XI'] },
 ];
 
 export const chapterAnchor = (c: Pick<Chapter, 'n'>) => `chuong-${c.n}`;

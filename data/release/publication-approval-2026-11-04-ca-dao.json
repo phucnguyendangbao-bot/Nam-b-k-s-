@@ -1,0 +1,18 @@
+{
+ "version": "publication-approval-2026-11-04-ca-dao-v1",
+ "status": "approved",
+ "authority": "owner_delegation",
+ "reviewer": "Claude — source review",
+ "reviewed_at": "2026-11-04",
+ "authorization": "Chủ dự án nhận xét ngày 04/11/2026: \"thông tin đang bị theo dạng bạn chép ra mà chẳng có chiều sâu vd như các câu ca dao\". Claude viết bốn hồ sơ ca dao đọc sâu (dị bản, niên đại, giải chữ, các cách hiểu, điều chưa rõ), kiểm nguồn và ghi bản duyệt theo ủy quyền tự duyệt mà chủ dự án đã chọn cho các gói nội dung; đây không phải phê duyệt học thuật của bên thứ ba.",
+ "scope": "Bốn hồ sơ ca dao mới cho chương Tiếng nói. Ca dao dẫn nguyên văn theo nguồn; lời phân tích của tác giả được diễn giải và ghi tên. Mỗi nguồn đọc ngày 04/11/2026. Không sửa gói trước, không thêm ảnh mới.",
+ "approved_article_ids": [
+  "NBS-CD-CAI-RANG",
+  "NBS-CD-GAO-TRANG",
+  "NBS-CD-KINH-XANG",
+  "NBS-CD-MO-DAT"
+ ],
+ "approved_tour_ids": [],
+ "release_sha256": "43aff3eb237c8241b3fd61cbfa645af57ee17aa747f800b336b6354eff680687",
+ "release_payload_sha256": "73da22cb30c90c899c024d3dfdf8fbe7bca301b3f40e76e0709c807342a30986"
+}

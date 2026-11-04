@@ -68,8 +68,9 @@ test('story chapters only point to dossiers that are public in some reviewed lay
   const { readFile } = await import('node:fs/promises');
   const legacy = JSON.parse(await readFile(new URL('../lib/editorial-bundle.json', import.meta.url), 'utf8'));
   const expansion = await readFile(new URL('../lib/content-expansion.ts', import.meta.url), 'utf8');
-  const supplement = await loadValidatedRelease('2026-11-01-supplement');
-  const known = new Set([...data.release.articles, ...later.release.articles, ...supplement.release.articles, ...legacy.articles].map(article=>article.id));
+  const { releaseDates } = await import('../scripts/validate-published-release.mjs');
+  const layers = await Promise.all(releaseDates.map(date => loadValidatedRelease(date)));
+  const known = new Set([...layers.flatMap(layer => layer.release.articles), ...legacy.articles].map(article=>article.id));
   for (const id of chapters.flatMap(chapter=>chapter.ids)) assert.ok(known.has(id) || expansion.includes(`"${id}"`) || expansion.includes(`'${id}'`), id);
   for (const id of ['NBS-TEN-CAN-THO','NBS-KENH-VINH-TE','NBS-NGUYEN-DINH-CHIEU','NBS-DINH-BINH-THUY','NBS-BANH-TRANG-TRANG-BANG']) assert.ok(later.release.articles.some(article=>article.id===id && article.slug), id);
 });

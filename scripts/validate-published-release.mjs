@@ -120,7 +120,7 @@ export function validatePublishedRelease(release, approval, { sourceIds, sourceM
   unicode(release); unicode(approval);
   return { articles: release.articles.length, sources: release.sources.length, claims, assets, reading_journeys: release.tours.length, ...(occurrences.length ? { festival_dates: occurrences.length } : {}) };
 }
-export const releaseDates = ['2026-10-28', '2026-11-01', '2026-11-01-supplement', '2026-11-02-enrichment', '2026-11-04-festivals'];
+export const releaseDates = ['2026-10-28', '2026-11-01', '2026-11-01-supplement', '2026-11-02-enrichment', '2026-11-04-festivals', '2026-11-04-ca-dao'];
 export async function loadValidatedRelease(date = '2026-10-28') {
   const bytes = await readFile(new URL(`data/release/published-${date}.json`, root));
   const release = JSON.parse(bytes.toString('utf8')); const approval = await json(`data/release/publication-approval-${date}.json`);
