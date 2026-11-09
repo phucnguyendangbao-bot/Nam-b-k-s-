@@ -242,3 +242,110 @@
   .nx-ready .nx-shift:not([data-in]) .nx-shift-line { scale: 1; }
   .nx-ready .nx-shift:not([data-in]) .nx-shift-copy { scale: 1; }
 }
+
+/* ==========================================================================
+   Chiều sâu 3D (09/11/2026)
+   1. Thẻ, ảnh nghiêng theo con trỏ, có vệt sáng (chỉ thiết bị có chuột; biến từ Depth3D).
+   2. Vùng có chiều sâu: mở đầu trang chủ, tranh nét chương, dòng thời gian — lớp gần dịch nhiều, lớp xa dịch ít.
+   3. Vào cảnh bằng 3D: số mục lật lên, mốc thời gian lật xuống, ảnh ngả ra rồi đứng dậy khi cuộn tới.
+   Giảm chuyển động: tắt hết phần 3D.
+   ========================================================================== */
+
+/* ---------- 1. Nghiêng theo con trỏ ---------- */
+.d3-ready :is(.ch-entry-media, .bento-card, .nb-story-card, .nx-figure .photo-frame, .nx-cover .photo-frame, .related-tour, .ch-media-frame, .toc a) {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 520ms var(--ease-out), box-shadow 520ms var(--ease-out);
+  will-change: transform;
+}
+.d3-ready :is(.ch-entry-media, .bento-card, .nb-story-card, .nx-figure .photo-frame, .related-tour, .ch-media-frame, .toc a)[data-tilting] {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(14px);
+  transition: transform 120ms linear, box-shadow 300ms var(--ease);
+  box-shadow: calc(var(--px, 0) * -10px) calc(var(--py, 0) * -10px + 18px) 40px rgb(18 38 31 / .22);
+}
+.d3-ready .nx-cover .photo-frame[data-tilting] { transform: perspective(1800px) rotateX(calc(var(--rx) * .35)) rotateY(calc(var(--ry) * .35)); transition: transform 160ms linear; }
+.d3-ready .ch-media-frame[data-tilting] { transform: perspective(1800px) rotateX(calc(var(--rx) * .4)) rotateY(calc(var(--ry) * .4)) translateZ(0); }
+.d3-ready .toc a[data-tilting] { box-shadow: none; }
+.d3-ready .toc a[data-tilting] .toc-n { transform: translateZ(30px); text-shadow: calc(var(--px, 0) * -5px) calc(var(--py, 0) * -5px + 4px) 10px rgb(132 100 44 / .25); }
+.toc-n { display: inline-block; transition: transform 300ms var(--ease-out); }
+/* Vệt sáng chạy theo con trỏ trên ảnh */
+.d3-ready :is(.ch-entry-media, .nx-figure .photo-frame, .nx-cover .photo-frame, .ch-media-frame)::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / .32), rgb(255 255 255 / 0) 55%);
+  opacity: 0; mix-blend-mode: soft-light; transition: opacity 400ms var(--ease);
+}
+.d3-ready :is(.ch-entry-media, .nx-figure .photo-frame, .nx-cover .photo-frame, .ch-media-frame)[data-tilting]::after { opacity: 1; }
+/* Nội dung trong thẻ nổi lên trên mặt thẻ */
+.d3-ready :is(.bento-card, .nb-story-card)[data-tilting] :is(h2, h3, .bento-title) { transform: translateZ(26px); }
+.d3-ready :is(.bento-card, .nb-story-card) :is(h2, h3, .bento-title) { transition: transform 400ms var(--ease-out); }
+
+/* ---------- 2. Vùng có chiều sâu ---------- */
+.d3-ready .hx { --mx: 0; --my: 0; }
+.hx { perspective: 1200px; }
+.d3-ready .hx-image { transform: translate3d(calc(var(--mx, 0) * -18px), calc(var(--my, 0) * -12px), 0) scale(1.05); transition: transform 900ms var(--ease-out); }
+.d3-ready .hx-inner { transform: perspective(1200px) translate3d(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 6px), 0) rotateY(calc(var(--mx, 0) * 3deg)) rotateX(calc(var(--my, 0) * -2deg)); transition: transform 900ms var(--ease-out); }
+.d3-ready .hx h1 { text-shadow: calc(var(--mx, 0) * -10px) calc(var(--my, 0) * -6px + 14px) 36px rgb(0 0 0 / .35); transition: text-shadow 900ms var(--ease-out); }
+
+.ch-art { transform: perspective(700px) rotateY(calc(var(--mx, 0) * 16deg)) rotateX(calc(var(--my, 0) * -12deg)); transition: transform 700ms var(--ease-out); }
+.d3-ready .ch-art .f { transform: translate(calc(var(--mx, 0) * -5px), calc(var(--my, 0) * -3px)); transition: opacity 1200ms var(--ease-out) 900ms, transform 700ms var(--ease-out); }
+.d3-ready .ch-art .a2, .d3-ready .ch-art text { transform: translate(calc(var(--mx, 0) * 6px), calc(var(--my, 0) * 4px)); }
+.d3-ready .ch-art :is(.a2, text) { transition: stroke-dashoffset 1800ms var(--ease-out), transform 700ms var(--ease-out); }
+
+.nx-timeline { --mx: 0; --my: 0; }
+.d3-ready .nx-timeline::after { transform: translate(calc(var(--mx) * 30px), calc(var(--my) * 24px)); transition: transform 1s var(--ease-out); }
+.d3-ready .nx-tl-year { transform: translateX(calc(var(--mx) * 4px)); text-shadow: calc(var(--mx) * -3px) 4px 0 rgb(0 0 0 / .25); transition: transform 600ms var(--ease-out), text-shadow 600ms var(--ease-out), opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out); }
+
+/* Số mục nổi khối: các lớp bóng đặc tạo bề dày, như chữ khắc gỗ. */
+.nx-num { text-shadow: 1px 1px 0 color-mix(in srgb, var(--ev) 70%, #000), 2px 2px 0 color-mix(in srgb, var(--ev) 60%, #000), 3px 3px 0 color-mix(in srgb, var(--ev) 50%, #000), 4px 4px 0 color-mix(in srgb, var(--ev) 40%, #fff), 6px 10px 18px rgb(0 0 0 / .14); }
+.nx-num { clip-path: none; }
+.nx-tl-year { text-shadow: 1px 1px 0 #8f7445, 2px 2px 0 #7a6139, 3px 3px 0 #5f4b2b, 5px 8px 14px rgb(0 0 0 / .35); }
+
+/* ---------- 3. Vào cảnh bằng 3D ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Số mục lật lên từ mặt phẳng như tấm bảng dựng đứng */
+  .nx-head { perspective: 600px; }
+  .nx-num { display: inline-block; transform-origin: 50% 100%; transition: transform 900ms cubic-bezier(.2, 1.3, .4, 1), opacity 500ms var(--ease-out); clip-path: none; }
+  .nx-ready .nx-section:not([data-in]) .nx-num { transform: rotateX(-95deg); opacity: 0; clip-path: none; translate: none; }
+  /* Hình giọng kể xoay một vòng nửa khi hiện */
+  .nx-kind .nx-glyph { transition: transform 900ms var(--ease-out) 200ms; }
+  .nx-ready .nx-section:not([data-in]) .nx-glyph { transform: perspective(200px) rotateY(-180deg); }
+
+  /* Mốc thời gian lật xuống từ cạnh trên */
+  .nx-tl { perspective: 1000px; }
+  .nx-tl-item { transform-origin: 50% 0; transition: transform 800ms var(--ease-out); }
+  .nx-ready .nx-tl-item:not([data-in]) { transform: rotateX(-60deg) translateZ(-40px); }
+
+  /* Lằn chuyển giọng: nhãn quay từ cạnh như lật thẻ */
+  .nx-shift { perspective: 500px; }
+  .nx-ready .nx-shift:not([data-in]) .nx-shift-copy { transform: rotateX(80deg); }
+  .nx-shift-copy { transition: opacity var(--d-reveal) var(--ease-out) 200ms, scale var(--d-reveal) var(--ease-out) 200ms, transform 800ms var(--ease-out) 200ms; }
+
+  /* Ảnh giữa bài ngả ra sau rồi đứng dậy */
+  .nx-figure { perspective: 1600px; }
+  .nx-figure .documentary-photo { transform-origin: 50% 100%; transition: transform 1200ms var(--ease-out); }
+  .nx-ready .nx-figure:not([data-in]) .documentary-photo { transform: rotateX(28deg) translateZ(-60px); }
+
+  /* Thẻ hồ sơ trong chương: lật lên nối nhau */
+  .ch-list, .ch-more { perspective: 1400px; }
+  .ch-list > li, .ch-more > li { transform-origin: 50% 100%; transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out), transform 900ms var(--ease-out); transition-delay: calc(min(var(--i, 0), 6) * var(--stagger)); }
+  .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-list, .ch-more) > li, .reveal-ready :is(.ch-list, .ch-more)[data-reveal]:not([data-revealed]) > li { transform: rotateX(24deg); }
+}
+
+/* Cuộn: ảnh chương dựng dậy khi tới, ảnh bìa hồ sơ ngả ra sau khi rời đi */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ch-media { perspective: 1600px; }
+    .ch-media-frame { transform-origin: 50% 100%; animation: d3-stand linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    .nx-cover { perspective: 1800px; }
+    .nx-cover .documentary-photo { transform-origin: 50% 0; animation: d3-recede linear both; animation-timeline: view(); animation-range: exit 10% exit 90%; }
+    .hx-inner { animation-name: hx-leave3d; }
+  }
+}
+@keyframes d3-stand { from { rotate: x 26deg; scale: .94; } to { rotate: x 0deg; scale: 1; } }
+@keyframes d3-recede { to { rotate: x -18deg; scale: .9; opacity: .5; } }
+@keyframes hx-leave3d { to { opacity: 0; translate: 0 calc(var(--m-rise) * -3); rotate: x 22deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ch-art { transform: none; }
+  .nx-ready .nx-section:not([data-in]) .nx-num { clip-path: none; }
+}
