@@ -20,7 +20,7 @@ import { siteUrl } from '@/lib/site-url';
 import { CommandPalette } from '@/components/interactive/command-palette';
 import { RevealObserver } from '@/components/interactive/reveal';
 import { PageTransitions } from '@/components/interactive/page-transitions';
-import { Depth3D, NarrativeMotion } from '@/components/interactive/narrative-motion';
+import { NarrativeMotion } from '@/components/interactive/narrative-motion';
 import { ImageFade } from '@/components/interactive/image-fade';
 
 export const metadata: Metadata = {
@@ -53,7 +53,7 @@ export default async function RootLayout({
         <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><Depth3D/><PageTransitions/><ImageFade/></body>
+      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
     </html>
   );
 }

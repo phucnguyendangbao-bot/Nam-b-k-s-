@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
  * Bấm liên kết tới một mục, một nguồn thì mục (thu gọn trong Foldable), nguồn (details) đó tự mở.
@@ -100,57 +99,4 @@ export function DossierProgress({ sections }: { sections: { id: string; heading:
       </span>
     </a>
   );
-}
-
-/** Thẻ và ảnh nghiêng theo con trỏ như một tấm ảnh cầm trên tay, có vệt sáng chạy theo. */
-const TILT = '.ch-entry-media, .bento-card, .nb-story-card, .nx-figure .photo-frame, .nx-cover .photo-frame, .related-tour, .ch-media-frame, .toc a';
-/** Vùng có chiều sâu: các lớp bên trong dịch theo con trỏ với độ sâu khác nhau. */
-const SCENE = '.hx, .ch-top, .nx-timeline';
-
-/**
- * Hiệu ứng 3D theo con trỏ (chỉ thiết bị có chuột, không bật khi giảm chuyển động).
- * Chỉ đặt biến CSS (--rx, --ry, --gx, --gy cho thẻ nghiêng; --mx, --my từ -1 tới 1 cho vùng có chiều sâu);
- * cách biến đổi nằm trong narrative.css. Không chặn cuộn, không đổi bố cục.
- */
-export function Depth3D() {
-  useEffect(() => {
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-    if (!fine.matches || reduced()) return;
-    document.documentElement.classList.add('d3-ready');
-    let raf = 0, last: PointerEvent | null = null;
-    let tilted: HTMLElement | null = null, scene: HTMLElement | null = null;
-    const reset = (el: HTMLElement | null, keys: string[]) => { if (el) { keys.forEach(k => el.style.removeProperty(k)); el.removeAttribute('data-tilting'); } };
-    const frame = () => {
-      raf = 0;
-      const e = last; if (!e) return;
-      const target = e.target instanceof Element ? e.target : null;
-      const t = target?.closest<HTMLElement>(TILT) ?? null;
-      if (t !== tilted) { reset(tilted, ['--rx', '--ry', '--gx', '--gy', '--px', '--py']); tilted = t; }
-      if (t) {
-        const r = t.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        const max = Math.max(3, Math.min(9, 2400 / Math.max(r.width, r.height)));
-        t.style.setProperty('--ry', `${((x - .5) * 2 * max).toFixed(2)}deg`);
-        t.style.setProperty('--rx', `${((.5 - y) * 2 * max).toFixed(2)}deg`);
-        t.style.setProperty('--gx', `${(x * 100).toFixed(1)}%`);
-        t.style.setProperty('--gy', `${(y * 100).toFixed(1)}%`);
-        t.style.setProperty('--px', ((x - .5) * 2).toFixed(3));
-        t.style.setProperty('--py', ((y - .5) * 2).toFixed(3));
-        t.setAttribute('data-tilting', '');
-      }
-      const s = target?.closest<HTMLElement>(SCENE) ?? null;
-      if (s !== scene) { reset(scene, ['--mx', '--my']); scene = s; }
-      if (s) {
-        const r = s.getBoundingClientRect();
-        s.style.setProperty('--mx', (((e.clientX - r.left) / r.width - .5) * 2).toFixed(3));
-        s.style.setProperty('--my', (((e.clientY - r.top) / r.height - .5) * 2).toFixed(3));
-      }
-    };
-    const onMove = (e: PointerEvent) => { if (e.pointerType !== 'mouse') return; last = e; if (!raf) raf = requestAnimationFrame(frame); };
-    const onLeave = () => { reset(tilted, ['--rx', '--ry', '--gx', '--gy', '--px', '--py']); reset(scene, ['--mx', '--my']); tilted = scene = null; };
-    document.addEventListener('pointermove', onMove, { passive: true });
-    document.documentElement.addEventListener('pointerleave', onLeave);
-    return () => { document.removeEventListener('pointermove', onMove); document.documentElement.removeEventListener('pointerleave', onLeave); if (raf) cancelAnimationFrame(raf); onLeave(); };
-  }, []);
-  return null;
 }
