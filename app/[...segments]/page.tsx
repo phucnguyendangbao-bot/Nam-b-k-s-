@@ -177,25 +177,31 @@ export default async function Page({ params, searchParams }: Props) {
         <details className="admin-box"><summary>Cách đọc danh sách nguồn và nhãn kiểm chứng</summary><EvidenceGuide /><p>Một bản ghi thư mục chỉ dẫn đến tài liệu cần tìm. Với bài đã công bố, xem mục Nguồn tham khảo trong từng hồ sơ để biết nhận định nào đã được đối chiếu, ở trang hoặc đoạn nào.</p></details>
         <SearchForm action="/nguon-tu-lieu" q={q.q} placeholder="Tìm tên tài liệu hoặc chủ đề" />
         <p className="result-count">{sources.length} nguồn</p>
-        <div className="source-list">
-          {sources.map(x => (
-            <article className="source-card" key={x.id}>
-              <div className="source-id">{x.id}</div>
-              <div>
-                <p className="eyebrow">{sourceTypeLabels[String(x.source_type)] ?? String(x.source_type).replace(/_/g, ' ')}{x.format ? `, ${x.format}` : ''}</p>
-                <h2><a href={x.url} target="_blank" rel="noreferrer">{x.name} <Arrow diagonal /></a></h2>
-                {x.notes && <p>{x.notes}</p>}
-                {x.publisher && <p><strong>Đơn vị xuất bản:</strong> {x.publisher}</p>}
-                {x.source_version && <p><strong>Phiên bản đối chiếu:</strong> {x.source_version}</p>}
-                {x.rights && <p><strong>Phạm vi sử dụng:</strong> {x.rights}</p>}
-                <div className="badge-row">
-                  {x.license_reported && <span className="classification">Giấy phép ghi nhận: {x.license_reported}</span>}
-                  {x.topics && <span>{String(x.topics).replace(/,/g, ', ')}</span>}
+        {/* Mỗi nguồn một dòng: mã, loại, tên; bấm để xem đơn vị xuất bản, phiên bản, phạm vi sử dụng. */}
+        <ol className="src-rows" data-nx>
+          {sources.map((x, i) => (
+            <li key={x.id} style={{ '--k': Math.min(i, 24) } as React.CSSProperties}>
+              <details className="src-row">
+                <summary>
+                  <span className="src-row-id">{x.id}</span>
+                  <span className="src-row-name">{x.name}</span>
+                  <span className="src-row-type">{sourceTypeLabels[String(x.source_type)] ?? String(x.source_type).replace(/_/g, ' ')}</span>
+                </summary>
+                <div className="src-row-body">
+                  <p><a href={x.url} target="_blank" rel="noreferrer">Mở nguồn <Arrow diagonal /></a>{x.format ? <span> · {x.format}</span> : null}</p>
+                  {x.notes && <p>{x.notes}</p>}
+                  {x.publisher && <p><strong>Đơn vị xuất bản:</strong> {x.publisher}</p>}
+                  {x.source_version && <p><strong>Phiên bản đối chiếu:</strong> {x.source_version}</p>}
+                  {x.rights && <p><strong>Phạm vi sử dụng:</strong> {x.rights}</p>}
+                  <div className="badge-row">
+                    {x.license_reported && <span className="classification">Giấy phép ghi nhận: {x.license_reported}</span>}
+                    {x.topics && <span>{String(x.topics).replace(/,/g, ', ')}</span>}
+                  </div>
                 </div>
-              </div>
-            </article>
+              </details>
+            </li>
           ))}
-        </div>
+        </ol>
         {!sources.length && <Empty title="Không có nguồn nào khớp" description="Thử tên tài liệu hoặc chủ đề khác." action="/nguon-tu-lieu" label="Xem tất cả nguồn" />}
       </main>
     );

@@ -14,6 +14,7 @@ import { chapterAnchor, storyPosition } from '@/lib/story';
 import { DossierFestivals } from './festivals';
 import { Milestones, NarrativeText, SectionHead, VoiceShift, WordsRise } from './narrative';
 import { DossierProgress } from './interactive/narrative-motion';
+import { MoreGrid } from './interactive/more-grid';
 import { interleave, milestones } from '@/lib/narrative';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
@@ -44,7 +45,7 @@ export const collectionDescriptions: Record<string, { intro: string; note: strin
 };
 
 export function DossierCards({ items, preview = false }: { items: Row[]; preview?: boolean }) {
-  return <div className="nb-card-grid">{items.map(c => <StoryCard key={c.id} item={c} preview={preview} />)}</div>;
+  return <MoreGrid>{items.map(c => <StoryCard key={c.id} item={c} preview={preview} />)}</MoreGrid>;
 }
 
 function Chip({ href, on, children }: { href: string; on: boolean; children: React.ReactNode }) {

@@ -4,6 +4,7 @@ import { SearchTrigger } from '@/components/interactive/command-palette';
 import { SiteNav, type NavItem } from '@/components/interactive/site-nav';
 import { knowledgeDomains } from '@/lib/knowledge-taxonomy';
 import { Arrow, Motif, StoryCard, categoryTone } from './cards';
+import { MoreGrid } from './interactive/more-grid';
 export { Arrow, EvidenceMix, Motif, StoryCard, categoryTone, evidenceMix, toneFor, collectionFor } from './cards';
 
 /** Biểu tượng: mặt trời trên sông, nét vàng đồng trên nền nâu phù sa. */
@@ -193,9 +194,9 @@ export function CategoryCards({ counts = {} }: { counts?: Record<string, number>
 
 export function ContentCards({ items }: { items: Row[] }) {
   return (
-    <div className="nb-card-grid">
+    <MoreGrid>
       {items.map(c => <StoryCard key={c.id} item={c} />)}
-    </div>
+    </MoreGrid>
   );
 }
 

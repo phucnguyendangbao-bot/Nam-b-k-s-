@@ -85,7 +85,7 @@ export default async function Home() {
         <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={85} style={{ objectPosition: hero.position }} />
         <div className="hx-scrim" aria-hidden="true" />
         <div className="hx-inner wrap">
-          <p className="hx-eyebrow">Sáu chương · <CountUp to={total} /> hồ sơ đã kiểm chứng</p>
+          <p className="hx-eyebrow"><span>Sáu chương · <CountUp to={total} /> hồ sơ đã kiểm chứng</span></p>
           <h1 id="hx-title">Nam Bộ — <span>Miền đất của những câu chuyện.</span></h1>
           <p className="hx-sub">Khám phá lịch sử, văn hóa, con người và những ký ức tạo nên bản sắc phương Nam.</p>
           <div className="hx-actions">

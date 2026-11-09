@@ -64,6 +64,8 @@ export function NarrativeMotion() {
   const path = usePathname();
   useEffect(() => setupFolds(), [path]);
   useEffect(() => {
+    // Các khối danh sách dùng chung trên nhiều trang: gắn nhãn để chúng cũng hiện lên khi cuộn tới.
+    document.querySelectorAll<HTMLElement>('.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento').forEach(el => { if (!el.hasAttribute('data-nx')) el.setAttribute('data-nx', ''); });
     const els = [...document.querySelectorAll<HTMLElement>('[data-nx]:not([data-in])')];
     if (!els.length) return;
     if (!('IntersectionObserver' in window)) { els.forEach(el => el.setAttribute('data-in', '')); return; }

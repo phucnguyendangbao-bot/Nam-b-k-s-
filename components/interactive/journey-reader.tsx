@@ -79,13 +79,14 @@ export function JourneyReader({ slug, title, description, closing, epigraph, sto
         {active === 0 && epigraph && stop.arrival && <p className="jr-arrival-prose">{stop.arrival}</p>}
         <p className="jr-summary">{stop.summary}</p>
         <details className="jr-scope"><summary>Phạm vi tư liệu của hồ sơ</summary><p>{stop.scope}</p></details>
-        {stop.sections.map((section, index) => <section key={index}>
-          <p className="jr-section-kind">{sectionLabels[section.kind]}</p><h3>{section.heading}</h3><p>{section.text}</p>
+        {/* Mục đầu mở sẵn, các mục sau gấp lại thành một dòng tiêu đề để chặng đọc gọn. */}
+        {stop.sections.map((section, index) => <section key={index}><details className="jr-fold" open={index === 0}>
+          <summary><p className="jr-section-kind">{sectionLabels[section.kind]}</p><h3>{section.heading}</h3></summary><p>{section.text}</p>
           <div className="jr-citations">{section.sourceIds.map(id => {
             const source = stop.sources.find(source => source.id === id);
             return source ? <a key={id} href={source.url} title={source.name} target="_blank" rel="noreferrer">{id} ↗</a> : null;
           })}</div>
-        </section>)}
+        </details></section>)}
         {(active < stops.length - 1 ? stop.departure : closing) && <div className="jr-bridge"><p className="journey-eyebrow">{active < stops.length - 1 ? 'MẠCH CHUYỆN ĐI TIẾP' : 'MANG THEO SAU CHUYẾN ĐI'}</p><p>{active < stops.length - 1 ? stop.departure : closing}</p></div>}
         <nav className="jr-next" aria-label="Chuyển điểm dừng">
           <button type="button" disabled={active === 0} onClick={() => go(active - 1)}>← Chặng trước</button>

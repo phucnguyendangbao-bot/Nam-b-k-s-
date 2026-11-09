@@ -10,6 +10,7 @@ import "./design/map.css";
 import "./design/festivals.css";
 import "./design/story.css";
 import "./design/narrative.css";
+import "./design/heritage.css";
 import "./design/motion.css";
 import "./tour.css";
 import "./design/journey.css";

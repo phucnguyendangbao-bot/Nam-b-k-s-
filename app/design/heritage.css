@@ -1,0 +1,336 @@
+/* ==========================================================================
+   Phong vị hoài niệm (09/11/2026)
+   Chữ: Playfair Display cho tiêu đề (nét thanh nét đậm, dáng sách in xưa), Lora cho chữ đọc (mềm, uyển chuyển),
+   Be Vietnam Pro giữ cho thanh điều hướng, nút, nhãn nhỏ để dễ đọc. Cả ba có đủ bộ tiếng Việt, giấy phép OFL,
+   tự lưu trữ trong public/fonts (đã xem dấu chồng ở cỡ lớn: ế, ữ, ặ, ỗ, ườ).
+   Màu: nền kem rất nhạt (bản đầu dùng giấy ngả vàng có thớ, trông bẩn nên bỏ), mực nâu, xanh di sản phai làm màu chính, vàng nghệ cũ, xanh rêu sẫm cho khối tối. 
+   Ảnh minh họa của trang (mở đầu, ảnh chương, ảnh thẻ) được phủ một lớp ngả sepia nhẹ, hover thì về màu thật.
+   Ảnh tư liệu bên trong hồ sơ giữ nguyên màu.
+   ========================================================================== */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/playfair-display-latin-ext-600-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/playfair-display-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/playfair-display-vietnamese-600-normal.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/playfair-display-latin-ext-700-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/playfair-display-latin-700-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(/fonts/playfair-display-vietnamese-700-normal.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/playfair-display-latin-ext-500-italic.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/playfair-display-latin-500-italic.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 500;
+  src: url(/fonts/playfair-display-vietnamese-500-italic.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-latin-ext-400-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-latin-400-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-vietnamese-400-normal.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/lora-latin-ext-600-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/lora-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(/fonts/lora-vietnamese-600-normal.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-latin-ext-400-italic.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-latin-400-italic.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/fonts/lora-vietnamese-400-italic.woff2) format('woff2');
+  unicode-range: U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;
+}
+:root {
+  /* Giấy */
+  --c-paper: #FCFAF5;              /* kem rất nhạt, gần trắng */
+  --c-paper-sunken: #F4F0E7;
+  --c-paper-deep: #E9E2D4;
+  --c-surface: #F4F0E7;
+  /* Mực */
+  --c-ink: #2B2019;
+  --c-ink-soft: #4B3C30;
+  --c-ink-muted: #6C5B4A;          /* 5.3:1 trên giấy */
+  --c-line: #ECE5D8;
+  --c-line-strong: #D7CBB6;
+  /* Xanh di sản phai: giữ sắc xanh cũ của trang, kéo về phía rêu và mực cũ */
+  --c-primary: #2F5146;            /* 7.9:1 trên giấy */
+  --c-primary-hover: #223D35;
+  --c-primary-soft: #D8E0D2;
+  --c-primary-tint: #E7EBDD;
+  /* Vàng nghệ cũ */
+  --c-accent: #B4823C;
+  --c-accent-ink: #80591F;         /* 5.0:1 trên giấy */
+  --c-accent-soft: #F0E2C8;
+  --c-gold: #E0BE7E;
+  --c-gold-soft: #F1E2C4;
+  /* Xanh rêu sẫm cho khối tối, pha chút nâu như ảnh in lâu năm */
+  --c-deep: #24382F;
+  --c-deep-2: #1A2A23;
+  --c-on-deep: #F2EADA;
+  --c-on-deep-soft: #C9C6B0;
+  /* Sắc chuyên mục */
+  --c-tone-river: #3E5F52;         /* xanh rêu */
+  --c-tone-river-soft: #DDE3D3;
+  --c-tone-dusk: #84561F;
+  --c-tone-dusk-soft: #F0E2C8;
+  --c-tone-lily: #6E4A5C;          /* tím hoa sim phai */
+  --c-tone-lily-soft: #EDE0E0;
+  /* Nhãn tri thức */
+  --c-ev-fact: #3B5C4F;
+  --c-ev-fact-soft: #DCE3D3;
+  --c-ev-hypo: #8A5022;
+  --c-ev-hypo-soft: #F2E1CC;
+  --c-ev-lore: #6E4A5C;
+  --c-ev-lore-soft: #EDE0E0;
+  --c-ev-note: #5A4F45;
+  --c-ev-note-soft: #E9E0D2;
+
+  --f-display: 'Playfair Display', 'Noto Serif', Georgia, serif;
+  --f-read: 'Lora', 'Noto Serif', Georgia, serif;
+  --tr-display: -0.012em;
+  --tr-heading: -0.006em;
+  --tr-title: 0em;
+  --lh-read: 1.8;
+
+  --sh-2: 0 12px 30px -12px rgba(60, 38, 20, .25);
+  --sh-3: 0 24px 60px -20px rgba(60, 38, 20, .35), 0 2px 8px rgba(60, 38, 20, .08);
+  --mat-bar: rgba(252, 250, 245, .84);
+  --mat-thick: rgba(252, 250, 245, .96);
+  --mat-edge: rgba(255, 250, 240, .6);
+}
+.is-alt, .ch.is-alt { --c-surface: #FFFFFF; background: var(--c-paper-sunken); }
+.ch.is-alt .ch-entry.is-text { background: #FFFFFF; }
+body { background: var(--c-paper); color: var(--c-ink); }
+
+/* Không phủ thớ giấy: nền giữ sạch, chất cũ nằm ở chữ, màu xanh phai và ảnh. */
+
+/* Tiêu đề: Playfair. Đậm vừa, khít nhẹ. */
+h1, h2, .dossier-title, .ch-head h2, .hx h1, .page-title h1 { font-family: var(--f-display); font-weight: 700; }
+h3 { font-family: var(--f-display); font-weight: 600; }
+.hx h1 span { font-style: italic; font-weight: 500; }
+.ch-head h2 em, .sx-head h2 em { font-style: italic; }
+/* Số lớn mang dáng chữ in xưa */
+.nx-num, .nx-panel-year, .toc-n, .ch-entry-big, .nx-dropcap::first-letter { font-family: var(--f-display); }
+/* Nhãn nhỏ, nút, điều hướng vẫn dùng chữ không chân */
+.eyebrow, .ch-num, .sx-eyebrow, .hx-eyebrow, .button, .nb-chip, .epistemic-label, .nx-fold-btn, .ch-entry-kicker, .nb-story-kicker { font-family: var(--f-ui); }
+/* Chữ dẫn, tóm tắt: Lora nghiêng nhẹ cho giọng kể */
+.ch-lede, .sx-lede, .dossier-intro, .coll-intro, .page-title p { font-family: var(--f-read); }
+.dossier-intro { font-style: italic; }
+blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: italic; }
+
+/* Ảnh minh họa ngả màu cũ; rê chuột thì hiện màu thật */
+:is(.hx-image, .ch-media-frame img, .ch-entry-media img, .nb-story-media img, .bento-media img, .coll-hero-photo img, .coll-feature-media img, .story-frame img, .tour-card img) {
+  filter: sepia(.2) saturate(.86) contrast(1.03);
+  transition: filter 900ms var(--ease-out), scale var(--d-reveal) var(--ease-out), opacity 720ms var(--ease-out);
+}
+@media (hover: hover) {
+  :is(.ch-entry, .nb-story-card, .bento-card, .coll-feature, .ch-media, .tour-card):hover img { filter: none; }
+}
+/* Viền ảnh như mép ảnh in: một đường sáng mảnh bên trong */
+:is(.ch-media-frame, .ch-entry-media, .nb-story-media, .photo-frame) { box-shadow: inset 0 0 0 1px rgba(255, 248, 235, .35); }
+
+/* Khối tối mang sắc gỗ, không còn xanh */
+.nx-timeline { background: radial-gradient(120% 140% at 0% 0%, #34473a 0%, var(--c-deep) 45%, var(--c-deep-2) 100%); }
+.hx-scrim { background: linear-gradient(0deg, rgba(22, 32, 26, .86) 0%, rgba(22, 32, 26, .55) 38%, rgba(22, 32, 26, .08) 70%), linear-gradient(90deg, rgba(22, 32, 26, .5) 0%, rgba(22, 32, 26, 0) 60%); }
+
+/* Chữ số kiểu in cũ nhưng thẳng hàng cho số thứ tự và năm */
+.nx-num, .nx-panel-year, .toc-n, .ch-entry-big, .nx-axis-dot, .ch-rail-n, .ch-num span { font-variant-numeric: lining-nums tabular-nums; }
+
+/* ==========================================================================
+   Gọn và có chuyển động trên mọi trang
+   ========================================================================== */
+
+/* ---------- Tiêu đề trang hiện lên; đoạn dẫn theo sau ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .page-title > *, .kn-page > header > *, .coll-hero-copy > * { animation: hx-rise 700ms var(--ease-out) both; }
+  .page-title > :nth-child(2), .coll-hero-copy > :nth-child(2) { animation-delay: 80ms; }
+  .page-title > :nth-child(3), .coll-hero-copy > :nth-child(3) { animation-delay: 160ms; }
+  .page-title > :nth-child(n+4), .coll-hero-copy > :nth-child(n+4) { animation-delay: 240ms; }
+  .coll-hero-photo { animation: nx-open 1100ms var(--ease-out) 120ms both; }
+}
+
+/* ---------- Lưới thẻ: 12 thẻ đầu, "Xem thêm" mở tiếp; thẻ lật lên nối nhau ---------- */
+.nx-more-item { display: contents; }
+.nx-more-item.is-later { display: none; }
+.nx-more-grid .nb-card-grid { perspective: 1600px; }
+.nx-more-grid .nb-card-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: var(--s-5) var(--s-4); }
+.nx-more-grid .nb-story-media { aspect-ratio: 16 / 10; }
+.nx-more-grid .nb-story-body { padding: var(--s-4) var(--s-5) var(--s-3); }
+.nx-more-grid .nb-story-body > p:not(.nb-story-kicker):not(.ev-mix) { -webkit-line-clamp: 2; }
+.nx-more-grid .nb-story-credit { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .nx-more-grid .nb-story-card { transform-origin: 50% 100%; transition: opacity 600ms var(--ease-out), translate 700ms var(--ease-out), rotate 800ms var(--ease-out); transition-delay: calc(min(var(--k, 0), 11) * 45ms); }
+  .nx-more-item { --k: 0; }
+  .nx-more-item .nb-story-card { transition-delay: calc(min(var(--k), 11) * 45ms); }
+  .nx-ready .nx-more-grid:not([data-in]) .nb-story-card { opacity: 0; translate: 0 30px; rotate: x 18deg; }
+  .nx-more-item.is-new .nb-story-card { animation: nx-card-in 700ms var(--ease-out) both; animation-delay: calc(var(--k) * 45ms); }
+}
+@keyframes nx-card-in { from { opacity: 0; translate: 0 30px; rotate: x 18deg; } }
+.nx-more-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s-3) var(--s-5); margin-top: var(--s-8); }
+.nx-more-btn { display: inline-flex; align-items: baseline; gap: 6px; min-height: 46px; padding: 0 24px; border-radius: var(--r-pill); background: var(--c-primary); color: #fff; font-weight: 600; font-size: var(--t-sm); box-shadow: 0 10px 24px -10px rgba(36, 56, 47, .6); transition: background var(--d-hover), translate var(--d-hover) var(--ease), box-shadow var(--d-hover); }
+.nx-more-btn small { font-weight: 500; opacity: .75; }
+.nx-more-btn:hover { background: var(--c-primary-hover); translate: 0 -2px; box-shadow: 0 14px 30px -10px rgba(36, 56, 47, .7); }
+.nx-more-all { font-size: var(--t-sm); font-weight: 600; color: var(--c-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Danh mục nguồn: mỗi nguồn một dòng ---------- */
+.src-rows { list-style: none; display: grid; margin-top: var(--s-4); border-top: 1px solid var(--c-line-strong); }
+.src-rows > li { border-bottom: 1px solid var(--c-line); }
+.src-row summary { display: grid; grid-template-columns: 6.5rem 1fr auto 1.5rem; align-items: center; gap: var(--s-4); min-height: 48px; padding: 8px 4px; cursor: pointer; list-style: none; transition: background var(--d-hover); }
+.src-row summary::-webkit-details-marker { display: none; }
+.src-row summary::after { content: '+'; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--c-surface); font-weight: 600; color: var(--c-ink-soft); transition: rotate 300ms var(--ease-out), background 300ms; }
+.src-row[open] summary::after { rotate: 45deg; background: var(--c-primary-tint); color: var(--c-primary); }
+.src-row summary:hover { background: color-mix(in srgb, var(--c-paper-sunken) 70%, transparent); }
+.src-row-id { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-muted); font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.src-row-name { min-width: 0; overflow: hidden; font-family: var(--f-read); font-size: var(--t-md); color: var(--c-ink); text-overflow: ellipsis; white-space: nowrap; }
+.src-row-type { font-size: var(--t-xs); font-weight: 600; color: var(--c-accent-ink); white-space: nowrap; }
+.src-row-body { display: grid; gap: 6px; padding: 4px 4px 16px calc(6.5rem + var(--s-4) + 4px); font-size: var(--t-sm); line-height: 1.55; color: var(--c-ink-soft); }
+.src-row-body a { color: var(--c-primary); font-weight: 600; }
+@media (max-width: 700px) {
+  .src-row summary { grid-template-columns: 1fr 1.5rem; row-gap: 2px; }
+  .src-row-id, .src-row-type { grid-column: 1; }
+  .src-row-name { grid-column: 1; white-space: normal; }
+  .src-row summary::after { grid-column: 2; grid-row: 1 / span 3; }
+  .src-row-body { padding-left: 4px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .src-row[open] .src-row-body { animation: hx-rise 420ms var(--ease-out) both; }
+  .src-rows > li { transition: opacity 500ms var(--ease-out), translate 500ms var(--ease-out); transition-delay: calc(var(--k, 0) * 18ms); }
+  .nx-ready .src-rows:not([data-in]) > li { opacity: 0; translate: 0 10px; }
+}
+
+/* ---------- Hành trình đọc: mục gấp lại, mở bằng cách bấm tiêu đề ---------- */
+.jr-fold summary { display: block; cursor: pointer; list-style: none; position: relative; padding-right: 2.5rem; }
+.jr-fold summary::-webkit-details-marker { display: none; }
+.jr-fold summary::after { content: ''; position: absolute; right: 6px; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--c-accent-ink); border-bottom: 2px solid var(--c-accent-ink); rotate: 45deg; translate: 0 -70%; transition: rotate 400ms var(--ease-out), translate 400ms var(--ease-out); }
+.jr-fold[open] summary::after { rotate: 225deg; translate: 0 -20%; }
+.jr-fold:not([open]) summary h3 { margin-bottom: 0; }
+.jr-article > section { margin: 18px 0; padding-top: 18px; border-top: 1px solid var(--c-line); }
+.jr-article > section:first-of-type { border-top: 0; padding-top: 0; }
+.jr-fold > p { font: 18px/1.9 var(--read); color: var(--c-ink-soft); white-space: pre-line; }
+.jr-fold summary h3 { transition: color var(--d-hover); }
+.jr-fold summary:hover h3 { color: var(--c-primary); }
+@media (prefers-reduced-motion: no-preference) { .jr-fold[open] > :not(summary) { animation: hx-rise 520ms var(--ease-out) both; } }
+.jr-article > h2, .jr-article > section h3 { color: var(--c-deep); }
+
+/* ---------- Khối thường gặp trên các trang khác: hiện lên khi cuộn tới ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .nx-ready :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx]:not([data-in]) > * { opacity: 0; translate: 0 24px; }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx] > * { transition: opacity 650ms var(--ease-out), translate 750ms var(--ease-out); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(2) { transition-delay: 70ms; }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(3) { transition-delay: 140ms; }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(4) { transition-delay: 210ms; }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(n+5) { transition-delay: 280ms; }
+}
+/* Chữ lớn trên thẻ mục từ: Playfair rộng hơn chữ cũ, thu nhỏ để không tràn */
+.nb-story-word { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem) !important; line-height: 1.05 !important; }
