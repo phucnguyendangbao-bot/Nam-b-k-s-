@@ -1,5 +1,6 @@
 import { markText, paragraphs, voiceShift, type Milestone } from '@/lib/narrative';
 import { sectionLabels } from '@/lib/editorial-model';
+import { TimelineScrubber } from './interactive/timeline-scrubber';
 
 /**
  * Các mảnh trình bày kể chuyện cho trang hồ sơ (dựng ở máy chủ, đọc được trọn vẹn khi tắt JavaScript).
@@ -26,12 +27,13 @@ export function KindGlyph({ kind }: { kind: string }) {
 /** Lời văn của một mục: tách đoạn, nhấn năm, con số có đơn vị và tên gọi trong ngoặc kép. Chữ giữ nguyên. */
 export function NarrativeText({ text, dropCap = false }: { text: string; dropCap?: boolean }) {
   return (
-    <div className="nx-text">
+    <div className="nx-text" data-fold>
       {paragraphs(text).map((para, i) => (
         <p key={i} className={`preserve ${dropCap && i === 0 ? 'nx-dropcap' : ''}`}>
           {markText(para).map((m, j) => m.type ? <mark key={j} className={`nx-mark is-${m.type}`}>{m.text}</mark> : m.text)}
         </p>
       ))}
+      <button type="button" className="nx-fold-btn" data-fold-btn hidden aria-expanded="false"><span>Đọc tiếp</span><i aria-hidden="true" /></button>
     </div>
   );
 }
@@ -49,34 +51,9 @@ export function VoiceShift({ kind }: { kind: string }) {
   );
 }
 
-/** Dòng thời gian của bài: mỗi mốc là một câu trích nguyên văn, bấm để đọc đúng mục. */
+/** Dòng thời gian của bài: trục năm gọn, mỗi lần một câu trích nguyên văn (xem interactive/timeline-scrubber.tsx). */
 export function Milestones({ items }: { items: Milestone[] }) {
-  if (!items.length) return null;
-  const first = items[0].year, last = items[items.length - 1].year;
-  return (
-    <section className="nx-timeline" aria-labelledby="moc-thoi-gian" id="dong-thoi-gian" data-nx>
-      <header className="nx-timeline-head">
-        <p className="eyebrow">Đọc nhanh</p>
-        <h2 id="moc-thoi-gian">{items.length} mốc thời gian trong bài</h2>
-        <p>Từ {first} đến {last}. Mỗi mốc là một câu trích nguyên văn từ các mục bên dưới; nguồn của câu ấy ghi ở cuối mục.</p>
-      </header>
-      <ol className="nx-tl">
-        {items.map((m, i) => (
-          <li key={m.year} className="nx-tl-item" data-nx style={{ '--i': i } as React.CSSProperties}>
-            <span className="nx-tl-dot" aria-hidden="true" />
-            <p className="nx-tl-year">
-              <span className="sr-only">{m.year}</span>
-              <span aria-hidden="true" data-count={m.year} data-from={i ? items[i - 1].year : m.year - 24}>{m.year}</span>
-            </p>
-            <blockquote className="nx-tl-quote">
-              {markText(m.quote).map((x, j) => x.type === 'year' && x.text === m.label ? <mark key={j} className="nx-mark is-year">{x.text}</mark> : x.text)}
-            </blockquote>
-            <a className="nx-tl-link" href={`#muc-${m.section + 1}`}>Mục {m.section + 1}: {m.heading} <span aria-hidden="true">↓</span></a>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
+  return items.length ? <TimelineScrubber items={items} /> : null;
 }
 
 /** Đầu một mục: số mục lớn, hình giọng kể, nhãn kiểm chứng. */

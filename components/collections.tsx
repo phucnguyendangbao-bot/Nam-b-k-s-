@@ -376,11 +376,15 @@ export function DossierView({ article: c, citations, media, dialect, related, to
             <ol>
               {citations.map(e => (
                 <li key={e.id} id={`nguon-${e.id}`}>
-                  <a href={e.source_url} target="_blank" rel="noreferrer">{e.source_name}</a>
-                  <p><strong>Vị trí đối chiếu:</strong> {e.locator}</p>
-                  <p><strong>Phiên bản:</strong> {e.source_version}</p>
-                  <p><strong>Nguồn xác nhận điều gì:</strong> {e.statement}</p>
-                  {e.review_note && <p>{e.review_note}</p>}
+                  <details className="nx-src">
+                    <summary><span className="nx-src-name">{e.source_name}</span><span className="nx-src-loc">{e.locator}</span></summary>
+                    <div className="nx-src-body">
+                      <p><a href={e.source_url} target="_blank" rel="noreferrer">Mở nguồn <span aria-hidden="true">↗</span></a></p>
+                      <p><strong>Phiên bản:</strong> {e.source_version}</p>
+                      <p><strong>Nguồn xác nhận điều gì:</strong> {e.statement}</p>
+                      {e.review_note && <p>{e.review_note}</p>}
+                    </div>
+                  </details>
                 </li>
               ))}
             </ol>

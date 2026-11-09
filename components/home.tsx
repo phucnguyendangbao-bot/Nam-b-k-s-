@@ -12,6 +12,8 @@ import { knowledgeCounts } from '@/lib/knowledge';
 import { ensureSeed, publicContents, publicWords, type Row } from '@/lib/static-data';
 import { chapterAnchor, chapters, storyImages, type StoryImage } from '@/lib/story';
 import { ChapterArt, ChapterRiver } from '@/components/chapter-art';
+import { Track } from '@/components/interactive/track';
+import { CountUp } from '@/components/interactive/count-up';
 
 export const dynamic = 'force-dynamic';
 
@@ -83,7 +85,7 @@ export default async function Home() {
         <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={85} style={{ objectPosition: hero.position }} />
         <div className="hx-scrim" aria-hidden="true" />
         <div className="hx-inner wrap">
-          <p className="hx-eyebrow">Sáu chương · {total} hồ sơ đã kiểm chứng</p>
+          <p className="hx-eyebrow">Sáu chương · <CountUp to={total} /> hồ sơ đã kiểm chứng</p>
           <h1 id="hx-title">Nam Bộ — <span>Miền đất của những câu chuyện.</span></h1>
           <p className="hx-sub">Khám phá lịch sử, văn hóa, con người và những ký ức tạo nên bản sắc phương Nam.</p>
           <div className="hx-actions">
@@ -134,33 +136,18 @@ export default async function Home() {
                 <ChapterArt slug={c.slug} />
               </div>
               {c.image && <ChapterFigure img={c.image} />}
+              {/* Một băng trượt ngang cho cả chương: thẻ có ảnh trước, thẻ chỉ có chữ sau, số thứ tự giữ nguyên. */}
               {(() => {
-                // Có ảnh lẫn không ảnh: hồ sơ có ảnh xếp lưới, hồ sơ chỉ có chữ xếp thành danh sách gọn bên dưới,
-                // số thứ tự giữ nguyên để vẫn đọc được trình tự của chương. Không có ô trống giả làm ảnh.
                 const label = (r: Row) => `${c.n}.${c.ids.indexOf(r.id) + 1}`;
-                const pics = list.filter((_, i) => shown[i]), words = list.filter((_, i) => !shown[i]);
-                if (!pics.length || !words.length) return (
-                  <ol className={`ch-list n-${Math.min(list.length, 8)}`} data-reveal>
-                    {list.map((r, i) => <ChapterEntry key={r.id} row={r} label={label(r)} image={shown[i]} />)}
-                  </ol>
+                const pics = list.filter((_, i) => shown[i]), texts = list.filter((_, i) => !shown[i]);
+                return (
+                  <Track label={`Các hồ sơ trong chương ${c.n}`}>
+                    <ol className="ch-list ch-track-list" data-reveal>
+                      {pics.map(r => <ChapterEntry key={r.id} row={r} label={label(r)} image />)}
+                      {texts.map(r => <ChapterEntry key={r.id} row={r} label={label(r)} image={false} />)}
+                    </ol>
+                  </Track>
                 );
-                return <>
-                  <ol className={`ch-list n-${Math.min(pics.length, 8)}`} data-reveal>
-                    {pics.map(r => <ChapterEntry key={r.id} row={r} label={label(r)} image />)}
-                  </ol>
-                  <ol className="ch-more" data-reveal aria-label={`Hồ sơ khác trong chương ${c.n}`}>
-                    {words.map(r => (
-                      <li key={r.id}>
-                        <span className="ch-more-n">{label(r)}</span>
-                        <div>
-                          <p className="ch-entry-kicker">{topics[r.topic] ?? collectionFor(r.category).name}</p>
-                          <h3><a href={`/ho-so/${r.slug}`}>{nfc(r.title)}</a></h3>
-                          <p className="ch-entry-sum">{r.summary}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                </>;
               })()}
               {isWords && vocabWords.length > 0 && (
                 <div className="ch-words" data-reveal>
@@ -232,7 +219,8 @@ function ChapterFigure({ img }: { img: StoryImage }) {
 function ChapterEntry({ row: r, label, image }: { row: Row; label: string; image: boolean }) {
   const img = image ? r.image_url as string : null;
   return (
-    <li className={`ch-entry ${img ? 'has-img' : ''}`}>
+    <li className={`ch-entry ${img ? 'has-img' : 'is-text'}`}>
+      {!img && <span className="ch-entry-big" aria-hidden="true">{label}</span>}
       {img && (
         <a className="ch-entry-media ph" href={`/ho-so/${r.slug}`} tabIndex={-1} aria-hidden="true" style={ph(img)}>
           <Image src={img} alt="" width={720} height={480} sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 600px" />

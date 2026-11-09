@@ -349,3 +349,151 @@
   .ch-art { transform: none; }
   .nx-ready .nx-section:not([data-in]) .nx-num { clip-path: none; }
 }
+
+/* ==========================================================================
+   Gọn lại (09/11/2026, tối): dòng thời gian thành trục năm, lời văn thu gọn, nguồn gọn, bớt khoảng trắng
+   ========================================================================== */
+
+/* ---------- Trục năm ---------- */
+.nx-scrub { padding: clamp(1.25rem, 2.6vw, 2rem); margin: var(--s-2) 0 var(--s-8); }
+.nx-scrub-head { display: flex; align-items: end; justify-content: space-between; gap: var(--s-4); }
+.nx-scrub-head .eyebrow { color: var(--c-gold); }
+.nx-scrub-head h2 { margin-top: 4px; font-size: var(--t-xl); color: #fff; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.nx-scrub-ctl { display: flex; gap: 6px; }
+.nx-scrub-ctl button { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--c-on-deep) 28%, transparent); color: var(--c-on-deep); font-size: 13px; transition: background var(--d-hover), border-color var(--d-hover), scale var(--d-press); }
+.nx-scrub-ctl button:hover { background: color-mix(in srgb, var(--c-gold) 20%, transparent); border-color: var(--c-gold); }
+.nx-scrub-ctl button:active { scale: .92; }
+
+.nx-axis { position: relative; height: 54px; margin: var(--s-6) 14px 0; }
+.nx-axis-line { position: absolute; left: 0; right: 0; top: 13px; height: 2px; border-radius: 2px; background: color-mix(in srgb, var(--c-on-deep) 18%, transparent); }
+.nx-axis-line i { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, var(--c-gold), #f1d9a6); transform-origin: 0 50%; transition: scale 900ms var(--ease-out); }
+.nx-axis-dot { position: absolute; top: 0; translate: -50% 0; display: grid; justify-items: center; gap: 6px; padding: 6px 4px; color: var(--c-on-deep-soft); font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.nx-axis-dot::before { content: ''; width: 12px; height: 12px; border-radius: 50%; background: var(--c-deep); border: 2px solid color-mix(in srgb, var(--c-on-deep) 40%, transparent); transition: scale 400ms cubic-bezier(.34, 1.56, .64, 1), background 300ms, border-color 300ms, box-shadow 400ms; }
+.nx-axis-dot.is-past::before { border-color: var(--c-gold); background: var(--c-gold); }
+.nx-axis-dot.is-on { color: #fff; }
+.nx-axis-dot.is-on::before { scale: 1.45; border-color: var(--c-gold); background: #fff; box-shadow: 0 0 0 6px color-mix(in srgb, var(--c-gold) 28%, transparent); }
+.nx-axis-dot:hover::before { scale: 1.3; }
+.nx-axis-dot span { transition: translate 300ms var(--ease-out); }
+.nx-axis-dot.is-on span { translate: 0 2px; }
+.nx-axis-dot span { transition: opacity 300ms, translate 300ms var(--ease-out); }
+.nx-axis-dot:not(.has-label):not(.is-on) span { opacity: 0; }
+@media (max-width: 640px) { .nx-axis-dot:not(.is-on) span { opacity: 0; } .nx-axis-dot:nth-child(2) span, .nx-axis-dot:last-child span { opacity: 1; } }
+.nx-axis-dot.is-on span { position: relative; z-index: 2; padding: 1px 6px; border-radius: 6px; background: var(--c-deep); }
+/* Các chấm hiện nối nhau khi khối tới */
+.nx-ready .nx-scrub:not([data-in]) .nx-axis-dot { opacity: 0; translate: -50% 10px; }
+.nx-axis-dot { transition: opacity 500ms var(--ease-out), translate 500ms var(--ease-out); transition-delay: calc(var(--i, 0) * 60ms); }
+.nx-ready .nx-scrub:not([data-in]) .nx-axis-line i { scale: 0 1 !important; }
+
+.nx-stage { position: relative; margin-top: var(--s-4); perspective: 1200px; }
+.nx-panel { display: grid; grid-template-columns: auto 1fr; gap: var(--s-6); align-items: start; }
+.nx-scrub:not(.is-live) .nx-panel + .nx-panel { margin-top: var(--s-6); }
+.nx-panel-year { font-size: clamp(2.75rem, 2rem + 3vw, 4.25rem); font-weight: 800; line-height: .9; letter-spacing: -0.05em; color: var(--c-gold); font-variant-numeric: tabular-nums; text-shadow: 1px 1px 0 #8f7445, 2px 2px 0 #7a6139, 3px 3px 0 #5f4b2b, 5px 8px 16px rgb(0 0 0 / .35); }
+.nx-panel-body { display: grid; gap: var(--s-3); min-height: 7.5em; }
+.nx-panel blockquote { margin: 0; font-family: var(--f-read); font-size: var(--t-md); line-height: 1.6; color: var(--c-on-deep); text-wrap: pretty; }
+.nx-scrub .nx-tl-link { grid-column: auto; padding: 0; }
+@media (max-width: 560px) { .nx-panel { grid-template-columns: 1fr; gap: var(--s-2); } .nx-panel-body { min-height: 9em; } }
+@media (prefers-reduced-motion: no-preference) {
+  .nx-scrub.is-live .nx-panel:not([hidden]) .nx-panel-year { animation: nx-year-in 700ms cubic-bezier(.2, 1.2, .4, 1) both; transform-origin: 50% 100%; }
+  .nx-scrub.is-live .nx-panel:not([hidden]) blockquote { animation: nx-quote-in 650ms var(--ease-out) 80ms both; }
+  .nx-scrub.is-live .nx-panel.from-left:not([hidden]) blockquote { animation-name: nx-quote-in-l; }
+  .nx-scrub.is-live .nx-panel:not([hidden]) .nx-tl-link { animation: hx-rise 500ms var(--ease-out) 200ms both; }
+  .nx-scrub.is-live .nx-panel:not([hidden]) .nx-mark { animation: nx-hl 900ms var(--ease-out) 400ms both; }
+}
+@keyframes nx-year-in { from { opacity: 0; transform: rotateX(-90deg); } }
+@keyframes nx-quote-in { from { opacity: 0; transform: translateX(36px) rotateY(-12deg); } }
+@keyframes nx-quote-in-l { from { opacity: 0; transform: translateX(-36px) rotateY(12deg); } }
+@keyframes nx-hl { from { background-size: 0 .42em; } }
+/* Đồng hồ nhỏ ở đáy: còn bao lâu tới mốc sau */
+.nx-timer { position: absolute; left: 0; right: 0; bottom: -10px; height: 2px; background: color-mix(in srgb, var(--c-gold) 70%, transparent); transform-origin: 0 50%; scale: 0 1; }
+.nx-scrub[data-playing] .nx-timer { animation: nx-timer 6500ms linear both; }
+@keyframes nx-timer { to { scale: 1 1; } }
+
+/* ---------- Lời văn thu gọn ---------- */
+.nx-text { position: relative; font-size: var(--t-read); transition: max-height 700ms var(--ease-out); }
+.nx-text.is-folded { overflow: hidden; padding-bottom: 3.5rem; }
+.nx-text.is-folded:not(.is-open) { max-height: calc(10em + 3.5rem); }
+/* Lớp mờ dần phủ dòng cuối, nút nằm trên lớp mờ */
+.nx-text.is-folded::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 8rem; z-index: 1; pointer-events: none; background: linear-gradient(transparent, var(--c-paper) 62%); transition: opacity 500ms var(--ease-out); }
+.nx-text.is-open::after { opacity: 0; }
+.nx-fold-btn { position: absolute; left: 0; bottom: .25rem; z-index: 2; display: inline-flex; align-items: center; gap: var(--s-3); min-height: 40px; padding: 0 16px 0 18px; border-radius: var(--r-pill); background: var(--c-ink); color: #fff; font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; box-shadow: 0 8px 20px rgb(0 0 0 / .14); transition: background var(--d-hover), translate var(--d-hover) var(--ease), box-shadow var(--d-hover); }
+.nx-fold-btn:hover { background: var(--ev, var(--c-primary)); translate: 0 -2px; box-shadow: 0 12px 26px rgb(0 0 0 / .2); }
+.nx-fold-btn i { width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; rotate: 45deg; translate: 0 -2px; transition: rotate 400ms var(--ease-out), translate 400ms var(--ease-out); }
+.nx-text.is-open .nx-fold-btn i { rotate: 225deg; translate: 0 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .nx-text.is-folded:not(.is-open) .nx-fold-btn { animation: nx-nudge 2.6s ease-in-out 1.5s 2; }
+}
+@keyframes nx-nudge { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+
+/* ---------- Nguồn tham khảo gọn: một dòng mỗi nguồn, bấm để mở ---------- */
+.article-references li { padding-block: var(--s-2); }
+.article-references li::before { top: var(--s-2); }
+.nx-src summary { display: grid; grid-template-columns: 1fr auto; gap: var(--s-3); align-items: center; min-height: 32px; cursor: pointer; list-style: none; }
+.nx-src summary::-webkit-details-marker { display: none; }
+.nx-src summary::after { content: '+'; grid-column: 2; grid-row: 1; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--c-surface); font-weight: 600; transition: rotate 300ms var(--ease-out), background 300ms; }
+.nx-src[open] summary::after { rotate: 45deg; background: var(--c-primary-tint); }
+.nx-src-name { overflow: hidden; font-size: var(--t-sm); font-weight: 600; color: var(--c-ink); white-space: nowrap; text-overflow: ellipsis; }
+.nx-src-loc { display: none; }
+.nx-src-body { display: grid; gap: 4px; padding: var(--s-2) 0 var(--s-2); }
+.nx-src-body a { color: var(--c-primary); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) { .nx-src[open] .nx-src-body { animation: hx-rise 400ms var(--ease-out) both; } }
+
+/* ---------- Bớt khoảng trắng ---------- */
+.nx-section { padding-top: var(--s-8); padding-bottom: var(--s-2); }
+.nx-num { font-size: clamp(2.25rem, 1.8rem + 1.6vw, 3rem); text-shadow: 1px 1px 0 color-mix(in srgb, var(--ev) 65%, #000), 2px 2px 0 color-mix(in srgb, var(--ev) 45%, #fff), 4px 6px 12px rgb(0 0 0 / .12); }
+.nx-head { margin-bottom: var(--s-2); }
+.nx-section h2 { margin-bottom: var(--s-3); }
+.nx-text { gap: var(--s-4); }
+.nx-shift { margin-top: var(--s-8); }
+.nx-figure { margin: var(--s-6) 0 var(--s-2); }
+.nx-figure .photo-frame img { max-height: 60vh; object-fit: cover; }
+.nb-dossier-cover .documentary-photo img { max-height: 62vh; }
+.nb-dossier-cover { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+.dossier-layout { margin-top: clamp(1.75rem, 3.5vw, 3rem); }
+.dossier-intro { font-size: var(--t-lg); }
+.nx-fold-btn[hidden], .nx-panel[hidden] { display: none; }
+
+/* ---------- Trang chủ gọn: băng trượt hồ sơ trong chương ---------- */
+.ch-track { position: relative; margin-top: clamp(1.75rem, 3vw, 2.5rem); }
+.ch-track .ch-track-list { display: flex; gap: var(--s-6); margin: 0 calc(var(--gutter) * -1); padding: var(--s-4) var(--gutter) var(--s-6); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+.ch-track .ch-track-list::-webkit-scrollbar { display: none; }
+.ch-track .ch-entry { flex: 0 0 clamp(15rem, 24vw, 19.5rem); scroll-snap-align: start; padding-top: 0; border-top: 0; }
+.ch-track .ch-entry-media { aspect-ratio: 4 / 3; }
+.ch-track .ch-entry-sum { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.ch-track .ch-entry h3 { font-size: var(--t-lg); line-height: 1.22; }
+/* Thẻ chỉ có chữ: nền màu nhạt, số thứ tự lớn thay cho ảnh */
+.ch-entry.is-text { position: relative; align-content: end; min-height: 100%; padding: var(--s-5); border-radius: var(--r-md); background: var(--c-surface); overflow: hidden; isolation: isolate; }
+.ch.is-alt .ch-entry.is-text { background: #fff; }
+.ch-entry-big { position: absolute; right: -.08em; top: -.18em; z-index: -1; font-size: clamp(5rem, 8vw, 7.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em; color: color-mix(in srgb, var(--c-accent) 22%, transparent); font-variant-numeric: tabular-nums; transition: translate 600ms var(--ease-out), color 400ms; }
+.ch-track .ch-entry.is-text { min-height: calc(clamp(15rem, 24vw, 19.5rem) * .75 + 9rem); }
+@media (hover: hover) { .ch-entry.is-text:hover .ch-entry-big { translate: -6px 6px; color: color-mix(in srgb, var(--c-accent) 40%, transparent); } }
+/* Mép mờ báo còn thẻ ở phía đó */
+.ch-track::before, .ch-track::after { content: ''; position: absolute; top: 0; bottom: 3rem; z-index: 2; width: clamp(1.5rem, 4vw, 4rem); pointer-events: none; transition: opacity 300ms; }
+.ch-track::before { left: calc(var(--gutter) * -1); background: linear-gradient(90deg, var(--c-paper), transparent); }
+.ch-track::after { right: calc(var(--gutter) * -1); background: linear-gradient(270deg, var(--c-paper), transparent); }
+.ch.is-alt .ch-track::before { background: linear-gradient(90deg, var(--c-paper-sunken), transparent); }
+.ch.is-alt .ch-track::after { background: linear-gradient(270deg, var(--c-paper-sunken), transparent); }
+.ch-track[data-start]::before, .ch-track[data-end]::after, .ch-track[data-fits]::before, .ch-track[data-fits]::after { opacity: 0; }
+.ch-track-bar { display: flex; align-items: center; gap: var(--s-2); }
+.ch-track-progress { position: relative; flex: 1; height: 2px; margin-right: var(--s-4); border-radius: 2px; background: var(--c-line); overflow: hidden; }
+.ch-track-progress i { position: absolute; top: 0; bottom: 0; border-radius: inherit; background: var(--c-accent-ink); transition: left 120ms linear; }
+.ch-track-bar button { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--c-line-strong); background: var(--c-paper); color: var(--c-ink); font-size: 15px; transition: background var(--d-hover), color var(--d-hover), border-color var(--d-hover), scale var(--d-press), opacity var(--d-hover); }
+.ch-track-bar button:hover:not(:disabled) { background: var(--c-ink); color: #fff; border-color: var(--c-ink); }
+.ch-track-bar button:active:not(:disabled) { scale: .92; }
+.ch-track-bar button:disabled { opacity: .35; cursor: default; }
+/* Thẻ bay vào từ bên phải, nối nhau, hơi xoay như lá bài được chia */
+@media (prefers-reduced-motion: no-preference) {
+  .ch-track .ch-track-list { perspective: 1400px; }
+  .reveal-ready .ch-track .ch-track-list[data-reveal]:not([data-revealed]) > li { opacity: 0; translate: 80px 0; transform: rotateY(-24deg); }
+  .ch-track .ch-track-list > li { transform-origin: 0 50%; transition: opacity 700ms var(--ease-out), translate 900ms var(--ease-out), transform 900ms var(--ease-out); }
+  .ch-track .ch-track-list > li:nth-child(1) { transition-delay: 0ms; } .ch-track .ch-track-list > li:nth-child(2) { transition-delay: 90ms; }
+  .ch-track .ch-track-list > li:nth-child(3) { transition-delay: 180ms; } .ch-track .ch-track-list > li:nth-child(4) { transition-delay: 270ms; }
+  .ch-track .ch-track-list > li:nth-child(n+5) { transition-delay: 360ms; }
+}
+/* Ảnh chương thấp hơn để chương gọn: khung 3:1 trên màn rộng */
+.ch-media-frame { aspect-ratio: 3 / 1; }
+@media (max-width: 700px) { .ch-media-frame { aspect-ratio: 16 / 9; } }
+.ch-media { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+.ch { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.ch-next { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+.hx-eyebrow span { font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .ch-track .ch-entry { flex-basis: 78%; } .ch-track .ch-entry.is-text { min-height: auto; } }

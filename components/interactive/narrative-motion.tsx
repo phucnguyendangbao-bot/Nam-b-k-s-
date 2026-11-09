@@ -4,18 +4,56 @@ import { usePathname } from 'next/navigation';
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** Số năm chạy từ mốc trước tới mốc này, để người đọc cảm được quãng thời gian giữa hai mốc. */
-function countUp(el: HTMLElement) {
-  const to = Number(el.dataset.count), from = Number(el.dataset.from ?? to);
-  if (!Number.isFinite(to) || !Number.isFinite(from) || from === to || reduced()) return;
-  const span = Math.min(900, 300 + Math.abs(to - from) * 6), t0 = performance.now();
-  const tick = (t: number) => {
-    const k = Math.min(1, (t - t0) / span), e = 1 - Math.pow(1 - k, 3);
-    el.textContent = String(Math.round(from + (to - from) * e));
-    if (k < 1) requestAnimationFrame(tick);
+/** Chiều cao khi thu gọn, tính theo cỡ chữ đọc (khớp với .nx-text.is-folded trong narrative.css). */
+const FOLD_EM = 10;
+
+/** Mở một khối chữ đã thu gọn, có chuyển động chiều cao. */
+function unfold(box: HTMLElement, open: boolean) {
+  const btn = box.querySelector<HTMLButtonElement>('[data-fold-btn]');
+  if (open) {
+    box.style.maxHeight = `${box.scrollHeight}px`;
+    box.classList.add('is-open');
+    const done = () => { if (box.classList.contains('is-open')) box.style.maxHeight = 'none'; };
+    box.addEventListener('transitionend', done, { once: true });
+    window.setTimeout(done, 900);
+  } else {
+    box.style.maxHeight = `${box.scrollHeight}px`;
+    requestAnimationFrame(() => { box.classList.remove('is-open'); box.style.maxHeight = ''; });
+    const top = box.closest('section')?.getBoundingClientRect().top ?? 0;
+    if (top < 0) box.closest('section')?.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+  }
+  if (btn) { btn.setAttribute('aria-expanded', String(open)); btn.querySelector('span')!.textContent = open ? 'Thu gọn' : 'Đọc tiếp'; }
+}
+
+/**
+ * Thu gọn lời văn dài của mỗi mục: chỉ hiện vài dòng đầu, bấm "Đọc tiếp" để mở.
+ * Không JS thì không thu gì. Bấm liên kết tới một mục, một nguồn thì mục, nguồn đó tự mở.
+ */
+function setupFolds() {
+  const boxes = [...document.querySelectorAll<HTMLElement>('[data-fold]')];
+  for (const box of boxes) {
+    if (box.dataset.foldReady) continue;
+    box.dataset.foldReady = '1';
+    const limit = parseFloat(getComputedStyle(box).fontSize) * FOLD_EM;
+    if (!limit || box.scrollHeight < limit * 1.3) continue;
+    box.classList.add('is-folded');
+    const btn = box.querySelector<HTMLButtonElement>('[data-fold-btn]');
+    if (btn) btn.hidden = false;
+  }
+  const onClick = (e: MouseEvent) => {
+    const t = e.target instanceof Element ? e.target : null;
+    const btn = t?.closest<HTMLButtonElement>('[data-fold-btn]');
+    if (btn) { const box = btn.closest<HTMLElement>('[data-fold]'); if (box) unfold(box, !box.classList.contains('is-open')); return; }
+    const a = t?.closest<HTMLAnchorElement>('a[href^="#"]');
+    const target = a ? document.getElementById(decodeURIComponent(a.getAttribute('href')!.slice(1))) : null;
+    if (!target) return;
+    const box = target.querySelector<HTMLElement>('[data-fold].is-folded:not(.is-open)');
+    if (box) unfold(box, true);
+    const det = target.querySelector('details');
+    if (det && target.id.startsWith('nguon-')) det.open = true;
   };
-  el.textContent = String(from);
-  requestAnimationFrame(tick);
+  document.addEventListener('click', onClick);
+  return () => document.removeEventListener('click', onClick);
 }
 
 /**
@@ -24,13 +62,14 @@ function countUp(el: HTMLElement) {
  */
 export function NarrativeMotion() {
   const path = usePathname();
+  useEffect(() => setupFolds(), [path]);
   useEffect(() => {
     const els = [...document.querySelectorAll<HTMLElement>('[data-nx]:not([data-in])')];
     if (!els.length) return;
     if (!('IntersectionObserver' in window)) { els.forEach(el => el.setAttribute('data-in', '')); return; }
     const vh = window.innerHeight;
-    const show = (el: Element) => { el.setAttribute('data-in', ''); el.querySelectorAll<HTMLElement>('[data-count]').forEach(c => { if (c.closest('[data-nx]') === el) countUp(c); }); };
-    for (const el of els) if (el.getBoundingClientRect().top < vh * 0.85) el.setAttribute('data-in', '');
+    const show = (el: Element) => el.setAttribute('data-in', '');
+    for (const el of els) if (el.getBoundingClientRect().top < vh * 0.85) show(el);
     document.documentElement.classList.add('nx-ready');
     const io = new IntersectionObserver(entries => {
       for (const e of entries) if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
