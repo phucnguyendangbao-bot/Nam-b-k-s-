@@ -1,6 +1,7 @@
 import { markText, paragraphs, voiceShift, type Milestone } from '@/lib/narrative';
 import { sectionLabels } from '@/lib/editorial-model';
 import { TimelineScrubber } from './interactive/timeline-scrubber';
+import { Foldable } from './interactive/foldable';
 
 /**
  * Các mảnh trình bày kể chuyện cho trang hồ sơ (dựng ở máy chủ, đọc được trọn vẹn khi tắt JavaScript).
@@ -27,14 +28,13 @@ export function KindGlyph({ kind }: { kind: string }) {
 /** Lời văn của một mục: tách đoạn, nhấn năm, con số có đơn vị và tên gọi trong ngoặc kép. Chữ giữ nguyên. */
 export function NarrativeText({ text, dropCap = false }: { text: string; dropCap?: boolean }) {
   return (
-    <div className="nx-text" data-fold>
+    <Foldable>
       {paragraphs(text).map((para, i) => (
         <p key={i} className={`preserve ${dropCap && i === 0 ? 'nx-dropcap' : ''}`}>
           {markText(para).map((m, j) => m.type ? <mark key={j} className={`nx-mark is-${m.type}`}>{m.text}</mark> : m.text)}
         </p>
       ))}
-      <button type="button" className="nx-fold-btn" data-fold-btn hidden aria-expanded="false"><span>Đọc tiếp</span><i aria-hidden="true" /></button>
-    </div>
+    </Foldable>
   );
 }
 

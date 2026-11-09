@@ -4,51 +4,16 @@ import { usePathname } from 'next/navigation';
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** Chiều cao khi thu gọn, tính theo cỡ chữ đọc (khớp với .nx-text.is-folded trong narrative.css). */
-const FOLD_EM = 10;
-
-/** Mở một khối chữ đã thu gọn, có chuyển động chiều cao. */
-function unfold(box: HTMLElement, open: boolean) {
-  const btn = box.querySelector<HTMLButtonElement>('[data-fold-btn]');
-  if (open) {
-    box.style.maxHeight = `${box.scrollHeight}px`;
-    box.classList.add('is-open');
-    const done = () => { if (box.classList.contains('is-open')) box.style.maxHeight = 'none'; };
-    box.addEventListener('transitionend', done, { once: true });
-    window.setTimeout(done, 900);
-  } else {
-    box.style.maxHeight = `${box.scrollHeight}px`;
-    requestAnimationFrame(() => { box.classList.remove('is-open'); box.style.maxHeight = ''; });
-    const top = box.closest('section')?.getBoundingClientRect().top ?? 0;
-    if (top < 0) box.closest('section')?.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
-  }
-  if (btn) { btn.setAttribute('aria-expanded', String(open)); btn.querySelector('span')!.textContent = open ? 'Thu gọn' : 'Đọc tiếp'; }
-}
-
 /**
- * Thu gọn lời văn dài của mỗi mục: chỉ hiện vài dòng đầu, bấm "Đọc tiếp" để mở.
- * Không JS thì không thu gì. Bấm liên kết tới một mục, một nguồn thì mục, nguồn đó tự mở.
+ * Bấm liên kết tới một mục, một nguồn thì mục (thu gọn trong Foldable), nguồn (details) đó tự mở.
  */
 function setupFolds() {
-  const boxes = [...document.querySelectorAll<HTMLElement>('[data-fold]')];
-  for (const box of boxes) {
-    if (box.dataset.foldReady) continue;
-    box.dataset.foldReady = '1';
-    const limit = parseFloat(getComputedStyle(box).fontSize) * FOLD_EM;
-    if (!limit || box.scrollHeight < limit * 1.3) continue;
-    box.classList.add('is-folded');
-    const btn = box.querySelector<HTMLButtonElement>('[data-fold-btn]');
-    if (btn) btn.hidden = false;
-  }
   const onClick = (e: MouseEvent) => {
     const t = e.target instanceof Element ? e.target : null;
-    const btn = t?.closest<HTMLButtonElement>('[data-fold-btn]');
-    if (btn) { const box = btn.closest<HTMLElement>('[data-fold]'); if (box) unfold(box, !box.classList.contains('is-open')); return; }
     const a = t?.closest<HTMLAnchorElement>('a[href^="#"]');
     const target = a ? document.getElementById(decodeURIComponent(a.getAttribute('href')!.slice(1))) : null;
     if (!target) return;
-    const box = target.querySelector<HTMLElement>('[data-fold].is-folded:not(.is-open)');
-    if (box) unfold(box, true);
+    target.querySelector('[data-fold]')?.dispatchEvent(new Event('nx-unfold'));
     const det = target.querySelector('details');
     if (det && target.id.startsWith('nguon-')) det.open = true;
   };
