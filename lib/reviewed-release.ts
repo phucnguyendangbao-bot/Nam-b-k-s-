@@ -11,6 +11,8 @@ import festivals from '@/data/release/published-2026-11-04-festivals.json';
 import festivalsDecision from '@/data/release/publication-approval-2026-11-04-festivals.json';
 import caDao from '@/data/release/published-2026-11-04-ca-dao.json';
 import caDaoDecision from '@/data/release/publication-approval-2026-11-04-ca-dao.json';
+import deepening from '@/data/release/published-2026-11-05-deepening.json';
+import deepeningDecision from '@/data/release/publication-approval-2026-11-05-deepening.json';
 import { canReleaseArticle } from './release-model';
 import type { PublicationApproval, ReleaseArticle, ReleaseData } from './release-model';
 
@@ -25,6 +27,7 @@ const layers = [
   { release: dossierEnrichment as unknown as ReleaseData, raw: dossierEnrichment, approval: dossierEnrichmentDecision as PublicationApproval },
   { release: festivals as unknown as ReleaseData, raw: festivals, approval: festivalsDecision as PublicationApproval },
   { release: caDao as unknown as ReleaseData, raw: caDao, approval: caDaoDecision as PublicationApproval },
+  { release: deepening as unknown as ReleaseData, raw: deepening, approval: deepeningDecision as PublicationApproval },
 ];
 for (const { release, raw, approval } of layers) {
   if (createHash('sha256').update(JSON.stringify(raw)).digest('hex') !== approval.release_payload_sha256) throw new Error(`Reviewed release ${release.version} payload has changed; source and rights review must be repeated.`);
