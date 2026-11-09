@@ -5,13 +5,16 @@ import { notFound } from 'next/navigation';
 import { ActionForm, Arrow, Breadcrumb, Classification, EvidenceMix, Flash, Motif, Status, StoryCard, categoryTone } from './site';
 import { all, contentCitations, one, publicContents, publicTours, publicWords, type Row } from '@/lib/static-data';
 import { categories } from '@/lib/catalog';
-import { nfc, parseSections, sectionLabels, topics } from '@/lib/editorial-model';
+import { nfc, parseSections, topics } from '@/lib/editorial-model';
 import { LexiconPlay } from './interactive/lexicon-play';
 import { KnowledgeContext } from './knowledge-context';
 import { knowledgeRelated } from '@/lib/knowledge';
 import { siteUrl } from '@/lib/site-url';
 import { chapterAnchor, storyPosition } from '@/lib/story';
 import { DossierFestivals } from './festivals';
+import { Milestones, NarrativeText, SectionHead, VoiceShift, WordsRise } from './narrative';
+import { DossierProgress } from './interactive/narrative-motion';
+import { interleave, milestones } from '@/lib/narrative';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -245,10 +248,16 @@ export function DossierView({ article: c, citations, media, dialect, related, to
   const mapStops = preview ? [] : mapToursFor(c.id);
   const words = (sections.length ? sections.map(x => x.text).join(' ') : String(c.body ?? '')).split(/\s+/).filter(Boolean).length + String(c.introduction ?? '').split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 200));
+  // Ảnh tư liệu xen giữa các mục thay vì dồn cuối bài; bài không chia mục thì giữ khối "Hình ảnh" như cũ.
+  const slots = sections.length > 1 ? interleave(sections.length, gallery.length) : new Map<number, number[]>();
+  const inline = slots.size > 0;
+  const firstSlot = inline ? Math.min(...slots.keys()) : -1;
+  const timeline = milestones(sections);
   const toc = [
     ...(dialect ? [{ href: '#nghia-tu', label: 'Nghĩa, ngữ cảnh, phát âm' }] : []),
+    ...(timeline.length ? [{ href: '#dong-thoi-gian', label: `Các mốc thời gian (${timeline.length})` }] : []),
     ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
-    ...(showGallery ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
+    ...(showGallery && !inline ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
     { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
     { href: '#bai-lien-quan', label: 'Cùng chủ đề' },
   ];
@@ -277,7 +286,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
       <header className="nb-dossier-hero">
         {story && <p className="story-pill">Chương {story.chapter.n} · <a href={story.chapter.href}>{story.chapter.name}</a> · bài {story.index + 1}/{story.total}</p>}
         <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
-        <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}>{nfc(c.title)}</h1>
+        <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}><WordsRise text={nfc(c.title)} /></h1>
         <p className="dossier-intro">{c.introduction || c.summary}</p>
         <p className="dossier-meta">
           <Classification value={c.classification} />
@@ -287,7 +296,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           <a href="#nguon-tham-khao">{citations.length} nguồn</a>
         </p>
       </header>
-      {cover && <div className="nb-dossier-cover"><DocumentaryImage media={cover} eager /></div>}
+      {cover && <div className="nb-dossier-cover nx-cover"><DocumentaryImage media={cover} eager /></div>}
       <div className="dossier-layout">
         <article className="dossier-main">
           <div className="dossier-lead">
@@ -325,22 +334,33 @@ export function DossierView({ article: c, citations, media, dialect, related, to
 
           {!preview && <KnowledgeContext article={c} />}
 
+          {timeline.length > 0 && <Milestones items={timeline} />}
+
           {sections.length ? sections.map((s, i) => (
-            <section className="dossier-section" id={`muc-${i + 1}`} key={i}>
-              <p className={`epistemic-label kind-${s.kind}`}>{sectionLabels[s.kind]}</p>
-              <h2>{s.heading}</h2>
-              <p className="preserve">{s.text}</p>
-              <p className="section-sources"><span>Nguồn:</span>
-                {s.sourceIds.map(sid => { const e = citations.find(x => x.source_id === sid); return e ? <a key={sid} href={`#nguon-${e.id}`} title={e.source_name}>{sid}</a> : null; })}
-              </p>
-            </section>
+            <div className="nx-chapter" key={i}>
+              {i > 0 && sections[i - 1].kind !== s.kind && <VoiceShift kind={s.kind} />}
+              <section className={`dossier-section nx-section kind-${s.kind}`} id={`muc-${i + 1}`} data-nx>
+                <SectionHead index={i} total={sections.length} kind={s.kind} />
+                <h2>{s.heading}</h2>
+                <NarrativeText text={s.text} dropCap={i === 0} />
+                <p className="section-sources"><span>Nguồn:</span>
+                  {s.sourceIds.map(sid => { const e = citations.find(x => x.source_id === sid); return e ? <a key={sid} href={`#nguon-${e.id}`} title={e.source_name}>{sid}</a> : null; })}
+                </p>
+              </section>
+              {(slots.get(i) ?? []).map(k => (
+                <div className="nx-figure" data-nx key={gallery[k].id} id={i === firstSlot && k === slots.get(i)![0] ? 'hinh-anh' : undefined}>
+                  <DocumentaryImage media={gallery[k]} />
+                </div>
+              ))}
+            </div>
           )) : (
             <div className="article-body">
               {String(c.body ?? '').split(/\n\s*\n/).map((s, i) => s.startsWith('## ') ? <h2 key={i}>{s.slice(3)}</h2> : <p className="preserve" key={i}>{s}</p>)}
             </div>
           )}
+          {sections.length > 1 && <DossierProgress sections={sections.map((x, i) => ({ id: `muc-${i + 1}`, heading: x.heading }))} />}
 
-          {showGallery && <section className="dossier-section" id="hinh-anh">
+          {showGallery && !inline && <section className="dossier-section" id="hinh-anh">
             <p className="epistemic-label kind-media">Ảnh và quyền sử dụng</p>
             <h2>Hình ảnh</h2>
             {gallery.length ? gallery.map(m => <DocumentaryImage key={m.id} media={m} />) : (

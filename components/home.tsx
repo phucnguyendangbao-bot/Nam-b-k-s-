@@ -11,6 +11,7 @@ import { heritagePlaces } from '@/lib/heritage-places';
 import { knowledgeCounts } from '@/lib/knowledge';
 import { ensureSeed, publicContents, publicWords, type Row } from '@/lib/static-data';
 import { chapterAnchor, chapters, storyImages, type StoryImage } from '@/lib/story';
+import { ChapterArt, ChapterRiver } from '@/components/chapter-art';
 
 export const dynamic = 'force-dynamic';
 
@@ -90,6 +91,7 @@ export default async function Home() {
             <a className="button ghost-light" href="/ban-do">Xem bản đồ di sản</a>
           </div>
         </div>
+        <a className="hx-cue" href="#muc-luc" aria-label="Cuộn xuống mục lục"><span aria-hidden="true">Cuộn để đọc</span><i aria-hidden="true" /></a>
         <p className="hx-credit">{hero.caption} <a href={hero.source_url}>{hero.author}, {hero.license_name}</a></p>
       </section>
 
@@ -123,11 +125,14 @@ export default async function Home() {
         return (
           <section key={c.n} className={`ch ${ci % 2 ? 'is-alt' : ''} ${c.image ? 'has-media' : 'is-type'}`} id={chapterAnchor(c)} data-chapter={c.n} aria-labelledby={`${chapterAnchor(c)}-title`}>
             <div className="wrap">
-              <header className="ch-head" data-reveal>
-                <p className="ch-num"><span>Chương {String(c.n).padStart(2, '0')}</span>{c.name}</p>
-                <h2 id={`${chapterAnchor(c)}-title`}>{c.title}</h2>
-                <p className="ch-lede">{c.lede}</p>
-              </header>
+              <div className="ch-top">
+                <header className="ch-head" data-reveal>
+                  <p className="ch-num"><span>Chương {String(c.n).padStart(2, '0')}</span>{c.name}</p>
+                  <h2 id={`${chapterAnchor(c)}-title`}>{c.title}</h2>
+                  <p className="ch-lede">{c.lede}</p>
+                </header>
+                <ChapterArt slug={c.slug} />
+              </div>
               {c.image && <ChapterFigure img={c.image} />}
               {(() => {
                 // Có ảnh lẫn không ảnh: hồ sơ có ảnh xếp lưới, hồ sơ chỉ có chữ xếp thành danh sách gọn bên dưới,
@@ -164,6 +169,7 @@ export default async function Home() {
                 </div>
               )}
               <p className="ch-next">
+                <ChapterRiver />
                 {next
                   ? <a href={`#${chapterAnchor(next)}`}><span>Chương tiếp</span>{String(next.n).padStart(2, '0')} · {next.name} <span aria-hidden="true">↓</span></a>
                   : <a href="#ket"><span>Kết</span>Câu chuyện còn tiếp <span aria-hidden="true">↓</span></a>}

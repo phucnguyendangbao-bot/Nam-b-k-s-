@@ -9,6 +9,7 @@ import "./design/content.css";
 import "./design/map.css";
 import "./design/festivals.css";
 import "./design/story.css";
+import "./design/narrative.css";
 import "./design/motion.css";
 import "./tour.css";
 import "./design/journey.css";
@@ -18,6 +19,7 @@ import { siteUrl } from '@/lib/site-url';
 import { CommandPalette } from '@/components/interactive/command-palette';
 import { RevealObserver } from '@/components/interactive/reveal';
 import { PageTransitions } from '@/components/interactive/page-transitions';
+import { NarrativeMotion } from '@/components/interactive/narrative-motion';
 import { ImageFade } from '@/components/interactive/image-fade';
 
 export const metadata: Metadata = {
@@ -50,7 +52,7 @@ export default async function RootLayout({
         <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><PageTransitions/><ImageFade/></body>
+      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
     </html>
   );
 }
