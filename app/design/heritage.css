@@ -5,7 +5,7 @@
    Bản trước dùng Playfair Display + Lora, đổi theo yêu cầu “chọn font chữ khác”.
    Tiêu đề lớn dùng Charm (nét bút lông uốn lượn, dấu tiếng Việt chuẩn) theo yêu cầu “font uốn lượn hơn”.
    Màu: nền kem rất nhạt (bản đầu dùng giấy ngả vàng có thớ, trông bẩn nên bỏ), mực nâu, xanh di sản phai làm màu chính, vàng nghệ cũ, xanh rêu sẫm cho khối tối. 
-   Ảnh minh họa của trang (mở đầu, ảnh chương, ảnh thẻ) được phủ một lớp ngả sepia nhẹ, hover thì về màu thật.
+   Ảnh minh họa của trang (mở đầu, ảnh chương, ảnh thẻ) chỉ giảm nhẹ độ rực, hover thì về màu thật.
    Ảnh tư liệu bên trong hồ sơ giữ nguyên màu.
    ========================================================================== */
 @font-face {
@@ -155,49 +155,50 @@
 }
 
 :root {
-  /* Giấy */
-  --c-paper: #FCFAF5;              /* kem rất nhạt, gần trắng */
-  --c-paper-sunken: #F4F0E7;
-  --c-paper-deep: #E9E2D4;
-  --c-surface: #F4F0E7;
-  /* Mực */
-  --c-ink: #2B2019;
-  --c-ink-soft: #4B3C30;
-  --c-ink-muted: #6C5B4A;          /* 5.3:1 trên giấy */
-  --c-line: #ECE5D8;
-  --c-line-strong: #D7CBB6;
-  /* Xanh di sản phai: giữ sắc xanh cũ của trang, kéo về phía rêu và mực cũ */
-  --c-primary: #2F5146;            /* 7.9:1 trên giấy */
-  --c-primary-hover: #223D35;
-  --c-primary-soft: #D8E0D2;
-  --c-primary-tint: #E7EBDD;
-  /* Vàng nghệ cũ */
-  --c-accent: #B4823C;
-  --c-accent-ink: #80591F;         /* 5.0:1 trên giấy */
-  --c-accent-soft: #F0E2C8;
-  --c-gold: #E0BE7E;
-  --c-gold-soft: #F1E2C4;
-  /* Xanh rêu sẫm cho khối tối, pha chút nâu như ảnh in lâu năm */
-  --c-deep: #24382F;
-  --c-deep-2: #1A2A23;
-  --c-on-deep: #F2EADA;
-  --c-on-deep-soft: #C9C6B0;
+  /* Bảng màu "bìa sách, tem in xưa" (10/11/2026): giấy trắng ngà, mực xanh chàm,
+     mảng xanh dương in đậm cho chương xen kẽ, vàng và đỏ cờ làm điểm nhấn — như bìa sách, tem thư in typo. */
+  --c-paper: #FBF9F4;              /* trắng ngà */
+  --c-paper-sunken: #F2EFE7;
+  --c-paper-deep: #E6E2D7;
+  --c-surface: #F2EFE7;
+  /* Mực xanh chàm */
+  --c-ink: #1B2540;
+  --c-ink-soft: #3A4560;
+  --c-ink-muted: #5E6780;          /* 5.6:1 trên giấy */
+  --c-line: #E6E3DA;
+  --c-line-strong: #CFCBC0;
+  /* Xanh dương in cho liên kết, nút */
+  --c-primary: #24467A;            /* 9:1 trên giấy */
+  --c-primary-hover: #1A345E;
+  --c-primary-soft: #D7E0EE;
+  --c-primary-tint: #E8EDF5;
+  /* Đỏ cờ và vàng in */
+  --c-accent: #E05A3A;
+  --c-accent-ink: #B23F25;         /* 5.3:1 trên giấy, cho chữ nhỏ */
+  --c-accent-soft: #F8E1D9;
+  --c-gold: #F3C969;
+  --c-gold-soft: #FBEBC4;
+  /* Khối tối: chàm sâu */
+  --c-deep: #1F3A66;
+  --c-deep-2: #172B4D;
+  --c-on-deep: #F6F1E6;
+  --c-on-deep-soft: #CED6E4;
   /* Sắc chuyên mục */
-  --c-tone-river: #3E5F52;         /* xanh rêu */
-  --c-tone-river-soft: #DDE3D3;
-  --c-tone-dusk: #84561F;
-  --c-tone-dusk-soft: #F0E2C8;
-  --c-tone-lily: #6E4A5C;          /* tím hoa sim phai */
-  --c-tone-lily-soft: #EDE0E0;
+  --c-tone-river: #24467A;
+  --c-tone-river-soft: #DCE4F0;
+  --c-tone-dusk: #B23F25;
+  --c-tone-dusk-soft: #F8E1D9;
+  --c-tone-lily: #6A4A7E;
+  --c-tone-lily-soft: #ECE4F1;
   /* Nhãn tri thức */
-  --c-ev-fact: #3B5C4F;
-  --c-ev-fact-soft: #DCE3D3;
-  --c-ev-hypo: #8A5022;
-  --c-ev-hypo-soft: #F2E1CC;
-  --c-ev-lore: #6E4A5C;
-  --c-ev-lore-soft: #EDE0E0;
-  --c-ev-note: #5A4F45;
-  --c-ev-note-soft: #E9E0D2;
+  --c-ev-fact: #24467A;
+  --c-ev-fact-soft: #DCE4F0;
+  --c-ev-hypo: #B23F25;
+  --c-ev-hypo-soft: #F8E1D9;
+  --c-ev-lore: #6A4A7E;
+  --c-ev-lore-soft: #ECE4F1;
+  --c-ev-note: #555D72;
+  --c-ev-note-soft: #E8EAF0;
 
   --f-display: 'Newsreader', 'Noto Serif', Georgia, serif;
   --f-read: 'Newsreader', 'Noto Serif', Georgia, serif;
@@ -206,14 +207,27 @@
   --tr-title: 0em;
   --lh-read: 1.8;
 
-  --sh-2: 0 12px 30px -12px rgba(60, 38, 20, .25);
-  --sh-3: 0 24px 60px -20px rgba(60, 38, 20, .35), 0 2px 8px rgba(60, 38, 20, .08);
-  --mat-bar: rgba(252, 250, 245, .84);
-  --mat-thick: rgba(252, 250, 245, .96);
-  --mat-edge: rgba(255, 250, 240, .6);
+  --sh-2: 0 12px 30px -12px rgba(23, 43, 77, .25);
+  --sh-3: 0 24px 60px -20px rgba(23, 43, 77, .35), 0 2px 8px rgba(23, 43, 77, .08);
+  --mat-bar: rgba(251, 249, 244, .86);
+  --mat-thick: rgba(251, 249, 244, .96);
+  --mat-edge: rgba(255, 255, 255, .6);
 }
-.is-alt, .ch.is-alt { --c-surface: #FFFFFF; background: var(--c-paper-sunken); }
-.ch.is-alt .ch-entry.is-text { background: #FFFFFF; }
+/* Mảng xanh dương in: chương xen kẽ và khối phụ. Bên trong đổi bộ màu sang chữ sáng, điểm vàng. */
+.is-alt, .ch.is-alt {
+  --c-paper: #24467A; --c-paper-sunken: #24467A; --c-surface: #2D548E;
+  --c-ink: #F6F1E6; --c-ink-soft: #E4E8F0; --c-ink-muted: #C4CDDD;
+  --c-line: rgba(246, 241, 230, .2); --c-line-strong: rgba(246, 241, 230, .34);
+  --c-primary: #F3C969; --c-primary-hover: #FFDA8A; --c-primary-tint: rgba(243, 201, 105, .16);
+  --c-accent: #F3C969; --c-accent-ink: #F3C969;
+  --c-tone-river: #FF8C6B; --tone: #F3C969;
+  background: #24467A; color: var(--c-ink);
+}
+.is-alt :is(h1, h2, h3, h4) { color: var(--c-ink); }
+.is-alt .button { --btn-fg: #1B2540; }
+.ch.is-alt .ch-entry.is-text { background: #2D548E; }
+.ch.is-alt .ch-entry-big { color: rgba(243, 201, 105, .22); }
+.is-alt .ch-art .f { opacity: .22; }
 body { background: var(--c-paper); color: var(--c-ink); }
 
 /* Không phủ thớ giấy: nền giữ sạch, chất cũ nằm ở chữ, màu xanh phai và ảnh. */
@@ -234,7 +248,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 
 /* Ảnh minh họa ngả màu cũ; rê chuột thì hiện màu thật */
 :is(.hx-image, .ch-media-frame img, .ch-entry-media img, .nb-story-media img, .bento-media img, .coll-hero-photo img, .coll-feature-media img, .story-frame img, .tour-card img) {
-  filter: sepia(.2) saturate(.86) contrast(1.03);
+  filter: saturate(.92) contrast(1.04);
   transition: filter 900ms var(--ease-out), scale var(--d-reveal) var(--ease-out), opacity 720ms var(--ease-out);
 }
 @media (hover: hover) {
@@ -244,8 +258,8 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 :is(.ch-media-frame, .ch-entry-media, .nb-story-media, .photo-frame) { box-shadow: inset 0 0 0 1px rgba(255, 248, 235, .35); }
 
 /* Khối tối mang sắc gỗ, không còn xanh */
-.nx-timeline { background: radial-gradient(120% 140% at 0% 0%, #34473a 0%, var(--c-deep) 45%, var(--c-deep-2) 100%); }
-.hx-scrim { background: linear-gradient(0deg, rgba(22, 32, 26, .86) 0%, rgba(22, 32, 26, .55) 38%, rgba(22, 32, 26, .08) 70%), linear-gradient(90deg, rgba(22, 32, 26, .5) 0%, rgba(22, 32, 26, 0) 60%); }
+.nx-timeline { background: radial-gradient(120% 140% at 0% 0%, #2B4E86 0%, var(--c-deep) 45%, var(--c-deep-2) 100%); }
+.hx-scrim { background: linear-gradient(0deg, rgba(16, 28, 52, .86) 0%, rgba(16, 28, 52, .55) 38%, rgba(16, 28, 52, .08) 70%), linear-gradient(90deg, rgba(16, 28, 52, .5) 0%, rgba(16, 28, 52, 0) 60%); }
 
 /* Chữ số kiểu in cũ nhưng thẳng hàng cho số thứ tự và năm */
 .nx-num, .nx-panel-year, .toc-n, .ch-entry-big, .nx-axis-dot, .ch-rail-n, .ch-num span { font-variant-numeric: lining-nums tabular-nums; }
@@ -280,9 +294,9 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 }
 @keyframes nx-card-in { from { opacity: 0; translate: 0 18px; } }
 .nx-more-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s-3) var(--s-5); margin-top: var(--s-8); }
-.nx-more-btn { display: inline-flex; align-items: baseline; gap: 6px; min-height: 46px; padding: 0 24px; border-radius: var(--r-pill); background: var(--c-primary); color: #fff; font-weight: 600; font-size: var(--t-sm); box-shadow: 0 10px 24px -10px rgba(36, 56, 47, .6); transition: background var(--d-hover), translate var(--d-hover) var(--ease), box-shadow var(--d-hover); }
+.nx-more-btn { display: inline-flex; align-items: baseline; gap: 6px; min-height: 46px; padding: 0 24px; border-radius: var(--r-pill); background: var(--c-primary); color: #fff; font-weight: 600; font-size: var(--t-sm); box-shadow: 0 10px 24px -10px rgba(23, 43, 77, .5); transition: background var(--d-hover), translate var(--d-hover) var(--ease), box-shadow var(--d-hover); }
 .nx-more-btn small { font-weight: 500; opacity: .75; }
-.nx-more-btn:hover { background: var(--c-primary-hover); translate: 0 -1px; box-shadow: 0 14px 30px -10px rgba(36, 56, 47, .7); }
+.nx-more-btn:hover { background: var(--c-primary-hover); translate: 0 -1px; box-shadow: 0 14px 30px -10px rgba(23, 43, 77, .6); }
 .nx-more-all { font-size: var(--t-sm); font-weight: 600; color: var(--c-primary); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Danh mục nguồn: mỗi nguồn một dòng ---------- */
@@ -343,7 +357,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 :root { --ease-out: cubic-bezier(.22, 1, .36, 1); --d-reveal: 900ms; --m-rise: 10px; --stagger: 80ms; }
 @media (hover: hover) {
   :is(.nb-story-card, .ch-entry, .bento-card, .related-tour, .tour-card) { transition: translate 700ms var(--ease-out), box-shadow 700ms var(--ease-out); }
-  :is(.nb-story-card, .bento-card, .related-tour, .tour-card):hover { translate: 0 -3px; box-shadow: 0 18px 40px -22px rgba(36, 56, 47, .35); }
+  :is(.nb-story-card, .bento-card, .related-tour, .tour-card):hover { translate: 0 -3px; box-shadow: 0 18px 40px -22px rgba(23, 43, 77, .35); }
   .ch-entry:hover { translate: 0 -3px; }
   :is(.nb-story-media, .ch-entry-media, .bento-media, .ch-media-frame) img { transition: scale 1400ms var(--ease-out), filter 1200ms var(--ease-out), opacity 720ms var(--ease-out) !important; }
   :is(.nb-story-card, .ch-entry, .bento-card):hover img { scale: 1.03 !important; }
@@ -374,3 +388,5 @@ html { font-synthesis-weight: none; }
 .hx h1 { line-height: 1.08; }
 .dossier-title, .page-title h1 { font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem); }
 .nx-section h2 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem); line-height: 1.2; }
+/* Mục lục nổi bên trái nằm trên cả nền trắng lẫn mảng xanh: cho nó một nền giấy nhỏ để luôn đọc được */
+.ch-rail ol { padding: 6px 4px; border-radius: 14px; background: rgba(251, 249, 244, .92); box-shadow: 0 6px 20px -10px rgba(23, 43, 77, .35); }
