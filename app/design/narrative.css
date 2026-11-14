@@ -207,10 +207,14 @@
 .ch-river .river { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; opacity: .75; }
 .ch-river .river:not(.back) { stroke-dasharray: 1; stroke-dashoffset: 0; }
 .ch-river .river.back { stroke-dasharray: 2 7; stroke-width: 1; opacity: .35; }
-.ch-boat { position: absolute; top: -6px; left: calc((100% - 44px) * var(--p, 1)); color: var(--c-accent-ink); }
+.ch-boat { position: absolute; top: -10px; left: calc((100% - 64px) * var(--p, 1)); color: var(--c-accent-ink); }
 .ch-boat svg { display: block; }
-.ch-boat path { fill: currentColor; }
-.ch-boat .sail { fill: var(--c-accent); opacity: .75; }
+.ch-boat .hull { fill: currentColor; }
+.ch-boat .mui { fill: var(--c-accent); opacity: .75; }
+.ch-boat .hat { fill: var(--c-accent); }
+.ch-boat .rib, .ch-boat .oar { fill: none; stroke: currentColor; stroke-linecap: round; }
+.ch-boat .rib { stroke-width: .8; opacity: .55; }
+.ch-boat .oar { stroke-width: 1.4; }
 @media (prefers-reduced-motion: no-preference) { .ch-boat svg { animation: nx-bob 3.2s ease-in-out infinite; } }
 @property --p { syntax: '<number>'; inherits: true; initial-value: 1; }
 @supports (animation-timeline: view()) {

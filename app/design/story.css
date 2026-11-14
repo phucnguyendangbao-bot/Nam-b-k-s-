@@ -81,7 +81,8 @@
 
 /* ---------- Mục lục nổi bên trái (màn rộng) ---------- */
 .ch-rail { display: none; }
-@media (min-width: 1360px) {
+/* Chỉ hiện khi lề trái đủ rộng để không đè lên chữ của chương (trước đây 1360px, đè chữ ở 1440px). */
+@media (min-width: 1600px) {
   .ch-rail { display: block; position: fixed; z-index: 50; left: clamp(12px, 1.6vw, 28px); top: 50%; translate: 0 -50%; opacity: 0; pointer-events: none; transition: opacity var(--d-ui) var(--ease); }
   .ch-rail[data-visible='true'] { opacity: 1; pointer-events: auto; }
   .ch-rail ol { display: grid; gap: 2px; list-style: none; }

@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Cảnh và chuyển cảnh (14/11/2026)
+   Yêu cầu: “thêm animation và hiệu ứng chuyển cảnh, chuyển màu, intro”.
+   1. Màn mở đầu trang chủ: đêm chuyển sang rạng đông, sông tự vẽ, ghe chạy, tên web hiện như nét bút; màn kéo lên.
+   2. Ảnh mở đầu “thức dậy”: từ màu ảnh cũ hiện dần ra màu thật.
+   3. Mỗi chương một sắc nền; giữa hai chương là dải “nước lên” chuyển màu dần, ghe chở người đọc sang chương sau.
+   4. Vào chương: tiêu đề viết ra từ trái sang phải; ảnh chương mở như tấm màn, từ màu cũ sang màu thật.
+   5. Chuyển trang: trang cũ lùi và tối lại, trang mới dâng lên từ dưới như con nước.
+   Giữ nguyên: một đường cong êm cho mọi chuyển động, không nảy, không xoay; tắt hết khi giảm chuyển động;
+   không JS thì mọi nội dung vẫn hiện đủ.
+   ========================================================================== */
+
+/* ---------- 1. Màn mở đầu ---------- */
+.intro { display: none; }
+.intro-on .intro {
+  position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-rows: 1fr auto; overflow: hidden;
+  color: #F6F1E6; background: #0B1528; cursor: pointer; user-select: none;
+  animation: intro-lift 950ms cubic-bezier(.76, 0, .24, 1) 2.95s both;
+}
+.intro-skip .intro { animation: intro-lift-b 600ms cubic-bezier(.76, 0, .24, 1) both; }
+.intro-done .intro { display: none; }
+@keyframes intro-lift { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
+@keyframes intro-lift-b { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
+
+/* Trời: đêm chàm sẫm, rạng đông dâng lên từ chân trời. */
+.intro-sky, .intro-dawn { position: absolute; inset: 0; z-index: -2; }
+.intro-sky { background: linear-gradient(180deg, #0B1528 0%, #13233F 60%, #1B2F52 100%); }
+.intro-dawn {
+  z-index: -1; opacity: 0;
+  background:
+    radial-gradient(60% 38% at 50% 86%, rgba(243, 201, 105, .55) 0%, rgba(224, 90, 58, .28) 45%, rgba(224, 90, 58, 0) 75%),
+    linear-gradient(180deg, #172B4D 0%, #24467A 46%, #8E5A6A 72%, #D9844F 86%, #F0B866 100%);
+  animation: intro-fade 2600ms cubic-bezier(.33, 0, .2, 1) 150ms forwards;
+}
+@keyframes intro-fade { to { opacity: 1; } }
+
+/* Tên web viết ra như nét bút, một nét vàng kéo theo bên dưới; ba nhịp lời đề từ hiện nối nhau. */
+.intro-copy { align-self: center; display: grid; justify-items: center; gap: clamp(.75rem, 2vh, 1.25rem); padding: 0 var(--gutter); margin-top: -8vh; text-align: center; }
+.intro-title { position: relative; font-family: var(--f-script, var(--f-display)); font-weight: 700; font-size: clamp(3rem, 1.6rem + 7vw, 7.5rem); line-height: 1.15; letter-spacing: 0; color: #F6F1E6; text-shadow: 0 2px 30px rgba(11, 21, 40, .35); }
+.intro-title span { display: block; padding: .05em .12em .18em; clip-path: inset(-30% 100% -40% -6%); animation: intro-write 1500ms cubic-bezier(.45, .05, .2, 1) 450ms forwards; }
+.intro-title::after { content: ''; position: absolute; left: 18%; right: 18%; bottom: .06em; height: 2px; border-radius: 2px; background: linear-gradient(90deg, rgba(243, 201, 105, 0), #F3C969 20%, #F3C969 80%, rgba(243, 201, 105, 0)); transform-origin: 0 50%; scale: 0 1; animation: intro-line 900ms cubic-bezier(.16, 1, .3, 1) 1500ms forwards; }
+@keyframes intro-write { to { clip-path: inset(-30% -6% -40% -6%); } }
+@keyframes intro-line { to { scale: 1 1; } }
+.intro-tag { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: .35rem .9rem; font-family: var(--f-ui); font-size: clamp(.7rem, .62rem + .3vw, .875rem); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(246, 241, 230, .82); }
+.intro-tag > * { opacity: 0; translate: 0 10px; animation: intro-rise 900ms cubic-bezier(.16, 1, .3, 1) forwards; }
+.intro-tag > :nth-child(1) { animation-delay: 1.55s; }
+.intro-tag > :nth-child(2) { animation-delay: 1.65s; }
+.intro-tag > :nth-child(3) { animation-delay: 1.72s; }
+.intro-tag > :nth-child(4) { animation-delay: 1.82s; }
+.intro-tag > :nth-child(5) { animation-delay: 1.9s; }
+.intro-tag i { font-style: normal; color: #F3C969; }
+@keyframes intro-rise { to { opacity: 1; translate: 0 0; } }
+
+/* Cảnh sông: mặt trời lên khỏi nước, sông tự vẽ, dừa nước hai bờ, ghe chạy theo dòng (SMIL, xem intro.tsx). */
+.intro-scene { display: block; width: 100%; height: clamp(220px, 42vh, 440px); }
+.intro-sun { fill: #F7D27A; }
+.intro-sun, .intro-sun-glow { transform-box: fill-box; transform-origin: 50% 50%; translate: 0 34px; animation: intro-sunrise 2800ms cubic-bezier(.22, 1, .36, 1) 200ms forwards; }
+.intro-sun-glow { opacity: 0; animation-name: intro-sunrise, intro-fade; animation-duration: 2800ms, 2200ms; animation-delay: 200ms, 400ms; animation-timing-function: cubic-bezier(.22, 1, .36, 1), ease-out; animation-fill-mode: forwards, forwards; }
+@keyframes intro-sunrise { to { translate: 0 -26px; } }
+.intro-river { fill: none; stroke: #F3C969; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: intro-draw 1700ms cubic-bezier(.45, .05, .2, 1) 150ms forwards; }
+.intro-river.back { stroke: rgba(243, 201, 105, .35); stroke-width: 1.2; stroke-dasharray: 3 9; stroke-dashoffset: 0; opacity: 0; animation: intro-fade 1200ms ease-out 700ms forwards; }
+@keyframes intro-draw { to { stroke-dashoffset: 0; } }
+.intro-dua { fill: none; stroke: #0B1528; stroke-width: 3; stroke-linecap: round; opacity: 0; animation: intro-fade 1400ms ease-out 300ms forwards; }
+.intro-dua .leaf { stroke-width: 2; }
+.intro-ghe .hull { fill: #0B1528; }
+.intro-ghe .mui { fill: #F3C969; opacity: .9; }
+.intro-ghe .hat { fill: #F3C969; }
+.intro-ghe .rib { fill: none; stroke: #0B1528; stroke-width: .8; opacity: .5; }
+.intro-ghe .oar { fill: none; stroke: #0B1528; stroke-width: 1.6; stroke-linecap: round; }
+.intro-ghe { transform: scale(1.7); }
+.intro-ghe-bob { animation: intro-bob 2.4s ease-in-out infinite; }
+@media (max-width: 700px) { .intro-ghe { transform: scale(1.15); } }
+@media (min-width: 701px) { .intro-dua.m { display: none; } }
+@keyframes intro-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -1.5px; } }
+
+.intro-hint { position: absolute; right: var(--gutter); bottom: clamp(.75rem, 2.5vh, 1.5rem); font-family: var(--f-ui); font-size: 11px; font-weight: 500; letter-spacing: .06em; color: rgba(246, 241, 230, .7); opacity: 0; animation: intro-fade 700ms ease-out 1.1s forwards; }
+
+/* ---------- 2. Ảnh mở đầu thức dậy sau màn mở đầu: từ màu ảnh cũ sang màu thật ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .intro-on .hx-image { animation: hx-wake 2400ms cubic-bezier(.16, 1, .3, 1) 3.05s both; }
+  .intro-on .hx-inner > * { animation-delay: calc(3.4s + var(--i, 0) * var(--stagger)); }
+  .intro-on .hx-eyebrow::before { animation-delay: calc(3.4s + var(--stagger) * 2); }
+  .intro-on .sh { animation: sh-drop 800ms cubic-bezier(.16, 1, .3, 1) 3.3s both; }
+  /* Bỏ qua sớm: đổi tên animation để chạy lại từ đầu, ngay sau khi màn kéo lên. */
+  .intro-on.intro-skip .hx-image { animation-name: hx-wake-b; animation-delay: .4s; }
+  .intro-on.intro-skip .hx-inner > * { animation-name: hx-rise-b; animation-delay: calc(.7s + var(--i, 0) * var(--stagger)); }
+  .intro-on.intro-skip .hx-eyebrow::before { animation-name: hx-line-b; animation-delay: calc(.7s + var(--stagger) * 2); }
+  .intro-on.intro-skip .sh { animation-name: sh-drop-b; animation-delay: .5s; }
+}
+@keyframes hx-wake { from { scale: 1.1; filter: grayscale(1) sepia(.55) brightness(.72) contrast(1.06); } }
+@keyframes hx-wake-b { from { scale: 1.1; filter: grayscale(1) sepia(.55) brightness(.72) contrast(1.06); } }
+@keyframes hx-rise-b { from { opacity: 0; translate: 0 var(--m-rise); } }
+@keyframes hx-line-b { from { scale: 0 1; } }
+@keyframes sh-drop { from { opacity: 0; translate: 0 -100%; } }
+@keyframes sh-drop-b { from { opacity: 0; translate: 0 -100%; } }
+
+/* ---------- 3. Sắc nền theo chương và dải chuyển màu giữa hai chương ---------- */
+.home .ch { background: var(--scene, var(--c-paper)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+.home .ch:not(.is-alt) { --c-paper: var(--scene); }
+.home .ch.is-alt { --c-paper: var(--scene); --c-paper-sunken: var(--scene); --c-surface: color-mix(in srgb, var(--scene) 84%, #fff); background: var(--scene); }
+.home .ch.is-alt .ch-entry.is-text { background: var(--c-surface); }
+.home .ch[data-scene='nep-nha'] { --c-tone-river: #F7B58F; }
+.home .ch[data-scene='tieng-noi'] { --c-tone-river: #FFA88C; }
+
+.ch-tide {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(6.5rem, 12vw, 9.5rem);
+  background: linear-gradient(180deg, var(--from) 0%, var(--from) 22%, color-mix(in oklab, var(--from), var(--to)) 64%, var(--to) 100%);
+}
+.ch-tide .ch-river { margin-bottom: var(--s-6); }
+.ch-tide.from-light .ch-river { color: #B23F25; }
+.ch-tide.from-dark .ch-river { color: #F3C969; }
+.ch-tide .ch-boat .mui, .ch-tide .ch-boat .hat { fill: #F3C969; }
+.ch-tide.from-light .ch-boat { color: #1B2540; }
+.ch-tide.from-light .ch-boat .mui, .ch-tide.from-light .ch-boat .hat { fill: #E05A3A; }
+.ch-tide.from-dark .ch-boat { color: #F6F1E6; }
+.ch-tide .ch-next { margin: 0; padding: 0; border: 0; text-align: center; }
+.ch-tide .ch-next a {
+  align-items: center; padding: .7rem 1.4rem; border-radius: var(--r-pill);
+  background: rgba(251, 249, 244, .94); color: #1B2540; box-shadow: 0 10px 30px -14px rgba(11, 21, 40, .55);
+  transition: translate var(--d-hover) var(--ease), box-shadow var(--d-hover) var(--ease);
+}
+.ch-tide .ch-next a > span:first-child { color: #5E6780; }
+.ch-tide .ch-next a > span[aria-hidden] { color: #B23F25; }
+@media (hover: hover) { .ch-tide .ch-next a:hover { translate: 0 -2px; box-shadow: 0 16px 36px -14px rgba(11, 21, 40, .6); } }
+.ch-tide-wave { position: absolute; left: 0; bottom: -1px; z-index: -1; width: 100%; height: clamp(56px, 8vw, 110px); overflow: visible; }
+.ch-tide-wave path { fill: var(--to); }
+.ch-tide-wave .w2 { opacity: .5; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ch-tide { view-timeline: --tide block; }
+    .ch-tide-wave .w1 { animation: tide-rise linear both; animation-timeline: --tide; animation-range: entry 15% cover 60%; }
+    .ch-tide-wave .w2 { animation: tide-rise-2 linear both; animation-timeline: --tide; animation-range: entry 5% cover 50%; }
+  }
+}
+@keyframes tide-rise { from { translate: 0 70px; } }
+@keyframes tide-rise-2 { from { translate: -60px 60px; } to { translate: 0 0; } }
+
+/* ---------- 4. Vào chương: tiêu đề viết ra, ảnh chương mở như tấm màn và hiện màu ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready .ch-head[data-reveal] h2 {
+    clip-path: inset(-25% -4% -35% -4%);
+    transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out), clip-path 1500ms cubic-bezier(.45, .05, .2, 1);
+    transition-delay: var(--stagger), var(--stagger), 120ms;
+  }
+  .reveal-ready .ch-head[data-reveal]:not([data-revealed]) h2 { clip-path: inset(-25% 100% -35% -4%); }
+
+  .reveal-ready .ch-media .ch-media-frame { clip-path: inset(0 0 0 0); transition: clip-path 1400ms cubic-bezier(.7, 0, .2, 1) 150ms; }
+  .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame { clip-path: inset(0 50% 0 50%); }
+  .reveal-ready .ch-media .ch-media-frame img[data-nimg] { transition: scale 1800ms var(--ease-out) 150ms, filter 2200ms cubic-bezier(.33, 0, .2, 1) 700ms !important; }
+  .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame img[data-nimg] { filter: grayscale(1) sepia(.5) contrast(1.05) !important; }
+
+  /* Ảnh bìa hồ sơ cũng hiện từ màu cũ ra màu thật (màu cuối giữ đúng ảnh tư liệu). */
+  .nx-cover .photo-frame img { animation: photo-wake 1900ms cubic-bezier(.33, 0, .2, 1) 450ms both; }
+}
+@keyframes photo-wake { from { filter: grayscale(1) sepia(.45) contrast(1.04); } }
+
+/* ---------- 5. Chuyển trang: trang cũ lùi và tối lại, trang mới dâng lên từ dưới ---------- */
+::view-transition { background: #172B4D; }
+::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; }
+::view-transition-old(root) { animation: vt-recede 560ms cubic-bezier(.4, 0, .2, 1) both; }
+::view-transition-new(root) { animation: vt-tide 780ms cubic-bezier(.22, 1, .36, 1) 80ms both; }
+@keyframes vt-recede { to { opacity: .45; scale: .965; translate: 0 -1.5%; } }
+@keyframes vt-tide { from { clip-path: inset(100% 0 0 0); translate: 0 5%; } to { clip-path: inset(0 0 0 0); translate: 0 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-on .intro { display: none; }
+  .ch-tide-wave path { animation: none; translate: none; }
+}
+
+/* ==========================================================================
+   Học theo bốn trang mẫu (14/11/2026): johnbolster.design (sợi chỉ xuyên trang), Tinkeroll (viên bi lăn theo cuộn,
+   màn tải có số đếm), MBI (bảng ô “bấm để khám phá”), The Aviator (màn tải đếm số rồi mở cảnh).
+   ========================================================================== */
+
+/* ---------- 6. Dòng sông xuyên trang, ghe đi theo cuộn (components/interactive/story-river.tsx) ---------- */
+.home { position: relative; isolation: isolate; }
+.sr { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; --sp: 0; }
+.sr[data-off] { display: none; }
+.sr > svg { position: absolute; left: 0; top: 0; display: block; overflow: visible; }
+.sr .sr-back { fill: none; stroke: url(#sr-grad); stroke-width: 1; stroke-dasharray: 2 8; stroke-linecap: round; opacity: .35; }
+.sr .sr-line { fill: none; stroke: url(#sr-grad); stroke-width: 1.6; stroke-linecap: round; opacity: .8; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--sp)); transition: stroke-dashoffset 520ms cubic-bezier(.22, 1, .36, 1); }
+.sr-boat { position: absolute; left: 0; top: 0; width: 68px; height: 24px; offset-rotate: auto; offset-distance: calc(var(--sp) * 100%); transition: offset-distance 520ms cubic-bezier(.22, 1, .36, 1); filter: drop-shadow(0 2px 3px rgba(11, 21, 40, .35)); }
+.sr-boat svg { display: block; overflow: visible; }
+.sr-boat .hull { fill: #8A3B22; stroke: #F6F1E6; stroke-width: .9; }
+.sr-boat .deck { fill: #B8663F; }
+.sr-boat .mui { fill: #F3C969; }
+.sr-boat .rib { fill: none; stroke: #8A3B22; stroke-width: .8; opacity: .6; }
+.sr-boat .hat { fill: #F3C969; stroke: #8A3B22; stroke-width: .8; }
+.sr-boat .oar { fill: none; stroke: #4A2414; stroke-width: 1.2; stroke-linecap: round; }
+.sr-boat .wake { fill: none; stroke: #F6F1E6; stroke-width: 1; opacity: .55; stroke-linecap: round; }
+@media (prefers-reduced-motion: no-preference) { .sr-boat svg { animation: sr-sway 2.8s ease-in-out infinite; } }
+@keyframes sr-sway { 0%, 100% { translate: 0 -1px; } 50% { translate: 0 1px; } }
+@media (prefers-reduced-motion: reduce) { .sr-boat { display: none; } .sr .sr-line { transition: none; } }
+/* Nút “Chương tiếp” nằm trên sông */
+.ch-tide .ch-next { position: relative; z-index: 4; }
+.ch-tide .ch-river { display: none; }
+.ch-tide { padding-top: clamp(4rem, 8vw, 6.5rem); }
+
+/* ---------- 7. Bảng lướt nhanh trong màn đầu (theo ghi chú tay và ô “bấm để khám phá” của MBI) ---------- */
+.hx-quick { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; width: min(100%, calc(var(--container) + var(--gutter) * 2)); margin: 0 auto; padding: 0 var(--gutter) clamp(3.5rem, 7vh, 5rem); }
+.hx-q { display: grid; align-content: start; gap: 4px; min-height: 7.5rem; padding: 14px 16px 16px; color: #F6F1E6; background: rgba(11, 21, 40, .42); border: 1px solid rgba(246, 241, 230, .14); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2); transition: background var(--d-hover) var(--ease), translate var(--d-hover) var(--ease); }
+.hx-q:first-child { border-radius: var(--r-md) 0 0 var(--r-md); }
+.hx-q:last-child { border-radius: 0 var(--r-md) var(--r-md) 0; }
+.hx-q-k { font-family: var(--f-ui); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F3C969; }
+.hx-q strong { font-family: var(--f-display); font-weight: 600; font-size: var(--t-lg); line-height: 1.2; }
+.hx-q > span:last-child { font-size: var(--t-xs); line-height: 1.4; color: rgba(246, 241, 230, .78); }
+@media (hover: hover) { .hx-q:hover { background: rgba(11, 21, 40, .62); translate: 0 -2px; } }
+.hx .hx-inner { padding-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+.hx-credit-row { font-size: 11px; line-height: 1.4; color: var(--c-ink-muted); padding-block: 8px; text-align: right; }
+.hx-credit-row a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 900px) { .hx-quick { grid-template-columns: 1fr 1fr; gap: 6px; } .hx-q, .hx-q:first-child, .hx-q:last-child { border-radius: var(--r-sm); } }
+@media (max-width: 480px) { .hx-q { min-height: 0; padding: 10px 12px 12px; } .hx-q strong { font-size: var(--t-md); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hx-quick > * { animation: hx-rise var(--d-reveal) var(--ease-out) both; animation-delay: calc(var(--stagger) * (4 + var(--q, 0))); }
+  .hx-q:nth-child(2) { --q: 1; } .hx-q:nth-child(3) { --q: 2; } .hx-q:nth-child(4) { --q: 3; }
+  .intro-on .hx-quick > * { animation-delay: calc(3.4s + var(--stagger) * (4 + var(--q, 0))); }
+  .intro-on.intro-skip .hx-quick > * { animation-name: hx-rise-b; animation-delay: calc(.7s + var(--stagger) * (4 + var(--q, 0))); }
+}
+
+/* ---------- 8. Ảnh mờ hiện nét nhanh hơn (ghi chú tay: “blur nhanh hơn ở phần này”) ---------- */
+.ph img[data-nimg] { transition-duration: 380ms, 900ms; }
+.ph::before { filter: blur(10px) saturate(1.05); }
+
+/* ---------- 9. Ngăn “Văn hóa” gom nhiều mục hơn: ba cột ---------- */
+.sn-menu { width: min(50rem, calc(100vw - 2rem)); }
+.sn-menu ul { grid-template-columns: repeat(3, 1fr); }
+
+/* ---------- 10. Màn mở đầu: số đếm hồ sơ chạy lên như màn tải của Tinkeroll và The Aviator ---------- */
+.intro-count { position: absolute; left: var(--gutter); bottom: clamp(.75rem, 2.5vh, 1.5rem); display: grid; gap: 2px; font-family: var(--f-ui); color: rgba(246, 241, 230, .85); opacity: 0; animation: intro-fade 500ms ease-out 250ms forwards; }
+.intro-count b { font-family: var(--f-display); font-weight: 600; font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem); line-height: 1; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.intro-count small { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.intro-count i { display: block; width: clamp(8rem, 18vw, 16rem); height: 1px; margin-top: 8px; background: rgba(246, 241, 230, .25); overflow: hidden; }
+.intro-count i::after { content: ''; display: block; height: 100%; background: #F3C969; transform-origin: 0 50%; scale: 0 1; animation: intro-line 2500ms cubic-bezier(.45, .05, .2, 1) 300ms forwards; }
+@media (max-width: 700px) { .intro-count { display: none; } }

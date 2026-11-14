@@ -32,35 +32,43 @@ const art: Record<string, React.ReactNode> = {
     <path {...L} className="a a2" d="M60 98l8 4-3 6-7-2z" />
     <g className="loop-dig"><path {...L} className="a" d="M196 18v34" /><path {...L} className="a" d="M188 52h16l-3 12h-10z" /></g>
   </>,
-  /* Bến sông: ghe hàng dập dềnh, cột bến, sóng */
+  /* Bến sông: ghe hàng chợ nổi (mũi cong có mắt ghe, mui cong, cây bẹo treo hàng mẫu), cột bến, sóng */
   'ben-song': <>
     <path {...L} className="a" d="M24 30v86M18 30h12" />
     <g className="loop-bob">
-      <path {...L} className="a" d="M58 96h132l-14 18H74z" />
-      <path className="f" d="M58 96h132l-14 18H74z" />
-      <path {...L} className="a" d="M86 96V74h40v22M126 80h28v16" />
-      <path {...L} className="a a2" d="M96 74c0-10 20-10 20 0" />
-      <circle {...L} className="a a2" cx="140" cy="88" r="5" /><circle {...L} className="a a2" cx="150" cy="88" r="4" />
-      <path {...L} className="a" d="M170 96l-6-46M164 50l18 10" />
+      <path {...L} className="a" d="M46 94h132q14 0 22-14l-6 22q-4 12-18 12H66q-14 0-20-20z" />
+      <path className="f" d="M46 94h132q14 0 22-14l-6 22q-4 12-18 12H66q-14 0-20-20z" />
+      <path {...L} className="a a2" d="M184 92q4-4 8 0q-4 4-8 0z" />
+      <path {...L} className="a" d="M74 94V80q24-18 50 0v14" />
+      <path {...L} className="a a2" d="M86 74v20M99 70v24M112 74v20" />
+      <circle {...L} className="a a2" cx="136" cy="89" r="5" /><circle {...L} className="a a2" cx="146" cy="90" r="4" />
+      <path {...L} className="a" d="M160 94V36" />
+      <path {...L} className="a a2" d="M160 40l-9 8M160 40l9 8M160 40v10" />
+      <circle {...L} className="a a2" cx="151" cy="52" r="4" /><circle {...L} className="a a2" cx="169" cy="52" r="4" /><circle {...L} className="a a2" cx="160" cy="54" r="3.5" />
     </g>
     <g clipPath="url(#clip-ben-song)"><Waves y={122} /><Waves y={140} slow /></g>
   </>,
-  /* Nếp nhà: mái ngói cong đầu, hàng cột, cửa vòm, bậc thềm, đèn lồng đung đưa */
+  /* Nếp nhà: mái ngói thấp thẳng nét kiểu nhà cổ Bình Thủy, hàng cửa vòm, bậc thềm, hai chậu kiểng hai bên thềm */
   'nep-nha': <>
-    <path {...L} className="a" d="M20 58q100-40 200 0M34 52l-14 6 10 4M206 52l14 6-10 4" />
+    <path {...L} className="a" d="M14 62L42 38H198L226 62z" />
+    <path className="f" d="M14 62L42 38H198L226 62z" />
+    <path {...L} className="a a2" d="M52 40v20M64 40v20M76 40v20M88 40v20M100 40v20M112 40v20M124 40v20M136 40v20M148 40v20M160 40v20M172 40v20M184 40v20" />
     <path {...L} className="a" d="M36 62h168v66H36z" />
     <path className="f" d="M36 62h168v66H36z" />
     <path {...L} className="a a2" d="M62 128v-30a12 12 0 0 1 24 0v30M108 128v-34a12 12 0 0 1 24 0v34M154 128v-30a12 12 0 0 1 24 0v30" />
     <path {...L} className="a" d="M24 134h192M16 142h208M8 150h224" />
-    <g className="loop-swing"><path {...L} className="a" d="M120 62v10" /><path {...L} className="a a2" d="M114 72h12v10h-12z" /><path className="f f2" d="M114 72h12v10h-12z" /></g>
+    <g><path {...L} className="a a2" d="M14 134h14l-3 12h-8zM21 134v-10M21 124c-6-2-8-8-4-10 3 3 4 6 4 10 0-6 4-10 8-9 1 4-3 8-8 9" /></g>
+    <g><path {...L} className="a a2" d="M212 134h14l-3 12h-8zM219 134v-10M219 124c-6-2-8-8-4-10 3 3 4 6 4 10 0-6 4-10 8-9 1 4-3 8-8 9" /></g>
   </>,
-  /* Mùa hội: trăng lên, sao, ghe Ngo dài với hàng mái chèo */
+  /* Mùa hội (Oóc Om Bóc): trăng lên, sao, ghe Ngo của người Khmer: thân dài thon, mũi và lái cong vút, hàng tay bơi */
   'mua-hoi': <>
     <g className="loop-rise"><circle {...L} className="a" cx="168" cy="40" r="22" /><circle className="f loop-glow" cx="168" cy="40" r="30" /></g>
     <path {...L} className="a loop-twinkle" d="M40 26v8M36 30h8" /><path {...L} className="a loop-twinkle" d="M96 16v6M93 19h6" /><path {...L} className="a loop-twinkle" d="M120 50v6M117 53h6" />
-    <path {...L} className="a" d="M10 106q110 22 220 -8l-6 -6q-100 22-208 6z" />
-    <path className="f" d="M10 106q110 22 220 -8l-6 -6q-100 22-208 6z" />
-    {[40, 62, 84, 106, 128, 150, 172].map(x => <path key={x} {...L} className="a a2 loop-row" d={`M${x} 104l-6 22`} />)}
+    <path {...L} className="a" d="M16 104q-8-10-6-26q6 14 20 22q90 14 178-2q14-10 18-26q6 18-8 32q-100 22-202 0z" />
+    <path className="f" d="M16 104q-8-10-6-26q6 14 20 22q90 14 178-2q14-10 18-26q6 18-8 32q-100 22-202 0z" />
+    <path {...L} className="a a2" d="M223 80l4-6M224 84l5-2" />
+    {[44, 66, 88, 110, 132, 154, 176].map(x => <circle key={`h${x}`} {...L} className="a a2" cx={x + 3} cy="95" r="3" />)}
+    {[44, 66, 88, 110, 132, 154, 176].map(x => <path key={x} {...L} className="a a2 loop-row" d={`M${x} 102l-6 22`} />)}
     <g clipPath="url(#clip-mua-hoi)"><Waves y={136} slow /></g>
   </>,
   /* Tiếng nói: hai bóng thoại, chữ đổi lượt: bậu – qua, mần – hổng */
@@ -94,8 +102,17 @@ export function ChapterRiver() {
         <path className="river back" d="M0 20 C 150 8, 300 32, 450 20 S 750 8, 900 20 S 1100 30, 1200 18" />
         <path className="river" pathLength={1} d="M0 20 C 150 8, 300 32, 450 20 S 750 8, 900 20 S 1100 30, 1200 18" />
       </svg>
+      {/* Ghe Nam Bộ: thân thấp, hai đầu vểnh, mui cong ở giữa, người đội nón lá đứng chèo ở lái. */}
       <span className="ch-boat">
-        <svg viewBox="0 0 44 26" width="44" height="26"><path className="sail" d="M22 2v16H10z" /><path d="M2 18h40l-6 7H8z" /><path d="M22 2v16" stroke="currentColor" strokeWidth="1.4" /></svg>
+        <svg viewBox="0 0 64 30" width="64" height="30">
+          <path className="oar" d="M14 14L4 29" />
+          <path className="mui" d="M24 21v-6q10-9 20 0v6z" />
+          <path className="rib" d="M29 12.5V21M34 11V21M39 12.5V21" />
+          <path className="hull" d="M2 18q6 3 12 3h34q8 0 14-8l-3 9q-3 6-10 6H14q-8 0-12-10z" />
+          <path className="hull" d="M12 21l1.6-9h3l1.4 9z" />
+          <circle className="hull" cx="15" cy="9.6" r="1.8" />
+          <path className="hat" d="M10.5 9.4L15 5.6l4.5 3.8z" />
+        </svg>
       </span>
     </span>
   );

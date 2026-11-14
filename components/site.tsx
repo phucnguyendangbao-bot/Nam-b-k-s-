@@ -22,27 +22,26 @@ const domain = (id: string, label?: string, href?: string) => {
   const d = knowledgeDomains.find(x => x.id === id)!;
   return { href: href ?? `/chuyen-de/${id}`, label: label ?? d.name, note: d.description };
 };
+/* Thanh menu (14/11/2026, theo ghi chú tay trên bản chụp): Hành trình lên trước; các lĩnh vực hay đọc nhất ra ngoài
+   (Phong tục & đời sống, Lễ hội, Ẩm thực); mọi lĩnh vực khác, Khám phá, Kho tri thức, Dòng thời gian gom vào một ngăn “Văn hóa”. */
 const navItems: NavItem[] = [
-  { href: '/kham-pha', label: 'Khám phá' },
+  { href: '/hanh-trinh', label: 'Hành trình' },
   {
     label: 'Văn hóa',
     menu: [
-      domain('phong-tuc-doi-song'), domain('tin-nguong-ton-giao'), domain('le-hoi'), domain('van-hoc-nghe-thuat'),
-      domain('am-thuc'), domain('lang-nghe-sinh-ke'), domain('kien-truc-khong-gian-song'), domain('phuong-ngu-nam-bo', 'Phương ngữ Nam Bộ', '/tu-dien'),
-    ],
-    all: { href: '/tri-thuc', label: 'Kho tri thức: đủ 12 lĩnh vực' },
-  },
-  {
-    label: 'Lịch sử',
-    menu: [
+      { href: '/kham-pha', label: 'Khám phá: tất cả hồ sơ', note: 'Mọi hồ sơ đã kiểm chứng, lọc theo lĩnh vực và địa bàn.' },
+      domain('tin-nguong-ton-giao'), domain('van-hoc-nghe-thuat'), domain('lang-nghe-sinh-ke'), domain('kien-truc-khong-gian-song'),
       domain('lich-su-khao-co'), domain('dia-danh'), domain('nhan-vat-ky-uc'), domain('dia-ly-sinh-thai'),
+      domain('phuong-ngu-nam-bo', 'Phương ngữ Nam Bộ', '/tu-dien'),
       { href: '/dong-thoi-gian', label: 'Dòng thời gian tư liệu', note: 'Các mốc có nguồn, phân biệt ghi danh và sự kiện.' },
       { href: '/vi-sao-lai-the', label: 'Vì sao lại thế?', note: 'Lời giải thích và điều chưa rõ trong các hồ sơ.' },
     ],
+    all: { href: '/tri-thuc', label: 'Kho tri thức: đủ 12 lĩnh vực' },
   },
-  { href: '/lich-le-hoi', label: 'Lịch lễ hội' },
+  { href: '/chuyen-de/phong-tuc-doi-song', label: 'Phong tục & đời sống' },
+  { href: '/lich-le-hoi', label: 'Lễ hội' },
+  { href: '/chuyen-de/am-thuc', label: 'Ẩm thực' },
   { href: '/ban-do', label: 'Bản đồ' },
-  { href: '/hanh-trinh', label: 'Hành trình' },
 ];
 const aboutNav = [
   { href: '/ve-du-an', label: 'Về dự án' },

@@ -14,14 +14,16 @@ import "./design/heritage.css";
 import "./design/motion.css";
 import "./tour.css";
 import "./design/journey.css";
+import "./design/scenes.css";
 import { Header,Footer } from '@/components/site';
-import { ensureSeed,viewer } from '@/lib/static-data';
+import { ensureSeed,viewer,publicContents } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';
 import { CommandPalette } from '@/components/interactive/command-palette';
 import { RevealObserver } from '@/components/interactive/reveal';
 import { PageTransitions } from '@/components/interactive/page-transitions';
 import { NarrativeMotion } from '@/components/interactive/narrative-motion';
 import { ImageFade } from '@/components/interactive/image-fade';
+import { Intro, INTRO_GATE } from '@/components/interactive/intro';
 
 export const metadata: Metadata = {
   metadataBase:new URL(siteUrl),
@@ -41,19 +43,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let user=null;let unavailable=false;
-  try{await ensureSeed();user=await viewer();}catch{unavailable=true;}
+  let user=null;let unavailable=false;let total=0;
+  try{await ensureSeed();user=await viewer();total=(await publicContents()).length;}catch{unavailable=true;}
   const structuredData=JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Nam Bộ Ký Sự',url:siteUrl,inLanguage:'vi',description:'Thư viện văn hóa có nguồn tư liệu và trạng thái kiểm chứng.'}).replace(/</g,'\\u003c');
   return (
-    <html lang="vi">
+    <html lang="vi" suppressHydrationWarning>
       <head>
+        {/* Quyết định có chiếu màn mở đầu hay không trước khi trang vẽ (chỉ trang chủ, lần đầu mỗi phiên). */}
+        <script dangerouslySetInnerHTML={{ __html: INTRO_GATE }} />
         {/* Bật chuyển trang ngay từ dòng đầu của <head>, trước mọi stylesheet, để trang mới luôn nhận chuyển cảnh. */}
         <style>{"@view-transition{navigation:auto}@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}"}</style>
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
+      <body><Intro total={total}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
     </html>
   );
 }
