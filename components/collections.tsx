@@ -16,6 +16,7 @@ import { Milestones, NarrativeText, SectionHead, VoiceShift, WordsRise } from '.
 import { DossierProgress } from './interactive/narrative-motion';
 import { MoreGrid } from './interactive/more-grid';
 import { interleave, milestones } from '@/lib/narrative';
+import { dossierTags, dossierThreads, type Thread } from '@/lib/dossier-links';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -206,7 +207,8 @@ export async function PublicDossier({ article: c, user, params }: { article: Row
   const related = allRelated.filter(x => x.id !== c.id).slice(0, 3);
   const relatedTours = [];
   for (const t of tours) { if (await one('SELECT id FROM tour_stops WHERE tour_id=? AND content_id=?', t.id, c.id)) relatedTours.push(t); }
-  return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params} story={await storyNav(c.id)} />;
+  const [threads, tags] = await Promise.all([dossierThreads(c.id, related.map(r => r.id)), dossierTags(c.id)]);
+  return <DossierView article={c} citations={citations} media={media} dialect={dialect} related={related} tours={relatedTours} user={user} params={params} story={await storyNav(c.id)} threads={threads} tags={tags} />;
 }
 
 /** Vị trí của hồ sơ trong câu chuyện sáu chương và hai bài kề bên, để đọc liền mạch từ đầu đến cuối. */
@@ -224,6 +226,43 @@ async function storyNav(id: string): Promise<StoryNavData | null> {
   return { chapter: { n: pos.chapter.n, name: pos.chapter.name, href: `/#${chapterAnchor(pos.chapter)}` }, index: pos.index, total: pos.total, order: pos.order, count: pos.count, prev: link(pos.prev), next: link(pos.next) };
 }
 
+const threadKind = { place: 'Nơi chốn', time: 'Thời kỳ', person: 'Nhân vật' } as const;
+
+/** Ba sợi dây nối hồ sơ này với các hồ sơ khác: cùng nơi, cùng thời, cùng người được nhắc. */
+function Threads({ threads }: { threads: Thread[] }) {
+  if (!threads.length) return null;
+  return (
+    <section className="threads" id="soi-day" aria-labelledby="soi-day-h">
+      <p className="eyebrow">Đọc tiếp theo sợi dây</p>
+      <h2 id="soi-day-h">Hồ sơ này nối với</h2>
+      <div className="threads-grid" data-n={threads.length}>
+        {threads.map((t, n) => (
+          <div className={`thread is-${t.kind}`} key={t.kind + t.label} id={threads.findIndex(x => x.kind === t.kind) === n ? `soi-day-${t.kind}` : undefined}>
+            <p className="thread-kind"><ThreadGlyph kind={t.kind} />{threadKind[t.kind]}</p>
+            <h3>{t.label}</h3>
+            <ol>
+              {t.items.map(i => (
+                <li key={i.slug}><a href={`/ho-so/${i.slug}`}><strong>{i.title}</strong>{i.note && <span>{i.note}</span>}</a></li>
+              ))}
+            </ol>
+            {t.more && <a className="thread-more" href={t.more.href}>{t.more.label} <Arrow /></a>}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ThreadGlyph({ kind }: { kind: Thread['kind'] }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {kind === 'place' && <><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z" /><circle cx="12" cy="10" r="2.3" /></>}
+      {kind === 'time' && <><circle cx="12" cy="12" r="8" /><path d="M12 7.5V12l3 2" /></>}
+      {kind === 'person' && <><circle cx="12" cy="8.5" r="3.5" /><path d="M5 20c1-3.6 3.8-5.5 7-5.5s6 1.9 7 5.5" /></>}
+    </svg>
+  );
+}
+
 function StoryNav({ story }: { story: StoryNavData }) {
   return (
     <nav className="story-next" aria-label="Đọc tiếp trong câu chuyện">
@@ -237,7 +276,8 @@ function StoryNav({ story }: { story: StoryNavData }) {
   );
 }
 
-export function DossierView({ article: c, citations, media, dialect, related, tours, user, params = {}, preview = false, story = null }: { article: Row; citations: Row[]; media: Row[]; dialect: Row | null; related: Row[]; tours: Row[]; user: Row | null; params?: Record<string, string | undefined>; preview?: boolean; story?: StoryNavData | null }) {
+export function DossierView({ article: c, citations, media, dialect, related, tours, user, params = {}, preview = false, story = null, threads = [], tags }: { article: Row; citations: Row[]; media: Row[]; dialect: Row | null; related: Row[]; tours: Row[]; user: Row | null; params?: Record<string, string | undefined>; preview?: boolean; story?: StoryNavData | null; threads?: Thread[]; tags?: { places: string[]; era: string | null; people: string[] } }) {
+  const has = (k: Thread['kind']) => threads.some(t => t.kind === k);
   const sections = parseSections(c.sections_json ?? '[]');
   const images = media.filter(m => m.kind === 'image');
   const cover = !dialect ? images[0] : undefined;
@@ -260,6 +300,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
     ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
     ...(showGallery && !inline ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
     { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
+    ...(threads.length ? [{ href: '#soi-day', label: 'Hồ sơ này nối với' }] : []),
     { href: '#bai-lien-quan', label: 'Cùng chủ đề' },
   ];
   return (
@@ -296,6 +337,13 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           <span>{minutes} phút đọc</span>
           <a href="#nguon-tham-khao">{citations.length} nguồn</a>
         </p>
+        {tags && (tags.places.length > 0 || tags.era || tags.people.length > 0) && (
+          <p className="dossier-tags" aria-label="Nơi chốn, thời kỳ và nhân vật trong bài">
+            {tags.places.map(p => has('place') ? <a key={p} className="tag is-place" href="#soi-day-place"><ThreadGlyph kind="place" />{p}</a> : <span key={p} className="tag is-place"><ThreadGlyph kind="place" />{p}</span>)}
+            {tags.era && (has('time') ? <a className="tag is-time" href="#soi-day-time"><ThreadGlyph kind="time" />{tags.era}</a> : <span className="tag is-time"><ThreadGlyph kind="time" />{tags.era}</span>)}
+            {tags.people.slice(0, 3).map(p => has('person') ? <a key={p} className="tag is-person" href="#soi-day-person"><ThreadGlyph kind="person" />{p}</a> : <span key={p} className="tag is-person"><ThreadGlyph kind="person" />{p}</span>)}
+          </p>
+        )}
       </header>
       {cover && <div className="nb-dossier-cover nx-cover"><DocumentaryImage media={cover} eager /></div>}
       <div className="dossier-layout">
@@ -398,6 +446,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           )}
 
           {story && <StoryNav story={story} />}
+          <Threads threads={threads} />
           <section className="related-section" id="bai-lien-quan">
             <h2>Cùng chủ đề</h2>
             {related.length ? <DossierCards items={related} preview={preview} /> : <p>Chưa có hồ sơ cùng chủ đề.</p>}

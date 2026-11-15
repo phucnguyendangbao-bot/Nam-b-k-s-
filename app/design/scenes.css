@@ -233,3 +233,27 @@
 .intro-count i { display: block; width: clamp(8rem, 18vw, 16rem); height: 1px; margin-top: 8px; background: rgba(246, 241, 230, .25); overflow: hidden; }
 .intro-count i::after { content: ''; display: block; height: 100%; background: #F3C969; transform-origin: 0 50%; scale: 0 1; animation: intro-line 2500ms cubic-bezier(.45, .05, .2, 1) 300ms forwards; }
 @media (max-width: 700px) { .intro-count { display: none; } }
+
+/* 11. Sợi dây nối hồ sơ: nhãn nơi/thời/người ở đầu bài và khối "Hồ sơ này nối với" ở cuối bài. */
+.dossier-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s-4); }
+.dossier-tags .tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 9px; border-radius: 999px; font-size: var(--t-sm); line-height: 1.4; color: var(--c-ink-soft); background: var(--c-paper-sunken); border: 1px solid var(--c-line); text-decoration: none; transition: background-color .2s, border-color .2s, color .2s; }
+.dossier-tags .tag svg { flex: none; color: var(--c-accent-ink); }
+.dossier-tags a.tag:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-tint); }
+.dossier-tags a.tag::after { content: '↓'; font-size: .85em; opacity: .55; margin-left: 2px; }
+
+.threads { margin-top: var(--s-12); padding-top: var(--s-8); border-top: 1px solid var(--c-line); }
+.threads > h2 { font-size: var(--t-xl); margin: 4px 0 var(--s-6); }
+.threads-grid { display: grid; gap: var(--s-6); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.thread { scroll-margin-top: 6rem; }
+.thread-kind { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: var(--t-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--c-accent-ink); }
+.thread h3 { font-size: var(--t-lg); margin: 0 0 var(--s-3); line-height: 1.3; }
+.thread ol { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--c-accent-soft); }
+.thread li a { display: block; position: relative; padding: 10px 0 10px 18px; color: inherit; text-decoration: none; }
+.thread li a::before { content: ''; position: absolute; left: -6px; top: 17px; width: 10px; height: 10px; border-radius: 50%; background: var(--c-paper); border: 2px solid var(--c-accent); transition: background-color .2s, transform .2s; }
+.thread li a strong { display: block; font-weight: 600; line-height: 1.35; color: var(--c-ink); transition: color .2s; }
+.thread li a span { display: block; margin-top: 2px; font-size: var(--t-sm); line-height: 1.45; color: var(--c-ink-muted); }
+.thread li a:hover strong, .thread li a:focus-visible strong { color: var(--c-primary); }
+.thread li a:hover::before { background: var(--c-accent); transform: scale(1.15); }
+.thread-more { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s-2); padding-left: 18px; font-size: var(--t-sm); color: var(--c-primary); }
+.thread:target h3 { color: var(--c-primary); }
+@media (prefers-reduced-motion: reduce) { .thread li a::before, .dossier-tags .tag { transition: none; } }
