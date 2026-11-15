@@ -1,0 +1,49 @@
+/* ==========================================================================
+   Hệ chữ thống nhất (15/11/2026). Nạp sau cùng, là luật cuối cho kiểu chữ.
+   Ba họ chữ, ba vai — không thêm họ thứ tư, không đặt font-family riêng ở chỗ khác:
+     1. Charm (--f-script)       tiêu đề trang (h1) và tiêu đề mục lớn (h2 trong nội dung chính)
+     2. Newsreader (--f-display) tiêu đề nhỏ (h3, h4), tên thẻ, chữ đọc, trích dẫn
+     3. Be Vietnam Pro (--f-ui)  điều hướng, nút, nhãn, chú thích, số liệu, chân trang
+   Hai cỡ nhãn: nhãn mục (trên tiêu đề, 14px) và nhãn thẻ (trên tên thẻ, 12px). Không viết hoa, không giãn chữ.
+   ========================================================================== */
+
+/* 1. Charm: h1 và h2 mục lớn trên mọi trang */
+main :is(h1, h2):not(.is-word, .sr-only, .kn-timeline h2, .dossier-rail h2, .nb-story-card h2, .nb-story-card :is(h1, h2), [class*='card'] h2),
+.ch-head h2, .intro-title {
+  font-family: var(--f-script); font-weight: 700; font-style: normal; letter-spacing: 0; line-height: 1.15;
+}
+.hx h1 { line-height: 1.08; }
+.hx h1 span { font-family: var(--f-script); font-weight: 400; }
+/* Cỡ: ba bậc, theo vai trò chứ không theo trang */
+main h1:not(.hx h1, .is-word) { font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem); }
+main h2:not(.kn-timeline h2, .ch-head h2, .dossier-rail h2, .nb-story-card h2, [class*='card'] h2) { font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem); line-height: 1.2; }
+.nx-section h2 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem); }
+/* Mục từ: chữ đứng một mình, giữ Newsreader cho dấu rõ */
+.dossier-title.is-word { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.01em; }
+
+/* 2. Newsreader: h3, h4, tên thẻ */
+main :is(h3, h4), .kn-timeline h2, .nb-story-card :is(h2, h3), [class*='card'] :is(h2, h3), .fx-title, .bento-title {
+  font-family: var(--f-display); font-weight: 600; font-style: normal; letter-spacing: 0; line-height: 1.3;
+}
+main :is(h3, .kn-timeline h2):not(.nb-story-card h3, [class*='card'] h3, .bento-title) { font-size: var(--t-lg); }
+
+/* 3. Be Vietnam Pro: nhãn, chú thích, chân trang */
+html body :is(.eyebrow, .sx-eyebrow, .hx-eyebrow, .journey-eyebrow, .coll-sub, .thread-kind, .tp-kicker, .story-pill) {
+  font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; font-style: normal;
+  letter-spacing: .01em; text-transform: none; line-height: 1.4;
+}
+html body :is(.nb-story-kicker, .ch-entry-kicker, .tp-card-kicker, .epistemic-label, .nb-story-credit) {
+  font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 600; letter-spacing: .01em; text-transform: none;
+}
+.nb-story-credit { font-weight: 400; }
+:is(figcaption, small, .help-text, .dossier-meta) { font-family: var(--f-ui); letter-spacing: 0; }
+:is(.button, button, .nb-chip, .tag) { font-family: var(--f-ui); letter-spacing: 0; }
+html body :is(footer, .sf) :is(h2, h3) { font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; letter-spacing: .01em; line-height: 1.4; }
+.dossier-rail h2 { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 600; letter-spacing: .01em; }
+
+/* Chữ đọc: một cỡ, một khoảng dòng */
+:is(.nx-text, .article-body, .dossier-intro) { font-family: var(--f-read); }
+
+/* Tên chương trong mục lục là tên thẻ: Newsreader như mọi tên thẻ khác */
+.toc-body strong, .ch-entry h3, .hx-q strong { font-family: var(--f-display); font-weight: 600; letter-spacing: 0; }
+.toc-body strong { font-size: var(--t-lg); }

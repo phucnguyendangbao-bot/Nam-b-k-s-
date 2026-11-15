@@ -200,8 +200,6 @@
   --c-ev-note: #555D72;
   --c-ev-note-soft: #E8EAF0;
 
-  --f-display: 'Newsreader', 'Noto Serif', Georgia, serif;
-  --f-read: 'Newsreader', 'Noto Serif', Georgia, serif;
   --tr-display: -0.012em;
   --tr-heading: -0.006em;
   --tr-title: 0em;
@@ -249,7 +247,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 /* Ảnh minh họa ngả màu cũ; rê chuột thì hiện màu thật */
 :is(.hx-image, .ch-media-frame img, .ch-entry-media img, .nb-story-media img, .bento-media img, .coll-hero-photo img, .coll-feature-media img, .story-frame img, .tour-card img) {
   filter: saturate(.92) contrast(1.04);
-  transition: filter 900ms var(--ease-out), scale var(--d-reveal) var(--ease-out), opacity 720ms var(--ease-out);
+  transition: filter var(--d-reveal) var(--ease-out), scale var(--d-reveal) var(--ease-out), opacity var(--d-reveal) var(--ease-out);
 }
 @media (hover: hover) {
   :is(.ch-entry, .nb-story-card, .bento-card, .coll-feature, .ch-media, .tour-card):hover img { filter: none; }
@@ -270,11 +268,11 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 
 /* ---------- Tiêu đề trang hiện lên; đoạn dẫn theo sau ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .page-title > *, .kn-page > header > *, .coll-hero-copy > * { animation: hx-rise 700ms var(--ease-out) both; }
+  .page-title > *, .kn-page > header > *, .coll-hero-copy > * { animation: hx-rise var(--d-reveal) var(--ease-out) both; }
   .page-title > :nth-child(2), .coll-hero-copy > :nth-child(2) { animation-delay: 80ms; }
   .page-title > :nth-child(3), .coll-hero-copy > :nth-child(3) { animation-delay: 160ms; }
   .page-title > :nth-child(n+4), .coll-hero-copy > :nth-child(n+4) { animation-delay: 240ms; }
-  .coll-hero-photo { animation: nx-open 1100ms var(--ease-out) 120ms both; }
+  .coll-hero-photo { animation: nx-open var(--d-reveal) var(--ease-out) 120ms both; }
 }
 
 /* ---------- Lưới thẻ: 12 thẻ đầu, "Xem thêm" mở tiếp; thẻ lật lên nối nhau ---------- */
@@ -286,11 +284,11 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 .nx-more-grid .nb-story-body > p:not(.nb-story-kicker):not(.ev-mix) { -webkit-line-clamp: 2; }
 .nx-more-grid .nb-story-credit { display: none; }
 @media (prefers-reduced-motion: no-preference) {
-  .nx-more-grid .nb-story-card { transition: opacity 1000ms var(--ease-out), translate 1100ms var(--ease-out), box-shadow 500ms var(--ease-out); }
+  .nx-more-grid .nb-story-card { transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out), box-shadow var(--d-reveal) var(--ease-out); }
   .nx-more-item { --k: 0; }
   .nx-more-item .nb-story-card { transition-delay: calc(min(var(--k), 11) * 60ms); }
-  .nx-ready .nx-more-grid:not([data-in]) .nb-story-card { opacity: 0; translate: 0 18px; }
-  .nx-more-item.is-new .nb-story-card { animation: nx-card-in 1000ms var(--ease-out) both; animation-delay: calc(var(--k) * 60ms); }
+  .nx-ready .nx-more-grid:not([data-in]) .nb-story-card { opacity: 0; translate: 0 var(--m-rise); }
+  .nx-more-item.is-new .nb-story-card { animation: nx-card-in var(--d-reveal) var(--ease-out) both; animation-delay: calc(var(--kNone) * var(--stagger)); }
 }
 @keyframes nx-card-in { from { opacity: 0; translate: 0 18px; } }
 .nx-more-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s-3) var(--s-5); margin-top: var(--s-8); }
@@ -304,7 +302,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 .src-rows > li { border-bottom: 1px solid var(--c-line); }
 .src-row summary { display: grid; grid-template-columns: 6.5rem 1fr auto 1.5rem; align-items: center; gap: var(--s-4); min-height: 48px; padding: 8px 4px; cursor: pointer; list-style: none; transition: background var(--d-hover); }
 .src-row summary::-webkit-details-marker { display: none; }
-.src-row summary::after { content: '+'; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--c-surface); font-weight: 600; color: var(--c-ink-soft); transition: rotate 300ms var(--ease-out), background 300ms; }
+.src-row summary::after { content: '+'; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--c-surface); font-weight: 600; color: var(--c-ink-soft); transition: rotate var(--d-ui) var(--ease-out), background var(--d-ui); }
 .src-row[open] summary::after { rotate: 45deg; background: var(--c-primary-tint); color: var(--c-primary); }
 .src-row summary:hover { background: color-mix(in srgb, var(--c-paper-sunken) 70%, transparent); }
 .src-row-id { font-size: var(--t-xs); font-weight: 600; color: var(--c-ink-muted); font-variant-numeric: tabular-nums; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -320,15 +318,15 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
   .src-row-body { padding-left: 4px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .src-row[open] .src-row-body { animation: hx-rise 420ms var(--ease-out) both; }
-  .src-rows > li { transition: opacity 500ms var(--ease-out), translate 500ms var(--ease-out); transition-delay: calc(var(--k, 0) * 18ms); }
-  .nx-ready .src-rows:not([data-in]) > li { opacity: 0; translate: 0 10px; }
+  .src-row[open] .src-row-body { animation: hx-rise var(--d-ui) var(--ease-out) both; }
+  .src-rows > li { transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out); transition-delay: calc(min(var(--k, 0), 6) * var(--stagger)); }
+  .nx-ready .src-rows:not([data-in]) > li { opacity: 0; translate: 0 var(--m-rise); }
 }
 
 /* ---------- Hành trình đọc: mục gấp lại, mở bằng cách bấm tiêu đề ---------- */
 .jr-fold summary { display: block; cursor: pointer; list-style: none; position: relative; padding-right: 2.5rem; }
 .jr-fold summary::-webkit-details-marker { display: none; }
-.jr-fold summary::after { content: ''; position: absolute; right: 6px; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--c-accent-ink); border-bottom: 2px solid var(--c-accent-ink); rotate: 45deg; translate: 0 -70%; transition: rotate 400ms var(--ease-out), translate 400ms var(--ease-out); }
+.jr-fold summary::after { content: ''; position: absolute; right: 6px; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--c-accent-ink); border-bottom: 2px solid var(--c-accent-ink); rotate: 45deg; translate: 0 -70%; transition: rotate var(--d-ui) var(--ease-out), translate var(--d-ui) var(--ease-out); }
 .jr-fold[open] summary::after { rotate: 225deg; translate: 0 -20%; }
 .jr-fold:not([open]) summary h3 { margin-bottom: 0; }
 .jr-article > section { margin: 18px 0; padding-top: 18px; border-top: 1px solid var(--c-line); }
@@ -336,17 +334,17 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 .jr-fold > p { font: 18px/1.9 var(--read); color: var(--c-ink-soft); white-space: pre-line; }
 .jr-fold summary h3 { transition: color var(--d-hover); }
 .jr-fold summary:hover h3 { color: var(--c-primary); }
-@media (prefers-reduced-motion: no-preference) { .jr-fold[open] > :not(summary) { animation: hx-rise 520ms var(--ease-out) both; } }
+@media (prefers-reduced-motion: no-preference) { .jr-fold[open] > :not(summary) { animation: hx-rise var(--d-reveal) var(--ease-out) both; } }
 .jr-article > h2, .jr-article > section h3 { color: var(--c-deep); }
 
 /* ---------- Khối thường gặp trên các trang khác: hiện lên khi cuộn tới ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .nx-ready :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx]:not([data-in]) > * { opacity: 0; translate: 0 16px; }
-  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx] > * { transition: opacity 1000ms var(--ease-out), translate 1100ms var(--ease-out); }
-  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(2) { transition-delay: 70ms; }
-  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(3) { transition-delay: 140ms; }
-  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(4) { transition-delay: 210ms; }
-  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(n+5) { transition-delay: 280ms; }
+  .nx-ready :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx]:not([data-in]) > * { opacity: 0; translate: 0 var(--m-rise); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx] > * { transition: opacity var(--d-reveal) var(--ease-out), translate var(--d-reveal) var(--ease-out); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(2) { transition-delay: calc(1 * var(--stagger)); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(3) { transition-delay: calc(2 * var(--stagger)); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(4) { transition-delay: calc(3 * var(--stagger)); }
+  :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .bento)[data-nx] > :nth-child(n+5) { transition-delay: calc(4 * var(--stagger)); }
 }
 /* Chữ lớn trên thẻ mục từ: thu nhỏ để không tràn */
 .nb-story-word { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem) !important; line-height: 1.05 !important; }
@@ -354,12 +352,11 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 /* ---------- Chuyển động mềm (bản 3, 09/11/2026): bỏ nghiêng theo con trỏ, bỏ lật xoay ----------
    Một ngôn ngữ duy nhất: rõ dần, trôi lên rất ít (8–18px), dài hơi (0,9–1,2 giây), đường cong lắng êm.
    Hover: thẻ nhấc nhẹ 3px với bóng mềm, ảnh tiến lại gần 3% trong hơn một giây. */
-:root { --ease-out: cubic-bezier(.22, 1, .36, 1); --d-reveal: 900ms; --m-rise: 10px; --stagger: 80ms; }
 @media (hover: hover) {
-  :is(.nb-story-card, .ch-entry, .bento-card, .related-tour, .tour-card) { transition: translate 700ms var(--ease-out), box-shadow 700ms var(--ease-out); }
+  :is(.nb-story-card, .ch-entry, .bento-card, .related-tour, .tour-card) { transition: translate var(--d-ui) var(--ease-out), box-shadow var(--d-ui) var(--ease-out); }
   :is(.nb-story-card, .bento-card, .related-tour, .tour-card):hover { translate: 0 -3px; box-shadow: 0 18px 40px -22px rgba(23, 43, 77, .35); }
   .ch-entry:hover { translate: 0 -3px; }
-  :is(.nb-story-media, .ch-entry-media, .bento-media, .ch-media-frame) img { transition: scale 1400ms var(--ease-out), filter 1200ms var(--ease-out), opacity 720ms var(--ease-out) !important; }
+  :is(.nb-story-media, .ch-entry-media, .bento-media, .ch-media-frame) img { transition: scale var(--d-scene) var(--ease-out), filter var(--d-scene) var(--ease-out), opacity var(--d-reveal) var(--ease-out) !important; }
   :is(.nb-story-card, .ch-entry, .bento-card):hover img { scale: 1.03 !important; }
 }
 .nb-story-card:active, .tour-card:active, .related-tour:active { transform: none; }
@@ -375,18 +372,6 @@ html { font-synthesis-weight: none; }
 :is(h4, h5, h6, .nx-num, .ch-entry-big, .nx-tl-year, .toc-n) { font-weight: 600; }
 .nx-dropcap::first-letter { font-weight: 600; }
 
-/* ---------- Tiêu đề uốn lượn: Charm (10/11/2026) ----------
-   Chỉ cho tiêu đề lớn (trang, chương, mục, mở đầu, tên hồ sơ). Thẻ, số, nhãn, chữ đọc giữ Newsreader / Be Vietnam Pro.
-   Charm có 400 và 700; tiêu đề dùng 700, chữ phụ trong tiêu đề mở đầu dùng 400. */
-:root { --f-script: 'Charm', 'Newsreader', Georgia, serif; }
-:is(.hx h1, .page-title h1, .dossier-title, .ch-head h2, .sx-head h2, .coll-hero-copy h1, .nx-section h2, .kn-page h1, .jr-article > h2, .tp-page h1, .fx-title, .article-references h2, .related-section h2, .nx-scrub-head h2) {
-  font-family: var(--f-script); font-weight: 700; font-style: normal; letter-spacing: 0; line-height: 1.12;
-}
-.hx h1 span { font-family: var(--f-script); font-style: normal; font-weight: 400; }
-.dossier-title.is-word { font-family: var(--f-display); }
-/* Charm có nét cao hơn: tăng nhẹ khoảng dòng, giảm cỡ tiêu đề trang một chút để không quá nặng */
-.hx h1 { line-height: 1.08; }
-.dossier-title, .page-title h1 { font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem); }
-.nx-section h2 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem); line-height: 1.2; }
+/* Tiêu đề Charm: xem type.css */
 /* Mục lục nổi bên trái nằm trên cả nền trắng lẫn mảng xanh: cho nó một nền giấy nhỏ để luôn đọc được */
 .ch-rail ol { padding: 6px 4px; border-radius: 14px; background: rgba(251, 249, 244, .92); box-shadow: 0 6px 20px -10px rgba(23, 43, 77, .35); }

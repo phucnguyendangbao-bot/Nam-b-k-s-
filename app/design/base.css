@@ -74,7 +74,7 @@ legend { font-weight: 600; padding: 0 var(--s-2); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal-ready [data-reveal]:not([data-revealed]) { translate: none; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-property: opacity, color, background-color, border-color, box-shadow !important; transition-duration: 160ms !important; }
+  *, *::before, *::after { animation-duration: var(--d-press) !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-property: opacity, color, background-color, border-color, box-shadow !important; transition-duration: var(--d-hover) !important; }
 }
 /* Giảm độ trong suốt: chất liệu mờ thành nền đặc. */
 @media (prefers-reduced-transparency: reduce) {

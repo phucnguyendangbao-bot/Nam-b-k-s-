@@ -15,6 +15,7 @@ import "./design/motion.css";
 import "./tour.css";
 import "./design/journey.css";
 import "./design/scenes.css";
+import "./design/type.css";
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer,publicContents } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';

@@ -18,7 +18,7 @@ export function JourneyIndex({ tours, allTours, contents, filter }: { tours: Row
     <header className="journey-hub-hero">
       <Image src={hero.url} alt={hero.alt} fill preload loading="eager" sizes="100vw" />
       <div className="journey-hub-shade" />
-      <div className="journey-hub-copy"><Breadcrumb items={[{ label: 'Hành trình' }]} /><p className="journey-eyebrow">ĐI QUA MỘT VÙNG ĐẤT. CHẠM VÀO MỘT CÂU CHUYỆN.</p>
+      <div className="journey-hub-copy"><Breadcrumb items={[{ label: 'Hành trình' }]} /><p className="journey-eyebrow">Đi qua một vùng đất. Chạm vào một câu chuyện.</p>
         <h1>Để miền Nam<br /><em>dẫn lối.</em></h1>
         <p>{journeyWelcome.opening}</p>
         <a href="#journey-choose" className="journey-cta">Chọn cách khám phá <span aria-hidden="true">↓</span></a>
@@ -26,7 +26,7 @@ export function JourneyIndex({ tours, allTours, contents, filter }: { tours: Row
     </header>
     <div className="journey-hub-body" id="journey-choose">
       <div className="journey-prologue"><JourneyWords text={journeyWelcome.quote} epigraph={journeyLiterature[journeyWelcome.epigraph]} /><p>{journeyWelcome.invitation}</p></div>
-      <div className="journey-hub-heading"><div><p className="journey-eyebrow">MỖI HÀNH TRÌNH, MỘT MẠCH KỂ</p><h2>Bạn muốn bắt đầu từ đâu?</h2></div><p>Xem ảnh, nghe thuyết minh và định vị trên bản đồ. Hoặc đọc sâu, theo từng hồ sơ có nguồn.</p></div>
+      <div className="journey-hub-heading"><div><p className="journey-eyebrow">Mỗi hành trình, một mạch kể</p><h2>Bạn muốn bắt đầu từ đâu?</h2></div><p>Xem ảnh, nghe thuyết minh và định vị trên bản đồ. Hoặc đọc sâu, theo từng hồ sơ có nguồn.</p></div>
       <nav className="filter-tabs" aria-label="Loại hành trình">{[['', 'Tất cả'], ['physical', 'Ảnh, âm thanh & bản đồ'], ['digital', 'Hành trình đọc']].map(([value, label]) => <a key={value} aria-current={(filter ?? '') === value ? 'page' : undefined} className={(filter ?? '') === value ? 'active' : ''} href={`/hanh-trinh${value ? `?loai=${value}` : ''}#journey-choose`}>{label}</a>)}</nav>
       {showMap && <section className="journey-featured"><div className="journey-section-head"><h2>Đi giữa những khung hình thật.</h2><p>Chọn từng điểm dừng, nghe câu chuyện rồi mở bản đồ để nhìn toàn tuyến.</p></div><MapTourCards /></section>}
       {tours.length > 0 && <section className="journey-reading-tours"><div className="journey-section-head"><h2>Đọc một nơi. Hiểu thêm nhiều điều.</h2><p>Các hành trình nối hồ sơ theo chủ đề, dành cho việc khám phá từ xa.</p></div><div className="journey-reading-grid">{tours.map((tour, index) => {
@@ -35,7 +35,7 @@ export function JourneyIndex({ tours, allTours, contents, filter }: { tours: Row
         const photo = entry ? journeyPhoto(entry) : { src: hero.url, alt: hero.alt, context: true };
         return <a className="journey-reading-card" href={`/hanh-trinh/${tour.slug}`} key={tour.id}>
           <div className="journey-card-photo"><Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 700px) 100vw, 50vw" unoptimized={photo.src.startsWith('https:')} /><span>{photo.context ? 'Ảnh bối cảnh' : 'Ảnh tư liệu'}</span></div>
-          <div className="journey-card-copy"><span className="journey-eyebrow">HÀNH TRÌNH {String(index + 1).padStart(2, '0')} · {tour.stop_count} ĐIỂM DỪNG</span><h3>{tour.title}</h3><p>{journeyNarratives[String(tour.id)]?.quote ?? tour.description}</p><span className="journey-card-arrow" aria-hidden="true">↗</span></div>
+          <div className="journey-card-copy"><span className="journey-eyebrow">Hành trình {String(index + 1).padStart(2, '0')} · {tour.stop_count} điểm dừng</span><h3>{tour.title}</h3><p>{journeyNarratives[String(tour.id)]?.quote ?? tour.description}</p><span className="journey-card-arrow" aria-hidden="true">↗</span></div>
         </a>;
       })}</div></section>}
       {!tours.length && !showMap && <p className="notice">Chưa có hành trình thuộc nhóm này. <a href="/hanh-trinh">Xem tất cả {allTours.length} hành trình đọc →</a></p>}

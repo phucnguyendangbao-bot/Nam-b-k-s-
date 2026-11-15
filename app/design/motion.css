@@ -36,8 +36,8 @@
 .hx-inner > :nth-child(3) { --i: 2; }
 .hx-inner > :nth-child(4) { --i: 3; }
 @media (prefers-reduced-motion: no-preference) {
-  .hx-image { animation: hx-settle 2200ms var(--ease-out) both; }
-  .hx-inner > * { animation: hx-rise var(--d-reveal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * var(--stagger)); }
+  .hx-image { animation: hx-settle var(--d-scene) var(--ease-out) both; }
+  .hx-inner > * { animation: hx-rise var(--d-reveal) var(--ease-out) both; animation-delay: calc(min(var(--i, 0), 6) * var(--stagger)); }
   .hx-eyebrow::before { animation: hx-line var(--d-reveal) var(--ease-out) both; animation-delay: calc(var(--stagger) * 2); }
 }
 /* Ảnh mở đầu “thức dậy”: lắng xuống và từ màu ảnh cũ hiện dần ra màu thật (14/11/2026). */
@@ -47,7 +47,7 @@
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .hx { view-timeline: --hx block; }
-    .hx-image { animation: hx-settle 2200ms var(--ease-out) both, hx-drift linear both; animation-timeline: auto, --hx; animation-range: normal, exit 0% exit 100%; }
+    .hx-image { animation: hx-settle var(--d-scene) var(--ease-out) both, hx-drift linear both; animation-timeline: auto, --hx; animation-range: normal, exit 0% exit 100%; }
     .hx-inner { animation: hx-leave linear both; animation-timeline: --hx; animation-range: exit 0% exit 60%; }
   }
 }
@@ -96,7 +96,7 @@
 :where(.ph) { position: relative; }
 .ph { isolation: isolate; background-color: var(--ph-c, var(--c-paper-deep)); }
 .ph::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--ph, none) center / cover no-repeat; filter: blur(14px) saturate(1.05); transform: scale(1.15); }
-.ph img[data-nimg] { transition: opacity 720ms var(--ease-out), scale 900ms var(--ease-out); }
+.ph img[data-nimg] { transition: opacity var(--d-reveal) var(--ease-out), scale var(--d-reveal) var(--ease-out); }
 .ph-ready .ph img[data-nimg]:not([data-loaded]) { opacity: 0; }
 .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: 1.06; }
 /* Ảnh chương: lắng từ 114% về 108%, rồi trôi chậm hơn trang một chút khi cuộn qua (chiều sâu rất nhẹ, không lắc).
@@ -116,5 +116,14 @@
   [data-reveal] > *, [data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li) { transition-delay: 0s !important; }
   .read-progress { animation-duration: auto !important; }
   .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: 1; }
-  .ph img[data-nimg] { transition: opacity 200ms linear; }
+  .ph img[data-nimg] { transition: opacity var(--d-hover) linear; }
+}
+
+/* ---------- 8. Hover nhanh, rời chậm (15/11/2026) ----------
+   Thẻ dùng chung transition cho lúc hiện (chậm, --d-reveal) và lúc hover. Trình duyệt lấy transition của trạng thái đích,
+   nên đặt nhịp nhanh ngay trên :hover: thẻ nhấc lên tức thì dưới con trỏ, rời ra thì lắng về chậm. Không đụng tới nhịp hiện nối nhau. */
+@media (hover: hover) {
+  :is(.nb-story-card, .bento-card, .related-tour, .tour-card, .ch-entry, .hx-q, .thread li a):hover {
+    transition-duration: var(--d-ui); transition-delay: 0s;
+  }
 }

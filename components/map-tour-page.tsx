@@ -94,9 +94,9 @@ export function MapTourPage({ tour, readingTours }: { tour: MapTour; readingTour
         </ol>
       </section>
       <section className="tp-after" aria-labelledby="journey-next-title">
-        <p className="journey-eyebrow">CÂU CHUYỆN CÒN TIẾP</p><h2 id="journey-next-title">Từ đây, mở một lối khác.</h2>
+        <p className="journey-eyebrow">Câu chuyện còn tiếp</p><h2 id="journey-next-title">Từ đây, mở một lối khác.</h2>
         <MapTourCards tours={mapTours.filter(other => other.id !== tour.id)} />
-        {reading.length > 0 && <div className="tp-reading-links">{reading.map(item => <a key={item.slug} href={`/hanh-trinh/${item.slug}`}><small>ĐỌC SÂU HƠN QUA HỒ SƠ LIÊN QUAN</small><strong>{item.title} ↗</strong></a>)}</div>}
+        {reading.length > 0 && <div className="tp-reading-links">{reading.map(item => <a key={item.slug} href={`/hanh-trinh/${item.slug}`}><small>Đọc sâu hơn qua hồ sơ liên quan</small><strong>{item.title} ↗</strong></a>)}</div>}
       </section>
     </main>
   );

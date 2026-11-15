@@ -597,7 +597,7 @@ export function TourPlayer({ tour, sources, audio, legs, length, others, reading
                 <em>{leg.label} · khoảng {leg.distance} · {leg.note}</em>
               </button>
             )}
-            {!leg && !done && narrative && <div className="tp-last-word"><p className="journey-eyebrow">MANG THEO SAU CHUYẾN ĐI</p><p>{narrative.closing}</p></div>}
+            {!leg && !done && narrative && <div className="tp-last-word"><p className="journey-eyebrow">Mang theo sau chuyến đi</p><p>{narrative.closing}</p></div>}
             {usedSources.length > 0 && (
               <details className="tp-sources">
                 <summary>Nguồn của chặng này ({usedSources.length})</summary>

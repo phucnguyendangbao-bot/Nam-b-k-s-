@@ -20,7 +20,7 @@
   transition: background-color var(--d-hover) var(--ease), color var(--d-hover) var(--ease), border-color var(--d-hover) var(--ease), transform var(--d-hover) var(--ease);
 }
 .button:hover { --btn-bg: var(--c-primary-hover); --btn-bd: var(--c-primary-hover); }
-.button:active { transform: scale(var(--press-scale)); transition: transform var(--d-press) ease-out, background 0ms; }
+.button:active { transform: scale(var(--press-scale)); transition: transform var(--d-press) var(--ease-out), background 0ms; }
 .button .nb-arrow { width: 18px; height: 18px; }
 .button.outline { --btn-bg: transparent; --btn-fg: var(--c-primary); --btn-bd: var(--c-primary); }
 .button.outline:hover { --btn-bg: var(--c-primary); --btn-fg: #fff; --btn-bd: var(--c-primary); }
@@ -381,24 +381,24 @@ td small { display: block; margin-top: 4px; font-size: var(--t-xs); color: var(-
 
 /* ---------- Phản hồi ngay khi nhấn (pointer-down), không chờ thả tay ---------- */
 .nb-chip, .filter-tabs a, .nb-segment button, .nb-palette-suggest button, .nb-quiz-option, .atlas-list button, .nb-search-trigger, .search-form button[type=submit], .nb-instant-clear {
-  transition: transform 220ms var(--ease), background var(--d-fast), color var(--d-fast), border-color var(--d-fast);
+  transition: transform var(--d-hover) var(--ease), background var(--d-fast), color var(--d-fast), border-color var(--d-fast);
 }
 .nb-chip:active, .filter-tabs a:active, .nb-segment button:active:not(:disabled), .nb-palette-suggest button:active, .nb-quiz-option:active:not(:disabled),
-.nb-search-trigger:active, .search-form button[type=submit]:active, .nb-instant-clear:active { transform: scale(var(--press-scale)); transition-duration: var(--d-press); transition-timing-function: ease-out; }
+.nb-search-trigger:active, .search-form button[type=submit]:active, .nb-instant-clear:active { transform: scale(var(--press-scale)); transition-duration: var(--d-press); transition-timing-function: var(--ease-out); }
 .atlas-list button:active, .nb-instant-results a:active { background: var(--c-paper-deep); transition-duration: 0ms; }
-.nb-story-card:active, .tour-card:active, .related-tour:active, .nb-category-chip:active { transform: scale(var(--press-scale)); transition: transform var(--d-press) ease-out; }
+.nb-story-card:active, .tour-card:active, .related-tour:active, .nb-category-chip:active { transform: scale(var(--press-scale)); transition: transform var(--d-press) var(--ease-out); }
 .text-link:active, .nb-link:active, .nb-text-button:active { opacity: .7; }
 
 /* ---------- Thẻ kéo (bộ thẻ từ ngữ) ---------- */
 .nb-swipe { position: relative; z-index: 1; width: 100%; display: grid; justify-items: center; touch-action: pan-y; user-select: none; -webkit-user-select: none; will-change: transform; cursor: grab; }
 .nb-swipe:active { cursor: grabbing; }
-.nb-swipe .nb-flip { transition: transform 220ms var(--ease); }
-.nb-swipe.is-pressed .nb-flip { transform: scale(.98); transition: transform var(--d-press) ease-out; }
+.nb-swipe .nb-flip { transition: transform var(--d-hover) var(--ease); }
+.nb-swipe.is-pressed .nb-flip { transform: scale(.98); transition: transform var(--d-press) var(--ease-out); }
 .nb-deck-hint { font-size: var(--t-sm); color: var(--c-ink-muted); text-align: center; max-width: 44ch; }
 /* Giảm chuyển động: thẻ không xoay 3D mà đổi mặt bằng chuyển mờ. */
 @media (prefers-reduced-motion: reduce) {
   .nb-flip-inner { transform: none !important; }
-  .nb-flip-face { backface-visibility: visible; transition: opacity 160ms ease; }
+  .nb-flip-face { backface-visibility: visible; transition: opacity var(--d-hover) var(--ease); }
   .nb-flip-back { transform: none; opacity: 0; }
   .nb-flip.is-flipped .nb-flip-back { opacity: 1; }
   .nb-flip.is-flipped .nb-flip-front { opacity: 0; }

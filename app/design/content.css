@@ -150,7 +150,7 @@
 .text-license a { color: var(--c-primary); text-decoration: underline; }
 .related-section { margin-top: var(--s-12); }
 .related-section > p { color: var(--c-ink-muted); }
-.related-tour { display: grid; gap: var(--s-2); margin-bottom: var(--s-3); padding: var(--s-6); background: var(--c-surface); border: 0; border-radius: var(--r-md); box-shadow: var(--sh-1); transition: box-shadow 300ms var(--ease), transform 300ms var(--ease); }
+.related-tour { display: grid; gap: var(--s-2); margin-bottom: var(--s-3); padding: var(--s-6); background: var(--c-surface); border: 0; border-radius: var(--r-md); box-shadow: var(--sh-1); transition: box-shadow var(--d-ui) var(--ease), transform var(--d-ui) var(--ease); }
 a.related-tour:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
 .related-tour h3 { font-size: var(--t-lg); }
 .related-tour p { font-family: var(--f-read); font-size: var(--t-sm); color: var(--c-ink-soft); }
@@ -184,7 +184,7 @@ a.related-tour:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
 .kn-nav a[aria-current='page']::after { content: ''; position: absolute; left: var(--s-4); right: var(--s-4); bottom: -1px; height: 2px; background: var(--c-ink); }
 .kn-home { padding-block: var(--section-y); }
 .kn-domains { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--s-3); }
-.kn-domain { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-6); background: var(--c-surface); border: 0; border-radius: var(--r-md); box-shadow: var(--sh-1); transition: box-shadow 300ms var(--ease), transform 300ms var(--ease); }
+.kn-domain { display: flex; flex-direction: column; gap: var(--s-2); padding: var(--s-6); background: var(--c-surface); border: 0; border-radius: var(--r-md); box-shadow: var(--sh-1); transition: box-shadow var(--d-ui) var(--ease), transform var(--d-ui) var(--ease); }
 .kn-domain:hover { box-shadow: var(--sh-2); transform: scale(1.01); }
 .kn-domain h2 { font-size: var(--t-lg); line-height: 1.25; }
 .kn-domain p { font-family: var(--f-read); font-size: var(--t-sm); line-height: 1.6; color: var(--c-ink-soft); }

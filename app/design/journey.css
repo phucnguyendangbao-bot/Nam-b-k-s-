@@ -1,12 +1,12 @@
 /* Photographic journeys: move the image, keep the reading surface steady. */
-.journey-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; line-height: 1.6; letter-spacing: .14em; }
-.journey-cta { display: inline-flex; justify-content: space-between; align-items: center; gap: 40px; padding: 15px 21px; border: 1px solid #ffffff80; border-radius: 3px; color: #fff; font: 500 14px var(--sans); text-decoration: none; background: #ffffff0d; backdrop-filter: blur(8px); transition: background .25s, border-color .25s; }
+.journey-eyebrow { font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; line-height: 1.5; letter-spacing: .01em; }
+.journey-cta { display: inline-flex; justify-content: space-between; align-items: center; gap: 40px; padding: 15px 21px; border: 1px solid #ffffff80; border-radius: 3px; color: #fff; font: 500 14px var(--sans); text-decoration: none; background: #ffffff0d; backdrop-filter: blur(8px); transition: background var(--d-hover), border-color var(--d-hover); }
 .journey-cta:hover { background: #ffffff20; border-color: #fff; }
 .journey-credit { position: absolute; z-index: 3; bottom: 20px; right: 24px; margin: 0; max-width: min(60%, 600px); font: 11px/1.5 var(--sans); color: #fff; text-shadow: 0 1px 4px #000; text-align: right; }
 .journey-credit a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .journey-scene { position: absolute; inset: 0; overflow: hidden; background: #142820; }
 .journey-scene-layer { position: absolute; inset: 0; opacity: 0; }
-.journey-scene-layer.is-current { opacity: 1; animation: journey-dissolve .9s ease both; }
+.journey-scene-layer.is-current { opacity: 1; animation: journey-dissolve var(--d-reveal) var(--ease) both; }
 .journey-scene-layer.is-previous { opacity: 1; }
 .journey-scene-layer img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 55%; animation: journey-drift 22s cubic-bezier(.16,.6,.28,1) both; }
 .journey-scene-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #071812e8 0%, #071812b3 25%, #07181226 66%), linear-gradient(0deg, #071812c4, transparent 42%); }
@@ -21,7 +21,7 @@
 .journey-view button:hover { box-shadow: inset 0 0 0 1px #ffffff80; }
 .journey-index { background: #f8f7f2; color: #183329; }
 .journey-hub-hero { position: relative; isolation: isolate; min-height: 620px; height: min(790px, 84svh); color: #fff; overflow: hidden; }
-.journey-hub-hero > img { object-fit: cover; object-position: 50% 58%; animation: journey-drift 20s ease-out both; }
+.journey-hub-hero > img { object-fit: cover; object-position: 50% 58%; animation: journey-drift 20s var(--ease-out) both; }
 .journey-hub-shade { position: absolute; inset: 0; background: linear-gradient(90deg, #092218d9 0%, #09221855 58%, #0922180d), linear-gradient(0deg, #09221899, transparent 55%); }
 .journey-hub-copy { position: relative; height: 100%; max-width: 1440px; margin: auto; padding: 22px clamp(24px, 6vw, 96px) 64px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; }
 .journey-hub-copy .breadcrumb { position: absolute; top: 20px; color: #ffffffb8; }
@@ -47,14 +47,14 @@
 .journey-featured .tp-card-sum { max-width: 480px; }
 .journey-reading-tours { margin-top: 70px; }
 .journey-reading-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px; }
-.journey-reading-card { display: grid; grid-template-columns: 38% 1fr; overflow: hidden; border: 1px solid #1833291c; border-radius: 5px; color: inherit; background: #fffdf8; text-decoration: none; transition: border-color .3s; }
+.journey-reading-card { display: grid; grid-template-columns: 38% 1fr; overflow: hidden; border: 1px solid #1833291c; border-radius: 5px; color: inherit; background: #fffdf8; text-decoration: none; transition: border-color var(--d-ui); }
 .journey-reading-card:hover { border-color: #9a7942; }
 .journey-card-photo { min-height: 245px; position: relative; overflow: hidden; }
-.journey-card-photo img { object-fit: cover; transition: transform 1s cubic-bezier(.2,.7,.3,1); }
+.journey-card-photo img { object-fit: cover; transition: transform var(--d-reveal) cubic-bezier(.2,.7,.3,1); }
 .journey-reading-card:hover img { transform: scale(1.035); }
 .journey-card-photo > span { position: absolute; bottom: 10px; left: 10px; color: #fff; background: #13291dc9; padding: 4px 7px; font: 10px var(--sans); }
 .journey-card-copy { position: relative; padding: 25px 25px 44px; }
-.journey-card-copy .journey-eyebrow { font-size: 9px; letter-spacing: .08em; color: #8e6b33; }
+.journey-card-copy .journey-eyebrow { font-size: var(--t-xs); color: #8e6b33; }
 .journey-card-copy h3 { font: 500 25px/1.3 var(--display); color: #183329; margin: 12px 0; }
 .journey-card-copy p { font: 13px/1.7 var(--sans); color: #6d756c; }
 .journey-card-arrow { position: absolute; bottom: 14px; right: 20px; font-size: 24px; color: #8e6b33; }
@@ -128,7 +128,7 @@
 .tp[data-view='cinema'] .tp-rail li + li::before { display: none; }
 .tp[data-view='cinema'] .tp-rail button { display: block; position: relative; width: 136px; height: 91px; padding: 0; overflow: hidden; border-radius: 4px; border-color: #ffffff55; background: #10241d; }
 .tp[data-view='cinema'] .tp-rail button::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #061c15e6, transparent); }
-.tp[data-view='cinema'] .tp-rail img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: opacity .35s; }
+.tp[data-view='cinema'] .tp-rail img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: opacity var(--d-ui); }
 .tp[data-view='cinema'] .tp-rail button b { position: absolute; top: 6px; left: 7px; z-index: 1; width: 20px; height: 20px; font-size: 10px; color: #fff; background: #10241d88; }
 .tp[data-view='cinema'] .tp-rail button span { display: block; position: absolute; bottom: 7px; left: 9px; right: 7px; z-index: 1; color: #fff; white-space: normal; text-align: left; font-size: 10px; line-height: 1.4; }
 .tp[data-view='cinema'] .tp-rail li.is-active button { border-color: #e3c38b; box-shadow: 0 0 0 2px #e3c38b; }
@@ -161,11 +161,11 @@
 .jr-context .journey-eyebrow { color: #927141; margin-top: 0; }
 .jr-context a { color: #295440; text-underline-offset: 4px; }
 .jr-progress { height: 2px; background: #18332920; margin: 18px 0; }
-.jr-progress span { display: block; height: 100%; background: #9d7943; transition: width .65s ease; }
+.jr-progress span { display: block; height: 100%; background: #9d7943; transition: width var(--d-reveal) var(--ease); }
 .jr-connections { margin-top: 30px; padding-top: 20px; border-top: 1px solid #17382920; }
 .jr-connections h3 { font: 500 20px var(--display); color: #183329; margin-bottom: 12px; }
 .jr-connections a { display: block; margin: 12px 0; text-decoration: none; }
-.jr-article { min-width: 0; animation: journey-copy .55s ease-out both; }
+.jr-article { min-width: 0; animation: journey-copy var(--d-reveal) var(--ease-out) both; }
 .jr-article > h2 { font: 500 clamp(30px, 3.2vw, 44px)/1.2 var(--display); color: #183329; letter-spacing: -.025em; margin: 15px 0 24px; }
 .jr-summary { font: 21px/1.75 var(--read); color: #526052; }
 .jr-scope { padding: 15px 20px; margin: 28px 0 42px; border-left: 2px solid #b39a62; background: #efede3; font: 13px/1.8 var(--sans); color: #5e675d; }
@@ -212,7 +212,7 @@
   .journey-words blockquote, .tp .journey-words blockquote { font-size: 23px; }
   .jr-bridge > p:last-child { font-size: 18px; }
   .journey-hub-copy { padding: 24px 24px 55px; }
-  .journey-hub-copy .journey-eyebrow { font-size: 9px; max-width: 270px; }
+  .journey-hub-copy .journey-eyebrow { max-width: 270px; }
   .journey-hub-copy h1 { font-size: 64px; }
   .journey-hub-hero .journey-credit { font-size: 9px; bottom: 12px; right: 15px; max-width: 85%; }
   .journey-hub-body { padding-top: 45px; }
@@ -222,7 +222,7 @@
   .journey-card-copy h3 { font-size: 23px; }
   .jr-hero { height: 76svh; min-height: 570px; }
   .jr-hero-copy { padding: 35px 22px 65px; }
-  .jr-hero-copy > .journey-eyebrow { font-size: 9px; }
+
   .jr-hero-copy > p:not(.journey-eyebrow) { font-size: 14px; }
   .jr-hero .journey-credit { max-width: 90%; right: 15px; bottom: 12px; font-size: 9px; }
   .jr-itinerary { padding: 16px; }

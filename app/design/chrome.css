@@ -59,7 +59,7 @@
 }
 .sheet-grip { position: absolute; left: 6px; top: 50%; width: 4px; height: 44px; margin-top: -22px; border-radius: 2px; background: var(--c-line-strong); }
 .sheet-close { display: block; margin: 0 0 var(--s-4) auto; padding: .5rem .875rem; border-radius: var(--r-pill); background: rgba(118, 118, 128, .12); font-size: var(--t-sm); color: var(--c-ink); }
-.sheet-close:active { background: rgba(118, 118, 128, .24); transform: scale(var(--press-scale)); transition: transform var(--d-press) ease-out; }
+.sheet-close:active { background: rgba(118, 118, 128, .24); transform: scale(var(--press-scale)); transition: transform var(--d-press) var(--ease-out); }
 .sheet ul { list-style: none; }
 .sn-drawer-label { margin: var(--s-8) 0 var(--s-2); font-size: var(--t-xs); color: var(--c-ink-muted); }
 .sn-drawer-label:first-child { margin-top: 0; }
@@ -67,12 +67,12 @@
 .sn-drawer-main a:active { opacity: .6; }
 .sheet a[aria-current='page'] { color: var(--c-primary) !important; }
 .sn-drawer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); }
-.sn-drawer-grid a { display: block; padding: var(--s-3) var(--s-4); background: var(--c-paper); border-radius: var(--r-sm); font-size: var(--t-sm); font-weight: 600; transition: transform var(--d-press) ease-out, background var(--d-fast); }
+.sn-drawer-grid a { display: block; padding: var(--s-3) var(--s-4); background: var(--c-paper); border-radius: var(--r-sm); font-size: var(--t-sm); font-weight: 600; transition: transform var(--d-press) var(--ease-out), background var(--d-fast); }
 .sn-drawer-grid a:active { transform: scale(var(--press-scale)); background: var(--c-paper-sunken); transition-duration: 0ms; }
 .sn-drawer-small { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
 .sn-drawer-small a { display: inline-block; padding: 6px 0; font-size: var(--t-sm); color: var(--c-ink-soft); }
 @media (prefers-reduced-motion: reduce) {
-  .sheet { transform: none !important; transition: opacity 200ms ease; }
+  .sheet { transform: none !important; transition: opacity var(--d-hover) var(--ease); }
   .sheet[data-state='closed'] { opacity: 0; }
   .sheet-scrim { opacity: 1 !important; }
   @starting-style { .sheet[data-state='open'] { opacity: 0; } }

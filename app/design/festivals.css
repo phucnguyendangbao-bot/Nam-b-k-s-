@@ -99,7 +99,7 @@
   .fx-stats .is-next, .atlas-stats .is-next { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .fx-card { transition: box-shadow var(--d-base, .2s) var(--ease, ease); }
+  .fx-card { transition: box-shadow var(--d-base, var(--d-hover)) var(--ease, var(--ease)); }
 }
 .fx-filters .nb-chip[aria-current='true'] { background: var(--c-ink); border-color: var(--c-ink); color: #fff; }
 .nb-chip.is-fest[aria-pressed='false'] { border-color: var(--c-accent); color: var(--c-accent-ink); }
