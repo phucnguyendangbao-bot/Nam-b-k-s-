@@ -21,8 +21,11 @@ function smoothPath(pts: Pt[]): string {
   let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[i - 1] ?? pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] ?? p2;
-    const c1: Pt = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-    const c2: Pt = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    // Giữ điểm điều khiển trong khoảng ngang của đoạn: nét không văng ra ngoài lề hay trùm lên chữ khi đổi bờ.
+    const lo = Math.min(p1[0], p2[0]), hi = Math.max(p1[0], p2[0]);
+    const cx = (v: number) => Math.min(hi, Math.max(lo, v));
+    const c1: Pt = [cx(p1[0] + (p2[0] - p0[0]) / 6), p1[1] + (p2[1] - p0[1]) / 6];
+    const c2: Pt = [cx(p2[0] - (p3[0] - p1[0]) / 6), p2[1] - (p3[1] - p1[1]) / 6];
     d += ` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)}, ${c2[0].toFixed(1)} ${c2[1].toFixed(1)}, ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
   }
   return d;
@@ -53,31 +56,65 @@ export function StoryRiver() {
       const wrap = main.querySelector('.toc-x .wrap, .wrap');
       const wr = wrap ? wrap.getBoundingClientRect() : { left: W * 0.08, right: W * 0.92 };
       // Lề: giữa mép khung chữ và mép trang; không bao giờ đè lên cột chữ.
-      const L = Math.max(28, wr.left / 2), R = W - Math.max(28, (W - wr.right) / 2);
+      // Dải thẻ cuộn ngang tràn ra quá khung chữ một chút: lấy mép thật của chúng làm ranh giới.
+      const mr2 = main.getBoundingClientRect();
+      let edgeL = wr.left - mr2.left, edgeR = wr.right - mr2.left;
+      for (const t of main.querySelectorAll('.ch-track-list')) {
+        const r = t.getBoundingClientRect();
+        edgeL = Math.min(edgeL, Math.max(0, r.left - mr2.left)); edgeR = Math.max(edgeR, Math.min(W, r.right - mr2.left));
+      }
+      const L = Math.max(22, edgeL / 2), R = W - Math.max(22, (W - edgeR) / 2);
+      // Màn hẹp: dải thẻ tràn tới mép phải, lề phải không còn chỗ. Khi đó sông chỉ men lề trái,
+      // qua mỗi dải chuyển cảnh thì uốn ra giữa (dưới nút "Chương tiếp") rồi quay về bờ trái.
+      const swap = W - edgeR >= 56;
       const hero = main.querySelector('.hx'), toc = main.querySelector('.toc-x'), ket = main.querySelector('#ket');
       const chapters = [...main.querySelectorAll<HTMLElement>('.ch[data-chapter]')];
       const tides = [...main.querySelectorAll<HTMLElement>('.ch-tide')];
       if (!hero || !toc || !chapters.length) { built = false; return; }
       const pts: Pt[] = [];
       const hb = box(hero), tb = box(toc);
-      pts.push([W * 0.52, hb.t + hb.h - 70]);
-      pts.push([W * 0.66, hb.t + hb.h + 24]);
-      pts.push([R, tb.t + tb.h * 0.5]);
-      let side: 'R' | 'L' = 'R';
+      // Dòng ghi công ảnh nằm ngay dưới ảnh mở đầu: sông đi vòng dưới nó.
+      // Đổ thẳng xuống ở bên trái chữ ghi công rồi mới vòng sang phải.
+      const credit = main.querySelector('.hx-credit-row');
+      let below = hb.t + hb.h + 24, x0 = W * 0.52;
+      if (credit) {
+        const cb = box(credit);
+        const rg = document.createRange(); rg.selectNodeContents(credit);
+        const textLeft = Math.min(...[...rg.getClientRects()].map(r => r.left - main.getBoundingClientRect().left), W);
+        below = cb.t + cb.h + 26;
+        x0 = Math.min(x0, textLeft - 44);
+      }
+      pts.push([x0, hb.t + hb.h - 70]);
+      pts.push([x0, below]);
+      pts.push(swap ? [W * 0.7, below + 34] : [L, below + 30]);
+      pts.push([swap ? R : L, tb.t + tb.h * 0.5]);
+      let side: 'R' | 'L' = swap ? 'R' : 'L';
       chapters.forEach((ch, i) => {
         const b = box(ch);
-        const x = side === 'R' ? R : L, bend = side === 'R' ? -16 : 16;
+        const x = side === 'R' ? R : L, bend = side === 'R' ? -8 : 8;
         pts.push([x + bend, b.t + b.h * 0.3]);
         pts.push([x - bend * 0.5, b.t + b.h * 0.68]);
         const tide = tides[i];
         if (!tide) return;
         const tt = box(tide);
         const last = i === chapters.length - 1;
+        // Nút "Chương tiếp" nằm giữa dải: sông men lề xuống quá đáy nút rồi mới vòng qua bên dưới,
+        // chừa khoảng cho cả thân ghe, không bao giờ cắt ngang chữ.
+        const pill = tide.querySelector('.ch-next a');
+        const pb = pill ? box(pill) : { t: tt.t + tt.h * 0.35, h: 56 };
+        const under = Math.min(pb.t + pb.h + 48, tt.t + tt.h - 46);
         pts.push([x, tt.t + 18]);
-        pts.push([W * 0.5, tt.t + tt.h * 0.42]);
+        if (swap || last) {
+          pts.push([x + (W * 0.5 - x) * 0.14, pb.t + pb.h * 0.5]);
+          pts.push([W * 0.5, under]);
+        } else {
+          // Màn hẹp: sông chỉ uốn một vòng cung ra phía trái nút, không cần vòng xuống dưới.
+          const pl = pill ? pill.getBoundingClientRect().left - main.getBoundingClientRect().left : W * 0.35;
+          pts.push([Math.max(L + 30, Math.min(W * 0.26, pl - 70)), tt.t + tt.h * 0.5]);
+        }
         if (last) return;
-        side = side === 'R' ? 'L' : 'R';
-        pts.push([side === 'R' ? R : L, tt.t + tt.h - 30]);
+        side = swap ? (side === 'R' ? 'L' : 'R') : 'L';
+        pts.push([side === 'R' ? R : L, tt.t + tt.h - 18]);
       });
       if (ket) pts.push([W * 0.5, top(ket) + 56]);
       const d = smoothPath(pts);
