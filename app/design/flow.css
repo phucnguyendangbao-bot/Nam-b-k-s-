@@ -117,3 +117,7 @@
 .nb-dossier .rail-key { padding: var(--s-4); }
 html body main.nb-dossier .dossier-rail .rail-key h3 { font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; line-height: 1.4; }
 .nb-dossier .rail-key .ev-key { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; }
+
+/* Số mục và chữ hoa đầu đoạn theo màu mực (19/11/2026, hướng "mực nâu ấm"); màu loại đoạn vẫn ở nhãn và biểu tượng. */
+.nx-num { color: var(--c-ink); }
+.nx-dropcap::first-letter { color: var(--c-ink); }

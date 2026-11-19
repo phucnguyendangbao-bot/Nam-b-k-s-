@@ -111,16 +111,16 @@
 .ch-tide.from-light .ch-river { color: #B23F25; }
 .ch-tide.from-dark .ch-river { color: #F3C969; }
 .ch-tide .ch-boat .mui, .ch-tide .ch-boat .hat { fill: #F3C969; }
-.ch-tide.from-light .ch-boat { color: #1B2540; }
+.ch-tide.from-light .ch-boat { color: #2A1E16; }
 .ch-tide.from-light .ch-boat .mui, .ch-tide.from-light .ch-boat .hat { fill: #E05A3A; }
 .ch-tide.from-dark .ch-boat { color: #F6F1E6; }
 .ch-tide .ch-next { margin: 0; padding: 0; border: 0; text-align: center; }
 .ch-tide .ch-next a {
   align-items: center; padding: .7rem 1.4rem; border-radius: var(--r-pill);
-  background: rgba(251, 249, 244, .94); color: #1B2540; box-shadow: 0 10px 30px -14px rgba(11, 21, 40, .55);
+  background: rgba(251, 249, 244, .94); color: #2A1E16; box-shadow: 0 10px 30px -14px rgba(11, 21, 40, .55);
   transition: translate var(--d-hover) var(--ease), box-shadow var(--d-hover) var(--ease);
 }
-.ch-tide .ch-next a > span:first-child { color: #5E6780; }
+.ch-tide .ch-next a > span:first-child { color: #66584B; }
 .ch-tide .ch-next a > span[aria-hidden] { color: #B23F25; }
 @media (hover: hover) { .ch-tide .ch-next a:hover { translate: 0 -2px; box-shadow: 0 16px 36px -14px rgba(11, 21, 40, .6); } }
 .ch-tide-wave { position: absolute; left: 0; bottom: -1px; z-index: -1; width: 100%; height: clamp(40px, 5.6vw, 80px); overflow: visible; }

@@ -161,17 +161,17 @@
   --c-paper-sunken: #F2EFE7;
   --c-paper-deep: #E6E2D7;
   --c-surface: #F2EFE7;
-  /* Mực xanh chàm */
-  --c-ink: #1B2540;
-  --c-ink-soft: #3A4560;
-  --c-ink-muted: #5E6780;          /* 5.6:1 trên giấy */
-  --c-line: #E6E3DA;
+  /* Mực nâu cho chữ (đổi từ chàm 19/11/2026) */
+  --c-ink: #2A1E16;                /* mực nâu (19/11/2026: chữ chàm lạnh lệch với nền giấy kem) — 15:1 */
+  --c-ink-soft: #4A3B30;
+  --c-ink-muted: #66584B;          /* 6.5:1 trên giấy */
+  --c-line: #E8E0D2;
   --c-line-strong: #CFCBC0;
-  /* Xanh dương in cho liên kết, nút */
-  --c-primary: #24467A;            /* 9:1 trên giấy */
-  --c-primary-hover: #1A345E;
-  --c-primary-soft: #D7E0EE;
-  --c-primary-tint: #E8EDF5;
+  /* Nâu đỏ cho liên kết, nút */
+  --c-primary: #8A3A1C;            /* nâu đỏ: liên kết, nút — 7.4:1 trên giấy */
+  --c-primary-hover: #6E2C14;
+  --c-primary-soft: #F1DED3;
+  --c-primary-tint: #F7ECE4;
   /* Đỏ cờ và vàng in */
   --c-accent: #E05A3A;
   --c-accent-ink: #B23F25;         /* 5.3:1 trên giấy, cho chữ nhỏ */
@@ -222,7 +222,7 @@
   background: #24467A; color: var(--c-ink);
 }
 .is-alt :is(h1, h2, h3, h4) { color: var(--c-ink); }
-.is-alt .button { --btn-fg: #1B2540; }
+.is-alt .button { --btn-fg: #2A1E16; }
 .ch.is-alt .ch-entry.is-text { background: #2D548E; }
 .ch.is-alt .ch-entry-big { color: rgba(243, 201, 105, .22); }
 .is-alt .ch-art .f { opacity: .22; }
