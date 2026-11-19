@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Chuyển cảnh khi lướt (19/11/2026). Gắn thẳng vào vị trí cuộn bằng animation-timeline: view():
+   khối đi vào màn hình thì rõ dần, trượt lên, nở về đúng cỡ; ảnh trong khối thu dần từ cận về toàn cảnh;
+   cuộn ngược thì chạy ngược. Không JavaScript, chỉ opacity và transform (chạy trên compositor).
+   Dùng thuộc tính `transform` (khác `translate`/`scale` mà hover và các hiệu ứng cũ đang dùng) nên không giẫm lên nhau.
+   Chữ đọc dài không bao giờ chuyển động; chỉ thẻ, khối, ảnh và tiêu đề mục.
+   Trang chủ đã có chuyển cảnh riêng theo chương nên không dùng lớp này (đo: chồng thêm làm rớt khung hình).
+   Trình duyệt chưa hỗ trợ hoặc bật giảm chuyển động: mọi thứ đứng yên, hiện đủ.
+   ========================================================================== */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* 1. Thẻ và khối: vào thì hiện, ra khỏi đỉnh màn hình thì lùi nhẹ */
+    main:not(.home) :is(.nb-story-card, .fx-card, .journey-card, .tp-card, .kn-domain, .related-tour, .thread, .coll-feature,
+        .next-steps li, .kn-timeline > li, .bento-cell, .article-references, .story-next,
+        .lexicon-panel, .kn-research, .dossier-lead .dossier-scope) {
+      animation: sc-card linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    /* 2. Tiêu đề mục: trượt lên sớm hơn nội dung một nhịp */
+    main:not(.home) :is(.nx-section h2, .related-section > h2, .threads > h2, .article-references > h2, .next-steps h2, .sx-head, .fx-group > h2, .kn-section > h2) {
+      animation: sc-head linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+    /* 3. Ảnh: thu từ cận về toàn cảnh khi khung ảnh đi qua màn hình */
+    main:not(.home) :is(.nb-story-media, .fx-card, .coll-feature-media, .nx-figure .photo-frame, .bento-media) img {
+      animation: sc-zoom linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+@keyframes sc-card {
+  0%   { opacity: 0; transform: translateY(40px) scale(.965); }
+  22%  { opacity: 1; transform: none; }
+  88%  { opacity: 1; transform: none; }
+  100% { opacity: .55; transform: translateY(-12px) scale(.985); }
+}
+@keyframes sc-head {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes sc-zoom {
+  from { transform: scale(1.14) translateY(-3%); }
+  to   { transform: scale(1) translateY(3%); }
+}
+
+/* Điện thoại: nhẹ hơn — chỉ thẻ trượt vào, không lùi khi ra, không thu ảnh. */
+@media (max-width: 700px) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      main:not(.home) :is(.nb-story-card, .fx-card, .journey-card, .tp-card, .kn-domain, .related-tour, .thread, .coll-feature,
+          .next-steps li, .kn-timeline > li, .bento-cell, .article-references, .story-next,
+          .lexicon-panel, .kn-research, .dossier-lead .dossier-scope) {
+        animation-name: sc-card-m; animation-range: entry 0% entry 90%;
+      }
+      main:not(.home) :is(.nb-story-media, .fx-card, .coll-feature-media, .nx-figure .photo-frame, .bento-media) img { animation: none; }
+    }
+  }
+}
+@keyframes sc-card-m { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }

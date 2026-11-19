@@ -17,6 +17,7 @@ import "./design/journey.css";
 import "./design/scenes.css";
 import "./design/flow.css";
 import "./design/backdrop.css";
+import "./design/scroll.css";
 import "./design/type.css";
 import { Backdrop } from '@/components/interactive/backdrop';
 import { Header,Footer } from '@/components/site';
