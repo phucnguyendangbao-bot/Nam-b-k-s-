@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Nền chung, chuyển màu theo cuộn (19/11/2026). Xem components/interactive/backdrop.tsx.
+   - .bd nằm cố định sau mọi nội dung (z-index -1; nền body lan ra khung nhìn nên vẫn ở dưới cùng).
+   - Ba lớp loang w0/w1/w2: mảng màu ở mép trang, cột chữ giữa giữ màu giấy. Đổi nhau theo scroll(root).
+   - Năm lớp k-*: chỉ dùng ở trang hồ sơ, màu theo loại đoạn đang đọc (data-tone do JS đặt).
+   - Hai dải sóng .bd-m ở lề, chỉ hiện khi lề rộng ≥ 32px, trôi chậm theo cuộn.
+   Chỉ animate opacity/transform. Không blur, không filter.
+   ========================================================================== */
+.bd { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict;
+  --gold: #D9A441; --indigo: #24467A; --terra: #B23F25; --green: #2E5E55; --lily: #6A4A7E; --slate: #555D72;
+  --a: var(--gold); --b: var(--indigo); --c: var(--terra); --m: var(--terra); }
+.bd[data-bd='dossier']    { --a: var(--gold);  --b: var(--green);  --c: var(--indigo); --m: var(--indigo); }
+.bd[data-bd='collection'] { --a: var(--terra); --b: var(--gold);   --c: var(--indigo); --m: var(--terra); }
+.bd[data-bd='knowledge']  { --a: var(--indigo); --b: var(--lily);  --c: var(--green);  --m: var(--indigo); }
+.bd[data-bd='journey']    { --a: var(--green); --b: var(--gold);   --c: var(--terra);  --m: var(--green); }
+.bd[data-bd='map']        { --a: var(--green); --b: var(--indigo); --c: var(--gold);   --m: var(--green); }
+.bd[data-bd='festival']   { --a: var(--terra); --b: var(--gold);   --c: var(--lily);   --m: var(--terra); }
+.bd[data-bd='default']    { --a: var(--gold);  --b: var(--indigo); --c: var(--green);  --m: var(--indigo); }
+
+.bd-w, .bd-k { position: absolute; inset: 0; opacity: 0; }
+.bd-w.w0 { opacity: 1;
+  background:
+    radial-gradient(52vw 46vh at 0% 0%, color-mix(in srgb, var(--a) 30%, transparent), transparent 72%),
+    radial-gradient(46vw 52vh at 100% 100%, color-mix(in srgb, var(--b) 20%, transparent), transparent 72%); }
+.bd-w.w1 {
+  background:
+    radial-gradient(44vw 60vh at 100% 35%, color-mix(in srgb, var(--b) 28%, transparent), transparent 72%),
+    radial-gradient(48vw 48vh at 0% 100%, color-mix(in srgb, var(--c) 20%, transparent), transparent 72%); }
+.bd-w.w2 {
+  background:
+    radial-gradient(52vw 54vh at 0% 70%, color-mix(in srgb, var(--c) 20%, transparent), transparent 72%),
+    radial-gradient(44vw 44vh at 100% 0%, color-mix(in srgb, var(--a) 20%, transparent), transparent 72%); }
+
+/* Trang hồ sơ: màu theo giọng kể. Lớp nào trùng data-tone thì hiện, các lớp loang theo cuộn lùi lại. */
+.bd-k { --t: var(--indigo); transition: opacity 900ms var(--ease-out);
+  background:
+    radial-gradient(46vw 70vh at 0% 30%, color-mix(in srgb, var(--t) 26%, transparent), transparent 72%),
+    radial-gradient(40vw 60vh at 100% 85%, color-mix(in srgb, var(--t) 18%, transparent), transparent 72%); }
+.bd-k.k-fact { --t: var(--indigo); }
+.bd-k.k-practice { --t: var(--green); }
+.bd-k.k-lore { --t: var(--lily); }
+.bd-k.k-hypo { --t: var(--terra); }
+.bd-k.k-note { --t: var(--slate); }
+.bd[data-tone='fact'] .k-fact, .bd[data-tone='practice'] .k-practice, .bd[data-tone='lore'] .k-lore,
+.bd[data-tone='hypo'] .k-hypo, .bd[data-tone='note'] .k-note { opacity: 1; }
+.bd[data-tone] .bd-w { transition: opacity 900ms var(--ease-out); opacity: 0 !important; animation: none !important; }
+
+/* Đổi màu theo cuộn: đầu trang w0, giữa w1, cuối w2 (chạy trên compositor). */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bd-w { animation: linear both; animation-timeline: scroll(root); }
+    .bd-w.w0 { animation-name: bd-w0; }
+    .bd-w.w1 { animation-name: bd-w1; }
+    .bd-w.w2 { animation-name: bd-w2; }
+  }
+}
+@keyframes bd-w0 { 0%, 30% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes bd-w1 { 0%, 25% { opacity: 0; } 45%, 65% { opacity: 1; } 85%, 100% { opacity: 0; } }
+@keyframes bd-w2 { 0%, 62% { opacity: 0; } 85%, 100% { opacity: 1; } }
+
+/* Sóng nước ở hai lề */
+.bd-m { position: absolute; top: 0; bottom: 0; width: max(0px, calc((100vw - var(--container) - var(--gutter) * 2) / 2 - 10px)); overflow: hidden; display: none; }
+.bd-m.is-left { left: 0; }
+.bd-m.is-right { right: 0; }
+.bd-m i { position: absolute; left: 0; right: 0; top: 0; height: 160vh; display: block; background: var(--m); opacity: .16;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'%3E%3Cpath d='M0 18q12-7 24 0t24 0 24 0 24 0M-12 60q12-7 24 0t24 0 24 0 24 0 24 0' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 96px 84px repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'%3E%3Cpath d='M0 18q12-7 24 0t24 0 24 0 24 0M-12 60q12-7 24 0t24 0 24 0 24 0 24 0' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 96px 84px repeat; }
+.bd-m.is-right i { -webkit-mask-position: 48px 42px; mask-position: 48px 42px; }
+@media (min-width: 1360px) { .bd-m { display: block; } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bd-m i { animation: bd-drift linear both; animation-timeline: scroll(root); }
+  }
+}
+@keyframes bd-drift { to { transform: translateY(-60vh); } }
+
+/* Trang chủ đã có màu riêng theo từng chương, phủ kín nền: nền chung chỉ giữ một lớp loang tĩnh,
+   không sóng lề, không đổi theo cuộn (đo: thêm lớp động ở đây làm rớt khung hình mà gần như không thấy). */
+.bd[data-bd='home'] :is(.w1, .w2, .bd-m) { display: none; }
+.bd[data-bd='home'] .w0 { animation: none !important; opacity: 1; }
+
+/* Giảm chuyển động: màu đứng yên, đổi giọng kể thì đổi ngay. */
+@media (prefers-reduced-motion: reduce) { .bd-k, .bd[data-tone] .bd-w { transition: none; } }
+@media print { .bd { display: none; } }

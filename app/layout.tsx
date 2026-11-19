@@ -16,7 +16,9 @@ import "./tour.css";
 import "./design/journey.css";
 import "./design/scenes.css";
 import "./design/flow.css";
+import "./design/backdrop.css";
 import "./design/type.css";
+import { Backdrop } from '@/components/interactive/backdrop';
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer,publicContents } from '@/lib/static-data';
 import { siteUrl } from '@/lib/site-url';
@@ -62,7 +64,7 @@ export default async function RootLayout({
         <link rel="preload" href="/fonts/charm-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/charm-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body><Intro total={total}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
+      <body><Backdrop/><Intro total={total}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
     </html>
   );
 }
