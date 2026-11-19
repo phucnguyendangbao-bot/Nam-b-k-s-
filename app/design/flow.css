@@ -104,3 +104,16 @@
   .ph img[data-nimg] { transition: opacity var(--d-ui) linear; }
   .reveal-ready [data-reveal]:not([data-revealed]) .sx-eyebrow::before { scale: none; }
 }
+
+/* ---------- Trang hồ sơ cân giữa (19/11/2026) ----------
+   Trước: cột chữ 680px dính lề trái, mục lục 15rem dạt sát lề phải, khoảng trống ~200–280px ở giữa → trang lệch, mục lục dồn sang phải.
+   Sau: cả khối (cột chữ + khoảng cách + mục lục) có bề rộng vừa đủ và nằm giữa trang; đầu bài, ảnh bìa và thân bài thẳng một mép. */
+.nb-dossier { --rail-w: 14rem; --rail-gap: clamp(2.5rem, 4vw, 4.5rem); max-width: calc(var(--container-read) + var(--rail-w) + var(--rail-gap) + var(--gutter) * 2); }
+.nb-dossier .dossier-layout { grid-template-columns: minmax(0, var(--container-read)) var(--rail-w); gap: var(--rail-gap); justify-content: center; }
+.nb-dossier .nb-dossier-hero, .nb-dossier .nb-dossier-cover { max-width: none; }
+@media (max-width: 1000px) { .nb-dossier { max-width: calc(var(--container-read) + var(--gutter) * 2); } .nb-dossier .dossier-layout { grid-template-columns: minmax(0, 1fr); } }
+/* Mục lục gọn: chữ dễ đọc hơn một chút, khung "Cách đọc nhãn" thành một dòng chú thích nhỏ. */
+.nb-dossier .dossier-rail ol a { font-size: var(--t-sm); padding-block: 5px; }
+.nb-dossier .rail-key { padding: var(--s-4); }
+html body main.nb-dossier .dossier-rail .rail-key h3 { font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; line-height: 1.4; }
+.nb-dossier .rail-key .ev-key { display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px; }

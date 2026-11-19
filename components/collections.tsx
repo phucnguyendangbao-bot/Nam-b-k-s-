@@ -302,10 +302,8 @@ export function DossierView({ article: c, citations, media, dialect, related, to
     ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
     ...(showGallery && !inline ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
     { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
-    ...(story ? [{ href: '#doc-tiep', label: 'Bài trước, bài tiếp theo' }] : []),
-    ...(threads.length ? [{ href: '#soi-day', label: 'Hồ sơ này nối với' }] : []),
-    { href: '#bai-lien-quan', label: 'Cùng chủ đề' },
-    ...(hasJourneys ? [{ href: '#tour-lien-quan', label: 'Có trong hành trình' }] : []),
+    // Phần cuối bài gộp làm một mục: mục lục bên phải chỉ còn các mục của bài, đỡ dài và đỡ dồn.
+    { href: story ? '#doc-tiep' : '#di-tiep', label: 'Đọc tiếp' },
   ];
   return (
     <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
