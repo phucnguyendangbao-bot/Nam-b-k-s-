@@ -5,6 +5,7 @@ import { festivalViews, type FestivalView } from '@/lib/festivals';
 import { dateStatusLabels, daysUntil, lowerFirst, directionsUrl, formatRange, lunarLabel, timeLabels, todayInVietnam } from '@/lib/festival-format';
 import { siteUrl } from '@/lib/site-url';
 import { ph } from '@/lib/media';
+import { NextSteps } from './next-steps';
 
 const anchor = (o: { id: string }) => `le-${o.id.toLowerCase()}`;
 const pageUrl = (o: { id: string }) => `${siteUrl}/lich-le-hoi#${anchor(o)}`;
@@ -77,7 +78,7 @@ export async function FestivalCalendarPage({ params }: { params: Record<string, 
   return (
     <main id="main" className="wrap page page-festivals">
       <Breadcrumb items={[{ label: 'Lịch lễ hội' }]} />
-      <PageTitle eyebrow="Mùa lễ hội" title="Lịch lễ hội" description="Các kỳ lễ có ngày cụ thể, mỗi ngày kèm nguồn và một nhãn cho biết ngày ấy chắc tới đâu. Hồ sơ lễ thức nằm riêng; ở đây là từng kỳ tổ chức." />
+      <PageTitle eyebrow="Kỳ tổ chức có nguồn" title="Lịch lễ hội" description="Các kỳ lễ có ngày cụ thể, mỗi ngày kèm nguồn và một nhãn cho biết ngày ấy chắc tới đâu. Hồ sơ lễ thức nằm riêng; ở đây là từng kỳ tổ chức." />
       <dl className="fx-stats">
         <div><dt>Sắp và đang diễn ra</dt><dd>{all.filter(o => o.time !== 'past').length}</dd></div>
         <div><dt>Đã diễn ra, có tường thuật</dt><dd>{all.filter(o => o.time === 'past').length}</dd></div>
@@ -106,6 +107,7 @@ export async function FestivalCalendarPage({ params }: { params: Record<string, 
         </section>
       )}
       {!shown.length && <p className="fx-empty">Không có kỳ lễ nào khớp bộ lọc. <a className="text-link" href="/lich-le-hoi">Xem tất cả</a></p>}
+      <NextSteps ids={[...new Set(all.flatMap(o => [o.content_id, ...o.related_ids]).filter(Boolean).map(String))]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(all.filter(o => o.date_status !== 'traditional').map(o => ({
         '@context': 'https://schema.org', '@type': 'Event', name: `${o.name} (${lowerFirst(o.edition)})`, startDate: o.start, endDate: o.end,
         eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',

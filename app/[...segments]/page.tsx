@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Admin } from '@/components/admin';
 import { ActionForm, Arrow, Breadcrumb, ContentCards, Empty, Flash, PageTitle, SearchForm, SignIn, Status } from '@/components/site';
@@ -91,6 +91,11 @@ export default async function Page({ params, searchParams }: Props) {
   for (const [k, v] of Object.entries(raw)) q[k] = Array.isArray(v) ? v[0] : v;
   const user = await viewer();
   const route = s[0];
+  // Trang tìm kiếm cũ gộp vào Khám phá: giữ nguyên từ khóa và bộ lọc.
+  if (route === 'tim-kiem') {
+    const qs = new URLSearchParams(Object.entries(q).filter((e): e is [string, string] => Boolean(e[1]))).toString();
+    redirect(`/kham-pha${qs ? `?${qs}` : ''}`);
+  }
   if (route === 'chuyen-de') { if (s.length !== 2 || !domainById(s[1])) notFound(); return <KnowledgePage params={q} domainId={s[1]} />; }
   if (knowledgePages.some(page => page.slug === route)) {
     if (s.length !== 1) notFound();
@@ -110,7 +115,7 @@ export default async function Page({ params, searchParams }: Props) {
     return <CollectionPage slug={s[1]} params={q} user={user} />;
   }
 
-  if (route === 'kham-pha' || route === 'tim-kiem') {
+  if (route === 'kham-pha') {
     const items = await publicContents();
     const cat = categories.find(c => c.slug === q['chuyen-muc']);
     const kind = q.loai && kindLabels[q.loai] ? q.loai : undefined;
@@ -126,8 +131,8 @@ export default async function Page({ params, searchParams }: Props) {
     const kinds = Object.keys(kindLabels).filter(k => inCat.some(i => i.content_kind === k));
     return (
       <main id="main" className="wrap page page-explore">
-        <Breadcrumb items={[{ label: route === 'tim-kiem' ? 'Tìm kiếm' : 'Khám phá' }]} />
-        <PageTitle title={route === 'tim-kiem' ? 'Bạn đang tìm gì?' : 'Khám phá Nam Bộ'} description={`${items.length} hồ sơ đã kiểm chứng nguồn: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói. Gõ để tìm ngay, hoặc lọc theo chuyên mục.`} />
+        <Breadcrumb items={[{ label: 'Khám phá' }]} />
+        <PageTitle title="Khám phá Nam Bộ" description={`${items.length} hồ sơ đã kiểm chứng nguồn: tên đất, nếp nhà, lễ hội, nghề và lời ăn tiếng nói. Gõ để tìm ngay, hoặc lọc theo chuyên mục.`} />
         <InstantSearch initial={q.q ?? ''}>
           <div className="explore-filters" aria-label="Bộ lọc hồ sơ">
             <div className="filter-group" role="group" aria-labelledby="loc-chuyen-muc">

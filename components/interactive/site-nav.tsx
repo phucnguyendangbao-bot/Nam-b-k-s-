@@ -179,10 +179,17 @@ export function SiteNav({ items, secondary }: { items: NavItem[]; secondary: Nav
   useEffect(() => {
     const header = document.querySelector<HTMLElement>('.sh');
     if (!header) return;
-    const onScroll = () => { header.dataset.scrolled = window.scrollY > 8 ? 'true' : 'false'; };
-    onScroll();
+    // Chỉ đọc scrollY (không ép tính bố cục), gộp theo khung hình, và chỉ ghi khi trạng thái thật sự đổi.
+    let raf = 0, last = '';
+    const apply = () => {
+      raf = 0;
+      const v = window.scrollY > 8 ? 'true' : 'false';
+      if (v !== last) { last = v; header.dataset.scrolled = v; }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    apply();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
   return (

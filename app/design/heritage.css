@@ -352,7 +352,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 /* ---------- Chuyển động mềm (bản 3, 09/11/2026): bỏ nghiêng theo con trỏ, bỏ lật xoay ----------
    Một ngôn ngữ duy nhất: rõ dần, trôi lên rất ít (8–18px), dài hơi (0,9–1,2 giây), đường cong lắng êm.
    Hover: thẻ nhấc nhẹ 3px với bóng mềm, ảnh tiến lại gần 3% trong hơn một giây. */
-@media (hover: hover) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   :is(.nb-story-card, .ch-entry, .bento-card, .related-tour, .tour-card) { transition: translate var(--d-ui) var(--ease-out), box-shadow var(--d-ui) var(--ease-out); }
   :is(.nb-story-card, .bento-card, .related-tour, .tour-card):hover { translate: 0 -3px; box-shadow: 0 18px 40px -22px rgba(23, 43, 77, .35); }
   .ch-entry:hover { translate: 0 -3px; }
@@ -362,7 +362,7 @@ blockquote, .nx-panel blockquote { font-family: var(--f-read); font-style: itali
 .nb-story-card:active, .tour-card:active, .related-tour:active { transform: none; }
 /* Ảnh chương lắng nhẹ khi tới thay vì dựng dậy */
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
     .ch-media-frame { animation: nx-soft-in linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
   }
 }

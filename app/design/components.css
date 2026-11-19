@@ -316,7 +316,7 @@
 .nb-deck-count { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--c-ink-soft); min-width: 56px; text-align: center; }
 .nb-quiz { max-width: 680px; margin-inline: auto; }
 .nb-quiz-progress { height: 4px; background: var(--c-paper-deep); border-radius: var(--r-pill); overflow: hidden; }
-.nb-quiz-progress span { display: block; height: 100%; background: var(--c-primary); transition: width var(--d-base) var(--ease); }
+.nb-quiz-progress span { display: block; height: 100%; background: var(--c-primary); transform-origin: 0 50%; transition: transform var(--d-base) var(--ease); }
 .nb-quiz-step { margin: var(--s-4) 0 var(--s-2); font-size: var(--t-sm); color: var(--c-ink-muted); }
 .nb-quiz-question { font-size: var(--t-xl); margin-bottom: var(--s-6); }
 .nb-quiz-options { display: grid; gap: var(--s-2); }

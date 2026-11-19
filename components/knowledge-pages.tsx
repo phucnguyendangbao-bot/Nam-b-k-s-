@@ -6,6 +6,7 @@ import { knowledgeCounts, knowledgeItems, knowledgeMetadata, knowledgeRelated, p
 import { knowledgeDomains, knowledgeRegions, knowledgeCommunities, knowledgePages, domainById } from '@/lib/knowledge-taxonomy';
 import { all } from '@/lib/static-data';
 import { parseSections } from '@/lib/editorial-model';
+import { NextSteps } from './next-steps';
 
 type Params = Record<string, string | undefined>;
 export function KnowledgeNav({ active }: { active: string }) {
@@ -37,11 +38,12 @@ export async function KnowledgePage({ params, domainId }: { params: Params; doma
     </section>
     {domain && <section className="kn-research"><p className="eyebrow">Hướng nghiên cứu · Chưa phải dữ kiện đã xác minh</p><h2>Những câu hỏi đang mở</h2><ul>{domain.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></section>}
     <p className="kn-note">Một hồ sơ có thể thuộc nhiều lĩnh vực. Cộng đồng và địa bàn chỉ được gắn khi nguồn hỗ trợ; để trống không có nghĩa là cộng đồng ấy vắng mặt. Tên địa bàn theo tư liệu được giữ riêng với đơn vị hành chính hiện hành.</p>
+    <NextSteps ids={domain ? (await knowledgeItems({ domain: domain.id })).map(item => String(item.id)) : []} />
   </main>;
 }
 export async function DictionaryPage({ params }: { params: Params }) {
   const items = await knowledgeItems({ q: params.q, type: 'dialect' });
-  return <main id="main" className="wrap page kn-page"><Breadcrumb items={[{ label: 'Kho tri thức', href: '/tri-thuc' }, { label: 'Từ điển' }]} /><PageTitle title="Từ điển phương ngữ" description="Tra nghĩa, ngữ cảnh, ví dụ biên soạn và nguồn của từng mục từ. Chưa có bản thu được cấp quyền thì trường phát âm được để trống." /><KnowledgeNav active="tu-dien" /><Filters params={params} dictionary /><p className="kn-result" role="status">{items.length} mục từ đã công bố.</p>{items.length ? <DossierCards items={items} /> : <div className="kn-empty"><h2>Chưa tìm thấy từ phù hợp</h2><p>Thử một cách viết khác hoặc xóa từ khóa.</p></div>}</main>;
+  return <main id="main" className="wrap page kn-page"><Breadcrumb items={[{ label: 'Kho tri thức', href: '/tri-thuc' }, { label: 'Từ điển' }]} /><PageTitle title="Từ điển phương ngữ" description="Tra nghĩa, ngữ cảnh, ví dụ biên soạn và nguồn của từng mục từ. Chưa có bản thu được cấp quyền thì trường phát âm được để trống." /><KnowledgeNav active="tu-dien" /><Filters params={params} dictionary /><p className="kn-result" role="status">{items.length} mục từ đã công bố.</p>{items.length ? <DossierCards items={items} /> : <div className="kn-empty"><h2>Chưa tìm thấy từ phù hợp</h2><p>Thử một cách viết khác hoặc xóa từ khóa.</p></div>}<NextSteps ids={(await knowledgeItems({ type: 'dialect' })).map(item => String(item.id))} /></main>;
 }
 export async function TimelinePage({ params }: { params: Params }) {
   const events = (await publicKnowledgeEvents()).filter(event => !params.domain || [event.article.knowledge.primary_domain, ...event.article.knowledge.secondary_domains].includes(params.domain as never));
@@ -50,6 +52,7 @@ export async function TimelinePage({ params }: { params: Params }) {
   return <main id="main" className="wrap page kn-page"><Breadcrumb items={[{ label: 'Kho tri thức', href: '/tri-thuc' }, { label: 'Dòng thời gian' }]} /><PageTitle title="Dòng thời gian tư liệu" description="Mỗi mốc nói rõ nó ghi nhận điều gì. Ngày ghi danh di sản, ngày xuất bản sách và thời điểm một sự kiện không được dùng thay cho niên đại ra đời của thực hành." /><KnowledgeNav active="dong-thoi-gian" />
     <form className="kn-filters" method="get"><label>Lĩnh vực<select name="domain" defaultValue={params.domain ?? ''}><option value="">Tất cả lĩnh vực</option>{knowledgeDomains.map(domain => <option key={domain.id} value={domain.id}>{domain.name}</option>)}</select></label><button className="button">Lọc mốc</button></form>
     <ol className="kn-timeline">{events.map(event => <li key={event.id}><time dateTime={event.value}>{event.precision === 'year' ? event.value : event.value.split('-').reverse().join('/')}</time><div><p className="eyebrow">{kinds[event.kind]}</p><h2>{event.title}</h2><p>{event.source_as_written}</p><a className="text-link" href={`/ho-so/${event.article.slug}`}>Đọc hồ sơ</a> · <a href={sources.find(source => source.id === event.source_id)?.url ?? '/nguon-tu-lieu'} target="_blank" rel="noreferrer">Nguồn {event.source_id}</a><details><summary>Vị trí đối chiếu</summary><p>{event.locator}</p></details></div></li>)}</ol>{!events.length && <p>Chưa có mốc đã đối chiếu trong lĩnh vực này.</p>}
+    <NextSteps ids={events.map(event => String(event.article.id))} />
   </main>;
 }
 export async function KnowledgeLinksPage({ params }: { params: Params }) {
@@ -69,5 +72,5 @@ export async function WhyPage() {
   })}</div></main>;
 }
 export function MemoriesPage() {
-  return <main id="main" className="wrap page kn-page"><Breadcrumb items={[{ label: 'Kho tri thức', href: '/tri-thuc' }, { label: 'Ông bà kể chuyện' }]} /><PageTitle title="Ông bà kể chuyện" description="Mỗi lời kể mang một góc nhìn, thời điểm và xuất xứ riêng. Ký ức cộng đồng cần sự đồng ý của người kể và tài liệu đối chiếu trước khi xuất bản." /><KnowledgeNav active="ong-ba-ke-chuyen" /><div className="kn-empty"><h2>Đang chuẩn bị những lời kể đầu tiên</h2><p>Chưa có hồ sơ ký ức đã hoàn tất thẩm định và quyền công bố trong kho này.</p></div><MemoryDraft /></main>;
+  return <main id="main" className="wrap page kn-page"><Breadcrumb items={[{ label: 'Kho tri thức', href: '/tri-thuc' }, { label: 'Ông bà kể chuyện' }]} /><PageTitle title="Ông bà kể chuyện" description="Mỗi lời kể mang một góc nhìn, thời điểm và xuất xứ riêng. Ký ức cộng đồng cần sự đồng ý của người kể và tài liệu đối chiếu trước khi xuất bản." /><KnowledgeNav active="ong-ba-ke-chuyen" /><div className="kn-empty"><h2>Đang chuẩn bị những lời kể đầu tiên</h2><p>Chưa có hồ sơ ký ức đã hoàn tất thẩm định và quyền công bố trong kho này.</p></div><MemoryDraft /><NextSteps /></main>;
 }

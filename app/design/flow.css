@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Mạch đọc (19/11/2026): một xương sống, mọi thứ khác treo vào nó.
+   - Trang chủ: một nút bắt đầu duy nhất, một dòng chữ nhỏ cho người lần đầu ghé.
+   - Cuối mỗi trang tổng hợp: khối "Đi tiếp" (components/next-steps.tsx), tối đa bốn lối.
+   - Cuối hồ sơ: bài, nguồn, bài trước/bài tiếp, rồi một khu "Đi tiếp" gọn.
+   Chỉ dùng màu, chữ và bo góc sẵn có; không thêm chuyển động mới.
+   ========================================================================== */
+
+/* ---------- Mở đầu: dòng chữ cho người lần đầu ghé ---------- */
+.hx-first { margin-top: var(--s-4); font-size: var(--t-sm); color: rgba(255, 255, 255, .82); }
+.hx-first a { color: #fff; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .5); text-underline-offset: 3px; }
+.hx-first a:hover { text-decoration-color: #fff; }
+.hx .hx-actions { margin-top: var(--s-6); }
+
+/* ---------- Khối "Đi tiếp" cuối trang tổng hợp ---------- */
+.next-steps { margin-top: var(--s-10); padding-top: var(--s-6); border-top: 1px solid var(--c-line-strong); }
+.next-steps > h2 { margin: 2px 0 var(--s-5); font-size: var(--t-xl); }
+.next-steps ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.next-steps a { display: grid; gap: 2px; height: 100%; padding: var(--s-4) var(--s-5); border-radius: var(--r-md); background: var(--c-surface); border: 1px solid var(--c-line); color: var(--c-ink); text-decoration: none; transition: border-color var(--d-hover) var(--ease), background-color var(--d-hover) var(--ease); }
+.next-steps .is-story a { background: var(--c-primary-tint, var(--c-surface)); border-color: color-mix(in srgb, var(--c-primary) 30%, transparent); }
+.next-steps small { font-size: var(--t-xs); font-weight: 600; color: var(--c-accent-ink); }
+.next-steps strong { font-size: var(--t-md); line-height: 1.3; }
+.next-steps a > span { font-size: var(--t-sm); line-height: 1.45; color: var(--c-ink-muted); }
+.next-steps a:hover { border-color: var(--c-primary); }
+.next-steps a:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.nb-note + .next-steps, .kn-note + .next-steps { margin-top: var(--s-8); }
+
+/* ---------- Hồ sơ: nhãn chuyên mục cạnh vị trí trong chương ---------- */
+.story-pill .coll-chip { display: inline-flex; align-items: center; padding: 1px 10px; border-radius: var(--r-pill); border: 1px solid var(--c-line-strong); color: var(--c-ink-soft); font-weight: 600; text-decoration: none; }
+.story-pill .coll-chip:hover { border-color: var(--c-accent-ink); color: var(--c-accent-ink); }
+
+/* ---------- Hồ sơ: một khu "Đi tiếp" gọn sau bài trước / bài tiếp ---------- */
+.nb-dossier .story-next { margin-block: var(--s-10) var(--s-8); }
+.go-on { margin-top: var(--s-6); padding-top: var(--s-6); border-top: 1px solid var(--c-line-strong); }
+.go-on > h2 { margin: 0 0 var(--s-5); font-size: var(--t-xl); }
+.go-on .go-on-h { margin: 0 0 var(--s-3); }
+.go-on .threads { margin: 0 0 var(--s-6); padding: 0; border: 0; }
+.go-on .threads-grid { gap: var(--s-5); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.go-on .thread h4 { margin: 0 0 var(--s-2); font-size: var(--t-md); }
+.go-on .thread-kind { font-size: var(--t-xs); }
+.go-on .thread li a { padding: 6px 0 6px 16px; }
+.go-on .thread li a::before { top: 12px; }
+.go-on .thread li a strong { font-size: var(--t-sm); }
+.go-on .thread li a span { display: none; }
+.go-on .thread-more { margin-top: 2px; }
+.go-on-grid { display: grid; gap: var(--s-5) var(--s-6); grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.go-on .related-section { margin: 0; }
+.go-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+.go-list a { display: grid; gap: 1px; padding: var(--s-3) var(--s-4); border-radius: var(--r-sm); background: var(--c-surface); color: var(--c-ink); text-decoration: none; border: 1px solid transparent; transition: border-color var(--d-hover) var(--ease); }
+.go-list a:hover { border-color: var(--c-line-strong); }
+.go-list a:hover strong { color: var(--c-primary); }
+.go-list small { font-size: var(--t-xs); font-weight: 600; color: var(--c-accent-ink); }
+.go-list strong { font-size: var(--t-sm); font-weight: 600; line-height: 1.35; }
+.go-list a > span { font-size: var(--t-xs); color: var(--c-ink-muted); }
+.go-list .is-map a { box-shadow: inset 3px 0 0 var(--c-gold, #C99A3B); }
+.go-list .related-tour { margin: 0; padding: var(--s-3) var(--s-4); }
+
+@media (prefers-reduced-motion: reduce) {
+  .next-steps a, .go-list a { transition: none; }
+}
+
+/* ==========================================================================
+   Ngân sách chuyển động (19/11/2026), theo số đo cuộn trang (qa/flow/findings.md)
+   - Hiện khi cuộn chỉ dùng opacity và translate (ghép lớp), không clip-path, filter hay background-size.
+   - Điện thoại (≤ 700px): chỉ tiêu đề mục rõ dần; chữ, thẻ, ảnh, tranh nét hiện ngay.
+   - Màn ≤ 900px: không kính mờ (backdrop-filter) ngoài thanh đầu trang; ảnh chương mở bằng opacity.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hx-q { background: rgba(11, 21, 40, .66); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .mx .atlas-launch-actions .button.outline { --btn-bg: rgba(11, 21, 40, .55); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .nx-progress { background: var(--c-deep); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  :is(.journey-view, .atlas-legend, .tp-panel, .tp-controls) { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .reveal-ready .ch-head[data-reveal] h2, .reveal-ready .ch-head[data-reveal]:not([data-revealed]) h2 { clip-path: none; }
+  .reveal-ready .ch-media .ch-media-frame, .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame { clip-path: none; }
+  .reveal-ready .ch-media .ch-media-frame img[data-nimg], .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame img[data-nimg] { filter: none !important; }
+  .reveal-ready .ch-media .ch-media-frame img[data-nimg] { transition: opacity var(--d-reveal) var(--ease-out) !important; }
+}
+@media (max-width: 700px) {
+  .nx-ready .nx-section:not([data-in]) :is(.nx-text, .epistemic-label, .nx-num),
+  .nx-ready :is(.nx-section, .nx-shift):not([data-in]) .nx-glyph,
+  .nx-ready .nx-shift:not([data-in]) .nx-shift-copy,
+  .nx-ready .nx-figure:not([data-in]) :is(.photo-frame, figcaption),
+  .nx-ready .nx-tl-item:not([data-in]) :is(.nx-tl-quote, .nx-tl-link, .nx-tl-year),
+  .nx-ready .nx-more-grid:not([data-in]) .nb-story-card,
+  .nx-ready .src-rows:not([data-in]) > li,
+  .nx-ready :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx]:not([data-in]) > * { opacity: 1; translate: none; }
+  .nx-ready .nx-shift:not([data-in]) .nx-shift-line, .nx-ready .nx-tl-item:not([data-in]) .nx-tl-dot { scale: none; }
+  :is(.nx-text, .nx-num, .nx-section .epistemic-label, .nx-glyph, .nx-figure .photo-frame, .nx-figure figcaption, .nx-shift-copy, .nx-shift-line, .src-rows > li),
+  .nx-more-grid .nb-story-card, :is(.fx-list, .tp-cards, .metric-grid, .journey-reading-grid, .kn-filters, .bento)[data-nx] > * { transition: none; }
+  /* Tranh nét chương: hiện đủ ngay, không tự vẽ. */
+  .nx-ready .ch-art:not([data-in]) .a { stroke-dashoffset: 0; }
+  .nx-ready .ch-art:not([data-in]) .f { opacity: .14; }
+  .nx-ready .ch-art:not([data-in]) .f.f2 { opacity: .12; }
+  .ch-art .a, .ch-art .f { transition: none; }
+}
+/* Trang chủ trên điện thoại: khối [data-reveal] (reveal.tsx) cũng chỉ còn tiêu đề rõ dần; thẻ, ảnh, chữ hiện ngay. */
+@media (max-width: 700px) {
+  .reveal-ready [data-reveal]:not([data-revealed]) > :not(h2, .sx-head, header),
+  .reveal-ready [data-reveal]:not([data-revealed]) :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li) { opacity: 1; translate: none; }
+  .reveal-ready [data-reveal]:not([data-revealed]) > :is(h2, .sx-head, header) { translate: none; }
+  [data-reveal] > :not(h2, .sx-head, header),
+  [data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li) { transition: none; }
+  .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: none; }
+  .ph img[data-nimg] { transition: opacity var(--d-ui) linear; }
+  .reveal-ready [data-reveal]:not([data-revealed]) .sx-eyebrow::before { scale: none; }
+}

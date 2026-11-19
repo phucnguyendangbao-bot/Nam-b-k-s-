@@ -104,7 +104,7 @@
 
 .ch-tide {
   position: relative; isolation: isolate; overflow: hidden;
-  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(6.5rem, 12vw, 9.5rem);
+  padding: clamp(2.25rem, 4vw, 3.5rem) 0 clamp(4.25rem, 6.4vw, 5.75rem);
   background: linear-gradient(180deg, var(--from) 0%, var(--from) 22%, color-mix(in oklab, var(--from), var(--to)) 64%, var(--to) 100%);
 }
 .ch-tide .ch-river { margin-bottom: var(--s-6); }
@@ -123,11 +123,12 @@
 .ch-tide .ch-next a > span:first-child { color: #5E6780; }
 .ch-tide .ch-next a > span[aria-hidden] { color: #B23F25; }
 @media (hover: hover) { .ch-tide .ch-next a:hover { translate: 0 -2px; box-shadow: 0 16px 36px -14px rgba(11, 21, 40, .6); } }
-.ch-tide-wave { position: absolute; left: 0; bottom: -1px; z-index: -1; width: 100%; height: clamp(56px, 8vw, 110px); overflow: visible; }
+.ch-tide-wave { position: absolute; left: 0; bottom: -1px; z-index: -1; width: 100%; height: clamp(40px, 5.6vw, 80px); overflow: visible; }
 .ch-tide-wave path { fill: var(--to); }
 .ch-tide-wave .w2 { opacity: .5; }
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  /* Sóng dâng theo cuộn chỉ trên màn rộng; điện thoại và máy tính bảng giữ sóng tĩnh. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
     .ch-tide { view-timeline: --tide block; }
     .ch-tide-wave .w1 { animation: tide-rise linear both; animation-timeline: --tide; animation-range: entry 15% cover 60%; }
     .ch-tide-wave .w2 { animation: tide-rise-2 linear both; animation-timeline: --tide; animation-range: entry 5% cover 50%; }
@@ -175,13 +176,21 @@
 
 /* ---------- 6. Dòng sông xuyên trang, ghe đi theo cuộn (components/interactive/story-river.tsx) ---------- */
 .home { position: relative; isolation: isolate; }
-.sr { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; --sp: 0; }
+.sr { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; contain: strict; }
 .sr[data-off] { display: none; }
-.sr > svg { position: absolute; left: 0; top: 0; display: block; overflow: visible; }
+.sr-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.sr-measure { fill: none; stroke: none; }
+/* Mỗi ô một màn hình; nét chấm vẽ sẵn. Nét chính nằm trong .sr-front, mở dần bằng khung cắt .sr-clip (story-river.tsx):
+   hai lớp ghép, dịch ngược chiều nhau bằng transform, không vẽ lại khi cuộn. */
+.sr-tiles { position: absolute; inset: 0; will-change: transform; }
+.sr-tile { position: absolute; left: 0; display: block; overflow: hidden; }
+.sr-clip { position: absolute; left: 0; right: 0; top: 0; overflow: hidden; will-change: transform; }
+.sr-front { position: absolute; inset: 0; will-change: transform; }
 .sr .sr-back { fill: none; stroke: url(#sr-grad); stroke-width: 1; stroke-dasharray: 2 8; stroke-linecap: round; opacity: .35; }
-.sr .sr-line { fill: none; stroke: url(#sr-grad); stroke-width: 1.6; stroke-linecap: round; opacity: .8; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--sp)); transition: stroke-dashoffset var(--d-reveal) var(--ease-out); }
-.sr-boat { position: absolute; left: 0; top: 0; width: 68px; height: 24px; offset-rotate: auto; offset-distance: calc(var(--sp) * 100%); transition: offset-distance var(--d-reveal) var(--ease-out); filter: drop-shadow(0 2px 3px rgba(11, 21, 40, .35)); }
+.sr .sr-line { fill: none; stroke: url(#sr-grad); stroke-width: 1.6; stroke-linecap: round; opacity: .8; }
+.sr-boat { position: absolute; left: 0; top: 0; width: 68px; height: 24px; transform-origin: 34px 12px; will-change: transform; }
 .sr-boat svg { display: block; overflow: visible; }
+.sr-boat .shade { fill: rgba(11, 21, 40, .28); }
 .sr-boat .hull { fill: #8A3B22; stroke: #F6F1E6; stroke-width: .9; }
 .sr-boat .deck { fill: #B8663F; }
 .sr-boat .mui { fill: #F3C969; }
@@ -191,11 +200,10 @@
 .sr-boat .wake { fill: none; stroke: #F6F1E6; stroke-width: 1; opacity: .55; stroke-linecap: round; }
 @media (prefers-reduced-motion: no-preference) { .sr-boat svg { animation: sr-sway 2.8s ease-in-out infinite; } }
 @keyframes sr-sway { 0%, 100% { translate: 0 -1px; } 50% { translate: 0 1px; } }
-@media (prefers-reduced-motion: reduce) { .sr-boat { display: none; } .sr .sr-line { transition: none; } }
 /* Nút “Chương tiếp” nằm trên sông */
 .ch-tide .ch-next { position: relative; z-index: 4; }
 .ch-tide .ch-river { display: none; }
-.ch-tide { padding-top: clamp(4rem, 8vw, 6.5rem); }
+
 
 /* ---------- 7. Bảng lướt nhanh trong màn đầu (theo ghi chú tay và ô “bấm để khám phá” của MBI) ---------- */
 .hx-quick { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; width: min(100%, calc(var(--container) + var(--gutter) * 2)); margin: 0 auto; padding: 0 var(--gutter) clamp(3.5rem, 7vh, 5rem); }

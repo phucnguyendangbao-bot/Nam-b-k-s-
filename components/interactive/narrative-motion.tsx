@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 
@@ -43,38 +43,68 @@ export function NarrativeMotion() {
     els.forEach(el => { if (!el.hasAttribute('data-in')) io.observe(el); });
     return () => io.disconnect();
   }, [path]);
+  useEffect(() => {
+    // Tranh nét của chương chỉ "sống" (nước trôi, ghe dập dềnh…) khi đang ở trong màn hình, và không bao giờ khi giảm chuyển động.
+    const arts = [...document.querySelectorAll<HTMLElement>('.ch-art')];
+    if (!arts.length || !('IntersectionObserver' in window)) return;
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        const on = e.isIntersecting && !still.matches && !document.hidden;
+        if (on !== e.target.hasAttribute('data-live')) e.target.toggleAttribute('data-live', on);
+      }
+    }, { rootMargin: '40px 0px' });
+    arts.forEach(el => io.observe(el));
+    return () => { io.disconnect(); arts.forEach(el => el.removeAttribute('data-live')); };
+  }, [path]);
   return null;
 }
 
 /**
  * Người đọc đang ở mục nào: đánh dấu trong mục lục bên phải, và trên màn hẹp hiện một nhãn nhỏ ở đáy
  * ("Mục 3/9 · tên mục") cùng vòng tiến độ. Bấm nhãn để về đầu mục.
+ *
+ * Mục đang đọc lấy từ IntersectionObserver (một dải mỏng ở 35% chiều cao màn hình), React chỉ vẽ lại khi đổi mục.
+ * Vòng tiến độ trong mục chỉ tính trên màn hẹp (nơi nó hiện), ghi thẳng vào nét SVG, không qua state.
  */
 export function DossierProgress({ sections }: { sections: { id: string; heading: string }[] }) {
   const [current, setCurrent] = useState(-1);
-  const [ratio, setRatio] = useState(0);
+  const ring = useRef<SVGCircleElement>(null);
+  const currentRef = useRef(-1);
   useEffect(() => {
     const els = sections.map(s => document.getElementById(s.id)).filter((x): x is HTMLElement => Boolean(x));
-    if (!els.length) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const line = window.innerHeight * 0.35;
-      let idx = -1;
-      els.forEach((el, i) => { if (el.getBoundingClientRect().top <= line) idx = i; });
-      const last = els[els.length - 1].getBoundingClientRect();
-      if (last.bottom < line * 0.5) idx = -1;
-      setCurrent(idx);
-      if (idx >= 0) {
-        const r = els[idx].getBoundingClientRect();
-        setRatio(Math.max(0, Math.min(1, (line - r.top) / Math.max(1, r.height))));
+    if (!els.length || !('IntersectionObserver' in window)) return;
+    const index = new Map(els.map((el, i) => [el, i]));
+    const set = (i: number) => { if (i !== currentRef.current) { currentRef.current = i; setCurrent(i); } };
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        const i = index.get(e.target as HTMLElement)!;
+        const line = (e.rootBounds?.top ?? innerHeight * 0.35);
+        if (e.isIntersecting) set(i);
+        else if (i === currentRef.current) {
+          // Rời dải đọc: đi lên quá đầu mục thì về mục trước; đọc hết mục cuối thì ẩn nhãn.
+          if (e.boundingClientRect.top > line) set(i - 1);
+          else if (i === els.length - 1) set(-1);
+        }
       }
+    }, { rootMargin: '-35% 0px -64% 0px', threshold: 0 });
+    els.forEach(el => io.observe(el));
+
+    // Vòng tiến độ: chỉ tính khi nhãn đáy hiện (màn ≤ 1000px); một lần đọc vị trí mỗi khung, ghi khi giá trị đổi.
+    const narrow = matchMedia('(max-width: 1000px)');
+    let raf = 0, last = -1;
+    const draw = () => {
+      raf = 0;
+      const i = currentRef.current;
+      if (i < 0 || !ring.current) return;
+      const r = els[i].getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (innerHeight * 0.35 - r.top) / Math.max(1, r.height)));
+      const v = Math.round((1 - (i + ratio) / els.length) * 400) / 400;
+      if (v !== last) { last = v; ring.current.style.strokeDashoffset = String(v); }
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+    const onScroll = () => { if (narrow.matches && !raf) raf = requestAnimationFrame(draw); };
+    addEventListener('scroll', onScroll, { passive: true });
+    return () => { io.disconnect(); removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
   }, [sections]);
 
   useEffect(() => {
@@ -86,12 +116,11 @@ export function DossierProgress({ sections }: { sections: { id: string; heading:
 
   const s = current >= 0 ? sections[current] : null;
   const total = sections.length;
-  const progress = s ? (current + ratio) / total : 0;
   return (
     <a className="nx-progress" href={s ? `#${s.id}` : '#main'} data-visible={s ? 'true' : 'false'} aria-hidden={s ? undefined : true} tabIndex={s ? undefined : -1}>
       <svg viewBox="0 0 36 36" width="32" height="32" aria-hidden="true">
         <circle cx="18" cy="18" r="15" className="nx-progress-track" />
-        <circle cx="18" cy="18" r="15" className="nx-progress-bar" pathLength={1} style={{ strokeDashoffset: 1 - progress }} />
+        <circle ref={ring} cx="18" cy="18" r="15" className="nx-progress-bar" pathLength={1} style={{ strokeDashoffset: s ? 1 - current / total : 1 }} />
       </svg>
       <span className="nx-progress-copy">
         <small>Mục {current + 1}/{total}</small>

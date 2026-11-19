@@ -9,7 +9,12 @@ import { useEffect, useRef } from 'react';
  *
  * Đường đi được tính từ vị trí thật của các khối, nên luôn nằm ngoài cột chữ (chỉ đi trong lề và qua dải chuyển cảnh).
  * Màu nét đổi theo nền: đỏ gạch trên nền sáng, vàng in trên nền đậm (gradient theo tọa độ trang).
- * Chỉ hiện từ 1100px (lề đủ rộng); giảm chuyển động thì sông hiện đủ, ghe đứng yên; không JS thì không có gì cả.
+ * Chỉ hiện từ 1100px (lề đủ rộng); giảm chuyển động thì sông hiện đủ, ghe đậu ở cuối; không JS thì không có gì cả.
+ *
+ * Hiệu năng (19/11/2026): trước đây cả dòng sông là một SVG cao ~15.000px, mỗi khung hình đổi stroke-dashoffset nên
+ * trình duyệt phải vẽ lại cả tấm. Nay sông được cắt thành từng ô cao bằng một màn hình; mỗi ô vẽ sẵn một lần,
+ * phần "đã chảy tới" được mở bằng hai phép dịch (transform) của một khung cắt, nên khi cuộn chỉ còn việc ghép lớp.
+ * Ghe đi bằng translate + rotate tra từ bảng điểm tính sẵn (không dùng offset-path). Chỉ ghi style khi giá trị đổi.
  */
 const LIGHT = '#B23F25', DARK = '#F3C969';
 
@@ -24,8 +29,12 @@ function smoothPath(pts: Pt[]): string {
     // Giữ điểm điều khiển trong khoảng ngang của đoạn: nét không văng ra ngoài lề hay trùm lên chữ khi đổi bờ.
     const lo = Math.min(p1[0], p2[0]), hi = Math.max(p1[0], p2[0]);
     const cx = (v: number) => Math.min(hi, Math.max(lo, v));
-    const c1: Pt = [cx(p1[0] + (p2[0] - p0[0]) / 6), p1[1] + (p2[1] - p0[1]) / 6];
-    const c2: Pt = [cx(p2[0] - (p3[0] - p1[0]) / 6), p2[1] - (p3[1] - p1[1]) / 6];
+    // Theo chiều dọc cũng vậy, và giữ thứ tự p1 ≤ c1 ≤ c2 ≤ p2: mỗi đoạn chỉ đi xuống, nên "sông chảy tới đâu" theo
+    // chiều đọc trùng với "sông chảy tới đâu" theo chiều dài nét.
+    const ylo = Math.min(p1[1], p2[1]), yhi = Math.max(p1[1], p2[1]);
+    const cy = (v: number, lo = ylo) => Math.min(yhi, Math.max(lo, v));
+    const c1: Pt = [cx(p1[0] + (p2[0] - p0[0]) / 6), cy(p1[1] + (p2[1] - p0[1]) / 6)];
+    const c2: Pt = [cx(p2[0] - (p3[0] - p1[0]) / 6), cy(p2[1] - (p3[1] - p1[1]) / 6, c1[1])];
     d += ` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)}, ${c2[0].toFixed(1)} ${c2[1].toFixed(1)}, ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
   }
   return d;
@@ -36,20 +45,109 @@ export function StoryRiver() {
   useEffect(() => {
     const root = ref.current, main = root?.parentElement;
     if (!root || !main) return;
-    const svg = root.querySelector('svg')!;
-    const line = root.querySelector<SVGPathElement>('.sr-line')!;
-    const back = root.querySelector<SVGPathElement>('.sr-back')!;
+    const tilesBox = root.querySelector<HTMLElement>('.sr-tiles')!;
+    const measure = root.querySelector<SVGPathElement>('.sr-measure')!;
     const grad = root.querySelector<SVGLinearGradientElement>('linearGradient')!;
     const boat = root.querySelector<HTMLElement>('.sr-boat')!;
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    let table: { len: number; y: number }[] = [];
-    let total = 0, mainTop = 0, raf = 0, built = false;
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    const NS = 'http://www.w3.org/2000/svg';
+
+    const clip = root.querySelector<HTMLElement>('.sr-clip')!, front = root.querySelector<HTMLElement>('.sr-front')!;
+    let H = 0, shown = -1;
+    // Bảng điểm dọc nét sông: x, y, góc (độ), và y lớn nhất tính tới điểm đó (để tra theo dòng đọc).
+    let xs = new Float32Array(0), ys = new Float32Array(0), as = new Float32Array(0), my = new Float32Array(0);
+    let mainTop = 0, vh = innerHeight, built = false, listening = false;
+    let target = 0, cur = -1, raf = 0, boatKey = '';
+
+    const at = (y: number) => {
+      // Điểm đầu tiên có maxY ≥ y; nội suy với điểm trước đó.
+      const n = my.length;
+      if (!n) return null;
+      if (y <= my[0]) return { x: xs[0], y: ys[0], a: as[0] };
+      if (y >= my[n - 1]) return { x: xs[n - 1], y: ys[n - 1], a: as[n - 1] };
+      let lo = 0, hi = n - 1;
+      while (lo < hi) { const mid = (lo + hi) >> 1; if (my[mid] < y) lo = mid + 1; else hi = mid; }
+      const i = Math.max(1, lo), t = my[i] === my[i - 1] ? 1 : (y - my[i - 1]) / (my[i] - my[i - 1]);
+      return { x: xs[i - 1] + (xs[i] - xs[i - 1]) * t, y: ys[i - 1] + (ys[i] - ys[i - 1]) * t, a: as[i] };
+    };
+
+    /** Mở phần sông phía trên dòng đọc: hai phép dịch ngược chiều nhau (khung cắt và nét bên trong), chỉ ghi khi đổi. */
+    const paint = (readY: number) => {
+      const r = Math.round(Math.min(H, Math.max(0, readY)));
+      if (r !== shown) {
+        shown = r;
+        clip.style.transform = r >= H ? '' : `translate3d(0,${r - H}px,0)`;
+        front.style.transform = r >= H ? '' : `translate3d(0,${H - r}px,0)`;
+      }
+      const p = at(readY);
+      if (!p) return;
+      const key = `${p.x.toFixed(1)},${p.y.toFixed(1)},${p.a.toFixed(1)}`;
+      if (key === boatKey) return;
+      boatKey = key;
+      boat.style.transform = `translate3d(${(p.x - 34).toFixed(1)}px,${(p.y - 12).toFixed(1)}px,0) rotate(${p.a.toFixed(1)}deg)`;
+    };
+
+    /**
+     * Đường nhanh: nơi có ScrollTimeline, cả khung cắt lẫn ghe chạy bằng animation gắn vào thanh cuộn. Trình duyệt tự
+     * nội suy trên luồng ghép lớp, JS không làm gì trong lúc cuộn. Ghe đi qua ~480 mốc tính sẵn dọc nét sông.
+     */
+    type Timeline = new (o: { source: Element; axis?: 'block' | 'inline' }) => AnimationTimeline;
+    const ScrollTL = (window as unknown as { ScrollTimeline?: Timeline }).ScrollTimeline;
+    let anims: Animation[] = [];
+    const stopAnims = () => { anims.forEach(a => a.cancel()); anims = []; };
+    const drive = () => {
+      stopAnims();
+      const se = document.scrollingElement;
+      const max = se ? se.scrollHeight - innerHeight : 0;
+      if (!ScrollTL || !se || max <= 0) return false;
+      const timeline = new ScrollTL({ source: se, axis: 'block' });
+      const r0 = vh * 0.62 - mainTop;
+      const r = (o: number) => Math.min(H, Math.max(0, r0 + o * max));
+      const cut = [0, 1, -r0 / max, (H - r0) / max].filter(o => o >= 0 && o <= 1).sort((a, b) => a - b);
+      const opts: KeyframeAnimationOptions = { timeline, fill: 'both', easing: 'linear' };
+      anims.push(clip.animate(cut.map(o => ({ offset: o, transform: `translate3d(0,${(r(o) - H).toFixed(1)}px,0)` })), opts));
+      anims.push(front.animate(cut.map(o => ({ offset: o, transform: `translate3d(0,${(H - r(o)).toFixed(1)}px,0)` })), opts));
+      const K = 480, frames: Keyframe[] = [];
+      let prev: number | null = null;
+      for (let k = 0; k <= K; k++) {
+        const p = at(r0 + (k / K) * max);
+        if (!p) return false;
+        // Góc liền mạch (không nhảy 359° → 0°) để phép nội suy giữa hai mốc không làm ghe quay vòng.
+        let a = p.a;
+        if (prev !== null) while (a - prev > 180) a -= 360;
+        if (prev !== null) while (prev - a > 180) a += 360;
+        prev = a;
+        frames.push({ offset: k / K, transform: `translate3d(${(p.x - 34).toFixed(1)}px,${(p.y - 12).toFixed(1)}px,0) rotate(${a.toFixed(1)}deg)` });
+      }
+      anims.push(boat.animate(frames, opts));
+      return true;
+    };
+
+    const readLine = () => scrollY + vh * 0.62 - mainTop;
+    const tick = () => {
+      raf = 0;
+      if (!built || document.hidden) return;
+      // Ghe trôi tới dòng đọc thay vì nhảy (thay cho transition cũ); dừng hẳn khi đã tới nơi.
+      const d = target - cur;
+      cur = cur < 0 || Math.abs(d) < 0.75 || Math.abs(d) > vh * 3 ? target : cur + d * 0.24;
+      paint(cur);
+      if (cur !== target) raf = requestAnimationFrame(tick);
+    };
+    const onScroll = () => { target = readLine(); if (!raf) raf = requestAnimationFrame(tick); };
+    const listen = (on: boolean) => {
+      if (on === listening) return;
+      listening = on;
+      if (on) { addEventListener('scroll', onScroll, { passive: true }); document.addEventListener('visibilitychange', onScroll); }
+      else { removeEventListener('scroll', onScroll); document.removeEventListener('visibilitychange', onScroll); if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+    };
 
     const build = () => {
-      const W = main.clientWidth, H = main.scrollHeight;
+      const W = main.clientWidth;
+      H = main.scrollHeight;
+      vh = innerHeight;
       const mr = main.getBoundingClientRect();
       mainTop = mr.top + scrollY;
-      if (W < 1100) { root.setAttribute('data-off', ''); built = false; return; }
+      if (W < 1100) { root.setAttribute('data-off', ''); built = false; listen(false); stopAnims(); tilesBox.textContent = ''; front.textContent = ''; return; }
       root.removeAttribute('data-off');
       const top = (el: Element) => el.getBoundingClientRect().top + scrollY - mainTop;
       const box = (el: Element) => { const r = el.getBoundingClientRect(); return { t: r.top + scrollY - mainTop, h: r.height }; };
@@ -105,7 +203,8 @@ export function StoryRiver() {
         const under = Math.min(pb.t + pb.h + 48, tt.t + tt.h - 46);
         pts.push([x, tt.t + 18]);
         if (swap || last) {
-          pts.push([x + (W * 0.5 - x) * 0.14, pb.t + pb.h * 0.5]);
+          // Xuống ngang đáy nút ở sát bờ rồi mới vòng vào giữa: dải chuyển cảnh thấp hơn trước, nét không cắt góc nút.
+          pts.push([x + (W * 0.5 - x) * 0.14, pb.t + pb.h + 6]);
           pts.push([W * 0.5, under]);
         } else {
           // Màn hẹp: sông chỉ uốn một vòng cung ra phía trái nút, không cần vòng xuống dưới.
@@ -118,13 +217,10 @@ export function StoryRiver() {
       });
       if (ket) pts.push([W * 0.5, top(ket) + 56]);
       const d = smoothPath(pts);
-      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-      svg.setAttribute('width', String(W)); svg.setAttribute('height', String(H));
-      line.setAttribute('d', d); back.setAttribute('d', d);
-      boat.style.offsetPath = `path("${d}")`;
+      measure.setAttribute('d', d);
       // Màu theo nền: mỗi khối sáng/đậm cho hai điểm dừng ở mép trên và mép dưới; dải chuyển cảnh để gradient tự pha.
       grad.setAttribute('y2', String(H));
-      grad.innerHTML = '';
+      grad.textContent = '';
       const blocks = [...main.children].filter(el => el !== root && !el.classList.contains('ch-tide') && el.getBoundingClientRect().height > 0);
       const stops: { y: number; c: string }[] = [];
       for (const el of blocks) {
@@ -133,58 +229,99 @@ export function StoryRiver() {
         stops.push({ y: b.t, c: dark ? DARK : LIGHT }, { y: b.t + b.h, c: dark ? DARK : LIGHT });
       }
       stops.sort((a, b) => a.y - b.y);
-      for (const s of stops) {
-        const st = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        st.setAttribute('offset', String(Math.min(1, Math.max(0, s.y / H))));
-        st.setAttribute('stop-color', s.c);
-        grad.appendChild(st);
+      for (const st of stops) {
+        const el = document.createElementNS(NS, 'stop');
+        el.setAttribute('offset', String(Math.min(1, Math.max(0, st.y / H))));
+        el.setAttribute('stop-color', st.c);
+        grad.appendChild(el);
       }
-      // Bảng tra: độ dài nét → tọa độ y (bao đơn điệu), để tìm ghe đang ở đâu theo dòng đọc.
-      total = line.getTotalLength();
-      table = [];
+      // Bảng điểm: mỗi ~4px dọc nét một điểm; góc lấy theo hai điểm kề nhau. Bảng này vừa để tra vị trí ghe,
+      // vừa để cắt nét sông thành từng đoạn ngắn cho từng ô (mỗi ô chỉ vẽ phần sông của nó, không vẽ cả dòng 15.000px).
+      const total = measure.getTotalLength();
+      const N = Math.max(2, Math.ceil(total / 4));
+      const step = total / N;
+      xs = new Float32Array(N + 1); ys = new Float32Array(N + 1); as = new Float32Array(N + 1); my = new Float32Array(N + 1);
       let maxY = -Infinity;
-      const N = 240;
       for (let i = 0; i <= N; i++) {
-        const len = (total * i) / N;
-        const p = line.getPointAtLength(len);
-        maxY = Math.max(maxY, p.y);
-        table.push({ len, y: maxY });
+        const q = measure.getPointAtLength((total * i) / N);
+        xs[i] = q.x; ys[i] = q.y; maxY = Math.max(maxY, q.y); my[i] = maxY;
       }
-      built = true;
-      update();
+      for (let i = 0; i <= N; i++) {
+        const a = Math.max(0, i - 1), b = Math.min(N, i + 1);
+        as[i] = (Math.atan2(ys[b] - ys[a], xs[b] - xs[a]) * 180) / Math.PI;
+      }
+      // Ô sông: cao bằng một màn hình (SVG nhỏ, vẽ sẵn một lần). Nét chấm mờ luôn hiện; nét chính nằm trong một lớp
+      // riêng, được mở dần bằng một khung cắt dịch theo dòng đọc, nên cuộn trang không phải vẽ lại gì.
+      const T = Math.max(600, Math.round(vh));
+      const n = Math.ceil(H / T);
+      let backs = '', lines = '', i0 = 0;
+      for (let k = 0; k < n; k++) {
+        const t = k * T, h = Math.min(T, H - t);
+        // Nét sông đi xuống đều (xem smoothPath), nên phần trong ô là một dải chỉ số liền nhau.
+        while (i0 < N && my[i0 + 1] < t - 6) i0++;
+        let i1 = i0;
+        while (i1 < N && my[i1] <= t + h + 6) i1++;
+        if (i1 - i0 < 1) continue;
+        let seg = `M${xs[i0].toFixed(1)} ${ys[i0].toFixed(1)}`;
+        for (let i = i0 + 1; i <= i1; i++) seg += `L${xs[i].toFixed(1)} ${ys[i].toFixed(1)}`;
+        const head = `<svg class="sr-tile" style="top:${t}px" viewBox="0 ${t} ${W} ${h}" width="${W}" height="${h}" focusable="false">`;
+        // Nét chấm nối liền qua các ô: lệch pha theo độ dài đã đi tới đầu đoạn.
+        backs += `${head}<path class="sr-back" style="stroke-dashoffset:${(-i0 * step).toFixed(1)}" d="${seg}"/></svg>`;
+        lines += `${head}<path class="sr-line" d="${seg}"/></svg>`;
+      }
+      tilesBox.innerHTML = backs;
+      front.innerHTML = lines;
+      clip.style.height = `${H}px`;
+      shown = -1;
+      built = true; boatKey = '';
+      if (still.matches) {
+        // Giảm chuyển động: sông hiện đủ, ghe đậu ở cuối sông, không theo dõi cuộn, không animation nào.
+        listen(false); stopAnims();
+        paint(H + 1);
+      } else if (drive()) {
+        listen(false);
+      } else {
+        // Trình duyệt chưa có ScrollTimeline: JS theo cuộn, gộp theo khung hình, chỉ ghi transform khi đổi.
+        listen(true);
+        target = readLine(); cur = target; paint(cur);
+      }
     };
 
-    const update = () => {
-      raf = 0;
-      if (!built) return;
-      if (reduced.matches) { root.style.setProperty('--sp', '1'); return; }
-      const readY = scrollY + innerHeight * 0.62 - mainTop;
-      let lo = 0, hi = table.length - 1;
-      while (lo < hi) { const mid = (lo + hi) >> 1; if (table[mid].y < readY) lo = mid + 1; else hi = mid; }
-      const a = table[Math.max(0, lo - 1)], b = table[lo];
-      const t = b.y === a.y ? 1 : Math.min(1, Math.max(0, (readY - a.y) / (b.y - a.y)));
-      const len = a.len + (b.len - a.len) * t;
-      root.style.setProperty('--sp', (total ? len / total : 0).toFixed(4));
+    let timer = 0, lastW = -1, lastH = -1;
+    const schedule = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        const W = main.clientWidth, H = main.scrollHeight;
+        if (W === lastW && H === lastH && built) return;
+        lastW = W; lastH = H;
+        build();
+      }, 160);
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    const ro = new ResizeObserver(() => build());
+    const ro = new ResizeObserver(schedule);
     ro.observe(main);
+    // Đổi chiều cao cửa sổ thì quãng cuộn đổi theo: dựng lại mốc (đã gộp nhịp ở schedule).
+    const onResize = () => { lastW = -1; schedule(); };
+    addEventListener('resize', onResize);
+    const onMotion = () => { lastW = -1; schedule(); };
+    still.addEventListener('change', onMotion);
+    lastW = main.clientWidth; lastH = main.scrollHeight;
     build();
-    addEventListener('scroll', onScroll, { passive: true });
-    addEventListener('resize', onScroll);
-    return () => { ro.disconnect(); removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf); };
+    return () => { ro.disconnect(); removeEventListener('resize', onResize); window.clearTimeout(timer); still.removeEventListener('change', onMotion); listen(false); stopAnims(); };
   }, []);
 
   return (
     <div className="sr" ref={ref} aria-hidden="true" data-off="">
-      <svg focusable="false">
+      <svg className="sr-defs" width="0" height="0" focusable="false">
         <defs><linearGradient id="sr-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000" /></defs>
-        <path className="sr-back" d="" />
-        <path className="sr-line" d="" pathLength={1} />
+        <path className="sr-measure" d="" />
       </svg>
-      {/* Ghe nhìn từ trên xuống: thân thoi dài, mui cong ở giữa, nón lá người chèo ở lái, vệt nước sau lái. */}
+      <div className="sr-tiles" />
+      <div className="sr-clip"><div className="sr-front" /></div>
+      {/* Ghe nhìn từ trên xuống: thân thoi dài, mui cong ở giữa, nón lá người chèo ở lái, vệt nước sau lái.
+          Bóng ghe vẽ sẵn bằng một hình mờ dưới thân (không dùng filter). */}
       <span className="sr-boat">
         <svg viewBox="-34 -12 68 24" width="68" height="24">
+          <path className="shade" d="M-29 2.5q6-6 24-6h12q18 0 24 6q-6 6-24 6h-12q-18 0-24-6z" />
           <path className="wake" d="M-26 -3q-10 3 -20 0M-26 3q-10 -3 -20 0" />
           <path className="hull" d="M-30 0q6-6 24-6h12q18 0 24 6q-6 6-24 6h-12q-18 0-24-6z" />
           <path className="deck" d="M-24 0q4-3.5 14-3.5h20q10 0 14 3.5q-4 3.5-14 3.5h-20q-10 0-14-3.5z" />

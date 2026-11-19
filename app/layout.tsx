@@ -15,6 +15,7 @@ import "./design/motion.css";
 import "./tour.css";
 import "./design/journey.css";
 import "./design/scenes.css";
+import "./design/flow.css";
 import "./design/type.css";
 import { Header,Footer } from '@/components/site';
 import { ensureSeed,viewer,publicContents } from '@/lib/static-data';
@@ -57,6 +58,9 @@ export default async function RootLayout({
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/be-vietnam-pro-latin-400-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Tiêu đề trang (Charm 700) nằm trong màn đầu ở mọi trang: nạp sớm để chữ không nhảy khi phông về muộn. */}
+        <link rel="preload" href="/fonts/charm-latin-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/charm-vietnamese-700-normal.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body><Intro total={total}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:structuredData}}/><Header user={user}/>{unavailable&&<p className="notice error">Cơ sở dữ liệu chưa sẵn sàng. Vui lòng kiểm tra kết nối và migrations.</p>}{children}<Footer user={user}/><CommandPalette/><RevealObserver/><NarrativeMotion/><PageTransitions/><ImageFade/></body>
     </html>

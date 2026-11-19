@@ -190,7 +190,7 @@ export function Quiz({ words }: { words: Word[] }) {
   const correct = picked === answer;
   return (
     <div className="nb-quiz">
-      <div className="nb-quiz-progress" aria-hidden="true"><span style={{ width: `${(step / questions.length) * 100}%` }} /></div>
+      <div className="nb-quiz-progress" aria-hidden="true"><span style={{ transform: `scaleX(${step / questions.length})` }} /></div>
       <p className="nb-quiz-step">Câu {step + 1} / {questions.length}</p>
       <h3 className="nb-quiz-question">“{q.word.headword}” nghĩa là gì?</h3>
       <div className="nb-quiz-options" role="group" aria-label="Các lựa chọn">

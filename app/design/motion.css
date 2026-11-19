@@ -102,7 +102,8 @@
 /* Ảnh chương: lắng từ 114% về 108%, rồi trôi chậm hơn trang một chút khi cuộn qua (chiều sâu rất nhẹ, không lắc).
    Trình duyệt chưa có scroll-driven animation thì ảnh đứng yên ở 100%. */
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  /* (19/11/2026) Chỉ trên màn rộng: điện thoại không trôi ảnh theo cuộn. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
     .ch-media-frame img[data-nimg] { scale: 1.08; animation: ch-drift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
     .reveal-ready .ch-media:not([data-revealed]) .ch-media-frame img[data-nimg] { scale: 1.14; }
   }
@@ -114,7 +115,7 @@
   .reveal-ready [data-reveal]:not([data-revealed]) > *,
   .reveal-ready [data-reveal]:not([data-revealed]) :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .toc > li) { translate: none; }
   [data-reveal] > *, [data-reveal] :is(.bento-cell, .fx-side > *, .mx-features > li, .mem-steps > li, .ch-list > li, .ch-more > li, .toc > li) { transition-delay: 0s !important; }
-  .read-progress { animation-duration: auto !important; }
+  .read-progress { display: none !important; }
   .reveal-ready [data-reveal]:not([data-revealed]) :is(.ch-entry-media, .bento-media) img[data-nimg] { scale: 1; }
   .ph img[data-nimg] { transition: opacity var(--d-hover) linear; }
 }

@@ -2,9 +2,9 @@ import { Breadcrumb, Classification, PageTitle } from './site';
 import { publicContents, stats } from '@/lib/static-data';
 import { classes } from '@/lib/catalog';
 import { guidePages } from '@/lib/reading-guides';
+import { chapters } from '@/lib/story';
 
 const questions = [
-  ['Bắt đầu từ đâu?', 'Chọn một trong sáu chuyên mục ở Khám phá. Nếu muốn đọc theo mạch, vào Hành trình đọc để nối nhiều hồ sơ quanh một chủ đề. Mỗi chặng vẫn có liên kết về bài đầy đủ và nguồn tham khảo.'],
   ['Có thể tìm không dấu không?', 'Có. Bạn có thể tìm “Cai Rang”, “dam gio” hoặc “nghen”. Tìm kiếm đối chiếu tiêu đề, lời giới thiệu, nội dung và nghĩa mục từ. Dùng bộ lọc trong chuyên mục để thu hẹp chủ đề.'],
   ['Một bài “có nguồn” có chắc đúng mọi nơi, mọi thời không?', 'Không. Nguồn có thể chỉ ghi một gia đình, một cuộc phỏng vấn, một địa phương hoặc một mùa lễ hội. Phần Phạm vi bài viết cho biết giới hạn ấy; câu chuyện lịch sử, thực hành hiện tại và quan niệm dân gian được tách nhãn.'],
   ['Vì sao có nhiều giả thuyết về một tên đất?', 'Một địa danh có thể được giải thích khác nhau trong các tư liệu. Dự án trình bày giả thuyết cùng nguồn của nó và ghi điều chưa biết, thay vì chọn một chuyện dễ nhớ rồi coi là lịch sử đã xác định.'],
@@ -14,7 +14,9 @@ const questions = [
 ];
 
 export function ContentFAQ() {
-  return <section className="article-body" aria-labelledby="cau-hoi-thuong-gap"><h2 id="cau-hoi-thuong-gap">Những điều bạn có thể muốn biết</h2>{questions.map(([title, text]) => <details className="admin-box" key={title}><summary>{title}</summary><p>{text}</p></details>)}</section>;
+  return <section className="article-body" aria-labelledby="cau-hoi-thuong-gap"><h2 id="cau-hoi-thuong-gap">Những điều bạn có thể muốn biết</h2>
+    <details className="admin-box" id="bat-dau" open><summary>Bắt đầu từ đâu?</summary><p>Đọc câu chuyện sáu chương ở trang chủ, từ <a href="/#chuong-1">Chương 1 · {chapters[0].name}</a>. Mỗi chương dẫn vào các hồ sơ đã kiểm chứng; cuối mỗi hồ sơ có lối sang bài tiếp theo. Muốn đọc theo chủ đề thì mở <a href="/kham-pha">Khám phá</a>; muốn đi theo một tuyến thì chọn <a href="/hanh-trinh">Hành trình</a>. Mỗi chặng vẫn dẫn về bài đầy đủ và nguồn tham khảo.</p></details>
+    {questions.map(([title, text]) => <details className="admin-box" key={title}><summary>{title}</summary><p>{text}</p></details>)}</section>;
 }
 
 export function EvidenceGuide() {

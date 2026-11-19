@@ -128,7 +128,7 @@ export function CommandPalette() {
         <ul className="nb-palette-list" id="nb-palette-list" role="listbox" ref={list}>
           {failed && <li className="nb-palette-empty">Chưa tải được dữ liệu tìm kiếm. Kiểm tra kết nối rồi mở lại bảng tìm (Ctrl K).</li>}
           {!failed && !entries && <li className="nb-palette-empty">Đang tải…</li>}
-          {entries && query.trim() && !results.length && <li className="nb-palette-empty">Chưa có hồ sơ nào khớp “{query}”. Thử từ khác, hoặc <a href={`/tim-kiem?q=${encodeURIComponent(query)}`}>mở trang tìm kiếm</a>.</li>}
+          {entries && query.trim() && !results.length && <li className="nb-palette-empty">Chưa có hồ sơ nào khớp “{query}”. Thử từ khác, hoặc <a href={`/kham-pha?q=${encodeURIComponent(query)}`}>mở trang tìm kiếm</a>.</li>}
           {results.map((r, i) => (
             <li key={r.href} id={`nb-palette-${i}`} data-index={i} role="option" aria-selected={i === active}>
               <a href={r.href} className={`tone-${r.tone} ${i === active ? 'is-active' : ''}`} onMouseMove={() => setActive(i)}>
@@ -157,7 +157,7 @@ export function InstantSearch({ initial = '', children }: { initial?: string; ch
   const results = useMemo(() => (entries ? rankEntries(entries.filter(e => e.type !== 'page'), query, 40) : []), [entries, query]);
   return (
     <div className="nb-instant">
-      <form className="search-form nb-instant-form" role="search" action="/tim-kiem" onSubmit={e => e.preventDefault()}>
+      <form className="search-form nb-instant-form" role="search" action="/kham-pha" onSubmit={e => e.preventDefault()}>
         <label className="sr-only" htmlFor="nb-instant-q">Tìm trong các hồ sơ đã công bố</label>
         <svg className="nb-search-glyph" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="2.4" /><path d="m16 16 4.5 4.5" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
         <input id="nb-instant-q" name="q" value={query} onChange={e => setQuery(e.target.value)} placeholder="Gõ để tìm ngay: chợ nổi, mần, đám giỗ…" autoComplete="off" maxLength={120} />

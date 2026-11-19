@@ -29,17 +29,18 @@ const navItems: NavItem[] = [
   {
     label: 'Văn hóa',
     menu: [
-      { href: '/kham-pha', label: 'Khám phá: tất cả hồ sơ', note: 'Mọi hồ sơ đã kiểm chứng, lọc theo lĩnh vực và địa bàn.' },
+      { href: '/kham-pha', label: 'Khám phá: tất cả hồ sơ', note: 'Mọi hồ sơ đã kiểm chứng, lọc theo chuyên mục và loại hồ sơ.' },
       domain('tin-nguong-ton-giao'), domain('van-hoc-nghe-thuat'), domain('lang-nghe-sinh-ke'), domain('kien-truc-khong-gian-song'),
       domain('lich-su-khao-co'), domain('dia-danh'), domain('nhan-vat-ky-uc'), domain('dia-ly-sinh-thai'),
-      domain('phuong-ngu-nam-bo', 'Phương ngữ Nam Bộ', '/tu-dien'),
+      domain('le-hoi'), domain('phuong-ngu-nam-bo'),
+      { href: '/tu-dien', label: 'Từ điển phương ngữ', note: 'Nghĩa, ngữ cảnh và nguồn của từng mục từ.' },
       { href: '/dong-thoi-gian', label: 'Dòng thời gian tư liệu', note: 'Các mốc có nguồn, phân biệt ghi danh và sự kiện.' },
       { href: '/vi-sao-lai-the', label: 'Vì sao lại thế?', note: 'Lời giải thích và điều chưa rõ trong các hồ sơ.' },
     ],
     all: { href: '/tri-thuc', label: 'Kho tri thức: đủ 12 lĩnh vực' },
   },
   { href: '/chuyen-de/phong-tuc-doi-song', label: 'Phong tục & đời sống' },
-  { href: '/lich-le-hoi', label: 'Lễ hội' },
+  { href: '/lich-le-hoi', label: 'Lịch lễ hội' },
   { href: '/chuyen-de/am-thuc', label: 'Ẩm thực' },
   { href: '/ban-do', label: 'Bản đồ' },
 ];
@@ -74,8 +75,8 @@ export function Header({ user }: { user: Row | null }) {
 
 const footerGroups: { title: string; links: [string, string][] }[] = [
   { title: 'Khám phá', links: categories.map(c => [`/chuyen-muc/${c.slug}`, c.name]) },
-  { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian'], ['/lich-le-hoi', 'Lịch lễ hội'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
-  { title: 'Dự án', links: [['/ve-du-an', 'Giới thiệu dự án'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
+  { title: 'Tra cứu', links: [['/kham-pha', 'Tất cả hồ sơ'], ['/tri-thuc', 'Kho tri thức'], ['/tu-dien', 'Từ điển phương ngữ'], ['/dong-thoi-gian', 'Dòng thời gian tư liệu'], ['/lich-le-hoi', 'Lịch lễ hội'], ['/ban-do', 'Bản đồ di sản'], ['/hanh-trinh', 'Hành trình']] },
+  { title: 'Dự án', links: [['/ve-du-an', 'Về dự án'], ['/hoi-dap#bat-dau', 'Bắt đầu từ đâu'], ['/huong-dan-doc', 'Hướng dẫn đọc'], ['/ong-ba-ke-chuyen', 'Ông bà kể chuyện'], ['/ky-uc-cong-dong', 'Gửi ký ức']] },
   { title: 'Chính sách', links: [['/nguyen-tac-bien-tap', 'Nguyên tắc biên tập'], ['/quyen-su-dung', 'Sử dụng và ghi công'], ['/tinh-trang-tu-lieu', 'Tình trạng tư liệu']] },
 ];
 
@@ -160,7 +161,7 @@ export function Flash({ params }: { params: Record<string, string | undefined> }
   return <>{params.done && <p className="notice success" role="status">{params.done}</p>}{params.error && <p className="notice error" role="alert">{params.error}</p>}</>;
 }
 
-export function SearchForm({ q = '', action = '/tim-kiem', placeholder = 'Tìm tên đất, phong tục, một từ địa phương…' }: { q?: string; action?: string; placeholder?: string }) {
+export function SearchForm({ q = '', action = '/kham-pha', placeholder = 'Tìm tên đất, phong tục, một từ địa phương…' }: { q?: string; action?: string; placeholder?: string }) {
   return (
     <form className="search-form" action={action} role="search">
       <label className="sr-only" htmlFor="search-q">Từ khóa tìm kiếm</label>

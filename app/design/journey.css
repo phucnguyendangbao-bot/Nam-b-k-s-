@@ -161,7 +161,7 @@
 .jr-context .journey-eyebrow { color: #927141; margin-top: 0; }
 .jr-context a { color: #295440; text-underline-offset: 4px; }
 .jr-progress { height: 2px; background: #18332920; margin: 18px 0; }
-.jr-progress span { display: block; height: 100%; background: #9d7943; transition: width var(--d-reveal) var(--ease); }
+.jr-progress span { display: block; height: 100%; background: #9d7943; transform-origin: 0 50%; transition: transform var(--d-reveal) var(--ease); }
 .jr-connections { margin-top: 30px; padding-top: 20px; border-top: 1px solid #17382920; }
 .jr-connections h3 { font: 500 20px var(--display); color: #183329; margin-bottom: 12px; }
 .jr-connections a { display: block; margin: 12px 0; text-decoration: none; }

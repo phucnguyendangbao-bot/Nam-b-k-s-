@@ -18,6 +18,7 @@ import { CountUp } from '@/components/interactive/count-up';
 import { StoryRiver } from '@/components/interactive/story-river';
 import { festivalViews } from '@/lib/festivals';
 import { formatRange, daysUntil } from '@/lib/festival-format';
+import { journeyTotals } from '@/components/next-steps';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,7 +69,7 @@ const sceneOf = (slug?: string) => (slug && scenes[slug]) || { bg: PAPER, dark: 
 
 export default async function Home() {
   await ensureSeed();
-  const [items, words, domains] = await Promise.all([publicContents(), publicWords(), knowledgeCounts()]);
+  const [items, words, domains, journeys] = await Promise.all([publicContents(), publicWords(), knowledgeCounts(), journeyTotals()]);
   const festivals = await festivalViews(items);
   const nextFest = festivals.filter(f => f.time !== 'past').sort((a, b) => a.start.localeCompare(b.start))[0];
   const byId = new Map(items.map(i => [i.id, i]));
@@ -79,7 +80,7 @@ export default async function Home() {
     if (!d) return [];
     const src = p.imageFrom ? byId.get(p.imageFrom) : undefined;
     return [{
-      href: p.domain === 'phuong-ngu-nam-bo' ? '/tu-dien' : `/chuyen-de/${p.domain}`,
+      href: `/chuyen-de/${p.domain}`,
       title: p.title, text: d.description, meta: d.count ? `${d.count} hồ sơ` : 'Đang nghiên cứu nguồn', size: p.size,
       image: src?.image_url ? { src: src.image_url, credit: credit(src), position: p.position } : undefined,
       glyph: src?.image_url ? undefined : { word: p.word, motif: p.motif }, tone: p.tone,
@@ -97,7 +98,6 @@ export default async function Home() {
   const vocabIds = new Set(vocabWords.map(w => w.id));
   const hero = storyImages.prologue;
   const story = chapters.map(c => ({ ...c, rows: c.ids.map(id => byId.get(id)).filter((x): x is Row => Boolean(x)) }));
-  const total = story.reduce((n, c) => n + c.rows.length, 0);
   const usedImages = new Set<string>();
 
   return (
@@ -108,18 +108,18 @@ export default async function Home() {
         <Image className="hx-image" src={hero.url} alt="" fill priority fetchPriority="high" sizes="100vw" quality={85} style={{ objectPosition: hero.position }} />
         <div className="hx-scrim" aria-hidden="true" />
         <div className="hx-inner wrap">
-          <p className="hx-eyebrow"><span>Sáu chương · <CountUp to={total} /> hồ sơ đã kiểm chứng</span></p>
+          <p className="hx-eyebrow"><span>Sáu chương · <CountUp to={items.length} /> hồ sơ đã kiểm chứng</span></p>
           <h1 id="hx-title">Nam Bộ — <span>Miền đất của những câu chuyện.</span></h1>
           <p className="hx-sub">Khám phá lịch sử, văn hóa, con người và những ký ức tạo nên bản sắc phương Nam.</p>
           <div className="hx-actions">
             <a className="button light" href="#chuong-1">Bắt đầu đọc</a>
-            <a className="button ghost-light" href="/ban-do">Xem bản đồ di sản</a>
           </div>
+          <p className="hx-first">Lần đầu ghé? <a href="/hoi-dap#bat-dau">Bắt đầu từ đâu</a></p>
         </div>
         {/* Bảng lướt nhanh (theo ghi chú tay 14/11): bốn lối vào hay dùng ngay trong màn đầu, mỗi ô một con số đo được. */}
         <nav className="hx-quick" aria-label="Lướt nhanh">
           <a href="/lich-le-hoi" className="hx-q">
-            <span className="hx-q-k">Lễ hội</span>
+            <span className="hx-q-k">Lịch lễ hội</span>
             {nextFest
               ? <><strong>{nextFest.name}</strong><span>{formatRange(nextFest.start, nextFest.end)}{daysUntil(nextFest.start) > 0 ? ` · còn ${daysUntil(nextFest.start)} ngày` : ' · đang diễn ra'}</span></>
               : <><strong>Lịch lễ hội</strong><span>Ngày có nguồn công bố</span></>}
@@ -128,10 +128,10 @@ export default async function Home() {
             <span className="hx-q-k">Bản đồ</span><strong>{places.length} điểm di sản</strong><span>{places.filter(p => p.festivals?.some(f => f.time !== 'past')).length > 0 ? `${places.filter(p => p.festivals?.some(f => f.time !== 'past')).length} điểm có lễ sắp tới · lọc theo nhóm` : 'Lọc theo nhóm, mở tour 3D'}</span>
           </a>
           <a href="/hanh-trinh" className="hx-q">
-            <span className="hx-q-k">Hành trình</span><strong>{tours.length} tuyến đi</strong><span>Quanh sông Cần Thơ và rạch Bình Thủy</span>
+            <span className="hx-q-k">Hành trình</span><strong>{journeys.total} hành trình</strong><span>{journeys.reading} hành trình đọc · {journeys.map} tour bản đồ</span>
           </a>
           <a href="/tu-dien" className="hx-q">
-            <span className="hx-q-k">Tiếng quê mình</span><strong>{words.length} mục từ</strong><span>bậu, qua, mần, hổng, nghen…</span>
+            <span className="hx-q-k">Từ điển phương ngữ</span><strong>{words.length} mục từ</strong><span>bậu, qua, mần, hổng, nghen…</span>
           </a>
         </nav>
       </section>
@@ -194,7 +194,7 @@ export default async function Home() {
               })()}
               {isWords && vocabWords.length > 0 && (
                 <div className="ch-words" data-reveal>
-                  <p className="ch-words-head">“Tám” tiếng mỗi ngày <a className="text-link" href="/tu-dien">Từ điển {words.length} mục từ <span aria-hidden="true">→</span></a></p>
+                  <p className="ch-words-head">“Tám” tiếng mỗi ngày <a className="text-link" href="/tu-dien">Từ điển phương ngữ · {words.length} mục từ <span aria-hidden="true">→</span></a></p>
                   <WordExplorer words={vocabWords} />
                 </div>
               )}

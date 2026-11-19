@@ -17,6 +17,7 @@ import { DossierProgress } from './interactive/narrative-motion';
 import { MoreGrid } from './interactive/more-grid';
 import { interleave, milestones } from '@/lib/narrative';
 import { dossierTags, dossierThreads, type Thread } from '@/lib/dossier-links';
+import { NextSteps } from './next-steps';
 
 export const collectionDescriptions: Record<string, { intro: string; note: string }> = {
   'dat-nam-bo': {
@@ -168,6 +169,7 @@ export async function CollectionPage({ slug, params, user }: { slug: string; par
         </div>
       )}
       <p className="nb-note">{copy.note}</p>
+      <NextSteps ids={allItems.map(i => String(i.id))} />
     </main>
   );
 }
@@ -233,15 +235,14 @@ function Threads({ threads }: { threads: Thread[] }) {
   if (!threads.length) return null;
   return (
     <section className="threads" id="soi-day" aria-labelledby="soi-day-h">
-      <p className="eyebrow">Đọc tiếp theo sợi dây</p>
-      <h2 id="soi-day-h">Hồ sơ này nối với</h2>
+      <h3 id="soi-day-h" className="go-on-h">Hồ sơ này nối với</h3>
       <div className="threads-grid" data-n={threads.length}>
         {threads.map((t, n) => (
           <div className={`thread is-${t.kind}`} key={t.kind + t.label} id={threads.findIndex(x => x.kind === t.kind) === n ? `soi-day-${t.kind}` : undefined}>
             <p className="thread-kind"><ThreadGlyph kind={t.kind} />{threadKind[t.kind]}</p>
-            <h3>{t.label}</h3>
+            <h4>{t.label}</h4>
             <ol>
-              {t.items.map(i => (
+              {t.items.slice(0, 3).map(i => (
                 <li key={i.slug}><a href={`/ho-so/${i.slug}`}><strong>{i.title}</strong>{i.note && <span>{i.note}</span>}</a></li>
               ))}
             </ol>
@@ -265,7 +266,7 @@ function ThreadGlyph({ kind }: { kind: Thread['kind'] }) {
 
 function StoryNav({ story }: { story: StoryNavData }) {
   return (
-    <nav className="story-next" aria-label="Đọc tiếp trong câu chuyện">
+    <nav className="story-next" id="doc-tiep" aria-label="Đọc tiếp trong câu chuyện">
       {story.prev ? (
         <a href={story.prev.href} className="is-prev"><small>← {story.prev.chapter ?? 'Bài trước'}</small><strong>{story.prev.title}</strong></a>
       ) : <a href="/#muc-luc" className="is-prev"><small>← Mục lục</small><strong>Về đầu câu chuyện</strong></a>}
@@ -287,6 +288,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
   const collection = categories.find(item => (item.types as readonly string[]).includes(c.category)) ?? categories[0];
   const back = preview ? `/quan-tri/ban-thao/${c.id}` : `/ho-so/${c.slug}`;
   const mapStops = preview ? [] : mapToursFor(c.id);
+  const hasJourneys = tours.length > 0 || mapStops.length > 0;
   const words = (sections.length ? sections.map(x => x.text).join(' ') : String(c.body ?? '')).split(/\s+/).filter(Boolean).length + String(c.introduction ?? '').split(/\s+/).length;
   const minutes = Math.max(1, Math.round(words / 200));
   // Ảnh tư liệu xen giữa các mục thay vì dồn cuối bài; bài không chia mục thì giữ khối "Hình ảnh" như cũ.
@@ -300,12 +302,15 @@ export function DossierView({ article: c, citations, media, dialect, related, to
     ...sections.map((x, i) => ({ href: `#muc-${i + 1}`, label: x.heading, kind: x.kind })),
     ...(showGallery && !inline ? [{ href: '#hinh-anh', label: 'Hình ảnh' }] : []),
     { href: '#nguon-tham-khao', label: `Nguồn tham khảo (${citations.length})` },
+    ...(story ? [{ href: '#doc-tiep', label: 'Bài trước, bài tiếp theo' }] : []),
     ...(threads.length ? [{ href: '#soi-day', label: 'Hồ sơ này nối với' }] : []),
     { href: '#bai-lien-quan', label: 'Cùng chủ đề' },
+    ...(hasJourneys ? [{ href: '#tour-lien-quan', label: 'Có trong hành trình' }] : []),
   ];
   return (
     <main id="main" className={`wrap page nb-dossier tone-${categoryTone[collection.slug]}`}>
-      <Breadcrumb items={[{ label: collection.name, href: `/chuyen-muc/${collection.slug}` }, { label: c.title }]} />
+      {/* Hồ sơ thuộc câu chuyện: đường dẫn theo chương (khớp với Bài trước / Bài tiếp theo); chuyên mục vẫn hiện thành nhãn nhỏ. */}
+      <Breadcrumb items={story ? [{ label: `Chương ${story.chapter.n} · ${story.chapter.name}`, href: story.chapter.href }, { label: c.title }] : [{ label: collection.name, href: `/chuyen-muc/${collection.slug}` }, { label: c.title }]} />
       <Flash params={params} />
       {preview && (
         <div className="notice" role="status">
@@ -326,7 +331,7 @@ export function DossierView({ article: c, citations, media, dialect, related, to
       )}
       <div className="read-progress" aria-hidden="true" />
       <header className="nb-dossier-hero">
-        {story && <p className="story-pill">Chương {story.chapter.n} · <a href={story.chapter.href}>{story.chapter.name}</a> · bài {story.index + 1}/{story.total}</p>}
+        {story && <p className="story-pill">Bài {story.index + 1}/{story.total} của chương {story.chapter.n} <span aria-hidden="true">·</span> <a className="coll-chip" href={`/chuyen-muc/${collection.slug}`}>Chuyên mục {collection.name}</a></p>}
         <p className="eyebrow">{topics[c.topic] ?? collection.subtitle}</p>
         <h1 className={`dossier-title ${c.content_kind === 'dialect' ? 'is-word' : ''}`}><WordsRise text={nfc(c.title)} /></h1>
         <p className="dossier-intro">{c.introduction || c.summary}</p>
@@ -446,34 +451,43 @@ export function DossierView({ article: c, citations, media, dialect, related, to
           )}
 
           {story && <StoryNav story={story} />}
-          <Threads threads={threads} />
-          <section className="related-section" id="bai-lien-quan">
-            <h2>Cùng chủ đề</h2>
-            {related.length ? <DossierCards items={related} preview={preview} /> : <p>Chưa có hồ sơ cùng chủ đề.</p>}
-          </section>
-          <section className="related-section" id="tour-lien-quan">
-            <h2>Có trong hành trình</h2>
-            {tours.length ? tours.map(t => preview && !t.live_slug ? (
-              <details className="related-tour" key={t.id}>
-                <summary>{t.title} (đề xuất, chưa công bố)</summary>
-                <p>{t.description}</p>
-                <ol>{(t.content_ids as string[]).map(id => <li key={id}><a href={`/quan-tri/ban-thao/${id}`}>Xem chặng {id}</a></li>)}</ol>
-              </details>
-            ) : (
-              <a className="related-tour" href={`/hanh-trinh/${t.live_slug ?? t.slug}`} key={t.id}>
-                <h3>{t.title}</h3>
-                <p>{t.description}</p>
-                <span className="nb-link">Mở hành trình <Arrow /></span>
-              </a>
-            )) : !mapStops.length && <p>Hồ sơ này chưa nằm trong hành trình nào.</p>}
-            {mapStops.map(({ tour: t, stop, index }) => (
-              <a className="related-tour is-map" href={`/hanh-trinh/${t.slug}#chang-${index + 1}`} key={t.id}>
-                <span className="eyebrow">Tour bản đồ 3D, chặng {index + 1} trên {t.stops.length}</span>
-                <h3>{t.title}</h3>
-                <p>{t.summary}</p>
-                <span className="nb-link">Bay tới {stop.name} trên bản đồ <Arrow /></span>
-              </a>
-            ))}
+          {/* Một khu "Đi tiếp" duy nhất: sợi dây nối, cùng chủ đề, hành trình. Khối trống thì không hiện. */}
+          <section className="go-on" aria-labelledby="di-tiep">
+            <h2 id="di-tiep">Đi tiếp</h2>
+            <Threads threads={threads} />
+            <div className="go-on-grid">
+              <section className="related-section" id="bai-lien-quan" aria-labelledby="bai-lien-quan-h">
+                <h3 id="bai-lien-quan-h" className="go-on-h">Cùng chủ đề</h3>
+                {related.length ? (
+                  <ol className="go-list">
+                    {related.map(r => (
+                      <li key={r.id}><a href={preview ? `/quan-tri/ban-thao/${r.id}` : `/ho-so/${r.slug}`}><small>{topics[r.topic] ?? categories.find(item => (item.types as readonly string[]).includes(r.category))?.name}</small><strong>{nfc(r.title)}</strong></a></li>
+                    ))}
+                  </ol>
+                ) : <p>Chưa có hồ sơ cùng chủ đề.</p>}
+              </section>
+              {hasJourneys && (
+                <section className="related-section" id="tour-lien-quan" aria-labelledby="tour-lien-quan-h">
+                  <h3 id="tour-lien-quan-h" className="go-on-h">Có trong hành trình</h3>
+                  <ol className="go-list">
+                    {tours.map(t => preview && !t.live_slug ? (
+                      <li key={t.id}>
+                        <details className="related-tour">
+                          <summary>{t.title} (đề xuất, chưa công bố)</summary>
+                          <p>{t.description}</p>
+                          <ol>{(t.content_ids as string[]).map(id => <li key={id}><a href={`/quan-tri/ban-thao/${id}`}>Xem chặng {id}</a></li>)}</ol>
+                        </details>
+                      </li>
+                    ) : (
+                      <li key={t.id}><a href={`/hanh-trinh/${t.live_slug ?? t.slug}`}><small>Hành trình đọc</small><strong>{t.title}</strong></a></li>
+                    ))}
+                    {mapStops.map(({ tour: t, stop, index }) => (
+                      <li key={t.id} className="is-map"><a href={`/hanh-trinh/${t.slug}#chang-${index + 1}`}><small>Tour bản đồ 3D · chặng {index + 1}/{t.stops.length}</small><strong>{t.title}</strong><span>Bay tới {stop.name} trên bản đồ</span></a></li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+            </div>
           </section>
         </article>
 

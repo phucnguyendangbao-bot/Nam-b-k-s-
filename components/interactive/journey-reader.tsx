@@ -67,7 +67,7 @@ export function JourneyReader({ slug, title, description, closing, epigraph, sto
     <div className="jr-layout" id="journey-reading">
       <aside className="jr-context">
         <p className="journey-eyebrow">Đang ở chặng {String(active + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')}</p>
-        <div className="jr-progress" role="progressbar" aria-label="Vị trí trong hành trình" aria-valuemin={1} aria-valuemax={stops.length} aria-valuenow={active + 1}><span style={{ width: `${(active + 1) / stops.length * 100}%` }} /></div>
+        <div className="jr-progress" role="progressbar" aria-label="Vị trí trong hành trình" aria-valuemin={1} aria-valuemax={stops.length} aria-valuenow={active + 1}><span style={{ transform: `scaleX(${(active + 1) / stops.length})` }} /></div>
         {stop.chapter && <a href={stop.chapter.href}>Trong chương {stop.chapter.name} ↗</a>}
         <p>Mỗi điểm dừng mở ra một góc nhìn. Bạn có thể đọc lần lượt hoặc tự chọn đường đi qua các hồ sơ.</p>
         <a href={`/ho-so/${stop.slug}`}>Mở hồ sơ đầy đủ & nguồn ↗</a>
