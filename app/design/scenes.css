@@ -15,40 +15,37 @@
 .intro-on .intro {
   position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-rows: 1fr; overflow: hidden;
   color: #F6F1E6; background: #0B1528; cursor: pointer; user-select: none;
-  animation: intro-lift var(--d-reveal) var(--ease-scene) 2.95s both;
+  animation: intro-lift 900ms var(--ease-scene) 6.7s both;
 }
 .intro-skip .intro { animation: intro-lift-b var(--d-reveal) var(--ease-scene) both; }
 .intro-done .intro { display: none; }
 @keyframes intro-lift { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 @keyframes intro-lift-b { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 
-/* Ảnh thật (19/11/2026): ảnh mở đầu phủ tối như lúc rạng đông, thu dần từ cận về toàn cảnh; một vệt nắng vàng dâng từ dưới. */
-.intro-photo { position: absolute; inset: 0; z-index: -3; overflow: hidden; }
-.intro-photo img { object-fit: cover; transform: scale(1.14); animation: intro-kb 3.4s var(--ease-out) forwards; }
-@keyframes intro-kb { to { transform: scale(1.02); } }
+/* Ảnh: xem mục 12 (clip nhiều cảnh). */
 .intro-sky, .intro-dawn { position: absolute; inset: 0; z-index: -2; }
-.intro-sky { background: linear-gradient(180deg, rgba(11, 21, 40, .82) 0%, rgba(11, 21, 40, .55) 45%, rgba(11, 21, 40, .78) 100%); }
+.intro-sky { opacity: 0; background: linear-gradient(180deg, rgba(11, 21, 40, .78) 0%, rgba(11, 21, 40, .4) 45%, rgba(11, 21, 40, .72) 100%); animation: intro-fade 900ms var(--ease) 4.9s forwards; }
 .intro-dawn {
   z-index: -1; opacity: 0;
   background: radial-gradient(70% 45% at 50% 100%, rgba(243, 201, 105, .42) 0%, rgba(224, 90, 58, .2) 45%, rgba(224, 90, 58, 0) 75%);
-  animation: intro-fade 2600ms var(--ease) 150ms forwards;
+  animation: intro-fade 1600ms var(--ease) 5.1s forwards;
 }
 @keyframes intro-fade { to { opacity: 1; } }
 
 /* Tên web viết ra như nét bút, một nét vàng kéo theo bên dưới; ba nhịp lời đề từ hiện nối nhau. */
 .intro-copy { align-self: center; display: grid; justify-items: center; gap: clamp(.75rem, 2vh, 1.25rem); padding: 0 var(--gutter); margin-top: -8vh; text-align: center; }
 .intro-title { position: relative; font-family: var(--f-script, var(--f-display)); font-weight: 700; font-size: clamp(3rem, 1.6rem + 7vw, 7.5rem); line-height: 1.15; letter-spacing: 0; color: #F6F1E6; text-shadow: 0 2px 30px rgba(11, 21, 40, .35); }
-.intro-title span { display: block; padding: .05em .12em .18em; clip-path: inset(-30% 100% -40% -6%); animation: intro-write var(--d-scene) var(--ease) 450ms forwards; }
-.intro-title::after { content: ''; position: absolute; left: 18%; right: 18%; bottom: .06em; height: 2px; border-radius: 2px; background: linear-gradient(90deg, rgba(243, 201, 105, 0), #F3C969 20%, #F3C969 80%, rgba(243, 201, 105, 0)); transform-origin: 0 50%; scale: 0 1; animation: intro-line var(--d-reveal) var(--ease-out) 1500ms forwards; }
+.intro-title span { display: block; padding: .05em .12em .18em; clip-path: inset(-30% 100% -40% -6%); animation: intro-write var(--d-scene) var(--ease) 5.25s forwards; }
+.intro-title::after { content: ''; position: absolute; left: 18%; right: 18%; bottom: .06em; height: 2px; border-radius: 2px; background: linear-gradient(90deg, rgba(243, 201, 105, 0), #F3C969 20%, #F3C969 80%, rgba(243, 201, 105, 0)); transform-origin: 0 50%; scale: 0 1; animation: intro-line var(--d-reveal) var(--ease-out) 6.0s forwards; }
 @keyframes intro-write { to { clip-path: inset(-30% -6% -40% -6%); } }
 @keyframes intro-line { to { scale: 1 1; } }
 .intro-tag { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: .35rem .9rem; font-family: var(--f-ui); font-size: clamp(.7rem, .62rem + .3vw, .875rem); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(246, 241, 230, .82); }
 .intro-tag > * { opacity: 0; translate: 0 10px; animation: intro-rise var(--d-reveal) var(--ease-out) forwards; }
-.intro-tag > :nth-child(1) { animation-delay: 1.55s; }
-.intro-tag > :nth-child(2) { animation-delay: 1.65s; }
-.intro-tag > :nth-child(3) { animation-delay: 1.72s; }
-.intro-tag > :nth-child(4) { animation-delay: 1.82s; }
-.intro-tag > :nth-child(5) { animation-delay: 1.9s; }
+.intro-tag > :nth-child(1) { animation-delay: 6.0s; }
+.intro-tag > :nth-child(2) { animation-delay: 6.08s; }
+.intro-tag > :nth-child(3) { animation-delay: 6.14s; }
+.intro-tag > :nth-child(4) { animation-delay: 6.22s; }
+.intro-tag > :nth-child(5) { animation-delay: 6.3s; }
 .intro-tag i { font-style: normal; color: #F3C969; }
 @keyframes intro-rise { to { opacity: 1; translate: 0 0; } }
 
@@ -78,10 +75,10 @@
 
 /* ---------- 2. Ảnh mở đầu thức dậy sau màn mở đầu: từ màu ảnh cũ sang màu thật ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .intro-on .hx-image { animation: hx-wake var(--d-scene) var(--ease-out) 3.05s both; }
+  .intro-on .hx-image { animation: hx-wake var(--d-scene) var(--ease-out) 6.8s both; }
   .intro-on .hx-inner > * { animation-delay: calc(3.4s + var(--i, 0) * var(--stagger)); }
   .intro-on .hx-eyebrow::before { animation-delay: calc(3.4s + var(--stagger) * 2); }
-  .intro-on .sh { animation: sh-drop var(--d-reveal) var(--ease-out) 3.3s both; }
+  .intro-on .sh { animation: sh-drop var(--d-reveal) var(--ease-out) 7.1s both; }
   /* Bỏ qua sớm: đổi tên animation để chạy lại từ đầu, ngay sau khi màn kéo lên. */
   .intro-on.intro-skip .hx-image { animation-name: hx-wake-b; animation-delay: .4s; }
   .intro-on.intro-skip .hx-inner > * { animation-name: hx-rise-b; animation-delay: calc(.7s + var(--i, 0) * var(--stagger)); }
@@ -240,7 +237,7 @@
 .intro-count b { font-family: var(--f-display); font-weight: 600; font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem); line-height: 1; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
 .intro-count small { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .intro-count i { display: block; width: clamp(8rem, 18vw, 16rem); height: 1px; margin-top: 8px; background: rgba(246, 241, 230, .25); overflow: hidden; }
-.intro-count i::after { content: ''; display: block; height: 100%; background: #F3C969; transform-origin: 0 50%; scale: 0 1; animation: intro-line 2500ms var(--ease) 300ms forwards; }
+.intro-count i::after { content: ''; display: block; height: 100%; background: #F3C969; transform-origin: 0 50%; scale: 0 1; animation: intro-line 6200ms linear 300ms forwards; }
 @media (max-width: 700px) { .intro-count { display: none; } }
 
 /* 11. Sợi dây nối hồ sơ: nhãn nơi/thời/người ở đầu bài và khối "Hồ sơ này nối với" ở cuối bài. */
@@ -268,4 +265,33 @@
 @media (prefers-reduced-motion: reduce) { .thread li a::before, .dossier-tags .tag { transition: none; } }
 
 .intro-hint small { display: block; margin-top: 4px; font-size: 10px; font-weight: 400; letter-spacing: .02em; opacity: .75; text-align: right; }
-@media (prefers-reduced-motion: reduce) { .intro-photo img { animation: none; transform: none; } }
+
+/* ---------- 12. Intro dạng clip (19/11/2026): năm cảnh ảnh thật, nhát cắt lướt ngang, máy trôi chậm ----------
+   Mỗi cảnh vào bằng một nhát lướt từ phải sang (clip-path), ảnh trong cảnh đẩy/kéo/lia theo --s0→--s1, --x0→--x1.
+   Cảnh đầu hiện từ đen. Khung điện ảnh (hai dải đen trên dưới) mở ra khi tới cảnh cuối. Chỉ chạy một lần mỗi phiên. */
+.intro-shot { position: absolute; inset: 0; z-index: -3; overflow: hidden; clip-path: inset(0 0 0 100%);
+  animation: intro-cut 650ms var(--ease-scene) var(--at) forwards; }
+.intro-shot:first-of-type { clip-path: none; opacity: 0; animation: intro-fade 700ms var(--ease) 0s forwards; }
+.intro-shot img { object-fit: cover; transform: translateX(var(--x0)) scale(var(--s0));
+  animation: intro-cam 2400ms linear var(--at) forwards; }
+.intro-shot.is-last img { animation-duration: 2800ms; animation-timing-function: var(--ease-out); }
+@keyframes intro-cut { to { clip-path: inset(0 0 0 0); } }
+@keyframes intro-cam { to { transform: translateX(var(--x1)) scale(var(--s1)); } }
+/* Lớp tối nhẹ cho từng cảnh để chữ nổi; cảnh cuối có lớp trời riêng. */
+.intro-shot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 14, 26, .35), rgba(8, 14, 26, 0) 35%, rgba(8, 14, 26, 0) 60%, rgba(8, 14, 26, .55)); }
+.intro-cap { position: absolute; z-index: 1; left: var(--gutter); top: 22vh; margin: 0; font-family: var(--f-script); font-weight: 700;
+  font-size: clamp(2rem, 1.2rem + 3.6vw, 4.25rem); line-height: 1.1; color: #F6F1E6; text-shadow: 0 2px 24px rgba(0, 0, 0, .45);
+  opacity: 0; transform: translateY(18px); animation: intro-cap 900ms var(--ease-out) calc(var(--at) + 250ms) forwards; }
+@keyframes intro-cap { to { opacity: 1; transform: none; } }
+.intro-credit { position: absolute; z-index: 1; right: var(--gutter); top: calc(7vh + 10px); margin: 0; font-family: var(--f-ui); font-size: 10px; letter-spacing: .02em; color: rgba(246, 241, 230, .7); }
+.intro-bars { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.intro-bars::before, .intro-bars::after { content: ''; position: absolute; left: 0; right: 0; height: 7vh; background: #05090F; z-index: 2; transition: none;
+  animation: intro-bar 900ms var(--ease-scene) 5s forwards; }
+.intro-bars::before { top: 0; }
+.intro-bars::after { bottom: 0; --dir: 1; }
+@keyframes intro-bar { to { transform: scaleY(0); } }
+.intro-bars::before { transform-origin: 50% 0; }
+.intro-bars::after { transform-origin: 50% 100%; }
+.intro-count, .intro-hint { z-index: 3; }
+.intro-copy { position: relative; z-index: 1; grid-row: 1; align-self: center; margin-top: 0; }
+@media (max-width: 700px) { .intro-cap { top: 18vh; } .intro-credit { top: calc(7vh + 6px); font-size: 9px; } }
