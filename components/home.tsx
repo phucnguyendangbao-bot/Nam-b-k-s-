@@ -12,7 +12,6 @@ import { heritagePlaces } from '@/lib/heritage-places';
 import { knowledgeCounts } from '@/lib/knowledge';
 import { ensureSeed, publicContents, publicWords, type Row } from '@/lib/static-data';
 import { chapterAnchor, chapters, storyImages, type StoryImage } from '@/lib/story';
-import { ChapterArt } from '@/components/chapter-art';
 import { Track } from '@/components/interactive/track';
 import { CountUp } from '@/components/interactive/count-up';
 import { StoryRiver } from '@/components/interactive/story-river';
@@ -163,6 +162,9 @@ export default async function Home() {
         const isWords = c.slug === 'tieng-noi';
         const list = isWords ? c.rows.filter(r => !vocabIds.has(String(r.id))) : c.rows;
         if (c.image?.sameAs) usedImages.add(c.image.sameAs);
+        // Chương chưa có ảnh chương: lấy ảnh tư liệu thật của một hồ sơ trong chương đặt cạnh tiêu đề (thay tranh nét vẽ).
+        const lead = c.image ? undefined : list.find(r => r.image_url && !usedImages.has(r.image_url as string));
+        if (lead) usedImages.add(lead.image_url as string);
         // Một ảnh chỉ hiện một lần trên trang: hồ sơ dùng chung ảnh với bài trước thì chỉ hiện chữ.
         const shown = list.map(r => { const u = r.image_url as string | null; const show = Boolean(u && !usedImages.has(u)); if (u) usedImages.add(u); return show; });
         const scene = sceneOf(c.slug), after = sceneOf(next?.slug);
@@ -176,7 +178,7 @@ export default async function Home() {
                   <h2 id={`${chapterAnchor(c)}-title`}>{c.title}</h2>
                   <p className="ch-lede">{c.lede}</p>
                 </header>
-                <ChapterArt slug={c.slug} />
+                {lead && <ChapterPhoto row={lead} />}
               </div>
               {c.image && <ChapterFigure img={c.image} />}
               {/* Một băng trượt ngang cho cả chương: thẻ có ảnh trước, thẻ chỉ có chữ sau, số thứ tự giữ nguyên. */}
@@ -252,6 +254,19 @@ export default async function Home() {
         </div>
       </section>
     </main>
+  );
+}
+
+/** Ảnh tư liệu thật của một hồ sơ trong chương, đặt cạnh tiêu đề chương; bấm vào để đọc hồ sơ ấy. */
+function ChapterPhoto({ row: r }: { row: Row }) {
+  const src = r.image_url as string;
+  return (
+    <figure className="ch-photo" data-reveal>
+      <a className="ch-photo-frame ph" href={`/ho-so/${r.slug}`} style={ph(src)} aria-label={`Đọc hồ sơ ${nfc(r.title)}`}>
+        <Image src={src} alt="" width={640} height={800} sizes="(max-width: 900px) 100vw, 18rem" />
+      </a>
+      <figcaption>Ảnh trong hồ sơ <a href={`/ho-so/${r.slug}`}>{nfc(r.title)}</a>: {r.image_author}, {r.image_license}.</figcaption>
+    </figure>
   );
 }
 

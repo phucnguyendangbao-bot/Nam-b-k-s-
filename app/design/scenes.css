@@ -13,7 +13,7 @@
 /* ---------- 1. Màn mở đầu ---------- */
 .intro { display: none; }
 .intro-on .intro {
-  position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-rows: 1fr auto; overflow: hidden;
+  position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-rows: 1fr; overflow: hidden;
   color: #F6F1E6; background: #0B1528; cursor: pointer; user-select: none;
   animation: intro-lift var(--d-reveal) var(--ease-scene) 2.95s both;
 }
@@ -22,14 +22,15 @@
 @keyframes intro-lift { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 @keyframes intro-lift-b { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 
-/* Trời: đêm chàm sẫm, rạng đông dâng lên từ chân trời. */
+/* Ảnh thật (19/11/2026): ảnh mở đầu phủ tối như lúc rạng đông, thu dần từ cận về toàn cảnh; một vệt nắng vàng dâng từ dưới. */
+.intro-photo { position: absolute; inset: 0; z-index: -3; overflow: hidden; }
+.intro-photo img { object-fit: cover; transform: scale(1.14); animation: intro-kb 3.4s var(--ease-out) forwards; }
+@keyframes intro-kb { to { transform: scale(1.02); } }
 .intro-sky, .intro-dawn { position: absolute; inset: 0; z-index: -2; }
-.intro-sky { background: linear-gradient(180deg, #0B1528 0%, #13233F 60%, #1B2F52 100%); }
+.intro-sky { background: linear-gradient(180deg, rgba(11, 21, 40, .82) 0%, rgba(11, 21, 40, .55) 45%, rgba(11, 21, 40, .78) 100%); }
 .intro-dawn {
   z-index: -1; opacity: 0;
-  background:
-    radial-gradient(60% 38% at 50% 86%, rgba(243, 201, 105, .55) 0%, rgba(224, 90, 58, .28) 45%, rgba(224, 90, 58, 0) 75%),
-    linear-gradient(180deg, #172B4D 0%, #24467A 46%, #8E5A6A 72%, #D9844F 86%, #F0B866 100%);
+  background: radial-gradient(70% 45% at 50% 100%, rgba(243, 201, 105, .42) 0%, rgba(224, 90, 58, .2) 45%, rgba(224, 90, 58, 0) 75%);
   animation: intro-fade 2600ms var(--ease) 150ms forwards;
 }
 @keyframes intro-fade { to { opacity: 1; } }
@@ -265,3 +266,6 @@
 .thread-more { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s-2); padding-left: 18px; font-size: var(--t-sm); color: var(--c-primary); }
 .thread:target h3 { color: var(--c-primary); }
 @media (prefers-reduced-motion: reduce) { .thread li a::before, .dossier-tags .tag { transition: none; } }
+
+.intro-hint small { display: block; margin-top: 4px; font-size: 10px; font-weight: 400; letter-spacing: .02em; opacity: .75; text-align: right; }
+@media (prefers-reduced-motion: reduce) { .intro-photo img { animation: none; transform: none; } }
